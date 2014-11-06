@@ -1,0 +1,32 @@
+body { margin: 0; background: #ecf0f1; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+.sidebar { position: fixed; left: 0; top: 0; bottom: 0; height: 100%; width: 240px; background: #48A770; }
+
+.sidebar h1             { cursor: default; font-family: 'Lato', sans-serif; font-weight: 300; margin: 30px 0 30px 0; font-size: 34px; text-align: center; color: #2D6A47; }
+.sidebar h1>span        { border-bottom: 1px solid #398559; transition: all 0.2s; }
+.sidebar h1>span:hover  { color: #EFEDDD; border-bottom: 8px solid #398559; transition: all 0.2s; }
+
+.sidebar h2             { cursor: default; font-family: 'Lato', sans-serif; font-weight: 300; margin: 5px 0 30px 0; font-size: 18px; text-align: center; color: #2D6A47; }
+.sidebar h2>span        { border-bottom: 1px solid #398559; cursor: pointer; transition: all 0.2s; }
+.sidebar h2>span:hover  { color: #EFEDDD; border-bottom: 8px solid #398559; transition: all 0.2s; }
+
+.sidebar ul             { padding: 0; margin: 0; list-style-type: none; }
+.sidebar ul>li          { border-top: 1px solid #398559; transition: all 0.2s; }
+.sidebar ul>li.last     { border-bottom: 1px solid #398559; transition: all 0.2s; }
+.sidebar ul>li:hover    { background: #398559; transition: all 0.2s; }
+.sidebar ul>li>a        { font-family: 'Lato', sans-serif, Arial; display: block; padding: 1em 1em 1em 1.2em; letter-spacing: 1px; color: #EFEDDD; text-decoration: none; }
+
+.content        { position: absolute; margin-left: 240px; width: calc(100% - 240px); height: 100%; }
+.tab-content    { width: 100%; height: 100%; }
+
+.header                 { width: 100%; height: 70px; border-bottom: 2px solid #578548; cursor: default; background: #6AAE53; transition: all 0.2s; }
+.header h1              { margin: 0; text-align: center; font-family: 'Lato', sans-serif; line-height: 70px; font-weight: 300; font-size: 44px; color: #EFF0F2; }
+.header>h1>small        { font-size: 26px; color: #D9DADC; }
+.header>h1>small>span   { border-bottom: 1px solid #398559; }
+
+.money          { position: absolute; bottom: 60px; width: 100%; height: 100px; }
+.money h1       { margin: 0; line-height: 40px; font-family: 'Lato', sans-serif, Arial; font-size: 24px; transition: all 0.3s; }
+.money h1:hover { color: #EFEDDD; transition: all 0.3s; }
+.money h1>a     { color: inherit; text-decoration: none; border-bottom: 1px solid #398559; }
+
+.spacer { width: 90%; height: 30px; }
