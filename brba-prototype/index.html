@@ -1,16 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>BrBa - Prototype</title>
 
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link rel="stylesheet" type='text/css' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'>
+  <link rel="stylesheet" type='text/css' href="css/style.css">
 </head>
 
 <body>
   <h1>BrBa - Incremental-game prototype</h1>
 
+  <div class="spacer"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div id="stock" class="well">
+          <h1>Stock</h1>
+          <p><span id="s-m"></span></p><p><span id="s-1"></span><br><span id="s-2"></span></span><br><span id="s-3"></span></span><br><span id="s-4"></span></p>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div id="dealers" class="well">
+          <h1>Dealers</h1>
+          <p onclick="buyDealer(1)"><span id="d-n1"></span><span id="d-c1"></span><span id="d-q1"></span></p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div id="market" class="well">
+          <h1>Market</h1>
+          <p onclick="buyBuild(1)" data-toggle="tooltip" data-placement="top" title="0.30g/sec weed per weed plant."><span id="m-n1"></span><span id="m-c1"></span><span id="m-o1"></span></p>
+          <p onclick="buyBuild(2)" data-toggle="tooltip" data-placement="top" title="0.30g/sec meth per van."><span id="m-n2"></span><span id="m-c2"></span><span id="m-o2"></span></p>
+          <h1>Upgrades</h1>
+          <p>Upgrades in development.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/fix.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

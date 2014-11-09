@@ -1,2 +1,11 @@
 body { margin: 0; font-family: 'Open Sans', sans-serif; }
-h1 { margin: 0; font-weight: 300; text-align: center; }
+h1 { margin: 0; font-weight: 300; font-size: 38px; text-align: center; }
+
+.main { width: 90%; height: calc(90% - 102px); margin-top: 50px; margin-left: auto; margin-right: auto; }
+.spacer { width: 100%; height: 30px; }
+
+/* Custom boostrap */
+.row>.col-md-4>.well>h1   { margin: 0 0 20px 0; font-size: 32px; font-weight: 400; text-align: center; text-decoration: underline; }
+.row>.col-md-4>.well>p    { font-size: 18px; font-weight: 300; }
+.well { background: rgba(52, 73, 94, 0.1); }
+#market>p>span { border-bottom: 1px solid black; cursor: pointer; }
