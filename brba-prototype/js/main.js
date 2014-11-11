@@ -18,8 +18,10 @@ var buildings = [
     new Build("Abandoned van", 350, 0.30, 1.08, 1)
 ];
 var dealers = [
-    new Dealer("Heisenberg", 100, 5, 0, "meth"),
-    new Dealer("Tester 1", 200, 10, 0, "meth")
+    new Dealer("Meth Dealer #1", 100,   1, 0, "meth"),
+    new Dealer("Meth Dealer #2", 200,   3, 0, "meth"),
+    new Dealer("Weed Dealer #1", 800,   1, 1, "weed"),
+    new Dealer("Weed Dealer #2", 2500,  3, 1, "weed")
 ];
 var fps = 60;
 var interval = (1000/fps);
@@ -27,29 +29,26 @@ var init = false;
 
 // Methods
 function Build(name, cost, reward, inflation, type) {
-    this.name = name;
-    this.cost = cost;
-    this.reward = reward;
-    this.inflation = inflation;
-    this.type = type;
+    this.name = name; // build name
+    this.cost = cost; // build price
+    this.reward = reward; // build reward
+    this.inflation = inflation; // build inflation price
+    this.type = type; // build drug type for stock[] (meth - weed - heroine - crack)
 };
 function buyBuild(index) {
     var p = getPrice(index);
-    if (money >= p) {
-        money -= p;
-        owned[index-1]++;
-    };
+    if (money >= p) { money -= p; owned[index-1]++; };
     var np = getPrice(index);
     $("#m-c" + index).html(" : cost " + fix(np, 2) + "$ - ");
     $("#m-o" + index).html(owned[index-1] + " owned");
 };
 
 function Dealer(name, cost, quantity, type, type2) {
-    this.name = name;
-    this.cost = cost;
-    this.quantity = quantity;
-    this.type = type;
-    this.type2 = type2;
+    this.name = name; // dealer name
+    this.cost = cost; // dealer price
+    this.quantity = quantity; // for dealersQte[]
+    this.type = type; // for stock[] (meth - weed - heroine - crack)
+    this.type2 = type2; // display name of drug
 };
 function buyDealer(index) {
     d = dealers[index-1]
@@ -63,7 +62,6 @@ function buyDealer(index) {
 // Change g. price
 function marketPrice() {
     for (var i = 0; i < stockPrice.length; i++) {
-        var s = stockPrice[i];
         stockPrice[i] = Math.floor((Math.random() * maxStockPrice[i]) + minStockPrice[i]);
     };
 };

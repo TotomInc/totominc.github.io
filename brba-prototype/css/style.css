@@ -9,4 +9,5 @@ h1 { margin: 0; font-weight: 300; font-size: 38px; text-align: center; }
 .row>.col-md-4>.well>p    { font-size: 18px; font-weight: 300; }
 .well { background: rgba(52, 73, 94, 0.1); transition: all 0.2s; }
 .well:hover { border: 1px solid rgb(86, 180, 239); box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6); transition: all 0.2s; }
-#market>p>span { border-bottom: 1px solid black; cursor: pointer; }
+#market>p>span, #dealers>p>span { border-bottom: 1px solid black; cursor: pointer; }
+#stock>p { cursor: default; }
