@@ -14,8 +14,10 @@ var dealersOwned = []; // needed for achievements & upgrades (true/false)
 var dealersQte = [0, 0, 0, 0]; // total quantity per drug [meth, weed, heroine, crack]
 
 var buildings = [
-    new Build("Weed plant", 15, 0.30, 1.08, 0),
-    new Build("Abandoned van", 350, 0.30, 1.08, 1)
+    new Build("Weed plant",     15,     0.30, 1.08, 0),
+    new Build("Abandoned van",  350,    0.30, 1.08, 1),
+    new Build("Garage",         2500,   0.30, 1.08, 2),
+    new Build("Old House",      15000,  0.30, 1.08, 3)
 ];
 var dealers = [
     new Dealer("Meth Dealer #1", 100,   1, 0, "meth"),
@@ -23,9 +25,42 @@ var dealers = [
     new Dealer("Weed Dealer #1", 800,   1, 1, "weed"),
     new Dealer("Weed Dealer #2", 2500,  3, 1, "weed")
 ];
+var upgrades = [
+];
+var achievements = [
+];
+
 var fps = 60;
 var interval = (1000/fps);
 var init = false;
+var allVars = ["money","owned","stock","stockPrice","maxStockPrice","minStockPrice","dealersOwned","dealersQte","fps"];
+
+// Saving system
+function setItem(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+};
+function getItem(key) {
+    return JSON.parse(localStorage.getItem(key));
+};
+function removeItem(key) {
+    localStorage.removeItem(key);
+};
+function saveData() {
+    for (var i = 0; i < allVars.length; i++)
+        setItem(allVars[i], window[allVars[i]]);
+};
+function loadData() {
+    for (var i = 0; i < allVars.length; i++) {
+        if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) {
+            window[allVars[i]] = getItem(allVars[i]);
+        };
+    };
+};
+function resetData() {
+    for (var i = 0; i < allVars.length; i++) {
+        removeItem(allVars[i]);
+    }; location.reload();
+};
 
 // Methods
 function Build(name, cost, reward, inflation, type) {
@@ -90,10 +125,10 @@ function sellingDrug() {
 window.setInterval(function() { // display update interval
     if (init == true) {
         $("#s-m").html("Money : " + fix(money, 2) + "$");
-        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g) || (" + fix((buildings[0].reward * owned[0] - dealersQte[0]), 2) + "g/sec)");
-        $("#s-2").html("Weed : " + fix(stock[1], 2) + "g (" + fix(stockPrice[1], 2) + "$/g)");
-        $("#s-3").html("Heroine : " + fix(stock[2], 2) + "g (" + fix(stockPrice[2], 2) + "$/g)");
-        $("#s-4").html("Crack : " + fix(stock[3], 2) + "g (" + fix(stockPrice[3], 2) + "$/g)");
+        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g) | (" + fix((buildings[0].reward * owned[0] - dealersQte[0]), 2) + "g/sec)");
+        $("#s-2").html("Weed : " + fix(stock[1], 2) + "g (" + fix(stockPrice[1], 2) + "$/g) | (" + fix((buildings[1].reward * owned[1] - dealersQte[1]), 2) + "g/sec)");
+        $("#s-3").html("Heroine : " + fix(stock[2], 2) + "g (" + fix(stockPrice[2], 2) + "$/g) | (" + fix((buildings[2].reward * owned[2] - dealersQte[2]), 2) + "g/sec)");
+        $("#s-4").html("Crack : " + fix(stock[3], 2) + "g (" + fix(stockPrice[3], 2) + "$/g) | (" + fix((buildings[3].reward * owned[3] - dealersQte[3]), 2) + "g/sec)");
     };
 }, interval);
 window.setInterval(function() { // function interval
@@ -103,6 +138,8 @@ window.setInterval(function() { // market price interval (60s)
     marketPrice();
 }, 60000);
 window.onload = function() {
+    loadData();
+
     $("#s-m").html("Money : " + fix(money, 2) + "$");
     $("#s-1").html("Meth : " + fix(stock[0], 2) + "g");
     $("#s-2").html("Weed : " + fix(stock[1], 2) + "g");
@@ -124,6 +161,9 @@ window.onload = function() {
         $("#d-n" + (i+1)).html(d.name);
         $("#d-c" + (i+1)).html(" : cost " + fix(d.cost, 2) + "$ - ");
         $("#d-q" + (i+1)).html("sell " + fix(d.quantity, 2) + "g of " + d.type2);
+        if (dealersOwned[i] == true) {
+            $("#d-" + (i+1)).css("display", "none");
+        };
     };
 
     init = true;
