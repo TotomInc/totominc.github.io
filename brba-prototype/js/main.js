@@ -1,22 +1,25 @@
 $("[data-toggle=tooltip]").tooltip(); // Bootstrap tooltip init
 $("[data-toggle=popover]").popover(); // Bootstrap popover init
 
-var money = 100;
-var owned = [];
-var dealersOwned = [];
+var money = 10000;
 var progress = [];
+var owned = [];
 
-var stock = [0, 0, 0, 0]; // meth - weed - heroine - crack
+var stock = [100, 100, 100, 100]; // meth - weed - heroine - crack
 var stockPrice = [2, 5, 20, 100]; // price/g
 var maxStockPrice = [5, 10, 50, 250]; // max stock price
 var minStockPrice = [1, 2, 10, 50]; // min stock price
+
+var dealersOwned = []; // needed for achievements & upgrades (true/false)
+var dealersQte = [0, 0, 0, 0]; // total quantity per drug [meth, weed, heroine, crack]
 
 var buildings = [
     new Build("Weed plant", 15, 0.30, 1.08, 0),
     new Build("Abandoned van", 350, 0.30, 1.08, 1)
 ];
 var dealers = [
-    new Dealer("Heisenberg", 100, 1, 0, "weed")
+    new Dealer("Heisenberg", 100, 5, 0, "meth"),
+    new Dealer("Tester 1", 200, 10, 0, "meth")
 ];
 var fps = 60;
 var interval = (1000/fps);
@@ -49,9 +52,11 @@ function Dealer(name, cost, quantity, type, type2) {
     this.type2 = type2;
 };
 function buyDealer(index) {
-    var p = dealers[index-1].cost;
-    if (money >= p) {
-        money -= p;
+    d = dealers[index-1]
+    if (money >= d.cost) {
+        dealersOwned[index-1] = true;
+        dealersQte[d.type] += d.quantity;
+        $("#d-" + index).css('display', 'none');
     };
 };
 
@@ -67,36 +72,36 @@ function marketPrice() {
 function getPrice(index) {
     return buildings[index-1].cost * Math.pow(buildings[index-1].inflation, owned[index-1]);
 };
-function checkReward(index) { // todo : find a better method to get reward
-    if (owned[index] >= 0 && buildings[index].type == 0) {
-        stock[0] += buildings[index].reward * owned[index];
+function checkReward(index) {
+    for (var i = 0; i < stock.length; i++) {
+        if (owned[i] >= 0 && buildings[i].type == i) {
+            stock[i] += buildings[i].reward * owned[i];
+        };
     };
-    if (owned[index] >= 0 && buildings[index].type == 1) {
-        stock[1] += buildings[index].reward * owned[index];
-    };
-    if (owned[index] >= 0 && buildings[index].type == 2) {
-        stock[2] += buildings[index].reward * owned[index];
-    };
-    if (owned[index] >= 0 && buildings[index].type == 3) {
-        stock[3] += buildings[index].reward * owned[index];
+};
+function sellingDrug() {
+    for (var i = 0; i < stock.length; i++) {
+        if (stock[i] >= dealersQte[i]) {
+            stock[i] -= dealersQte[i];
+            money += dealersQte[i] * stockPrice[i];
+        };
     };
 };
 
 // Loops
-window.setInterval(function() {
+window.setInterval(function() { // display update interval
     if (init == true) {
-        for (var i = 0; i < progress.length; i++) {
-            if (progress[i] >= 1) { progress[i] = 0; checkReward(i); } else { progress[i] += 0.017};
-        };
-
         $("#s-m").html("Money : " + fix(money, 2) + "$");
-        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g)");
+        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g) || (" + fix((buildings[0].reward * owned[0] - dealersQte[0]), 2) + "g/sec)");
         $("#s-2").html("Weed : " + fix(stock[1], 2) + "g (" + fix(stockPrice[1], 2) + "$/g)");
         $("#s-3").html("Heroine : " + fix(stock[2], 2) + "g (" + fix(stockPrice[2], 2) + "$/g)");
         $("#s-4").html("Crack : " + fix(stock[3], 2) + "g (" + fix(stockPrice[3], 2) + "$/g)");
     };
 }, interval);
-window.setInterval(function() {
+window.setInterval(function() { // function interval
+    checkReward(); sellingDrug();
+}, 1000);
+window.setInterval(function() { // market price interval (60s)
     marketPrice();
 }, 60000);
 window.onload = function() {
