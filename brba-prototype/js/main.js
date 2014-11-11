@@ -13,6 +13,10 @@ var minStockPrice = [1, 2, 10, 50]; // min stock price
 var dealersOwned = []; // needed for achievements & upgrades (true/false)
 var dealersQte = [0, 0, 0, 0]; // total quantity per drug [meth, weed, heroine, crack]
 
+var upgradesOwned = [];
+
+var buildingsMultiplier = [];
+
 var buildings = [
     new Build("Weed plant",     15,     0.30, 1.08, 0),
     new Build("Abandoned van",  350,    0.30, 1.08, 1),
@@ -26,6 +30,7 @@ var dealers = [
     new Dealer("Weed Dealer #2", 2500,  3, 1, "weed")
 ];
 var upgrades = [
+    new Upgrade("Iron Cookware", 500, function() {buildingsMultiplier[0] *= 3})
 ];
 var achievements = [
 ];
@@ -33,7 +38,7 @@ var achievements = [
 var fps = 60;
 var interval = (1000/fps);
 var init = false;
-var allVars = ["money","owned","stock","stockPrice","maxStockPrice","minStockPrice","dealersOwned","dealersQte","fps"];
+var allVars = ["money","owned","stock","stockPrice","maxStockPrice","minStockPrice","dealersOwned","dealersQte","buildingsMultiplier","upgradesOwned","fps"];
 
 // Saving system
 function setItem(key, value) {
@@ -94,6 +99,19 @@ function buyDealer(index) {
     };
 };
 
+function Upgrade(name, cost, run) {
+    this.name = name;
+    this.cost = cost;
+    this.run = run;
+};
+function buyUpgrade(index) {
+    if (money >= upgrades[index-1].cost) {
+        money -= upgrades[index-1].cost;
+        upgrades[index-1].run();
+        $("#u-" + index).css("display", "none");
+    };
+};
+
 // Change g. price
 function marketPrice() {
     for (var i = 0; i < stockPrice.length; i++) {
@@ -108,7 +126,7 @@ function getPrice(index) {
 function checkReward(index) {
     for (var i = 0; i < stock.length; i++) {
         if (owned[i] >= 0 && buildings[i].type == i) {
-            stock[i] += buildings[i].reward * owned[i];
+            stock[i] += (buildings[i].reward * owned[i]) * buildingsMultiplier[i];
         };
     };
 };
@@ -125,10 +143,10 @@ function sellingDrug() {
 window.setInterval(function() { // display update interval
     if (init == true) {
         $("#s-m").html("Money : " + fix(money, 2) + "$");
-        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g) | (" + fix((buildings[0].reward * owned[0] - dealersQte[0]), 2) + "g/sec)");
-        $("#s-2").html("Weed : " + fix(stock[1], 2) + "g (" + fix(stockPrice[1], 2) + "$/g) | (" + fix((buildings[1].reward * owned[1] - dealersQte[1]), 2) + "g/sec)");
-        $("#s-3").html("Heroine : " + fix(stock[2], 2) + "g (" + fix(stockPrice[2], 2) + "$/g) | (" + fix((buildings[2].reward * owned[2] - dealersQte[2]), 2) + "g/sec)");
-        $("#s-4").html("Crack : " + fix(stock[3], 2) + "g (" + fix(stockPrice[3], 2) + "$/g) | (" + fix((buildings[3].reward * owned[3] - dealersQte[3]), 2) + "g/sec)");
+        $("#s-1").html("Meth : " + fix(stock[0], 2) + "g (" + fix(stockPrice[0], 2) + "$/g) | (" + fix(((buildings[0].reward * owned[0]) * buildingsMultiplier[0] - dealersQte[0]), 2) + "g/sec)");
+        $("#s-2").html("Weed : " + fix(stock[1], 2) + "g (" + fix(stockPrice[1], 2) + "$/g) | (" + fix(((buildings[1].reward * owned[1]) * buildingsMultiplier[1] - dealersQte[1]), 2) + "g/sec)");
+        $("#s-3").html("Heroine : " + fix(stock[2], 2) + "g (" + fix(stockPrice[2], 2) + "$/g) | (" + fix(((buildings[2].reward * owned[2]) * buildingsMultiplier[2] - dealersQte[2]), 2) + "g/sec)");
+        $("#s-4").html("Crack : " + fix(stock[3], 2) + "g (" + fix(stockPrice[3], 2) + "$/g) | (" + fix(((buildings[3].reward * owned[3]) * buildingsMultiplier[3] - dealersQte[3]), 2) + "g/sec)");
     };
 }, interval);
 window.setInterval(function() { // function interval
@@ -149,7 +167,7 @@ window.onload = function() {
     for (var i = 0; i < buildings.length; i++) {
         var b = buildings[i];
         owned.push(0);
-        progress.push(0);
+        buildingsMultiplier.push(1);
         $("#m-n" + (i+1)).html(b.name);
         $("#m-c" + (i+1)).html(" : cost " + fix(b.cost, 2) + "$ - ");
         $("#m-o" + (i+1)).html(owned[i] + " owned");
@@ -163,6 +181,16 @@ window.onload = function() {
         $("#d-q" + (i+1)).html("sell " + fix(d.quantity, 2) + "g of " + d.type2);
         if (dealersOwned[i] == true) {
             $("#d-" + (i+1)).css("display", "none");
+        };
+    };
+
+    for (var i = 0; i < upgrades.length; i++) {
+        var u = upgrades[i];
+        upgradesOwned.push(false);
+        $("#u-n" + (i+1)).html(u.name);
+        $("#u-c" + (i+1)).html(" - " + fix(u.cost, 2) + "$");
+        if (upgradesOwned[i] == true) {
+            $("#u-" + (i+1)).css("display", "none");
         };
     };
 
