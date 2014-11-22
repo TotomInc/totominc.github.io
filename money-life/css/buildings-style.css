@@ -1,10 +1,10 @@
 .b-content { width: 100%; height: calc(100% - 200px); }
 .b-1 { width: 50%; height: 100%; }
-.b-2 { position: absolute; top: 140px; left: 50%; width: 50%; height: calc(100% - 200px); }
+.b-2 { position: absolute; top: 132px; left: 50%; width: 50%; height: calc(100% - 200px); }
 
-.b-button               { margin: 30px 0 0 0; width: 75%; height: 60px; margin-left: auto; margin-right: auto; border: 1px solid #2c3e50; border-radius: 4px; }
-.b-button h1            { margin: -60px 0 0 0; font-family: 'Lato', sans-serif, Arial; font-size: 18px; font-weight: 300; text-align: center; cursor: pointer; }
-.b-button p             { margin: 15px 0 0 0; font-family: 'Lato', sans-serif, Arial; font-size: 18px; font-weight: 300; text-align: center; cursor: default; }
+.b-button               { margin: 35px 0 0 0; width: 75%; height: 60px; margin-left: auto; margin-right: auto; border: 1px solid #2c3e50; border-radius: 4px; }
+.b-button h1            { margin: -57px 0 0 0; font-family: 'Lato', sans-serif, Arial; font-size: 18px; font-weight: 300; text-align: center; cursor: pointer; }
+.b-button p             { margin: 20px 0 0 0; font-family: 'Lato', sans-serif, Arial; font-size: 18px; font-weight: 300; text-align: center; cursor: default; }
 .b-button p>span        { border-bottom: 1px solid #e74c3c; cursor: pointer; transition: all 0.2s; }
 .b-button p>span:hover  { border-bottom: 3px solid #e74c3c; color: #e67e22; transition: all 0.2s; }
 

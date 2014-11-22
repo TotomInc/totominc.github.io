@@ -51,7 +51,37 @@ var upgrades = [
     new Upgrade("Build 8 profit x3",        333333333,          function() {buildingsInc[7] *= 3}),
     new Upgrade("Build 9 profit x3",        666666666,          function() {buildingsInc[8] *= 3}),
     new Upgrade("Build 10 profit x3",       5000000000,         function() {buildingsInc[9] *= 3}),
-    new Upgrade("Every Build profit x3",    50000000000,        function() {totalBuildingInc *= 3})
+    new Upgrade("Every Build profit x3",    50000000000,        function() {totalBuildingInc *= 3}),
+
+    new Upgrade("Tokens efficiency of 3%",        100000000000,       function() {tokensRate *= 2}),
+
+    new Upgrade("Build 1 profit x5",        200000000000,       function() {buildingsInc[0] *= 5}),
+    new Upgrade("Build 2 profit x5",        500000000000,       function() {buildingsInc[1] *= 5}),
+    new Upgrade("Build 3 profit x5",        1000000000000,      function() {buildingsInc[2] *= 5}),
+    new Upgrade("Build 4 profit x5",        5000000000000,      function() {buildingsInc[3] *= 5}),
+    new Upgrade("Build 5 profit x5",        10000000000000,     function() {buildingsInc[4] *= 5}),
+    new Upgrade("Build 6 profit x5",        20000000000000,     function() {buildingsInc[5] *= 5}),
+    new Upgrade("Build 7 profit x5",        50000000000000,     function() {buildingsInc[6] *= 5}),
+    new Upgrade("Build 8 profit x5",        70000000000000,     function() {buildingsInc[7] *= 5}),
+    new Upgrade("Build 9 profit x5",        100000000000000,    function() {buildingsInc[8] *= 5}),
+    new Upgrade("Build 10 profit x5",       200000000000000,    function() {buildingsInc[9] *= 5}),
+    new Upgrade("Every Build profit x5",    500000000000000,    function() {totalBuildingInc *= 5}),
+
+    new Upgrade("Tokens efficiency of 6%",  750000000000000,       function() {tokensRate *= 2}),
+
+    new Upgrade("Build 1 profit x9",        2500000000000000,       function() {buildingsInc[0] *= 9}),
+    new Upgrade("Build 2 profit x9",        5000000000000000,       function() {buildingsInc[1] *= 9}),
+    new Upgrade("Build 3 profit x9",        75000000000000000,      function() {buildingsInc[2] *= 9}),
+    new Upgrade("Build 4 profit x9",        10000000000000000,      function() {buildingsInc[3] *= 9}),
+    new Upgrade("Build 5 profit x9",        20000000000000000,     function() {buildingsInc[4] *= 9}),
+    new Upgrade("Build 6 profit x9",        30000000000000000,     function() {buildingsInc[5] *= 9}),
+    new Upgrade("Build 7 profit x9",        50000000000000000,     function() {buildingsInc[6] *= 9}),
+    new Upgrade("Build 8 profit x9",        70000000000000000,     function() {buildingsInc[7] *= 9}),
+    new Upgrade("Build 9 profit x9",        100000000000000000,    function() {buildingsInc[8] *= 9}),
+    new Upgrade("Build 10 profit x9",       200000000000000000,    function() {buildingsInc[9] *= 9}),
+    new Upgrade("Every Build profit x9",    750000000000000000,    function() {totalBuildingInc *= 9}),
+
+    new Upgrade("Tokens efficiency of 12%",  10000000000000000000,       function() {tokensRate *= 2})
 ];
 var managers = [
     new Manager("Manager Build 1", 1000),
@@ -68,7 +98,6 @@ var managers = [
 var achievements = [
     new Achievement("Acquire 25 of the Build 1", "speed x2!",   "owned[0]", 25, "buildingsTime[0]",  "/2"),
     new Achievement("Acquire 50 of the Build 1", "speed x2!",   "owned[0]", 50, "buildingsTime[0]",  "/2"),
-    new Achievement("Acquire 75 of the Build 1", "speed x2!",   "owned[0]", 75, "buildingsTime[0]",  "/2"),
     new Achievement("Acquire 100 of the Build 1", "speed x3!",   "owned[0]", 100, "buildingsTime[0]",  "/3"),
     new Achievement("Acquire 150 of the Build 1", "speed x2!",   "owned[0]", 150, "buildingsTime[0]",  "/2"),
     new Achievement("Acquire 200 of the Build 1", "speed x2!",   "owned[0]", 200, "buildingsTime[0]",  "/2"),
@@ -78,7 +107,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 2", "speed x2!",   "owned[1]", 25, "buildingsTime[1]",  "/2"),
     new Achievement("Acquire 50 of the Build 2", "speed x2!",   "owned[1]", 50, "buildingsTime[1]",  "/2"),
-    new Achievement("Acquire 75 of the Build 2", "speed x2!",   "owned[1]", 75, "buildingsTime[1]",  "/2"),
     new Achievement("Acquire 100 of the Build 2", "speed x3!",   "owned[1]", 100, "buildingsTime[1]",  "/3"),
     new Achievement("Acquire 150 of the Build 2", "speed x2!",   "owned[1]", 150, "buildingsTime[1]",  "/2"),
     new Achievement("Acquire 200 of the Build 2", "speed x2!",   "owned[1]", 200, "buildingsTime[1]",  "/2"),
@@ -88,7 +116,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 3", "speed x2!",   "owned[2]", 25, "buildingsTime[2]",  "/2"),
     new Achievement("Acquire 50 of the Build 3", "speed x2!",   "owned[2]", 50, "buildingsTime[2]",  "/2"),
-    new Achievement("Acquire 75 of the Build 3", "speed x2!",   "owned[2]", 75, "buildingsTime[2]",  "/2"),
     new Achievement("Acquire 100 of the Build 3", "speed x3!",   "owned[2]", 100, "buildingsTime[2]",  "/3"),
     new Achievement("Acquire 150 of the Build 3", "speed x2!",   "owned[2]", 150, "buildingsTime[2]",  "/2"),
     new Achievement("Acquire 200 of the Build 3", "speed x2!",   "owned[2]", 200, "buildingsTime[2]",  "/2"),
@@ -98,7 +125,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 4", "speed x2!",   "owned[3]", 25, "buildingsTime[3]",  "/2"),
     new Achievement("Acquire 50 of the Build 4", "speed x2!",   "owned[3]", 50, "buildingsTime[3]",  "/2"),
-    new Achievement("Acquire 75 of the Build 4", "speed x2!",   "owned[3]", 75, "buildingsTime[3]",  "/2"),
     new Achievement("Acquire 100 of the Build 4", "speed x3!",   "owned[3]", 100, "buildingsTime[3]",  "/3"),
     new Achievement("Acquire 150 of the Build 4", "speed x2!",   "owned[3]", 150, "buildingsTime[3]",  "/2"),
     new Achievement("Acquire 200 of the Build 4", "speed x2!",   "owned[3]", 200, "buildingsTime[3]",  "/2"),
@@ -108,7 +134,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 5", "speed x2!",   "owned[4]", 25, "buildingsTime[4]",  "/2"),
     new Achievement("Acquire 50 of the Build 5", "speed x2!",   "owned[4]", 50, "buildingsTime[4]",  "/2"),
-    new Achievement("Acquire 75 of the Build 5", "speed x2!",   "owned[4]", 75, "buildingsTime[4]",  "/2"),
     new Achievement("Acquire 100 of the Build 5", "speed x3!",   "owned[4]", 100, "buildingsTime[4]",  "/3"),
     new Achievement("Acquire 150 of the Build 5", "speed x2!",   "owned[4]", 150, "buildingsTime[4]",  "/2"),
     new Achievement("Acquire 200 of the Build 5", "speed x2!",   "owned[4]", 200, "buildingsTime[4]",  "/2"),
@@ -118,7 +143,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 6", "speed x2!",   "owned[5]", 25, "buildingsTime[5]",  "/2"),
     new Achievement("Acquire 50 of the Build 6", "speed x2!",   "owned[5]", 50, "buildingsTime[5]",  "/2"),
-    new Achievement("Acquire 75 of the Build 6", "speed x2!",   "owned[5]", 75, "buildingsTime[5]",  "/2"),
     new Achievement("Acquire 100 of the Build 6", "speed x3!",   "owned[5]", 100, "buildingsTime[5]",  "/3"),
     new Achievement("Acquire 150 of the Build 6", "speed x2!",   "owned[5]", 150, "buildingsTime[5]",  "/2"),
     new Achievement("Acquire 200 of the Build 6", "speed x2!",   "owned[5]", 200, "buildingsTime[5]",  "/2"),
@@ -128,7 +152,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 7", "speed x2!",   "owned[6]", 25, "buildingsTime[6]",  "/2"),
     new Achievement("Acquire 50 of the Build 7", "speed x2!",   "owned[6]", 50, "buildingsTime[6]",  "/2"),
-    new Achievement("Acquire 75 of the Build 7", "speed x2!",   "owned[6]", 75, "buildingsTime[6]",  "/2"),
     new Achievement("Acquire 100 of the Build 7", "speed x3!",   "owned[6]", 100, "buildingsTime[6]",  "/3"),
     new Achievement("Acquire 150 of the Build 7", "speed x2!",   "owned[6]", 150, "buildingsTime[6]",  "/2"),
     new Achievement("Acquire 200 of the Build 7", "speed x2!",   "owned[6]", 200, "buildingsTime[6]",  "/2"),
@@ -138,7 +161,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 8", "speed x2!",   "owned[7]", 25, "buildingsTime[7]",  "/2"),
     new Achievement("Acquire 50 of the Build 8", "speed x2!",   "owned[7]", 50, "buildingsTime[7]",  "/2"),
-    new Achievement("Acquire 75 of the Build 8", "speed x2!",   "owned[7]", 75, "buildingsTime[7]",  "/2"),
     new Achievement("Acquire 100 of the Build 8", "speed x3!",   "owned[7]", 100, "buildingsTime[7]",  "/3"),
     new Achievement("Acquire 150 of the Build 8", "speed x2!",   "owned[1]", 150, "buildingsTime[7]",  "/2"),
     new Achievement("Acquire 200 of the Build 8", "speed x2!",   "owned[1]", 200, "buildingsTime[7]",  "/2"),
@@ -148,7 +170,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 9", "speed x2!",   "owned[8]", 25, "buildingsTime[8]",  "/2"),
     new Achievement("Acquire 50 of the Build 9", "speed x2!",   "owned[8]", 50, "buildingsTime[8]",  "/2"),
-    new Achievement("Acquire 75 of the Build 9", "speed x2!",   "owned[8]", 75, "buildingsTime[8]",  "/2"),
     new Achievement("Acquire 100 of the Build 9", "speed x3!",   "owned[8]", 100, "buildingsTime[8]",  "/3"),
     new Achievement("Acquire 150 of the Build 9", "speed x2!",   "owned[8]", 150, "buildingsTime[8]",  "/2"),
     new Achievement("Acquire 200 of the Build 9", "speed x2!",   "owned[8]", 200, "buildingsTime[8]",  "/2"),
@@ -158,7 +179,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of the Build 10","speed x2!",   "owned[9]", 25, "buildingsTime[9]",  "/2"),
     new Achievement("Acquire 50 of the Build 10","speed x2!",   "owned[9]", 50, "buildingsTime[9]",  "/2"),
-    new Achievement("Acquire 75 of the Build 10","speed x2!",   "owned[9]", 75, "buildingsTime[9]",  "/2"),
     new Achievement("Acquire 100 of the Build 10","speed x3!",   "owned[9]", 100, "buildingsTime[9]",  "/3"),
     new Achievement("Acquire 150 of the Build 10","speed x2!",   "owned[9]", 150, "buildingsTime[9]",  "/2"),
     new Achievement("Acquire 200 of the Build 10","speed x2!",   "owned[9]", 200, "buildingsTime[9]",  "/2"),
@@ -168,7 +188,6 @@ var achievements = [
 
     new Achievement("Acquire 25 of every builds","profit x2!",   "minAll", 25, "totalBuildingInc",  "*2"),
     new Achievement("Acquire 50 of every builds", "profit x2!",   "minAll", 50, "totalBuildingInc",  "*2"),
-    new Achievement("Acquire 75 of every builds", "profit x2!",   "minAll", 75, "totalBuildingInc",  "*2"),
     new Achievement("Acquire 100 of every builds","profit x3!",   "minAll", 100, "totalBuildingInc",  "*3"),
     new Achievement("Acquire 150 of every builds","profit x2!",   "minAll", 150, "totalBuildingInc",  "*2"),
     new Achievement("Acquire 200 of every builds","profit x2!",   "minAll", 200, "totalBuildingInc",  "*2"),

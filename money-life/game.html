@@ -8,6 +8,8 @@
   <script type="text/javascript" src="js/tabs.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400|Montserrat' rel='stylesheet' type='text/css'>
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/main-style.css">
   <link rel="stylesheet" type="text/css" href="css/buildings-style.css">
   <link rel="stylesheet" type="text/css" href="css/misc-style.css">
@@ -59,7 +61,6 @@
             <p>Cost : <span id="b-c10" onclick="buyBuilding(10)"></span></p></div>
           </div>
         </div>
-      <div class="spacer"></div>
       <div class="tab-line"></div>
       <h2>Tier 2 is not unlocked...</h2>
 
@@ -81,111 +82,191 @@
       <div id="u-9" class="u-button" onclick="buyUpgrade(9)"><h1><span id="u-n9"></span><span class="a" id="u-c9"></span></h1></div>
       <div id="u-10" class="u-button" onclick="buyUpgrade(10)"><h1><span id="u-n10"></span><span class="a" id="u-c10"></span></h1></div>
       <div id="u-11" class="u-button" onclick="buyUpgrade(11)"><h1><span id="u-n11"></span><span class="a" id="u-c11"></span></h1></div>
+      <div id="u-12" class="u-button" onclick="buyUpgrade(12)"><h1><span id="u-n12"></span><span class="a" id="u-c12"></span></h1></div>
+      <div id="u-13" class="u-button" onclick="buyUpgrade(13)"><h1><span id="u-n13"></span><span class="a" id="u-c13"></span></h1></div>
+      <div id="u-14" class="u-button" onclick="buyUpgrade(14)"><h1><span id="u-n14"></span><span class="a" id="u-c14"></span></h1></div>
+      <div id="u-15" class="u-button" onclick="buyUpgrade(15)"><h1><span id="u-n15"></span><span class="a" id="u-c15"></span></h1></div>
+      <div id="u-16" class="u-button" onclick="buyUpgrade(16)"><h1><span id="u-n16"></span><span class="a" id="u-c16"></span></h1></div>
+      <div id="u-17" class="u-button" onclick="buyUpgrade(17)"><h1><span id="u-n17"></span><span class="a" id="u-c17"></span></h1></div>
+      <div id="u-18" class="u-button" onclick="buyUpgrade(18)"><h1><span id="u-n18"></span><span class="a" id="u-c18"></span></h1></div>
+      <div id="u-19" class="u-button" onclick="buyUpgrade(19)"><h1><span id="u-n19"></span><span class="a" id="u-c19"></span></h1></div>
+      <div id="u-20" class="u-button" onclick="buyUpgrade(20)"><h1><span id="u-n20"></span><span class="a" id="u-c20"></span></h1></div>
+      <div id="u-21" class="u-button" onclick="buyUpgrade(21)"><h1><span id="u-n21"></span><span class="a" id="u-c21"></span></h1></div>
+      <div id="u-22" class="u-button" onclick="buyUpgrade(22)"><h1><span id="u-n22"></span><span class="a" id="u-c22"></span></h1></div>
+      <div id="u-23" class="u-button" onclick="buyUpgrade(23)"><h1><span id="u-n23"></span><span class="a" id="u-c23"></span></h1></div>
+      <div id="u-24" class="u-button" onclick="buyUpgrade(24)"><h1><span id="u-n24"></span><span class="a" id="u-c24"></span></h1></div>
+      <div id="u-25" class="u-button" onclick="buyUpgrade(25)"><h1><span id="u-n25"></span><span class="a" id="u-c25"></span></h1></div>
+      <div id="u-26" class="u-button" onclick="buyUpgrade(26)"><h1><span id="u-n26"></span><span class="a" id="u-c26"></span></h1></div>
+      <div id="u-27" class="u-button" onclick="buyUpgrade(27)"><h1><span id="u-n27"></span><span class="a" id="u-c27"></span></h1></div>
+      <div id="u-28" class="u-button" onclick="buyUpgrade(28)"><h1><span id="u-n28"></span><span class="a" id="u-c28"></span></h1></div>
+      <div id="u-29" class="u-button" onclick="buyUpgrade(29)"><h1><span id="u-n29"></span><span class="a" id="u-c29"></span></h1></div>
+      <div id="u-30" class="u-button" onclick="buyUpgrade(30)"><h1><span id="u-n30"></span><span class="a" id="u-c30"></span></h1></div>
+      <div id="u-31" class="u-button" onclick="buyUpgrade(31)"><h1><span id="u-n31"></span><span class="a" id="u-c31"></span></h1></div>
+      <div id="u-32" class="u-button" onclick="buyUpgrade(32)"><h1><span id="u-n32"></span><span class="a" id="u-c32"></span></h1></div>
+      <div id="u-33" class="u-button" onclick="buyUpgrade(33)"><h1><span id="u-n33"></span><span class="a" id="u-c33"></span></h1></div>
+      <div id="u-34" class="u-button" onclick="buyUpgrade(34)"><h1><span id="u-n34"></span><span class="a" id="u-c34"></span></h1></div>
+      <div id="u-35" class="u-button" onclick="buyUpgrade(35)"><h1><span id="u-n35"></span><span class="a" id="u-c35"></span></h1></div>
+      <div id="u-36" class="u-button" onclick="buyUpgrade(36)"><h1><span id="u-n36"></span><span class="a" id="u-c36"></span></h1></div>
+      <div id="u-37" class="u-button" onclick="buyUpgrade(37)"><h1><span id="u-n37"></span><span class="a" id="u-c37"></span></h1></div>
+      <div id="u-38" class="u-button" onclick="buyUpgrade(38)"><h1><span id="u-n38"></span><span class="a" id="u-c38"></span></h1></div>
+      <div id="u-39" class="u-button" onclick="buyUpgrade(39)"><h1><span id="u-n39"></span><span class="a" id="u-c39"></span></h1></div>
     </div>
     <div id="content-3" class="tab-content" style="display: none">
       <div class="header"><h1>Money Life <small><span>v1.00</span></small></h1></div>
 
       <h2>Achievements</h2>
       <div class="tab-line"></div>
-      <div class="a-button"><h1><span id="a-n1"></span><span id="a-t1"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n2"></span><span id="a-t2"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n3"></span><span id="a-t3"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n4"></span><span id="a-t4"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n5"></span><span id="a-t5"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n6"></span><span id="a-t6"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n7"></span><span id="a-t7"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n8"></span><span id="a-t8"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n9"></span><span id="a-t9"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n10"></span><span id="a-t10"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n11"></span><span id="a-t11"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n12"></span><span id="a-t12"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n13"></span><span id="a-t13"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n14"></span><span id="a-t14"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n15"></span><span id="a-t15"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n16"></span><span id="a-t16"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n17"></span><span id="a-t17"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n18"></span><span id="a-t18"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n19"></span><span id="a-t19"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n20"></span><span id="a-t20"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n21"></span><span id="a-t21"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n22"></span><span id="a-t22"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n23"></span><span id="a-t23"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n24"></span><span id="a-t24"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n25"></span><span id="a-t25"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n26"></span><span id="a-t26"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n27"></span><span id="a-t27"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n28"></span><span id="a-t28"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n29"></span><span id="a-t29"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n30"></span><span id="a-t30"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n31"></span><span id="a-t31"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n32"></span><span id="a-t32"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n33"></span><span id="a-t33"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n34"></span><span id="a-t34"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n35"></span><span id="a-t35"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n36"></span><span id="a-t36"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n37"></span><span id="a-t37"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n38"></span><span id="a-t38"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n39"></span><span id="a-t39"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n40"></span><span id="a-t40"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n41"></span><span id="a-t41"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n42"></span><span id="a-t42"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n43"></span><span id="a-t43"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n44"></span><span id="a-t44"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n45"></span><span id="a-t45"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n46"></span><span id="a-t46"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n47"></span><span id="a-t47"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n48"></span><span id="a-t48"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n49"></span><span id="a-t49"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n50"></span><span id="a-t50"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n51"></span><span id="a-t51"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n52"></span><span id="a-t52"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n53"></span><span id="a-t53"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n54"></span><span id="a-t54"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n55"></span><span id="a-t55"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n56"></span><span id="a-t56"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n57"></span><span id="a-t57"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n58"></span><span id="a-t58"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n59"></span><span id="a-t59"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n60"></span><span id="a-t60"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n61"></span><span id="a-t61"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n62"></span><span id="a-t62"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n63"></span><span id="a-t63"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n64"></span><span id="a-t64"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n65"></span><span id="a-t65"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n66"></span><span id="a-t66"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n67"></span><span id="a-t67"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n68"></span><span id="a-t68"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n69"></span><span id="a-t69"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n70"></span><span id="a-t70"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n71"></span><span id="a-t71"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n72"></span><span id="a-t72"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n73"></span><span id="a-t73"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n74"></span><span id="a-t74"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n75"></span><span id="a-t75"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n76"></span><span id="a-t76"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n77"></span><span id="a-t77"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n78"></span><span id="a-t78"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n79"></span><span id="a-t79"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n80"></span><span id="a-t80"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n81"></span><span id="a-t81"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n82"></span><span id="a-t82"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n83"></span><span id="a-t83"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n84"></span><span id="a-t84"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n85"></span><span id="a-t85"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n86"></span><span id="a-t86"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n87"></span><span id="a-t87"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n88"></span><span id="a-t88"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n89"></span><span id="a-t89"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n90"></span><span id="a-t90"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n91"></span><span id="a-t91"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n92"></span><span id="a-t92"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n93"></span><span id="a-t93"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n94"></span><span id="a-t94"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n95"></span><span id="a-t95"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n96"></span><span id="a-t96"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n97"></span><span id="a-t97"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n98"></span><span id="a-t98"></span></h1></div>
-      <div class="a-button"><h1><span id="a-n99"></span><span id="a-t99"></span></h1></div>
+
+      <div role="tabpanel">
+        <ul class="nav nav-tabs nav-justified">
+          <li role="presentation" class="active"><a href="#b1" aria-controls="b1" role="tab" data-toggle="tab">Build 1</a></li>
+          <li role="presentation"><a href="#b2" aria-controls="b2" role="tab" data-toggle="tab">Build 2</a></li>
+          <li role="presentation"><a href="#b3" aria-controls="b3" role="tab" data-toggle="tab">Build 3</a></li>
+          <li role="presentation"><a href="#b4" aria-controls="b4" role="tab" data-toggle="tab">Build 4</a></li>
+          <li role="presentation"><a href="#b5" aria-controls="b5" role="tab" data-toggle="tab">Build 5</a></li>
+          <li role="presentation"><a href="#b6" aria-controls="b6" role="tab" data-toggle="tab">Build 6</a></li>
+          <li role="presentation"><a href="#b7" aria-controls="b7" role="tab" data-toggle="tab">Build 7</a></li>
+          <li role="presentation"><a href="#b8" aria-controls="b8" role="tab" data-toggle="tab">Build 8</a></li>
+          <li role="presentation"><a href="#b9" aria-controls="b9" role="tab" data-toggle="tab">Build 9</a></li>
+          <li role="presentation"><a href="#b10" aria-controls="b10" role="tab" data-toggle="tab">Build 10</a></li>
+          <li role="presentation"><a href="#ab" aria-controls="ab" role="tab" data-toggle="tab">Every builds</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="b1">
+            <h1>Build 1</h1>
+            <div class="a-button"><h1><span id="a-n1"></span><span id="a-t1"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n2"></span><span id="a-t2"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n3"></span><span id="a-t3"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n4"></span><span id="a-t4"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n5"></span><span id="a-t5"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n6"></span><span id="a-t6"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n7"></span><span id="a-t7"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n8"></span><span id="a-t8"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b2">
+            <h1>Build 2</h1>
+            <div class="a-button"><h1><span id="a-n9"></span><span id="a-t9"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n10"></span><span id="a-t10"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n11"></span><span id="a-t11"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n12"></span><span id="a-t12"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n13"></span><span id="a-t13"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n14"></span><span id="a-t14"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n15"></span><span id="a-t15"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n16"></span><span id="a-t16"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b3">
+            <h1>Build 3</h1>
+            <div class="a-button"><h1><span id="a-n17"></span><span id="a-t17"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n18"></span><span id="a-t18"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n19"></span><span id="a-t19"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n20"></span><span id="a-t20"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n21"></span><span id="a-t21"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n22"></span><span id="a-t22"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n23"></span><span id="a-t23"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n24"></span><span id="a-t24"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b4">
+            <h1>Build 4</h1>
+            <div class="a-button"><h1><span id="a-n25"></span><span id="a-t25"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n26"></span><span id="a-t26"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n27"></span><span id="a-t27"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n28"></span><span id="a-t28"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n29"></span><span id="a-t29"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n30"></span><span id="a-t30"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n31"></span><span id="a-t31"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n32"></span><span id="a-t32"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b5">
+            <h1>Build 5</h1>
+            <div class="a-button"><h1><span id="a-n33"></span><span id="a-t33"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n34"></span><span id="a-t34"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n35"></span><span id="a-t35"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n36"></span><span id="a-t36"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n37"></span><span id="a-t37"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n38"></span><span id="a-t38"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n39"></span><span id="a-t39"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n40"></span><span id="a-t40"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b6">
+            <h1>Build 6</h1>
+            <div class="a-button"><h1><span id="a-n41"></span><span id="a-t41"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n42"></span><span id="a-t42"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n43"></span><span id="a-t43"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n44"></span><span id="a-t44"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n45"></span><span id="a-t45"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n46"></span><span id="a-t46"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n47"></span><span id="a-t47"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n48"></span><span id="a-t48"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b7">
+            <h1>Build 7</h1>
+            <div class="a-button"><h1><span id="a-n49"></span><span id="a-t49"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n50"></span><span id="a-t50"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n51"></span><span id="a-t51"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n52"></span><span id="a-t52"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n53"></span><span id="a-t53"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n54"></span><span id="a-t54"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n55"></span><span id="a-t55"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n56"></span><span id="a-t56"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b8">
+            <h1>Build 8</h1>
+            <div class="a-button"><h1><span id="a-n57"></span><span id="a-t57"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n58"></span><span id="a-t58"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n59"></span><span id="a-t59"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n60"></span><span id="a-t60"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n61"></span><span id="a-t61"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n62"></span><span id="a-t62"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n63"></span><span id="a-t63"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n64"></span><span id="a-t64"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b9">
+            <h1>Build 9</h1>
+            <div class="a-button"><h1><span id="a-n65"></span><span id="a-t65"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n66"></span><span id="a-t66"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n67"></span><span id="a-t67"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n68"></span><span id="a-t68"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n69"></span><span id="a-t69"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n70"></span><span id="a-t70"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n71"></span><span id="a-t71"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n72"></span><span id="a-t72"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="b10">
+            <h1>Build 10</h1>
+            <div class="a-button"><h1><span id="a-n73"></span><span id="a-t73"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n74"></span><span id="a-t74"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n75"></span><span id="a-t75"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n76"></span><span id="a-t76"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n77"></span><span id="a-t77"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n78"></span><span id="a-t78"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n79"></span><span id="a-t79"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n80"></span><span id="a-t80"></span></h1></div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="ab">
+            <h1>Every builds</h1>
+            <div class="a-button"><h1><span id="a-n81"></span><span id="a-t81"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n82"></span><span id="a-t82"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n83"></span><span id="a-t83"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n84"></span><span id="a-t84"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n85"></span><span id="a-t85"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n86"></span><span id="a-t86"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n87"></span><span id="a-t87"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n88"></span><span id="a-t88"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n89"></span><span id="a-t89"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n90"></span><span id="a-t90"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n91"></span><span id="a-t91"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n92"></span><span id="a-t92"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n93"></span><span id="a-t93"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n94"></span><span id="a-t94"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n95"></span><span id="a-t95"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n96"></span><span id="a-t96"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n97"></span><span id="a-t97"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n98"></span><span id="a-t98"></span></h1></div>
+            <div class="a-button"><h1><span id="a-n99"></span><span id="a-t99"></span></h1></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="content-4" class="tab-content" style="display: none">
       <div class="header"><h1>Money Life <small><span>v1.00</span></small></h1></div>
