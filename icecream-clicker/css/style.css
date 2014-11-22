@@ -1,0 +1,5 @@
+body { margin: 0; font-family: Consolas; background: #eee; }
+h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px }
+h2 { margin: 0; text-align: center; font-size: 24px }
+p { margin: 5px 0 5px 0; font-size: 16px; }
+img { width: 40px; height: 40px; cursor: pointer; }
