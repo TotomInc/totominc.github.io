@@ -1,9 +1,10 @@
 ic = {};
 
 ic.version = 0.01;
-ic.money = 0;
+ic.money = 50;
 ic.icecube = 0;
 
+// Saving system
 function saveData() {
     localStorage.setItem('ic', JSON.stringify(ic));
 };
