@@ -3,3 +3,8 @@ h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px }
 h2 { margin: 0; text-align: center; font-size: 24px }
 p { margin: 5px 0 5px 0; font-size: 16px; }
 img { width: 40px; height: 40px; cursor: pointer; }
+
+.well       { transition: all 0.2s; }
+.well:hover { border: 1px solid #3498db; transition: all 0.2s; }
+
+#stats>p>span { cursor: pointer; }
