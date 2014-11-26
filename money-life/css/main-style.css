@@ -30,6 +30,8 @@ body { margin: 0; background: #ecf0f1; -webkit-touch-callout: none; -webkit-user
 .money h1>a     { color: inherit; text-decoration: none; border-bottom: 1px solid #398559; }
 
 .tab-content h1 { margin: 0 0 15px 0; text-align: center; font-family: 'Lato', sans-serif; font-size: 32px;  }
-#ul       { font-family: 'Lato', sans-serif; }
+li             { font-family: 'Lato', sans-serif; }
+
+#ach-panel      { margin: 10px 0 0 0; }
 
 .spacer { width: 90%; height: 30px; }
