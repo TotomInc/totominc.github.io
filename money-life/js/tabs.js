@@ -1,10 +1,1 @@
-var lastname = '1';
-
-function tabclick(name) {
-    $("#content-" + name).attr('style', 'display: block');
-    $("#content-" + lastname).attr('style', 'display: none');
-
-    lastname = name;
-};
-
-tabclick(lastname);
+function tabclick(a){$("#content-"+a).attr("style","display: block"),$("#content-"+lastname).attr("style","display: none"),lastname=a}var lastname="1";tabclick(lastname);

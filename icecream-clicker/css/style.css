@@ -7,4 +7,5 @@ img { width: 40px; height: 40px; cursor: pointer; }
 .well       { transition: all 0.2s; }
 .well:hover { border: 1px solid #3498db; transition: all 0.2s; }
 
-#stats>p>span { cursor: pointer; }
+.img-thumbnail          { transition: all 0.2s; }
+.img-thumbnail:hover    { border: 1px solid #3498db; transition: all 0.2s;  }

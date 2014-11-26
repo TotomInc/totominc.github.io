@@ -30,70 +30,136 @@ var fps = 60;
 
 var buildings = [
     new Building("Build 1",     4,              1,              1.09, 1.5,  false),
-    new Building("Build 2",     60,             60,             1.16, 3,    false),
-    new Building("Build 3",     720,            540,            1.15, 6,    false),
-    new Building("Build 4",     8640,           4320,           1.14, 12,   false),
-    new Building("Build 5",     103680,         51840,          1.13, 24,   false),
-    new Building("Build 6",     1244160,        622080,         1.12, 96,   false),
-    new Building("Build 7",     14929920,       7464960,        1.11, 384,  false),
-    new Building("Build 8",     179159040,      89579520,       1.10, 576,  false),
-    new Building("Build 9",     2149908480,     1074954240,     1.09, 1296, false),
-    new Building("Build 10",    25789901760,    29668737024,    1.08, 6144, false)
+    new Building("Build 2",     60,             60,             1.17, 3,    false),
+    new Building("Build 3",     720,            540,            1.16, 6,    false),
+    new Building("Build 4",     8640,           4320,           1.15, 12,   false),
+    new Building("Build 5",     103680,         51840,          1.14, 24,   false),
+    new Building("Build 6",     1244160,        622080,         1.13, 96,   false),
+    new Building("Build 7",     14929920,       7464960,        1.12, 384,  false),
+    new Building("Build 8",     179159040,      89579520,       1.11, 576,  false),
+    new Building("Build 9",     2149908480,     1074954240,     1.10, 1296, false),
+    new Building("Build 10",    25789901760,    29668737024,    1.09, 6144, false)
 ];
 var upgrades = [
-    new Upgrade("Build 1 profit x3",        250000,             function() {buildingsInc[0] *= 3}),
-    new Upgrade("Build 2 profit x3",        500000,             function() {buildingsInc[1] *= 3}),
-    new Upgrade("Build 3 profit x3",        1000000,            function() {buildingsInc[2] *= 3}),
-    new Upgrade("Build 4 profit x3",        5000000,            function() {buildingsInc[3] *= 3}),
-    new Upgrade("Build 5 profit x3",        10000000,           function() {buildingsInc[4] *= 3}),
-    new Upgrade("Build 6 profit x3",        25000000,           function() {buildingsInc[5] *= 3}),
-    new Upgrade("Build 7 profit x3",        100000000,          function() {buildingsInc[6] *= 3}),
-    new Upgrade("Build 8 profit x3",        333333333,          function() {buildingsInc[7] *= 3}),
-    new Upgrade("Build 9 profit x3",        666666666,          function() {buildingsInc[8] *= 3}),
-    new Upgrade("Build 10 profit x3",       5000000000,         function() {buildingsInc[9] *= 3}),
-    new Upgrade("Every Build profit x3",    50000000000,        function() {totalBuildingInc *= 3}),
+    new Upgrade("Build 1 profit x3",        250000,                 function() {buildingsInc[0] *= 3}),
+    new Upgrade("Build 2 profit x3",        500000,                 function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        1000000,                function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        5000000,                function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        10000000,               function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        25000000,               function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        500000000,              function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        10000000000,            function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        50000000000,            function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       250000000000,           function() {buildingsInc[9] *= 3}),
+    new Upgrade("Every Build profit x3",    1000000000000,          function() {totalBuildingInc *= 3}),
 
-    new Upgrade("Tokens efficiency of 3%",  10000000000000,       function() {tokensRate *= 2}),
+    new Upgrade("Build 1 profit x3",        20000000000000,         function() {buildingsInc[0] *= 3}),
+    new Upgrade("Build 2 profit x3",        50000000000000,         function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        100000000000000,        function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        500000000000000,        function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        1000000000000000,       function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        2000000000000000,       function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        5000000000000000,       function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        7000000000000000,       function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        10000000000000000,      function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       20000000000000000,      function() {buildingsInc[9] *= 3}),
+    new Upgrade("Every Build profit x3",    50000000000000000,      function() {totalBuildingInc *= 3}),
+    new Upgrade("Tokens efficiency +1%",    500000000000000000,     function() {tokensRate += 1}),
 
-    new Upgrade("Build 1 profit x5",        200000000000000,       function() {buildingsInc[0] *= 5}),
-    new Upgrade("Build 2 profit x5",        500000000000000,       function() {buildingsInc[1] *= 5}),
-    new Upgrade("Build 3 profit x5",        1000000000000000,      function() {buildingsInc[2] *= 5}),
-    new Upgrade("Build 4 profit x5",        5000000000000000,      function() {buildingsInc[3] *= 5}),
-    new Upgrade("Build 5 profit x5",        10000000000000000,     function() {buildingsInc[4] *= 5}),
-    new Upgrade("Build 6 profit x5",        20000000000000000,     function() {buildingsInc[5] *= 5}),
-    new Upgrade("Build 7 profit x5",        50000000000000000,     function() {buildingsInc[6] *= 5}),
-    new Upgrade("Build 8 profit x5",        70000000000000000,     function() {buildingsInc[7] *= 5}),
-    new Upgrade("Build 9 profit x5",        100000000000000000,    function() {buildingsInc[8] *= 5}),
-    new Upgrade("Build 10 profit x5",       200000000000000000,    function() {buildingsInc[9] *= 5}),
-    new Upgrade("Every Build profit x5",    500000000000000000,    function() {totalBuildingInc *= 5}),
+    new Upgrade("Build 1 profit x3",        2000000000000000000,        function() {buildingsInc[0] *= 3}),
+    new Upgrade("Build 2 profit x3",        5000000000000000000,        function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        7000000000000000000,        function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        10000000000000000000,       function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        20000000000000000000,       function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        35000000000000000000,       function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        50000000000000000000,       function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        75000000000000000000,       function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        100000000000000000000,      function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       200000000000000000000,      function() {buildingsInc[9] *= 3}),
+    new Upgrade("Every Build profit x3",    500000000000000000000,      function() {totalBuildingInc *= 3}),
+    new Upgrade("Tokens efficiency +1%",    1000000000000000000000,     function() {tokensRate += 1}),
 
-    new Upgrade("Tokens efficiency of 6%",  750000000000000000000,       function() {tokensRate *= 2}),
+    new Upgrade("Build 1 profit x3",        25000000000000000000000,        function() {buildingsInc[0] *= 3}),
+    new Upgrade("Build 2 profit x3",        50000000000000000000000,        function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        100000000000000000000000,       function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        200000000000000000000000,       function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        300000000000000000000000,       function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        400000000000000000000000,       function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        500000000000000000000000,       function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        600000000000000000000000,       function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        700000000000000000000000,       function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       800000000000000000000000,       function() {buildingsInc[9] *= 3}),
+    new Upgrade("Every Build profit x3",    900000000000000000000000,       function() {totalBuildingInc *= 3}),
+    new Upgrade("Tokens efficiency +2%",    10000000000000000000000000,     function() {tokensRate += 2}),
 
-    new Upgrade("Build 1 profit x9",        2500000000000000000,       function() {buildingsInc[0] *= 9}),
-    new Upgrade("Build 2 profit x9",        5000000000000000000,       function() {buildingsInc[1] *= 9}),
-    new Upgrade("Build 3 profit x9",        75000000000000000000,      function() {buildingsInc[2] *= 9}),
-    new Upgrade("Build 4 profit x9",        100000000000000000000,     function() {buildingsInc[3] *= 9}),
-    new Upgrade("Build 5 profit x9",        200000000000000000000,     function() {buildingsInc[4] *= 9}),
-    new Upgrade("Build 6 profit x9",        300000000000000000000,     function() {buildingsInc[5] *= 9}),
-    new Upgrade("Build 7 profit x9",        500000000000000000000,     function() {buildingsInc[6] *= 9}),
-    new Upgrade("Build 8 profit x9",        700000000000000000000,     function() {buildingsInc[7] *= 9}),
-    new Upgrade("Build 9 profit x9",        1000000000000000000000,    function() {buildingsInc[8] *= 9}),
-    new Upgrade("Build 10 profit x9",       2000000000000000000000,    function() {buildingsInc[9] *= 9}),
-    new Upgrade("Every Build profit x9",    7500000000000000000000,    function() {totalBuildingInc *= 9}),
+    new Upgrade("Build 1 profit x7",        1000000000000000000000000000,                   function() {buildingsInc[0] *= 7}),
+    new Upgrade("Build 2 profit x7",        5000000000000000000000000000,                   function() {buildingsInc[1] *= 7}),
+    new Upgrade("Build 3 profit x7",        25000000000000000000000000000,                  function() {buildingsInc[2] *= 7}),
+    new Upgrade("Build 4 profit x7",        100000000000000000000000000000,                 function() {buildingsInc[3] *= 7}),
+    new Upgrade("Build 5 profit x7",        250000000000000000000000000000,                 function() {buildingsInc[4] *= 7}),
+    new Upgrade("Build 6 profit x7",        500000000000000000000000000000,                 function() {buildingsInc[5] *= 7}),
+    new Upgrade("Build 7 profit x7",        1000000000000000000000000000000,                function() {buildingsInc[6] *= 7}),
+    new Upgrade("Build 8 profit x7",        5000000000000000000000000000000,                function() {buildingsInc[7] *= 7}),
+    new Upgrade("Build 9 profit x7",        25000000000000000000000000000000,               function() {buildingsInc[8] *= 7}),
+    new Upgrade("Build 10 profit x7",       50000000000000000000000000000000,               function() {buildingsInc[9] *= 7}),
+    new Upgrade("Every Build profit x7",    1000000000000000000000000000000000000000000,    function() {totalBuildingInc *= 7}),
 
-    new Upgrade("Tokens efficiency of 12%", 10000000000000000000000000,       function() {tokensRate *= 2}),
+    new Upgrade("Build 2 profit x3",        5000000000000000000000000000000000000000000,        function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        25000000000000000000000000000000000000000000,       function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        50000000000000000000000000000000000000000000,       function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        100000000000000000000000000000000000000000000,      function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        250000000000000000000000000000000000000000000,      function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        500000000000000000000000000000000000000000000,      function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        1000000000000000000000000000000000000000000000,     function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        5000000000000000000000000000000000000000000000,     function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       10000000000000000000000000000000000000000000000,    function() {buildingsInc[9] *= 3}),
+    new Upgrade("Build 1 profit x3",        25000000000000000000000000000000000000000000000,    function() {buildingsInc[0] *= 3}),
+    new Upgrade("Every Build profit x3",    100000000000000000000000000000000000000000000000,   function() {totalBuildingInc *= 3}),
 
-    new Upgrade("Build 1 profit x3",        10000000000000000000000000000,                 function() {buildingsInc[0] *= 3}),
-    new Upgrade("Build 2 profit x3",        25000000000000000000000000000,                 function() {buildingsInc[1] *= 3}),
-    new Upgrade("Build 3 profit x3",        90000000000000000000000000000,                 function() {buildingsInc[2] *= 3}),
-    new Upgrade("Build 4 profit x3",        150000000000000000000000000000,                function() {buildingsInc[3] *= 3}),
-    new Upgrade("Build 5 profit x3",        500000000000000000000000000000,                function() {buildingsInc[4] *= 3}),
-    new Upgrade("Build 6 profit x3",        5000000000000000000000000000000,               function() {buildingsInc[5] *= 3}),
-    new Upgrade("Build 7 profit x3",        50000000000000000000000000000000,              function() {buildingsInc[6] *= 3}),
-    new Upgrade("Build 8 profit x3",        90000000000000000000000000000000,              function() {buildingsInc[7] *= 3}),
-    new Upgrade("Build 9 profit x3",        180000000000000000000000000000000,             function() {buildingsInc[8] *= 3}),
-    new Upgrade("Build 10 profit x3",       2600000000000000000000000000000000,            function() {buildingsInc[9] *= 3}),
-    new Upgrade("Every Build profit x3",    6400000000000000000000000000000000,            function() {totalBuildingInc *= 3})
+    new Upgrade("Build 2 profit x3",        250000000000000000000000000000000000000000000000,               function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        500000000000000000000000000000000000000000000000,               function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        750000000000000000000000000000000000000000000000,               function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        1000000000000000000000000000000000000000000000000,              function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        500000000000000000000000000000000000000000000000,               function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        15000000000000000000000000000000000000000000000000,             function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        50000000000000000000000000000000000000000000000000,             function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        100000000000000000000000000000000000000000000000000,            function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       250000000000000000000000000000000000000000000000000,            function() {buildingsInc[9] *= 3}),
+    new Upgrade("Build 1 profit x3",        500000000000000000000000000000000000000000000000000,            function() {buildingsInc[0] *= 3}),
+    new Upgrade("Every Build profit x7",    1000000000000000000000000000000000000000000000000000,           function() {totalBuildingInc *= 7}),
+    new Upgrade("Every Build profit x5",    1000000000000000000000000000000000000000000000000000000,        function() {totalBuildingInc *= 5}),
+    new Upgrade("Every Build profit x7",    1000000000000000000000000000000000000000000000000000000000000,  function() {totalBuildingInc *= 7}),
+
+    new Upgrade("Build 2 profit x3",        10000000000000000000000000000000000000000000000000000000000000,                 function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        100000000000000000000000000000000000000000000000000000000000000,                function() {buildingsInc[2] *= 3}),
+    new Upgrade("Every Build profit x9",    1000000000000000000000000000000000000000000000000000000000000000000,               function() {totalBuildingInc *= 9}),
+    new Upgrade("Build 4 profit x3",        10000000000000000000000000000000000000000000000000000000000000000000,              function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        100000000000000000000000000000000000000000000000000000000000000000000,             function() {buildingsInc[4] *= 3}),
+    new Upgrade("Every Build profit x11",   1000100000000000000000000000000000000000000000000000000000000000000000000,            function() {totalBuildingInc *= 11}),
+    new Upgrade("Build 6 profit x3",        10000000000000000000000000000000000000000000000000000000000000000000000000,           function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        100000000000000000000000000000000000000000000000000000000000000000000000000,          function() {buildingsInc[6] *= 3}),
+    new Upgrade("Every Build profit x13",   1000100000000000000000000000000000000000000000000000000000000000000000000000,         function() {totalBuildingInc *= 13}),
+    new Upgrade("Build 8 profit x3",        10000000000000000000000000000000000000000000000000000000000000000000000000000,        function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        100000000000000000000000000000000000000000000000000000000000000000000000000000,       function() {buildingsInc[8] *= 3}),
+    new Upgrade("Every Build profit x15",   1000000000000000000000000000000000000000000000000000000000000000000000000000000,      function() {totalBuildingInc *= 15}),
+    new Upgrade("Build 10 profit x3",       10000000000000000000000000000000000000000000000000000000000000000000000000000000,     function() {buildingsInc[9] *= 3}),
+    new Upgrade("Build 1 profit x3",        100000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {buildingsInc[0] *= 3}),
+
+    new Upgrade("Every Build profit x3",    1000100000000000000000000000000000000000000000000000000000000000000000000000000000000,      function() {totalBuildingInc *= 3}),
+    new Upgrade("Every Build profit x3",    3000100000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalBuildingInc *= 3}),
+
+    new Upgrade("Build 2 profit x3",        1000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000,        function() {buildingsInc[1] *= 3}),
+    new Upgrade("Build 3 profit x3",        5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,        function() {buildingsInc[2] *= 3}),
+    new Upgrade("Build 4 profit x3",        25000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,       function() {buildingsInc[3] *= 3}),
+    new Upgrade("Build 5 profit x3",        50000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,       function() {buildingsInc[4] *= 3}),
+    new Upgrade("Build 6 profit x3",        100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,      function() {buildingsInc[5] *= 3}),
+    new Upgrade("Build 7 profit x3",        250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,      function() {buildingsInc[6] *= 3}),
+    new Upgrade("Build 8 profit x3",        500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,      function() {buildingsInc[7] *= 3}),
+    new Upgrade("Build 9 profit x3",        1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,     function() {buildingsInc[8] *= 3}),
+    new Upgrade("Build 10 profit x3",       5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,     function() {buildingsInc[9] *= 3}),
+    new Upgrade("Build 1 profit x3",        10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {buildingsInc[0] *= 3}),
+
+    new Upgrade("Every Build profit x2",    500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalBuildingInc *= 2})
 ];
 var managers = [
     new Manager("Manager Build 1", 1000),
@@ -289,6 +355,7 @@ function loadData() {
         var u = upgradesOwned[i];
         if (u == true) {
             $("#u-" + (i+1)).attr('onclick', '');
+            $("#u-n" + (i+1)).html(u.name + " : ")
             $("#u-c" + (i+1)).html("owned " + '<i class="fa fa-check"></i>')
         };
     };
@@ -459,13 +526,17 @@ function update(times) {
             $("#b-r" + (i+1)).html(fix((buildings[i].basereward * owned[i] * buildingsInc[i]) * totalBuildingInc * (1 + tokens * tokensRate / 100) * totalMultiplier, 2) + "$");
         };
 
-        tokensOn = Math.floor(150 * Math.sqrt(totalMoney/1e9));
+        tokensOn = Math.floor(10 * Math.sqrt(totalMoney/1e13));
 
         $("#money").html("Money : " + fix(money, 2) + "$");
         $("#s-money").html("Money : " + fix(money, 2) + "$");
         $("#s-totalmoney").html("All money earned : " + fix(totalMoney, 2) + "$");
-        $("#s-tokens").html("Tokens : " + tokens);
+        $("#s-tokens").html("Tokens : " + fix(tokens, 2));
         $("#s-tokenson").html("Tokens on reset : " + fix(tokensOn, 2));
+
+        for (var i = 0; i < buildings.length; i++) {
+            $("#b-r" + (i+1)).html(fix(buildings[i].basereward * owned[i] * buildingsInc[i] * totalBuildingInc, 2) + "$");
+        };
 
         document.title = "Money Life - " + fix(money, 2) + "$";
 
@@ -488,7 +559,7 @@ function initVariable() {
     money = 0;
     totalMoney = 0;
     tokens = 0;
-    tokensRate = 1.5;
+    tokensRate = 1;
     tokensOn = 0;
     totalBuildingInc = 1;
     totalMultiplier = 1;
@@ -552,7 +623,6 @@ window.onload = function() {
                 $("#u-" + (i+1)).attr('onclick', '');
                 $("#u-n" + (i+1)).html(u.name + " : ");
                 $("#u-c" + (i+1)).html("owned " + '<i class="fa fa-check"></i>');
-                $("#b-r" + (i+1)).html(fix(buildings[i].basereward * owned[i] * buildingsInc[i] * totalBuildingInc, 2) + "$");
             };
         };
 
