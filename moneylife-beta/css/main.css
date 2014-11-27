@@ -1,0 +1,10 @@
+body { margin: 0; font-family: Consolas; background: #ecf0f1; }
+h1 { margin: 0 0 10px 0; text-align: center; font-size: 30px; }
+h2 { margin: 0 0 5px 0; text-align: center; font-size: 22px; }
+h3 { margin: 5px 0 5px 0; font-size: 18px; text-decoration: underline; }
+p { margin: 0 0 0 0; text-align: center; font-size: 14px; }
+
+.b-button { margin-left: auto; margin-right: auto; width: 90%; height: 30px; border: 1px solid black; border-radius: 4px; }
+.b-filler { width: 0%; height: 100%; border-radius: 2px; background: #ccc; }
+
+.col-md-3 { min-height: 0; overflow-y: auto; }

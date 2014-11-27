@@ -550,10 +550,6 @@ function update(times) {
         $("#s-tokens").html("Tokens : " + fix(tokens, 2));
         $("#s-tokenson").html("Tokens on reset : " + fix(tokensOn, 2));
 
-        for (var i = 0; i < buildings.length; i++) {
-            $("#b-r" + (i+1)).html(fix(buildings[i].basereward * owned[i] * buildingsInc[i] * totalBuildingInc, 2) + "$");
-        };
-
         document.title = "Money Life - " + fix(money, 2) + "$";
 
         updateAchievements();
