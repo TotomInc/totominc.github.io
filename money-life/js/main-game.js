@@ -551,7 +551,7 @@ function update(times) {
         $("#s-tokenson").html("Tokens on reset : " + fix(tokensOn, 2));
 
         for (var i = 0; i < buildings.length; i++) {
-            $("#b-r" + (i+1)).html(fix(buildings[i].basereward * owned[i] * buildingsInc[i] * totalBuildingInc, 2) + "$");
+            $("#b-r" + (i+1)).html(fix((buildings[i].basereward * owned[i] * buildingsInc[i]) * totalBuildingInc * (1 + tokens * tokensRate / 100) * totalMultiplier, 2) + "$");
         };
 
         document.title = "Money Life - " + fix(money, 2) + "$";
