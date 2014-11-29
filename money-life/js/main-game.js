@@ -626,7 +626,9 @@ function update(times) {
                 var t = getTime(i);
                 progress[i] += times/fps;
                 if (managersOwned[i]) {
-                    gainMoney(Math.floor(progress[i]/t) * getInc(i) * owned[i]); progress[i] %= t; var width = progress[i]/t * 100;
+                    gainMoney(Math.floor(progress[i]/t) * getInc(i) * owned[i]);
+                    progress[i] %= t;
+                    var width = progress[i]/t * 100;
                     if (t < 0.1 * 1)
                         width = 100; // Always full
                     width = Math.max(width, 1);

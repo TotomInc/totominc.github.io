@@ -1,6 +1,7 @@
 body { margin: 0; font-family: 'Consolas', sans-serif; }
 h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px; }
 h2 { margin: 0 0 10px 0; text-decoration: underline; font-size: 22px; }
+h3 { margin: 0 0 10px 0; font-size: 18px; }
 p { margin: 5px 0 5px 0; font-size: 16px; }
 
 p.b-stats { text-align: center; }
@@ -9,6 +10,7 @@ p.b-stats>span.b-reward { font-weight: bold; }
 p.b-buy { text-align: center; font-size: 12px; }
 p.b-buy>span { cursor: pointer; }
 p.s-upgrade { text-align: center; }
+p.s-managers { text-align: center; cursor: pointer; }
 p.s-stats { text-align: center;	font-family: 14px; font-weight: bold; text-decoration: underline; }
 p.s-saves { font-size: 12px; cursor: pointer; }
 
