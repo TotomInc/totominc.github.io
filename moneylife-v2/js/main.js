@@ -30,7 +30,10 @@ var t1owned = [];
 var t1progress = [];
 
 var cheatAvert = 0;
-var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","cheatAvert","t1owned","t1progress"];
+var moneyVerif = 0;
+var totalmoneyVerif = 0;
+var tokensVerif = 0;
+var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","cheatAvert","t1owned","t1progress","moneyVerif","totalmoneyVerif","cheatAvert","tokensVerif"];
 
 // Saving system
 function setItem(key, value) {
@@ -67,9 +70,25 @@ function resetData() {
     };
 };
 function cheatReset() {
+    alert("You have cheated too many times, the game will hard reset.")
     for (var i = 0; i < allVars.length; i++) {
         removeItem(allVars[i]);
     }; location.reload();
+};
+function softReset() {
+    var r = confirm("Do you want to soft reset, restart everything from the beginning and goes from " + fix(tokens, 0) + " tokens to " + fix(getTokensOn(), 0) + " tokens?")
+    if (r == true) {
+        var temp1 = totalMoney;
+        var temp2 = getTokensOn();
+        var temp3 = cheatAvert;
+        initVars();
+        totalMoney = temp1;
+        tokens = temp2;
+        tokensVerif = tokens;
+        cheatAvert = temp3;
+        saveData();
+        location.reload();
+    };
 };
 
 // Essentials functions
@@ -83,6 +102,7 @@ function initGame() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
+    $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
 
     for (var i = 0; i < t1.length; i++) {
@@ -121,9 +141,9 @@ function updateGame(times) {
             };
         };
 
-        if (fps < 60) { cheatAvert++; alert("FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
-        if (fps > 60) { cheatAvert++; alert("FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
-        if (cheatAvert == 3) { cheatReset(); };
+        $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
+
+        a98q7w3q8z(); // anticheat
     };
 };
 
@@ -134,10 +154,15 @@ function getInc(source) {
 function getMoney(amount) {
     money += amount;
     totalMoney += amount;
+    moneyVerif += amount;
+    totalmoneyVerif += amount;
 };
 function getPrice(index) {
     var t = t1[index];
     return t.price * Math.pow(t.inflation, t1owned[index]);
+};
+function getTokensOn() {
+    return Math.floor(10 * Math.sqrt(totalMoney/1e13));
 };
 function getTime(index) {
     return t1[index].time;
@@ -173,7 +198,16 @@ function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
+    $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
+};
+function a98q7w3q8z() {
+    if (fps < 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
+    if (fps > 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
+    if (money > moneyVerif) { cheatAvert++; alert("CHEAT DETECTED ! Money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); money = moneyVerif; };
+    if (totalMoney > totalmoneyVerif) { cheatAvert++; alert("CHEAT DETECTED ! Total money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); totalMoney = totalmoneyVerif; };
+    if (tokens > tokensVerif) { cheatAvert++; alert("CHEAT DETECTED ! Tokens changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); tokens = tokensVerif; };
+    if (cheatAvert == 3) { cheatReset(); };
 };
 
 // Methods
@@ -194,7 +228,7 @@ function buyBuilding(index, buyAmount) {
 };
 function buyBuildingOnce(index) {
     if (money < getPrice(index)) { return; }
-    else { money -= getPrice(index); t1owned[index]++; };
+    else { money -= getPrice(index); moneyVerif -= getPrice(index); t1owned[index]++; };
 };
 
 // Onload + loops
