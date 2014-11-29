@@ -15,11 +15,16 @@ var fps = 60;
 var interval = (1000 / fps);
 
 var t1 = [
-    new Building("Lemonade Stand",      4,      1,      1.09, 1.5,  false),
-    new Building("Cookie Stand",        70,     60,     1.17, 3,    false),
-    new Building("Car Wash",            720,    540,    1.16, 6,    false),
-    new Building("Oil Pump",            8640,   4320,   1.15, 12,   false),
-    new Building("Meth Lab",            103680, 51840,  1.14, 24,   false)
+    new Building("Cookie Stand",        4,              1,              1.09, 1.5,  false),
+    new Building("Newspaper Stand",     70,             60,             1.17, 3,    false),
+    new Building("Car-Wash",            720,            540,            1.16, 6,    false),
+    new Building("Gas Extractor",       8640,           4320,           1.15, 12,   false),
+    new Building("Meth Lab",            103680,         51840,          1.14, 24,   false),
+    new Building("Bank",                1244160,        622080,         1.13, 96,   false),
+    new Building("Movie Studio",        14929920,       7464961,        1.12, 384,  false),
+    new Building("Oil Company",         179159040,      89579521,       1.11, 576,  false),
+    new Building("Ship Company",        2149908480,     1074954241,     1.10, 1296, false),
+    new Building("Cookieverse",         25789901760,    29668737024,    1.09, 6144, false)
 ];
 var t1owned = [];
 var t1progress = [];
@@ -82,8 +87,8 @@ function initGame() {
 
     for (var i = 0; i < t1.length; i++) {
         var t = t1[i];
-        $("#t1-n" + (i+1)).html(t.name + " : ");
-        $("#t1-r" + (i+1)).html(fix(getInc(i), 2) + "$ ");
+        $("#t1-n" + (i+1)).html(t.name + " :");
+        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ ");
         $("#t1-o" + (i+1)).html("(" + t1owned[i] + " owned)");
 
         $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ - ");
@@ -98,27 +103,28 @@ function initGame() {
 };
 function updateGame(times) {
     times = 1;
-
-    for (var i = 0; i < t1.length; i++) {
-        if (t1owned[i] > 0 && t1progress[i] > 0.00) {
-            t1progress[i] += times/fps;
-            if (t1progress[i] > getTime(i)) {
-                t1progress[i] = 0;
-                getMoney(getInc(i) * t1owned[i]);
-                updateStats();
-                t1[i].trigger = false;
-                $("#b-f" + (i+1)).css('width', 0);
-            } else {
-                var width = t1progress[i]/getTime(i) * 100;
-                width = Math.max(width, 1);
-                $("#b-f" + (i+1)).css('width', width + "%");
+    if (gameInit == true) {
+        for (var i = 0; i < t1.length; i++) {
+            if (t1owned[i] > 0 && t1progress[i] > 0.00) {
+                t1progress[i] += times/fps;
+                if (t1progress[i] > getTime(i)) {
+                    t1progress[i] = 0;
+                    getMoney(getInc(i) * t1owned[i]);
+                    updateStats();
+                    t1[i].trigger = false;
+                    $("#b-f" + (i+1)).css('width', 0);
+                } else {
+                    var width = t1progress[i]/getTime(i) * 100;
+                    width = Math.max(width, 1);
+                    $("#b-f" + (i+1)).css('width', width + "%");
+                };
             };
         };
-    };
 
-    if (fps < 60) { cheatAvert++; alert("You are cheating, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped..."); fps = 60; };
-    if (fps > 60) { cheatAvert++; alert("You are cheating, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped..."); fps = 60; };
-    if (cheatAvert == 3) { cheatReset(); };
+        if (fps < 60) { cheatAvert++; alert("FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
+        if (fps > 60) { cheatAvert++; alert("FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
+        if (cheatAvert == 3) { cheatReset(); };
+    };
 };
 
 // Helpers
@@ -154,8 +160,8 @@ function startBuild(index) {
 function updateBuilds() {
     for (var i = 0; i < t1.length; i++) {
         var t = t1[i];
-        $("#t1-n" + (i+1)).html(t.name + " : ");
-        $("#t1-r" + (i+1)).html(fix(getInc(i) * t1owned[i], 2) + "$ ");
+        $("#t1-n" + (i+1)).html(t.name + " :");
+        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ ");
         $("#t1-o" + (i+1)).html("(" + t1owned[i] + " owned)");
         $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ - ");
         $("#t1-b" + (i+1) + "c2").html("x10 : " + fix(displayPrice(i, 10), 2) + "$");
