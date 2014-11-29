@@ -17,9 +17,26 @@
 	  <div class="row">
 		  <div class="col-md-4">
 		  	<h2>Buildings :</h2>
-		  	<div class="b-button"><div class="b-filler"></div></div>
+		  	<div class="b-button" onclick="startBuild(0)"><div id="b-f1" class="b-filler"></div></div>
 		  	<p class="b-stats"><span id="t1-n1"></span><span id="t1-r1"></span><span id="t1-o1"></span></p>
 		  	<p class="b-buy"><span id="t1-b1c1"></span><span id="t1-b1c2"></span></p>
+        <p class="b-buy"><span id="t1-b1c3"></span><span id="t1-b1c4"></span></p>
+        <div class="b-button" onclick="startBuild(1)"><div id="b-f2" class="b-filler"></div></div>
+        <p class="b-stats"><span id="t1-n2"></span><span id="t1-r2"></span><span id="t1-o2"></span></p>
+        <p class="b-buy"><span id="t1-b2c1"></span><span id="t1-b2c2"></span></p>
+        <p class="b-buy"><span id="t1-b2c3"></span><span id="t1-b2c4"></span></p>
+        <div class="b-button" onclick="startBuild(2)"><div id="b-f3" class="b-filler"></div></div>
+        <p class="b-stats"><span id="t1-n3"></span><span id="t1-r3"></span><span id="t1-o3"></span></p>
+        <p class="b-buy"><span id="t1-b3c1"></span><span id="t1-b3c2"></span></p>
+        <p class="b-buy"><span id="t1-b3c3"></span><span id="t1-b3c4"></span></p>
+        <div class="b-button" onclick="startBuild(3)"><div id="b-f4" class="b-filler"></div></div>
+        <p class="b-stats"><span id="t1-n4"></span><span id="t1-r4"></span><span id="t1-o4"></span></p>
+        <p class="b-buy"><span id="t1-b4c1"></span><span id="t1-b4c2"></span></p>
+        <p class="b-buy"><span id="t1-b4c3"></span><span id="t1-b4c4"></span></p>
+        <div class="b-button" onclick="startBuild(4)"><div id="b-f5" class="b-filler"></div></div>
+        <p class="b-stats"><span id="t1-n5"></span><span id="t1-r5"></span><span id="t1-o5"></span></p>
+        <p class="b-buy"><span id="t1-b5c1"></span><span id="t1-b5c2"></span></p>
+        <p class="b-buy"><span id="t1-b5c3"></span><span id="t1-b5c4"></span></p>
 		  </div>
 		  <div class="col-md-4">
 		  	<h2>Shop :</h2>
@@ -30,6 +47,7 @@
 		  	<p class="s-stats"><span id="s-totalMoney"></span></p>
 		  	<p class="s-stats"><span id="s-tokens"></span></p>
 		  	<p class="s-stats"><span id="s-tokensRate"></span></p>
+        <p class="s-saves"><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Hard Reset</span></p>
 		  </div>
 	  </div>
 	</div>
