@@ -1,0 +1,13 @@
+body { margin: 0; font-family: 'Consolas', sans-serif; }
+h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px; }
+h2 { margin: 0 0 10px 0; text-decoration: underline; font-size: 22px; }
+p { margin: 5px 0 5px 0; font-size: 16px; }
+
+p.b-stats { text-align: center; }
+p.b-buy { text-align: center; font-size: 14px; }
+p.b-buy>span { cursor: pointer; }
+p.s-upgrade { text-align: center; }
+p.s-stats { text-align: center;	font-family: 14px; }
+
+.b-button { margin-right: auto; margin-left: auto; width: 80%; height: 30px; border: 1px solid black; border-radius: 4px; cursor: pointer; }
+.b-filler { width: 0%; height: 100%; border-radius: 2px; background: #bbb; }
