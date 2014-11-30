@@ -7,10 +7,18 @@ p { margin: 5px 0 5px 0; font-size: 16px; }
 p.b-stats { text-align: center; }
 p.b-stats>span.b-name { text-decoration: underline; }
 p.b-stats>span.b-reward { font-weight: bold; }
+
 p.b-buy { text-align: center; font-size: 12px; }
 p.b-buy>span { cursor: pointer; }
-p.s-upgrade { text-align: center; }
-p.s-managers { text-align: center; cursor: pointer; }
+
+p.s-upgrades { text-align: center; cursor: pointer; font-size: 14px; }
+p.s-upgrades>span.u-name { text-decoration: underline; }
+p.s-upgrades>span.u-cost { font-weight: bold; }
+
+p.s-managers { text-align: center; cursor: pointer; font-size: 14px; }
+p.s-managers>span.m-name { text-decoration: underline; }
+p.s-managers>span.m-cost { font-weight: bold; }
+
 p.s-stats { text-align: center;	font-family: 14px; font-weight: bold; text-decoration: underline; }
 p.s-saves { font-size: 12px; cursor: pointer; }
 

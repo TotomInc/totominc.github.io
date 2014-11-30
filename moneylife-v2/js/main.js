@@ -48,8 +48,7 @@ var cheatAvert = 0;
 var moneyVerif = 0;
 var totalmoneyVerif = 0;
 var tokensVerif = 0;
-var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","cheatAvert","t1owned","t1progress","moneyVerif","totalmoneyVerif",
-"cheatAvert","tokensVerif","managersOwned"];
+var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","cheatAvert","t1owned","t1progress","moneyVerif","totalmoneyVerif","cheatAvert","tokensVerif","managersOwned"];
 
 // Saving system
 function setItem(key, value) {
@@ -97,12 +96,13 @@ function softReset() {
         var temp1 = totalMoney;
         var temp2 = getTokensOn();
         var temp3 = cheatAvert;
+
         initVars();
         totalMoney = temp1;
         tokens = temp2;
-        tokensVerif = tokens;
         cheatAvert = temp3;
         saveData();
+
         location.reload();
     };
 };
@@ -112,8 +112,15 @@ function initVars() {
     money = 0; totalMoney = money;
     tokens = 0; tokensOn = 0; tokensRate = 1;
 
-    for (var i = 0; i < t1.length; i++) { t1owned.push(0); t1owned[0] = 1; t1progress.push(0); };
-    for (var i = 0; i < managers.length; i++) { managersOwned.push(false); };
+    t1owned = [];
+    for (var i = 0; i < t1.length; i++) { t1owned.push(0); };
+    t1owned[0] = 1;
+
+    t1progress = [];
+    for (var i = 0; i < t1.length; i++) { t1progress.push(0); };
+
+    managersOwned = [];
+    for (var i = 0; i < managersOwned.length; i++) { managersOwned.push(false); };
 };
 function initGame() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
@@ -147,8 +154,21 @@ function initGame() {
 };
 function updateGame(times) {
     times = 1;
+
     if (gameInit == true) {
-        for(var i=0;i<t1.length;i++)if(t1owned[i]>0&&(t1progress[i]>0||managersOwned[i])){var b=t1[i],t=getTime(i);if(t1progress[i]+=times/fps,managersOwned[i]){getMoney(Math.floor(t1progress[i]/t)*getInc(i)*t1owned[i]),t1progress[i]%=t;var width=100*(t1progress[i]/t);.1>t&&(width=100),width=Math.max(width,1),updateStats(),$("#b-f"+(i+1)).css("width",width+"%")}else if(t1progress[i]>=t&&1==b.trigger)getMoney(getInc(i)*t1owned[i]),t1progress[i]=0,b.trigger=!1,updateStats(),$("#b-f"+(i+1)).css("width",0);else{var width=100*(t1progress[i]/t);width=Math.max(width,1),b.trigger=!0,$("#b-f"+(i+1)).css("width",width+"%")}}
+        for (var i = 0; i < t1.length; i++)
+            if (t1owned[i] > 0 && (t1progress[i] > 0 || managersOwned[i])) {
+                var b = t1[i];
+                var t = getTime(i);
+                if (t1progress[i] += times / fps, managersOwned[i]) {
+                    getMoney(Math.floor(t1progress[i] / t) * getInc(i) * t1owned[i]), t1progress[i] %= t;
+                    var width = 100 * (t1progress[i] / t);.1 > t && (width = 100), width = Math.max(width, 1), updateStats(), $("#b-f" + (i + 1)).css("width", width + "%")
+                } else if (t1progress[i] >= t && 1 == b.trigger) getMoney(getInc(i) * t1owned[i]), t1progress[i] = 0, b.trigger = !1, updateStats(), $("#b-f" + (i + 1)).css("width", 0);
+                else {
+                    var width = 100 * (t1progress[i] / t);
+                    width = Math.max(width, 1), b.trigger = !0, $("#b-f" + (i + 1)).css("width", width + "%")
+                }
+            }
 
         $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     };

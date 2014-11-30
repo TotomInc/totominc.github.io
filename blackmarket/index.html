@@ -1,0 +1,200 @@
+<html>
+<head>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bm-style.css">
+  <title>Blackmarket - Incremental-Game</title>
+</head>
+
+<body style="margin: 0px" onload="init()">
+
+<div class="header">
+  <div class="header-cash">
+      <span id="header-money"></span><br>
+      <span id="header-drug"></span>
+  </div>
+
+  <h1>Blackmarket - Incremental-Game</h1>
+  <p>v.0.01 :: Alpha Release (<a href="#" onclick="saveGame()">Save</a> - <a href="#" onclick="loadGame()">Load</a> - <a href="#" onclick="resetGame()">Reset</a>)</p>
+
+  <div class="header-ammo">
+      <span id="header-bullets"></span><br>
+  </div>
+</div>
+
+<div class="button-div">
+  <h1>Gun skills</h1>
+
+  <div id="btn-shoot" class="button-s">
+      <div id="btn-filler" class="button-filler-gun"></div>
+      <p>Shoot!<br>
+        <small><span id="btn-shoot-info"></span> - <span id="btn-shoot-time"></span></small>
+      </p>
+  </div>
+    <br>
+  <div id="btn-reload" class="button-r">
+      <div id="btn-filler2" class="button-filler-gun"></div>
+      <p>Reload!<br>
+        <small><span id="btn-reload-time"></span></small>
+      </p>
+  </div>
+
+  <h1>Production skills</h1>
+
+  <div id="btn-cook" class="button-c">
+    <div id="btn-filler3" class="button-filler-production"></div>
+    <p>Bake some meth!<br>
+      <small><span id="btn-cook-info"></span> - <span id="btn-cook-time"></span></small>
+    </p>
+  </div>
+    <br>
+  <div id="btn-sell" class="button-cs">
+    <div id="btn-filler4" class="button-filler-production"></div>
+    <p>Sell<br>
+      <small><span id="btn-sell-info"></span> - <span id="btn-sell-time"></span></small>
+    </p>
+  </div>
+</div>
+
+<div class="upgrade-div">
+  <h1>Guns upgrades</h1>
+
+  <p>Increase $/shoot</p>
+
+  <div id="btn-up-ammo" class="button-up" style="display: none">
+    <p>Copper bullets : 30$<br>
+      <small>Make 1.35$/shoot<br>
+      Reload time decreased to 4s</small>
+    </p>
+  </div>
+
+  <div id="btn-up-ammo2" class="button-up" style="display: none">
+    <p>Silver bullets : 322.5$<br>
+      <small>Make 2.70$/shoot<br>
+      Reload time decreased to 3.5s</small>
+    </p>
+  </div>
+
+  <div id="btn-up-ammo3" class="button-up" style="display: none">
+    <p>Gold bullets : 3466.8$<br>
+      <small>Make 5.40$/shoot<br>
+      Reload time decreased to 3s</small>
+  </div>
+
+  <h1>Production upgrades</h1>
+  <p>Decrease time of baking & selling.</p>
+
+  <div id="btn-up-prod" class="button-up" style="display: none">
+    <p>Air Fresheners : 15$<br>
+      <small>- Bake time decreased to 13.5s<br>
+      - Sell time decreased to 6s</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod2" class="button-up" style="display: none">
+    <p>HVAC : 150$<br>
+      <small>- Bake time decreased to 10s<br>
+      - Sell time decreased to 5s</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod3" class="button-up" style="display: none">
+    <p>Low-Cost Gas Stove : 500$<br>
+      <small>- Bake time decreased to 8.5s<br>
+      - Sell time decreased to 4s</small>
+      </p>
+  </div>
+
+  <div id="btn-up-prod4" class="button-up" style="display: none">
+    <p>Mobile-Lab : 5000$<br>
+      <small>- Bake time decreased to 7s<br>
+      - Sell time decreased to 3s</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod5" class="button-up" style="display: none">
+    <p>Big Industrial HVAC : 20k $<br>
+      <small>- Bake time decreased to 6s<br>
+      - Sell time decreased to 2.5s</small>
+      </p>
+  </div>
+
+  <div id="btn-up-prod6" class="button-up" style="display: none">
+    <p>Golden Cookware : 75k $<br>
+      <small>- Bake time decreased to 5s<br>
+      - Sell time decreased to 2s</small>
+    </p>
+  </div>
+
+  <p>Increase production/click</p>
+
+  <div id="btn-up-prod10" class="button-up" style="display: none">
+    <p>Bigger vats : 50$<br>
+      <small>You produce twice more drugs/click</small>
+    </p>
+  </div>
+
+  <p>Increase meth' purity</p>
+
+  <div id="btn-up-prod20" class="button-up" style="display: none">
+    <p>Pure Glass Flasks : 22.5$<br>
+      <small>Meth price is increased by two</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod21" class="button-up" style="display: none">
+    <p>Cold Glass Flasks : 75$<br>
+      <small>Meth price is increased by two</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod22" class="button-up" style="display: none">
+    <p>Low-Quality Filtration : 850$<br>
+      <small>Meth price is increased by two</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod23" class="button-up" style="display: none">
+    <p>Inlaid Diamond Flasks : 3250$<br>
+      <small>Meth price is increased by three</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod24" class="button-up" style="display: none">
+    <p>Med-Quality Filtration : 9800$<br>
+      <small>Meth price is increased by three</small>
+    </p>
+  </div>
+
+  <div id="btn-up-prod25" class="button-up" style="display: none">
+    <p>Pure Titanium Flasks : 22.500k $<br>
+      <small>Meth price is increased by three</small>
+    </p>
+  </div>
+</div>
+
+<div class="panel-div">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" id="myTab">
+    <li class="active"><a href="#stats" role="tab" data-toggle="tab">Stats</a></li>
+    <li><a href="#achievements" role="tab" data-toggle="tab">Achievements</a></li>
+    <li><a href="#options" role="tab" data-toggle="tab">Options</a></li>
+  </ul>
+  <!-- Tab content -->
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="stats">
+    Stats
+    </div>
+    <div class="tab-pane fade" id="achievements">
+    Achievements
+    </div>
+    <div class="tab-pane fade" id="options">
+    Options
+    </div>
+  </div>
+</div>
+
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
