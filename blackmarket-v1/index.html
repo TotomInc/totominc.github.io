@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Blackmarket - Prototype</title>
+
+  <script type="text/javascript" src="src/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
+  <script type="text/javascript" src="src/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <h1>Blackmarket - Prototype v0.01</h1>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Drug Skills:</h2>
+        <div class="well">
+          <div id="shoot" class="b-button" onclick="shoot()"><div id="b-f1" class="b-filler"></div></div>
+          <h3>Shoot</h3>
+          <p><span id="a-shoot"></span></p>
+          <div id="reload" class="b-button" onclick="reload()"><div id="b-f2" class="b-filler"></div></div>
+          <h3>Reload</h3>
+          <p><span id="a-reload"></span></p>
+        </div>
+        <h2>Gun Skills:</h2>
+        <div class="well">
+          <div id="cook" class="b-button" onclick="cook()"><div id="b-f3" class="b-filler"></div></div>
+          <h3>Cook meth'</h3>
+          <p><span id="a-cook"></span></p>
+          <div id="sell" class="b-button" onclick="sell()"><div id="b-f4" class="b-filler"></div></div>
+          <h3>Sell meth'</h3>
+          <p><span id="a-sell"></span></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h2>Player Stats:</h2>
+        <div class="well">
+          <p><span id="s-money"></span><br>
+          <span id="s-ammo"></span><br>
+          <span id="s-drug"></span><br>
+          <span id="s-gprice"></span></p>
+          <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h2>Upgrades:</h2>
+        <div class="well"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/fix.min.js"></script>
+  <script type="text/javascript" src="js/height.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
