@@ -1,20 +1,13 @@
-var maxpx = $(document).height(); // get document height only
-var headerpx = 45;
-var marginpx = 10;
+var maxpx = $(document).height(); var headerpx = 45; var marginpx = 10;
 $(".row").css('max-height', (maxpx-headerpx-marginpx) + 'px');
 $(".col-md-4").css('max-height', (maxpx-headerpx-marginpx) + 'px');
 
-var money;
-var totalMoney;
-var tokens;
+var money; var totalMoney; var tokens; var tokensOn; var tokensRate;
+var gameInit = false; var fps = 60; var interval = (1000 / fps); var version = 2.00;
+var cheatAvert = 0; var V1money = 0; var V2totalMoney = 0; var V3tokens = 0; var V4multiplier = 1; var V5rate = 1;
 
-var tokensOn;
-var tokensRate;
-
-var gameInit = false;
-var fps = 60;
-var interval = (1000 / fps);
-
+var totalMultiplier;
+var t1owned; var t1progress; var t1multiplier;
 var t1 = [
     new Building("Lemonade Stand",      4,              1,              1.09, 1.5,  false),
     new Building("Newspaper Stand",     70,             60,             1.17, 3,    false),
@@ -27,9 +20,8 @@ var t1 = [
     new Building("Ship Company",        2149908480,     1074954241,     1.10, 1296, false),
     new Building("Cookieverse",         25789901760,    29668737024,    1.09, 6144, false)
 ];
-var t1owned = [];
-var t1progress = [];
 
+var managersOwned;
 var managers = [
     new Manager("Cave Johnson (Lemonade Stand Manager)", 1000),
     new Manager("Rupert Murdoch (Newspaper Stand Manager)", 15000),
@@ -42,36 +34,62 @@ var managers = [
     new Manager("Zoidberg (Ship Company Manager)", 10000000000),
     new Manager("Orteil (Cookieverse Manager)", 100000000000)
 ];
-var managersOwned = [];
 
-var cheatAvert = 0;
-var moneyVerif = 0;
-var totalmoneyVerif = 0;
-var tokensVerif = 0;
-var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","cheatAvert","t1owned","t1progress","moneyVerif","totalmoneyVerif","cheatAvert","tokensVerif","managersOwned"];
+var upgradesOwned;
+var upgrades = [
+    new Upgrade("Up 1 : lemonade stand profit x3!",         250000,         function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Up 2 : newspaper stand profit x3!",        500000,         function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Up 3 : car-wash profit x3!",               1000000,        function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Up 4 : gas extractor profit x3!",          5000000,        function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Up 5 : meth lab profit x3!",               10000000,       function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Up 6 : bank profit x3!",                   25000000,       function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Up 7 : movie studio profit x3!",           500000000,      function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Up 8 : oil company profit x3!",            10000000000,    function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Up 9 : ship company profit x3!",           50000000000,    function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Up 10 : cookieverse profit x3!",           250000000000,   function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Up 11 : all profit x3!",                   1000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+
+    new Upgrade("Up 11 : lemonade stand profit x3!",        20000000000000,     function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Up 12 : newspaper stand profit x3!",       50000000000000,     function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Up 13 : car-wash profit x3!",              100000000000000,    function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Up 14 : gas extractor profit x3!",         500000000000000,    function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Up 15 : meth lab profit x3!",              1000000000000000,   function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Up 16 : bank profit x3!",                  2000000000000000,   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Up 17 : movie studio profit x3!",          5000000000000000,   function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Up 18 : oil company profit x3!",           7000000000000000,   function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Up 19 : ship company profit x3!",          10000000000000000,  function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Up 20 : cookieverse profit x3!",           20000000000000000,  function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Up 21 : all profit x3!",                   50000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("Up 22 : tokens efficiency +1%",            500000000000000000, function() {tokensRate = 2; V5rate *= 3;}),
+
+    new Upgrade("Up 23 : lemonade stand profit x3!",        2000000000000000000,    function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Up 24 : newspaper stand profit x3!",       5000000000000000000,    function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Up 25 : car-wash profit x3!",              7000000000000000000,    function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Up 26 : gas extractor profit x3!",         10000000000000000000,   function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Up 27 : meth lab profit x3!",              20000000000000000000,   function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Up 28 : bank profit x3!",                  35000000000000000000,   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Up 29 : movie studio profit x3!",          50000000000000000000,   function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Up 30 : oil company profit x3!",           75000000000000000000,   function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Up 31 : ship company profit x3!",          100000000000000000000,  function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Up 32 : cookieverse profit x3!",           200000000000000000000,  function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Up 33 : all profit x3!",                   500000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("Up 34 : tokens efficiency +1%",            1000000000000000000000, function() {tokensRate = 2; V5rate *= 5;})
+];
+
+var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","cheatAvert"];
 
 // Saving system
-function setItem(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-};
-function getItem(key) {
-    return JSON.parse(localStorage.getItem(key));
-};
-function removeItem(key) {
-    localStorage.removeItem(key);
-};
-function saveData() {
-    for (var i = 0; i < allVars.length; i++)
-        setItem(allVars[i], window[allVars[i]]);
-};
+function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
+function getItem(key) { return JSON.parse(localStorage.getItem(key)); };
+function removeItem(key) { localStorage.removeItem(key); };
+function saveData() { for (var i = 0; i < allVars.length; i++) { setItem(allVars[i], window[allVars[i]]); }; };
 function loadData() {
     for (var i = 0; i < allVars.length; i++) {
         if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) {
             window[allVars[i]] = getItem(allVars[i]);
         };
     };
-    updateStats();
-    updateBuilds();
+    updateStats(); updateBuilds();
 };
 function resetData() {
     var r = confirm("Are you sure to hard-reset? You will not earn tokens, and will start everything from the beginning!");
@@ -111,6 +129,7 @@ function softReset() {
 function initVars() {
     money = 0; totalMoney = money;
     tokens = 0; tokensOn = 0; tokensRate = 1;
+    totalMultiplier = 1;
 
     t1owned = [];
     for (var i = 0; i < t1.length; i++) { t1owned.push(0); };
@@ -119,12 +138,19 @@ function initVars() {
     t1progress = [];
     for (var i = 0; i < t1.length; i++) { t1progress.push(0); };
 
+    t1multiplier = [];
+    for (var i = 0; i < t1.length; i++) { t1multiplier.push(1); };
+
+    upgradesOwned = [];
+    for (var i = 0; i < upgrades.length; i++) { upgradesOwned.push(false); };
+
     managersOwned = [];
     for (var i = 0; i < managersOwned.length; i++) { managersOwned.push(false); };
 };
 function initGame() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
+    $("#s-totalMultiplier").html("Total multiplier : x" + totalMultiplier);
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
     $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
@@ -132,8 +158,9 @@ function initGame() {
     for (var i = 0; i < t1.length; i++) {
         var t = t1[i];
         $("#t1-n" + (i+1)).html(t.name + " :");
-        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ ");
+        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ <br>");
         $("#t1-o" + (i+1)).html("(" + t1owned[i] + " owned)");
+        $("#t1-b" + (i+1) + "tm").html("Total multiplier : x" + t1multiplier[i]);
 
         $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ - ");
         $("#t1-b" + (i+1) + "c1").attr('onclick', 'buyBuilding(' + i + ', 1)');
@@ -145,6 +172,13 @@ function initGame() {
         $("#t1-b" + (i+1) + "c4").attr('onclick', 'buyBuilding(' + i + ', 100)');
     };
 
+    for (var i = 0; i < upgrades.length; i++) {
+        var u = upgrades[i];
+        $("#u-n" + (i+1)).html(u.name + '<br>');
+        $("#u-c" + (i+1)).html(fix(u.price, 0) + "$");
+        if (upgradesOwned[i]) { $("#s-u" + (i+1)).css('display', 'none'); };
+    };
+
     for (var i = 0; i < managers.length; i++) {
         var m = managers[i];
         $("#m-n" + (i+1)).html(m.name + '<br>');
@@ -152,48 +186,13 @@ function initGame() {
         if (managersOwned[i]) { $("#s-m" + (i+1)).css('display', 'none'); };
     };
 };
-function updateGame(times) {
-    times = 1;
-
-    if (gameInit == true) {
-        for (var i = 0; i < t1.length; i++)
-            if (t1owned[i] > 0 && (t1progress[i] > 0 || managersOwned[i])) {
-                var b = t1[i];
-                var t = getTime(i);
-                if (t1progress[i] += times / fps, managersOwned[i]) {
-                    getMoney(Math.floor(t1progress[i] / t) * getInc(i) * t1owned[i]), t1progress[i] %= t;
-                    var width = 100 * (t1progress[i] / t);.1 > t && (width = 100), width = Math.max(width, 1), updateStats(), $("#b-f" + (i + 1)).css("width", width + "%")
-                } else if (t1progress[i] >= t && 1 == b.trigger) getMoney(getInc(i) * t1owned[i]), t1progress[i] = 0, b.trigger = !1, updateStats(), $("#b-f" + (i + 1)).css("width", 0);
-                else {
-                    var width = 100 * (t1progress[i] / t);
-                    width = Math.max(width, 1), b.trigger = !0, $("#b-f" + (i + 1)).css("width", width + "%")
-                }
-            }
-
-        $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
-    };
-};
 
 // Helpers
-function getInc(source) {
-    return t1[source].reward;
-};
-function getMoney(amount) {
-    money += amount;
-    totalMoney += amount;
-    moneyVerif += amount;
-    totalmoneyVerif += amount;
-};
-function getPrice(index) {
-    var t = t1[index];
-    return t.price * Math.pow(t.inflation, t1owned[index]);
-};
-function getTokensOn() {
-    return Math.floor(10 * Math.sqrt(totalMoney/1e13));
-};
-function getTime(index) {
-    return t1[index].time;
-};
+function getInc(source) { return t1[source].reward * t1multiplier[source] * totalMultiplier * (1 + tokens * tokensRate / 100); };
+function getMoney(amount) { money += amount; totalMoney += amount; V1money += amount; V2totalMoney += amount; };
+function getPrice(index) { var t = t1[index]; return t.price * Math.pow(t.inflation, t1owned[index]); };
+function getTokensOn() { return Math.floor(10 * Math.sqrt(totalMoney/1e13)); };
+function getTime(index) { return t1[index].time; };
 function displayPrice(index, amount) {
     var a = amount; var t = t1[index];
     var totalPrice = 0; var totalOwn = a + t1owned[index];
@@ -209,12 +208,49 @@ function startBuild(index) {
         t1[index].trigger = true;
     };
 };
+function updateGame(times) {
+    times = 1;
+
+    if (gameInit == true) {
+        for (var i = 0; i < t1.length; i++) {
+            if (t1owned[i] > 0 && (t1progress[i] > 0 || managersOwned[i])) {
+                var b = t1[i]; var t = getTime(i);
+                t1progress[i] += times/fps;
+                if (managersOwned[i]) {
+                    getMoney(Math.floor(t1progress[i]/t) * getInc(i) * t1owned[i]);
+                    t1progress[i] %= t;
+                    var width = t1progress[i]/t * 100;
+                    if (t < 0.1 * 1) { width = 100; };
+                    width = Math.max(width, 1);
+                    $("#b-f" + (i+1)).css("width", width + "%");
+                } else {
+                    if (t1progress[i] >= t && b.trigger == true) {
+                        getMoney(getInc(i) * t1owned[i]);
+                        t1progress[i] = 0;
+                        b.trigger = false;
+                        $("#b-f" + (i+1)).css("width", 0);
+                    } else {
+                        var width = t1progress[i]/t * 100;
+                        width = Math.max(width,1);
+                        b.trigger = true;
+                        $("#b-f" + (i+1)).css("width", width + "%");
+                    };
+                };
+            };
+        };
+
+        updateStats();
+        a98q7w3q8z();
+    };
+};
 function updateBuilds() {
     for (var i = 0; i < t1.length; i++) {
         var t = t1[i];
         $("#t1-n" + (i+1)).html(t.name + " :");
-        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ ");
+        $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ <br>");
         $("#t1-o" + (i+1)).html("(" + t1owned[i] + " owned)");
+        $("#t1-b" + (i+1) + "tm").html("Total multiplier : x" + t1multiplier[i]);
+
         $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ - ");
         $("#t1-b" + (i+1) + "c2").html("x10 : " + fix(displayPrice(i, 10), 2) + "$");
         $("#t1-b" + (i+1) + "c3").html("x50 : " + fix(displayPrice(i, 50), 2) + "$ - ");
@@ -224,6 +260,7 @@ function updateBuilds() {
 function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
+    $("#s-totalMultiplier").html("Total multiplier : x" + totalMultiplier);
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
     $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
@@ -231,9 +268,11 @@ function updateStats() {
 function a98q7w3q8z() {
     if (fps < 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
     if (fps > 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
-    if (money > moneyVerif) { cheatAvert++; alert("CHEAT DETECTED ! Money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); money = moneyVerif; };
-    if (totalMoney > totalmoneyVerif) { cheatAvert++; alert("CHEAT DETECTED ! Total money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); totalMoney = totalmoneyVerif; };
-    if (tokens > tokensVerif) { cheatAvert++; alert("CHEAT DETECTED ! Tokens changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); tokens = tokensVerif; };
+    if (money > V1money) { cheatAvert++; alert("CHEAT DETECTED ! Money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); money = V1money; };
+    if (totalMoney > V2totalMoney) { cheatAvert++; alert("CHEAT DETECTED ! Total money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); totalMoney = V2totalMoney; };
+    if (tokens > V3tokens) { cheatAvert++; alert("CHEAT DETECTED ! Tokens changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); tokens = V3tokens; };
+    if (totalMultiplier > V4multiplier) { cheatAvert++; alert("CHEAT DETECTED ! Total multiplier changed, you have " + cheatAvert + "/3 alert. If you continue your data will be wiped!"); totalMultiplier = V4multiplier; };
+    if (tokensRate > V5rate) { cheatAvert++; alert("CHEAT DETECTED ! Tokens rate changed, you have " + cheatAvert + "/3 alert. If you continue your data will be wiped!"); tokensRate = V5rate;};
     if (cheatAvert == 3) { cheatReset(); };
 };
 
@@ -255,7 +294,22 @@ function buyBuilding(index, buyAmount) {
 };
 function buyBuildingOnce(index) {
     if (money < getPrice(index)) { return; }
-    else { money -= getPrice(index); moneyVerif -= getPrice(index); t1owned[index]++; };
+    else { money -= getPrice(index); V1money -= getPrice(index); t1owned[index]++; };
+};
+
+function Upgrade(name, price, run) {
+    this.name = name;
+    this.price = price;
+    this.run = run;
+};
+function buyUpgrade(index) {
+    if (money >= upgrades[index].price) {
+        money -= upgrades[index].price; V1money -= upgrades[index].price;
+        upgradesOwned[index] = true;
+        upgrades[index].run();
+        updateStats(); updateBuilds();
+        $("#s-u" + (index+1)).css('display', 'none');
+    };
 };
 
 function Manager(name, price) {
@@ -265,7 +319,7 @@ function Manager(name, price) {
 function buyManager(index) {
     if (money >= managers[index].price) {
         money -= managers[index].price;
-        moneyVerif -= managers[index].price;
+        V1money -= managers[index].price;
         managersOwned[index] = true;
         $("#s-m" + (index+1)).css('display', 'none');
         updateStats();
