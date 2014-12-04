@@ -7,7 +7,7 @@ var gameInit = false; var fps = 60; var interval = (1000 / fps); var version = 2
 var cheatAvert = 0; var V1money = 0; var V2totalMoney = 0; var V3tokens = 0; var V4multiplier = 1; var V5rate = 1; var V6magic = 1;
 
 var totalMultiplier; var magicTotalMultiplier;
-var t1owned; var t1progress; var t1multiplier;
+var t1owned; var t1progress; var t1multiplier; var t1time;
 var t1 = [
     new Building("Lemonade Stand",      4,              1,              1.09, 1.5,  false),
     new Building("Newspaper Stand",     70,             60,             1.17, 3,    false),
@@ -143,7 +143,140 @@ var upgrades = [
     new Upgrade("Up 81 : all profit x7!",                   1000000000000000000000000000000000000000000000000000000000000,      function() {totalMultiplier *= 7; V4multiplier *= 7;})
 ];
 
-var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","magicupOwned","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","V6magic","cheatAvert"];
+var achievementsOwned;
+var achievements = [
+    new Achievement("25 of lemonade stand", "speed x2!",   "t1owned[0]", 25, "t1time[0]",  "/2"),
+    new Achievement("50 of lemonade stand", "speed x2!",   "t1owned[0]", 50, "t1time[0]",  "/2"),
+    new Achievement("100 of lemonade stand", "speed x2!",   "t1owned[0]", 100, "t1time[0]",  "/2"),
+    new Achievement("200 of lemonade stand", "speed x2!",   "t1owned[0]", 200, "t1time[0]",  "/2"),
+    new Achievement("300 of lemonade stand", "speed x2!",   "t1owned[0]", 300, "t1time[0]",  "/2"),
+    new Achievement("400 of lemonade stand", "speed x2!",   "t1owned[0]", 400, "t1time[0]",  "/2"),
+    new Achievement("500 of lemonade stand", "profit x2!",   "t1owned[0]", 500, "t1multiplier[0]",  "*2"),
+    new Achievement("600 of lemonade stand", "profit x2!",   "t1owned[0]", 600, "t1multiplier[0]",  "*2"),
+    new Achievement("700 of lemonade stand", "profit x2!",   "t1owned[0]", 700, "t1multiplier[0]",  "*2"),
+    new Achievement("800 of lemonade stand", "profit x2!",   "t1owned[0]", 800, "t1multiplier[0]",  "*2"),
+    new Achievement("900 of lemonade stand", "profit x2!",   "t1owned[0]", 900, "t1multiplier[0]",  "*2"),
+    new Achievement("1000 of lemonade stand", "profit x3!",   "t1owned[0]", 1000, "t1multiplier[0]",  "*2"),
+
+    new Achievement("25 of newspaper stand", "speed x2!",   "t1owned[1]", 25, "t1time[1]",  "/2"),
+    new Achievement("50 of newspaper stand", "speed x2!",   "t1owned[1]", 50, "t1time[1]",  "/2"),
+    new Achievement("100 of newspaper stand", "speed x2!",   "t1owned[1]", 100, "t1time[1]",  "/2"),
+    new Achievement("200 of newspaper stand", "speed x2!",   "t1owned[1]", 200, "t1time[1]",  "/2"),
+    new Achievement("300 of newspaper stand", "speed x2!",   "t1owned[1]", 300, "t1time[1]",  "/2"),
+    new Achievement("400 of newspaper stand", "speed x2!",   "t1owned[1]", 400, "t1time[1]",  "/2"),
+    new Achievement("500 of newspaper stand", "profit x2!",   "t1owned[1]", 500, "t1multiplier[1]",  "*2"),
+    new Achievement("600 of newspaper stand", "profit x2!",   "t1owned[1]", 600, "t1multiplier[1]",  "*2"),
+    new Achievement("700 of newspaper stand", "profit x2!",   "t1owned[1]", 700, "t1multiplier[1]",  "*2"),
+    new Achievement("800 of newspaper stand", "profit x2!",   "t1owned[1]", 800, "t1multiplier[1]",  "*2"),
+    new Achievement("900 of newspaper stand", "profit x2!",   "t1owned[1]", 900, "t1multiplier[1]",  "*2"),
+    new Achievement("1000 of newspaper stand", "profit x3!",   "t1owned[1]", 1000, "t1multiplier[1]",  "*2"),
+
+    new Achievement("25 of car-wash", "speed x2!",   "t1owned[2]", 25, "t1time[2]",  "/2"),
+    new Achievement("50 of car-wash", "speed x2!",   "t1owned[2]", 50, "t1time[2]",  "/2"),
+    new Achievement("100 of car-wash", "speed x2!",   "t1owned[2]", 100, "t1time[2]",  "/2"),
+    new Achievement("200 of car-wash", "speed x2!",   "t1owned[2]", 200, "t1time[2]",  "/2"),
+    new Achievement("300 of car-wash", "speed x2!",   "t1owned[2]", 300, "t1time[2]",  "/2"),
+    new Achievement("400 of car-wash", "speed x2!",   "t1owned[2]", 400, "t1time[2]",  "/2"),
+    new Achievement("500 of car-wash", "profit x2!",   "t1owned[2]", 500, "t1multiplier[2]",  "*2"),
+    new Achievement("600 of car-wash", "profit x2!",   "t1owned[2]", 600, "t1multiplier[2]",  "*2"),
+    new Achievement("700 of car-wash", "profit x2!",   "t1owned[2]", 700, "t1multiplier[2]",  "*2"),
+    new Achievement("800 of car-wash", "profit x2!",   "t1owned[2]", 800, "t1multiplier[2]",  "*2"),
+    new Achievement("900 of car-wash", "profit x2!",   "t1owned[2]", 900, "t1multiplier[2]",  "*2"),
+    new Achievement("1000 of car-wash", "profit x3!",   "t1owned[2]", 1000, "t1multiplier[2]",  "*2"),
+
+    new Achievement("25 of gas extractor", "speed x2!",   "t1owned[3]", 25, "t1time[3]",  "/2"),
+    new Achievement("50 of gas extractor", "speed x2!",   "t1owned[3]", 50, "t1time[3]",  "/2"),
+    new Achievement("100 of gas extractor", "speed x2!",   "t1owned[3]", 100, "t1time[3]",  "/2"),
+    new Achievement("200 of gas extractor", "speed x2!",   "t1owned[3]", 200, "t1time[3]",  "/2"),
+    new Achievement("300 of gas extractor", "speed x2!",   "t1owned[3]", 300, "t1time[3]",  "/2"),
+    new Achievement("400 of gas extractor", "speed x2!",   "t1owned[3]", 400, "t1time[3]",  "/2"),
+    new Achievement("500 of gas extractor", "profit x2!",   "t1owned[3]", 500, "t1multiplier[3]",  "*2"),
+    new Achievement("600 of gas extractor", "profit x2!",   "t1owned[3]", 600, "t1multiplier[3]",  "*2"),
+    new Achievement("700 of gas extractor", "profit x2!",   "t1owned[3]", 700, "t1multiplier[3]",  "*2"),
+    new Achievement("800 of gas extractor", "profit x2!",   "t1owned[3]", 800, "t1multiplier[3]",  "*2"),
+    new Achievement("900 of gas extractor", "profit x2!",   "t1owned[3]", 900, "t1multiplier[3]",  "*2"),
+    new Achievement("1000 of gas extractor", "profit x3!",   "t1owned[3]", 1000, "t1multiplier[3]",  "*2"),
+
+    new Achievement("25 of meth lab", "speed x2!",   "t1owned[4]", 25, "t1time[4]",  "/2"),
+    new Achievement("50 of meth lab", "speed x2!",   "t1owned[4]", 50, "t1time[4]",  "/2"),
+    new Achievement("100 of meth lab", "speed x2!",   "t1owned[4]", 100, "t1time[4]",  "/2"),
+    new Achievement("200 of meth lab", "speed x2!",   "t1owned[4]", 200, "t1time[4]",  "/2"),
+    new Achievement("300 of meth lab", "speed x2!",   "t1owned[4]", 300, "t1time[4]",  "/2"),
+    new Achievement("400 of meth lab", "speed x2!",   "t1owned[4]", 400, "t1time[4]",  "/2"),
+    new Achievement("500 of meth lab", "profit x2!",   "t1owned[4]", 500, "t1multiplier[4]",  "*2"),
+    new Achievement("600 of meth lab", "profit x2!",   "t1owned[4]", 600, "t1multiplier[4]",  "*2"),
+    new Achievement("700 of meth lab", "profit x2!",   "t1owned[4]", 700, "t1multiplier[4]",  "*2"),
+    new Achievement("800 of meth lab", "profit x2!",   "t1owned[4]", 800, "t1multiplier[4]",  "*2"),
+    new Achievement("900 of meth lab", "profit x2!",   "t1owned[4]", 900, "t1multiplier[4]",  "*2"),
+    new Achievement("1000 of meth lab", "profit x3!",   "t1owned[4]", 1000, "t1multiplier[4]",  "*2"),
+
+    new Achievement("25 of bank", "speed x2!",   "t1owned[5]", 25, "t1time[5]",  "/2"),
+    new Achievement("50 of bank", "speed x2!",   "t1owned[5]", 50, "t1time[5]",  "/2"),
+    new Achievement("100 of bank", "speed x2!",   "t1owned[5]", 100, "t1time[5]",  "/2"),
+    new Achievement("200 of bank", "speed x2!",   "t1owned[5]", 200, "t1time[5]",  "/2"),
+    new Achievement("300 of bank", "speed x2!",   "t1owned[5]", 300, "t1time[5]",  "/2"),
+    new Achievement("400 of bank", "speed x2!",   "t1owned[5]", 400, "t1time[5]",  "/2"),
+    new Achievement("500 of bank", "profit x2!",   "t1owned[5]", 500, "t1multiplier[5]",  "*2"),
+    new Achievement("600 of bank", "profit x2!",   "t1owned[5]", 600, "t1multiplier[5]",  "*2"),
+    new Achievement("700 of bank", "profit x2!",   "t1owned[5]", 700, "t1multiplier[5]",  "*2"),
+    new Achievement("800 of bank", "profit x2!",   "t1owned[5]", 800, "t1multiplier[5]",  "*2"),
+    new Achievement("900 of bank", "profit x2!",   "t1owned[5]", 900, "t1multiplier[5]",  "*2"),
+    new Achievement("1000 of bank", "profit x3!",   "t1owned[5]", 1000, "t1multiplier[5]",  "*2"),
+
+    new Achievement("25 of movie studio", "speed x2!",   "t1owned[6]", 25, "t1time[6]",  "/2"),
+    new Achievement("50 of movie studio", "speed x2!",   "t1owned[6]", 50, "t1time[6]",  "/2"),
+    new Achievement("100 of movie studio", "speed x2!",   "t1owned[6]", 100, "t1time[6]",  "/2"),
+    new Achievement("200 of movie studio", "speed x2!",   "t1owned[6]", 200, "t1time[6]",  "/2"),
+    new Achievement("300 of movie studio", "speed x2!",   "t1owned[6]", 300, "t1time[6]",  "/2"),
+    new Achievement("400 of movie studio", "speed x2!",   "t1owned[6]", 400, "t1time[6]",  "/2"),
+    new Achievement("500 of movie studio", "profit x2!",   "t1owned[6]", 500, "t1multiplier[6]",  "*2"),
+    new Achievement("600 of movie studio", "profit x2!",   "t1owned[6]", 600, "t1multiplier[6]",  "*2"),
+    new Achievement("700 of movie studio", "profit x2!",   "t1owned[6]", 700, "t1multiplier[6]",  "*2"),
+    new Achievement("800 of movie studio", "profit x2!",   "t1owned[6]", 800, "t1multiplier[6]",  "*2"),
+    new Achievement("900 of movie studio", "profit x2!",   "t1owned[6]", 900, "t1multiplier[6]",  "*2"),
+    new Achievement("1000 of movie studio", "profit x3!",   "t1owned[6]", 1000, "t1multiplier[6]",  "*2"),
+
+    new Achievement("25 of oil company", "speed x2!",   "t1owned[7]", 25, "t1time[7]",  "/2"),
+    new Achievement("50 of oil company", "speed x2!",   "t1owned[7]", 50, "t1time[7]",  "/2"),
+    new Achievement("100 of oil company", "speed x2!",   "t1owned[7]", 100, "t1time[7]",  "/2"),
+    new Achievement("200 of oil company", "speed x2!",   "t1owned[7]", 200, "t1time[7]",  "/2"),
+    new Achievement("300 of oil company", "speed x2!",   "t1owned[7]", 300, "t1time[7]",  "/2"),
+    new Achievement("400 of oil company", "speed x2!",   "t1owned[7]", 400, "t1time[7]",  "/2"),
+    new Achievement("500 of oil company", "profit x2!",   "t1owned[7]", 500, "t1multiplier[7]",  "*2"),
+    new Achievement("600 of oil company", "profit x2!",   "t1owned[7]", 600, "t1multiplier[7]",  "*2"),
+    new Achievement("700 of oil company", "profit x2!",   "t1owned[7]", 700, "t1multiplier[7]",  "*2"),
+    new Achievement("800 of oil company", "profit x2!",   "t1owned[7]", 800, "t1multiplier[7]",  "*2"),
+    new Achievement("900 of oil company", "profit x2!",   "t1owned[7]", 900, "t1multiplier[7]",  "*2"),
+    new Achievement("1000 of oil company", "profit x3!",   "t1owned[7]", 1000, "t1multiplier[7]",  "*2"),
+
+    new Achievement("25 of ship company", "speed x2!",   "t1owned[8]", 25, "t1time[8]",  "/2"),
+    new Achievement("50 of ship company", "speed x2!",   "t1owned[8]", 50, "t1time[8]",  "/2"),
+    new Achievement("100 of ship company", "speed x2!",   "t1owned[8]", 100, "t1time[8]",  "/2"),
+    new Achievement("200 of ship company", "speed x2!",   "t1owned[8]", 200, "t1time[8]",  "/2"),
+    new Achievement("300 of ship company", "speed x2!",   "t1owned[8]", 300, "t1time[8]",  "/2"),
+    new Achievement("400 of ship company", "speed x2!",   "t1owned[8]", 400, "t1time[8]",  "/2"),
+    new Achievement("500 of ship company", "profit x2!",   "t1owned[8]", 500, "t1multiplier[8]",  "*2"),
+    new Achievement("600 of ship company", "profit x2!",   "t1owned[8]", 600, "t1multiplier[8]",  "*2"),
+    new Achievement("700 of ship company", "profit x2!",   "t1owned[8]", 700, "t1multiplier[8]",  "*2"),
+    new Achievement("800 of ship company", "profit x2!",   "t1owned[8]", 800, "t1multiplier[8]",  "*2"),
+    new Achievement("900 of ship company", "profit x2!",   "t1owned[8]", 900, "t1multiplier[8]",  "*2"),
+    new Achievement("1000 of ship company", "profit x3!",   "t1owned[8]", 1000, "t1multiplier[8]",  "*2"),
+
+    new Achievement("25 of cookieverse", "speed x2!",   "t1owned[9]", 25, "t1time[9]",  "/2"),
+    new Achievement("50 of cookieverse", "speed x2!",   "t1owned[9]", 50, "t1time[9]",  "/2"),
+    new Achievement("100 of cookieverse", "speed x2!",   "t1owned[9]", 100, "t1time[9]",  "/2"),
+    new Achievement("200 of cookieverse", "speed x2!",   "t1owned[9]", 200, "t1time[9]",  "/2"),
+    new Achievement("300 of cookieverse", "speed x2!",   "t1owned[9]", 300, "t1time[9]",  "/2"),
+    new Achievement("400 of cookieverse", "speed x2!",   "t1owned[9]", 400, "t1time[9]",  "/2"),
+    new Achievement("500 of cookieverse", "profit x2!",   "t1owned[9]", 500, "t1multiplier[9]",  "*2"),
+    new Achievement("600 of cookieverse", "profit x2!",   "t1owned[9]", 600, "t1multiplier[9]",  "*2"),
+    new Achievement("700 of cookieverse", "profit x2!",   "t1owned[9]", 700, "t1multiplier[9]",  "*2"),
+    new Achievement("800 of cookieverse", "profit x2!",   "t1owned[9]", 800, "t1multiplier[9]",  "*2"),
+    new Achievement("900 of cookieverse", "profit x2!",   "t1owned[9]", 900, "t1multiplier[9]",  "*2"),
+    new Achievement("1000 of cookieverse", "profit x3!",   "t1owned[9]", 1000, "t1multiplier[9]",  "*2"),
+];
+
+var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","achievementsOwned","magicupOwned","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1time","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","V6magic","cheatAvert"];
 
 // Saving system
 function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
@@ -184,8 +317,11 @@ function softReset() {
 
         initVars();
         totalMoney = temp1;
+        V2totalMoney = totalMoney;
         tokens = temp2;
+        V3tokens = tokens;
         cheatAvert = temp3;
+        V1money = money;
         saveData();
 
         location.reload();
@@ -197,7 +333,11 @@ function initVars() {
     money = 0; totalMoney = money;
     tokens = 0; tokensOn = 0; tokensRate = 1;
     totalMultiplier = 1; magicTotalMultiplier = 1;
+    V1money = 0; V2totalMoney = 0; V3tokens = 0; V4multiplier = 1; V5rate = 1; V6magic = 1;
     before = new Date().getTime();
+
+    t1time = [];
+    for (var i = 0; i < t1.length; i++) { t1time.push(1); };
 
     t1owned = [];
     for (var i = 0; i < t1.length; i++) { t1owned.push(0); };
@@ -217,6 +357,9 @@ function initVars() {
 
     managersOwned = [];
     for (var i = 0; i < managersOwned.length; i++) { managersOwned.push(false); };
+
+    achievementsOwned = [];
+    for (var i = 0; i < achievements.length; i++) { achievementsOwned.push(false); };
 };
 function initGame() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
@@ -241,7 +384,7 @@ function initGame() {
         $("#t1-b" + (i+1) + "c3").attr('onclick', 'buyBuilding(' + i + ', 50)');
         $("#t1-b" + (i+1) + "c4").html("x100 : " + fix(displayPrice(i, 100), 2) + "$");
         $("#t1-b" + (i+1) + "c4").attr('onclick', 'buyBuilding(' + i + ', 100)');
-        $("#t1-b" + (i+1) + "cps").html(" - " + fix(((getInc(i) * t1owned[i]) / t1[i].time), 2) + "$/second");
+        $("#t1-b" + (i+1) + "cps").html(" - " + fix(((getInc(i) * t1owned[i]) / getTime(i)), 2) + "$/second");
     };
 
     for (var i = 0; i < magicupgrades.length; i++) {
@@ -264,6 +407,13 @@ function initGame() {
         $("#m-c" + (i+1)).html("cost : " + fix(m.price, 0) + "$");
         if (managersOwned[i]) { $("#s-m" + (i+1)).css('display', 'none'); };
     };
+
+    for (var i = 0; i < achievements.length; i++) {
+        var a = achievements[i];
+        $("#a-n" + (i+1)).html(a.name);
+        $("#a-t" + (i+1)).html(" - " + a.text);
+        if (achievementsOwned[i]) { $("#a-t" + (i+1)).html(" - " + a.text + " (owned)"); };
+    };
 };
 
 // Helpers
@@ -271,7 +421,7 @@ function getInc(source) { return t1[source].reward * t1multiplier[source] * tota
 function getMoney(amount) { money += amount; totalMoney += amount; V1money += amount; V2totalMoney += amount; };
 function getPrice(index) { var t = t1[index]; return t.price * Math.pow(t.inflation, t1owned[index]); };
 function getTokensOn() { return Math.floor(10 * Math.sqrt(totalMoney/1e13)); };
-function getTime(index) { return t1[index].time; };
+function getTime(index) { return t1[index].time * t1time[index]; };
 function displayPrice(index, amount) {
     var a = amount; var t = t1[index];
     var totalPrice = 0; var totalOwn = a + t1owned[index];
@@ -316,6 +466,7 @@ function updateGame(times) {
             };
         };
 
+        updateAchievements();
         updateStats();
         a98q7w3q8z();
     };
@@ -332,7 +483,7 @@ function updateBuilds() {
         $("#t1-b" + (i+1) + "c2").html("x10 : " + fix(displayPrice(i, 10), 2) + "$");
         $("#t1-b" + (i+1) + "c3").html("x50 : " + fix(displayPrice(i, 50), 2) + "$ - ");
         $("#t1-b" + (i+1) + "c4").html("x100 : " + fix(displayPrice(i, 100), 2) + "$");
-        $("#t1-b" + (i+1) + "cps").html(" - " + fix(((getInc(i) * t1owned[i]) / t1[i].time), 2) + "$/second");
+        $("#t1-b" + (i+1) + "cps").html(" - " + fix(((getInc(i) * t1owned[i]) / getTime(i)), 2) + "$/second");
     };
 };
 function updateStats() {
@@ -425,6 +576,54 @@ function buyManager(index) {
         $("#s-m" + (index+1)).css('display', 'none');
         updateStats();
     };
+};
+
+function Achievement(name, text, reqName, reqNum, changeName, changeString) {
+    this.name = name;
+    this.text = text;
+    this.reqName = reqName;
+    this.reqNum = reqNum;
+    this.changeName = changeName;
+    this.changeString = changeString;
+};
+Achievement.prototype.isComplete = function() {
+    var value;
+    var index = this.reqName.indexOf("[");
+    if (index < 0)
+        value = window[this.reqName];
+    else {
+        var str = this.reqName.substring(0,index);
+        var i = parseInt(this.reqName.substring(index+1,this.reqName.length-1));
+        value = window[str][i];
+    }
+    return value >= this.reqNum;
+};
+Achievement.prototype.achieve = function() {
+    var index = this.changeName.indexOf("[");
+    if (index < 0) {
+        var value = window[this.changeName];
+        window[this.changeName] = eval(value + this.changeString);
+    }
+    else {
+        var str = this.changeName.substring(0,index);
+        var i = parseInt(this.changeName.substring(index+1,this.changeName.length-1));
+        var value = window[str][i];
+        window[str][i] = eval(value + this.changeString)
+    };
+    updateBuilds();
+};
+function updateAchievements() {
+    for (var i = 0; i < achievements.length; i++)
+        if (!achievementsOwned[i] && achievements[i].isComplete()) {
+            achievements[i].achieve();
+            achievementsOwned[i] = true;
+            for (var i = 0; i < achievements.length; i++) {
+                var a = achievements[i];
+                if (achievementsOwned[i]) {
+                    $("#a-t" + (i+1)).html(a.text + " (owned)");
+                };
+            };
+        };
 };
 
 // Onload + loops

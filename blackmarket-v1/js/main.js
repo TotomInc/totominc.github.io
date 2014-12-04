@@ -1,6 +1,11 @@
-var money = 0;
-var ammo = [12, 0.75, 1500, 5000]; // ammo stock - reward - time - reload time
-var drug = [0, 2, 4, 15000, 7500, 1]; // drug stock - prod - reward/g - prod time - sell time - g. sold/click
+var money;
+var ammo; var drug;
+
+var upgradesOwned;
+var upgrades = [
+    new Upgrade("Copper bullets : 1.50$/shoot", 30, function() {console.log(test)})
+];
+
 var allVars = ['money','ammo','drug'];
 
 // Saving system
@@ -27,6 +32,7 @@ function resetData() {
     }; location.reload();
 };
 
+// Basic functions
 function shoot() {
     if (ammo[0] >= 1) { ammo[0] -= 1; $("#shoot").attr('onclick', '');
         setTimeout(function() { money += ammo[1]; $("#shoot").attr('onclick', 'shoot()'); updateStats(); }, ammo[2]);
@@ -55,6 +61,15 @@ function sell() {
     };
 };
 
+// Helpers
+function initVars() {
+    money = 0;
+    ammo = [12, 0.75, 1500, 5000]; // ammo stock - reward - time - reload time
+    drug = [0, 2, 4, 15000, 7500, 1]; // drug stock - prod - reward/g - prod time - sell time - g. sold/click
+
+    upgradesOwned = [];
+    for (var i = 0; i < upgrades.length; i++) { upgradesOwned.push(false); };
+};
 function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/12");
@@ -70,9 +85,32 @@ function updateActions() {
     $("#a-cook").html("+ " + fix(drug[1], 2) + "g/click - " + fix((drug[3]/1000), 2) + "s");
     $("#a-sell").html("+ " + fix((drug[5] * drug[2]), 2) + "$/click - " + fix((drug[4]/1000), 2) + "s");
 };
+function updateUpgrades() {
+    for (var i = 0; i < upgrades.length; i++) {
+        var u = upgrades[i];
+        $("#u-n" + (i+1)).html(u.name);
+        $("#u-c" + (i+1)).html(" - cost " + fix(u.price, 0) + "$");
+    };
+};
+
+// Methods
+function Upgrade(name, price, run) {
+    this.name = name;
+    this.price = price;
+    this.run = run;
+};
+function buyUpgrade(index) {
+    if (money >= upgrades[index].price) {
+        money -= upgrades[index].price;
+        upgrades[index].run();
+        updateStats(); updateActions();
+    };
+};
 
 window.onload = function() {
+    initVars();
     loadData();
     updateStats();
     updateActions();
+    updateUpgrades();
 };
