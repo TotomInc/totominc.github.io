@@ -1,0 +1,139 @@
+Lemonade x3 : 250,000
+Newspaper x3 : 500,000
+Car x3 : 1,000,000
+Pizza x3 : 5,000,000
+Donut x3 : 10,000,000
+Shrimp x3 : 25,000,000
+Hockey x3 : 500,000,000
+Movie x3 : 10 billion
+Bank x3 : 50 billion
+Oil x3 : 250 billion
+
+All x3 : 1 trillion
+
+1 x3 : 20 trillion
+2 x3 : 50 trillion
+3 x3 : 100 trillion
+4 x3 : 500 trillion
+5 x3 : 1 quadrillion
+6 x3 : 2 quadrillion
+7 x3 : 5 quadrillion
+8 x3 : 7 quadrillion
+9 x3 : 10 quadrillion
+10 x3 : 20 quadrillion
+
+All x3 : 50 quadrillion
+AI +1% : 100 quadrillion
+
+1 x3 : 2 quintillion
+2 x3 : 5 quintillion
+3 x3 : 7 quintillion
+4 x3 : 10 quintillion
+5 x3 : 20 quintillion
+6 x3 : 35 quintillion
+7 x3 : 50 quintillion
+8 x3 : 75 quintillion
+9 x3 : 100 quintillion
+10 x3 : 200 quintillion
+
+All x3 : 500 quintillion
+AI +1% : 1 sextillion
+
+1 x3 : 25 sextillion
+2 x3 : 50 sextillion
+3 x3 : 100 sextillion
+4 x3 : 200 sextillion
+5 x3 : 300 sextillion
+6 x3 : 400 sextillion
+7 x3 : 500 sextillion
+8 x3 : 600 sextillion
+9 x3 : 700 sextillion
+10 x3 : 800 sextillion
+
+All x3 : 900 sextillion
+AI +2% : 10 septillion
+
+1 x7 : 1 octillion
+2 x7 : 5 octillion
+3 x7 : 25 octillion
+4 x7 : 100 octillion
+5 x7 : 250 octillion
+6 x7 : 500 octillion
+7 x7 : 1 nonillion
+8 x7 : 5 nonillion
+9 x7 : 25 nonillion
+10 x7 : 50 nonillion
+
+All x7 : 1 tredecillion
+
+2 x3 : 5 tredecillion
+3 x3 : 25 tredecillion
+4 x3 : 50 tredecillion
+5 x3 : 100 tredecillion
+6 x3 : 250 tredecillion
+7 x3 : 500 tredecillion
+8 x3 : 1 quattuordecillion
+9 x3 : 5 quattuordecillion
+10 x3 : 10 quattuordecillion
+1 x3 : 25 quattuordecillion
+
+All x3 : 100 quattuordecillion
+
+2 x3 : 250 quattuordecillion
+3 x3 : 500 quattuordecillion
+4 x3 : 750 quattuordecillion
+5 x3 : 1 quindecillion
+6 x3 : 5 quindecillion
+7 x3 : 15 quindecillion
+8 x3 : 50 quindecillion
+9 x3 : 100 quindecillion
+10 x3 : 250 quindecillion
+1 x3 : 500 quindecillion
+
+All x7 : 1 sexdecillion
+All x5 : 1 septendecillion
+All x7 : 1 novendecillion
+
+2 x3 : 10 novendecillion
+3 x3 : 100 novendecillion
+All x9 : 1 unvigintillion
+4 x3 : 10 unvigintillion
+5 x3 : 100 unvigintillion
+All x11 : 1 tresvigintillion
+6 x3 : 10 tresvigintillion
+7 x3 : 100 tresvigintillion
+All x13 : 1 quattuorvigintillion
+8 x3 : 10 quattuorvigintillion
+9 x3 : 100 quattuorvigintillion
+All x15 : 1 quinvigintillion
+10 x3 : 10 quinvigintillion
+1 x3 : 100 quinvigintillion
+
+All x3 : 1 septenvigintillion
+All x3 : 3 octovigintillion
+
+2 x3 : 1 novemvigintillion
+3 x3 : 5 novemvigintillion
+4 x3 : 25 novemvigintillion
+5 x3 : 50 novemvigintillion
+6 x3 : 100 novemvigintillion
+7 x3 : 250 novemvigintillion
+8 x3 : 500 novemvigintillion
+9 x3 : 1 trigintillion
+10 x3 : 5 trigintillion
+1 x3 : 10 trigintillion
+
+All x2 : 500 trigintillion
+
+2 x3 : 2 untrigintillion
+3 x3 : 11 untrigintillion
+4 x3 : 66 untrigintillion
+5 x3 : 230 untrigintillion
+6 x3 : 400 untrigintillion
+7 x3 : 700 untrigintillion
+8 x3 : 4 duotrigintillion
+
+All x3 : 10 duotrigintillion
+All x6 : 20 duotrigintillion
+All x2 : 500 duotrigintillion
+All x5 : 1 tretrigintillion !--

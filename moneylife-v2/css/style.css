@@ -21,6 +21,7 @@ p.s-managers>span.m-cost { font-weight: bold; }
 
 p.s-stats { text-align: center;	font-family: 14px; font-weight: bold; text-decoration: underline; }
 p.s-saves { font-size: 12px; cursor: pointer; }
+p.s-saves>span { text-decoration: underline; }
 
 .b-button { margin-right: auto; margin-left: auto; width: 80%; height: 30px; border: 1px solid black; border-radius: 4px; cursor: pointer; }
 .b-filler { width: 0%; height: 100%; border-radius: 2px; background: #34495e; }
