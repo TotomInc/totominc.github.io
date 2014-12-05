@@ -278,7 +278,7 @@ var achievements = [
 
 var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","achievementsOwned","magicupOwned","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1time","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","V6magic","cheatAvert"];
 
-// Saving system
+// Saving system + resets
 function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
 function getItem(key) { return JSON.parse(localStorage.getItem(key)); };
 function removeItem(key) { localStorage.removeItem(key); };
@@ -626,7 +626,7 @@ function updateAchievements() {
         };
 };
 
-// Onload + loops
+// Onload + loops + keyboard input
 window.onload = function() {
     initVars();
     loadData();
@@ -639,3 +639,17 @@ window.setInterval(function() {
 window.setInterval(function() {
     saveData();
 }, 30000);
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 49) { startBuild(0); };
+    if (event.keyCode == 50) { startBuild(1); };
+    if (event.keyCode == 51) { startBuild(2); };
+    if (event.keyCode == 52) { startBuild(3); };
+    if (event.keyCode == 53) { startBuild(4); };
+    if (event.keyCode == 54) { startBuild(5); };
+    if (event.keyCode == 55) { startBuild(6); };
+    if (event.keyCode == 56) { startBuild(7); };
+    if (event.keyCode == 57) { startBuild(8); };
+    if (event.keyCode == 48) { startBuild(9); };
+    if (event.keyCode == 83) { saveData(); };
+    if (event.keyCode == 9) { saveData(); var url = "http://borabora.llfnet.fr"; window.open(url, 'http://borabora.llfnet.fr'); };
+});
