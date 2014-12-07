@@ -27,6 +27,7 @@ var helpers = [
     new Helper("Sell Drug Helper",  3000)
 ];
 
+var init;
 var allVars = ['money','ammo','drug','drugPrice','progress','upgradesOwned','helpersOwned'];
 
 // Saving system
@@ -55,6 +56,8 @@ function initVars() {
 
     progress = [];
     for (var i = 0; i < helpers.length; i++) { progress.push(0); };
+
+    init = false;
 };
 function initGame() {
     updateStats();
@@ -73,6 +76,8 @@ function initGame() {
         $("#h-c" + (i+1)).html(" - cost : " + h.price + "$");
         if (helpersOwned[i]) { $("#h-" + (i+1)).css('display', 'none'); };
     };
+
+    init = true;
 };
 function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
@@ -90,10 +95,9 @@ function updateActions() {
     $("#a-sell").html("Sell " + drug[1] + "g : +" + fix((drug[5] * drug[2]), 2) + "$ - " + fix((drug[4]/1000), 2) + "s");
 };
 function updateGame() {
-    autoShoot();
-    autoReload();
-    autoCook();
-    autoSell();
+    if (init == true) {
+        autoShoot(); autoReload(); autoCook(); autoSell();
+    };
 };
 
 // Basic functions
