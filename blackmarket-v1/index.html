@@ -17,40 +17,62 @@
   <div class="container-fluid" style="max-height: 643px;">
     <div class="row">
       <div class="col-md-4">
-        <h2>Drug Skills:</h2>
+        <h2>Gun Skills:</h2>
         <div class="well">
           <div id="shoot" class="b-button" onclick="shoot()" style="background: none;"><div id="b-f1" class="b-filler"></div></div>
           <h3>Shoot</h3>
-          <p><span id="a-shoot">0.75$/shoot - 1.50s</span></p>
+          <p><span id="a-shoot"></span></p>
           <div id="reload" class="b-button" onclick="reload()" style="background: none;"><div id="b-f2" class="b-filler"></div></div>
           <h3>Reload</h3>
-          <p><span id="a-reload">+ 12 ammo - 5.00s</span></p>
+          <p><span id="a-reload"></span></p>
         </div>
-        <h2>Gun Skills:</h2>
+        <h2>Drug Skills:</h2>
         <div class="well">
           <div id="cook" class="b-button" onclick="cook()"><div id="b-f3" class="b-filler"></div></div>
           <h3>Cook meth'</h3>
-          <p><span id="a-cook">+ 2.00g/click - 15.00s</span></p>
+          <p><span id="a-cook"></span></p>
           <div id="sell" class="b-button" onclick="sell()"><div id="b-f4" class="b-filler"></div></div>
           <h3>Sell meth'</h3>
-          <p><span id="a-sell">+ 4.00$/click - 7.50s</span></p>
+          <p><span id="a-sell"></span></p>
         </div>
+      </div>
+      <div class="col-md-4">
+        <h2>Shop:</h2>
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades</a></li>
+            <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="upgrades">
+              <div class="well">
+              <p id="u-1" class="u-upgrades" onclick="buyUpgrade(0)"><span id="u-n1"></span><span id="u-c1"></span></p>
+              <p id="u-2" class="u-upgrades" onclick="buyUpgrade(1)"><span id="u-n2"></span><span id="u-c2"></span></p>
+              <p id="u-3" class="u-upgrades" onclick="buyUpgrade(2)"><span id="u-n3"></span><span id="u-c3"></span></p>
+              <p id="u-4" class="u-upgrades" onclick="buyUpgrade(3)"><span id="u-n4"></span><span id="u-c4"></span></p>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="helpers">
+              <div class="well">
+              <p id="h-1" onclick="buyHelper(0)"><span id="h-n1"></span><span id="h-c1"></span></p>
+              <p id="h-2" onclick="buyHelper(1)"><span id="h-n2"></span><span id="h-c2"></span></p>
+              <p id="h-3" onclick="buyHelper(2)"><span id="h-n3"></span><span id="h-c3"></span></p>
+              <p id="h-4" onclick="buyHelper(3)"><span id="h-n4"></span><span id="h-c4"></span></p>
+              </div>
+            </div>
+          </div>
       </div>
       <div class="col-md-4">
         <h2>Player Stats:</h2>
         <div class="well">
-          <p><span id="s-money">Money : 0.00$</span><br>
-          <span id="s-ammo">Ammo : 12/12</span><br>
-          <span id="s-drug">Meth in stock : 0.00g</span><br>
-          <span id="s-gprice">Gram price : 4.00$/g</span></p>
+          <p><span id="s-money"></span><br>
+          <span id="s-ammo"></span><br>
+          <span id="s-drug"></span><br>
+          <span id="s-gprice"></span></p>
           <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
         </div>
-      </div>
-      <div class="col-md-4">
-        <h2>Upgrades:</h2>
-        <div class="well">
-          <p id="u-1" class="u-upgrades"><span id="u-n1"></span><span id="u-c1"></span></p>
-        </div>
+        <h2>Achievements:</h2>
+        <div class="well"></div>
       </div>
     </div>
   </div>
