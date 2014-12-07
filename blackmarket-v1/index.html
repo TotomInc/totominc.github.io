@@ -16,27 +16,27 @@
 
   <div class="container-fluid" style="max-height: 643px;">
     <div class="row">
-      <div class="col-md-4">
+      <div id="actions" class="col-md-4">
         <h2>Gun Skills:</h2>
         <div class="well">
           <div id="shoot" class="b-button" onclick="shoot()" style="background: none;"><div id="b-f1" class="b-filler"></div></div>
-          <h3>Shoot</h3>
-          <p><span id="a-shoot"></span></p>
+          <h3 class="a-name">Shoot!</h3>
+          <p><span id="a-shoot" class="a-desc"></span></p>
           <div id="reload" class="b-button" onclick="reload()" style="background: none;"><div id="b-f2" class="b-filler"></div></div>
-          <h3>Reload</h3>
-          <p><span id="a-reload"></span></p>
+          <h3 class="a-name">Reload</h3>
+          <p><span id="a-reload" class="a-desc"></span></p>
         </div>
         <h2>Drug Skills:</h2>
         <div class="well">
           <div id="cook" class="b-button" onclick="cook()"><div id="b-f3" class="b-filler"></div></div>
-          <h3>Cook meth'</h3>
-          <p><span id="a-cook"></span></p>
+          <h3 class="a-name">Cook meth'</h3>
+          <p><span id="a-cook" class="a-desc"></span></p>
           <div id="sell" class="b-button" onclick="sell()"><div id="b-f4" class="b-filler"></div></div>
-          <h3>Sell meth'</h3>
-          <p><span id="a-sell"></span></p>
+          <h3 class="a-name">Sell meth'</h3>
+          <p><span id="a-sell" class="a-desc"></span></p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div id="shop" class="col-md-4">
         <h2>Shop:</h2>
           <ul class="nav nav-tabs nav-justified" role="tablist">
             <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades</a></li>
@@ -50,19 +50,30 @@
               <p id="u-2" class="u-upgrades" onclick="buyUpgrade(1)"><span id="u-n2"></span><span id="u-c2"></span></p>
               <p id="u-3" class="u-upgrades" onclick="buyUpgrade(2)"><span id="u-n3"></span><span id="u-c3"></span></p>
               <p id="u-4" class="u-upgrades" onclick="buyUpgrade(3)"><span id="u-n4"></span><span id="u-c4"></span></p>
+              <p id="u-5" class="u-upgrades" onclick="buyUpgrade(4)"><span id="u-n5"></span><span id="u-c5"></span></p>
+              <p id="u-6" class="u-upgrades" onclick="buyUpgrade(5)"><span id="u-n6"></span><span id="u-c6"></span></p>
+              <p id="u-7" class="u-upgrades" onclick="buyUpgrade(6)"><span id="u-n7"></span><span id="u-c7"></span></p>
+              <p id="u-8" class="u-upgrades" onclick="buyUpgrade(7)"><span id="u-n8"></span><span id="u-c8"></span></p>
+              <p id="u-9" class="u-upgrades" onclick="buyUpgrade(8)"><span id="u-n9"></span><span id="u-c9"></span></p>
+              <p id="u-10" class="u-upgrades" onclick="buyUpgrade(9)"><span id="u-n10"></span><span id="u-c10"></span></p>
+              <p id="u-11" class="u-upgrades" onclick="buyUpgrade(10)"><span id="u-n11"></span><span id="u-c11"></span></p>
+              <p id="u-12" class="u-upgrades" onclick="buyUpgrade(11)"><span id="u-n12"></span><span id="u-c12"></span></p>
+              <p id="u-13" class="u-upgrades" onclick="buyUpgrade(12)"><span id="u-n13"></span><span id="u-c13"></span></p>
+              <p id="u-14" class="u-upgrades" onclick="buyUpgrade(13)"><span id="u-n14"></span><span id="u-c14"></span></p>
+              <p id="u-15" class="u-upgrades" onclick="buyUpgrade(14)"><span id="u-n15"></span><span id="u-c15"></span></p>
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="helpers">
               <div class="well">
-              <p id="h-1" onclick="buyHelper(0)"><span id="h-n1"></span><span id="h-c1"></span></p>
-              <p id="h-2" onclick="buyHelper(1)"><span id="h-n2"></span><span id="h-c2"></span></p>
-              <p id="h-3" onclick="buyHelper(2)"><span id="h-n3"></span><span id="h-c3"></span></p>
-              <p id="h-4" onclick="buyHelper(3)"><span id="h-n4"></span><span id="h-c4"></span></p>
+              <p id="h-1" class="h-helpers" onclick="buyHelper(0)"><span id="h-n1"></span><span id="h-c1"></span></p>
+              <p id="h-2" class="h-helpers" onclick="buyHelper(1)"><span id="h-n2"></span><span id="h-c2"></span></p>
+              <p id="h-3" class="h-helpers" onclick="buyHelper(2)"><span id="h-n3"></span><span id="h-c3"></span></p>
+              <p id="h-4" class="h-helpers" onclick="buyHelper(3)"><span id="h-n4"></span><span id="h-c4"></span></p>
               </div>
             </div>
           </div>
       </div>
-      <div class="col-md-4">
+      <div id="stats" class="col-md-4">
         <h2>Player Stats:</h2>
         <div class="well">
           <p><span id="s-money"></span><br>
@@ -72,7 +83,9 @@
           <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
         </div>
         <h2>Achievements:</h2>
-        <div class="well"></div>
+        <div class="well">
+          <p>In the next prototype release!</p>
+        </div>
       </div>
     </div>
   </div>
