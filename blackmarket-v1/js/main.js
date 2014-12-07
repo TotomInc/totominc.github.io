@@ -1,4 +1,5 @@
-var money; var ammo; var drug; var drugPrice; var progress;
+var money; var ammo; var drug; var drugPrice;
+var progress; var before;
 
 var upgradesOwned;
 var upgrades = [
@@ -32,7 +33,7 @@ var helpers = [
 ];
 
 var init;
-var allVars = ['money','ammo','drug','drugPrice','progress','upgradesOwned','helpersOwned'];
+var allVars = ['money','ammo','drug','drugPrice','progress','before','upgradesOwned','helpersOwned'];
 
 // Saving system
 function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
@@ -51,6 +52,7 @@ function initVars() {
     ammo = [12, 0.75, 1500, 5000];      // stock - reward   - time      - reload time
     drug = [0, 2, 4, 15000, 7500, 1];   // stock - prod     - reward/g  - prod time     - sell time - g.sold/click
     drugPrice = [2, 6];                 // min price - max price
+    before = new Date().getTime();
 
     upgradesOwned = [];
     for (var i = 0; i < upgrades.length; i++) { upgradesOwned.push(false); };
@@ -99,10 +101,17 @@ function updateActions() {
     $("#a-cook").html("+" + fix(drug[1], 2) + "g/click - " + fix((drug[3]/1000), 2) + "s");
     $("#a-sell").html("Sell " + drug[1] + "g : +" + fix((drug[5] * drug[2]), 2) + "$ - " + fix((drug[4]/1000), 2) + "s");
 };
-function updateGame() {
+function updateGame(times) {
     if (init == true) {
         autoShoot(); autoReload(); autoCook(); autoSell();
     };
+};
+function recoverLost() {
+    now = new Date().getTime();
+    var elapsedTime = now - before;
+    if (elapsedTime > 10) { updateGame(Math.floor(elapsedTime/10)); }
+    else { updateGame(1); };
+    before = new Date().getTime();
 };
 
 // Basic functions
@@ -218,7 +227,7 @@ window.onload = function() {
     initGame();
 };
 window.setInterval(function() {
-    updateGame();
+    recoverLost();
 }, 10);
 window.setInterval(function() {
     marketChange();
