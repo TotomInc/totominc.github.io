@@ -32,7 +32,7 @@ var helpers = [
     new Helper("Sell Drug Helper",  200)
 ];
 
-var init;
+var init; var fps = 60;
 var allVars = ['money','ammo','drug','drugPrice','progress','before','upgradesOwned','helpersOwned'];
 
 // Saving system
@@ -101,9 +101,46 @@ function updateActions() {
     $("#a-cook").html("+" + fix(drug[1], 2) + "g/click - " + fix((drug[3]/1000), 2) + "s");
     $("#a-sell").html("Sell " + drug[1] + "g : +" + fix((drug[5] * drug[2]), 2) + "$ - " + fix((drug[4]/1000), 2) + "s");
 };
-function updateGame(times) {
+function updateGame(times) { // todo : make a better system to reduce lag
     if (init == true) {
-        autoShoot(); autoReload(); autoCook(); autoSell();
+        if (helpersOwned[0] == true && ammo[0] >= 1) { // shoot
+            progress[0] += times/fps; progress[0] %= ammo[2];
+            var width = progress[0]/(ammo[2]/1000) * 100;
+            $("#b-f1").css('width', width + '%');
+            if (progress[0] > (ammo[2]/1000)) {
+                progress[0] = 0; money += ammo[1]; ammo[0]--;
+                $("#b-f1").css('width', 0);
+            };
+        };
+        if (helpersOwned[1] == true && ammo[0] == 0) { // reload
+            progress[1] += times/fps; progress[1] %= ammo[3];
+            var width = progress[1]/(ammo[3]/1000) * 100;
+            $("#b-f2").css('width', width + '%');
+            if (progress[1] > (ammo[3]/1000)) {
+                progress[1] = 0; ammo[0] = 12;
+                $("#b-f2").css('width', 0);
+            };
+        };
+        if (helpersOwned[2] == true) {
+            progress[2] += times/fps; progress[2] %= drug[3];
+            var width = progress[2]/(drug[3]/1000) * 100;
+            $("#b-f3").css('width', width + '%');
+            if (progress[2] > (drug[3]/1000)) {
+                progress[2] = 0; drug[0] += drug[1]; updateStats();
+                $("#b-f3").css('width', 0);
+            };
+        };
+        if (helpersOwned[3] == true && drug[0] >= drug[5]) {
+            progress[3] += times/fps; progress[3] %= drug[4];
+            var width = progress[3]/(drug[4]/1000) * 100;
+            $("#b-f4").css('width', width + '%');
+            if (progress[3] > (drug[4]/1000)) {
+                progress[3] = 0; drug[0] -= drug[5]; money += drug[5] * drug[2]; updateStats();
+                $("#b-f4").css('width', 0);
+            };
+        };
+
+        updateStats();
     };
 };
 function recoverLost() {
@@ -122,33 +159,11 @@ function shoot() {
         $("#b-f1").animate({width: "0%"}, 10);
     };
 };
-function autoShoot() {
-    if (helpersOwned[0] == true && ammo[0] >= 1) {
-        progress[0] += 0.01;
-        var width = progress[0]/(ammo[2]/1000) * 100;
-        $("#b-f1").css('width', width + '%');
-        if (progress[0] > (ammo[2]/1000)) {
-            progress[0] = 0; money += ammo[1]; ammo[0]--; updateStats();
-            $("#b-f1").css('width', 0);
-        };
-    };
-};
 function reload() {
     if (ammo[0] == 0) { $("#reload").attr('onclick', '');
         setTimeout(function() { ammo[0] = 12; $("#reload").attr('onclick', 'reload()'); updateStats(); }, ammo[3]);
         $("#b-f2").animate({width: "100%"}, ammo[3], "linear");
         $("#b-f2").animate({width: "0%"}, 10);
-    };
-};
-function autoReload() {
-    if (helpersOwned[1] == true && ammo[0] == 0) {
-        progress[1] += 0.01;
-        var width = progress[1]/(ammo[3]/1000) * 100;
-        $("#b-f2").css('width', width + '%');
-        if (progress[1] > (ammo[3]/1000)) {
-            progress[1] = 0; ammo[0] = 12; updateStats();
-            $("#b-f2").css('width', 0);
-        };
     };
 };
 function cook() {
@@ -159,33 +174,11 @@ function cook() {
         $("#b-f3").animate({width: "0%"}, 10);
     };
 };
-function autoCook() {
-    if (helpersOwned[2] == true) {
-        progress[2] += 0.01;
-        var width = progress[2]/(drug[3]/1000) * 100;
-        $("#b-f3").css('width', width + '%');
-        if (progress[2] > (drug[3]/1000)) {
-            progress[2] = 0; drug[0] += drug[1]; updateStats();
-            $("#b-f3").css('width', 0);
-        };
-    };
-};
 function sell() {
     if (helpersOwned[3] == false && drug[0] >= drug[5]) { $("#sell").attr('onclick', '');
         setTimeout(function() { drug[0] -= drug[5]; money += drug[5] * drug[2]; $("#sell").attr('onclick', 'sell()'); updateStats(); }, drug[4]);
         $("#b-f4").animate({width: "100%"}, drug[4], "linear");
         $("#b-f4").animate({width: "0%"}, 10);
-    };
-};
-function autoSell() {
-    if (helpersOwned[3] == true && drug[0] >= drug[5]) {
-        progress[3] += 0.01;
-        var width = progress[3]/(drug[4]/1000) * 100;
-        $("#b-f4").css('width', width + '%');
-        if (progress[3] > (drug[4]/1000)) {
-            progress[3] = 0; drug[0] -= drug[5]; money += drug[5] * drug[2]; updateStats();
-            $("#b-f4").css('width', 0);
-        };
     };
 };
 
@@ -228,7 +221,7 @@ window.onload = function() {
 };
 window.setInterval(function() {
     recoverLost();
-}, 10);
+}, 13);
 window.setInterval(function() {
     marketChange();
     updateActions();
