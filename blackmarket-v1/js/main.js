@@ -2,29 +2,33 @@ var money; var ammo; var drug; var drugPrice; var progress;
 
 var upgradesOwned;
 var upgrades = [
-    new Upgrade("Up 1.10 : shoot reward x2!",       30,     function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.11 : shoot reward x2!",       100,    function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.12 : shoot reward x2!",       500,    function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.13 : shoot reward x3!",       3000,   function() {ammo[1] *= 3}),
-    new Upgrade("Up 1.20 : shoot time /2!",         1000,   function() {ammo[2] /= 2}),
-    new Upgrade("Up 1.21 : shoot time /2!",         5000,   function() {ammo[2] /= 2}),
-    new Upgrade("Up 1.22 : shoot time /3!",         20000,  function() {ammo[2] /= 3}),
-    new Upgrade("Up 2.10 : reload time /2!",        250,    function() {ammo[3] /= 2}),
-    new Upgrade("Up 2.11 : reload time /2!",        7500,   function() {ammo[3] /= 2}),
-    new Upgrade("Up 2.12 : reload time /2!",        15000,  function() {ammo[3] /= 2}),
-    new Upgrade("Up 3.10 : cook production x2!",    1500,   function() {drug[1] *= 2}),
-    new Upgrade("Up 3.11 : cook production x3!",    5000,   function() {drug[1] *= 3}),
-    new Upgrade("Up 4.10 : sell g/click x2!",       500,    function() {drug[5] *= 2}),
-    new Upgrade("Up 4.11 : sell g/click x2!",       2000,   function() {drug[5] *= 2}),
-    new Upgrade("Up 4.12 : sell g/click x3!",       7500,   function() {drug[5] *= 3})
+    new Upgrade("Up 1.10 : shoot reward x2!",           15,     function() {ammo[1] *= 2}),
+    new Upgrade("Up 1.11 : shoot reward x2!",           30,     function() {ammo[1] *= 2}),
+    new Upgrade("Up 1.12 : shoot reward x2!",           60,     function() {ammo[1] *= 2}),
+    new Upgrade("Up 1.13 : shoot reward x3!",           360,    function() {ammo[1] *= 3}),
+    new Upgrade("Up 1.20 : shoot time /2!",             50,     function() {ammo[2] /= 2}),
+    new Upgrade("Up 1.21 : shoot time /2!",             100,    function() {ammo[2] /= 2}),
+    new Upgrade("Up 1.22 : shoot time /3!",             300,    function() {ammo[2] /= 3}),
+    new Upgrade("Up 2.10 : reload time /2!",            50,     function() {ammo[3] /= 2}),
+    new Upgrade("Up 2.11 : reload time /2!",            100,    function() {ammo[3] /= 2}),
+    new Upgrade("Up 2.12 : reload time /3!",            300,    function() {ammo[3] /= 3}),
+    new Upgrade("Up 3.10 : cook production x2!",        100,    function() {drug[1] *= 2}),
+    new Upgrade("Up 3.11 : cook production x3!",        300,    function() {drug[1] *= 3}),
+    new Upgrade("Up 4.10 : sell g/click x2!",           15,     function() {drug[5] *= 2}),
+    new Upgrade("Up 4.11 : sell g/click x2!",           30,     function() {drug[5] *= 2}),
+    new Upgrade("Up 4.12 : sell g/click x3!",           90,     function() {drug[5] *= 3}),
+    new Upgrade("Up 4.20 : g. price between 10$-20$",   50,     function() {drugPrice[0] += 8; drugPrice[1] += 14;}),
+    new Upgrade("Up 4.21 : g. price between 20$-40$",   100,    function() {drugPrice[0] += 10; drugPrice[1] += 20;}),
+    new Upgrade("Up 4.22 : g. price between 40$-80$",   200,    function() {drugPrice[0] += 20; drugPrice[1] += 40;}),
+    new Upgrade("Up 4.23 : g. price between 80$-160$",  400,    function() {drugPrice[0] += 40; drugPrice[1] += 80;})
 ];
 
 var helpersOwned;
 var helpers = [
     new Helper("Shoot Helper",      50),
-    new Helper("Reload Helper",     1000),
-    new Helper("Cook Helper",       750),
-    new Helper("Sell Drug Helper",  3000)
+    new Helper("Reload Helper",     200),
+    new Helper("Cook Helper",       50),
+    new Helper("Sell Drug Helper",  200)
 ];
 
 var init;
@@ -84,6 +88,7 @@ function updateStats() {
     $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/12");
     $("#s-drug").html("Meth in stock : " + fix(drug[0], 2) + "g");
     $("#s-gprice").html("Gram price : " + fix(drug[2], 2) + "$/g");
+    $("#s-generalprice").html("Gram price between " + fix(drugPrice[0], 2) + "-" + fix(drugPrice[1], 2) + "$/g.");
 
     if (ammo[0] == 0) { $("#shoot").css('background', 'rgba(231, 76, 60, 0.3)'); $("#reload").css('background', 'rgba(46, 204, 113, 0.3)'); }
     else { $("#shoot").css('background', 'none'); $("#reload").css('background', 'none'); };
@@ -189,7 +194,7 @@ function buyUpgrade(index) {
         upgradesOwned[index] = true;
         upgrades[index].run();
         $("#u-" + (index+1)).css('display', 'none');
-        updateStats(); updateActions();
+        updateStats(); updateActions(); marketChange();
     };
 };
 
@@ -217,4 +222,5 @@ window.setInterval(function() {
 }, 10);
 window.setInterval(function() {
     marketChange();
+    updateActions();
 }, 30000);
