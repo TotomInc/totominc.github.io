@@ -154,12 +154,12 @@ function sell() {
         $("#b-f4").animate({width: "0%"}, 10);
     };
 };
-
 function hShoot(times) {
     if (helpersOwned[0] == true) {
         if (helpersTrigged[0] == true && ammo[0] >= 1) { // shoot
             progress[0] += times/fps; progress[0] %= ammo[2];
             var width = progress[0]/(ammo[2]/1000) * 100;
+            if ((ammo[2]/1000) < 0.2) { width = 100; };
             $("#b-f1").css('width', width + '%');
             if (progress[0] > (ammo[2]/1000)) {
                 progress[0] = 0; money += ammo[1]; ammo[0]--;
