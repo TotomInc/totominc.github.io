@@ -133,7 +133,7 @@ function shoot() {
     };
 };
 function reload() {
-    if (ammo[0] == 0 && helpersTrigged[1] == false) { $("#reload").attr('onclick', '');
+    if (ammo[0] < 12 && helpersTrigged[1] == false) { $("#reload").attr('onclick', '');
         setTimeout(function() { ammo[0] = 12; $("#reload").attr('onclick', 'reload()'); updateStats(); }, ammo[3]);
         $("#b-f2").animate({width: "100%"}, ammo[3], "linear");
         $("#b-f2").animate({width: "0%"}, 10);
@@ -223,7 +223,6 @@ function hSell(times) {
         };
     };
 };
-
 function marketChange() { drug[2] = Math.floor((Math.random() * drugPrice[1]) + drugPrice[0]); updateStats(); };
 
 // Methods
