@@ -46,10 +46,10 @@ var upgrades = [
 var helpersOwned;
 var helpersTrigged;
 var helpers = [
-    new Helper("Shoot Helper",      50),
-    new Helper("Reload Helper",     200),
-    new Helper("Cook Helper",       50),
-    new Helper("Sell Drug Helper",  200)
+    new Helper("Shoot Helper",      2000),
+    new Helper("Reload Helper",     8000),
+    new Helper("Cook Helper",       6000),
+    new Helper("Sell Drug Helper",  16000)
 ];
 
 var init; var fps = 60; var interval = (1000/fps);
