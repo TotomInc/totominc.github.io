@@ -4,32 +4,43 @@ var progress; var before;
 var upgradesOwned;
 var upgrades = [
     new Upgrade("Up 1.10 : shoot reward x2!",           15,     function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.11 : shoot reward x2!",           30,     function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.12 : shoot reward x2!",           120,    function() {ammo[1] *= 2}),
-    new Upgrade("Up 1.13 : shoot reward x3!",           760,    function() {ammo[1] *= 3}),
-    new Upgrade("Up 1.14 : shoot reward x4!",           1840,   function() {ammo[1] *= 4}),
-    new Upgrade("Up 1.20 : shoot time /2!",             50,     function() {ammo[2] /= 2}),
-    new Upgrade("Up 1.21 : shoot time /2!",             200,    function() {ammo[2] /= 2}),
-    new Upgrade("Up 1.22 : shoot time /3!",             950,    function() {ammo[2] /= 3}),
-    new Upgrade("Up 2.10 : reload time /2!",            50,     function() {ammo[3] /= 2}),
-    new Upgrade("Up 2.11 : reload time /2!",            200,    function() {ammo[3] /= 2}),
-    new Upgrade("Up 2.12 : reload time /3!",            950,    function() {ammo[3] /= 3}),
-    new Upgrade("Up 3.10 : cook production x2!",        100,    function() {drug[1] *= 2}),
-    new Upgrade("Up 3.11 : cook production x3!",        400,    function() {drug[1] *= 3}),
-    new Upgrade("Up 3.12 : cook production x4!",        1200,   function() {drug[1] *= 4}),
-    new Upgrade("Up 3.20 : cook time /2!",              50,     function() {drug[3] /= 2}),
-    new Upgrade("Up 3.21 : cook time /2!",              200,    function() {drug[3] /= 2}),
-    new Upgrade("Up 3.22 : cook time /3!",              950,    function() {drug[3] /= 3}),
-    new Upgrade("Up 4.10 : sell g/click x2!",           15,     function() {drug[5] *= 2}),
-    new Upgrade("Up 4.11 : sell g/click x2!",           30,     function() {drug[5] *= 2}),
-    new Upgrade("Up 4.12 : sell g/click x3!",           120,    function() {drug[5] *= 3}),
-    new Upgrade("Up 4.20 : sell time /2!",              50,     function() {drug[4] /= 2}),
-    new Upgrade("Up 4.21 : sell time /2!",              200,    function() {drug[4] /= 2}),
-    new Upgrade("Up 4.22 : sell time /3!",              950,    function() {drug[4] /= 3}),
-    new Upgrade("Up 4.20 : g. price between 10$-20$",   50,     function() {drugPrice[0] += 8; drugPrice[1] += 14; marketChange(); }),
-    new Upgrade("Up 4.21 : g. price between 20$-40$",   100,    function() {drugPrice[0] += 10; drugPrice[1] += 20; marketChange(); }),
-    new Upgrade("Up 4.22 : g. price between 40$-80$",   200,    function() {drugPrice[0] += 20; drugPrice[1] += 40; marketChange(); }),
-    new Upgrade("Up 4.23 : g. price between 80$-160$",  400,    function() {drugPrice[0] += 40; drugPrice[1] += 80; marketChange(); })
+    new Upgrade("Up 1.11 : shoot reward x2!",           60,     function() {ammo[1] *= 2}),
+    new Upgrade("Up 1.12 : shoot reward x2!",           420,    function() {ammo[1] *= 2}),
+    new Upgrade("Up 1.13 : shoot reward x3!",           2520,   function() {ammo[1] *= 3}),
+    new Upgrade("Up 1.14 : shoot reward x4!",           14430,  function() {ammo[1] *= 4}),
+    new Upgrade("Up 1.15 : shoot reward x2!",           83720,  function() {ammo[1] *= 2}),
+
+    new Upgrade("Up 1.20 : shoot time /2!",             60,     function() {ammo[2] /= 2}),
+    new Upgrade("Up 1.21 : shoot time /2!",             420,    function() {ammo[2] /= 2}),
+    new Upgrade("Up 1.22 : shoot time /3!",             6720,   function() {ammo[2] /= 3}),
+    new Upgrade("Up 1.23 : shoot time /2!",             75600,  function() {ammo[2] /= 2}),
+    new Upgrade("Up 1.24 : shoot time /2!",             353600, function() {ammo[2] /= 2}),
+
+    new Upgrade("Up 2.10 : reload time /2!",            3460,   function() {ammo[3] /= 2}),
+    new Upgrade("Up 2.11 : reload time /2!",            20760,  function() {ammo[3] /= 2}),
+    new Upgrade("Up 2.12 : reload time /3!",            124560, function() {ammo[3] /= 3}),
+    new Upgrade("Up 2.13 : reload time /2!",            747360, function() {ammo[3] /= 2}),
+
+    new Upgrade("Up 3.10 : cook production x2!",        2520,   function() {drug[1] *= 2}),
+    new Upgrade("Up 3.11 : cook production x3!",        14430,  function() {drug[1] *= 3}),
+    new Upgrade("Up 3.12 : cook production x4!",        83720,  function() {drug[1] *= 4}),
+
+    new Upgrade("Up 3.20 : cook time /2!",              20760,  function() {drug[3] /= 2}),
+    new Upgrade("Up 3.21 : cook time /2!",              124560, function() {drug[3] /= 2}),
+    new Upgrade("Up 3.22 : cook time /3!",              747360, function() {drug[3] /= 3}),
+
+    new Upgrade("Up 4.10 : sell g/click x2!",           14430,  function() {drug[5] *= 2}),
+    new Upgrade("Up 4.11 : sell g/click x2!",           83720,  function() {drug[5] *= 2}),
+    new Upgrade("Up 4.12 : sell g/click x3!",           124560, function() {drug[5] *= 3}),
+
+    new Upgrade("Up 4.20 : sell time /2!",              20760,  function() {drug[4] /= 2}),
+    new Upgrade("Up 4.21 : sell time /2!",              124560, function() {drug[4] /= 2}),
+    new Upgrade("Up 4.22 : sell time /3!",              747360, function() {drug[4] /= 3}),
+
+    new Upgrade("Up 4.20 : g. price between 10$-20$",   8000,   function() {drugPrice[0] += 8; drugPrice[1] += 14; marketChange(); }),
+    new Upgrade("Up 4.21 : g. price between 20$-40$",   48000,  function() {drugPrice[0] += 10; drugPrice[1] += 20; marketChange(); }),
+    new Upgrade("Up 4.22 : g. price between 40$-80$",   288000, function() {drugPrice[0] += 20; drugPrice[1] += 40; marketChange(); }),
+    new Upgrade("Up 4.23 : g. price between 80$-160$",  1728000,function() {drugPrice[0] += 40; drugPrice[1] += 80; marketChange(); })
 ];
 
 var helpersOwned;
