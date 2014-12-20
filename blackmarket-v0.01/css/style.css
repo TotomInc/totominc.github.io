@@ -1,0 +1,11 @@
+body { margin: 0; font-family: 'Consolas'; }
+h1 { margin: 0 0 10px 0; font-size: 30px; text-align: center; text-decoration: underline; }
+h2 { margin: 0 0 5px 0; font-size: 22px; text-align: center; }
+p { margin: 3px 0 3px 0; font-size: 14px; }
+p.a-n { text-align: center; font-size: 18px; text-decoration: underline; font-weight: bold; }
+p.a-d { text-align: center; font-size: 16px; }
+
+#stats>p>span { text-decoration: underline; cursor: pointer; }
+
+.a-b { width: 90%; height: 30px; margin-left: auto; margin-right: auto; border: 1px solid black; border-radius: 4px; cursor: pointer; }
+.a-f { width: 0%; height: 100%; background: #2c3e50; }

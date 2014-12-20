@@ -27,7 +27,7 @@
   <div class="container-fluid" style="max-height: 643px;">
     <div class="row">
       <div id="actions" class="col-md-4">
-        <h2>Gun Skills:</h2>
+        <h2>Gun Skills :</h2>
         <div class="well">
           <div id="shoot" class="b-button" onclick="shoot()" style="background: none;"><div id="b-f1" class="b-filler"></div></div>
           <h3 class="a-name">Shoot!</h3>
@@ -36,7 +36,7 @@
           <h3 class="a-name">Reload</h3>
           <p><span id="a-reload" class="a-desc"></span></p>
         </div>
-        <h2>Drug Skills:</h2>
+        <h2>Drug Skills :</h2>
         <div class="well">
           <div id="cook" class="b-button" onclick="cook()"><div id="b-f3" class="b-filler"></div></div>
           <h3 class="a-name">Cook meth'</h3>
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div id="shop" class="col-md-4">
-        <h2>Shop:</h2>
+        <h2>Shop :</h2>
           <ul class="nav nav-tabs nav-justified" role="tablist">
             <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades</a></li>
             <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers</a></li>
@@ -56,7 +56,6 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="upgrades">
               <div class="well">
-              <h2>1st tier upgrades</h2>
               <p id="u-1" class="u-upgrades" onclick="buyUpgrade(0)"><span id="u-n1"></span><span id="u-c1"></span></p>
               <p id="u-2" class="u-upgrades" onclick="buyUpgrade(1)"><span id="u-n2"></span><span id="u-c2"></span></p>
               <p id="u-3" class="u-upgrades" onclick="buyUpgrade(2)"><span id="u-n3"></span><span id="u-c3"></span></p>
@@ -84,6 +83,10 @@
               <p id="u-25" class="u-upgrades" onclick="buyUpgrade(24)"><span id="u-n25"></span><span id="u-c25"></span></p>
               <p id="u-26" class="u-upgrades" onclick="buyUpgrade(25)"><span id="u-n26"></span><span id="u-c26"></span></p>
               <p id="u-27" class="u-upgrades" onclick="buyUpgrade(26)"><span id="u-n27"></span><span id="u-c27"></span></p>
+              <p id="u-28" class="u-upgrades" onclick="buyUpgrade(27)"><span id="u-n28"></span><span id="u-c28"></span></p>
+              <p id="u-29" class="u-upgrades" onclick="buyUpgrade(28)"><span id="u-n29"></span><span id="u-c29"></span></p>
+              <p id="u-30" class="u-upgrades" onclick="buyUpgrade(29)"><span id="u-n30"></span><span id="u-c30"></span></p>
+              <p id="u-31" class="u-upgrades" onclick="buyUpgrade(30)"><span id="u-n31"></span><span id="u-c31"></span></p>
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="helpers">
@@ -97,18 +100,16 @@
           </div>
       </div>
       <div id="stats" class="col-md-4">
-        <h2>Player Stats:</h2>
+        <h2>Player Stats :</h2>
         <div class="well">
           <p><span id="s-money"></span><br>
           <span id="s-ammo"></span><br>
           <span id="s-drug"></span><br>
-          <span id="s-gprice"></span><br>
-          <span id="s-generalprice"></span></p>
+          <span id="s-gprice"></span></p>
           <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
         </div>
-        <h2>Achievements:</h2>
+        <h2>Achievements :</h2>
         <div class="well">
-          <p>In the next prototype release!</p>
         </div>
       </div>
     </div>

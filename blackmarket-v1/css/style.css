@@ -1,15 +1,14 @@
 body { margin: 0; font-family: 'Consolas', sans-serif; }
 h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px; text-decoration: underline; }
-h2 { margin: 0 0 10px 0; font-size: 20px; text-decoration: underline; }
+h2 { margin: 0 0 10px 0; text-align: center; font-size: 20px; text-decoration: underline; }
 h3 { margin: 5px 0 5px 0; font-size: 18px; text-align: center; }
 h3.a-name { margin: 3px 0 3px 0; font-weight: bold; text-decoration: underline; }
 h4 { margin: 0 0 5px 0; font-size: 16px; }
 p { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
-p.u-upgrades { text-align: center; text-decoration: underline; cursor: pointer; }
-p.h-helpers { text-align: center; text-decoration: underline; cursor: pointer; }
+p.u-upgrades { text-align: center; cursor: pointer; }
+p.h-helpers { text-align: center; cursor: pointer; }
 small { cursor: pointer; }
 small>span { border-bottom: 1px solid black; }
-span.a-desc { text-decoration: underline; }
 
 .b-button { width: 90%; height: 30px; margin-left: auto; margin-right: auto; border: 1px solid black; border-radius: 4px; cursor: pointer; }
 .b-filler { width: 0%; height: 100%; background: #2c3e50; }

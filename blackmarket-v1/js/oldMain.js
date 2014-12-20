@@ -1,4 +1,4 @@
-var money; var ammo; var drug; var drug2;
+var money; var ammo; var drug; var drugPrice;
 var progress; var before;
 
 var upgradesOwned;
@@ -16,71 +16,61 @@ var upgrades = [
     new Upgrade("Up 1.23 : shoot time /2!",             20160,  function() {ammo[2] /= 2}),
     new Upgrade("Up 1.24 : shoot time /2!",             60480,  function() {ammo[2] /= 2}),
 
-    new Upgrade("Up 1.30 : ammo stock x2!",             140,    function() {ammo[4] *= 2}),
-    new Upgrade("Up 1.31 : ammo stock x2!",             840,    function() {ammo[4] *= 2}),
-    new Upgrade("Up 1.32 : ammo stock x2!",             5040,   function() {ammo[4] *= 2}),
-    new Upgrade("Up 1.33 : ammo stock x3!",             30240,  function() {ammo[4] *= 3}),
-
     new Upgrade("Up 2.10 : reload time /2!",            3460,   function() {ammo[3] /= 2}),
     new Upgrade("Up 2.11 : reload time /2!",            20760,  function() {ammo[3] /= 2}),
     new Upgrade("Up 2.12 : reload time /3!",            124560, function() {ammo[3] /= 3}),
     new Upgrade("Up 2.13 : reload time /2!",            747360, function() {ammo[3] /= 2}),
 
-    new Upgrade("Up 3.10 : cook production x2!",        520,    function() {drug[1] *= 2}),
-    new Upgrade("Up 3.11 : cook production x3!",        1820,   function() {drug[1] *= 3}),
-    new Upgrade("Up 3.12 : cook production x4!",        6370,   function() {drug[1] *= 4}),
+    new Upgrade("Up 3.10 : cook production x2!",        2520,   function() {drug[1] *= 2}),
+    new Upgrade("Up 3.11 : cook production x3!",        14430,  function() {drug[1] *= 3}),
+    new Upgrade("Up 3.12 : cook production x4!",        83720,  function() {drug[1] *= 4}),
 
-    new Upgrade("Up 3.20 : cook time /2!",              980,    function() {drug[3] /= 2}),
-    new Upgrade("Up 3.21 : cook time /2!",              3724,   function() {drug[3] /= 2}),
-    new Upgrade("Up 3.22 : cook time /3!",              10896,  function() {drug[3] /= 3}),
+    new Upgrade("Up 3.20 : cook time /2!",              20760,  function() {drug[3] /= 2}),
+    new Upgrade("Up 3.21 : cook time /2!",              124560, function() {drug[3] /= 2}),
+    new Upgrade("Up 3.22 : cook time /3!",              747360, function() {drug[3] /= 3}),
 
-    new Upgrade("Up 4.10 : sell g/click x2!",           520,    function() {drug[5] *= 2}),
-    new Upgrade("Up 4.11 : sell g/click x3!",           1820,   function() {drug[5] *= 3}),
-    new Upgrade("Up 4.12 : sell g/click x4!",           6370,   function() {drug[5] *= 4}),
+    new Upgrade("Up 4.10 : sell g/click x2!",           14430,  function() {drug[5] *= 2}),
+    new Upgrade("Up 4.11 : sell g/click x2!",           83720,  function() {drug[5] *= 2}),
+    new Upgrade("Up 4.12 : sell g/click x3!",           124560, function() {drug[5] *= 3}),
 
-    new Upgrade("Up 4.20 : sell time /2!",              980,    function() {drug[4] /= 2}),
-    new Upgrade("Up 4.21 : sell time /2!",              3724,   function() {drug[4] /= 2}),
-    new Upgrade("Up 4.22 : sell time /3!",              10896,  function() {drug[4] /= 3}),
+    new Upgrade("Up 4.20 : sell time /2!",              20760,  function() {drug[4] /= 2}),
+    new Upgrade("Up 4.21 : sell time /2!",              124560, function() {drug[4] /= 2}),
+    new Upgrade("Up 4.22 : sell time /3!",              747360, function() {drug[4] /= 3}),
 
-    new Upgrade("Up 4.30 : g. price of 15$",            8000,   function() {drug[2] = 15; }),
-    new Upgrade("Up 4.31 : g. price of 90$",            48000,  function() {drug[2] = 90; }),
-    new Upgrade("Up 4.32 : g. price of 540$",           288000, function() {drug[2] = 540; }),
-    new Upgrade("Up 4.33 : g. price of 3240$",          1728000,function() {drug[2] = 3240; })
+    new Upgrade("Up 4.20 : g. price between 10$-20$",   8000,   function() {drugPrice[0] += 8; drugPrice[1] += 14; marketChange(); }),
+    new Upgrade("Up 4.21 : g. price between 20$-40$",   48000,  function() {drugPrice[0] += 10; drugPrice[1] += 20; marketChange(); }),
+    new Upgrade("Up 4.22 : g. price between 40$-80$",   288000, function() {drugPrice[0] += 20; drugPrice[1] += 40; marketChange(); }),
+    new Upgrade("Up 4.23 : g. price between 80$-160$",  1728000,function() {drugPrice[0] += 40; drugPrice[1] += 80; marketChange(); })
 ];
 
 var helpersOwned;
 var helpersTrigged;
 var helpers = [
-    new Helper("Shoot Helper",      1500),
-    new Helper("Reload Helper",     4000),
-    new Helper("Cook Helper",       1500),
-    new Helper("Sell Drug Helper",  4000)
+    new Helper("Shoot Helper",      2000),
+    new Helper("Reload Helper",     8000),
+    new Helper("Cook Helper",       6000),
+    new Helper("Sell Drug Helper",  16000)
 ];
 
-var init; var fps = 60; var interval = (1000/fps); var key = "a9s564e8";
-var allVars = ['money','ammo','drug','progress','before','upgradesOwned','helpersOwned','helpersTrigged'];
+var init; var fps = 60; var interval = (1000/fps);
+var allVars = ['money','ammo','drug','drugPrice','progress','before','upgradesOwned','helpersOwned','helpersTrigged'];
 
+// Saving system
 function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
 function getItem(key) { return JSON.parse(localStorage.getItem(key)); };
 function removeItem(key) { localStorage.removeItem(key); };
 function saveData() { for (var i = 0; i < allVars.length; i++) { setItem(allVars[i], window[allVars[i]]); }; };
 function loadData() {
-    for (var i = 0; i < allVars.length; i++) {
-        if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) {
-            window[allVars[i]] = getItem(allVars[i]);
-        };
-    };
+    for (var i = 0; i < allVars.length; i++) { if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) { window[allVars[i]] = getItem(allVars[i]); }; };
+    updateStats(); updateActions();
 };
-function resetData() {
-    for (var i = 0; i < allVars.length; i++) {
-        removeItem(allVars[i]);
-    }; location.reload();
-};
+function resetData() { for (var i = 0; i < allVars.length; i++) { removeItem(allVars[i]); }; location.reload(); };
+
 // Helpers
 function initVars() {
     money = 0;
-    ammo = [12, 0.75, 1500, 5000, 12];  // stock - reward - time - reload time - max ammo
-    drug = [0, 2, 4, 15000, 7500, 1];   // stock - prod - reward/g - prod time - sell time - g.sold/click
+    ammo = [12, 0.75, 1500, 5000];      // stock - reward   - time      - reload time
+    drug = [0, 2, 4, 15000, 7500, 1];   // stock - prod     - reward/g  - prod time     - sell time - g.sold/click
     drugPrice = [2, 6];                 // min price - max price
     before = new Date().getTime();
 
@@ -109,7 +99,7 @@ function initGame() {
     for (var i = 0; i < helpers.length; i++) {
         var h = helpers[i];
         $("#h-n" + (i+1)).html(h.name);
-        $("#h-c" + (i+1)).html(" - cost : " + fix(h.price, 0) + "$");
+        $("#h-c" + (i+1)).html(" - cost : " + h.price + "$");
         if (helpersOwned[i]) { $("#h-c" + (i+1)).html(" - trigged : " + helpersTrigged[i]); };
     };
 
@@ -117,20 +107,21 @@ function initGame() {
 };
 function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
-    $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/" + fix(ammo[4], 0));
+    $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/12");
     $("#s-drug").html("Meth in stock : " + fix(drug[0], 2) + "g");
     $("#s-gprice").html("Gram price : " + fix(drug[2], 2) + "$/g");
+    $("#s-generalprice").html("Gram price between " + fix(drugPrice[0], 2) + "-" + fix(drugPrice[1], 2) + "$/g.");
 
     if (ammo[0] == 0) { $("#shoot").css('background', 'rgba(231, 76, 60, 0.3)'); $("#reload").css('background', 'rgba(46, 204, 113, 0.3)'); }
     else { $("#shoot").css('background', 'none'); $("#reload").css('background', 'none'); };
 };
 function updateActions() {
     $("#a-shoot").html(fix(ammo[1], 2) + "$/shoot - " + fix((ammo[2]/1000), 2) + "s");
-    $("#a-reload").html("+" + fix(ammo[4], 0) + " ammo - " + fix((ammo[3]/1000), 2) + "s");
+    $("#a-reload").html("+ 12 ammo - " + fix((ammo[3]/1000), 2) + "s");
     $("#a-cook").html("+" + fix(drug[1], 2) + "g/click - " + fix((drug[3]/1000), 2) + "s");
     $("#a-sell").html("Sell " + drug[5] + "g : +" + fix((drug[5] * drug[2]), 2) + "$ - " + fix((drug[4]/1000), 2) + "s");
 };
-function updateGame(times) {
+function updateGame(times) { // todo : make a better system to reduce lag
     if (init == true) {
         var t = times;
         hShoot(t); hReload(t); hCook(t); hSell(t); updateStats();
@@ -154,7 +145,7 @@ function shoot() {
 };
 function reload() {
     if (ammo[0] < 12 && helpersTrigged[1] == false) { $("#reload").attr('onclick', '');
-        setTimeout(function() { ammo[0] = ammo[4]; $("#reload").attr('onclick', 'reload()'); updateStats(); }, ammo[3]);
+        setTimeout(function() { ammo[0] = 12; $("#reload").attr('onclick', 'reload()'); updateStats(); }, ammo[3]);
         $("#b-f2").animate({width: "100%"}, ammo[3], "linear");
         $("#b-f2").animate({width: "0%"}, 10);
     };
@@ -199,7 +190,7 @@ function hReload(times) {
             var width = progress[1]/(ammo[3]/1000) * 100;
             $("#b-f2").css('width', width + '%');
             if (progress[1] > (ammo[3]/1000)) {
-                progress[1] = 0; ammo[0] = ammo[4];
+                progress[1] = 0; ammo[0] = 12;
                 $("#b-f2").css('width', 0);
             };
         };
@@ -243,6 +234,7 @@ function hSell(times) {
         };
     };
 };
+function marketChange() { drug[2] = Math.floor((Math.random() * drugPrice[1]) + drugPrice[0]); updateStats(); };
 
 // Methods
 function Upgrade(name, price, run) {
@@ -287,8 +279,14 @@ function triggerHelper(index) {
 
 // Loop + onload
 window.onload = function() {
-    initVars(); loadData(); initGame();
+    initVars();
+    loadData();
+    initGame();
 };
 window.setInterval(function() {
     recoverLost();
 }, interval);
+window.setInterval(function() {
+    marketChange();
+    updateActions();
+}, 30000);
