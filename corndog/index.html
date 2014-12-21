@@ -4,13 +4,13 @@
     <style type="text/css">
     body{margin:0;background-color:#000}p{display:table-cell;vertical-align:middle;text-align:center}div.container{display:table;position:fixed;top:0;left:0;width:100%;height:100%}img.displayed{display:block;margin:1em auto}div#audio{visibility:hidden}canvas{position:absolute;width:100%;height:100%;display:block}
     </style>
+    <script type="text/javascript">
+    window.onload=function(){function h(){b.clearRect(0,0,c,d),b.fillStyle="rgba(255, 255, 255, 0.8)",b.beginPath();for(var a=0;e>a;a++){var g=f[a];b.moveTo(g.x,g.y),b.arc(g.x,g.y,g.r,0,2*Math.PI,!0)}b.fill(),j()}function j(){i+=.01;for(var a=0;e>a;a++){var b=f[a];b.y+=Math.cos(i+b.d)+1+b.r/2,b.x+=2*Math.sin(i),(b.x>c+5||b.x<-5||b.y>d)&&(f[a]=a%3>0?{x:Math.random()*c,y:-10,r:b.r,d:b.d}:Math.sin(i)>0?{x:-5,y:Math.random()*d,r:b.r,d:b.d}:{x:c+5,y:Math.random()*d,r:b.r,d:b.d})}}var a=document.getElementById("canvas"),b=a.getContext("2d"),c=window.innerWidth,d=window.innerHeight;a.width=c,a.height=d;for(var e=500,f=[],g=0;e>g;g++)f.push({x:Math.random()*c,y:Math.random()*d,r:4*Math.random()+1,d:Math.random()*e});var i=0;setInterval(h,33)};
+    </script>
 </head>
 
 <body>
   <div class="container"><p><img class="displayed" width="400" height="400" src="conc.jpg"></p></div>
   <canvas id="canvas"></canvas>
   <div id="audio"><object type="application/x-shockwave-flash" data="conc.swf"><param name="loop" value="true"></object></div>
-  <script type="text/javascript">
-  window.onload=function(){function h(){b.clearRect(0,0,c,d),b.fillStyle="rgba(255, 255, 255, 0.8)",b.beginPath();for(var a=0;e>a;a++){var g=f[a];b.moveTo(g.x,g.y),b.arc(g.x,g.y,g.r,0,2*Math.PI,!0)}b.fill(),j()}function j(){i+=.01;for(var a=0;e>a;a++){var b=f[a];b.y+=Math.cos(i+b.d)+1+b.r/2,b.x+=2*Math.sin(i),(b.x>c+5||b.x<-5||b.y>d)&&(f[a]=a%3>0?{x:Math.random()*c,y:-10,r:b.r,d:b.d}:Math.sin(i)>0?{x:-5,y:Math.random()*d,r:b.r,d:b.d}:{x:c+5,y:Math.random()*d,r:b.r,d:b.d})}}var a=document.getElementById("canvas"),b=a.getContext("2d"),c=window.innerWidth,d=window.innerHeight;a.width=c,a.height=d;for(var e=500,f=[],g=0;e>g;g++)f.push({x:Math.random()*c,y:Math.random()*d,r:4*Math.random()+1,d:Math.random()*e});var i=0;setInterval(h,33)};
-  </script>
 </body></html>
