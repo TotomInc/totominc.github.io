@@ -4,8 +4,7 @@ $(".col-md-4").css('max-height', (maxpx-headerpx-marginpx) + 'px'); $(".col-md-4
 $("#shop, #buildings").css('max-height', (maxpx-headerpx-marginpx) + 'px')
 
 var money; var totalMoney; var tokens; var tokensOn; var tokensRate;
-var gameInit = false; var fps = 60; var interval = (1000 / fps); var version = 2.00;
-var cheatAvert = 0; var V1money = 0; var V2totalMoney = 0; var V3tokens = 0; var V4multiplier = 1; var V5rate = 1; var V6magic = 1;
+var gameInit = false; var fps = 60; var interval = (1000 / fps);
 
 var totalMultiplier; var magicTotalMultiplier;
 var t1owned; var t1progress; var t1multiplier; var t1time; var t1min;
@@ -21,7 +20,6 @@ var t1 = [
     new Building("Bank",                2149908480,     1074954241,     1.08, 1296, false),
     new Building("Oil Company",         25789901760,    29668737024,    1.07, 6144, false)
 ];
-
 var managersOwned;
 var managers = [
     new Manager("Cave Johnson (Lemonade Stand Manager)",    1000),
@@ -35,23 +33,21 @@ var managers = [
     new Manager("Dark Lord (Bank Manager)",                 10000000000),
     new Manager("Derrick (Oil Company Manager)",            100000000000)
 ];
-
 var magicupOwned;
 var magicupgrades = [
-    new MagicUp("Magic Up 1 : all profit x3!",      10000,      function() {magicTotalMultiplier *= 3; V6magic *= 3;}),
-    new MagicUp("Magic Up 2 : tokens rate +2%!",    100000,     function() {tokensRate += 2; V5rate += 2;}),
-    new MagicUp("Magic Up 3 : tokens rate +2%!",    100000000,  function() {tokensRate += 2; V5rate += 2;}),
-    new MagicUp("Magic Up 4 : all profit x5!",      1000000000, function() {magicTotalMultiplier *= 5; V6magic *= 5;}),
-    new MagicUp("Magic Up 5 : all profit x9!",      100000000000,   function() {magicTotalMultiplier *= 9; V6magic *= 9;}),
-    new MagicUp("Magic Up 6 : all profit x11",      1000000000000,  function() {magicTotalMultiplier *= 11; V6magic *= 11;}),
-    new MagicUp("Magic Up 7 : all profit x15",      1000000000000000000000,    function() {magicTotalMultiplier *= 15; V6magic *= 15;}),
-    new MagicUp("Magic Up 8 : tokens rate +10%!",   1000000000000000000000000000000000,     function() {tokensRate += 10; V5rate += 10;}),
-    new MagicUp("Magic Up 9 : all profit x15!",     10000000000000000000000000000000000,    function() {magicTotalMultiplier *= 15; V6magic *= 15;}),
-    new MagicUp("Magic Up 10 : all profit x3!",     1000000000000000000000000000000000000,  function() {magicTotalMultiplier *= 3; V6magic *= 3;}),
-    new MagicUp("Magic Up 11 : all profit x5!",     10000000000000000000000000000000000000000,   function() {magicTotalMultiplier *= 5; V6magic *= 5;}),
-    new MagicUp("Magic Up 12 : all profit x3!",     1000000000000000000000000000000000000000000, function() {magicTotalMultiplier *= 3; V6magic *= 3;})
+    new MagicUp("Magic Up 1 : all profit x3!",      10000,      function() {magicTotalMultiplier *= 3;}),
+    new MagicUp("Magic Up 2 : tokens rate +2%!",    100000,     function() {tokensRate += 2;}),
+    new MagicUp("Magic Up 3 : tokens rate +2%!",    100000000,  function() {tokensRate += 2;}),
+    new MagicUp("Magic Up 4 : all profit x5!",      1000000000, function() {magicTotalMultiplier *= 5;}),
+    new MagicUp("Magic Up 5 : all profit x9!",      100000000000,   function() {magicTotalMultiplier *= 9;}),
+    new MagicUp("Magic Up 6 : all profit x11",      1000000000000,  function() {magicTotalMultiplier *= 11;}),
+    new MagicUp("Magic Up 7 : all profit x15",      1000000000000000000000,    function() {magicTotalMultiplier *= 15;}),
+    new MagicUp("Magic Up 8 : tokens rate +10%!",   1000000000000000000000000000000000,     function() {tokensRate += 10;}),
+    new MagicUp("Magic Up 9 : all profit x15!",     10000000000000000000000000000000000,    function() {magicTotalMultiplier *= 15;}),
+    new MagicUp("Magic Up 10 : all profit x3!",     1000000000000000000000000000000000000,  function() {magicTotalMultiplier *= 3;}),
+    new MagicUp("Magic Up 11 : all profit x5!",     10000000000000000000000000000000000000000,   function() {magicTotalMultiplier *= 5;}),
+    new MagicUp("Magic Up 12 : all profit x3!",     1000000000000000000000000000000000000000000, function() {magicTotalMultiplier *= 3;})
 ];
-
 var upgradesOwned;
 var upgrades = [
     new Upgrade("Lemonade stand profit x3!",        250000,         function() {t1multiplier[0] *= 3;}),
@@ -64,7 +60,7 @@ var upgrades = [
     new Upgrade("Movie studio profit x3!",          10000000000,    function() {t1multiplier[7] *= 3;}),
     new Upgrade("Bank profit x3!",                  50000000000,    function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           250000000000,   function() {t1multiplier[9] *= 3;}),
-    new Upgrade("All profit x3!",                   1000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("All profit x3!",                   1000000000000,  function() {totalMultiplier *= 3;}),
 
     new Upgrade("Lemonade stand profit x3!",        20000000000000,     function() {t1multiplier[0] *= 3;}),
     new Upgrade("Newspaper stand profit x3!",       50000000000000,     function() {t1multiplier[1] *= 3;}),
@@ -76,8 +72,8 @@ var upgrades = [
     new Upgrade("Movie studio profit x3!",          7000000000000000,   function() {t1multiplier[7] *= 3;}),
     new Upgrade("Bank profit x3!",                  10000000000000000,  function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           20000000000000000,  function() {t1multiplier[9] *= 3;}),
-    new Upgrade("All profit x3!",                   50000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("tokens efficiency +1%",            500000000000000000, function() {tokensRate += 1; V5rate += 1;}),
+    new Upgrade("All profit x3!",                   50000000000000000,  function() {totalMultiplier *= 3; ;}),
+    new Upgrade("tokens efficiency +1%",            500000000000000000, function() {tokensRate += 1;}),
 
     new Upgrade("Lemonade stand profit x3!",        2000000000000000000,    function() {t1multiplier[0] *= 3;}),
     new Upgrade("Newspaper stand profit x3!",       5000000000000000000,    function() {t1multiplier[1] *= 3;}),
@@ -89,8 +85,8 @@ var upgrades = [
     new Upgrade("Movie studio profit x3!",          75000000000000000000,   function() {t1multiplier[7] *= 3;}),
     new Upgrade("Bank profit x3!",                  100000000000000000000,  function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           200000000000000000000,  function() {t1multiplier[9] *= 3;}),
-    new Upgrade("All profit x3!",                   500000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("tokens efficiency +1%",            1000000000000000000000, function() {tokensRate += 1; V5rate += 1;}),
+    new Upgrade("All profit x3!",                   500000000000000000000,  function() {totalMultiplier *= 3; ;}),
+    new Upgrade("tokens efficiency +1%",            1000000000000000000000, function() {tokensRate += 1;}),
 
     new Upgrade("Lemonade stand profit x3!",        25000000000000000000000,    function() {t1multiplier[0] *= 3;}),
     new Upgrade("Newspaper stand profit x3!",       50000000000000000000000,    function() {t1multiplier[1] *= 3;}),
@@ -102,8 +98,8 @@ var upgrades = [
     new Upgrade("Movie studio profit x3!",          600000000000000000000000,   function() {t1multiplier[7] *= 3;}),
     new Upgrade("Bank profit x3!",                  700000000000000000000000,   function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           800000000000000000000000,   function() {t1multiplier[9] *= 3;}),
-    new Upgrade("All profit x3!",                   900000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("tokens efficiency +2%",            10000000000000000000000000, function() {tokensRate += 2; V5rate += 2;}),
+    new Upgrade("All profit x3!",                   900000000000000000000000,   function() {totalMultiplier *= 3; ;}),
+    new Upgrade("tokens efficiency +2%",            10000000000000000000000000, function() {tokensRate += 2;}),
 
     new Upgrade("Lemonade stand profit x7!",        1000000000000000000000000000,                   function() {t1multiplier[0] *= 7;}),
     new Upgrade("Newspaper stand profit x7!",       5000000000000000000000000000,                   function() {t1multiplier[1] *= 7;}),
@@ -115,7 +111,7 @@ var upgrades = [
     new Upgrade("Movie studio profit x7!",          5000000000000000000000000000000,                function() {t1multiplier[7] *= 7;}),
     new Upgrade("Bank profit x7!",                  25000000000000000000000000000000,               function() {t1multiplier[8] *= 7;}),
     new Upgrade("Oil company profit x7!",           50000000000000000000000000000000,               function() {t1multiplier[9] *= 7;}),
-    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000,    function() {totalMultiplier *= 7; V4multiplier *= 7;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000,    function() {totalMultiplier *= 7; ;}),
 
     new Upgrade("Newspaper stand profit x3!",       5000000000000000000000000000000000000000000,        function() {t1multiplier[1] *= 3;}),
     new Upgrade("Car-wash profit x3!",              25000000000000000000000000000000000000000000,       function() {t1multiplier[2] *= 3;}),
@@ -127,7 +123,7 @@ var upgrades = [
     new Upgrade("Bank profit x3!",                  5000000000000000000000000000000000000000000000,     function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           10000000000000000000000000000000000000000000000,    function() {t1multiplier[9] *= 3;}),
     new Upgrade("Lemonade stand profit x3!",        25000000000000000000000000000000000000000000000,    function() {t1multiplier[0] *= 3;}),
-    new Upgrade("All profit x3!",                   100000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("All profit x3!",                   100000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3;}),
 
     new Upgrade("Newspaper stand profit x3!",       250000000000000000000000000000000000000000000000,                   function() {t1multiplier[1] *= 3;}),
     new Upgrade("Car-wash profit x3!",              500000000000000000000000000000000000000000000000,                   function() {t1multiplier[2] *= 3;}),
@@ -139,26 +135,26 @@ var upgrades = [
     new Upgrade("Bank profit x3!",                  100000000000000000000000000000000000000000000000000,                function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           250000000000000000000000000000000000000000000000000,                function() {t1multiplier[9] *= 3;}),
     new Upgrade("Lemonade stand profit x3!",        500000000000000000000000000000000000000000000000000,                function() {t1multiplier[0] *= 3;}),
-    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000,               function() {totalMultiplier *= 7; V4multiplier *= 7;}),
-    new Upgrade("All profit x5!",                   1000000000000000000000000000000000000000000000000000000,            function() {totalMultiplier *= 5; V4multiplier *= 5;}),
-    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000000000000,      function() {totalMultiplier *= 7; V4multiplier *= 7;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000,               function() {totalMultiplier *= 7;}),
+    new Upgrade("All profit x5!",                   1000000000000000000000000000000000000000000000000000000,            function() {totalMultiplier *= 5;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000000000000,      function() {totalMultiplier *= 7;}),
 
     new Upgrade("Newspaper stand profit x3!",       10000000000000000000000000000000000000000000000000000000000000,     function() {t1multiplier[1] *= 3;}),
     new Upgrade("Car-wash profit x3!",              100000000000000000000000000000000000000000000000000000000000000,    function() {t1multiplier[2] *= 3;}),
-    new Upgrade("All profit x9!",                   1000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 9; V4multiplier *= 9}),
+    new Upgrade("All profit x9!",                   1000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 9;}),
     new Upgrade("Pizza delivery profit x3!",        10000000000000000000000000000000000000000000000000000000000000000000,   function() {t1multiplier[3] *= 3;}),
     new Upgrade("Donut shop profit x3!",            100000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[5] *= 3;}),
-    new Upgrade("All profit x11!",                  1000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 11; V4multiplier *= 11;}),
+    new Upgrade("All profit x11!",                  1000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 11;}),
     new Upgrade("Shrimp boat profit x3!",           10000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[5] *= 3;}),
     new Upgrade("Hockey team profit x3!",           100000000000000000000000000000000000000000000000000000000000000000000000000,function() {t1multiplier[6] *= 3;}),
-    new Upgrade("All profit x13!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 13; V4multiplier *= 13;}),
+    new Upgrade("All profit x13!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 13;}),
     new Upgrade("Movie studio profit x3!",          10000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[7] *= 3;}),
     new Upgrade("Bank profit x3!",                  100000000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[8] *= 3;}),
-    new Upgrade("All profit x15!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 15; V4multiplier *= 15;}),
+    new Upgrade("All profit x15!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 15;}),
     new Upgrade("Oil company profit x3!",           10000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {t1multiplier[9] *= 3;}),
     new Upgrade("Lemonade stand profit x3!",        100000000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[0] *= 3;}),
-    new Upgrade("All profit x3!",                   1000000000000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("All profit x3.1415926",            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3.1415926; V4multiplier *= 3.1415926;}),
+    new Upgrade("All profit x3!",                   1000000000000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 3; ;}),
+    new Upgrade("All profit x3.1415926",            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3.1415926;}),
 
     new Upgrade("Newspaper profit x3!",             1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {t1multiplier[1] *= 3;}),
     new Upgrade("Car-wash profit x3!",              5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {t1multiplier[2] *= 3;}),
@@ -170,9 +166,8 @@ var upgrades = [
     new Upgrade("Bank profit x3!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[8] *= 3;}),
     new Upgrade("Oil company profit x3!",           5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[9] *= 3;}),
     new Upgrade("Lemonade stand profit x3!",        10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {t1multiplier[0] *= 3;}),
-    new Upgrade("All profit x2!",                   500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 2; V4multiplier *= 2;})
+    new Upgrade("All profit x2!",                   500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 2; ;})
 ];
-
 var achievementsOwned; var achievementsOwnStats;
 var achievements = [
     new Achievement("25 lemonade stand", "speed x2!",   "t1owned[0]", 25, "t1time[0]",  "/2"),
@@ -641,7 +636,7 @@ var achievements = [
     new Achievement("4000 of everything", "profit of all x2!", "t1min", 4000, "totalMultiplier", "*2"),
 ];
 
-var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","achievementsOwned","magicupOwned","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1time","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","V6magic","cheatAvert"];
+var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","achievementsOwned","magicupOwned","upgradesOwned","managersOwned","t1owned","t1progress","t1time","t1multiplier","before"];
 
 // Saving system + resets
 function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
@@ -650,9 +645,7 @@ function removeItem(key) { localStorage.removeItem(key); };
 function saveData() { for (var i = 0; i < allVars.length; i++) { setItem(allVars[i], window[allVars[i]]); }; };
 function loadData() {
     for (var i = 0; i < allVars.length; i++) {
-        if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) {
-            window[allVars[i]] = getItem(allVars[i]);
-        };
+        if (getItem(allVars[i]) != null && getItem(allVars[i]) != undefined) { window[allVars[i]] = getItem(allVars[i]); };
     };
     updateStats(); updateBuilds();
 };
@@ -661,34 +654,15 @@ function resetData() {
     if (r == true) {
         var r2 = confirm("Are you really sure?");
         if (r2 == true) {
-            for (var i = 0; i < allVars.length; i++) {
-                removeItem(allVars[i]);
-            }; location.reload();
+            for (var i = 0; i < allVars.length; i++) { removeItem(allVars[i]); }; location.reload();
         };
     };
-};
-function cheatReset() {
-    alert("You have cheated too many times, the game will hard reset.")
-    for (var i = 0; i < allVars.length; i++) {
-        removeItem(allVars[i]);
-    }; location.reload();
 };
 function softReset() {
     var r = confirm("Do you want to soft reset, restart everything from the beginning and goes from " + fix(tokens, 0) + " tokens to " + fix(getTokensOn(), 0) + " tokens?")
     if (r == true) {
-        var temp1 = totalMoney;
-        var temp2 = getTokensOn();
-        var temp3 = cheatAvert;
-
-        initVars();
-        totalMoney = temp1;
-        V2totalMoney = totalMoney;
-        tokens = temp2;
-        V3tokens = tokens;
-        cheatAvert = temp3;
-        V1money = money;
-        saveData();
-
+        var temp1 = totalMoney; var temp2 = getTokensOn(); var temp3 = cheatAvert;
+        initVars(); totalMoney = temp1; tokens = temp2; saveData();
         location.reload();
     };
 };
@@ -698,7 +672,6 @@ function initVars() {
     money = 0; totalMoney = money;
     tokens = 0; tokensOn = 0; tokensRate = 1;
     totalMultiplier = 1; magicTotalMultiplier = 1; totalTimeMultiplier = 1;
-    V1money = 0; V2totalMoney = 0; V3tokens = 0; V4multiplier = 1; V5rate = 1; V6magic = 1;
     before = new Date().getTime();
 
     t1time = [];
@@ -789,7 +762,7 @@ function initGame() {
 
 // Helpers
 function getInc(source) { return t1[source].reward * t1multiplier[source] * totalMultiplier * magicTotalMultiplier * (1 + tokens * tokensRate / 100); };
-function getMoney(amount) { money += amount; totalMoney += amount; V1money += amount; V2totalMoney += amount; };
+function getMoney(amount) { money += amount; totalMoney += amount; };
 function getPrice(index) { var t = t1[index]; return t.price * Math.pow(t.inflation, t1owned[index]); };
 function getTokensOn() { return Math.floor(10 * Math.sqrt(totalMoney/1e13)); };
 function getTime(index) { return t1[index].time * t1time[index] * totalTimeMultiplier; };
@@ -804,8 +777,7 @@ function displayPrice(index, amount) {
 };
 function startBuild(index) {
     if (t1[index].trigger == false) {
-        t1progress[index] = 0.01;
-        t1[index].trigger = true;
+        t1progress[index] = 0.01; t1[index].trigger = true;
     };
 };
 function updateGame(times) {
@@ -871,23 +843,17 @@ function updateStats() {
 };
 function recoverLost() {
     if (gameInit == true) {
-        now = new Date().getTime();
-        var elapsedTime = now - before;
+        now = new Date().getTime(); var elapsedTime = now - before;
         if (elapsedTime > interval) { updateGame(Math.floor(elapsedTime/interval)); }
         else { updateGame(1); };
         before = new Date().getTime();
     };
 };
-function a98q7w3q8z() {
-    if (fps < 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
-    if (fps > 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
-    if (money > V1money) { cheatAvert++; alert("CHEAT DETECTED ! Money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); money = V1money; };
-    if (totalMoney > V2totalMoney) { cheatAvert++; alert("CHEAT DETECTED ! Total money changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); totalMoney = V2totalMoney; };
-    if (tokens > V3tokens) { cheatAvert++; alert("CHEAT DETECTED ! Tokens changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); tokens = V3tokens; };
-    if (totalMultiplier > V4multiplier) { cheatAvert++; alert("CHEAT DETECTED ! Total multiplier changed, you have " + cheatAvert + "/3 alert. If you continue your data will be wiped!"); totalMultiplier = V4multiplier; };
-    if (tokensRate > V5rate) { cheatAvert++; alert("CHEAT DETECTED ! Tokens rate changed, you have " + cheatAvert + "/3 alert. If you continue your data will be wiped!"); tokensRate = V5rate;};
-    if (magicTotalMultiplier > V6magic) { cheatAvert++; alert("CHEAT DETECTED ! Magic total multiplier changed, you have " + cheatAvert + "/3 alert. If you continue your data will be wiped!"); magicTotalMultiplier = V6magic; };
-    if (cheatAvert == 3) { cheatReset(); };
+function offlineGain() {
+    console.log("Cash before offline gain : " + fix(money, 2) + "$");
+    var now = new Date().getTime(); var offTime = now - before;
+    updateGame(Math.floor(offTime/interval));
+    console.log("Offline time without saving : " + offTime + "ms or " + fix(offTime/1000, 2) + "s");
 };
 
 // Methods
@@ -903,12 +869,11 @@ function buyBuilding(index, buyAmount) {
     var amount = buyAmount;
     if (amount > 0) { for (var i = 0; i < amount; i++) { buyBuildingOnce(index); }; }
     else { while (money >= getPrice(index)) { buyBuildingOnce(index); }; };
-    updateBuilds();
-    updateStats();
+    updateBuilds(); updateStats();
 };
 function buyBuildingOnce(index) {
     if (money < getPrice(index)) { return; }
-    else { money -= getPrice(index); V1money -= getPrice(index); t1owned[index]++; };
+    else { money -= getPrice(index); t1owned[index]++; };
 };
 
 function MagicUp(name, price, run) {
@@ -918,10 +883,9 @@ function MagicUp(name, price, run) {
 };
 function buyMagicUp(index) {
     if (tokens >= magicupgrades[index].price) {
-        tokens -= magicupgrades[index].price; V3tokens -= magicupgrades[index].price;
+        tokens -= magicupgrades[index].price;
         magicupOwned[index] = true;
-        magicupgrades[index].run();
-        updateStats(); updateBuilds();
+        magicupgrades[index].run(); updateStats(); updateBuilds();
         $("#s-mu" + (index+1)).css('display', 'none');
     };
 };
@@ -933,10 +897,9 @@ function Upgrade(name, price, run) {
 };
 function buyUpgrade(index) {
     if (money >= upgrades[index].price) {
-        money -= upgrades[index].price; V1money -= upgrades[index].price;
+        money -= upgrades[index].price;
         upgradesOwned[index] = true;
-        upgrades[index].run();
-        updateStats(); updateBuilds();
+        upgrades[index].run(); updateStats(); updateBuilds();
         $("#s-u" + (index+1)).css('display', 'none');
     };
 };
@@ -948,7 +911,6 @@ function Manager(name, price) {
 function buyManager(index) {
     if (money >= managers[index].price) {
         money -= managers[index].price;
-        V1money -= managers[index].price;
         managersOwned[index] = true;
         $("#s-m" + (index+1)).css('display', 'none');
         updateStats();
@@ -1005,15 +967,13 @@ function updateAchievements() {
         };
 };
 
-// Onload + loops + keyboard input
+// Onload + loops
 window.onload = function() {
-    initVars();
-    loadData();
-    initGame();
+    initVars(); loadData(); initGame(); offlineGain();
     gameInit = true;
 };
 window.setInterval(function() {
-    recoverLost();
+    if (gameInit == true) { recoverLost(); };
 }, interval);
 window.setInterval(function() {
     saveData();
