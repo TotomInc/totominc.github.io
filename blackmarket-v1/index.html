@@ -6,28 +6,19 @@
   <title>Blackmarket - Prototype</title>
 
   <script type="text/javascript" src="src/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="src/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
   <script type="text/javascript" src="src/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-54540685-6', 'auto');
-    ga('send', 'pageview');
-  </script>
-
-  <h1>Blackmarket - Prototype v0.01</h1>
+  <h1>Blackmarket - Prototype v0.011</h1>
 
   <div class="container-fluid" style="max-height: 643px;">
     <div class="row">
       <div id="actions" class="col-md-4">
-        <h2>Gun Skills :</h2>
+        <h2>Actions :</h2>
         <div class="well">
           <div id="shoot" class="b-button" onclick="shoot()" style="background: none;"><div id="b-f1" class="b-filler"></div></div>
           <h3 class="a-name">Shoot!</h3>
@@ -36,21 +27,12 @@
           <h3 class="a-name">Reload</h3>
           <p><span id="a-reload" class="a-desc"></span></p>
         </div>
-        <h2>Drug Skills :</h2>
-        <div class="well">
-          <div id="cook" class="b-button" onclick="cook()"><div id="b-f3" class="b-filler"></div></div>
-          <h3 class="a-name">Cook meth'</h3>
-          <p><span id="a-cook" class="a-desc"></span></p>
-          <div id="sell" class="b-button" onclick="sell()"><div id="b-f4" class="b-filler"></div></div>
-          <h3 class="a-name">Sell meth'</h3>
-          <p><span id="a-sell" class="a-desc"></span></p>
-        </div>
       </div>
-      <div id="shop" class="col-md-4">
-        <h2>Shop :</h2>
+      <div id="shop" class="col-md-4" style="overflow-y: scroll">
           <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades</a></li>
-            <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers</a></li>
+            <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
+            <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers <i class="fa fa-users"></i></a></li>
+            <li role="presentation"><a href="#blackshop" aria-controls="blackshop" role="tab" data-toggle="tab">Shop <i class="fa fa-cube"></i></a></li>
           </ul>
 
           <div class="tab-content">
@@ -97,27 +79,31 @@
               <p id="h-4" class="h-helpers" onclick="buyHelper(3)"><span id="h-n4"></span><span id="h-c4"></span></p>
               </div>
             </div>
+            <div role="tabpanel" class="tab-pane fade" id="blackshop">
+              <div class="well">
+              </div>
+            </div>
           </div>
       </div>
       <div id="stats" class="col-md-4">
-        <h2>Player Stats :</h2>
+        <h2>Stats :</h2>
         <div class="well">
           <p><span id="s-money"></span><br>
-          <span id="s-ammo"></span><br>
-          <span id="s-drug"></span><br>
-          <span id="s-gprice"></span></p>
+          <span id="s-ammo"></span></p>
           <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
         </div>
-        <h2>Achievements :</h2>
+        <h2>Patch Notes :</h2>
         <div class="well">
+          <p><u>v0.01 :</u><br>
+          <b>Official prototype release.</b><br>
+          <u>v0.011 :</u><br>
+          - Upgrades only were rebalanced.<br>
+          - Added a general shop.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <script type="text/javascript" src="js/fix.min.js"></script>
-  <script type="text/javascript" src="js/height.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
-
+  <script type="text/javascript" src="js/game.js"></script>
 </body>
 </html>
