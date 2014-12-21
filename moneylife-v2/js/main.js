@@ -1,38 +1,39 @@
 var maxpx = $(document).height(); var headerpx = 45; var marginpx = 10;
 $(".row").css('max-height', (maxpx-headerpx-marginpx) + 'px');
-$(".col-md-4").css('max-height', (maxpx-headerpx-marginpx) + 'px');
+$(".col-md-4").css('max-height', (maxpx-headerpx-marginpx) + 'px'); $(".col-md-4").css('height', (maxpx-headerpx-marginpx) + 'px')
+$("#shop, #buildings").css('max-height', (maxpx-headerpx-marginpx) + 'px')
 
 var money; var totalMoney; var tokens; var tokensOn; var tokensRate;
 var gameInit = false; var fps = 60; var interval = (1000 / fps); var version = 2.00;
 var cheatAvert = 0; var V1money = 0; var V2totalMoney = 0; var V3tokens = 0; var V4multiplier = 1; var V5rate = 1; var V6magic = 1;
 
 var totalMultiplier; var magicTotalMultiplier;
-var t1owned; var t1progress; var t1multiplier; var t1time;
+var t1owned; var t1progress; var t1multiplier; var t1time; var t1min;
 var t1 = [
-    new Building("Lemonade Stand",      4,              1,              1.09, 1.5,  false),
-    new Building("Newspaper Stand",     70,             60,             1.17, 3,    false),
-    new Building("Car-Wash",            720,            540,            1.16, 6,    false),
-    new Building("Gas Extractor",       8640,           4320,           1.15, 12,   false),
-    new Building("Meth Lab",            103680,         51840,          1.14, 24,   false),
-    new Building("Bank",                1244160,        622080,         1.13, 96,   false),
-    new Building("Movie Studio",        14929920,       7464961,        1.12, 384,  false),
-    new Building("Oil Company",         179159040,      89579521,       1.11, 576,  false),
-    new Building("Ship Company",        2149908480,     1074954241,     1.10, 1296, false),
-    new Building("Cookieverse",         25789901760,    29668737024,    1.09, 6144, false)
+    new Building("Lemonade Stand",      4,              1,              1.07, 1.5,  false),
+    new Building("Newspaper Stand",     70,             60,             1.15, 3,    false),
+    new Building("Car-Wash",            720,            540,            1.14, 6,    false),
+    new Building("Pizza Delivery",      640,            4320,           1.13, 12,   false),
+    new Building("Donut Shop",          103680,         51840,          1.12, 24,   false),
+    new Building("Shrimp Boat",         1244160,        622080,         1.11, 96,   false),
+    new Building("Hockey Team",         14929920,       7464961,        1.10, 384,  false),
+    new Building("Movie Studio",        179159040,      89579521,       1.09, 576,  false),
+    new Building("Bank",                2149908480,     1074954241,     1.08, 1296, false),
+    new Building("Oil Company",         25789901760,    29668737024,    1.07, 6144, false)
 ];
 
 var managersOwned;
 var managers = [
-    new Manager("Cave Johnson (Lemonade Stand Manager)", 1000),
+    new Manager("Cave Johnson (Lemonade Stand Manager)",    1000),
     new Manager("Rupert Murdoch (Newspaper Stand Manager)", 15000),
-    new Manager("Gus (Car-Wash Manager)", 100000),
-    new Manager("RichmanGas (Gas Extractor Manager)", 500000),
-    new Manager("Heisenberg (Meth Lab Manager)", 1200000),
-    new Manager("Rockfeller (Bank Manager)", 10000000),
-    new Manager("Spielberg (Movie Studio Manager)", 111111111),
-    new Manager("Harold Hamm (Oil Company Manager", 555555555),
-    new Manager("Zoidberg (Ship Company Manager)", 10000000000),
-    new Manager("Orteil (Cookieverse Manager)", 100000000000)
+    new Manager("W.W. Heisenberg (Car-Wash Manager)",       100000),
+    new Manager("Mama Sean (Pizza Delivery Manager)",       500000),
+    new Manager("Jim (Donut Shop Manager)",                 1200000),
+    new Manager("Forest Shrump (Shrimp Boat Manager)",      10000000),
+    new Manager("Down Cheri (Hockey Team Manager)",         111111111),
+    new Manager("Spielberg (Movie Studio Manager",          555555555),
+    new Manager("Dark Lord (Bank Manager)",                 10000000000),
+    new Manager("Derrick (Oil Company Manager)",            100000000000)
 ];
 
 var magicupOwned;
@@ -53,227 +54,579 @@ var magicupgrades = [
 
 var upgradesOwned;
 var upgrades = [
-    new Upgrade("Up 1 : lemonade stand profit x3!",         250000,         function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 2 : newspaper stand profit x3!",        500000,         function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 3 : car-wash profit x3!",               1000000,        function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 4 : gas extractor profit x3!",          5000000,        function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 5 : meth lab profit x3!",               10000000,       function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 6 : bank profit x3!",                   25000000,       function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 7 : movie studio profit x3!",           500000000,      function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 8 : oil company profit x3!",            10000000000,    function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 9 : ship company profit x3!",           50000000000,    function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 10 : cookieverse profit x3!",           250000000000,   function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 11 : all profit x3!",                   1000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("Lemonade stand profit x3!",        250000,         function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Newspaper stand profit x3!",       500000,         function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              1000000,        function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        5000000,        function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            10000000,       function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           25000000,       function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           500000000,      function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          10000000000,    function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  50000000000,    function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           250000000000,   function() {t1multiplier[9] *= 3;}),
+    new Upgrade("All profit x3!",                   1000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
 
-    new Upgrade("Up 11 : lemonade stand profit x3!",        20000000000000,     function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 12 : newspaper stand profit x3!",       50000000000000,     function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 13 : car-wash profit x3!",              100000000000000,    function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 14 : gas extractor profit x3!",         500000000000000,    function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 15 : meth lab profit x3!",              1000000000000000,   function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 16 : bank profit x3!",                  2000000000000000,   function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 17 : movie studio profit x3!",          5000000000000000,   function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 18 : oil company profit x3!",           7000000000000000,   function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 19 : ship company profit x3!",          10000000000000000,  function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 20 : cookieverse profit x3!",           20000000000000000,  function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 21 : all profit x3!",                   50000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("Up 22 : tokens efficiency +1%",            500000000000000000, function() {tokensRate += 1; V5rate += 1;}),
+    new Upgrade("Lemonade stand profit x3!",        20000000000000,     function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Newspaper stand profit x3!",       50000000000000,     function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              100000000000000,    function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        500000000000000,    function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            1000000000000000,   function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           2000000000000000,   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           5000000000000000,   function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          7000000000000000,   function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  10000000000000000,  function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           20000000000000000,  function() {t1multiplier[9] *= 3;}),
+    new Upgrade("All profit x3!",                   50000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("tokens efficiency +1%",            500000000000000000, function() {tokensRate += 1; V5rate += 1;}),
 
-    new Upgrade("Up 23 : lemonade stand profit x3!",        2000000000000000000,    function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 24 : newspaper stand profit x3!",       5000000000000000000,    function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 25 : car-wash profit x3!",              7000000000000000000,    function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 26 : gas extractor profit x3!",         10000000000000000000,   function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 27 : meth lab profit x3!",              20000000000000000000,   function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 28 : bank profit x3!",                  35000000000000000000,   function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 29 : movie studio profit x3!",          50000000000000000000,   function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 30 : oil company profit x3!",           75000000000000000000,   function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 31 : ship company profit x3!",          100000000000000000000,  function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 32 : cookieverse profit x3!",           200000000000000000000,  function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 33 : all profit x3!",                   500000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("Up 34 : tokens efficiency +1%",            1000000000000000000000, function() {tokensRate += 1; V5rate += 1;}),
+    new Upgrade("Lemonade stand profit x3!",        2000000000000000000,    function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Newspaper stand profit x3!",       5000000000000000000,    function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              7000000000000000000,    function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        10000000000000000000,   function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            20000000000000000000,   function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           35000000000000000000,   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           50000000000000000000,   function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          75000000000000000000,   function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  100000000000000000000,  function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           200000000000000000000,  function() {t1multiplier[9] *= 3;}),
+    new Upgrade("All profit x3!",                   500000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("tokens efficiency +1%",            1000000000000000000000, function() {tokensRate += 1; V5rate += 1;}),
 
-    new Upgrade("Up 35 : lemonade stand profit x3!",        25000000000000000000000,    function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 36 : newspaper stand profit x3!",       50000000000000000000000,    function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 37 : car-wash profit x3!",              100000000000000000000000,   function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 38 : gas extractor profit x3!",         200000000000000000000000,   function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 39 : meth lab profit x3!",              300000000000000000000000,   function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 40 : bank profit x3!",                  400000000000000000000000,   function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 41 : movie studio profit x3!",          500000000000000000000000,   function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 42 : oil company profit x3!",           600000000000000000000000,   function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 43 : ship company profit x3!",          700000000000000000000000,   function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 44 : cookieverse profit x3!",           800000000000000000000000,   function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 45 : all profit x3!",                   900000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
-    new Upgrade("Up 46 : tokens efficiency +2%",            10000000000000000000000000, function() {tokensRate += 2; V5rate += 2;}),
+    new Upgrade("Lemonade stand profit x3!",        25000000000000000000000,    function() {t1multiplier[0] *= 3;}),
+    new Upgrade("Newspaper stand profit x3!",       50000000000000000000000,    function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              100000000000000000000000,   function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        200000000000000000000000,   function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            300000000000000000000000,   function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           400000000000000000000000,   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           500000000000000000000000,   function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          600000000000000000000000,   function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  700000000000000000000000,   function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           800000000000000000000000,   function() {t1multiplier[9] *= 3;}),
+    new Upgrade("All profit x3!",                   900000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("tokens efficiency +2%",            10000000000000000000000000, function() {tokensRate += 2; V5rate += 2;}),
 
-    new Upgrade("Up 47 : lemonade stand profit x7!",        1000000000000000000000000000,                   function() {t1multiplier[0] *= 7;}),
-    new Upgrade("Up 48 : newspaper stand profit x7!",       5000000000000000000000000000,                   function() {t1multiplier[1] *= 7;}),
-    new Upgrade("Up 49 : car-wash profit x7!",              25000000000000000000000000000,                  function() {t1multiplier[2] *= 7;}),
-    new Upgrade("Up 50 : gas extractor profit x7!",         100000000000000000000000000000,                 function() {t1multiplier[3] *= 7;}),
-    new Upgrade("Up 51 : meth lab profit x7!",              250000000000000000000000000000,                 function() {t1multiplier[4] *= 7;}),
-    new Upgrade("Up 52 : bank profit x7!",                  500000000000000000000000000000,                 function() {t1multiplier[5] *= 7;}),
-    new Upgrade("Up 53 : movie studio profit x7!",          1000000000000000000000000000000,                function() {t1multiplier[6] *= 7;}),
-    new Upgrade("Up 54 : oil company profit x7!",           5000000000000000000000000000000,                function() {t1multiplier[7] *= 7;}),
-    new Upgrade("Up 55 : ship company profit x7!",          25000000000000000000000000000000,               function() {t1multiplier[8] *= 7;}),
-    new Upgrade("Up 56 : cookieverse profit x7!",           50000000000000000000000000000000,               function() {t1multiplier[9] *= 7;}),
-    new Upgrade("Up 57 : all profit x7!",                   1000000000000000000000000000000000000000000,    function() {totalMultiplier *= 7; V4multiplier *= 7;}),
+    new Upgrade("Lemonade stand profit x7!",        1000000000000000000000000000,                   function() {t1multiplier[0] *= 7;}),
+    new Upgrade("Newspaper stand profit x7!",       5000000000000000000000000000,                   function() {t1multiplier[1] *= 7;}),
+    new Upgrade("Car-wash profit x7!",              25000000000000000000000000000,                  function() {t1multiplier[2] *= 7;}),
+    new Upgrade("Pizza delivery profit x7!",        100000000000000000000000000000,                 function() {t1multiplier[3] *= 7;}),
+    new Upgrade("Donut shop profit x7!",            250000000000000000000000000000,                 function() {t1multiplier[4] *= 7;}),
+    new Upgrade("Shrimp boat profit x7!",           500000000000000000000000000000,                 function() {t1multiplier[5] *= 7;}),
+    new Upgrade("Hockey team profit x7!",           1000000000000000000000000000000,                function() {t1multiplier[6] *= 7;}),
+    new Upgrade("Movie studio profit x7!",          5000000000000000000000000000000,                function() {t1multiplier[7] *= 7;}),
+    new Upgrade("Bank profit x7!",                  25000000000000000000000000000000,               function() {t1multiplier[8] *= 7;}),
+    new Upgrade("Oil company profit x7!",           50000000000000000000000000000000,               function() {t1multiplier[9] *= 7;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000,    function() {totalMultiplier *= 7; V4multiplier *= 7;}),
 
-    new Upgrade("Up 58 : newspaper stand profit x3!",       5000000000000000000000000000000000000000000,        function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 59 : car-wash profit x3!",              25000000000000000000000000000000000000000000,       function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 60 : gas extractor profit x3!",         50000000000000000000000000000000000000000000,       function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 61 : meth lab profit x3!",              100000000000000000000000000000000000000000000,      function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 62 : bank profit x3!",                  250000000000000000000000000000000000000000000,      function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 63 : movie studio profit x3!",          500000000000000000000000000000000000000000000,      function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 64 : oil company profit x3!",           1000000000000000000000000000000000000000000000,     function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 65 : ship company profit x3!",          5000000000000000000000000000000000000000000000,     function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 66 : cookieverse profit x3!",           10000000000000000000000000000000000000000000000,    function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 67 : lemonade stand profit x3!",        25000000000000000000000000000000000000000000000,    function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 68 : all profit x3!",                   100000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("Newspaper stand profit x3!",       5000000000000000000000000000000000000000000,        function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              25000000000000000000000000000000000000000000,       function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        50000000000000000000000000000000000000000000,       function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            100000000000000000000000000000000000000000000,      function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           250000000000000000000000000000000000000000000,      function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           500000000000000000000000000000000000000000000,      function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          1000000000000000000000000000000000000000000000,     function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  5000000000000000000000000000000000000000000000,     function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           10000000000000000000000000000000000000000000000,    function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Lemonade stand profit x3!",        25000000000000000000000000000000000000000000000,    function() {t1multiplier[0] *= 3;}),
+    new Upgrade("All profit x3!",                   100000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3; V4multiplier *= 3;}),
 
-    new Upgrade("Up 69 : newspaper stand profit x3!",       250000000000000000000000000000000000000000000000,                   function() {t1multiplier[1] *= 3;}),
-    new Upgrade("Up 70 : car-wash profit x3!",              500000000000000000000000000000000000000000000000,                   function() {t1multiplier[2] *= 3;}),
-    new Upgrade("Up 71 : gas extractor profit x3!",         750000000000000000000000000000000000000000000000,                   function() {t1multiplier[3] *= 3;}),
-    new Upgrade("Up 72 : meth lab profit x3!",              1000000000000000000000000000000000000000000000000,                  function() {t1multiplier[4] *= 3;}),
-    new Upgrade("Up 73 : bank profit x3!",                  500000000000000000000000000000000000000000000000,                   function() {t1multiplier[5] *= 3;}),
-    new Upgrade("Up 74 : movie studio profit x3!",          15000000000000000000000000000000000000000000000000,                 function() {t1multiplier[6] *= 3;}),
-    new Upgrade("Up 75 : oil company profit x3!",           50000000000000000000000000000000000000000000000000,                 function() {t1multiplier[7] *= 3;}),
-    new Upgrade("Up 76 : ship company profit x3!",          100000000000000000000000000000000000000000000000000,                function() {t1multiplier[8] *= 3;}),
-    new Upgrade("Up 77 : cookieverse profit x3!",           250000000000000000000000000000000000000000000000000,                function() {t1multiplier[9] *= 3;}),
-    new Upgrade("Up 78 : lemonade stand profit x3!",        500000000000000000000000000000000000000000000000000,                function() {t1multiplier[0] *= 3;}),
-    new Upgrade("Up 79 : all profit x7!",                   1000000000000000000000000000000000000000000000000000,               function() {totalMultiplier *= 7; V4multiplier *= 7;}),
-    new Upgrade("Up 80 : all profit x5!",                   1000000000000000000000000000000000000000000000000000000,            function() {totalMultiplier *= 5; V4multiplier *= 5;}),
-    new Upgrade("Up 81 : all profit x7!",                   1000000000000000000000000000000000000000000000000000000000000,      function() {totalMultiplier *= 7; V4multiplier *= 7;})
+    new Upgrade("Newspaper stand profit x3!",       250000000000000000000000000000000000000000000000,                   function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              500000000000000000000000000000000000000000000000,                   function() {t1multiplier[2] *= 3;}),
+    new Upgrade("Pizza delivery profit x3!",        750000000000000000000000000000000000000000000000,                   function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            1000000000000000000000000000000000000000000000000,                  function() {t1multiplier[4] *= 3;}),
+    new Upgrade("Shrimp boat profit x3!",           500000000000000000000000000000000000000000000000,                   function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           15000000000000000000000000000000000000000000000000,                 function() {t1multiplier[6] *= 3;}),
+    new Upgrade("Movie studio profit x3!",          50000000000000000000000000000000000000000000000000,                 function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  100000000000000000000000000000000000000000000000000,                function() {t1multiplier[8] *= 3;}),
+    new Upgrade("Oil company profit x3!",           250000000000000000000000000000000000000000000000000,                function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Lemonade stand profit x3!",        500000000000000000000000000000000000000000000000000,                function() {t1multiplier[0] *= 3;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000,               function() {totalMultiplier *= 7; V4multiplier *= 7;}),
+    new Upgrade("All profit x5!",                   1000000000000000000000000000000000000000000000000000000,            function() {totalMultiplier *= 5; V4multiplier *= 5;}),
+    new Upgrade("All profit x7!",                   1000000000000000000000000000000000000000000000000000000000000,      function() {totalMultiplier *= 7; V4multiplier *= 7;}),
+
+    new Upgrade("Newspaper stand profit x3!",       10000000000000000000000000000000000000000000000000000000000000,     function() {t1multiplier[1] *= 3;}),
+    new Upgrade("Car-wash profit x3!",              100000000000000000000000000000000000000000000000000000000000000,    function() {t1multiplier[2] *= 3;}),
+    new Upgrade("All profit x9!",                   1000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 9; V4multiplier *= 9}),
+    new Upgrade("Pizza delivery profit x3!",        10000000000000000000000000000000000000000000000000000000000000000000,   function() {t1multiplier[3] *= 3;}),
+    new Upgrade("Donut shop profit x3!",            100000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[5] *= 3;}),
+    new Upgrade("All profit x11!",                  1000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 11; V4multiplier *= 11;}),
+    new Upgrade("Shrimp boat profit x3!",           10000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[5] *= 3;}),
+    new Upgrade("Hockey team profit x3!",           100000000000000000000000000000000000000000000000000000000000000000000000000,function() {t1multiplier[6] *= 3;}),
+    new Upgrade("All profit x13!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 13; V4multiplier *= 13;}),
+    new Upgrade("Movie studio profit x3!",          10000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[7] *= 3;}),
+    new Upgrade("Bank profit x3!",                  100000000000000000000000000000000000000000000000000000000000000000000000000000, function() {t1multiplier[8] *= 3;}),
+    new Upgrade("All profit x15!",                  1000000000000000000000000000000000000000000000000000000000000000000000000000000,    function() {totalMultiplier *= 15; V4multiplier *= 15;}),
+    new Upgrade("Oil company profit x3!",           10000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {t1multiplier[9] *= 3;}),
+    new Upgrade("Lemonade stand profit x3!",        100000000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {t1multiplier[0] *= 3;}),
+    new Upgrade("All profit x3!",                   1000000000000000000000000000000000000000000000000000000000000000000000000000000000000,  function() {totalMultiplier *= 3; V4multiplier *= 3;}),
+    new Upgrade("All profit x3.1415926",            1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,   function() {totalMultiplier *= 3.1415926; V4multiplier *= 3.1415926;})
 ];
 
-var achievementsOwned;
+var achievementsOwned; var achievementsOwnStats;
 var achievements = [
-    new Achievement("25 of lemonade stand", "speed x2!",   "t1owned[0]", 25, "t1time[0]",  "/2"),
-    new Achievement("50 of lemonade stand", "speed x2!",   "t1owned[0]", 50, "t1time[0]",  "/2"),
-    new Achievement("100 of lemonade stand", "speed x2!",   "t1owned[0]", 100, "t1time[0]",  "/2"),
-    new Achievement("200 of lemonade stand", "speed x2!",   "t1owned[0]", 200, "t1time[0]",  "/2"),
-    new Achievement("300 of lemonade stand", "speed x2!",   "t1owned[0]", 300, "t1time[0]",  "/2"),
-    new Achievement("400 of lemonade stand", "speed x2!",   "t1owned[0]", 400, "t1time[0]",  "/2"),
-    new Achievement("500 of lemonade stand", "profit x2!",   "t1owned[0]", 500, "t1multiplier[0]",  "*2"),
-    new Achievement("600 of lemonade stand", "profit x2!",   "t1owned[0]", 600, "t1multiplier[0]",  "*2"),
-    new Achievement("700 of lemonade stand", "profit x2!",   "t1owned[0]", 700, "t1multiplier[0]",  "*2"),
-    new Achievement("800 of lemonade stand", "profit x2!",   "t1owned[0]", 800, "t1multiplier[0]",  "*2"),
-    new Achievement("900 of lemonade stand", "profit x2!",   "t1owned[0]", 900, "t1multiplier[0]",  "*2"),
-    new Achievement("1000 of lemonade stand", "profit x3!",   "t1owned[0]", 1000, "t1multiplier[0]",  "*2"),
+    new Achievement("25 lemonade stand", "speed x2!",   "t1owned[0]", 25, "t1time[0]",  "/2"),
+    new Achievement("50 lemonade stand", "speed x2!",   "t1owned[0]", 50, "t1time[0]",  "/2"),
+    new Achievement("100 lemonade stand", "speed x2!",   "t1owned[0]", 100, "t1time[0]",  "/2"),
+    new Achievement("200 lemonade stand", "speed x2!",   "t1owned[0]", 200, "t1time[0]",  "/2"),
+    new Achievement("300 lemonade stand", "speed x2!",   "t1owned[0]", 300, "t1time[0]",  "/2"),
+    new Achievement("400 lemonade stand", "speed x2!",   "t1owned[0]", 400, "t1time[0]",  "/2"),
+    new Achievement("500 lemonade stand", "profit x4!",   "t1owned[0]", 500, "t1multiplier[0]",  "*4"),
+    new Achievement("600 lemonade stand", "profit x4!",   "t1owned[0]", 600, "t1multiplier[0]",  "*4"),
+    new Achievement("700 lemonade stand", "profit x4!",   "t1owned[0]", 700, "t1multiplier[0]",  "*4"),
+    new Achievement("800 lemonade stand", "profit x4!",   "t1owned[0]", 800, "t1multiplier[0]",  "*4"),
+    new Achievement("900 lemonade stand", "profit x4!",   "t1owned[0]", 900, "t1multiplier[0]",  "*4"),
+    new Achievement("1000 lemonade stand", "profit x5!",   "t1owned[0]", 1000, "t1multiplier[0]",  "*5"),
+    new Achievement("1100 lemonade stand", "profit x4!",   "t1owned[0]", 1100, "t1multiplier[0]",  "*4"),
+    new Achievement("1200 lemonade stand", "profit x4!",   "t1owned[0]", 1200, "t1multiplier[0]",  "*4"),
+    new Achievement("1300 lemonade stand", "profit x4!",   "t1owned[0]", 1300, "t1multiplier[0]",  "*4"),
+    new Achievement("1400 lemonade stand", "profit x4!",   "t1owned[0]", 1400, "t1multiplier[0]",  "*4"),
+    new Achievement("1500 lemonade stand", "profit x4!",   "t1owned[0]", 1500, "t1multiplier[0]",  "*4"),
+    new Achievement("1600 lemonade stand", "profit x4!",   "t1owned[0]", 1600, "t1multiplier[0]",  "*4"),
+    new Achievement("1700 lemonade stand", "profit x4!",   "t1owned[0]", 1700, "t1multiplier[0]",  "*4"),
+    new Achievement("1800 lemonade stand", "profit x4!",   "t1owned[0]", 1800, "t1multiplier[0]",  "*4"),
+    new Achievement("1900 lemonade stand", "profit x4!",   "t1owned[0]", 1900, "t1multiplier[0]",  "*4"),
+    new Achievement("2000 lemonade stand", "profit x5!",   "t1owned[0]", 2000, "t1multiplier[0]",  "*5"),
+    new Achievement("2250 lemonade stand", "profit x2!",   "t1owned[0]", 2250, "t1multiplier[0]",  "*2"),
+    new Achievement("2500 lemonade stand", "profit x2!",   "t1owned[0]", 2500, "t1multiplier[0]",  "*2"),
+    new Achievement("2750 lemonade stand", "profit x2!",   "t1owned[0]", 2750, "t1multiplier[0]",  "*2"),
+    new Achievement("3000 lemonade stand", "profit x5!",   "t1owned[0]", 3000, "t1multiplier[0]",  "*5"),
+    new Achievement("3250 lemonade stand", "profit x2!",   "t1owned[0]", 3250, "t1multiplier[0]",  "*2"),
+    new Achievement("3500 lemonade stand", "profit x2!",   "t1owned[0]", 3500, "t1multiplier[0]",  "*2"),
+    new Achievement("3750 lemonade stand", "profit x2!",   "t1owned[0]", 3750, "t1multiplier[0]",  "*2"),
+    new Achievement("4000 lemonade stand", "profit x5!",   "t1owned[0]", 4000, "t1multiplier[0]",  "*5"),
+    new Achievement("4250 lemonade stand", "profit x2!",   "t1owned[0]", 4250, "t1multiplier[0]",  "*2"),
+    new Achievement("4500 lemonade stand", "profit x2!",   "t1owned[0]", 4500, "t1multiplier[0]",  "*2"),
+    new Achievement("4750 lemonade stand", "profit x2!",   "t1owned[0]", 4750, "t1multiplier[0]",  "*2"),
+    new Achievement("5000 lemonade stand", "profit x5!",   "t1owned[0]", 5000, "t1multiplier[0]",  "*5"),
+    new Achievement("5250 lemonade stand", "profit x2!",   "t1owned[0]", 5250, "t1multiplier[0]",  "*3"),
+    new Achievement("5500 lemonade stand", "profit x2!",   "t1owned[0]", 5500, "t1multiplier[0]",  "*3"),
+    new Achievement("5750 lemonade stand", "profit x2!",   "t1owned[0]", 5750, "t1multiplier[0]",  "*3"),
+    new Achievement("6000 lemonade stand", "profit x5!",   "t1owned[0]", 6000, "t1multiplier[0]",  "*5"),
+    new Achievement("6250 lemonade stand", "profit x3!",   "t1owned[0]", 6250, "t1multiplier[0]",  "*2"),
+    new Achievement("6500 lemonade stand", "profit x3!",   "t1owned[0]", 6500, "t1multiplier[0]",  "*2"),
+    new Achievement("6750 lemonade stand", "profit x3!",   "t1owned[0]", 6750, "t1multiplier[0]",  "*2"),
+    new Achievement("7000 lemonade stand", "profit x9!",   "t1owned[0]", 7000, "t1multiplier[0]",  "*9"),
 
-    new Achievement("25 of newspaper stand", "speed x2!",   "t1owned[1]", 25, "t1time[1]",  "/2"),
-    new Achievement("50 of newspaper stand", "speed x2!",   "t1owned[1]", 50, "t1time[1]",  "/2"),
-    new Achievement("100 of newspaper stand", "speed x2!",   "t1owned[1]", 100, "t1time[1]",  "/2"),
-    new Achievement("200 of newspaper stand", "speed x2!",   "t1owned[1]", 200, "t1time[1]",  "/2"),
-    new Achievement("300 of newspaper stand", "speed x2!",   "t1owned[1]", 300, "t1time[1]",  "/2"),
-    new Achievement("400 of newspaper stand", "speed x2!",   "t1owned[1]", 400, "t1time[1]",  "/2"),
-    new Achievement("500 of newspaper stand", "profit x2!",   "t1owned[1]", 500, "t1multiplier[1]",  "*2"),
-    new Achievement("600 of newspaper stand", "profit x2!",   "t1owned[1]", 600, "t1multiplier[1]",  "*2"),
-    new Achievement("700 of newspaper stand", "profit x2!",   "t1owned[1]", 700, "t1multiplier[1]",  "*2"),
-    new Achievement("800 of newspaper stand", "profit x2!",   "t1owned[1]", 800, "t1multiplier[1]",  "*2"),
-    new Achievement("900 of newspaper stand", "profit x2!",   "t1owned[1]", 900, "t1multiplier[1]",  "*2"),
-    new Achievement("1000 of newspaper stand", "profit x3!",   "t1owned[1]", 1000, "t1multiplier[1]",  "*2"),
+    new Achievement("25 newspaper stand", "speed x2!",              "t1owned[1]", 25, "t1time[1]",  "/2"),
+    new Achievement("50 newspaper stand", "speed x2!",              "t1owned[1]", 50, "t1time[1]",  "/2"),
+    new Achievement("100 newspaper stand", "speed x2!",             "t1owned[1]", 100, "t1time[1]",  "/2"),
+    new Achievement("125 newspaper stand", "lemonade profit x2!",   "t1owned[1]", 125, "t1multiplier[0]",  "*2"),
+    new Achievement("150 newspaper stand", "car profit x2!",        "t1owned[1]", 150, "t1multiplier[2]",  "*2"),
+    new Achievement("175 newspaper stand", "pizza profit x2!",      "t1owned[1]", 175, "t1multiplier[3]",  "*2"),
+    new Achievement("200 newspaper stand", "speed x2!",             "t1owned[1]", 200, "t1time[1]",  "/2"),
+    new Achievement("225 newspaper stand", "donut profit x2!",      "t1owned[1]", 225, "t1multiplier[4]",  "*2"),
+    new Achievement("250 newspaper stand", "lemonade profit x2!",   "t1owned[1]", 250, "t1multiplier[0]",  "*3"),
+    new Achievement("275 newspaper stand", "car profit x3!",        "t1owned[1]", 275, "t1multiplier[2]",  "*3"),
+    new Achievement("300 newspaper stand", "speed x2!",             "t1owned[1]", 300, "t1time[1]",  "/2"),
+    new Achievement("325 newspaper stand", "pizza profit x3!",      "t1owned[1]", 325, "t1multiplier[3]",  "*3"),
+    new Achievement("350 newspaper stand", "donut profit x3!",      "t1owned[1]", 350, "t1multiplier[4]",  "*3"),
+    new Achievement("375 newspaper stand", "lemonade profit x4!",   "t1owned[1]", 375, "t1multiplier[1]",  "*4"),
+    new Achievement("400 newspaper stand", "speed x2!",             "t1owned[1]", 400, "t1time[1]",  "/2"),
+    new Achievement("425 newspaper stand", "car profit x4!",        "t1owned[1]", 425, "t1multiplier[2]",  "*4"),
+    new Achievement("450 newspaper stand", "pizza profit x4!",      "t1owned[1]", 450, "t1multiplier[3]",  "*4"),
+    new Achievement("475 newspaper stand", "donut profit x4!",      "t1owned[1]", 475, "t1multiplier[4]",  "*4"),
+    new Achievement("500 newspaper stand", "shrimp profit x11!",    "t1owned[1]", 500, "t1multiplier[6]",  "*11"),
+    new Achievement("525 newspaper stand", "lemonade profit x5!",   "t1owned[1]", 525, "t1multiplier[0]",  "*5"),
+    new Achievement("550 newspaper stand", "car profit x5!",        "t1owned[1]", 550, "t1multiplier[2]",  "*5"),
+    new Achievement("575 newspaper stand", "pizza profit x5!",      "t1owned[1]", 575, "t1multiplier[3]",  "*5"),
+    new Achievement("600 newspaper stand", "hockey profit x11!",    "t1owned[1]", 600, "t1multiplier[7]",  "*11"),
+    new Achievement("625 newspaper stand", "donut profit x5!",      "t1owned[1]", 625, "t1multiplier[4]",  "*5"),
+    new Achievement("650 newspaper stand", "lemonade profit x6!",   "t1owned[1]", 650, "t1multiplier[0]",  "*6"),
+    new Achievement("675 newspaper stand", "car profit x6!",        "t1owned[1]", 675, "t1multiplier[2]",  "*6"),
+    new Achievement("700 newspaper stand", "movie profit x11!",     "t1owned[1]", 700, "t1multiplier[7]",  "*11"),
+    new Achievement("725 newspaper stand", "pizza profit x6!",      "t1owned[1]", 725, "t1multiplier[3]",  "*6"),
+    new Achievement("750 newspaper stand", "donut profit x6!",      "t1owned[1]", 750, "t1multiplier[4]",  "*6"),
+    new Achievement("775 newspaper stand", "lemonade profit x7!",   "t1owned[1]", 775, "t1multiplier[0]",  "*3"),
+    new Achievement("800 newspaper stand", "bank profit x11!",      "t1owned[1]", 800, "t1multiplier[8]",  "*11"),
+    new Achievement("825 newspaper stand", "car profit x7!",        "t1owned[1]", 825, "t1multiplier[2]",  "*7"),
+    new Achievement("850 newspaper stand", "pizza profit x7!",      "t1owned[1]", 850, "t1multiplier[3]",  "*7"),
+    new Achievement("875 newspaper stand", "donut profit x7!",      "t1owned[1]", 875, "t1multiplier[4]",  "*7"),
+    new Achievement("900 newspaper stand", "oil profit x11!",       "t1owned[1]", 900, "t1multiplier[9]",  "*11"),
+    new Achievement("925 newspaper stand", "shrimp profit x7!",     "t1owned[1]", 925, "t1multiplier[5]",  "*7"),
+    new Achievement("950 newspaper stand", "hockey profit x7!",     "t1owned[1]", 950, "t1multiplier[6]",  "*7"),
+    new Achievement("975 newspaper stand", "movie profit x7!",      "t1owned[1]", 975, "t1multiplier[7]",  "*7"),
+    new Achievement("1000 newspaper stand", "newspaper x7777777!",   "t1owned[1]", 1000, "t1multiplier[1]",  "*7777777"),
 
-    new Achievement("25 of car-wash", "speed x2!",   "t1owned[2]", 25, "t1time[2]",  "/2"),
-    new Achievement("50 of car-wash", "speed x2!",   "t1owned[2]", 50, "t1time[2]",  "/2"),
-    new Achievement("100 of car-wash", "speed x2!",   "t1owned[2]", 100, "t1time[2]",  "/2"),
-    new Achievement("200 of car-wash", "speed x2!",   "t1owned[2]", 200, "t1time[2]",  "/2"),
-    new Achievement("300 of car-wash", "speed x2!",   "t1owned[2]", 300, "t1time[2]",  "/2"),
-    new Achievement("400 of car-wash", "speed x2!",   "t1owned[2]", 400, "t1time[2]",  "/2"),
-    new Achievement("500 of car-wash", "profit x2!",   "t1owned[2]", 500, "t1multiplier[2]",  "*2"),
-    new Achievement("600 of car-wash", "profit x2!",   "t1owned[2]", 600, "t1multiplier[2]",  "*2"),
-    new Achievement("700 of car-wash", "profit x2!",   "t1owned[2]", 700, "t1multiplier[2]",  "*2"),
-    new Achievement("800 of car-wash", "profit x2!",   "t1owned[2]", 800, "t1multiplier[2]",  "*2"),
-    new Achievement("900 of car-wash", "profit x2!",   "t1owned[2]", 900, "t1multiplier[2]",  "*2"),
-    new Achievement("1000 of car-wash", "profit x3!",   "t1owned[2]", 1000, "t1multiplier[2]",  "*2"),
+    new Achievement("25 car-wash", "speed x2!",   "t1owned[2]", 25, "t1time[2]",  "/2"),
+    new Achievement("50 car-wash", "speed x2!",   "t1owned[2]", 50, "t1time[2]",  "/2"),
+    new Achievement("100 car-wash", "speed x2!",   "t1owned[2]", 100, "t1time[2]",  "/2"),
+    new Achievement("200 car-wash", "speed x2!",   "t1owned[2]", 200, "t1time[2]",  "/2"),
+    new Achievement("300 car-wash", "speed x2!",   "t1owned[2]", 300, "t1time[2]",  "/2"),
+    new Achievement("400 car-wash", "speed x2!",   "t1owned[2]", 400, "t1time[2]",  "/2"),
+    new Achievement("500 car-wash", "profit x2!",   "t1owned[2]", 500, "t1multiplier[2]",  "*2"),
+    new Achievement("600 car-wash", "profit x2!",   "t1owned[2]", 600, "t1multiplier[2]",  "*2"),
+    new Achievement("700 car-wash", "profit x2!",   "t1owned[2]", 700, "t1multiplier[2]",  "*2"),
+    new Achievement("800 car-wash", "profit x2!",   "t1owned[2]", 800, "t1multiplier[2]",  "*2"),
+    new Achievement("900 car-wash", "profit x2!",   "t1owned[2]", 900, "t1multiplier[2]",  "*2"),
+    new Achievement("1000 car-wash", "profit x3!",   "t1owned[2]", 1000, "t1multiplier[2]",  "*3"),
+    new Achievement("1100 car-wash", "profit x2!",   "t1owned[2]", 1100, "t1multiplier[2]",  "*2"),
+    new Achievement("1200 car-wash", "profit x2!",   "t1owned[2]", 1200, "t1multiplier[2]",  "*2"),
+    new Achievement("1300 car-wash", "profit x2!",   "t1owned[2]", 1300, "t1multiplier[2]",  "*2"),
+    new Achievement("1400 car-wash", "profit x2!",   "t1owned[2]", 1400, "t1multiplier[2]",  "*2"),
+    new Achievement("1500 car-wash", "profit x2!",   "t1owned[2]", 1500, "t1multiplier[2]",  "*2"),
+    new Achievement("1600 car-wash", "profit x2!",   "t1owned[2]", 1600, "t1multiplier[2]",  "*2"),
+    new Achievement("1700 car-wash", "profit x2!",   "t1owned[2]", 1700, "t1multiplier[2]",  "*2"),
+    new Achievement("1800 car-wash", "profit x2!",   "t1owned[2]", 1800, "t1multiplier[2]",  "*2"),
+    new Achievement("1900 car-wash", "profit x2!",   "t1owned[2]", 1900, "t1multiplier[2]",  "*2"),
+    new Achievement("2000 car-wash", "profit x5!",   "t1owned[2]", 2000, "t1multiplier[2]",  "*5"),
+    new Achievement("2100 car-wash", "profit x3!",   "t1owned[2]", 2100, "t1multiplier[2]",  "*3"),
+    new Achievement("2200 car-wash", "profit x3!",   "t1owned[2]", 2200, "t1multiplier[2]",  "*3"),
+    new Achievement("2300 car-wash", "profit x3!",   "t1owned[2]", 2300, "t1multiplier[2]",  "*3"),
+    new Achievement("2400 car-wash", "profit x3!",   "t1owned[2]", 2400, "t1multiplier[2]",  "*3"),
+    new Achievement("2500 car-wash", "profit x3!",   "t1owned[2]", 2500, "t1multiplier[2]",  "*3"),
+    new Achievement("2600 car-wash", "profit x3!",   "t1owned[2]", 2600, "t1multiplier[2]",  "*3"),
+    new Achievement("2700 car-wash", "profit x3!",   "t1owned[2]", 2700, "t1multiplier[2]",  "*3"),
+    new Achievement("2800 car-wash", "profit x3!",   "t1owned[2]", 2800, "t1multiplier[2]",  "*3"),
+    new Achievement("2900 car-wash", "profit x3!",   "t1owned[2]", 2900, "t1multiplier[2]",  "*3"),
+    new Achievement("3000 car-wash", "profit x3!",   "t1owned[2]", 3000, "t1multiplier[2]",  "*3"),
+    new Achievement("3100 car-wash", "profit x3!",   "t1owned[2]", 3100, "t1multiplier[2]",  "*3"),
+    new Achievement("3200 car-wash", "profit x3!",   "t1owned[2]", 3200, "t1multiplier[2]",  "*3"),
+    new Achievement("3400 car-wash", "profit x3!",   "t1owned[2]", 3400, "t1multiplier[2]",  "*3"),
+    new Achievement("3500 car-wash", "profit x3!",   "t1owned[2]", 3500, "t1multiplier[2]",  "*3"),
+    new Achievement("3600 car-wash", "profit x3!",   "t1owned[2]", 3600, "t1multiplier[2]",  "*3"),
+    new Achievement("3700 car-wash", "profit x3!",   "t1owned[2]", 3700, "t1multiplier[2]",  "*3"),
+    new Achievement("3800 car-wash", "profit x3!",   "t1owned[2]", 3800, "t1multiplier[2]",  "*3"),
+    new Achievement("3900 car-wash", "profit x3!",   "t1owned[2]", 3900, "t1multiplier[2]",  "*3"),
+    new Achievement("4000 car-wash", "profit x5!",   "t1owned[2]", 4000, "t1multiplier[2]",  "*5"),
 
-    new Achievement("25 of gas extractor", "speed x2!",   "t1owned[3]", 25, "t1time[3]",  "/2"),
-    new Achievement("50 of gas extractor", "speed x2!",   "t1owned[3]", 50, "t1time[3]",  "/2"),
-    new Achievement("100 of gas extractor", "speed x2!",   "t1owned[3]", 100, "t1time[3]",  "/2"),
-    new Achievement("200 of gas extractor", "speed x2!",   "t1owned[3]", 200, "t1time[3]",  "/2"),
-    new Achievement("300 of gas extractor", "speed x2!",   "t1owned[3]", 300, "t1time[3]",  "/2"),
-    new Achievement("400 of gas extractor", "speed x2!",   "t1owned[3]", 400, "t1time[3]",  "/2"),
-    new Achievement("500 of gas extractor", "profit x2!",   "t1owned[3]", 500, "t1multiplier[3]",  "*2"),
-    new Achievement("600 of gas extractor", "profit x2!",   "t1owned[3]", 600, "t1multiplier[3]",  "*2"),
-    new Achievement("700 of gas extractor", "profit x2!",   "t1owned[3]", 700, "t1multiplier[3]",  "*2"),
-    new Achievement("800 of gas extractor", "profit x2!",   "t1owned[3]", 800, "t1multiplier[3]",  "*2"),
-    new Achievement("900 of gas extractor", "profit x2!",   "t1owned[3]", 900, "t1multiplier[3]",  "*2"),
-    new Achievement("1000 of gas extractor", "profit x3!",   "t1owned[3]", 1000, "t1multiplier[3]",  "*2"),
+    new Achievement("25 pizza delivery", "speed x2!",   "t1owned[3]", 25, "t1time[3]",  "/2"),
+    new Achievement("50 pizza delivery", "speed x2!",   "t1owned[3]", 50, "t1time[3]",  "/2"),
+    new Achievement("100 pizza delivery", "speed x2!",   "t1owned[3]", 100, "t1time[3]",  "/2"),
+    new Achievement("200 pizza delivery", "speed x2!",   "t1owned[3]", 200, "t1time[3]",  "/2"),
+    new Achievement("300 pizza delivery", "speed x2!",   "t1owned[3]", 300, "t1time[3]",  "/2"),
+    new Achievement("400 pizza delivery", "speed x2!",   "t1owned[3]", 400, "t1time[3]",  "/2"),
+    new Achievement("500 pizza delivery", "profit x2!",   "t1owned[3]", 500, "t1multiplier[3]",  "*2"),
+    new Achievement("600 pizza delivery", "profit x2!",   "t1owned[3]", 600, "t1multiplier[3]",  "*2"),
+    new Achievement("700 pizza delivery", "profit x2!",   "t1owned[3]", 700, "t1multiplier[3]",  "*2"),
+    new Achievement("800 pizza delivery", "profit x2!",   "t1owned[3]", 800, "t1multiplier[3]",  "*2"),
+    new Achievement("900 pizza delivery", "profit x2!",   "t1owned[3]", 900, "t1multiplier[3]",  "*2"),
+    new Achievement("1000 pizza delivery", "profit x3!",   "t1owned[3]", 1000, "t1multiplier[3]",  "*3"),
+    new Achievement("1100 pizza delivery", "profit x2!",   "t1owned[3]", 1100, "t1multiplier[3]",  "*2"),
+    new Achievement("1200 pizza delivery", "profit x2!",   "t1owned[3]", 1200, "t1multiplier[3]",  "*2"),
+    new Achievement("1300 pizza delivery", "profit x2!",   "t1owned[3]", 1300, "t1multiplier[3]",  "*2"),
+    new Achievement("1400 pizza delivery", "profit x2!",   "t1owned[3]", 1400, "t1multiplier[3]",  "*2"),
+    new Achievement("1500 pizza delivery", "profit x2!",   "t1owned[3]", 1500, "t1multiplier[3]",  "*2"),
+    new Achievement("1600 pizza delivery", "profit x2!",   "t1owned[3]", 1600, "t1multiplier[3]",  "*2"),
+    new Achievement("1700 pizza delivery", "profit x2!",   "t1owned[3]", 1700, "t1multiplier[3]",  "*2"),
+    new Achievement("1800 pizza delivery", "profit x2!",   "t1owned[3]", 1800, "t1multiplier[3]",  "*2"),
+    new Achievement("1900 pizza delivery", "profit x2!",   "t1owned[3]", 1900, "t1multiplier[3]",  "*2"),
+    new Achievement("2000 pizza delivery", "profit x5!",   "t1owned[3]", 2000, "t1multiplier[3]",  "*5"),
+    new Achievement("2100 pizza delivery", "profit x3!",   "t1owned[3]", 2100, "t1multiplier[3]",  "*3"),
+    new Achievement("2200 pizza delivery", "profit x3!",   "t1owned[3]", 2200, "t1multiplier[3]",  "*3"),
+    new Achievement("2300 pizza delivery", "profit x3!",   "t1owned[3]", 2300, "t1multiplier[3]",  "*3"),
+    new Achievement("2400 pizza delivery", "profit x3!",   "t1owned[3]", 2400, "t1multiplier[3]",  "*3"),
+    new Achievement("2500 pizza delivery", "profit x3!",   "t1owned[3]", 2500, "t1multiplier[3]",  "*3"),
+    new Achievement("2600 pizza delivery", "profit x3!",   "t1owned[3]", 2600, "t1multiplier[3]",  "*3"),
+    new Achievement("2700 pizza delivery", "profit x3!",   "t1owned[3]", 2700, "t1multiplier[3]",  "*3"),
+    new Achievement("2800 pizza delivery", "profit x3!",   "t1owned[3]", 2800, "t1multiplier[3]",  "*3"),
+    new Achievement("2900 pizza delivery", "profit x3!",   "t1owned[3]", 2900, "t1multiplier[3]",  "*3"),
+    new Achievement("3000 pizza delivery", "profit x3!",   "t1owned[3]", 3000, "t1multiplier[3]",  "*3"),
+    new Achievement("3100 pizza delivery", "profit x3!",   "t1owned[3]", 3100, "t1multiplier[3]",  "*3"),
+    new Achievement("3200 pizza delivery", "profit x3!",   "t1owned[3]", 3200, "t1multiplier[3]",  "*3"),
+    new Achievement("3300 pizza delivery", "profit x3!",   "t1owned[3]", 3300, "t1multiplier[3]",  "*3"),
+    new Achievement("3400 pizza delivery", "profit x3!",   "t1owned[3]", 3400, "t1multiplier[3]",  "*3"),
+    new Achievement("3500 pizza delivery", "profit x3!",   "t1owned[3]", 3500, "t1multiplier[3]",  "*3"),
+    new Achievement("3600 pizza delivery", "profit x3!",   "t1owned[3]", 3600, "t1multiplier[3]",  "*3"),
+    new Achievement("3700 pizza delivery", "profit x3!",   "t1owned[3]", 3700, "t1multiplier[3]",  "*3"),
+    new Achievement("3800 pizza delivery", "profit x3!",   "t1owned[3]", 3800, "t1multiplier[3]",  "*3"),
+    new Achievement("3900 pizza delivery", "profit x3!",   "t1owned[3]", 3900, "t1multiplier[3]",  "*3"),
+    new Achievement("4000 pizza delivery", "profit x5!",   "t1owned[3]", 4000, "t1multiplier[3]",  "*5"),
+    new Achievement("4100 pizza delivery", "profit x3!",   "t1owned[3]", 4100, "t1multiplier[3]",  "*3"),
 
-    new Achievement("25 of meth lab", "speed x2!",   "t1owned[4]", 25, "t1time[4]",  "/2"),
-    new Achievement("50 of meth lab", "speed x2!",   "t1owned[4]", 50, "t1time[4]",  "/2"),
-    new Achievement("100 of meth lab", "speed x2!",   "t1owned[4]", 100, "t1time[4]",  "/2"),
-    new Achievement("200 of meth lab", "speed x2!",   "t1owned[4]", 200, "t1time[4]",  "/2"),
-    new Achievement("300 of meth lab", "speed x2!",   "t1owned[4]", 300, "t1time[4]",  "/2"),
-    new Achievement("400 of meth lab", "speed x2!",   "t1owned[4]", 400, "t1time[4]",  "/2"),
-    new Achievement("500 of meth lab", "profit x2!",   "t1owned[4]", 500, "t1multiplier[4]",  "*2"),
-    new Achievement("600 of meth lab", "profit x2!",   "t1owned[4]", 600, "t1multiplier[4]",  "*2"),
-    new Achievement("700 of meth lab", "profit x2!",   "t1owned[4]", 700, "t1multiplier[4]",  "*2"),
-    new Achievement("800 of meth lab", "profit x2!",   "t1owned[4]", 800, "t1multiplier[4]",  "*2"),
-    new Achievement("900 of meth lab", "profit x2!",   "t1owned[4]", 900, "t1multiplier[4]",  "*2"),
-    new Achievement("1000 of meth lab", "profit x3!",   "t1owned[4]", 1000, "t1multiplier[4]",  "*2"),
+    new Achievement("25 donut shop", "speed x2!",   "t1owned[4]", 25, "t1time[4]",  "/2"),
+    new Achievement("50 donut shop", "speed x2!",   "t1owned[4]", 50, "t1time[4]",  "/2"),
+    new Achievement("100 donut shop", "speed x2!",   "t1owned[4]", 100, "t1time[4]",  "/2"),
+    new Achievement("200 donut shop", "speed x2!",   "t1owned[4]", 200, "t1time[4]",  "/2"),
+    new Achievement("300 donut shop", "speed x2!",   "t1owned[4]", 300, "t1time[4]",  "/2"),
+    new Achievement("400 donut shop", "speed x2!",   "t1owned[4]", 400, "t1time[4]",  "/2"),
+    new Achievement("500 donut shop", "profit x2!",   "t1owned[4]", 500, "t1multiplier[4]",  "*2"),
+    new Achievement("600 donut shop", "profit x2!",   "t1owned[4]", 600, "t1multiplier[4]",  "*2"),
+    new Achievement("700 donut shop", "profit x2!",   "t1owned[4]", 700, "t1multiplier[4]",  "*2"),
+    new Achievement("800 donut shop", "profit x2!",   "t1owned[4]", 800, "t1multiplier[4]",  "*2"),
+    new Achievement("900 donut shop", "profit x2!",   "t1owned[4]", 900, "t1multiplier[4]",  "*2"),
+    new Achievement("1000 donut shop", "profit x3!",   "t1owned[4]", 1000, "t1multiplier[4]",  "*3"),
+    new Achievement("1100 donut shop", "profit x2!",   "t1owned[4]", 1100, "t1multiplier[4]",  "*2"),
+    new Achievement("1200 donut shop", "profit x2!",   "t1owned[4]", 1200, "t1multiplier[4]",  "*2"),
+    new Achievement("1300 donut shop", "profit x2!",   "t1owned[4]", 1300, "t1multiplier[4]",  "*2"),
+    new Achievement("1400 donut shop", "profit x2!",   "t1owned[4]", 1400, "t1multiplier[4]",  "*2"),
+    new Achievement("1500 donut shop", "profit x2!",   "t1owned[4]", 1500, "t1multiplier[4]",  "*2"),
+    new Achievement("1600 donut shop", "profit x2!",   "t1owned[4]", 1600, "t1multiplier[4]",  "*2"),
+    new Achievement("1700 donut shop", "profit x2!",   "t1owned[4]", 1700, "t1multiplier[4]",  "*2"),
+    new Achievement("1800 donut shop", "profit x2!",   "t1owned[4]", 1800, "t1multiplier[4]",  "*2"),
+    new Achievement("1900 donut shop", "profit x2!",   "t1owned[4]", 1900, "t1multiplier[4]",  "*2"),
+    new Achievement("2000 donut shop", "profit x5!",   "t1owned[4]", 2000, "t1multiplier[4]",  "*5"),
+    new Achievement("2100 donut shop", "profit x3!",   "t1owned[4]", 2100, "t1multiplier[4]",  "*3"),
+    new Achievement("2200 donut shop", "profit x3!",   "t1owned[4]", 2200, "t1multiplier[4]",  "*3"),
+    new Achievement("2300 donut shop", "profit x3!",   "t1owned[4]", 2300, "t1multiplier[4]",  "*3"),
+    new Achievement("2400 donut shop", "profit x3!",   "t1owned[4]", 2400, "t1multiplier[4]",  "*3"),
+    new Achievement("2500 donut shop", "profit x3!",   "t1owned[4]", 2500, "t1multiplier[4]",  "*3"),
+    new Achievement("2600 donut shop", "profit x3!",   "t1owned[4]", 2600, "t1multiplier[4]",  "*3"),
+    new Achievement("2700 donut shop", "profit x3!",   "t1owned[4]", 2700, "t1multiplier[4]",  "*3"),
+    new Achievement("2800 donut shop", "profit x3!",   "t1owned[4]", 2800, "t1multiplier[4]",  "*3"),
+    new Achievement("2900 donut shop", "profit x3!",   "t1owned[4]", 2900, "t1multiplier[4]",  "*3"),
+    new Achievement("3000 donut shop", "profit x3!",   "t1owned[4]", 3000, "t1multiplier[4]",  "*3"),
+    new Achievement("3100 donut shop", "profit x3!",   "t1owned[4]", 3100, "t1multiplier[4]",  "*3"),
+    new Achievement("3200 donut shop", "profit x3!",   "t1owned[4]", 3200, "t1multiplier[4]",  "*3"),
+    new Achievement("3300 donut shop", "profit x3!",   "t1owned[4]", 3300, "t1multiplier[4]",  "*3"),
+    new Achievement("3400 donut shop", "profit x3!",   "t1owned[4]", 3400, "t1multiplier[4]",  "*3"),
+    new Achievement("3500 donut shop", "profit x3!",   "t1owned[4]", 3500, "t1multiplier[4]",  "*3"),
+    new Achievement("3600 donut shop", "profit x3!",   "t1owned[4]", 3600, "t1multiplier[4]",  "*3"),
+    new Achievement("3700 donut shop", "profit x3!",   "t1owned[4]", 3700, "t1multiplier[4]",  "*3"),
+    new Achievement("3800 donut shop", "profit x3!",   "t1owned[4]", 3800, "t1multiplier[4]",  "*3"),
+    new Achievement("3900 donut shop", "profit x3!",   "t1owned[4]", 3900, "t1multiplier[4]",  "*3"),
+    new Achievement("4000 donut shop", "profit x3!",   "t1owned[4]", 4000, "t1multiplier[4]",  "*3"),
+    new Achievement("4100 donut shop", "profit x3!",   "t1owned[4]", 4100, "t1multiplier[4]",  "*3"),
+    new Achievement("4200 donut shop", "profit x3!",   "t1owned[4]", 4200, "t1multiplier[4]",  "*3"),
+    new Achievement("4300 donut shop", "profit x3!",   "t1owned[4]", 4300, "t1multiplier[4]",  "*3"),
+    new Achievement("4400 donut shop", "profit x3!",   "t1owned[4]", 4400, "t1multiplier[4]",  "*3"),
 
-    new Achievement("25 of bank", "speed x2!",   "t1owned[5]", 25, "t1time[5]",  "/2"),
-    new Achievement("50 of bank", "speed x2!",   "t1owned[5]", 50, "t1time[5]",  "/2"),
-    new Achievement("100 of bank", "speed x2!",   "t1owned[5]", 100, "t1time[5]",  "/2"),
-    new Achievement("200 of bank", "speed x2!",   "t1owned[5]", 200, "t1time[5]",  "/2"),
-    new Achievement("300 of bank", "speed x2!",   "t1owned[5]", 300, "t1time[5]",  "/2"),
-    new Achievement("400 of bank", "speed x2!",   "t1owned[5]", 400, "t1time[5]",  "/2"),
-    new Achievement("500 of bank", "profit x2!",   "t1owned[5]", 500, "t1multiplier[5]",  "*2"),
-    new Achievement("600 of bank", "profit x2!",   "t1owned[5]", 600, "t1multiplier[5]",  "*2"),
-    new Achievement("700 of bank", "profit x2!",   "t1owned[5]", 700, "t1multiplier[5]",  "*2"),
-    new Achievement("800 of bank", "profit x2!",   "t1owned[5]", 800, "t1multiplier[5]",  "*2"),
-    new Achievement("900 of bank", "profit x2!",   "t1owned[5]", 900, "t1multiplier[5]",  "*2"),
-    new Achievement("1000 of bank", "profit x3!",   "t1owned[5]", 1000, "t1multiplier[5]",  "*2"),
+    new Achievement("25 shrimp boat", "speed x2!",   "t1owned[5]", 25, "t1time[5]",  "/2"),
+    new Achievement("50 shrimp boat", "speed x2!",   "t1owned[5]", 50, "t1time[5]",  "/2"),
+    new Achievement("100 shrimp boat", "speed x2!",   "t1owned[5]", 100, "t1time[5]",  "/2"),
+    new Achievement("200 shrimp boat", "speed x2!",   "t1owned[5]", 200, "t1time[5]",  "/2"),
+    new Achievement("300 shrimp boat", "speed x2!",   "t1owned[5]", 300, "t1time[5]",  "/2"),
+    new Achievement("400 shrimp boat", "speed x2!",   "t1owned[5]", 400, "t1time[5]",  "/2"),
+    new Achievement("500 shrimp boat", "profit x2!",   "t1owned[5]", 500, "t1multiplier[5]",  "*2"),
+    new Achievement("600 shrimp boat", "profit x2!",   "t1owned[5]", 600, "t1multiplier[5]",  "*2"),
+    new Achievement("700 shrimp boat", "profit x2!",   "t1owned[5]", 700, "t1multiplier[5]",  "*2"),
+    new Achievement("800 shrimp boat", "profit x2!",   "t1owned[5]", 800, "t1multiplier[5]",  "*2"),
+    new Achievement("900 shrimp boat", "profit x2!",   "t1owned[5]", 900, "t1multiplier[5]",  "*2"),
+    new Achievement("1000 shrimp boat", "profit x3!",   "t1owned[5]", 1000, "t1multiplier[5]",  "*3"),
+    new Achievement("1100 shrimp boat", "profit x2!",   "t1owned[5]", 1100, "t1multiplier[5]",  "*2"),
+    new Achievement("1200 shrimp boat", "profit x2!",   "t1owned[5]", 1200, "t1multiplier[5]",  "*2"),
+    new Achievement("1300 shrimp boat", "profit x2!",   "t1owned[5]", 1300, "t1multiplier[5]",  "*2"),
+    new Achievement("1400 shrimp boat", "profit x2!",   "t1owned[5]", 1400, "t1multiplier[5]",  "*2"),
+    new Achievement("1500 shrimp boat", "profit x2!",   "t1owned[5]", 1500, "t1multiplier[5]",  "*2"),
+    new Achievement("1600 shrimp boat", "profit x2!",   "t1owned[5]", 1600, "t1multiplier[5]",  "*2"),
+    new Achievement("1700 shrimp boat", "profit x2!",   "t1owned[5]", 1700, "t1multiplier[5]",  "*2"),
+    new Achievement("1800 shrimp boat", "profit x2!",   "t1owned[5]", 1800, "t1multiplier[5]",  "*2"),
+    new Achievement("1900 shrimp boat", "profit x2!",   "t1owned[5]", 1900, "t1multiplier[5]",  "*2"),
+    new Achievement("2000 shrimp boat", "profit x5!",   "t1owned[5]", 2000, "t1multiplier[5]",  "*5"),
+    new Achievement("2100 shrimp boat", "profit x3!",   "t1owned[5]", 2100, "t1multiplier[5]",  "*3"),
+    new Achievement("2200 shrimp boat", "profit x3!",   "t1owned[5]", 2200, "t1multiplier[5]",  "*3"),
+    new Achievement("2300 shrimp boat", "profit x3!",   "t1owned[5]", 2300, "t1multiplier[5]",  "*3"),
+    new Achievement("2400 shrimp boat", "profit x3!",   "t1owned[5]", 2400, "t1multiplier[5]",  "*3"),
+    new Achievement("2500 shrimp boat", "profit x3!",   "t1owned[5]", 2500, "t1multiplier[5]",  "*3"),
+    new Achievement("2600 shrimp boat", "profit x3!",   "t1owned[5]", 2600, "t1multiplier[5]",  "*3"),
+    new Achievement("2700 shrimp boat", "profit x3!",   "t1owned[5]", 2700, "t1multiplier[5]",  "*3"),
+    new Achievement("2800 shrimp boat", "profit x3!",   "t1owned[5]", 2800, "t1multiplier[5]",  "*3"),
+    new Achievement("2900 shrimp boat", "profit x3!",   "t1owned[5]", 2900, "t1multiplier[5]",  "*3"),
+    new Achievement("3000 shrimp boat", "profit x3!",   "t1owned[5]", 3000, "t1multiplier[5]",  "*3"),
+    new Achievement("3250 shrimp boat", "profit x5!",   "t1owned[5]", 3250, "t1multiplier[5]",  "*5"),
+    new Achievement("3500 shrimp boat", "profit x5!",   "t1owned[5]", 3500, "t1multiplier[5]",  "*5"),
+    new Achievement("3750 shrimp boat", "profit x3!",   "t1owned[5]", 3750, "t1multiplier[5]",  "*3"),
+    new Achievement("4000 shrimp boat", "profit x5!",   "t1owned[5]", 4000, "t1multiplier[5]",  "*5"),
+    new Achievement("4250 shrimp boat", "profit x3!",   "t1owned[5]", 4250, "t1multiplier[5]",  "*3"),
+    new Achievement("4500 shrimp boat", "profit x5!",   "t1owned[5]", 4500, "t1multiplier[5]",  "*5"),
 
-    new Achievement("25 of movie studio", "speed x2!",   "t1owned[6]", 25, "t1time[6]",  "/2"),
-    new Achievement("50 of movie studio", "speed x2!",   "t1owned[6]", 50, "t1time[6]",  "/2"),
-    new Achievement("100 of movie studio", "speed x2!",   "t1owned[6]", 100, "t1time[6]",  "/2"),
-    new Achievement("200 of movie studio", "speed x2!",   "t1owned[6]", 200, "t1time[6]",  "/2"),
-    new Achievement("300 of movie studio", "speed x2!",   "t1owned[6]", 300, "t1time[6]",  "/2"),
-    new Achievement("400 of movie studio", "speed x2!",   "t1owned[6]", 400, "t1time[6]",  "/2"),
-    new Achievement("500 of movie studio", "profit x2!",   "t1owned[6]", 500, "t1multiplier[6]",  "*2"),
-    new Achievement("600 of movie studio", "profit x2!",   "t1owned[6]", 600, "t1multiplier[6]",  "*2"),
-    new Achievement("700 of movie studio", "profit x2!",   "t1owned[6]", 700, "t1multiplier[6]",  "*2"),
-    new Achievement("800 of movie studio", "profit x2!",   "t1owned[6]", 800, "t1multiplier[6]",  "*2"),
-    new Achievement("900 of movie studio", "profit x2!",   "t1owned[6]", 900, "t1multiplier[6]",  "*2"),
-    new Achievement("1000 of movie studio", "profit x3!",   "t1owned[6]", 1000, "t1multiplier[6]",  "*2"),
+    new Achievement("25 hockey team", "speed x2!",   "t1owned[6]", 25, "t1time[6]",  "/2"),
+    new Achievement("50 hockey team", "speed x2!",   "t1owned[6]", 50, "t1time[6]",  "/2"),
+    new Achievement("100 hockey team", "speed x2!",   "t1owned[6]", 100, "t1time[6]",  "/2"),
+    new Achievement("200 hockey team", "speed x2!",   "t1owned[6]", 200, "t1time[6]",  "/2"),
+    new Achievement("300 hockey team", "speed x2!",   "t1owned[6]", 300, "t1time[6]",  "/2"),
+    new Achievement("400 hockey team", "speed x2!",   "t1owned[6]", 400, "t1time[6]",  "/2"),
+    new Achievement("500 hockey team", "profit x2!",   "t1owned[6]", 500, "t1multiplier[6]",  "*2"),
+    new Achievement("600 hockey team", "profit x2!",   "t1owned[6]", 600, "t1multiplier[6]",  "*2"),
+    new Achievement("700 hockey team", "profit x2!",   "t1owned[6]", 700, "t1multiplier[6]",  "*2"),
+    new Achievement("800 hockey team", "profit x2!",   "t1owned[6]", 800, "t1multiplier[6]",  "*2"),
+    new Achievement("900 hockey team", "profit x2!",   "t1owned[6]", 900, "t1multiplier[6]",  "*2"),
+    new Achievement("1000 hockey team", "profit x3!",   "t1owned[6]", 1000, "t1multiplier[6]",  "*3"),
+    new Achievement("1100 hockey team", "profit x2!",   "t1owned[6]", 1100, "t1multiplier[6]",  "*2"),
+    new Achievement("1200 hockey team", "profit x2!",   "t1owned[6]", 1200, "t1multiplier[6]",  "*2"),
+    new Achievement("1300 hockey team", "profit x2!",   "t1owned[6]", 1300, "t1multiplier[6]",  "*2"),
+    new Achievement("1400 hockey team", "profit x2!",   "t1owned[6]", 1400, "t1multiplier[6]",  "*2"),
+    new Achievement("1500 hockey team", "profit x2!",   "t1owned[6]", 1500, "t1multiplier[6]",  "*2"),
+    new Achievement("1600 hockey team", "profit x2!",   "t1owned[6]", 1600, "t1multiplier[6]",  "*2"),
+    new Achievement("1700 hockey team", "profit x2!",   "t1owned[6]", 1700, "t1multiplier[6]",  "*2"),
+    new Achievement("1800 hockey team", "profit x2!",   "t1owned[6]", 1800, "t1multiplier[6]",  "*2"),
+    new Achievement("1900 hockey team", "profit x2!",   "t1owned[6]", 1900, "t1multiplier[6]",  "*2"),
+    new Achievement("2000 hockey team", "profit x5!",   "t1owned[6]", 2000, "t1multiplier[6]",  "*5"),
+    new Achievement("2100 hockey team", "spped x2!",    "t1owned[6]", 2100, "t1time[6]",        "/2"),
+    new Achievement("2200 hockey team", "profit x3!",   "t1owned[6]", 2200, "t1multiplier[6]",  "*3"),
+    new Achievement("2300 hockey team", "spped x2!",    "t1owned[6]", 2300, "t1time[6]",        "/2"),
+    new Achievement("2400 hockey team", "profit x3!",   "t1owned[6]", 2400, "t1multiplier[6]",  "*3"),
+    new Achievement("2500 hockey team", "spped x2!",    "t1owned[6]", 2500, "t1time[6]",        "/2"),
+    new Achievement("2600 hockey team", "profit x3!",   "t1owned[6]", 2600, "t1multiplier[6]",  "*3"),
+    new Achievement("2700 hockey team", "spped x2!",    "t1owned[6]", 2700, "t1time[6]",        "/2"),
+    new Achievement("2800 hockey team", "profit x3!",   "t1owned[6]", 2800, "t1multiplier[6]",  "*3"),
+    new Achievement("2900 hockey team", "profit x3!",   "t1owned[6]", 2900, "t1multiplier[6]",  "*3"),
+    new Achievement("3000 hockey team", "profit x3!",   "t1owned[6]", 3000, "t1multiplier[6]",  "*3"),
+    new Achievement("3250 hockey team", "profit x3!",   "t1owned[6]", 3250, "t1multiplier[6]",  "*3"),
+    new Achievement("3500 hockey team", "profit x3!",   "t1owned[6]", 3500, "t1multiplier[6]",  "*3"),
+    new Achievement("3750 hockey team", "profit x3!",   "t1owned[6]", 3750, "t1multiplier[6]",  "*3"),
+    new Achievement("4000 hockey team", "profit x5!",   "t1owned[6]", 4000, "t1multiplier[6]",  "*5"),
+    new Achievement("4250 hockey team", "profit x3!",   "t1owned[6]", 4250, "t1multiplier[6]",  "*3"),
+    new Achievement("4500 hockey team", "profit x3!",   "t1owned[6]", 4500, "t1multiplier[6]",  "*3"),
+    new Achievement("4750 hockey team", "profit x3!",   "t1owned[6]", 4750, "t1multiplier[6]",  "*3"),
 
-    new Achievement("25 of oil company", "speed x2!",   "t1owned[7]", 25, "t1time[7]",  "/2"),
-    new Achievement("50 of oil company", "speed x2!",   "t1owned[7]", 50, "t1time[7]",  "/2"),
-    new Achievement("100 of oil company", "speed x2!",   "t1owned[7]", 100, "t1time[7]",  "/2"),
-    new Achievement("200 of oil company", "speed x2!",   "t1owned[7]", 200, "t1time[7]",  "/2"),
-    new Achievement("300 of oil company", "speed x2!",   "t1owned[7]", 300, "t1time[7]",  "/2"),
-    new Achievement("400 of oil company", "speed x2!",   "t1owned[7]", 400, "t1time[7]",  "/2"),
-    new Achievement("500 of oil company", "profit x2!",   "t1owned[7]", 500, "t1multiplier[7]",  "*2"),
-    new Achievement("600 of oil company", "profit x2!",   "t1owned[7]", 600, "t1multiplier[7]",  "*2"),
-    new Achievement("700 of oil company", "profit x2!",   "t1owned[7]", 700, "t1multiplier[7]",  "*2"),
-    new Achievement("800 of oil company", "profit x2!",   "t1owned[7]", 800, "t1multiplier[7]",  "*2"),
-    new Achievement("900 of oil company", "profit x2!",   "t1owned[7]", 900, "t1multiplier[7]",  "*2"),
-    new Achievement("1000 of oil company", "profit x3!",   "t1owned[7]", 1000, "t1multiplier[7]",  "*2"),
+    new Achievement("25 movie studio", "speed x2!",   "t1owned[7]", 25, "t1time[7]",  "/2"),
+    new Achievement("50 movie studio", "speed x2!",   "t1owned[7]", 50, "t1time[7]",  "/2"),
+    new Achievement("100 movie studio", "speed x2!",   "t1owned[7]", 100, "t1time[7]",  "/2"),
+    new Achievement("200 movie studio", "speed x2!",   "t1owned[7]", 200, "t1time[7]",  "/2"),
+    new Achievement("300 movie studio", "speed x2!",   "t1owned[7]", 300, "t1time[7]",  "/2"),
+    new Achievement("400 movie studio", "speed x2!",   "t1owned[7]", 400, "t1time[7]",  "/2"),
+    new Achievement("500 movie studio", "profit x2!",   "t1owned[7]", 500, "t1multiplier[7]",  "*2"),
+    new Achievement("600 movie studio", "profit x2!",   "t1owned[7]", 600, "t1multiplier[7]",  "*2"),
+    new Achievement("700 movie studio", "profit x2!",   "t1owned[7]", 700, "t1multiplier[7]",  "*2"),
+    new Achievement("800 movie studio", "profit x2!",   "t1owned[7]", 800, "t1multiplier[7]",  "*2"),
+    new Achievement("900 movie studio", "profit x2!",   "t1owned[7]", 900, "t1multiplier[7]",  "*2"),
+    new Achievement("1000 movie studio", "profit x3!",   "t1owned[7]", 1000, "t1multiplier[7]",  "*3"),
+    new Achievement("1100 movie studio", "profit x2!",   "t1owned[7]", 1100, "t1multiplier[7]",  "*2"),
+    new Achievement("1200 movie studio", "profit x2!",   "t1owned[7]", 1200, "t1multiplier[7]",  "*2"),
+    new Achievement("1300 movie studio", "profit x2!",   "t1owned[7]", 1300, "t1multiplier[7]",  "*2"),
+    new Achievement("1400 movie studio", "profit x2!",   "t1owned[7]", 1400, "t1multiplier[7]",  "*2"),
+    new Achievement("1500 movie studio", "profit x2!",   "t1owned[7]", 1500, "t1multiplier[7]",  "*2"),
+    new Achievement("1600 movie studio", "profit x2!",   "t1owned[7]", 1600, "t1multiplier[7]",  "*2"),
+    new Achievement("1700 movie studio", "profit x2!",   "t1owned[7]", 1700, "t1multiplier[7]",  "*2"),
+    new Achievement("1800 movie studio", "profit x2!",   "t1owned[7]", 1800, "t1multiplier[7]",  "*2"),
+    new Achievement("1900 movie studio", "profit x2!",   "t1owned[7]", 1900, "t1multiplier[7]",  "*2"),
+    new Achievement("2000 movie studio", "profit x5!",   "t1owned[7]", 2000, "t1multiplier[7]",  "*5"),
+    new Achievement("2100 movie studio", "speed x2!",    "t1owned[7]", 2100, "t1time[7]",        "/2"),
+    new Achievement("2200 movie studio", "profit x2!",   "t1owned[7]", 2200, "t1multiplier[7]",  "*2"),
+    new Achievement("2300 movie studio", "speed x2!",    "t1owned[7]", 2300, "t1time[7]",        "/2"),
+    new Achievement("2400 movie studio", "profit x2!",   "t1owned[7]", 2400, "t1multiplier[7]",  "*2"),
+    new Achievement("2500 movie studio", "speed x2!",    "t1owned[7]", 2500, "t1time[7]",        "/2"),
+    new Achievement("2600 movie studio", "profit x2!",   "t1owned[7]", 2600, "t1multiplier[7]",  "*2"),
+    new Achievement("2700 movie studio", "speed x2!",    "t1owned[7]", 2700, "t1time[7]",        "/2"),
+    new Achievement("2800 movie studio", "profit x2!",   "t1owned[7]", 2800, "t1multiplier[7]",  "*2"),
+    new Achievement("2900 movie studio", "profit x2!",   "t1owned[7]", 2900, "t1multiplier[7]",  "*2"),
+    new Achievement("3000 movie studio", "profit x2!",   "t1owned[7]", 3000, "t1multiplier[7]",  "*2"),
+    new Achievement("3250 movie studio", "speed x2!",    "t1owned[7]", 3250,  "t1time[7]",        "/2"),
+    new Achievement("3500 movie studio", "profit x2!",   "t1owned[7]", 3500, "t1multiplier[7]",  "*2"),
+    new Achievement("3750 movie studio", "profit x2!",   "t1owned[7]", 3750, "t1multiplier[7]",  "*2"),
+    new Achievement("4000 movie studio", "profit x2!",   "t1owned[7]", 4000, "t1multiplier[7]",  "*2"),
+    new Achievement("4250 movie studio", "profit x3!",   "t1owned[7]", 4250, "t1multiplier[7]",  "*3"),
+    new Achievement("4500 movie studio", "profit x3!",   "t1owned[7]", 4500, "t1multiplier[7]",  "*3"),
+    new Achievement("4750 movie studio", "profit x3!",   "t1owned[7]", 4750, "t1multiplier[7]",  "*3"),
+    new Achievement("5000 movie studio", "profit x5!",   "t1owned[7]", 5000, "t1multiplier[7]",  "*5"),
+    new Achievement("5250 movie studio", "profit x3!",   "t1owned[7]", 5250, "t1multiplier[7]",  "*3"),
 
-    new Achievement("25 of ship company", "speed x2!",   "t1owned[8]", 25, "t1time[8]",  "/2"),
-    new Achievement("50 of ship company", "speed x2!",   "t1owned[8]", 50, "t1time[8]",  "/2"),
-    new Achievement("100 of ship company", "speed x2!",   "t1owned[8]", 100, "t1time[8]",  "/2"),
-    new Achievement("200 of ship company", "speed x2!",   "t1owned[8]", 200, "t1time[8]",  "/2"),
-    new Achievement("300 of ship company", "speed x2!",   "t1owned[8]", 300, "t1time[8]",  "/2"),
-    new Achievement("400 of ship company", "speed x2!",   "t1owned[8]", 400, "t1time[8]",  "/2"),
-    new Achievement("500 of ship company", "profit x2!",   "t1owned[8]", 500, "t1multiplier[8]",  "*2"),
-    new Achievement("600 of ship company", "profit x2!",   "t1owned[8]", 600, "t1multiplier[8]",  "*2"),
-    new Achievement("700 of ship company", "profit x2!",   "t1owned[8]", 700, "t1multiplier[8]",  "*2"),
-    new Achievement("800 of ship company", "profit x2!",   "t1owned[8]", 800, "t1multiplier[8]",  "*2"),
-    new Achievement("900 of ship company", "profit x2!",   "t1owned[8]", 900, "t1multiplier[8]",  "*2"),
-    new Achievement("1000 of ship company", "profit x3!",   "t1owned[8]", 1000, "t1multiplier[8]",  "*2"),
+    new Achievement("25 bank", "speed x2!",   "t1owned[8]", 25, "t1time[8]",  "/2"),
+    new Achievement("50 bank", "speed x2!",   "t1owned[8]", 50, "t1time[8]",  "/2"),
+    new Achievement("100 bank", "speed x2!",   "t1owned[8]", 100, "t1time[8]",  "/2"),
+    new Achievement("200 bank", "speed x2!",   "t1owned[8]", 200, "t1time[8]",  "/2"),
+    new Achievement("300 bank", "speed x2!",   "t1owned[8]", 300, "t1time[8]",  "/2"),
+    new Achievement("400 bank", "speed x2!",   "t1owned[8]", 400, "t1time[8]",  "/2"),
+    new Achievement("500 bank", "profit x2!",   "t1owned[8]", 500, "t1multiplier[8]",  "*2"),
+    new Achievement("600 bank", "profit x2!",   "t1owned[8]", 600, "t1multiplier[8]",  "*2"),
+    new Achievement("700 bank", "profit x2!",   "t1owned[8]", 700, "t1multiplier[8]",  "*2"),
+    new Achievement("800 bank", "profit x2!",   "t1owned[8]", 800, "t1multiplier[8]",  "*2"),
+    new Achievement("900 bank", "profit x2!",   "t1owned[8]", 900, "t1multiplier[8]",  "*2"),
+    new Achievement("1000 bank", "profit x3!",   "t1owned[8]", 1000, "t1multiplier[8]",  "*3"),
+    new Achievement("1100 bank", "profit x2!",   "t1owned[8]", 1100, "t1multiplier[8]",  "*2"),
+    new Achievement("1200 bank", "profit x2!",   "t1owned[8]", 1200, "t1multiplier[8]",  "*2"),
+    new Achievement("1300 bank", "profit x2!",   "t1owned[8]", 1300, "t1multiplier[8]",  "*2"),
+    new Achievement("1400 bank", "profit x2!",   "t1owned[8]", 1400, "t1multiplier[8]",  "*2"),
+    new Achievement("1500 bank", "profit x2!",   "t1owned[8]", 1500, "t1multiplier[8]",  "*2"),
+    new Achievement("1600 bank", "profit x2!",   "t1owned[8]", 1600, "t1multiplier[8]",  "*2"),
+    new Achievement("1700 bank", "profit x2!",   "t1owned[8]", 1700, "t1multiplier[8]",  "*2"),
+    new Achievement("1800 bank", "profit x2!",   "t1owned[8]", 1800, "t1multiplier[8]",  "*2"),
+    new Achievement("1900 bank", "profit x2!",   "t1owned[8]", 1900, "t1multiplier[8]",  "*2"),
+    new Achievement("2000 bank", "profit x5!",   "t1owned[8]", 2000, "t1multiplier[8]",  "*5"),
+    new Achievement("2250 bank", "speed x2!",    "t1owned[8]", 2250, "t1time[8]",        "/2"),
+    new Achievement("2500 bank", "speed x2!",    "t1owned[8]", 2500, "t1time[8]",        "/2"),
+    new Achievement("2750 bank", "speed x2!",    "t1owned[8]", 2750, "t1time[8]",        "/2"),
+    new Achievement("3000 bank", "speed x2!",    "t1owned[8]", 3000, "t1time[8]",        "/2"),
+    new Achievement("3250 bank", "speed x2!",    "t1owned[8]", 3250, "t1time[8]",        "/2"),
+    new Achievement("3500 bank", "speed x2!",    "t1owned[8]", 3500, "t1time[8]",        "/2"),
+    new Achievement("3750 bank", "speed x2!",    "t1owned[8]", 3750, "t1time[8]",        "/2"),
+    new Achievement("4000 bank", "speed x2!",    "t1owned[8]", 4000, "t1time[8]",        "/2"),
+    new Achievement("4250 bank", "profit x3!",   "t1owned[8]", 4250, "t1multiplier[8]",  "*3"),
+    new Achievement("4500 bank", "profit x3!",   "t1owned[8]", 4500, "t1multiplier[8]",  "*3"),
+    new Achievement("4750 bank", "profit x3!",   "t1owned[8]", 4750, "t1multiplier[8]",  "*3"),
+    new Achievement("5000 bank", "profit x5!",   "t1owned[8]", 5000, "t1multiplier[8]",  "*5"),
+    new Achievement("5250 bank", "profit x5!",   "t1owned[8]", 5250, "t1multiplier[8]",  "*5"),
+    new Achievement("5500 bank", "profit x3!",   "t1owned[8]", 5500, "t1multiplier[8]",  "*3"),
+    new Achievement("5750 bank", "profit x3!",   "t1owned[8]", 5750, "t1multiplier[8]",  "*3"),
 
-    new Achievement("25 of cookieverse", "speed x2!",   "t1owned[9]", 25, "t1time[9]",  "/2"),
-    new Achievement("50 of cookieverse", "speed x2!",   "t1owned[9]", 50, "t1time[9]",  "/2"),
-    new Achievement("100 of cookieverse", "speed x2!",   "t1owned[9]", 100, "t1time[9]",  "/2"),
-    new Achievement("200 of cookieverse", "speed x2!",   "t1owned[9]", 200, "t1time[9]",  "/2"),
-    new Achievement("300 of cookieverse", "speed x2!",   "t1owned[9]", 300, "t1time[9]",  "/2"),
-    new Achievement("400 of cookieverse", "speed x2!",   "t1owned[9]", 400, "t1time[9]",  "/2"),
-    new Achievement("500 of cookieverse", "profit x2!",   "t1owned[9]", 500, "t1multiplier[9]",  "*2"),
-    new Achievement("600 of cookieverse", "profit x2!",   "t1owned[9]", 600, "t1multiplier[9]",  "*2"),
-    new Achievement("700 of cookieverse", "profit x2!",   "t1owned[9]", 700, "t1multiplier[9]",  "*2"),
-    new Achievement("800 of cookieverse", "profit x2!",   "t1owned[9]", 800, "t1multiplier[9]",  "*2"),
-    new Achievement("900 of cookieverse", "profit x2!",   "t1owned[9]", 900, "t1multiplier[9]",  "*2"),
-    new Achievement("1000 of cookieverse", "profit x3!",   "t1owned[9]", 1000, "t1multiplier[9]",  "*2"),
+    new Achievement("25 oil company", "speed x2!",   "t1owned[9]", 25, "t1time[9]",  "/2"),
+    new Achievement("50 oil company", "speed x2!",   "t1owned[9]", 50, "t1time[9]",  "/2"),
+    new Achievement("100 oil company", "speed x2!",   "t1owned[9]", 100, "t1time[9]",  "/2"),
+    new Achievement("200 oil company", "speed x2!",   "t1owned[9]", 200, "t1time[9]",  "/2"),
+    new Achievement("300 oil company", "speed x2!",   "t1owned[9]", 300, "t1time[9]",  "/2"),
+    new Achievement("400 oil company", "speed x2!",   "t1owned[9]", 400, "t1time[9]",  "/2"),
+    new Achievement("500 oil company", "profit x2!",   "t1owned[9]", 500, "t1multiplier[9]",  "*2"),
+    new Achievement("600 oil company", "profit x2!",   "t1owned[9]", 600, "t1multiplier[9]",  "*2"),
+    new Achievement("700 oil company", "profit x2!",   "t1owned[9]", 700, "t1multiplier[9]",  "*2"),
+    new Achievement("800 oil company", "profit x2!",   "t1owned[9]", 800, "t1multiplier[9]",  "*2"),
+    new Achievement("900 oil company", "profit x2!",   "t1owned[9]", 900, "t1multiplier[9]",  "*2"),
+    new Achievement("1000 oil company", "profit x2!",   "t1owned[9]", 1000, "t1multiplier[9]",  "*2"),
+    new Achievement("1100 oil company", "profit x2!",   "t1owned[9]", 1100, "t1multiplier[9]",  "*2"),
+    new Achievement("1200 oil company", "profit x2!",   "t1owned[9]", 1200, "t1multiplier[9]",  "*2"),
+    new Achievement("1300 oil company", "profit x2!",   "t1owned[9]", 1300, "t1multiplier[9]",  "*2"),
+    new Achievement("1400 oil company", "profit x2!",   "t1owned[9]", 1400, "t1multiplier[9]",  "*2"),
+    new Achievement("1500 oil company", "profit x2!",   "t1owned[9]", 1500, "t1multiplier[9]",  "*2"),
+    new Achievement("1600 oil company", "profit x2!",   "t1owned[9]", 1600, "t1multiplier[9]",  "*2"),
+    new Achievement("1700 oil company", "profit x2!",   "t1owned[9]", 1700, "t1multiplier[9]",  "*2"),
+    new Achievement("1800 oil company", "profit x2!",   "t1owned[9]", 1800, "t1multiplier[9]",  "*2"),
+    new Achievement("1900 oil company", "profit x2!",   "t1owned[9]", 1900, "t1multiplier[9]",  "*2"),
+    new Achievement("2000 oil company", "profit x5!",   "t1owned[9]", 2000, "t1multiplier[9]",  "*5"),
+    new Achievement("2250 oil company", "speed x2!",    "t1owned[9]", 2250, "t1time[9]",        "/2"),
+    new Achievement("2500 oil company", "speed x2!",    "t1owned[9]", 2500, "t1time[9]",        "/2"),
+    new Achievement("2750 oil company", "speed x2!",    "t1owned[9]", 2750, "t1time[9]",        "/2"),
+    new Achievement("3000 oil company", "speed x2!",    "t1owned[9]", 3000, "t1time[9]",        "/2"),
+    new Achievement("3250 oil company", "speed x2!",    "t1owned[9]", 3250, "t1time[9]",        "/2"),
+    new Achievement("3500 oil company", "speed x2!",    "t1owned[9]", 3500, "t1time[9]",        "/2"),
+    new Achievement("3750 oil company", "speed x2!",    "t1owned[9]", 3750, "t1time[9]",        "/2"),
+    new Achievement("4000 oil company", "speed x2!",    "t1owned[9]", 4000, "t1time[9]",        "/2"),
+    new Achievement("4250 oil company", "speed x2!",    "t1owned[9]", 4250, "t1time[9]",        "/2"),
+    new Achievement("4500 oil company", "speed x2!",    "t1owned[9]", 4500, "t1time[9]",        "/2"),
+    new Achievement("4750 oil company", "speed x2!",    "t1owned[9]", 4750, "t1time[9]",        "/2"),
+    new Achievement("5000 oil company", "speed x2!",    "t1owned[9]", 5000, "t1time[9]",        "/2"),
+    new Achievement("5250 oil company", "profit x3!",   "t1owned[9]", 5250, "t1multiplier[9]",  "*3"),
+    new Achievement("5500 oil company", "profit x3!",   "t1owned[9]", 5500, "t1multiplier[9]",  "*3"),
+    new Achievement("5750 oil company", "profit x3!",   "t1owned[9]", 5750, "t1multiplier[9]",  "*3"),
+    new Achievement("6000 oil company", "profit x5!",   "t1owned[9]", 6000, "t1multiplier[9]",  "*5"),
+    new Achievement("6250 oil company", "profit x3!",   "t1owned[9]", 6250, "t1multiplier[9]",  "*3"),
+    new Achievement("6500 oil company", "profit x3!",   "t1owned[9]", 6500, "t1multiplier[9]",  "*3"),
+    new Achievement("6750 oil company", "profit x3!",   "t1owned[9]", 6750, "t1multiplier[9]",  "*3"),
+
+    new Achievement("25 of everything", "speed of all x2!", "t1min", 25, "totalTimeMultiplier", "/2"),
+    new Achievement("50 of everything", "speed of all x2!", "t1min", 50, "totalTimeMultiplier", "/2"),
+    new Achievement("100 of everything", "speed of all x2!", "t1min", 100, "totalTimeMultiplier", "/2"),
+    new Achievement("200 of everything", "speed of all x2!", "t1min", 200, "totalTimeMultiplier", "/2"),
+    new Achievement("300 of everything", "speed of all x2!", "t1min", 300, "totalTimeMultiplier", "/2"),
+    new Achievement("400 of everything", "speed of all x2!", "t1min", 400, "totalTimeMultiplier", "/2"),
+    new Achievement("500 of everything", "profit of all x2!", "t1min", 500, "totalMultiplier", "*2"),
+    new Achievement("600 of everything", "profit of all x2!", "t1min", 600, "totalMultiplier", "*2"),
+    new Achievement("666 of everything", "profit of all x2!", "t1min", 666, "totalMultiplier", "*2"),
+    new Achievement("700 of everything", "profit of all x2!", "t1min", 700, "totalMultiplier", "*2"),
+    new Achievement("777 of everything", "profit of all x2!", "t1min", 777, "totalMultiplier", "*2"),
+    new Achievement("800 of everything", "profit of all x2!", "t1min", 800, "totalMultiplier", "*2"),
+    new Achievement("900 of everything", "profit of all x2!", "t1min", 900, "totalMultiplier", "*2"),
+    new Achievement("1000 of everything", "profit of all x2!", "t1min", 1000, "totalMultiplier", "*2"),
+    new Achievement("1100 of everything", "profit of all x2!", "t1min", 1100, "totalMultiplier", "*2"),
+    new Achievement("1111 of everything", "profit of all x2!", "t1min", 1111, "totalMultiplier", "*2"),
+    new Achievement("1200 of everything", "profit of all x2!", "t1min", 1200, "totalMultiplier", "*2"),
+    new Achievement("1300 of everything", "profit of all x2!", "t1min", 1300, "totalMultiplier", "*2"),
+    new Achievement("1400 of everything", "profit of all x2!", "t1min", 1400, "totalMultiplier", "*2"),
+    new Achievement("1500 of everything", "profit of all x2!", "t1min", 1500, "totalMultiplier", "*2"),
+    new Achievement("1600 of everything", "profit of all x2!", "t1min", 1600, "totalMultiplier", "*2"),
+    new Achievement("1700 of everything", "profit of all x2!", "t1min", 1700, "totalMultiplier", "*2"),
+    new Achievement("1800 of everything", "profit of all x2!", "t1min", 1800, "totalMultiplier", "*2"),
+    new Achievement("1900 of everything", "profit of all x2!", "t1min", 1900, "totalMultiplier", "*2"),
+    new Achievement("2000 of everything", "profit of all x2!", "t1min", 2000, "totalMultiplier", "*2"),
+    new Achievement("2100 of everything", "profit of all x2!", "t1min", 2100, "totalMultiplier", "*2"),
+    new Achievement("2200 of everything", "profit of all x2!", "t1min", 2200, "totalMultiplier", "*2"),
+    new Achievement("2222 of everything", "profit of all x2!", "t1min", 2222, "totalMultiplier", "*2"),
+    new Achievement("2300 of everything", "profit of all x2!", "t1min", 2300, "totalMultiplier", "*2"),
+    new Achievement("2400 of everything", "profit of all x2!", "t1min", 2400, "totalMultiplier", "*2"),
+    new Achievement("2500 of everything", "profit of all x2!", "t1min", 2500, "totalMultiplier", "*2"),
+    new Achievement("2600 of everything", "profit of all x2!", "t1min", 2600, "totalMultiplier", "*2"),
+    new Achievement("2700 of everything", "profit of all x2!", "t1min", 2700, "totalMultiplier", "*2"),
+    new Achievement("2800 of everything", "profit of all x2!", "t1min", 2800, "totalMultiplier", "*2"),
+    new Achievement("2900 of everything", "profit of all x2!", "t1min", 2900, "totalMultiplier", "*2"),
+    new Achievement("3000 of everything", "profit of all x2!", "t1min", 3000, "totalMultiplier", "*2"),
+    new Achievement("3100 of everything", "profit of all x2!", "t1min", 3100, "totalMultiplier", "*2"),
+    new Achievement("3200 of everything", "profit of all x2!", "t1min", 3200, "totalMultiplier", "*2"),
+    new Achievement("3300 of everything", "profit of all x2!", "t1min", 3300, "totalMultiplier", "*2"),
+    new Achievement("3333 of everything", "profit of all x2!", "t1min", 3333, "totalMultiplier", "*2"),
+    new Achievement("3400 of everything", "profit of all x2!", "t1min", 3400, "totalMultiplier", "*2"),
+    new Achievement("3500 of everything", "profit of all x2!", "t1min", 3500, "totalMultiplier", "*2"),
+    new Achievement("3600 of everything", "profit of all x2!", "t1min", 3600, "totalMultiplier", "*2"),
+    new Achievement("3700 of everything", "profit of all x2!", "t1min", 3700, "totalMultiplier", "*2"),
+    new Achievement("3800 of everything", "profit of all x2!", "t1min", 3800, "totalMultiplier", "*2"),
+    new Achievement("3900 of everything", "profit of all x2!", "t1min", 3900, "totalMultiplier", "*2"),
+    new Achievement("4000 of everything", "profit of all x2!", "t1min", 4000, "totalMultiplier", "*2"),
 ];
 
 var allVars = ["money","totalMoney","tokens","tokensOn","tokensRate","totalMultiplier","magicTotalMultiplier","achievementsOwned","magicupOwned","upgradesOwned","managersOwned","cheatAvert","t1owned","t1progress","t1time","t1multiplier","V1money","V2totalMoney","V3tokens","V4multiplier","V5rate","V6magic","cheatAvert"];
@@ -332,7 +685,7 @@ function softReset() {
 function initVars() {
     money = 0; totalMoney = money;
     tokens = 0; tokensOn = 0; tokensRate = 1;
-    totalMultiplier = 1; magicTotalMultiplier = 1;
+    totalMultiplier = 1; magicTotalMultiplier = 1; totalTimeMultiplier = 1;
     V1money = 0; V2totalMoney = 0; V3tokens = 0; V4multiplier = 1; V5rate = 1; V6magic = 1;
     before = new Date().getTime();
 
@@ -358,16 +711,20 @@ function initVars() {
     managersOwned = [];
     for (var i = 0; i < managersOwned.length; i++) { managersOwned.push(false); };
 
-    achievementsOwned = [];
+    achievementsOwned = []; achievementsOwnStats = [];
     for (var i = 0; i < achievements.length; i++) { achievementsOwned.push(false); };
+
+    t1min = t1owned[0];
+    for (var i = 0; i < t1owned.length; i++) { t1min = Math.min(t1min, t1owned[i]); };
 };
 function initGame() {
-    $("#s-money").html("Money : " + fix(money, 2) + "$");
+    $("#s-money, #h-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
     $("#s-totalMultiplier").html("Total multiplier : x" + totalMultiplier);
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
     $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
+    $("#s-totAch").html("(" + achievementsOwnStats.length + "/" + achievements.length + ")");
 
     for (var i = 0; i < t1.length; i++) {
         var t = t1[i];
@@ -414,6 +771,8 @@ function initGame() {
         $("#a-t" + (i+1)).html(" - " + a.text);
         if (achievementsOwned[i]) { $("#a-t" + (i+1)).html(" - " + a.text + " (owned)"); };
     };
+
+    updateBuilds();
 };
 
 // Helpers
@@ -421,7 +780,7 @@ function getInc(source) { return t1[source].reward * t1multiplier[source] * tota
 function getMoney(amount) { money += amount; totalMoney += amount; V1money += amount; V2totalMoney += amount; };
 function getPrice(index) { var t = t1[index]; return t.price * Math.pow(t.inflation, t1owned[index]); };
 function getTokensOn() { return Math.floor(10 * Math.sqrt(totalMoney/1e13)); };
-function getTime(index) { return t1[index].time * t1time[index]; };
+function getTime(index) { return t1[index].time * t1time[index] * totalTimeMultiplier; };
 function displayPrice(index, amount) {
     var a = amount; var t = t1[index];
     var totalPrice = 0; var totalOwn = a + t1owned[index];
@@ -467,8 +826,8 @@ function updateGame(times) {
         };
 
         updateAchievements();
+        updateBuilds();
         updateStats();
-        a98q7w3q8z();
     };
 };
 function updateBuilds() {
@@ -477,29 +836,35 @@ function updateBuilds() {
         $("#t1-n" + (i+1)).html(t.name + " :");
         $("#t1-r" + (i+1)).html(" " + fix(getInc(i) * t1owned[i], 2) + "$ <br>");
         $("#t1-o" + (i+1)).html("(" + t1owned[i] + " owned)");
-        $("#t1-b" + (i+1) + "tm").html("Total multiplier : x" + t1multiplier[i]);
+        $("#t1-b" + (i+1) + "tm").html("Total multiplier : x" + fix(t1multiplier[i], 0));
 
-        $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ - ");
-        $("#t1-b" + (i+1) + "c2").html("x10 : " + fix(displayPrice(i, 10), 2) + "$");
-        $("#t1-b" + (i+1) + "c3").html("x50 : " + fix(displayPrice(i, 50), 2) + "$ - ");
+        $("#t1-b" + (i+1) + "c1").html("x1 : " + fix(getPrice(i), 2) + "$ <br>");
+        $("#t1-b" + (i+1) + "c2").html("x10 : " + fix(displayPrice(i, 10), 2) + "$ <br>");
+        $("#t1-b" + (i+1) + "c3").html("x50 : " + fix(displayPrice(i, 50), 2) + "$ <br>");
         $("#t1-b" + (i+1) + "c4").html("x100 : " + fix(displayPrice(i, 100), 2) + "$");
-        $("#t1-b" + (i+1) + "cps").html(" - " + fix(((getInc(i) * t1owned[i]) / getTime(i)), 2) + "$/second");
+        $("#t1-b" + (i+1) + "cps").html("<br>" + fix(((getInc(i) * t1owned[i]) / getTime(i)), 2) + "$/second");
     };
+
+    t1min = t1owned[0];
+    for (var i = 0; i < t1owned.length; i++) { t1min = Math.min(t1min, t1owned[i]); };
 };
 function updateStats() {
-    $("#s-money").html("Money : " + fix(money, 2) + "$");
+    $("#s-money, #h-money").html("Money : " + fix(money, 2) + "$");
     $("#s-totalMoney").html("Total money : " + fix(totalMoney, 2) + "$");
     $("#s-totalMultiplier").html("Total multiplier : x" + totalMultiplier * magicTotalMultiplier);
     $("#s-tokens").html("Tokens : " + fix(tokens, 0));
     $("#s-tokensOn").html("Tokens on reset : " + fix(getTokensOn(), 0));
     $("#s-tokensRate").html("Tokens Rate : " + fix(tokensRate, 1) + "%");
+    $("#s-totAch").html("(" + achievementsOwnStats.length + "/" + achievements.length + ")");
 };
 function recoverLost() {
-    now = new Date().getTime();
-    var elapsedTime = now - before;
-    if (elapsedTime > interval) { updateGame(Math.floor(elapsedTime/interval)); }
-    else { updateGame(1); };
-    before = new Date().getTime();
+    if (gameInit == true) {
+        now = new Date().getTime();
+        var elapsedTime = now - before;
+        if (elapsedTime > interval) { updateGame(Math.floor(elapsedTime/interval)); }
+        else { updateGame(1); };
+        before = new Date().getTime();
+    };
 };
 function a98q7w3q8z() {
     if (fps < 60) { cheatAvert++; alert("CHEAT DETECTED ! FPS changed, you have " + cheatAvert + "/3 alerts. If you continue your data will be wiped!"); fps = 60; };
@@ -617,10 +982,12 @@ function updateAchievements() {
         if (!achievementsOwned[i] && achievements[i].isComplete()) {
             achievements[i].achieve();
             achievementsOwned[i] = true;
+            achievementsOwnStats[i] = true;
+            updateStats();
             for (var i = 0; i < achievements.length; i++) {
                 var a = achievements[i];
                 if (achievementsOwned[i]) {
-                    $("#a-t" + (i+1)).html(a.text + " (owned)");
+                    $("#a-t" + (i+1)).html(" - " + a.text + " (owned)");
                 };
             };
         };
@@ -639,17 +1006,3 @@ window.setInterval(function() {
 window.setInterval(function() {
     saveData();
 }, 30000);
-document.addEventListener('keydown', function(event) {
-    if (event.keyCode == 49) { startBuild(0); };
-    if (event.keyCode == 50) { startBuild(1); };
-    if (event.keyCode == 51) { startBuild(2); };
-    if (event.keyCode == 52) { startBuild(3); };
-    if (event.keyCode == 53) { startBuild(4); };
-    if (event.keyCode == 54) { startBuild(5); };
-    if (event.keyCode == 55) { startBuild(6); };
-    if (event.keyCode == 56) { startBuild(7); };
-    if (event.keyCode == 57) { startBuild(8); };
-    if (event.keyCode == 48) { startBuild(9); };
-    if (event.keyCode == 83) { saveData(); };
-    if (event.keyCode == 9) { saveData(); var url = "http://borabora.llfnet.fr"; window.open(url, 'http://borabora.llfnet.fr'); };
-});
