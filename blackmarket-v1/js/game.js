@@ -1,12 +1,11 @@
-var maxpx = $(document).height();
-var headerpx = 45;
-var marginpx = 10;
+var maxpx = $(document).height(); var headerpx = 45; var marginpx = 10;
 $(".container-fluid").css('max-height', (maxpx - headerpx - marginpx) + 'px');
 $(".col-md-4").css('max-height', (maxpx - headerpx - marginpx) + 'px');
 
-var money; var ammo; var meth; var weed;
+var money; var ammo; var weed; var meth;
+var progress; var before;
 
-var upgradesOwned; var helpersOwned; var helpersTrigged;
+var upgradesOwned; var helpersOwned; var helpersTrigged; var buildsOwned; var dealersOwned;
 var upgrades = [
     new Upgrade("Shoot reward x3!", 12, function() { ammo[1] *= 3 }), // *7
     new Upgrade("Shoot reward x3!", 60, function() { ammo[1] *= 3 }),
@@ -29,11 +28,19 @@ var helpers = [
     new Helper("Shoot Helper", 325),
     new Helper("Reload Helper", 650)
 ];
+var builds = [
+    new Build("Weed plant", 150, 1, 1.07, 0, "weed"),
+    new Build("Old Van", 1000, 2, 1.07, 1, "meth")
+];
+var dealers = [
+    new Dealer("Weed dealer", 200, 0.5, 1.07, 0, "weed"),
+    new Dealer("Meth dealer", 1500, 1, 1.07, 1, "meth")
+];
 
-var progress; var before;
 var init; var fps = 60; var interval = (1000 / fps); var key = "Blackmarket_";
-var allVars = ['money', 'ammo', 'progress', 'before', 'upgradesOwned', 'helpersOwned', 'helpersTrigged'];
+var allVars = ['money', 'ammo', 'weed', 'meth', 'progress', 'before', 'upgradesOwned', 'helpersOwned', 'helpersTrigged', 'buildsOwned', 'dealersOwned'];
 
+// Saving system
 function setItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 };
@@ -65,8 +72,8 @@ function resetData() {
 // Helpers
 function initVars() {
     money = 0;
-    ammo = [12, 1, 1500, 5000, 12]; // stock - reward - time - reload time - max ammo
-    weed = [0, 2]; meth = [0, 20]; // stock - reward
+    ammo = [12, 1, 1500, 5000, 12]; // stock; reward; time; reload time; max ammo
+    weed = [0, 2, 0]; meth = [0, 8, 0]; // stock; reward; per/sec
     before = new Date().getTime();
 
     upgradesOwned = [];
@@ -76,8 +83,17 @@ function initVars() {
 
     helpersOwned = []; helpersTrigged = [];
     for (var i = 0; i < helpers.length; i++) {
-        helpersOwned.push(false);
-        helpersTrigged.push(false);
+        helpersOwned.push(false); helpersTrigged.push(false);
+    };
+
+    buildsOwned = [];
+    for (var i = 0; i < builds.length; i++) {
+        buildsOwned.push(0);
+    };
+
+    dealersOwned = [];
+    for (var i = 0; i < dealers.length; i++) {
+        dealersOwned.push(0);
     };
 
     progress = [];
@@ -88,33 +104,54 @@ function initVars() {
     init = false;
 };
 function initGame() {
-    updateStats();
-    updateActions();
-
     for (var i = 0; i < upgrades.length; i++) {
         var u = upgrades[i];
-        $("#u-n" + (i + 1)).html(u.name + " ");
-        $("#u-c" + (i + 1)).html("cost : " + fix(u.price, 0) + "$");
-        $("#u-c" + (i + 1)).attr("class", "u-cost");
-        if (upgradesOwned[i]) {
-            $("#u-" + (i + 1)).css('display', 'none');
-        };
+        $("#u-n" + (i+1)).html(u.name + " ");
+        $("#u-c" + (i+1)).html("cost : " + fix(u.price, 0) + "$");
+        $("#u-c" + (i+1)).attr("class", "u-cost");
+        $("#u-c" + (i+1)).attr("onclick", "buyUpgrade(" + i + ")");
+        if (upgradesOwned[i]) { $("#u-" + (i+1)).css('display', 'none'); };
     };
-
     for (var i = 0; i < helpers.length; i++) {
         var h = helpers[i];
-        $("#h-n" + (i + 1)).html(h.name);
-        $("#h-c" + (i + 1)).html(" - cost : " + fix(h.price, 0) + "$");
-        if (helpersOwned[i]) {
-            $("#h-c" + (i + 1)).html(" - trigged : " + helpersTrigged[i]);
-        };
+        $("#h-n" + (i+1)).html(h.name + " - ");
+        $("#h-c" + (i+1)).html("cost : " + fix(h.price, 0) + "$");
+        $("#h-c" + (i+1)).attr("class", "h-cost");
+        $("#h-c" + (i+1)).attr("onclick", "buyHelper(" + i + ")");
+        if (helpersOwned[i]) { $("#h-c" + (i+1)).html("trigged : " + helpersTrigged[i]); };
+    };
+    for (var i = 0; i < builds.length; i++) {
+        var b = builds[i]; var c1 = builds[i].price * Math.pow(builds[i].inflation, buildsOwned[i]);
+        $("#b-n" + (i+1)).html(b.name + " - ");
+        $("#b-c" + (i+1)).html("cost : " + fix(c1, 2) + "$<br>");
+        $("#b-c" + (i+1)).attr("class", "b-cost");
+        $("#b-c" + (i+1)).attr("onclick", "buyBuild(" + i + ")");
+        $("#b-o" + (i+1)).html(buildsOwned[i] + " owned<br>");
+        $("#b-r" + (i+1)).html(fix(b.reward, 2) + " g. of " + b.type2 + "/sec");
+        $("#b-r" + (i+1)).attr("class", "b-reward");
+    };
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i]; var c2 = dealers[i].price * Math.pow(dealers[i].inflation, dealersOwned[i]);
+        $("#d-n" + (i+1)).html(d.name + " - ");
+        $("#d-c" + (i+1)).html("cost : " + fix(c2, 2) + "$<br>");
+        $("#d-c" + (i+1)).attr("class", "d-cost");
+        $("#d-c" + (i+1)).attr("onclick", "buyDealer(" + i +")");
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned<br>");
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + " g. of " + d.type2 + "/sec");
+        $("#d-r" + (i+1)).attr("class", "d-reward");
     };
 
+    updateStats(); updateBuilds(); updateActions();
     init = true;
 };
 function updateStats() {
     $("#s-money").html("Money : " + fix(money, 2) + "$");
     $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/" + fix(ammo[4], 0));
+    $("#s-weed").html("Weed : " + fix(weed[0], 2) + "g (" + fix(weed[2], 2) + "g/sec)" );
+    $("#s-weedPrice").html("<br>Weed price : " + fix(weed[1], 2) + "$/g.");
+    $("#s-weedPrice, #s-methPrice").attr("class", "drug-price");
+    $("#s-meth").html("Meth : " + fix(meth[0], 2) + "g (" + fix(meth[2], 2) + "g/sec)");
+    $("#s-methPrice").html("<br>Meth price : " + fix(meth[1], 2) + "$/g.");
 
     if (ammo[0] == 0) {
         $("#shoot").css('background', 'rgba(231, 76, 60, 0.3)');
@@ -128,13 +165,31 @@ function updateActions() {
     $("#a-shoot").html(fix(ammo[1], 2) + "$/shoot - " + fix((ammo[2] / 1000), 2) + "s");
     $("#a-reload").html("+" + fix(ammo[4], 0) + " ammo - " + fix((ammo[3] / 1000), 2) + "s");
 };
+function updateBuilds() {
+    for (var i = 0; i < builds.length; i++) {
+        var b = builds[i]; var c = builds[i].price * Math.pow(builds[i].inflation, buildsOwned[i]);
+        $("#b-n" + (i+1)).html(b.name + " - ");
+        $("#b-c" + (i+1)).html("cost : " + fix(c, 2) + "$<br>");
+        $("#b-c" + (i+1)).attr("class", "b-cost");
+        $("#b-c" + (i+1)).attr("onclick", "buyBuild(" + i + ")");
+        $("#b-o" + (i+1)).html(buildsOwned[i] + " owned <br>");
+        $("#b-r" + (i+1)).html(fix(b.reward * buildsOwned[i], 2) + " g. of " + b.type2 + "/sec");
+    };
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i]; var c2 = dealers[i].price * Math.pow(dealers[i].inflation, dealersOwned[i]);
+        $("#d-n" + (i+1)).html(d.name + " - ");
+        $("#d-c" + (i+1)).html("cost : " + fix(c2, 2) + "$<br>");
+        $("#d-c" + (i+1)).attr("class", "d-cost");
+        $("#d-c" + (i+1)).attr("onclick", "buyDealer(" + i +")");
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned<br>");
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell * dealersOwned[i], 2) + " g. of " + d.type2 + "/sec");
+    };
+};
 function updateGame(times) {
     if (init == true) {
         var t = times;
-        hShoot(t);
-        hReload(t);
-        updateStats();
-        updateActions();
+        hShoot(t); hReload(t);
+        updateStats(); updateActions(); buildReward(); dealerReward();
     };
 };
 function recoverLost() {
@@ -225,10 +280,8 @@ function buyUpgrade(index) {
     if (money >= upgrades[index].price) {
         money -= upgrades[index].price;
         upgradesOwned[index] = true;
-        upgrades[index].run();
         $("#u-" + (index + 1)).css('display', 'none');
-        updateStats();
-        updateActions();
+        upgrades[index].run(); updateStats(); updateActions();
     };
 };
 
@@ -241,8 +294,8 @@ function buyHelper(index) {
         money -= helpers[index].price;
         helpersOwned[index] = true;
         helpersTrigged[index] = true;
-        $("#h-c" + (index + 1)).html(" - trigged : " + helpersTrigged[index]);
-        $("#h-" + (index + 1)).attr('onclick', 'triggerHelper(' + index + ')');
+        $("#h-c" + (index + 1)).html("trigged : " + helpersTrigged[index]);
+        $("#h-c" + (index + 1)).attr("onclick", "triggerHelper(" + index + ")");
         updateStats();
         updateActions();
     };
@@ -255,10 +308,74 @@ function triggerHelper(index) {
             helpersTrigged[index] = true;
         };
     };
-    $("#h-c" + (index + 1)).html(" - trigged : " + helpersTrigged[index]);
+    $("#h-c" + (index + 1)).html("trigged : " + helpersTrigged[index]);
 };
 
-// fix.min
+function Build(name, price, reward, inflation, type1, type2) {
+    this.name = name;
+    this.price = price;
+    this.reward = reward;
+    this.inflation = inflation;
+    this.type1 = type1;
+    this.type2 = type2;
+};
+function buyBuild(index) {
+    var c = builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
+    if (money >= c) {
+        money -= c;
+        buildsOwned[index]++;
+        updateStats(); updateActions(); updateBuilds();
+    };
+};
+function buildReward() {
+    for (var i = 0; i < builds.length; i++) {
+        var b = builds[i]; var d = dealers[i];
+        if (b.type1 == 0) {
+            weed[0] += (buildsOwned[i] * b.reward) / 62.5;
+            weed[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
+        };
+        if (b.type1 == 1) {
+            meth[0] += (buildsOwned[i] * b.reward) / 62.5;
+            meth[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
+        };
+    };
+};
+
+function Dealer(name, price, sell, inflation, type1, type2) {
+    this.name = name;
+    this.price = price;
+    this.sell = sell;
+    this.inflation = inflation;
+    this.type1 = type1;
+    this.type2 = type2;
+};
+function buyDealer(index) {
+    var c = dealers[index].price * Math.pow(dealers[index].inflation, dealersOwned[index]);
+    if (money >= c) {
+        money -= c;
+        dealersOwned[index]++;
+        updateStats(); updateActions(); updateBuilds();
+    };
+};
+function dealerReward() {
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        if (d.type1 == 0) {
+            if (weed[0] > 1) {
+                weed[0] -= (d.sell * dealersOwned[i]) / 62.5;
+                money += ((d.sell * dealersOwned[i]) * weed[1]) / 62.5;
+            };
+        };
+        if (d.type1 == 1) {
+            if (meth[0] > 1) {
+                meth[0] -= (d.sell * dealersOwned[i]) / 62.5;
+                money += ((d.sell * dealersOwned[i]) * meth[1]) / 62.5;
+            };
+        };
+    };
+};
+
+// fix.min + little functions
 function numberWithCommas(a) {
     var b = a.toString().split(",");
     return b[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (b[1] ? "," + b[1] : "")

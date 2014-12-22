@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <h1>Blackmarket - Prototype v0.011</h1>
+  <h1>Blackmarket - Prototype v0.012</h1>
 
   <div class="container-fluid" style="max-height: 643px;">
     <div class="row">
@@ -38,49 +38,38 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="upgrades">
               <div class="well">
-              <p id="u-1" class="u-upgrades" onclick="buyUpgrade(0)"><span id="u-n1"></span><span id="u-c1"></span></p>
-              <p id="u-2" class="u-upgrades" onclick="buyUpgrade(1)"><span id="u-n2"></span><span id="u-c2"></span></p>
-              <p id="u-3" class="u-upgrades" onclick="buyUpgrade(2)"><span id="u-n3"></span><span id="u-c3"></span></p>
-              <p id="u-4" class="u-upgrades" onclick="buyUpgrade(3)"><span id="u-n4"></span><span id="u-c4"></span></p>
-              <p id="u-5" class="u-upgrades" onclick="buyUpgrade(4)"><span id="u-n5"></span><span id="u-c5"></span></p>
-              <p id="u-6" class="u-upgrades" onclick="buyUpgrade(5)"><span id="u-n6"></span><span id="u-c6"></span></p>
-              <p id="u-7" class="u-upgrades" onclick="buyUpgrade(6)"><span id="u-n7"></span><span id="u-c7"></span></p>
-              <p id="u-8" class="u-upgrades" onclick="buyUpgrade(7)"><span id="u-n8"></span><span id="u-c8"></span></p>
-              <p id="u-9" class="u-upgrades" onclick="buyUpgrade(8)"><span id="u-n9"></span><span id="u-c9"></span></p>
-              <p id="u-10" class="u-upgrades" onclick="buyUpgrade(9)"><span id="u-n10"></span><span id="u-c10"></span></p>
-              <p id="u-11" class="u-upgrades" onclick="buyUpgrade(10)"><span id="u-n11"></span><span id="u-c11"></span></p>
-              <p id="u-12" class="u-upgrades" onclick="buyUpgrade(11)"><span id="u-n12"></span><span id="u-c12"></span></p>
-              <p id="u-13" class="u-upgrades" onclick="buyUpgrade(12)"><span id="u-n13"></span><span id="u-c13"></span></p>
-              <p id="u-14" class="u-upgrades" onclick="buyUpgrade(13)"><span id="u-n14"></span><span id="u-c14"></span></p>
-              <p id="u-15" class="u-upgrades" onclick="buyUpgrade(14)"><span id="u-n15"></span><span id="u-c15"></span></p>
-              <p id="u-16" class="u-upgrades" onclick="buyUpgrade(15)"><span id="u-n16"></span><span id="u-c16"></span></p>
-              <p id="u-17" class="u-upgrades" onclick="buyUpgrade(16)"><span id="u-n17"></span><span id="u-c17"></span></p>
-              <p id="u-18" class="u-upgrades" onclick="buyUpgrade(17)"><span id="u-n18"></span><span id="u-c18"></span></p>
-              <p id="u-19" class="u-upgrades" onclick="buyUpgrade(18)"><span id="u-n19"></span><span id="u-c19"></span></p>
-              <p id="u-20" class="u-upgrades" onclick="buyUpgrade(19)"><span id="u-n20"></span><span id="u-c20"></span></p>
-              <p id="u-21" class="u-upgrades" onclick="buyUpgrade(20)"><span id="u-n21"></span><span id="u-c21"></span></p>
-              <p id="u-22" class="u-upgrades" onclick="buyUpgrade(21)"><span id="u-n22"></span><span id="u-c22"></span></p>
-              <p id="u-23" class="u-upgrades" onclick="buyUpgrade(22)"><span id="u-n23"></span><span id="u-c23"></span></p>
-              <p id="u-24" class="u-upgrades" onclick="buyUpgrade(23)"><span id="u-n24"></span><span id="u-c24"></span></p>
-              <p id="u-25" class="u-upgrades" onclick="buyUpgrade(24)"><span id="u-n25"></span><span id="u-c25"></span></p>
-              <p id="u-26" class="u-upgrades" onclick="buyUpgrade(25)"><span id="u-n26"></span><span id="u-c26"></span></p>
-              <p id="u-27" class="u-upgrades" onclick="buyUpgrade(26)"><span id="u-n27"></span><span id="u-c27"></span></p>
-              <p id="u-28" class="u-upgrades" onclick="buyUpgrade(27)"><span id="u-n28"></span><span id="u-c28"></span></p>
-              <p id="u-29" class="u-upgrades" onclick="buyUpgrade(28)"><span id="u-n29"></span><span id="u-c29"></span></p>
-              <p id="u-30" class="u-upgrades" onclick="buyUpgrade(29)"><span id="u-n30"></span><span id="u-c30"></span></p>
-              <p id="u-31" class="u-upgrades" onclick="buyUpgrade(30)"><span id="u-n31"></span><span id="u-c31"></span></p>
+              <p id="u-1" class="u-upgrades"><span id="u-n1"></span><span id="u-c1"></span></p>
+              <p id="u-2" class="u-upgrades"><span id="u-n2"></span><span id="u-c2"></span></p>
+              <p id="u-3" class="u-upgrades"><span id="u-n3"></span><span id="u-c3"></span></p>
+              <p id="u-4" class="u-upgrades"><span id="u-n4"></span><span id="u-c4"></span></p>
+              <p id="u-5" class="u-upgrades"><span id="u-n5"></span><span id="u-c5"></span></p>
+              <p id="u-6" class="u-upgrades"><span id="u-n6"></span><span id="u-c6"></span></p>
+              <p id="u-7" class="u-upgrades"><span id="u-n7"></span><span id="u-c7"></span></p>
+              <p id="u-8" class="u-upgrades"><span id="u-n8"></span><span id="u-c8"></span></p>
+              <p id="u-9" class="u-upgrades"><span id="u-n9"></span><span id="u-c9"></span></p>
+              <p id="u-10" class="u-upgrades"><span id="u-n10"></span><span id="u-c10"></span></p>
+              <p id="u-11" class="u-upgrades"><span id="u-n11"></span><span id="u-c11"></span></p>
+              <p id="u-12" class="u-upgrades"><span id="u-n12"></span><span id="u-c12"></span></p>
+              <p id="u-13" class="u-upgrades"><span id="u-n13"></span><span id="u-c13"></span></p>
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="helpers">
               <div class="well">
-              <p id="h-1" class="h-helpers" onclick="buyHelper(0)"><span id="h-n1"></span><span id="h-c1"></span></p>
-              <p id="h-2" class="h-helpers" onclick="buyHelper(1)"><span id="h-n2"></span><span id="h-c2"></span></p>
-              <p id="h-3" class="h-helpers" onclick="buyHelper(2)"><span id="h-n3"></span><span id="h-c3"></span></p>
-              <p id="h-4" class="h-helpers" onclick="buyHelper(3)"><span id="h-n4"></span><span id="h-c4"></span></p>
+              <p id="h-1" class="h-helpers"><span id="h-n1"></span><span id="h-c1"></span></p>
+              <p id="h-2" class="h-helpers"><span id="h-n2"></span><span id="h-c2"></span></p>
+              <p id="h-3" class="h-helpers"><span id="h-n3"></span><span id="h-c3"></span></p>
+              <p id="h-4" class="h-helpers"><span id="h-n4"></span><span id="h-c4"></span></p>
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="blackshop">
               <div class="well">
+              <h3>Tier 1 :</h3>
+              <h4>Production :</h4>
+              <p id="b-1" class="s-shop"><span id="b-n1"></span><span id="b-c1"></span><span id="b-o1"></span><span id="b-r1"></span></p>
+              <p id="b-2" class="s-shop"><span id="b-n2"></span><span id="b-c2"></span><span id="b-o2"></span><span id="b-r2"></span></p>
+              <h4>Selling :</h4>
+              <p id="b-3" class="s-shop"><span id="d-n1"></span><span id="d-c1"></span><span id="d-o1"></span><span id="d-r1"></span></p>
+              <p id="b-4" class="s-shop"><span id="d-n2"></span><span id="d-c2"></span><span id="d-o2"></span><span id="d-r2"></span></p>
               </div>
             </div>
           </div>
@@ -90,6 +79,8 @@
         <div class="well">
           <p><span id="s-money"></span><br>
           <span id="s-ammo"></span></p>
+          <p><span id="s-weed"></span><span id="s-weedPrice"></span><br>
+          <span id="s-meth"></span><span id="s-methPrice"></span></p>
           <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
         </div>
         <h2>Patch Notes :</h2>
@@ -98,7 +89,15 @@
           <b>Official prototype release.</b><br>
           <u>v0.011 (12/21/2014):</u><br>
           - Upgrades only were rebalanced.<br>
-          - Added a general shop.</p>
+          - Added a general shop.<br>
+          <u>v0.012 (12/22/2014):</u><br>
+          - Added "buildings" in the shop tab.<br>
+          - Added drugs : weed & meth.<br>
+          - Added a "tier" system. (for prestige!)</p>
+          <p>May have several bugs! Please, report them to me! :)</p>
+          <p><a target="_blank" href="http://totominc.github.io/blackmarket/">Old Blackmarket</a><br>
+          <a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2ojnsj/blackmarket/">Prototype thread on /r/incremental_games</a><br>
+          <a target="_blank" href="http://www.reddit.com/user/TotomInc/">Contact me (TotomInc) on reddit!</a></p>
         </div>
       </div>
     </div>
@@ -113,7 +112,6 @@
     ga('create', 'UA-54540685-7', 'auto');
     ga('send', 'pageview');
   </script>
-
-  <script type="text/javascript" src="js/game.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>
