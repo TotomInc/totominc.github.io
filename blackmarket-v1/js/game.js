@@ -7,6 +7,7 @@ var money; var mps; var mps0; var mps1; var ammo; var weed; var meth;
 var progress; var before;
 
 var upgradesOwned; var helpersOwned; var helpersTrigged; var buildsOwned; var dealersOwned;
+var buildsMultiplier;
 var upgrades = [
     new Upgrade("Shoot reward x3!", 12, function() { ammo[1] *= 3 }), // *7
     new Upgrade("Shoot reward x3!", 60, function() { ammo[1] *= 3 }),
@@ -40,7 +41,8 @@ var dealers = [
 ];
 
 var init; var fps = 60; var interval = (1000 / fps); var key = "Blackmarket_";
-var allVars = ['money', 'ammo', 'weed', 'meth', 'progress', 'before', 'upgradesOwned', 'helpersOwned', 'helpersTrigged', 'buildsOwned', 'dealersOwned'];
+var allVars = ['money', 'ammo', 'weed', 'meth', 'progress', 'before', 'upgradesOwned', 'helpersOwned', 'helpersTrigged', 'buildsOwned', 'dealersOwned',
+'buildsMultiplier'];
 
 // Saving system
 function setItem(key, value) {
@@ -88,9 +90,9 @@ function initVars() {
         helpersOwned.push(false); helpersTrigged.push(false);
     };
 
-    buildsOwned = [];
+    buildsOwned = []; buildsMultiplier = [];
     for (var i = 0; i < builds.length; i++) {
-        buildsOwned.push(0);
+        buildsOwned.push(0); buildsMultiplier.push(1);
     };
 
     dealersOwned = [];
@@ -204,14 +206,42 @@ function recoverLost() {
     };
     before = new Date().getTime();
 };
+function event() {
+    var r = Math.floor((Math.random() * 1000) + 1); console.log(r);
+    if (r >= 900) {
+        money += ammo[1];
+        $("#s-eventsLog").html("Headshot! Income x2 for this shot!");
+        $("#s-eventsLog").fadeOut(3000, function() {
+            $("#s-eventsLog").html("");
+            $("#s-eventsLog").attr("style", "");
+        });
+    };
+    if (r >= 875 && r < 900) {
+        money += ammo[1] * 7;
+        $("#s-eventsLog").html("Rival gang boss killed! Income x7 for this shot!");
+        $("#s-eventsLog").fadeOut(3000, function() {
+            $("#s-eventsLog").html("");
+            $("#s-eventsLog").attr("style", "");
+        });
+    };
+    if (r >= 800 && r < 805) {
+        for (var i = 0; i < builds.length; i++) { buildsMultiplier[i] += 0.02; };
+        $("#s-eventsLog").html("Drug expertise! Every drugs buildings produce x0.02 more!");
+        $("#s-eventsLog").fadeOut(3000, function() {
+            $("#s-eventsLog").html("");
+            $("#s-eventsLog").attr("style", "");
+        });
+    };
+};
 
 // Basic functions
 function shoot() {
     if (ammo[0] >= 1 && helpersTrigged[0] == false) {
-        ammo[0] -= 1;
-        $("#shoot, #reload").attr('onclick', '');
+        ammo[0] -= 1; $("#shoot, #reload").attr('onclick', '');
         setTimeout(function() {
-            money += ammo[1]; updateStats();
+            event();
+            money += ammo[1];
+            updateStats();
             $("#shoot").attr('onclick', 'shoot()'); $("#reload").attr('onclick', 'reload()');
         }, ammo[2]);
         $("#b-f1").animate({ width: "100%" }, ammo[2], "linear");
@@ -333,11 +363,11 @@ function buildReward(times) {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i]; var d = dealers[i];
         if (b.type1 == 0) {
-            weed[0] += (buildsOwned[i] * b.reward) / 62.5 * times;
+            weed[0] += (buildsOwned[i] * b.reward * buildsMultiplier[i]) / 62.5 * times;
             weed[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
         };
         if (b.type1 == 1) {
-            meth[0] += (buildsOwned[i] * b.reward) / 62.5 * times;
+            meth[0] += (buildsOwned[i] * b.reward * buildsMultiplier[i]) / 62.5 * times;
             meth[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
         };
     };
