@@ -1,40 +1,42 @@
 var maxpx = $(document).height(); var headerpx = 45; var marginpx = 10;
 $(".container-fluid").css('max-height', (maxpx - headerpx - marginpx) + 'px');
 $(".col-md-4").css('max-height', (maxpx - headerpx - marginpx) + 'px');
+$(".col-md-4").css('overflow-y', 'scroll');
 
-var money; var ammo; var weed; var meth;
+var money; var mps; var mps0; var mps1; var ammo; var weed; var meth;
 var progress; var before;
 
 var upgradesOwned; var helpersOwned; var helpersTrigged; var buildsOwned; var dealersOwned;
 var upgrades = [
     new Upgrade("Shoot reward x3!", 12, function() { ammo[1] *= 3 }), // *7
     new Upgrade("Shoot reward x3!", 60, function() { ammo[1] *= 3 }),
-    new Upgrade("Shoot reward x3!", 420, function() { ammo[1] *= 3 }),
-    new Upgrade("Shoot reward x3!", 2940, function() { ammo[1] *= 4 }),
+    new Upgrade("Shoot reward x2!", 420, function() { ammo[1] *= 2 }),
+    new Upgrade("Shoot reward x2!", 2940, function() { ammo[1] *= 2 }),
 
-    new Upgrade("Shoot time /2!", 90, function() { ammo[2] /= 2 }), // *7
-    new Upgrade("Shoot time /2!", 630, function() { ammo[2] /= 2 }),
-    new Upgrade("Shoot time /2!", 4410, function() { ammo[2] /= 2 }),
+    new Upgrade("Shoot time /1.5!", 90, function() { ammo[2] /= 1.5 }), // *7
+    new Upgrade("Shoot time /1.5!", 630, function() { ammo[2] /= 1.5 }),
 
     new Upgrade("Ammo stock x3!", 90, function() { ammo[4] *= 3 }), // *15
     new Upgrade("Ammo stock x3!", 1350, function() { ammo[4] *= 3 }),
     new Upgrade("Ammo stock x3!", 20250, function() { ammo[4] *= 3 }),
 
-    new Upgrade("Reload time /2!", 270, function() { ammo[3] /= 2 }), // *7
-    new Upgrade("Reload time /2!", 1890, function() { ammo[3] /= 2 }),
-    new Upgrade("Reload time /2!", 13230, function() { ammo[3] /= 2 })
+    new Upgrade("Reload time /1.5!", 270, function() { ammo[3] /= 1.5 }), // *7
+    new Upgrade("Reload time /1.5!", 1890, function() { ammo[3] /= 1.5 }),
+
+    new Upgrade("Weed price x1.5!", 600, function() {weed[1] *= 1.5 }), // *3
+    new Upgrade("Weed price x1.5!", 1800, function() {weed[1] *= 1.5 })
 ];
 var helpers = [
     new Helper("Shoot Helper", 325),
-    new Helper("Reload Helper", 650)
+    new Helper("Reload Helper", 950)
 ];
 var builds = [
-    new Build("Weed plant", 150, 1, 1.07, 0, "weed"),
-    new Build("Old Van", 1000, 2, 1.07, 1, "meth")
+    new Build("Weed plant", 70, 1, 1.07, 0, "weed"),
+    new Build("Old Van", 2500, 1, 1.07, 1, "meth")
 ];
 var dealers = [
-    new Dealer("Weed dealer", 200, 0.5, 1.07, 0, "weed"),
-    new Dealer("Meth dealer", 1500, 1, 1.07, 1, "meth")
+    new Dealer("Weed dealer", 100, 0.75, 1.07, 0, "weed"),
+    new Dealer("Meth dealer", 3000, 0.5, 1.07, 1, "meth")
 ];
 
 var init; var fps = 60; var interval = (1000 / fps); var key = "Blackmarket_";
@@ -71,9 +73,9 @@ function resetData() {
 
 // Helpers
 function initVars() {
-    money = 0;
+    money = 0; mps = 0; mps0 = 0; mps1 = 0;
     ammo = [12, 1, 1500, 5000, 12]; // stock; reward; time; reload time; max ammo
-    weed = [0, 2, 0]; meth = [0, 8, 0]; // stock; reward; per/sec
+    weed = [0, 2, 0]; meth = [0, 4, 0]; // stock; reward; per/sec
     before = new Date().getTime();
 
     upgradesOwned = [];
@@ -145,12 +147,12 @@ function initGame() {
     init = true;
 };
 function updateStats() {
-    $("#s-money").html("Money : " + fix(money, 2) + "$");
+    $("#s-money").html("Money : " + fix(money, 2) + "$ <small>(" + fix(mps, 2) + "$/sec)</small>");
     $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/" + fix(ammo[4], 0));
-    $("#s-weed").html("Weed : " + fix(weed[0], 2) + "g (" + fix(weed[2], 2) + "g/sec)" );
+    $("#s-weed").html("Weed : " + fix(weed[0], 2) + "g <small>(" + fix(weed[2], 2) + "g/sec)</small>" );
     $("#s-weedPrice").html("<br>Weed price : " + fix(weed[1], 2) + "$/g.");
     $("#s-weedPrice, #s-methPrice").attr("class", "drug-price");
-    $("#s-meth").html("Meth : " + fix(meth[0], 2) + "g (" + fix(meth[2], 2) + "g/sec)");
+    $("#s-meth").html("Meth : " + fix(meth[0], 2) + "g <small>(" + fix(meth[2], 2) + "g/sec)</small>");
     $("#s-methPrice").html("<br>Meth price : " + fix(meth[1], 2) + "$/g.");
 
     if (ammo[0] == 0) {
@@ -189,7 +191,7 @@ function updateGame(times) {
     if (init == true) {
         var t = times;
         hShoot(t); hReload(t);
-        updateStats(); updateActions(); buildReward(); dealerReward();
+        updateStats(); updateActions(); buildReward(t); dealerReward(t);
     };
 };
 function recoverLost() {
@@ -327,15 +329,15 @@ function buyBuild(index) {
         updateStats(); updateActions(); updateBuilds();
     };
 };
-function buildReward() {
+function buildReward(times) {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i]; var d = dealers[i];
         if (b.type1 == 0) {
-            weed[0] += (buildsOwned[i] * b.reward) / 62.5;
+            weed[0] += (buildsOwned[i] * b.reward) / 62.5 * times;
             weed[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
         };
         if (b.type1 == 1) {
-            meth[0] += (buildsOwned[i] * b.reward) / 62.5;
+            meth[0] += (buildsOwned[i] * b.reward) / 62.5 * times;
             meth[2] = (buildsOwned[i] * b.reward) - (d.sell * dealersOwned[i]);
         };
     };
@@ -357,22 +359,25 @@ function buyDealer(index) {
         updateStats(); updateActions(); updateBuilds();
     };
 };
-function dealerReward() {
+function dealerReward(times) {
     for (var i = 0; i < dealers.length; i++) {
         var d = dealers[i];
         if (d.type1 == 0) {
             if (weed[0] > 1) {
-                weed[0] -= (d.sell * dealersOwned[i]) / 62.5;
+                weed[0] -= (d.sell * dealersOwned[i]) / 62.5 * times;
                 money += ((d.sell * dealersOwned[i]) * weed[1]) / 62.5;
+                mps0 = ((d.sell * dealersOwned[i]) * weed[1]) / 62.5;
             };
         };
         if (d.type1 == 1) {
             if (meth[0] > 1) {
-                meth[0] -= (d.sell * dealersOwned[i]) / 62.5;
+                meth[0] -= (d.sell * dealersOwned[i]) / 62.5 * times;
                 money += ((d.sell * dealersOwned[i]) * meth[1]) / 62.5;
+                mps1 = ((d.sell * dealersOwned[i]) * meth[1]) / 62.5;
             };
         };
     };
+    mps = (mps0 + mps1) * 100; // total money/sec
 };
 
 // fix.min + little functions

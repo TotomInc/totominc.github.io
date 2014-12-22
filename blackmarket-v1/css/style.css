@@ -11,8 +11,7 @@ p.u-upgrades { text-align: center; }
 p.h-helpers { text-align: center; }
 p.s-shop { text-align: center; }
 
-small { cursor: pointer; }
-small>span { border-bottom: 1px solid black; }
+small>span { cursor: pointer; border-bottom: 1px solid black; }
 span.u-cost, span.h-cost, span.b-cost, span.d-cost { text-decoration: underline; font-weight: bold; cursor: pointer; }
 span.b-reward, span.d-reward { font-size: 12px; text-decoration: underline; }
 span.drug-price { font-size: 12px; text-decoration: underline; }
