@@ -1,5 +1,6 @@
 body { margin: 0; font-family: 'Consolas', sans-serif; cursor: default; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px; text-decoration: underline; }
+h1 { margin: 0 0 10px 0; text-align: center; font-size: 32px; }
+h1>small>span { text-decoration: none; cursor: default; border-bottom: 0; }
 h2 { margin: 0 0 10px 0; text-align: center; font-size: 20px; text-decoration: underline; }
 h3 { margin: 5px 0 5px 0; font-size: 18px; text-align: center; }
 h3.a-name { margin: 3px 0 3px 0; font-weight: bold; text-decoration: underline; }
