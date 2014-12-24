@@ -1,4 +1,4 @@
-var maxpx = $(document).height(); var marginpx = 170;
+var maxpx = $(document).height(); var marginpx = 120;
 $(".container-fluid, .col-md-4").css('max-height', (maxpx - marginpx) + 'px');
 $(".col-md-4").css('overflow-y', 'scroll');
 

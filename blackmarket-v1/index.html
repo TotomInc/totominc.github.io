@@ -30,13 +30,13 @@
       </div>
       <div id="shop" class="col-md-4" style="overflow-y: scroll">
           <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active"><a href="#upgrades" aria-controls="upgrades" role="tab" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
-            <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers <i class="fa fa-users"></i></a></li>
-            <li role="presentation"><a href="#blackshop" aria-controls="blackshop" role="tab" data-toggle="tab">Shop <i class="fa fa-cube"></i></a></li>
+            <li role="presentation" class="active"><a href="#up-tab" aria-controls="up-tab" role="tab" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
+            <li role="presentation"><a href="#helpers-tab" aria-controls="helpers-tab" role="tab" data-toggle="tab">Helpers <i class="fa fa-users"></i></a></li>
+            <li role="presentation"><a href="#shop-tab" aria-controls="shop-tab" role="tab" data-toggle="tab">Shop <i class="fa fa-cube"></i></a></li>
           </ul>
 
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="upgrades">
+            <div role="tabpanel" class="tab-pane fade in active" id="up-tab">
               <div class="well">
               <h4>Actions upgrades :</h4>
               <p id="u-1" class="u-upgrades"><span id="u-n1"></span><span id="u-c1"></span></p>
@@ -61,15 +61,14 @@
               <p id="u-19" class="u-upgrades"><span id="u-n19"></span><span id="u-c19"></span></p>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="helpers">
+            <div role="tabpanel" class="tab-pane fade" id="helpers-tab">
               <div class="well">
+              <h4>Basic helpers :</h4>
               <p id="h-1" class="h-helpers"><span id="h-n1"></span><span id="h-c1"></span></p>
               <p id="h-2" class="h-helpers"><span id="h-n2"></span><span id="h-c2"></span></p>
-              <p id="h-3" class="h-helpers"><span id="h-n3"></span><span id="h-c3"></span></p>
-              <p id="h-4" class="h-helpers"><span id="h-n4"></span><span id="h-c4"></span></p>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="blackshop">
+            <div role="tabpanel" class="tab-pane fade" id="shop-tab">
               <div class="well">
               <h3>Tier 1 :</h3>
               <h4>Production :</h4>
@@ -86,42 +85,63 @@
           </div>
       </div>
       <div id="stats" class="col-md-4">
-        <h2>Stats :</h2>
-        <div class="well">
-          <p><span id="s-money"></span><br>
-          <span id="s-ammo"></span><br>
-          <span id="s-darkammo"></span></p>
-          <p><span id="s-weed"></span><span id="s-weedPrice"></span><br>
-          <span id="s-meth"></span><span id="s-methPrice"></span></p>
-          <p id="s-events"><span id="s-eventsLog"></span></p>
-          <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
-        </div>
-        <h2>Patch Notes :</h2>
-        <div class="well">
-          <p><u>v0.01 :</u><br>
-          <b>Official prototype release.</b><br>
-          <u>v0.011 (12/21/2014):</u><br>
-          - Upgrades only were rebalanced.<br>
-          - Added a general shop.<br>
-          <u>v0.012 (12/22/2014):</u><br>
-          - Added "buildings" in the shop tab.<br>
-          - Added drugs : weed & meth.<br>
-          - Added a "tier" system. (for prestige!)<br>
-          - Added a random event system when shooting.</p>
-          <p><u>v0.013 (12/23/2014):</u><br>
-          - Prestige system almost ready. (dark-ammo)<br>
-          - Added some upgrades and re-balanced some of them.<br>
-          - Fixed resolution when loading the page.<br>
-          <b>Don't try to reset, you will restart everything from 0 and earn nothing!</b></p>
-          <p><u>Bugs :</u><br>
-          - Money/sec is a bit buggy.</p>
-          <p><a target="_blank" href="http://totominc.github.io/blackmarket/">Old Blackmarket</a><br>
-          <a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2ojnsj/blackmarket/">Prototype thread on /r/incremental_games</a><br>
-          <a target="_blank" href="http://www.reddit.com/user/TotomInc/">Contact me (TotomInc) on reddit!</a></p>
+        <div role="tabpanel">
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#stats-tab" aria-controls="stats-tab" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
+            <li role="presentation"><a href="#notes-tab" aria-controls="notes-tab" role="tab" data-toggle="tab">Patch-Notes <i class="fa fa-pencil"></i></a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="stats-tab">
+              <div class="well">
+                <p><span id="s-money"></span><br>
+                <span id="s-ammo"></span><br>
+                <span id="s-darkammo"></span></p>
+                <p><span id="s-weed"></span><span id="s-weedPrice"></span><br>
+                <span id="s-meth"></span><span id="s-methPrice"></span></p>
+                <p id="s-events"><span id="s-eventsLog"></span></p>
+                <small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="notes-tab">
+              <div id="notes" class="well">
+                <p><u>v0.010 :</u></p>
+                <p><b>Official prototype release.</b></p>
+
+                <p><u>v0.011 (12/21/2014):</u></p>
+                <p>- Upgrades only were rebalanced.<br>
+                - Added a general shop.</p>
+
+                <p><u>v0.012 (12/22/2014):</u></p>
+                <p>- Added "buildings" in the shop tab.<br>
+                - Added drugs : weed & meth.<br>
+                - Added a "tier" system. (for prestige!)<br>
+                - Added a random event system when shooting.</p>
+
+                <p><u>v0.013 (12/23/2014):</u></p>
+                <p>- Prestige system almost ready. (dark-ammo)<br>
+                - Added some upgrades and re-balanced some of them.<br>
+                - Fixed resolution when loading the page.</p>
+
+                <p><u>Bugs :</u><br>
+                - Money/sec is a bit buggy.</p>
+                <p>This game is in rapid development! Come back everyday to see if there is a new update! :)</p>
+                <p><b>Don't try to reset, you will restart everything from 0 and earn nothing!</b></p>
+
+                <p><a target="_blank" href="http://totominc.github.io/blackmarket/">Old Blackmarket</a><br>
+                <a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2ojnsj/blackmarket/">Prototype thread on /r/incremental_games</a><br>
+                <a target="_blank" href="http://www.reddit.com/user/TotomInc/">Contact me (TotomInc) on reddit!</a><br>
+                <a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket-v1">Take a look in the source here!</a></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Future ad place -->
+  <div class="ad-container"></div>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

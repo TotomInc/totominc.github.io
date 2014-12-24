@@ -11,6 +11,7 @@ p>a { font-size: 12px; }
 p.u-upgrades { text-align: center; }
 p.h-helpers { text-align: center; }
 p.s-shop { text-align: center; }
+p.s-notes { text-align: left; }
 
 small>span { cursor: pointer; border-bottom: 1px solid black; }
 span.u-cost, span.h-cost, span.b-cost, span.d-cost { text-decoration: underline; font-weight: bold; cursor: pointer; }
@@ -19,3 +20,5 @@ span.drug-price { font-size: 12px; text-decoration: underline; }
 
 .b-button { width: 90%; height: 30px; margin-left: auto; margin-right: auto; border: 1px solid black; border-radius: 4px; cursor: pointer; }
 .b-filler { width: 0%; height: 100%; background: #2c3e50; }
+
+.ad-container { position: absolute; bottom: 0px; width: 100%; height: 70px; }
