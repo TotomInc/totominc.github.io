@@ -41,7 +41,7 @@ var builds = [
 ];
 var dealers = [
     new Dealer("Weed dealer", 100, 0.75, 1.25, 0, "weed"),
-    new Dealer("Meth dealer", 3000, 0.5, 1.25, 1, "meth")
+    new Dealer("Meth dealer", 3000, 0.75, 1.25, 1, "meth")
 ];
 
 var init; var fps = 60; var interval = (1000 / fps); var key = "Blackmarket_";
