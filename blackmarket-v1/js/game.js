@@ -45,8 +45,8 @@ var dealers = [
 ];
 
 var init; var fps = 60; var interval = (1000 / fps); var key = "Blackmarket_";
-var allVars = ['money', 'totalMoney', 'ammo', 'weed', 'meth', 'progress', 'before', 'upgradesOwned', 'helpersOwned', 'helpersTrigged', 'buildsOwned', 'dealersOwned',
-'buildsMultiplier'];
+var allVars = ['money', 'totalMoney', 'ammo', 'weed', 'meth', 'progress', 'before', 'upgradesOwned', 'helpersOwned',
+'helpersTrigged', 'buildsOwned', 'dealersOwned', 'buildsMultiplier'];
 
 // Saving system
 function setItem(key, value) {
@@ -149,7 +149,6 @@ function initGame() {
         $("#d-r" + (i+1)).attr("class", "d-reward");
     };
 
-    updateStats(); updateBuilds(); updateActions();
     init = true;
 };
 function updateStats() {
@@ -201,7 +200,7 @@ function updateGame(times) {
     if (init == true) {
         var t = times;
         hShoot(t); hReload(t);
-        updateStats(); updateActions(); buildReward(t); dealerReward(t);
+        updateStats(); updateActions(); updateBuilds(); buildReward(t); dealerReward(t);
     };
 };
 function recoverLost() {
@@ -249,7 +248,6 @@ function shoot() {
         setTimeout(function() {
             event();
             money += ammo[1] * (1 + ammo[5] * 1.5); totalMoney += ammo[1] * (1 + ammo[5] * 1.5);
-            updateStats();
             $("#shoot").attr('onclick', 'shoot()'); $("#reload").attr('onclick', 'reload()');
         }, ammo[2]);
         $("#b-f1").animate({ width: "100%" }, ammo[2], "linear");
@@ -261,7 +259,7 @@ function reload() {
         $("#reload, #shoot").attr('onclick', '');
         setTimeout(function() {
             $("#reload").attr('onclick', 'reload()'); $("#shoot").attr('onclick', 'shoot()');
-            ammo[0] = ammo[4]; updateStats();
+            ammo[0] = ammo[4];
         }, ammo[3]);
         $("#b-f2").animate({ width: "100%" }, ammo[3], "linear");
         $("#b-f2").animate({ width: "0%" }, 10);
@@ -321,7 +319,7 @@ function buyUpgrade(index) {
         money -= upgrades[index].price;
         upgradesOwned[index] = true;
         $("#u-" + (index + 1)).css('display', 'none');
-        upgrades[index].run(); updateStats(); updateActions();
+        upgrades[index].run();
     };
 };
 
@@ -336,8 +334,6 @@ function buyHelper(index) {
         helpersTrigged[index] = true;
         $("#h-c" + (index + 1)).html("trigged : " + helpersTrigged[index]);
         $("#h-c" + (index + 1)).attr("onclick", "triggerHelper(" + index + ")");
-        updateStats();
-        updateActions();
     };
 };
 function triggerHelper(index) {
@@ -364,7 +360,6 @@ function buyBuild(index) {
     if (money >= c) {
         money -= c;
         buildsOwned[index]++;
-        updateStats(); updateActions(); updateBuilds();
     };
 };
 function buildReward(times) {
@@ -394,7 +389,6 @@ function buyDealer(index) {
     if (money >= c) {
         money -= c;
         dealersOwned[index]++;
-        updateStats(); updateActions(); updateBuilds();
     };
 };
 function dealerReward(times) {

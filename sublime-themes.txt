@@ -1,0 +1,31 @@
+/* ITG Dark
+{
+	"color_scheme": "Packages/Theme - itg.flat/itg.dark.tmTheme",
+	"theme": "itg.flat.dark.sublime-theme"
+}
+*/
+
+/* Brogrammer
+{
+	"color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+	"theme": "Brogrammer.sublime-theme"
+}
+*/
+
+/* Numix dark + Monokai
+{
+	"color_scheme": "Packages/Predawn Monokai/Predawn Monokai.tmTheme",
+	"theme": "Numix Dark.sublime-theme",
+	"numix_folder_icons": true,
+	"tabs_medium" : true
+}
+*/
+
+/* Numix + Monokai
+{
+	"color_scheme": "Packages/Predawn Monokai/Predawn Monokai.tmTheme",
+	"theme": "Numix.sublime-theme",
+	"numix_folder_icons": true,
+	"tabs_medium" : true
+}
+*/
