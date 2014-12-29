@@ -6,7 +6,7 @@ h3 { margin: 5px 0 5px 0; font-size: 18px; text-align: center; }
 h3.a-name { margin: 3px 0 3px 0; font-weight: bold; text-decoration: underline; }
 h4 { margin: 0 0 5px 0; font-size: 16px; }
 
-p { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
+p { margin: 5px 0 5px 0; font-size: 14px; text-align: center; }
 p>a { font-size: 12px; }
 p.u-upgrades { text-align: center; }
 p.h-helpers { text-align: center; }

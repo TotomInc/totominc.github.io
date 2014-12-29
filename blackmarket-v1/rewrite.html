@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Blackmarket - Prototype</title>
+
+  <script type="text/javascript" src="src/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="src/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
+  <script type="text/javascript" src="src/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<h1>Blackmarket - v0.02 <small><span id="h-money"></span></small></h1>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" class="active"><a href="#tab-stats" aria-controls="tab-stats" role="tab" data-toggle="tab">Stats</a></li>
+			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch-Notes</a></li>
+			  </ul>
+
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="tab-stats">
+			    	<p><span id="s-money"></span><br>
+			    	<span id="s-ammo"></span><br>
+			    	<span id="s-darkammo"></span></p>
+
+			    	<p><span id="s-weed"></span><br>
+			    	<span id="s-weedP"></span><br>
+			    	<span id="s-meth"></span><br>
+			    	<span id="s-methP"></span></p>
+
+			    	<p><span id="s-before"></span></p>
+
+			    	<p id="s-events"><span id="s-eventsLog"></span></p>
+
+			    	<p><small><span onclick="saveData()">Save</span> - <span onclick="loadData()">Load</span> - <span onclick="resetData()">Reset</span></small></p>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
+              <p><u>v0.010 :</u></p>
+              <p><b>Official prototype release.</b></p>
+
+              <p><u>v0.011 (12/21/2014):</u></p>
+              <p class="s-notes">- Upgrades only were rebalanced.<br>
+              - Added a general shop.</p>
+
+              <p><u>v0.012 (12/22/2014):</u></p>
+              <p class="s-notes">- Added "buildings" in the shop tab.<br>
+              - Added drugs : weed & meth.<br>
+              - Added a "tier" system. (for prestige!)<br>
+              - Added a random event system when shooting.</p>
+
+              <p><u>v0.013 (12/23/2014):</u></p>
+              <p class="s-notes">- Prestige system almost ready. (dark-ammo)<br>
+              - Added some upgrades and re-balanced some of them.<br>
+              - Fixed resolution when loading the page.</p>
+
+              <p><b>This game is in rapid development! Come back everyday to see if there is a new update! :)</b></p>
+              <p>Thanks you for playing my game, the game reached more than <b>4'000</b> unique visitors! :D</p>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/fix.min.js"></script>
+	<script src="js/game-rewrite.js"></script>
+</body>
+</html>

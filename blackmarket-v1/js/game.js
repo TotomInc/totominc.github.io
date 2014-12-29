@@ -49,15 +49,9 @@ var allVars = ['money', 'totalMoney', 'ammo', 'weed', 'meth', 'progress', 'befor
 'helpersTrigged', 'buildsOwned', 'dealersOwned', 'buildsMultiplier'];
 
 // Saving system
-function setItem(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-};
-function getItem(key) {
-    return JSON.parse(localStorage.getItem(key));
-};
-function removeItem(key) {
-    localStorage.removeItem(key);
-};
+function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
+function getItem(key) { return JSON.parse(localStorage.getItem(key)); };
+function removeItem(key) { localStorage.removeItem(key); };
 function saveData() {
     for (var i = 0; i < allVars.length; i++) {
         setItem(key + allVars[i], window[allVars[i]]);
@@ -151,7 +145,7 @@ function initGame() {
 
     init = true;
 };
-function updateStats() {
+function update() {
     $("#h-money").html("Money : " + fix(money, 2) + "$");
     $("#s-money").html("Money : " + fix(money, 2) + "$ <small>(" + fix(mps, 2) + "$/sec)</small>");
     $("#s-ammo").html("Ammo : " + fix(ammo[0], 0) + "/" + fix(ammo[4], 0));
@@ -162,21 +156,6 @@ function updateStats() {
     $("#s-meth").html("Meth : " + fix(meth[0], 2) + "g <small>(" + fix(meth[2], 2) + "g/sec)</small>");
     $("#s-methPrice").html("<br>Meth price : " + fix(meth[1], 2) + "$/g.");
 
-    if (ammo[0] == 0) {
-        $("#shoot").css('background', 'rgba(231, 76, 60, 0.3)');
-        $("#reload").css('background', 'rgba(46, 204, 113, 0.3)');
-    } else {
-        $("#shoot").css('background', 'none');
-        $("#reload").css('background', 'none');
-    };
-
-    ammo[5] = Math.floor(20 * Math.sqrt(totalMoney/1e5));
-};
-function updateActions() {
-    $("#a-shoot").html(fix(ammo[1] * (1 + ammo[5] * 1.5), 2) + "$/shoot - " + fix((ammo[2] / 1000), 2) + "s");
-    $("#a-reload").html("+" + fix(ammo[4], 0) + " ammo - " + fix((ammo[3] / 1000), 2) + "s");
-};
-function updateBuilds() {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i]; var c = builds[i].price * Math.pow(builds[i].inflation, buildsOwned[i]);
         $("#b-n" + (i+1)).html(b.name + " - ");
@@ -195,22 +174,29 @@ function updateBuilds() {
         $("#d-o" + (i+1)).html(dealersOwned[i] + " owned<br>");
         $("#d-r" + (i+1)).html("Sell " + fix(d.sell * dealersOwned[i] * (1 + ammo[5] * 1.5), 2) + " g. of " + d.type2 + "/sec");
     };
+
+    if (ammo[0] == 0) {
+        $("#shoot").css('background', 'rgba(231, 76, 60, 0.3)'); $("#reload").css('background', 'rgba(46, 204, 113, 0.3)'); }
+    else { $("#shoot").css('background', 'none'); $("#reload").css('background', 'none');
+    };
+
+    $("#a-shoot").html(fix(ammo[1] * (1 + ammo[5] * 1.5), 2) + "$/shoot - " + fix((ammo[2] / 1000), 2) + "s");
+    $("#a-reload").html("+" + fix(ammo[4], 0) + " ammo - " + fix((ammo[3] / 1000), 2) + "s");
+
+    ammo[5] = Math.floor(20 * Math.sqrt(totalMoney/1e5));
 };
 function updateGame(times) {
     if (init == true) {
         var t = times;
         hShoot(t); hReload(t);
-        updateStats(); updateActions(); updateBuilds(); buildReward(t); dealerReward(t);
+        update(); buildReward(t); dealerReward(t);
     };
 };
 function recoverLost() {
     now = new Date().getTime();
     var elapsedTime = now - before;
-    if (elapsedTime > 10) {
-        updateGame(Math.floor(elapsedTime / 10));
-    } else {
-        updateGame(1);
-    };
+    if (elapsedTime > 10) { updateGame(Math.floor(elapsedTime / 10)); }
+    else { updateGame(1); };
     before = new Date().getTime();
 };
 function event() {
