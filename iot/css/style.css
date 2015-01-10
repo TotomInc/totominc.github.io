@@ -1,9 +1,0 @@
-body { margin: 0; font-family: 'Consolas'; }
-h1 { margin: 0; font-size: 32px; text-align: center; }
-p { margin: 0; font-size: 14px; }
-
-.a { margin: 5px 0 5px 0; width: 90%; height: 30px; margin-right: auto; margin-left: auto; border: 1px solid black; border-radius: 4px; cursor: pointer; }
-.b { width: 0%; height: 100%; background: #073E87; }
-.c { font-size: 16px; text-decoration: underline; text-align: center; }
-.d { font-size: 16px; text-align: center; }
-.e { font-size: 12px; text-align: center; cursor: pointer; }
