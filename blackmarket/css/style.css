@@ -8,6 +8,8 @@ h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 .panel { transition: all 0.2s; }
 .panel:hover { box-shadow: 0 0 5px rgba(81, 203, 238, 1); border: 1px solid rgba(81, 203, 238, 1); transition: all 0.2s; }
 .panel-heading { text-align: center; }
+.list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
+.list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
 .progress { margin-bottom: 0; cursor: pointer; }
 .progress-bar { transition: 0; }
 .list-group-item { cursor: pointer; transition: all 0.1s; }
