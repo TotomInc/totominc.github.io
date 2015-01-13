@@ -1,0 +1,14 @@
+body { margin: 0; font-family: 'Consolas'; }
+h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
+h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
+
+/* custom Bootstrap */
+.navbar { border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
+.nav-tabs.nav-justified>li>a, .nav-tabs.nav-justified>li>a:hover { transition: all 0.2s; }
+.panel { transition: all 0.2s; }
+.panel:hover { box-shadow: 0 0 5px rgba(81, 203, 238, 1); border: 1px solid rgba(81, 203, 238, 1); transition: all 0.2s; }
+.panel-heading { text-align: center; }
+.progress { margin-bottom: 0; cursor: pointer; }
+.progress-bar { transition: 0; }
+.list-group-item { cursor: pointer; transition: all 0.1s; }
+.list-group-item:hover { transition: all 0.1s; }

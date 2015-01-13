@@ -2,17 +2,95 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Blackmarket - Incremental-game</title>
 
 	<script src="src/jquery-1.11.1.min.js"></script>
-	<link type="text/css" href="src/bootstrap.min.css">
+	<link rel="stylesheet" href="src/bootstrap.min.css">
 	<script src="src/bootstrap.min.js"></script>
-	<link type="text/css" href="src/font-awesome.min.css">
-	<link type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="src/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand">Blackmarket</a>
+	      <p class="navbar-text"><small>prototype - v0.20</small></p>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a><span id="h-money"></span></a></li>
+	        <li><a><span id="h-ammo"></span></a></li>
+	        <li><a><span id="h-d1"></span></a></li>
+	        <li><a><span id="h-d2"></span></a></li>
+	        <li><a><span id="h-d3"></span></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 
+	<div class="container-fluid">
+		<div class="row">
+		  <div class="col-md-4">
+				<div class="panel panel-default">
+				  <div class="panel-heading">Actions</div>
+				  <div class="panel-body">
+						<div id="p-1" class="progress">
+						  <div id="f-1" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"></div>
+						</div>
+						<h1><span id="a-n1"></span></h1>
+						<h2><span id="a-d1"></span></h2>
+
+						<div id="p-2" class="progress">
+						  <div id="f-2" class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"></div>
+						</div>
+						<h1><span id="a-n2"></span></h1>
+						<h2><span id="a-d2"></span></h2>
+				  </div>
+				</div>
+		  </div>
+		  <div class="col-md-4">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" class="active"><a href="#tab-up" aria-controls="tab-up" role="tab" data-toggle="tab">Upgrades</a></li>
+			    <li role="presentation"><a href="#tab-shop" aria-controls="tab-shop" role="tab" data-toggle="tab">Shop</a></li>
+			    <li role="presentation"><a href="#tab-helpers" aria-controls="tab-helpers" role="tab" data-toggle="tab">Helpers</a></li>
+			  </ul>
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
+						<div class="list-group">
+						  <a id="" class="list-group-item">Shoot reward x3 : 12$</a>
+						  <a id="" class="list-group-item">Shoot reward x3 : 60$</a>
+						  <a id="" class="list-group-item">Shoot reward x2.5 : 420$</a>
+						  <a id="" class="list-group-item">Shoot reward x2.5 : 2,940$</a>
+						  <a id="" class="list-group-item">Shoot time /1.5 : 90$</a>
+						  <a id="" class="list-group-item">Shoot time /1.5 : 1,350$</a>
+						  <a id="" class="list-group-item">Shoot time /1.25 : 4,410$</a>
+						  <a id="" class="list-group-item">Ammo stock x3 : 90$</a>
+						  <a id="" class="list-group-item">Ammo stock x3 : 1,350$</a>
+						</div>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-shop"></div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-helpers"></div>
+			  </div>
+		  </div>
+		  <div class="col-md-4">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" class="active"><a href="#tab-stats" aria-controls="tab-stats" role="tab" data-toggle="tab">Stats</a></li>
+			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch-Notes</a></li>
+			  </ul>
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="tab-stats"></div>
+			    <div role="tabpanel" class="tab-pane" id="tab-notes"></div>
+			  </div>
+		  </div>
+		</div>
+	</div>
+
+	<script src="js/resize.js"></script>
+	<script src="js/beautify.js"></script>
+	<script src="js/float.js"></script>
 	<script src="js/core.js"></script>
 </body>
 </html>
