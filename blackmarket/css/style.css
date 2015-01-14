@@ -1,6 +1,9 @@
 body { margin: 0; font-family: 'Consolas'; }
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
+li>a>span { color: #222 !important; }
+span.s-options { text-decoration: underline; cursor: pointer; }
+#a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
 
 /* custom Bootstrap */
 .navbar { border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
