@@ -11,6 +11,7 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 .panel { transition: all 0.2s; }
 .panel:hover { box-shadow: 0 0 5px rgba(81, 203, 238, 1); border: 1px solid rgba(81, 203, 238, 1); transition: all 0.2s; }
 .panel-heading { text-align: center; }
+.panel-body { background: rgba(217,237,247,0.1); }
 .list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
 .list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
 .progress { margin-bottom: 0; cursor: pointer; }

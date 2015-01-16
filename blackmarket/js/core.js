@@ -1,5 +1,5 @@
 var money; var shoot; var prestige; var currentGun;
-var dStock; var dName; var dPrice; var dSoldPS;
+var dStock; var dName; var dPrice;
 var dInit = [
     new Drug("Weed", 1),
     new Drug("Meth", 3),
@@ -31,7 +31,7 @@ var upgrades = [
     new Upgrade("Meth price x3", 12600, function() {dSoldPS[1] *= 3 })
 ];
 var init; var fps = 60; var interval = (1000 / fps); var key = "BM-INC_";
-var allVars = ["money", "shoot", "prestige", "currentGun", "dStock", "dName", "dPrice", "dSoldPS", "upgradesOwned"];
+var allVars = ["money", "shoot", "prestige", "currentGun", "dStock", "dName", "dPrice", "dSoldPS", "currentGun", "upgradesOwned"];
 
 // game display
 function initVars() {
@@ -43,7 +43,6 @@ function initVars() {
     dStock = []; dName = []; dPrice = []; dSoldPS = [];
     for (var i = 0; i < dInit.length; i++) {
         dStock.push(0);
-        dSoldPS.push(.5);
         dName.push(dInit[i].name);
         dPrice.push(dInit[i].price);
     };
@@ -77,7 +76,7 @@ function displayGame() {
             var d = dInit[i];
             $("#h-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g");
             $("#s-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g<br>");
-            $("#s-dp" + (i+1)).html("<small>" + d.name + " price : " + fix(dSoldPS[i], 2) + "$/g</small><br>");
+            $("#s-dp" + (i+1)).html("<small>" + d.name + " price : " + fix(dPrice[i], 2) + "$/g</small><br>");
         };
 
         for (var i = 0; i < upgrades.length; i++) { // if upgrade is available
@@ -90,7 +89,7 @@ function displayGame() {
         };
 
         if (shoot[0] < 1) { // hint on reload if needed
-            $("#f-1").attr("class", "progress-bar progress-bar-danger progress-bar-striped");
+            $("#f-1").attr("class", "progress-bar progress-bar-danger progress-bar-striped active");
             $("#f-1").css("width", "100%");
         };
         // basic stats display
@@ -105,7 +104,8 @@ function displayGame() {
         $("#a-d2").html(fix(shoot[4]/1000, 1) + " sec");
         // rank up the gun display
         gunRankUp();
-        $("#s-cg").html("Current gun : " + currentGun);
+        $("#s-cg").html("Current gun : " + currentGun + "<br>");
+        $("#s-ob").html("Overall bonus : x1.00");
     };
 };
 
@@ -113,6 +113,9 @@ function displayGame() {
 function gainMoney(source) {
     money[0] += source;
     money[1] += source;
+};
+function getPrice(index) {
+    return builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
 };
 function gunRankUp() {
     if (shoot[2] == 36) {
