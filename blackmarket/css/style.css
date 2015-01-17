@@ -18,3 +18,4 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 .progress-bar { transition: 0; }
 .list-group-item { cursor: pointer; transition: all 0.1s; }
 .list-group-item:hover { transition: all 0.1s; }
+.center { font-weight: bold; text-align: center; }

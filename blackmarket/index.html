@@ -35,7 +35,7 @@
 		<div class="row">
 		  <div class="col-md-4">
 				<div class="panel panel-info">
-				  <div class="panel-heading">Actions</div>
+				  <div class="panel-heading center">Actions</div>
 				  <div class="panel-body">
 						<div id="p-1" class="progress">
 						  <div id="f-1" class="progress-bar progress-bar-success active" role="progressbar"></div>
@@ -61,6 +61,7 @@
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
 						<div class="list-group">
+							<li class="list-group-item list-group-item-warning center">Upgrades helps you to be more efficient.</li>
 						  <a id="u-1" class="list-group-item"><span id="u-n1"></span><span id="u-c1"></span><span id="u-b1" class="badge"></span></a>
 						  <a id="u-2" class="list-group-item"><span id="u-n2"></span><span id="u-c2"></span><span id="u-b2" class="badge"></span></a>
 						  <a id="u-3" class="list-group-item"><span id="u-n3"></span><span id="u-c3"></span><span id="u-b3" class="badge"></span></a>
@@ -81,7 +82,18 @@
 						  <a id="u-18" class="list-group-item"><span id="u-n18"></span><span id="u-c18"></span><span id="u-b18" class="badge"></span></a>
 						</div>
 			    </div>
-			    <div role="tabpanel" class="tab-pane fade" id="tab-shop"></div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-shop">
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-warning center">Builds to earn drugs/sec.</li>
+						<a id="b-1" class="list-group-item"><span id="b-n1"></span><span id="b-c1"></span><span id="b-r1"></span><span id="b-o1" class="badge">0</span></a>
+						<a id="b-2" class="list-group-item"><span id="b-n2"></span><span id="b-c2"></span><span id="b-r2"></span><span id="b-o2" class="badge">0</span></a>
+						<a id="b-3" class="list-group-item"><span id="b-n3"></span><span id="b-c3"></span><span id="b-r3"></span><span id="b-o3" class="badge">0</span></a>
+						<a id="b-4" class="list-group-item"><span id="b-n4"></span><span id="b-c4"></span><span id="b-r4"></span><span id="b-o4" class="badge">0</span></a>
+						<a id="b-5" class="list-group-item"><span id="b-n5"></span><span id="b-c5"></span><span id="b-r5"></span><span id="b-o5" class="badge">0</span></a>
+						<a id="b-6" class="list-group-item"><span id="b-n6"></span><span id="b-c6"></span><span id="b-r6"></span><span id="b-o6" class="badge">0</span></a>
+						<li class="list-group-item list-group-item-warning center">Dealers to sell drugs and earn $/sec.</li>
+						</ul>
+			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-helpers">
 			    </div>
 			  </div>
@@ -134,6 +146,19 @@
 	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 	  ga('create', 'UA-54540685-9', 'auto');
 	  ga('send', 'pageview');
+	</script>
+	<script>
+		function msieversion() {
+		        var ua = window.navigator.userAgent;
+		        var msie = ua.indexOf("MSIE ");
+
+		        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
+		            alert("WARNING : You are using Internet Explorer, this browser is currently not supported for the game, we recommend to you to use modern browser like Google Chrome, Firefox, Safari or Opera. Otherwise, you won't be able to play the game, sorry.");
+		        else
+		            return;
+		   return false;
+		};
+		msieversion();
 	</script>
 </body>
 </html>
