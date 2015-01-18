@@ -53,8 +53,15 @@ var builds = [
     new Build("RV-91X2",        25000,  4,  1.25, 1, "meth"),
     new Build("Lab-Assistant",  100000, 16, 1.25, 1, "meth")
 ];
-var init; var fps = 60; var interval = (1000 / fps); var key = "BM-INC_";
-var allVars = ["money", "shoot", "prestige", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned"];
+var dealersOwned;
+var dealers = [
+    new Dealer("Street Dealer",     500,    0.5,    1.25, 0, "weed"),
+    new Dealer("Common Dealer",     7500,   2,      1.25, 0, "weed"),
+    new Dealer("Experienced Dealer",50000,  8,      1.25, 0, "weed")
+];
+var init; var fps = 60; var interval = (1000 / fps); var before; var key = "BM-INC_";
+var allVars = ["money", "shoot", "prestige", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned",
+"dealersOwned", "before"];
 
 // game display
 function initVars() {
@@ -62,6 +69,8 @@ function initVars() {
     shoot = [12, 1, 12, 1500, 5000];
     prestige = [];
     rank = "Glock-18"; rankMultiplier = 1;
+    before = new Date().getTime();
+
     dStock = []; dName = []; dPrice = []; dSoldPS = [];
     for (var i = 0; i < dInit.length; i++) {
         dStock.push(0);
@@ -77,6 +86,11 @@ function initVars() {
     buildsOwned = [];
     for (var i = 0; i < builds.length; i++) {
         buildsOwned.push(0);
+    };
+
+    dealersOwned = [];
+    for (var i = 0; i < dealers.length; i++) {
+        dealersOwned.push(0);
     };
 
     init = true;
@@ -96,10 +110,19 @@ function initGame() {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i];
         $("#b-n" + (i+1)).html(b.name + " : ");
-        $("#b-c" + (i+1)).html("cost " + fix(getPrice(i), 0) + "$<br>");
+        $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
         $("#b-r" + (i+1)).html(fix(b.reward, 2) + "g/sec of " + b.type2);
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
         $("#b-" + (i+1)).attr("onclick", "buyBuild(" + i + ");");
+    };
+
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
+        $("#d-r" + (i+1)).html("sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
+        $("#d-" + (i+1)).attr("onclick", "buyDealer(" + i + ");");
     };
 
     $("#f-1, #f-2").css("width", 0 + "%");
@@ -148,9 +171,16 @@ function updateShop() {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i];
         $("#b-n" + (i+1)).html(b.name + " : ");
-        $("#b-c" + (i+1)).html("cost " + fix(getPrice(i), 0) + "$<br>");
+        $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
         $("#b-r" + (i+1)).html(fix(b.reward, 2) + "g/sec of " + b.type2);
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
+    };
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
+        $("#d-r" + (i+1)).html("sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
     };
 };
 
@@ -159,11 +189,17 @@ function gainMoney(source) {
     money[0] += source;
     money[1] += source;
 };
-function getPrice(index) {
+function getBuildPrice(index) {
     return builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
 };
+function getDealerPrice(index) {
+    return dealers[index].price * Math.pow(dealers[index].inflation, dealersOwned[index]);
+};
 function getDrugInc(index) {
-    return (builds[index].reward * buildsOwned[index]) / 63;
+    return (builds[index].reward * buildsOwned[index]) / 200; // mysterious bug... :( why 200 instead of 63?
+};
+function getDealerSell(index) {
+    return ((dealers[index].sell * dealersOwned[index]) * dPrice[index]) / 63;
 };
 function gunRankUp() {
     for (var i = 0; i < ranks.length; i++) {
@@ -231,8 +267,17 @@ function reloadAction() {
 // core update function
 function coreUpdate() {
     if (init == true) {
-        buildReward();
+        now = new Date().getTime();
+        var elapsedTime = now - before;
+        if (elapsedTime > 10) {
+            buildReward(Math.floor(elapsedTime / 10));
+            dealerReward(Math.floor(elapsedTime / 10));
+        } else {
+            buildReward(1);
+            dealerReward(1);
+        }
         displayGame();
+        before = new Date().getTime();
     };
 };
 
@@ -272,26 +317,50 @@ function Build(name, price, reward, inflation, type1, type2) {
     this.type2 = type2;
 };
 function buyBuild(index) {
-    if (money[0] >= getPrice(index)) {
-        money[0] -= getPrice(index);
+    if (money[0] >= getBuildPrice(index)) {
+        money[0] -= getBuildPrice(index);
         buildsOwned[index]++;
         updateShop();
     };
 };
-function buildReward() {
+function buildReward(times) {
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i];
         for (var k = 0; k < dInit.length; k++) {
             var d = dInit[k];
             if (b.type1 == 0) {
-                dStock[0] += getDrugInc(i);
+                dStock[0] += getDrugInc(i) * times;
             };
             if (b.type1 == 1) {
-                dStock[1] += getDrugInc(i);
+                dStock[1] += getDrugInc(i) * times;
             };
             if (b.type1 == 2) {
-                dStock[2] += getDrugInc(i);
+                dStock[2] += getDrugInc(i) * times;
             };
+        };
+    };
+};
+function Dealer(name, price, sell, inflation, type1, type2) {
+    this.name = name;
+    this.price = price;
+    this.sell = sell;
+    this.inflation = inflation;
+    this.type1 = type1;
+    this.type2 = type2;
+};
+function buyDealer(index) {
+    if (money[0] >= getDealerPrice(index)) {
+        money[0] -= getDealerPrice(index);
+        dealersOwned[index]++;
+        updateShop();
+    };
+};
+function dealerReward(times) {
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        if (d.type1 == 0 && dStock[0] > 0.1) {
+            dStock[0] -= getDealerSell(i) * times;
+            gainMoney((getDealerSell(i) * dPrice[0]) * times);
         };
     };
 };
