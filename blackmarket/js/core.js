@@ -13,7 +13,7 @@ var ranks = [
     new Rank("AUG",             9,  5000000,    1.50),
     new Rank("AK-47",           10, 25000000,   1.55)
 ];
-var dStock; var dName; var dPrice;
+var dStock; var dName; var dPrice; var dPS;
 var dInit = [
     new Drug("Weed", 1, 0),
     new Drug("Meth", 3, 1),
@@ -37,12 +37,12 @@ var upgrades = [
     new Upgrade("Reload time /1.5", 1890, function() { shoot[4] /= 1.5 }),
     new Upgrade("Reload time /1.25", 13230, function() { shoot[4] /= 1.25 }),
 
-    new Upgrade("Weed price x1.5", 600, function() {dSoldPS[0] *= 1.5 }), // *3
-    new Upgrade("Weed price x1.5", 1800, function() {dSoldPS[0] *= 1.5 }),
-    new Upgrade("Weed price x3", 5400, function() {dSoldPS[0] *= 3 }),
-    new Upgrade("Meth price x1.5", 1400, function() {dSoldPS[1] *= 1.5 }),
-    new Upgrade("Meth price x1.5", 4200, function() {dSoldPS[1] *= 1.5 }),
-    new Upgrade("Meth price x3", 12600, function() {dSoldPS[1] *= 3 })
+    new Upgrade("Weed price x1.5", 600, function() {dPrice[0] *= 1.5 }), // *3
+    new Upgrade("Weed price x1.5", 1800, function() {dPrice[0] *= 1.5 }),
+    new Upgrade("Weed price x3", 5400, function() {dPrice[0] *= 3 }),
+    new Upgrade("Meth price x1.5", 1400, function() {dPrice[1] *= 1.5 }),
+    new Upgrade("Meth price x1.5", 4200, function() {dPrice[1] *= 1.5 }),
+    new Upgrade("Meth price x3", 12600, function() {dPrice[1] *= 3 })
 ];
 var buildsOwned;
 var builds = [
@@ -64,11 +64,12 @@ function initVars() {
     rank = "Glock-18"; rankMultiplier = 1;
     before = new Date().getTime();
 
-    dStock = []; dName = []; dPrice = []; dSoldPS = [];
+    dStock = []; dName = []; dPrice = []; dPS = [];
     for (var i = 0; i < dInit.length; i++) {
         dStock.push(0);
         dName.push(dInit[i].name);
         dPrice.push(dInit[i].price);
+        dPS.push(0);
     };
 
     upgradesOwned = [];
@@ -113,7 +114,7 @@ function displayGame() {
         for (var i = 0; i < dInit.length; i++) { // drug stock display
             var d = dInit[i];
             $("#h-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g");
-            $("#s-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g (0.00g/sec)<br>");
+            $("#s-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g (" + fix(dPS[i], 2) + "g/sec)<br>");
             $("#s-dp" + (i+1)).html("<small>" + d.name + " price : " + fix(dPrice[i], 2) + "$/g</small><br>");
         };
 
