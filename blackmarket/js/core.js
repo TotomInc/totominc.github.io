@@ -15,9 +15,9 @@ var ranks = [
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
-    new Drug("Weed", 1, 0),
-    new Drug("Meth", 3, 1),
-    new Drug("Cocaine", 6, 2)
+    new Drug("Weed",    10, 0),
+    new Drug("Meth",    30, 1),
+    new Drug("Cocaine", 60, 2)
 ];
 var upgradesOwned;
 var upgrades = [
@@ -53,8 +53,18 @@ var builds = [
     new Build("RV-91X2",        25000,  0.5,    1.25, 1, "meth"),
     new Build("Lab-Assistant",  100000, 2,      1.25, 1, "meth")
 ];
+var dealersOwned;
+var dealers = [
+    new Dealer("Slave Dealer",          500,    0.05,   1.25, 0, "weed"),
+    new Dealer("Street Dealer",         5000,   0.5,    1.25, 0, "weed"),
+    new Dealer("Dirty Dealer",          20000,  2,      1.25, 0, "weed"),
+    new Dealer("Common Dealer",         7500,   0.05,   1.25, 1, "meth"),
+    new Dealer("Experienced Dealer",    25000,  0.5,    1.25, 1, "meth"),
+    new Dealer("Royal Dealer",          100000, 2,      1.25, 1, "meth")
+];
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "prestige", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned"];
+var allVars = ["money", "shoot", "prestige", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned",
+"dealersOwned"];
 
 // game display
 function initVars() {
@@ -82,6 +92,11 @@ function initVars() {
         buildsOwned.push(0);
     };
 
+    dealersOwned = [];
+    for (var i = 0; i < dealers.length; i++) {
+        dealersOwned.push(0);
+    };
+
     init = true;
 };
 function initGame() {
@@ -100,9 +115,18 @@ function initGame() {
         var b = builds[i];
         $("#b-n" + (i+1)).html(b.name + " : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html(fix(b.reward, 2) + "g/sec of " + b.type2);
+        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of " + b.type2);
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
         $("#b-" + (i+1)).attr("onclick", "buyBuild(" + i + ");");
+    };
+
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
+        $("#d-" + (i+1)).attr("onclick", "buyDealer(" + i + ");");
     };
 
     $("#f-1, #f-2").css("width", 0 + "%");
@@ -137,9 +161,9 @@ function displayGame() {
         $("#s-totalmoney").html("Total money : " + fix(money[1], 2) + "$<br>");
         $("#h-ammo, #s-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2]);
         $("#a-n1").html("Shoot : +" + fix(shoot[1] * rankMultiplier, 2) + "$");
-        $("#a-d1").html(fix(shoot[3]/1000, 1) + " sec/shoot");
+        $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
-        $("#a-d2").html(fix(shoot[4]/1000, 1) + " sec");
+        $("#a-d2").html(fix(shoot[4]/1000, 2) + " sec");
         // rank up the gun display
         gunRankUp();
         $("#s-cg").html("Current gun : " + rank + "<br>");
@@ -152,8 +176,15 @@ function updateShop() {
         var b = builds[i];
         $("#b-n" + (i+1)).html(b.name + " : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html(fix(b.reward, 2) + "g/sec of " + b.type2);
+        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of " + b.type2);
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
+    };
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
     };
 };
 
@@ -165,8 +196,20 @@ function gainMoney(source) {
 function getBuildPrice(index) {
     return builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
 };
-function getDrugInc(index) {
+function getDealerPrice(index) {
+    return dealers[index].price * Math.pow(dealers[index].inflation, dealersOwned[index]);
+};
+function getDrugInc(index) { // used to gain
     return (builds[index].reward * buildsOwned[index]) / 187.5;
+};
+function getNormalDrugInc(index) { // used to display
+    return (builds[index].reward * buildsOwned[index]);
+};
+function getDealerSell(index) { // used to gain
+    return (dealers[index].sell * dealersOwned[index]) / 187.5;
+};
+function getNormalDealerSell(index) { // used to display
+    return (dealers[index].sell * dealersOwned[index]);
 };
 function gunRankUp() {
     for (var i = 0; i < ranks.length; i++) {
@@ -238,9 +281,11 @@ function coreUpdate() {
         var elapsedTime = now - before;
         if (elapsedTime > 10) {
             buildReward(Math.floor(elapsedTime / 10));
+            dealerReward(Math.floor(elapsedTime / 10));
         } else {
             buildReward(1);
-        }
+            dealerReward(1);
+        };
         displayGame();
         before = new Date().getTime();
     };
@@ -295,12 +340,51 @@ function buildReward(times) {
             var d = dInit[k];
             if (b.type1 == 0) {
                 dStock[0] += getDrugInc(i) * times;
+                dPS[0] = (getNormalDrugInc(0) + getNormalDrugInc(1) + getNormalDrugInc(2)) - (getNormalDealerSell(0));
             };
             if (b.type1 == 1) {
                 dStock[1] += getDrugInc(i) * times;
+                dPS[1] = (buildsOwned[3] * builds[3].reward) + (buildsOwned[4] * builds[4].reward) + (buildsOwned[5] * builds[5].reward);
             };
             if (b.type1 == 2) {
                 dStock[2] += getDrugInc(i) * times;
+            };
+        };
+    };
+};
+function Dealer(name, price, sell, inflation, type1, type2) {
+    this.name = name;
+    this.price = price;
+    this.sell = sell;
+    this.inflation = inflation;
+    this.type1 = type1;
+    this.type2 = type2;
+};
+function buyDealer(index) {
+    if (money[0] >= getDealerPrice(index)) {
+        money[0] -= getDealerPrice(index);
+        dealersOwned[index]++;
+        updateShop();
+    };
+};
+function dealerReward(times) {
+    for (var i = 0; i < dealers.length; i++) {
+        var d = dealers[i];
+        for (var x = 0; x < dInit.length; x++) {
+            var k = dInit[x];
+            if (d.type1 == 0) {
+                if (dStock[0] > 0.01) {
+                    dStock[0] -= getDealerSell(i) * times;
+                    gainMoney((getDealerSell(i) * dPrice[0]) * times);
+                };
+                if (dStock[1] > 0.01) {
+                    dStock[1] -= getDealerSell(i) * times;
+                    gainMoney((getDealerSell(i) * dPrice[1]) * times);
+                };
+                if (dStock[2] > 0.01) {
+                    dStock[2] -= getDealerSell(i) * times;
+                    gainMoney((getDealerSell(i) * dPrice[2]) * times);
+                };
             };
         };
     };
@@ -315,3 +399,6 @@ window.onload = function() {
 window.setInterval(function() {
     coreUpdate();
 }, interval);
+window.setInterval(function() {
+    saveData();
+}, 5000);
