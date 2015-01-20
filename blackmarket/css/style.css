@@ -1,17 +1,18 @@
-body { margin: 0; font-family: 'Consolas'; cursor: default; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+body { margin: 0; font-family: Consolas; cursor: default; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 li>a>span { color: #222 !important; }
 span.s-options { text-decoration: underline; cursor: pointer; }
 #a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.0); border-radius: 2px; }
+::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
 
 /* custom Bootstrap */
 .navbar { border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
 .nav-tabs.nav-justified>li>a, .nav-tabs.nav-justified>li>a:hover { transition: all 0.2s; }
-.panel { transition: all 0.2s; }
-.panel:hover { box-shadow: 0 0 5px rgba(81, 203, 238, 1); border: 1px solid rgba(81, 203, 238, 1); transition: all 0.2s; }
 .panel-heading { text-align: center; }
-.panel-body { background: rgba(217,237,247,0.1); }
+.panel-body { background: rgba(217,237,247,0.1); color: #31708f; }
 .list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
 .list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
 .progress { margin-bottom: 0; cursor: pointer; }
@@ -20,4 +21,4 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 .list-group-item:hover { transition: all 0.1s; }
 .list-group-item-info { background: rgba(217,237,247,0.1); border: 1px solid #C6DBE5; }
 .center { font-weight: bold; text-align: center; }
-.active { cursor: default; }
+.stats-heading { cursor: default; color: #31708f; background: #d9edf7; border: 1px solid #C6DBE5; }
