@@ -21,28 +21,32 @@ var dInit = [
 ];
 var upgradesOwned;
 var upgrades = [
-    new Upgrade("Shoot reward x3", 12, function() { shoot[1] *= 3 }), // *7
-    new Upgrade("Shoot reward x3", 60, function() { shoot[1] *= 3 }),
-    new Upgrade("Shoot reward x2.5", 420, function() { shoot[1] *= 2.5 }),
-    new Upgrade("Shoot reward x2.5", 2940, function() { shoot[1] *= 2.5 }),
+    new Upgrade("Shoot reward x3",      12,         function() { shoot[1] *= 3 }), // *7
+    new Upgrade("Shoot reward x3",      60,         function() { shoot[1] *= 3 }),
+    new Upgrade("Shoot reward x2.5",    420,        function() { shoot[1] *= 2.5 }),
+    new Upgrade("Shoot reward x2.5",    2940,       function() { shoot[1] *= 2.5 }),
+    new Upgrade("Shoot reward x2",      20580,      function() { shoot[1] *= 2 }),
 
-    new Upgrade("Shoot time /1.5", 90, function() { shoot[3] /= 1.5 }), // *7
-    new Upgrade("Shoot time /1.5", 630, function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.25", 4410, function() { shoot[3] /= 1.25 }),
+    new Upgrade("Shoot time /1.5",      90,         function() { shoot[3] /= 1.5 }), // *7
+    new Upgrade("Shoot time /1.5",      630,        function() { shoot[3] /= 1.5 }),
+    new Upgrade("Shoot time /1.25",     4410,       function() { shoot[3] /= 1.25 }),
+    new Upgrade("Shoot time /1.10",     30870,      function() { shoot[3] /= 1.1 }),
 
-    new Upgrade("Ammo stock x3", 90, function() { shoot[2] *= 3 }), // *15
-    new Upgrade("Ammo stock x3", 1350, function() { shoot[2] *= 3 }),
+    new Upgrade("Ammo stock x3",    90,         function() { shoot[2] *= 3 }), // *15
+    new Upgrade("Ammo stock x3",    1350,       function() { shoot[2] *= 3 }),
+    new Upgrade("Ammo stock x2",    20250,      function() { shoot[2] *= 2 }),
 
-    new Upgrade("Reload time /1.5", 270, function() { shoot[4] /= 1.5 }), // *7
-    new Upgrade("Reload time /1.5", 1890, function() { shoot[4] /= 1.5 }),
-    new Upgrade("Reload time /1.25", 13230, function() { shoot[4] /= 1.25 }),
+    new Upgrade("Reload time /1.5",     270,        function() { shoot[4] /= 1.5 }), // *7
+    new Upgrade("Reload time /1.5",     1890,       function() { shoot[4] /= 1.5 }),
+    new Upgrade("Reload time /1.25",    13230,      function() { shoot[4] /= 1.25 }),
+    new Upgrade("Reload time /1.10",    92624,      function() { shoot[4] /= 1.1 }),
 
-    new Upgrade("Weed price x1.5", 600, function() {dPrice[0] *= 1.5 }), // *3
-    new Upgrade("Weed price x1.5", 1800, function() {dPrice[0] *= 1.5 }),
-    new Upgrade("Weed price x3", 5400, function() {dPrice[0] *= 3 }),
-    new Upgrade("Meth price x1.5", 1400, function() {dPrice[1] *= 1.5 }),
-    new Upgrade("Meth price x1.5", 4200, function() {dPrice[1] *= 1.5 }),
-    new Upgrade("Meth price x3", 12600, function() {dPrice[1] *= 3 })
+    new Upgrade("Weed price x1.5",  600,        function() {dPrice[0] *= 1.5 }), // *3
+    new Upgrade("Weed price x1.5",  1800,       function() {dPrice[0] *= 1.5 }),
+    new Upgrade("Weed price x3",    5400,       function() {dPrice[0] *= 3 }),
+    new Upgrade("Meth price x1.5",  1400,       function() {dPrice[1] *= 1.5 }),
+    new Upgrade("Meth price x1.5",  4200,       function() {dPrice[1] *= 1.5 }),
+    new Upgrade("Meth price x3",    12600,      function() {dPrice[1] *= 3 })
 ];
 var buildsOwned;
 var builds = [
@@ -110,18 +114,18 @@ function initGame() {
 
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i];
-        $("#b-n" + (i+1)).html(b.name + " : ");
+        $("#b-n" + (i+1)).html("<b>" + b.name + "</b> : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of " + b.type2);
+        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
         $("#b-" + (i+1)).attr("onclick", "buyBuild(" + i + ");");
     };
 
     for (var i = 0; i < dealers.length; i++) {
         var d = dealers[i];
-        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-n" + (i+1)).html("<b>" + d.name + "</b> : ");
         $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
-        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of <b>" + d.type2 + "</b>");
         $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
         $("#d-" + (i+1)).attr("onclick", "buyDealer(" + i + ");");
     };
@@ -172,16 +176,16 @@ function updateShop() {
     // update shop when buy something on the shop
     for (var i = 0; i < builds.length; i++) { // updating builds
         var b = builds[i];
-        $("#b-n" + (i+1)).html(b.name + " : ");
+        $("#b-n" + (i+1)).html("<b>" + b.name + "</b> : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of " + b.type2);
+        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
     };
     for (var i = 0; i < dealers.length; i++) { // updating dealers
         var d = dealers[i];
-        $("#d-n" + (i+1)).html(d.name + " : ");
+        $("#d-n" + (i+1)).html("<b>" + d.name + "</b> : ");
         $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
-        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of " + d.type2);
+        $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of <b>" + d.type2 + "</b>");
         $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
     };
 };
