@@ -6,6 +6,7 @@ body { margin: 0; font-family: Consolas; cursor: default; -webkit-touch-callout:
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 li>a>span { color: #222 !important; }
+a.s-links { text-decoration: underline; text-align: center; }
 span.s-options { text-decoration: underline; cursor: pointer; }
 p { margin: 5px 0 5px 0; }
 p.s-version { font-size: 16px; }
