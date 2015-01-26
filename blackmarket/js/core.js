@@ -62,13 +62,14 @@ var dealers = [
     new Dealer("Experienced Dealer",    25000,  0.5,    1.25, 1, "meth"),
     new Dealer("Royal Dealer",          100000, 2,      1.25, 1, "meth")
 ];
+var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "prestige", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned",
+var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned",
 "buildsOwned", "dealersOwned"];
 
 // game display
 function initVars() {
-    money = [0, 0];
+    money = [0, 0, 0];
     shoot = [12, 1, 12, 1500, 5000];
     prestige = [];
     rank = "Glock-18"; rankMultiplier = 1;
@@ -83,19 +84,16 @@ function initVars() {
     };
 
     upgradesOwned = [];
-    for (var i = 0; i < upgrades.length; i++) {
+    for (var i = 0; i < upgrades.length; i++)
         upgradesOwned.push(false);
-    };
 
     buildsOwned = [];
-    for (var i = 0; i < builds.length; i++) {
+    for (var i = 0; i < builds.length; i++)
         buildsOwned.push(0);
-    };
 
     dealersOwned = [];
-    for (var i = 0; i < dealers.length; i++) {
+    for (var i = 0; i < dealers.length; i++)
         dealersOwned.push(0);
-    };
 
     init = true;
 };
@@ -135,7 +133,7 @@ function initGame() {
 };
 function displayGame() {
     if (init == true) {
-        // drug stock display and PS
+        // drug stock display
         for (var i = 0; i < dInit.length; i++) {
             var d = dInit[i];
             $("#h-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g");
@@ -158,7 +156,7 @@ function displayGame() {
         };
         // basic stats display
         $("#h-money").html("Money : " + fix(money[0], 2) + "$");
-        $("#s-money").html("Money : " + fix(money[0], 2) + "$<br>");
+        $("#s-money").html("Money : " + fix(money[0], 2) + "$ (" + fix(money[2], 2) + "$/sec)<br>");
         $("#s-totalmoney").html("Total money : " + fix(money[1], 2) + "$<br>");
         $("#h-ammo, #s-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2]);
         $("#a-n1").html("Shoot : +" + fix(shoot[1] * rankMultiplier, 2) + "$");
@@ -381,16 +379,19 @@ function dealerReward(times) {
                 if (dStock[0] > 0.01) {
                     dStock[0] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[0]) * rankMultiplier) * times);
+                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]) * rankMultiplier;
                 };
                 if (dStock[1] > 0.01) {
                     dStock[1] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
+                    mps1 = ((dealers[3].sell * dealersOwned[3]) + (dealers[4].sell * dealersOwned[4]) + (dealers[5].sell * dealersOwned[5]) * rankMultiplier);
                 };
                 if (dStock[2] > 0.01) {
                     dStock[2] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[2]) * rankMultiplier) * times);
                 };
             };
+            money[2] = mps + mps1 + mps2;
         };
     };
 };
