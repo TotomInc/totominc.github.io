@@ -1,13 +1,16 @@
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.0); border-radius: 2px; }
+::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
+
 body { margin: 0; font-family: Consolas; cursor: default; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 li>a>span { color: #222 !important; }
 span.s-options { text-decoration: underline; cursor: pointer; }
 p { margin: 5px 0 5px 0; }
+p.s-version { font-size: 16px; }
+p.s-notes { text-align: justify; }
 #a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.0); border-radius: 2px; }
-::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
 
 /* custom Bootstrap */
 .navbar { border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
