@@ -1,8 +1,0 @@
-.u-button, .a-button, .m-button                         { width: 100%; height: 40px; margin-left: auto; margin-right: auto; }
-.u-button h1, .a-button h1, .m-button h1                { margin: 5px 0 0 0; font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300; text-align: center; cursor: default; }
-.u-button h1>span.a, .m-button h1>span.a                { cursor: pointer; border-bottom: 1px solid #398559; transition: all 0.2s; }
-.u-button h1>span.a:hover, .m-button h1>span.a:hover    { border-bottom: 1px solid #e74c3c; transition: all 0.2s; }
-
-.tab-content h2 { margin: 10px 0 10px 0; font-family: 'Lato', sans-serif; font-size: 38px; font-weight: 300; text-align: center; cursor: default; }
-
-.tab-line { margin-left: auto; margin-right: auto; width: 75%; height: 1px; border-bottom: 1px solid #2980b9; }
