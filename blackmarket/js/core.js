@@ -64,8 +64,7 @@ var dealers = [
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned",
-"buildsOwned", "dealersOwned"];
+var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned"];
 
 // game display
 function initVars() {
@@ -345,9 +344,9 @@ function buildReward(times) {
             };
             if (b.type1 == 1) {
                 dStock[1] += getDrugInc(i) * times;
-                var pos = (getNormalDrugInc(3) + getNormalDrugInc(4) + getNormalDrugInc(5));
-                var neg = (getNormalDealerSell(3) + getNormalDealerSell(4) + getNormalDealerSell(5));
-                dPS[1] = pos - neg;
+                var pos1 = (getNormalDrugInc(3) + getNormalDrugInc(4) + getNormalDrugInc(5));
+                var neg1 = (getNormalDealerSell(3) + getNormalDealerSell(4) + getNormalDealerSell(5));
+                dPS[1] = pos1 - neg1;
             };
             if (b.type1 == 2) {
                 dStock[2] += getDrugInc(i) * times;
@@ -379,13 +378,19 @@ function dealerReward(times) {
                 if (dStock[0] > 0.01) {
                     dStock[0] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[0]) * rankMultiplier) * times);
-                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]) * rankMultiplier;
+                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]);
+                    mps *= rankMultiplier;
                 };
+            };
+            if (d.type1 == 1) {
                 if (dStock[1] > 0.01) {
                     dStock[1] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
-                    mps1 = ((dealers[3].sell * dealersOwned[3]) + (dealers[4].sell * dealersOwned[4]) + (dealers[5].sell * dealersOwned[5]) * rankMultiplier);
-                };
+                    mps1 = ((dealers[3].sell * dealersOwned[3]) * dPrice[1]) + ((dealers[4].sell * dealersOwned[4]) * dPrice[1]) + ((dealers[5].sell * dealersOwned[5]) * dPrice[1]);
+                    mps1 *= rankMultiplier;
+                }; 
+            };
+            if (d.type1 == 2) {
                 if (dStock[2] > 0.01) {
                     dStock[2] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[2]) * rankMultiplier) * times);
@@ -407,4 +412,4 @@ window.setInterval(function() {
 }, interval);
 window.setInterval(function() {
     saveData();
-}, 5000);
+}, 1000);
