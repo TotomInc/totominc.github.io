@@ -22,3 +22,8 @@ function resetData() {
     };
     location.reload();
 };
+function hardReset() {
+    if (confirm("Do you really want to hard-reset the game, lost everything and restart from scratch?")) {
+        resetData();
+    };
+};
