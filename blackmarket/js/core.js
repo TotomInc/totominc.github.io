@@ -1,4 +1,5 @@
 var money; var shoot; var prestige;
+var totalShoots; var totalReloads;
 var rank; var rankMultiplier;
 var ranks = [
     new Rank("Glock-18",        0,  100,        1.05),
@@ -68,12 +69,13 @@ var dealers = [
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
+var allVars = ["money", "shoot", "rank", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
 
 // game display
 function initVars() {
     money = [0, 0, 0];
     shoot = [12, 1, 12, 1500, 5000];
+    totalShoots = 0; totalReloads = 0;
     prestige = [];
     rank = "Glock-18"; rankMultiplier = 1;
     before = new Date().getTime();
@@ -151,6 +153,29 @@ function displayGame() {
             } else {
                 $("#u-" + (i+1)).attr("class", "list-group-item");
             };
+        };
+        // actions basic tutorial
+        if (totalShoots == 0) {
+            $("#a-i1").html("Click on the bar to shoot!");
+        } else {
+            if (totalShoots > 0 && totalShoots < 4) {
+                $("#a-i1").html("Yeah, you understand how it works.<br>Shoot all your bullets now.");
+            } else {
+                if (totalShoots > 4 && totalShoots < 8) {
+                    $("#a-i1").html("When you shoot, you earn dollars.");
+                } else {
+                    if (totalShoots > 8 && totalShoots < 11) {
+                        $("#a-i1").html("You can see your stats on the top-bar.");
+                    };
+                };
+            };
+        };
+        if (totalShoots == 12) {
+            $("#a-i2").html("No more ammo!<br>Click on the bar to reload and gain ammo!");
+            $("#a-i1").css("display", "none");
+        };
+        if (totalReloads > 0) {
+            $("#a-i2").css("display", "none");
         };
         // hint on reload if needed
         if (shoot[0] < 1) {
@@ -236,6 +261,7 @@ function shootAction() {
         $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#999");
         window.setTimeout(function() {
             shoot[0] -= 1;
+            totalShoots++;
             gainMoney(shoot[1] * rankMultiplier);
             shootEvent();
             $("#p-1").attr("onclick", "shootAction();");
@@ -271,6 +297,7 @@ function reloadAction() {
         $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#999");
         window.setTimeout(function() {
             shoot[0] = shoot[2];
+            totalReloads++;
             $("#p-1").attr("onclick", "shootAction();");
             $("#p-2").attr("onclick", "reloadAction();");
             $("#f-1").attr("class", "progress-bar progress-bar-success active");

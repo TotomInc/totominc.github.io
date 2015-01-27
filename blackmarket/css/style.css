@@ -20,7 +20,7 @@ p.s-notes { text-align: justify; }
 .panel-body { background: rgba(217,237,247,0.1); color: #31708f; }
 .list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
 .list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
-.progress { margin-bottom: 0; cursor: pointer; }
+.progress { height: 50px; margin-bottom: 0; cursor: pointer; }
 .progress-bar { transition: 0; }
 .list-group-item { cursor: pointer; transition: all 0.1s; }
 .list-group-item:hover { transition: all 0.1s; }
