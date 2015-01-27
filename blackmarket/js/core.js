@@ -68,7 +68,7 @@ var dealers = [
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned"];
+var allVars = ["money", "shoot", "rank", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
 
 // game display
 function initVars() {
@@ -222,6 +222,12 @@ function gunRankUp() {
         };
     };
 };
+function offlineCalc() {
+    var now = new Date().getTime();
+    var offlineTime = now - before;
+    buildReward(Math.floor(offlineTime/interval));
+    dealerReward(Math.floor(offlineTime/interval));
+};
 
 // basic actions functions
 function shootAction() {
@@ -281,9 +287,9 @@ function coreUpdate() {
     if (init == true) {
         now = new Date().getTime();
         var elapsedTime = now - before;
-        if (elapsedTime > 10) {
-            buildReward(Math.floor(elapsedTime / 10));
-            dealerReward(Math.floor(elapsedTime / 10));
+        if (elapsedTime > interval) {
+            buildReward(Math.floor(elapsedTime / interval));
+            dealerReward(Math.floor(elapsedTime / interval));
         } else {
             buildReward(1);
             dealerReward(1);
@@ -410,6 +416,7 @@ window.onload = function() {
     initVars();
     loadData();
     initGame();
+    offlineCalc();
 };
 window.setInterval(function() {
     coreUpdate();
