@@ -52,19 +52,19 @@ var buildsOwned;
 var builds = [
     new Build("Weed Seed",      500,    0.05,   1.12, 0, "weed"),
     new Build("Weed Plant",     5000,   0.5,    1.11, 0, "weed"),
-    new Build("Weed Tree",      20000,  2,      1.10, 0, "weed"),
-    new Build("Rusty Van",      7500,   0.05,   1.12, 1, "meth"),
-    new Build("RV-91X2",        25000,  0.5,    1.11, 1, "meth"),
-    new Build("Lab-Assistant",  100000, 2,      1.10, 1, "meth")
+    new Build("Weed Tree",      17500,  2,      1.10, 0, "weed"),
+    new Build("Rusty Van",      3000,   0.05,   1.12, 1, "meth"),
+    new Build("RV-91X2",        9500,   0.5,    1.11, 1, "meth"),
+    new Build("Lab-Assistant",  42500,  2,      1.10, 1, "meth")
 ];
 var dealersOwned;
 var dealers = [
     new Dealer("Slave Dealer",          500,    0.05,   1.15, 0, "weed"),
     new Dealer("Street Dealer",         5000,   0.5,    1.14, 0, "weed"),
-    new Dealer("Dirty Dealer",          20000,  2,      1.13, 0, "weed"),
-    new Dealer("Common Dealer",         7500,   0.05,   1.15, 1, "meth"),
-    new Dealer("Experienced Dealer",    25000,  0.5,    1.14, 1, "meth"),
-    new Dealer("Royal Dealer",          100000, 2,      1.13, 1, "meth")
+    new Dealer("Dirty Dealer",          17500,  2,      1.13, 0, "weed"),
+    new Dealer("Common Dealer",         3000,   0.05,   1.15, 1, "meth"),
+    new Dealer("Experienced Dealer",    9500,   0.5,    1.14, 1, "meth"),
+    new Dealer("Royal Dealer",          42500,  2,      1.13, 1, "meth")
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
