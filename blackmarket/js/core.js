@@ -16,56 +16,60 @@ var ranks = [
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
-    new Drug("Weed",    10, 0),
-    new Drug("Meth",    30, 1),
-    new Drug("Cocaine", 60, 2)
+    new Drug("Weed",    15, 0),
+    new Drug("Meth",    45, 1),
+    new Drug("Cocaine", 135, 2)
 ];
 var upgradesOwned;
 var upgrades = [
-    new Upgrade("Shoot reward x3",      12,         function() { shoot[1] *= 3 }), // *7
-    new Upgrade("Shoot reward x3",      60,         function() { shoot[1] *= 3 }),
-    new Upgrade("Shoot reward x2.5",    420,        function() { shoot[1] *= 2.5 }),
-    new Upgrade("Shoot reward x2.5",    2940,       function() { shoot[1] *= 2.5 }),
-    new Upgrade("Shoot reward x2",      20580,      function() { shoot[1] *= 2 }),
+    new Upgrade("Shoot reward x3",      12,         function() { shoot[1] *= 3 },       "money",    "$"), // *7
+    new Upgrade("Shoot reward x3",      60,         function() { shoot[1] *= 3 },       "money",    "$"),
+    new Upgrade("Shoot reward x2",      420,        function() { shoot[1] *= 2 },       "money",    "$"),
+    new Upgrade("Shoot reward x2",      2940,       function() { shoot[1] *= 2 },       "money",    "$"),
+    new Upgrade("Shoot reward x2",      20580,      function() { shoot[1] *= 2 },       "money",    "$"),
 
-    new Upgrade("Shoot time /1.5",      90,         function() { shoot[3] /= 1.5 }), // *7
-    new Upgrade("Shoot time /1.5",      630,        function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.25",     4410,       function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.10",     30870,      function() { shoot[3] /= 1.1 }),
+    new Upgrade("Shoot time /1.50",     90,         function() { shoot[3] /= 1.5 },     "money",    "$"), // *7
+    new Upgrade("Shoot time /1.50",     630,        function() { shoot[3] /= 1.5 },     "money",    "$"),
+    new Upgrade("Shoot time /1.25",     4410,       function() { shoot[3] /= 1.25 },    "money",    "$"),
+    new Upgrade("Shoot time /1.10",     30870,      function() { shoot[3] /= 1.1 },     "money",    "$"),
 
-    new Upgrade("Ammo stock x3",    90,         function() { shoot[2] *= 3 }), // *15
-    new Upgrade("Ammo stock x3",    1350,       function() { shoot[2] *= 3 }),
-    new Upgrade("Ammo stock x2",    20250,      function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x3",        90,         function() { shoot[2] *= 3 },       "money",    "$"), // *15
+    new Upgrade("Ammo stock x3",        1350,       function() { shoot[2] *= 3 },       "money",    "$"),
+    new Upgrade("Ammo stock x2",        20250,      function() { shoot[2] *= 2 },       "money",    "$"),
 
-    new Upgrade("Reload time /1.5",     270,        function() { shoot[4] /= 1.5 }), // *7
-    new Upgrade("Reload time /1.5",     1890,       function() { shoot[4] /= 1.5 }),
-    new Upgrade("Reload time /1.25",    13230,      function() { shoot[4] /= 1.25 }),
-    new Upgrade("Reload time /1.10",    92624,      function() { shoot[4] /= 1.1 }),
+    new Upgrade("Reload time /1.50",    270,        function() { shoot[4] /= 1.5 },     "money",    "$"), // *7
+    new Upgrade("Reload time /1.50",    1890,       function() { shoot[4] /= 1.5 },     "money",    "$"),
+    new Upgrade("Reload time /1.25",    13230,      function() { shoot[4] /= 1.25 },    "money",    "$"),
+    new Upgrade("Reload time /1.10",    92624,      function() { shoot[4] /= 1.1 },     "money",    "$"),
 
-    new Upgrade("Weed price x1.5",  600,        function() {dPrice[0] *= 1.5 }), // *3
-    new Upgrade("Weed price x1.5",  1800,       function() {dPrice[0] *= 1.5 }),
-    new Upgrade("Weed price x3",    5400,       function() {dPrice[0] *= 3 }),
-    new Upgrade("Meth price x1.5",  1400,       function() {dPrice[1] *= 1.5 }),
-    new Upgrade("Meth price x1.5",  4200,       function() {dPrice[1] *= 1.5 }),
-    new Upgrade("Meth price x3",    12600,      function() {dPrice[1] *= 3 })
+    new Upgrade("Weed price x1.50",     10,         function() {dPrice[0] *= 1.5 },     0,          "g of weed"), // *3
+    new Upgrade("Weed price x1.50",     250,        function() {dPrice[0] *= 1.5 },     0,          "g of weed"),
+    new Upgrade("Weed price x1.50",     1000,       function() {dPrice[0] *= 1.5 },     0,          "g of weed"),
+    new Upgrade("Meth price x1.50",     10,         function() {dPrice[1] *= 1.5 },     1,          "g of meth"),
+    new Upgrade("Meth price x1.50",     250,        function() {dPrice[1] *= 1.5 },     1,          "g of meth"),
+    new Upgrade("Meth price x1.50",     1000,       function() {dPrice[1] *= 1.5 },     1,          "g of meth")
 ];
 var buildsOwned;
 var builds = [
-    new Build("Weed Seed",      500,    0.05,   1.12, 0, "weed"),
-    new Build("Weed Plant",     5000,   0.5,    1.11, 0, "weed"),
-    new Build("Weed Tree",      17500,  2,      1.10, 0, "weed"),
-    new Build("Rusty Van",      3000,   0.05,   1.12, 1, "meth"),
-    new Build("RV-91X2",        9500,   0.5,    1.11, 1, "meth"),
-    new Build("Lab-Assistant",  42500,  2,      1.10, 1, "meth")
+    new Build("Weed Seed",          500,        0.1,    1.12, 0, "weed"),
+    new Build("Weed Plant",         5000,       0.5,    1.11, 0, "weed"),
+    new Build("Weed Tree",          30000,      1.25,   1.10, 0, "weed"),
+    new Build("Weed Farm",          500000,     3.5,    1.09, 0, "weed"),
+    new Build("Rusty Van",          3000,       0.1,    1.12, 1, "meth"),
+    new Build("RV-91X2",            30000,      0.5,    1.11, 1, "meth"),
+    new Build("Lab-Assistant",      250000,     1.25,   1.10, 1, "meth"),
+    new Build("Underground Lab",    5000000,    3.5,    1.09, 1, "meth")
 ];
 var dealersOwned;
 var dealers = [
-    new Dealer("Slave Dealer",          500,    0.05,   1.15, 0, "weed"),
-    new Dealer("Street Dealer",         5000,   0.5,    1.14, 0, "weed"),
-    new Dealer("Dirty Dealer",          17500,  2,      1.13, 0, "weed"),
-    new Dealer("Common Dealer",         3000,   0.05,   1.15, 1, "meth"),
-    new Dealer("Experienced Dealer",    9500,   0.5,    1.14, 1, "meth"),
-    new Dealer("Royal Dealer",          42500,  2,      1.13, 1, "meth")
+    new Dealer("Slave Dealer",          500,        0.05,   1.15, 0, "weed"),
+    new Dealer("Street Dealer",         5000,       0.4,    1.14, 0, "weed"),
+    new Dealer("Dirty Dealer",          30000,      1,      1.13, 0, "weed"),
+    new Dealer("Old Dealer",            500000,     3,      1.12, 0, "weed"),
+    new Dealer("Common Dealer",         3000,       0.05,   1.15, 1, "meth"),
+    new Dealer("Experienced Dealer",    30000,      0.4,    1.14, 1, "meth"),
+    new Dealer("Royal Dealer",          250000,     1,      1.13, 1, "meth"),
+    new Dealer("King Dealer",           5000000,    3,      1.12, 1, "meth")
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
@@ -107,7 +111,7 @@ function initGame() {
         var u = upgrades[i];
         $("#u-" + (i+1)).attr("onclick", "buyUpgrade(" + (i+1) + ");");
         $("#u-n" + (i+1)).html(u.name + " : ");
-        $("#u-c" + (i+1)).html(fix(u.price, 0) + "$");
+        $("#u-c" + (i+1)).html(fix(u.price, 0) + u.type2);
         if (upgradesOwned[i]) {
             $("#u-b" + (i+1)).html("Bought");
             $("#u-" + (i+1)).attr("onclick", "");
@@ -118,7 +122,7 @@ function initGame() {
         var b = builds[i];
         $("#b-n" + (i+1)).html("<b>" + b.name + "</b> : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
+        $("#b-r" + (i+1)).html("Produce " + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
         $("#b-" + (i+1)).attr("onclick", "buyBuild(" + i + ");");
     };
@@ -203,7 +207,7 @@ function updateShop() {
         var b = builds[i];
         $("#b-n" + (i+1)).html("<b>" + b.name + "</b> : ");
         $("#b-c" + (i+1)).html("cost " + fix(getBuildPrice(i), 0) + "$<br>");
-        $("#b-r" + (i+1)).html("+" + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
+        $("#b-r" + (i+1)).html("Produce " + fix(b.reward, 2) + "g/sec of <b>" + b.type2 + "</b>");
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
     };
     for (var i = 0; i < dealers.length; i++) { // updating dealers
@@ -338,19 +342,34 @@ function Rank(name, index, needed, multiplier) {
     this.needed = needed;
     this.multiplier = multiplier;
 };
-function Upgrade(name, price, run) {
+function Upgrade(name, price, run, type, type2) {
     this.name = name;
     this.price = price;
     this.run = run;
+    this.type = type;
+    this.type2 = type2;
 };
 function buyUpgrade(index) {
-    if (money[0] >= upgrades[index-1].price) {
-        money[0] -= upgrades[index-1].price;
-        upgradesOwned[index-1] = true;
-        upgrades[index-1].run();
-        $("#u-b" + index).html("Bought");
-        $("#u-" + index).attr("class", "list-group-item disabled")
-        $("#u-" + index).attr("onclick", "");
+    var upType = upgrades[index-1].type;
+    if (upgrades[index-1].type == "money") {
+        if (money[0] >= upgrades[index-1].price) {
+            money[0] -= upgrades[index-1].price;
+            upgradesOwned[index-1] = true;
+            upgrades[index-1].run();
+            $("#u-b" + index).html("Bought");
+            $("#u-" + index).attr("class", "list-group-item disabled");
+            $("#u-" + index).attr("onclick", "");
+        };
+    };
+    if (upgrades[index-1].type == upType) {
+        if (dStock[upType] >= upgrades[index-1].price) {
+            dStock[upType] -= upgrades[index-1].price;
+            upgradesOwned[index-1] = true;
+            upgrades[index-1].run();
+            $("#u-b" + index).html("Bought");
+            $("#u-" + index).attr("class", "list-group-item disabled");
+            $("#u-" + index).attr("onclick", "");
+        };
     };
 };
 function Build(name, price, reward, inflation, type1, type2) {
@@ -375,14 +394,14 @@ function buildReward(times) {
             var d = dInit[k];
             if (b.type1 == 0) {
                 dStock[0] += getDrugInc(i) * times;
-                var pos = (getNormalDrugInc(0) + getNormalDrugInc(1) + getNormalDrugInc(2));
-                var neg = (getNormalDealerSell(0) + getNormalDealerSell(1) + getNormalDealerSell(2));
+                var pos = (getNormalDrugInc(0) + getNormalDrugInc(1) + getNormalDrugInc(2) + getNormalDrugInc(3));
+                var neg = (getNormalDealerSell(0) + getNormalDealerSell(1) + getNormalDealerSell(2) + getNormalDealerSell(3));
                 dPS[0] = pos - neg;
             };
             if (b.type1 == 1) {
                 dStock[1] += getDrugInc(i) * times;
-                var pos1 = (getNormalDrugInc(3) + getNormalDrugInc(4) + getNormalDrugInc(5));
-                var neg1 = (getNormalDealerSell(3) + getNormalDealerSell(4) + getNormalDealerSell(5));
+                var pos1 = (getNormalDrugInc(4) + getNormalDrugInc(5) + getNormalDrugInc(6) + getNormalDrugInc(7));
+                var neg1 = (getNormalDealerSell(4) + getNormalDealerSell(5) + getNormalDealerSell(6) + getNormalDealerSell(7));
                 dPS[1] = pos1 - neg1;
             };
             if (b.type1 == 2) {
@@ -415,7 +434,7 @@ function dealerReward(times) {
                 if (dStock[0] > 0.01) {
                     dStock[0] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[0]) * rankMultiplier) * times);
-                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]);
+                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]) + ((dealers[3].sell * dealersOwned[3]) * dPrice[0]);
                     mps *= rankMultiplier;
                 };
             };
@@ -423,7 +442,7 @@ function dealerReward(times) {
                 if (dStock[1] > 0.01) {
                     dStock[1] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
-                    mps1 = ((dealers[3].sell * dealersOwned[3]) * dPrice[1]) + ((dealers[4].sell * dealersOwned[4]) * dPrice[1]) + ((dealers[5].sell * dealersOwned[5]) * dPrice[1]);
+                    mps1 = ((dealers[4].sell * dealersOwned[4]) * dPrice[1]) + ((dealers[5].sell * dealersOwned[5]) * dPrice[1]) + ((dealers[6].sell * dealersOwned[6]) * dPrice[1]) + ((dealers[7].sell * dealersOwned[7]) * dPrice[1]);
                     mps1 *= rankMultiplier;
                 }; 
             };
@@ -445,9 +464,5 @@ window.onload = function() {
     initGame();
     offlineCalc();
 };
-window.setInterval(function() {
-    coreUpdate();
-}, interval);
-window.setInterval(function() {
-    saveData();
-}, 1000);
+var intSave = window.setInterval(function() {saveData(); }, 1000);
+var intCore = window.setInterval(function() {coreUpdate(); }, interval);

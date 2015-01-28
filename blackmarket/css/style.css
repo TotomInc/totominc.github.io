@@ -14,16 +14,23 @@ p.s-notes { text-align: justify; }
 #a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
 
 /* custom Bootstrap */
-.navbar { border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
+.navbar { background: #F4F4F4; border-radius: 0px; border: 0; border-bottom: 1px solid #888; }
+
 .nav-tabs.nav-justified>li>a, .nav-tabs.nav-justified>li>a:hover { transition: all 0.2s; }
+
 .panel-heading { text-align: center; }
 .panel-body { background: rgba(217,237,247,0.1); color: #31708f; }
+
 .list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
 .list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
-.progress { height: 50px; margin-bottom: 0; cursor: pointer; }
+
+.progress { height: 30px; margin-bottom: 0; cursor: pointer; }
 .progress-bar { transition: 0; }
+
 .list-group-item { cursor: pointer; transition: all 0.1s; }
 .list-group-item:hover { transition: all 0.1s; }
 .list-group-item-info { background: rgba(217,237,247,0.1); border: 1px solid #C6DBE5; }
+
 .center { font-weight: bold; text-align: center; }
+.bought { background: green; }
 .stats-heading { cursor: default; color: #31708f; background: #d9edf7; border: 1px solid #C6DBE5; }

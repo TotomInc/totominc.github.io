@@ -20,6 +20,7 @@ function resetData() {
     for (var i = 0; i < allVars.length; i++) {
         removeItem(key + allVars[i]);
     };
+    window.clearInterval(intSave);
     location.reload();
 };
 function hardReset() {
