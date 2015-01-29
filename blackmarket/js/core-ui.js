@@ -146,8 +146,8 @@ function displayGame() {
         for (var i = 0; i < dInit.length; i++) {
             var d = dInit[i];
             $("#h-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g");
-            $("#h-dp" + (i+1)).html(" (" + fix(dPS[i], 2) + "g/sec)<br>")
-            $("#s-dp" + (i+1)).html(d.name + " price : " + fix((dPrice[i] * rankMultiplier), 2) + "$/g<br>");
+            $("#s-d" + (i+1)).html(d.name + " : " + fix(dStock[i], 2) + "g (" + fix(dPS[i], 2) + "g/sec)<br>");
+            $("#s-dp" + (i+1)).html("<small>" + d.name + " price : " + fix((dPrice[i] * rankMultiplier), 2) + "$/g</small><br>");
         };
         // if upgrade is available then do CSS
         for (var i = 0; i < upgrades.length; i++) {

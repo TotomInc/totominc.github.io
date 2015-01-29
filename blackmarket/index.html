@@ -17,16 +17,13 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand">Blackmarket</a>
-	      <p class="navbar-text"><small>beta - v0.1</small></p>
+	      <a class="navbar-brand"><span id="s-money" class="bold"></span></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a><span id="h-money"></span></a></li>
-	        <li><a><span id="h-ammo"></span></a></li>
-	        <li><a><span id="h-d1"></span></a></li>
-	        <li><a><span id="h-d2"></span></a></li>
-	        <li><a><span id="h-d3"></span></a></li>
+	        <li><a><span id="h-d1"></span><span id="h-dp1" class="small"></span></a></li>
+	        <li><a><span id="h-d2"></span><span id="h-dp2" class="small"></span></a></li>
+	        <li><a><span id="h-d3"></span><span id="h-dp3" class="small"></span></a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -34,37 +31,61 @@
 
 	<div class="container-fluid">
 		<div class="row">
-		  <div class="col-md-4">
+		<!-- actions row -->
+		  <div class="col-md-5">
 				<div class="panel panel-info">
-				  <div class="panel-heading center">Actions</div>
+				  <div class="panel-heading center bold">Actions</div>
 				  <div class="panel-body">
+				  	<p class="a-guns"><span id="s-cg"></span><span id="s-ob"></span></p>
+
 						<div id="p-1" class="progress">
 						  <div id="f-1" class="progress-bar progress-bar-success active" role="progressbar"></div>
 						</div>
-						<h1><span id="a-i1"></span></h1>
+						<h1 class="a-tutorial"><span id="a-i1"></span></h1>
 						<h1><span id="a-n1"></span></h1>
 						<h2><span id="a-d1"></span></h2>
 						<h2><span id="a-eventLog"></span></h2>
+						<p class="a-ammos"><span id="s-ammo"></span></p>
 
 						<div id="p-2" class="progress">
 						  <div id="f-2" class="progress-bar progress-bar-success active" role="progressbar"></div>
 						</div>
-						<h1><span id="a-i2"></span></h1>
+						<h1 class="a-tutorial"><span id="a-i2"></span></h1>
 						<h1><span id="a-n2"></span></h1>
 						<h2><span id="a-d2"></span></h2>
 				  </div>
 				</div>
+
+				<div class="panel panel-info">
+				  <div class="panel-heading center bold">Stats</div>
+				  <div class="panel-body">
+						<span id="s-totalmoney"></span>
+						Game auto-save every second but you can force-save with the saving button below.<br>
+						<p class="s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Reset</span></p>
+				  </div>
+				</div>
+				<div class="panel panel-danger">
+				  <div class="panel-heading center bold">Warning : read this!</div>
+				  <div class="panel-body">
+				  	<p>There is a bug with save when I add more content like new buildings, you got "NaN g/sec" of a drug.<br>
+				  	I'm also working on this, if it happens just reset your save, sorry! Please, let me know if it happens!<br>
+				  	Remember, the game is only a beta, so there may have bugs!</p>
+				  </div>
+				</div>
 		  </div>
-		  <div class="col-md-4">
+		<!-- tabs row -->
+		  <div class="col-md-7">
 			  <ul class="nav nav-tabs nav-justified" role="tablist">
 			    <li role="presentation" class="active"><a href="#tab-up" aria-controls="tab-up" role="tab" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
-			    <li role="presentation"><a href="#tab-shop" aria-controls="tab-shop" role="tab" data-toggle="tab">Shop <i class="fa fa-shopping-cart"></i></a></li>
+			    <li role="presentation"><a href="#tab-builds" aria-controls="tab-builds" role="tab" data-toggle="tab">Builds <i class="fa fa-building-o"></i></a></li>
+			    <li role="presentation"><a href="#tab-dealers" aria-controls="tab-dealers" role="tab" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
 			    <li role="presentation"><a href="#tab-prestige" aria-controls="tab-prestige" role="tab" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
+			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
 			  </ul>
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
 						<div class="list-group">
-							<li class="list-group-item list-group-item-warning center">Upgrades helps you to be more efficient.</li>
+							<li class="list-group-item list-group-item-warning center bold">Upgrades helps you to be more efficient like earning more $ with shooting, upgrading weed price, etc.</li>
 						  <a id="u-1" class="list-group-item"><span id="u-n1"></span><span id="u-c1"></span><span id="u-b1" class="badge"></span></a>
 						  <a id="u-2" class="list-group-item"><span id="u-n2"></span><span id="u-c2"></span><span id="u-b2" class="badge"></span></a>
 						  <a id="u-3" class="list-group-item"><span id="u-n3"></span><span id="u-c3"></span><span id="u-b3" class="badge"></span></a>
@@ -89,61 +110,38 @@
 						  <a id="u-22" class="list-group-item"><span id="u-n22"></span><span id="u-c22"></span><span id="u-b22" class="badge"></span></a>
 						</div>
 			    </div>
-			    <div role="tabpanel" class="tab-pane fade" id="tab-shop">
+			    <div role="tabpanel" class="tab-pane fade" id="tab-builds">
 						<ul class="list-group">
-							<li class="list-group-item list-group-item-warning center">Builds to earn drugs/sec.</li>
+							<li class="list-group-item list-group-item-warning center bold">Builds are used to earn drugs every second.</li>
+							<li class="list-group-item list-group-item-success center bold">Weed builds</li>
 							<a id="b-1" class="list-group-item"><span id="b-n1"></span><span id="b-c1"></span><span id="b-r1"></span><span id="b-o1" class="badge"></span></a>
 							<a id="b-2" class="list-group-item"><span id="b-n2"></span><span id="b-c2"></span><span id="b-r2"></span><span id="b-o2" class="badge"></span></a>
 							<a id="b-3" class="list-group-item"><span id="b-n3"></span><span id="b-c3"></span><span id="b-r3"></span><span id="b-o3" class="badge"></span></a>
 							<a id="b-4" class="list-group-item"><span id="b-n4"></span><span id="b-c4"></span><span id="b-r4"></span><span id="b-o4" class="badge"></span></a>
+							<li class="list-group-item list-group-item-success center bold">Meth builds</li>
 							<a id="b-5" class="list-group-item"><span id="b-n5"></span><span id="b-c5"></span><span id="b-r5"></span><span id="b-o5" class="badge"></span></a>
 							<a id="b-6" class="list-group-item"><span id="b-n6"></span><span id="b-c6"></span><span id="b-r6"></span><span id="b-o6" class="badge"></span></a>
 							<a id="b-7" class="list-group-item"><span id="b-n7"></span><span id="b-c7"></span><span id="b-r7"></span><span id="b-o7" class="badge"></span></a>
 							<a id="b-8" class="list-group-item"><span id="b-n8"></span><span id="b-c8"></span><span id="b-r8"></span><span id="b-o8" class="badge"></span></a>
-							<li class="list-group-item list-group-item-warning center">Dealers to sell drugs and earn $/sec.</li>
-							<a id="d-1" class="list-group-item"><span id="d-n1"></span><span id="d-c1"></span><span id="d-r1"></span><span id="d-o1" class="badge"></span></a>
-							<a id="d-2" class="list-group-item"><span id="d-n2"></span><span id="d-c2"></span><span id="d-r2"></span><span id="d-o2" class="badge"></span></a>
-							<a id="d-3" class="list-group-item"><span id="d-n3"></span><span id="d-c3"></span><span id="d-r3"></span><span id="d-o3" class="badge"></span></a>
-							<a id="d-4" class="list-group-item"><span id="d-n4"></span><span id="d-c4"></span><span id="d-r4"></span><span id="d-o4" class="badge"></span></a>
-							<a id="d-5" class="list-group-item"><span id="d-n5"></span><span id="d-c5"></span><span id="d-r5"></span><span id="d-o5" class="badge"></span></a>
-							<a id="d-6" class="list-group-item"><span id="d-n6"></span><span id="d-c6"></span><span id="d-r6"></span><span id="d-o6" class="badge"></span></a>
-							<a id="d-7" class="list-group-item"><span id="d-n7"></span><span id="d-c7"></span><span id="d-r7"></span><span id="d-o7" class="badge"></span></a>
-							<a id="d-8" class="list-group-item"><span id="d-n8"></span><span id="d-c8"></span><span id="d-r8"></span><span id="d-o8" class="badge"></span></a>
+							<li class="list-group-item list-group-item-success center bold">Cocaine builds (soon)</li>
 							</ul>
 				  </div>
+				  <div role="tabpanel" class="tab-pane fade" id="tab-dealers">
+						<li class="list-group-item list-group-item-warning center bold">Dealers sells drugs every second. Make sure to have enough drug to sell!</li>
+						<li class="list-group-item list-group-item-success center bold">Weed dealers</li>
+						<a id="d-1" class="list-group-item"><span id="d-n1"></span><span id="d-c1"></span><span id="d-r1"></span><span id="d-o1" class="badge"></span></a>
+						<a id="d-2" class="list-group-item"><span id="d-n2"></span><span id="d-c2"></span><span id="d-r2"></span><span id="d-o2" class="badge"></span></a>
+						<a id="d-3" class="list-group-item"><span id="d-n3"></span><span id="d-c3"></span><span id="d-r3"></span><span id="d-o3" class="badge"></span></a>
+						<a id="d-4" class="list-group-item"><span id="d-n4"></span><span id="d-c4"></span><span id="d-r4"></span><span id="d-o4" class="badge"></span></a>
+						<li class="list-group-item list-group-item-success center bold">Meth dealers</li>
+						<a id="d-5" class="list-group-item"><span id="d-n5"></span><span id="d-c5"></span><span id="d-r5"></span><span id="d-o5" class="badge"></span></a>
+						<a id="d-6" class="list-group-item"><span id="d-n6"></span><span id="d-c6"></span><span id="d-r6"></span><span id="d-o6" class="badge"></span></a>
+						<a id="d-7" class="list-group-item"><span id="d-n7"></span><span id="d-c7"></span><span id="d-r7"></span><span id="d-o7" class="badge"></span></a>
+						<a id="d-8" class="list-group-item"><span id="d-n8"></span><span id="d-c8"></span><span id="d-r8"></span><span id="d-o8" class="badge"></span></a>
+						<li class="list-group-item list-group-item-success center bold">Cocaine dealers (soon)</li>
+				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-			    </div>
-			  </div>
-		  </div>
-		  <div class="col-md-4">
-			  <ul class="nav nav-tabs nav-justified" role="tablist">
-			    <li role="presentation" class="active"><a href="#tab-stats" aria-controls="tab-stats" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
-			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch-Notes <i class="fa fa-pencil"></i></a></li>
-			  </ul>
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane fade in active" id="tab-stats">
-						<ul class="list-group">
-						  <li class="list-group-item list-group-item-info">
-						  	<span id="s-money"></span>
-						  	<span id="s-totalmoney"></span>
-						  	<span id="s-ammo"></span>
-						  </li>
-						  <li class="list-group-item list-group-item-info">
-						  	<span id="s-d1"></span>
-						  	<span id="s-dp1"></span>
-						  	<span id="s-d2"></span>
-						  	<span id="s-dp2"></span>
-						  	<span id="s-d3"></span>
-						  	<span id="s-dp3"></span>
-						  </li>
-						  <li class="list-group-item list-group-item-info">
-						  <span id="s-cg"></span>
-						  <span id="s-ob"></span>
-						  </li>
-						  <li class="list-group-item stats-heading">
-						  	<span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Reset</span>
-						  </li>
-						</ul>
+							<li class="list-group-item list-group-item-warning center bold">A prestige system will be soon in the game, I'm working on it! There will be a prestige currency and a prestige rank. Also, I will add some prestige upgrades. Keep an eye on the game!</li>
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
 			    	<li class="list-group-item list-group-item-info">
@@ -171,12 +169,16 @@
 			    			AUG : 5'000'000$<br>
 			    			AK-47 : 25'000'000$
 			    		</p>
-			    		<p class="s-notes">
-			    			Thanks you for playing my game, we reached a total of 6,000 unique players!<br>
-			    			Thanks for playing and testing my game! :)
+			    	</li>
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-thanks">
+			    			Thanks you for playing my game, we reached a total of 8,000 unique players from the prototype and the current beta!<br>
+			    			Keep an eye on the game, the game is in rapid development! :)
 			    		</p>
-			    		<a class="s-links" target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a>
-			    		<a class="s-links" target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a>
+			    	</li>
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a></p>
+			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a></p>
 			    	</li>
 			    </div>
 			  </div>

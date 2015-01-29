@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Blackmarket - Incremental-game</title>
+
+	<link href="favicon.ico" rel="icon" type="image/x-icon">
+	<script src="src/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="src/bootstrap.min.css">
+	<script src="src/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="src/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand">Money : 0.00$ (0.00$/s)</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a>Weed : 0.00g (0.00g/s)</a></li>
+	        <li><a>Meth : 0.00g (0.00g/s)</a></li>
+	        <li><a>Cocaine : 0.00g (0.00g/s)</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+		  <div class="col-md-4">
+				<div class="panel panel-info">
+				  <div class="panel-heading center">Actions</div>
+				  <div class="panel-body">
+				  	<p><span id="s-currentGun"></span></p>
+
+						<div id="p-1" class="progress">
+						  <div id="f-1" class="progress-bar progress-bar-success active" role="progressbar"></div>
+						</div>
+						<h1>Shoot : +1.00$</h1>
+						<h2>1.50 sec/shoot</h2>
+
+						<div id="p-2" class="progress">
+						  <div id="f-2" class="progress-bar progress-bar-success active" role="progressbar"></div>
+						</div>
+						<h1>Reload : +12 ammo</h1>
+						<h2>5.00 sec</h2>
+				  </div>
+				</div>
+		  </div>
+		  <div class="col-md-4">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" class="active"><a href="#tab-up" aria-controls="tab-up" role="tab" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
+			    <li role="presentation"><a href="#tab-shop" aria-controls="tab-shop" role="tab" data-toggle="tab">Shop <i class="fa fa-shopping-cart"></i></a></li>
+			    <li role="presentation"><a href="#tab-prestige" aria-controls="tab-prestige" role="tab" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
+			  </ul>
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-shop">
+				  </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
+			    </div>
+			  </div>
+		  </div>
+		  <div class="col-md-4">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" class="active"><a href="#tab-stats" aria-controls="tab-stats" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
+			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch-Notes <i class="fa fa-pencil"></i></a></li>
+			  </ul>
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="tab-stats">
+						<ul class="list-group">
+						  <li class="list-group-item stats-heading">
+						  	<span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Reset</span>
+						  </li>
+						</ul>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-version"><u>v0.1 : beta release!</u></p>
+			    		<p class="s-notes">
+			    		Beta release of the game!<br>
+			    		- Code has been fully rewritten, with some optimizations!<br>
+			    		- New fresh clean UI (essentially build on Bootstrap).<br>
+			    		- Added ranks, which give a total cash multiplier.<br>
+			    		- Helpers are removed, tell-me what you prefer!<br>
+			    		- I'm currently working on a better balancing of items on the shop.<br>
+			    		- I'm also working on some prestige functions.<br>
+			    		<b>Note : the game progresses even if it is closed! Offline mode is active on the game.</b></p>
+			    		<p class="s-notes">
+			    			<u>Here are the ranks, you obtain them with your total cash :</u><br>
+			    			Glock-18 : starting rank<br>
+			    			CZ75-Auto : at 500$<br>
+			    			Dual Berettas : 2500$<br>
+			    			UMP-45 : 10'000$<br>
+			    			P90 : 25'000$<br>
+			    			PP-Bizon : 100'000$<br>
+			    			Galil AR : 250'000$<br>
+			    			FAMAS : 750'000$<br>
+			    			AWP : 1'500'000$<br>
+			    			AUG : 5'000'000$<br>
+			    			AK-47 : 25'000'000$
+			    		</p>
+			    		<p class="s-notes">
+			    			Thanks you for playing my game, we reached a total of 6,000 unique players!<br>
+			    			Thanks for playing and testing my game! :)
+			    		</p>
+			    		<a class="s-links" target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a>
+			    		<a class="s-links" target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a>
+			    	</li>
+			    </div>
+			  </div>
+		  </div>
+		</div>
+	</div>
+
+	<script src="js/resize.js"></script>
+	<script src="js/beautify.js"></script>
+	<script src="js/save.js"></script>
+	<script src="js/core.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-54540685-10', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</body>
+</html>
