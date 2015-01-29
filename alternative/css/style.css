@@ -1,7 +1,0 @@
-body { margin: 0; }
-a { transition: all 0.2s; }
-a:hover { transition: all 0.2s; }
-
-.navbar { border-radius: 0; margin-bottom: 0; border-bottom: 1px solid #28415b; }
-.carousel-inner { max-width: 1950px; max-height: 620px; opacity: 0.75; }
-.carousel-inner.alt1 { max-height: 500px; max-width: 750px; }

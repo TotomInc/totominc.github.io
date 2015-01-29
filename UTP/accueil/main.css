@@ -8,5 +8,5 @@ body { margin: 0; font-family: 'Roboto-Light'; background: #666; }
 .carousel-inner { max-width: 1950px; max-height: 620px; opacity: 0.75; }
 .carousel-inner.alt1 { max-height: 500px; max-width: 750px; }
 .jumbotron { text-align: center; opacity: 0.8; background: #D7D7D7; }
-.well { margin-top: 20px; border: 0; background: url(img/l2.jpg); opacity: 0.8; }
-.well.alt1 { background: url(img/l3.jpg); }
+.well { margin-top: 20px; border: 0; background: url(../img/l2.jpg); opacity: 0.8; }
+.well.alt1 { background: url(../img/l3.jpg); }
