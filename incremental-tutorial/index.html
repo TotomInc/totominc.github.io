@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Incremental-tutorial</title>
+
+	<link href="favicon.ico" rel="icon" type="image/x-icon" />
+	<script src="src/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="src/bootstrap.min.css">
+	<script src="src/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="src/font-awesome.min.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand">Incremental-Tutorial</a>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+				  <div class="panel-heading">Aperçu final du jeu que l'on va créer</div>
+				  <div class="panel-body">
+						<button onclick="gagnerCookie()">+1 cookie</button><br>
+						<span id="affichageCookies"></span> cookies
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="panel panel-success">
+				  <div class="panel-heading">Explication</div>
+				  <div class="panel-body">
+				  	<p><b>Voici le code du jeu :</b></p>
+				  	<pre>
+var cookies = 0;
+
+function gagnerCookie() {
+	cookies += 1;
+	document.getElementById("affichageCookies").innerHTML = cookies;
+};
+
+window.onload = function() {
+	document.getElementById("affichageCookies").innerHTML = cookies;
+};</pre>
+				  	<p>En Javascript, on commence toujours par créer des variables. Ces variables permettent de stocker des données comme des chiffres, des lettres ou même des phrases. Afin de différencier les variables, on doit toujours leur attribuer un nom. Ce peut être composé de lettre et de chiffre uniquement. Il est préférable de donner une valeur de base à notre variable après l'avoir créer comme par exemple, un 0. Une fois cette variable créée, on termine par un point-virgule afin de dire au Javascript que la création de notre variable s'arrête ici.</p>
+				  	<p>Dans notre cas, nous avons besoin de stocker le nombre de cookies, alors nous allons créer une variable appellée cookies comme ceci :
+				  	<pre>var cookies = 0;</pre></p>
+				  	<p>Ensuite nous allons utiliser les fonctions. Elles sont utilisées pour demander à l'ordinateur d'effectuer les lignes de commandes qui se trouvent dans ces fonctions. Pour créer une fonction, on commence par dire au Javascript que nous voulons déclarer une fonction en commençant par le mot function suivi du nom qu'on souhaite lui donner, comme pour les variables. Ici, nous allons l'appeller <code>gagnerCookie</code>, puis on termine par mettre des parenthèses (nous verrons plus tard a quoi servent-elles). Ensuite, nous devons mettre des accolades qui vont désigner les limites de la fonction, les lignes de code a éxecuter dans cette fonction. Ce qui donne :
+				  	<pre>function gagnerCookie() {
+
+};</pre>
+				  	</p>
+				  	<p>Maintenant nous devons dire ce qu'il va se passer lorsque nous demandons à l'ordinateur d'éxécuter la fonction <code>gagnerCookie</code>, pour cela nous allons créer de nouvelles lignes de code. Notre but, est d'augmenter notre nombre de cookies lorsque nous appellons cette fonction, alors nous allons devoir modifier la variable <code>cookies</code> lorsqu'on éxécute la fonction <code>gagnerCookie</code>. Pour cela, rien de plus simple, on ajoute dans notre fonction <code>gagnerCookie</code> la ligne de code suivante <u>entre les accolades</u> : <code>cookies = cookies + 1;</code></p>
+				  	<p>Ce qui nous donne maintenant ceci : <pre>
+function gagnerCookie() {
+	cookies += 1;
+};</pre></p>
+						<p>La ligne de code <code>cookies = cookies + 1;</code> demande a l'ordinateur de : prendre la variable cookies, puis de lui dire d'ajouter + 1 au nombre de cookies, rien de plus simple.</p>
+						<p>La prochaine étape est d'ajouter l'affichage du nombre de cookies sur la page. Pour cela, on créé un élément <code>&lt;span&gt;&lt;/span&gt;</code> et on lui donne un nom, dans l'attribut <code>id</code></p>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="game.js"></script>
+</body>
+</html>

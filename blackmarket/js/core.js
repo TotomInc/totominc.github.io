@@ -11,7 +11,7 @@ var ranks = [
     new Rank("Galil AR",        6,  250000,     1.35),
     new Rank("FAMAS",           7,  750000,     1.40),
     new Rank("AWP",             8,  1500000,    1.45),
-    new Rank("AUG",             9,  5000000,    1.50),
+    new Rank("AUG",             9,  5000000,    20),
     new Rank("AK-47",           10, 25000000,   1.55)
 ];
 var dStock; var dName; var dPrice; var dPS;
@@ -42,34 +42,34 @@ var upgrades = [
     new Upgrade("Reload time /1.25",    13230,      function() { shoot[4] /= 1.25 },    "money",    "$"),
     new Upgrade("Reload time /1.10",    92624,      function() { shoot[4] /= 1.1 },     "money",    "$"),
 
-    new Upgrade("Weed price x1.50",     760,        function() {dPrice[0] *= 1.5 },     "money",    "$"), // *3
-    new Upgrade("Weed price x1.50",     2280,       function() {dPrice[0] *= 1.5 },     "money",    "$"),
-    new Upgrade("Weed price x1.50",     6840,       function() {dPrice[0] *= 1.5 },     "money",    "$"),
-    new Upgrade("Meth price x1.50",     4600,       function() {dPrice[1] *= 1.5 },     "money",    "$"),
-    new Upgrade("Meth price x1.50",     13800,      function() {dPrice[1] *= 1.5 },     "money",    "$"),
-    new Upgrade("Meth price x1.50",     41400,      function() {dPrice[1] *= 1.5 },     "money",    "$")
+    new Upgrade("Weed price x2",        760,        function() {dPrice[0] *= 2 },       "money",    "$"), // *3
+    new Upgrade("Weed price x2",        2280,       function() {dPrice[0] *= 2 },       "money",    "$"),
+    new Upgrade("Weed price x2",        6840,       function() {dPrice[0] *= 2 },       "money",    "$"),
+    new Upgrade("Meth price x2",        4600,       function() {dPrice[1] *= 2 },       "money",    "$"),
+    new Upgrade("Meth price x2",        13800,      function() {dPrice[1] *= 2 },       "money",    "$"),
+    new Upgrade("Meth price x2",        41400,      function() {dPrice[1] *= 2 },       "money",    "$")
 ];
 var buildsOwned;
 var builds = [
-    new Build("Weed Plant",         500,        0.1,    1.12, 0, "weed"),
-    new Build("Shed Grow",          5000,       0.5,    1.11, 0, "weed"),
-    new Build("Basement Grow",      30000,      1.25,   1.10, 0, "weed"),
-    new Build("Hydroponic Farm",    500000,     3.5,    1.09, 0, "weed"),
-    new Build("Rusty Van",          3000,       0.1,    1.12, 1, "meth"),
-    new Build("RV-91X2",            30000,      0.5,    1.11, 1, "meth"),
-    new Build("Lab-Assistant",      250000,     1.25,   1.10, 1, "meth"),
-    new Build("Underground Lab",    5000000,    3.5,    1.09, 1, "meth")
+    new Build("Weed Plant",         500,        0.1,    1.15, 0, "weed"),
+    new Build("Shed Grow",          5000,       0.5,    1.14, 0, "weed"),
+    new Build("Basement Grow",      30000,      1.25,   1.13, 0, "weed"),
+    new Build("Hydroponic Farm",    500000,     3.5,    1.12, 0, "weed"),
+    new Build("Rusty Van",          3000,       0.1,    1.15, 1, "meth"),
+    new Build("RV-91X2",            30000,      0.5,    1.14, 1, "meth"),
+    new Build("Lab-Assistant",      250000,     1.25,   1.13, 1, "meth"),
+    new Build("Underground Lab",    5000000,    3.5,    1.12, 1, "meth")
 ];
 var dealersOwned;
 var dealers = [
-    new Dealer("Slave Dealer",          500,        0.05,   1.15, 0, "weed"),
-    new Dealer("Street Dealer",         5000,       0.4,    1.14, 0, "weed"),
-    new Dealer("Dirty Dealer",          30000,      1,      1.13, 0, "weed"),
-    new Dealer("Old Dealer",            500000,     3,      1.12, 0, "weed"),
-    new Dealer("Common Dealer",         3000,       0.05,   1.15, 1, "meth"),
-    new Dealer("Experienced Dealer",    30000,      0.4,    1.14, 1, "meth"),
-    new Dealer("Royal Dealer",          250000,     1,      1.13, 1, "meth"),
-    new Dealer("King Dealer",           5000000,    3,      1.12, 1, "meth")
+    new Dealer("Slave Dealer",          500,        0.05,   1.12, 0, "weed"),
+    new Dealer("Street Dealer",         5000,       0.4,    1.11, 0, "weed"),
+    new Dealer("Dirty Dealer",          30000,      1,      1.10, 0, "weed"),
+    new Dealer("Old Dealer",            500000,     3,      1.09, 0, "weed"),
+    new Dealer("Common Dealer",         3000,       0.05,   1.12, 1, "meth"),
+    new Dealer("Experienced Dealer",    30000,      0.4,    1.11, 1, "meth"),
+    new Dealer("Royal Dealer",          250000,     1,      1.10, 1, "meth"),
+    new Dealer("King Dealer",           5000000,    3,      1.09, 1, "meth")
 ];
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
@@ -190,7 +190,9 @@ function displayGame() {
         $("#h-money").html("Money : " + fix(money[0], 2) + "$");
         $("#s-money").html("Money : " + fix(money[0], 2) + "$ (" + fix(money[2], 2) + "$/sec)<br>");
         $("#s-totalmoney").html("Total money : " + fix(money[1], 2) + "$<br>");
-        $("#h-ammo, #s-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2]);
+        $("#s-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2]);
+        $("#s-totalshoot").html("Total shoot : " + fix(totalShoots, 0) + "<br>");
+        $("#s-totalreload").html("Total reloads : " + fix(totalReloads, 0) + "<br>");
         $("#a-n1").html("Shoot : +" + fix(shoot[1] * rankMultiplier, 2) + "$");
         $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
@@ -424,7 +426,7 @@ function dealerReward(times) {
                 if (dStock[0] > 0.01) {
                     dStock[0] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[0]) * rankMultiplier) * times);
-                    mps = ((dealers[0].sell * dealersOwned[0]) * dPrice[0]) + ((dealers[1].sell * dealersOwned[1]) * dPrice[0]) + ((dealers[2].sell * dealersOwned[2]) * dPrice[0]) + ((dealers[3].sell * dealersOwned[3]) * dPrice[0]);
+                    mps = (getNormalDealerSell(0) * dPrice[0]) + (getNormalDealerSell(1) * dPrice[0]) + (getNormalDealerSell(2) * dPrice[0]) + (getNormalDealerSell(3) * dPrice[0]);
                     mps *= rankMultiplier;
                 };
             };
@@ -432,7 +434,7 @@ function dealerReward(times) {
                 if (dStock[1] > 0.01) {
                     dStock[1] -= getDealerSell(i) * times;
                     gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
-                    mps1 = ((dealers[4].sell * dealersOwned[4]) * dPrice[1]) + ((dealers[5].sell * dealersOwned[5]) * dPrice[1]) + ((dealers[6].sell * dealersOwned[6]) * dPrice[1]) + ((dealers[7].sell * dealersOwned[7]) * dPrice[1]);
+                    mps1 = (getNormalDealerSell(4) * dPrice[1]) + (getNormalDealerSell(5) * dPrice[1]) + (getNormalDealerSell(6) * dPrice[1]) + (getNormalDealerSell(7) * dPrice[1]);
                     mps1 *= rankMultiplier;
                 }; 
             };
@@ -451,6 +453,7 @@ function dealerReward(times) {
 window.onload = function() {
     initVars();
     loadData();
+    checkData();
     initGame();
     offlineCalc();
 };
