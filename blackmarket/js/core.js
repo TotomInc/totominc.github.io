@@ -16,9 +16,9 @@ var ranks = [
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
-    new Drug("Weed",    15, 0),
-    new Drug("Meth",    45, 1),
-    new Drug("Cocaine", 135, 2)
+    new Drug("Weed",    20,     0),
+    new Drug("Meth",    50,     1),
+    new Drug("Cocaine", 140,    2)
 ];
 var upgradesOwned;
 var upgrades = [
@@ -200,7 +200,7 @@ function displayGame() {
         // rank up and update gun display/multiplier
         gunRankUp();
         $("#s-cg").html("Current gun : " + rank + "<br>");
-        $("#s-ob").html("Overall bonus : x" + rankMultiplier);
+        $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
     };
 };
 function updateShop() {
