@@ -7,9 +7,10 @@ h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h1.a-tutorial { text-decoration: underline; font-weight: bold; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 p { margin: 5px 0 5px 0; }
-p.s-version { text-align: center; font-weight: bold; font-size: 16px; }
+p.s-version { text-align: center; font-weight: bold; font-size: 18px; }
 p.s-notes { text-align: justify; }
 p.s-thanks { text-align: center; }
+p.s-rank { text-align: center; font-size: 18px; font-weight: bold; text-decoration: underline; }
 p.s-links { text-align: center; font-weight: bold; }
 p.s-save { text-align: center; font-weight: bold; }
 p.a-guns { margin: 0 0 15px 0; text-align: center; font-size: 16px; font-weight: bold; }
@@ -19,7 +20,7 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 
 #a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
 
-/* custome class */
+/* custom class */
 .center { text-align: center; }
 .bold { font-weight: bold; }
 .small { font-size: 12px; color: #777 !important; }

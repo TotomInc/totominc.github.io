@@ -2,17 +2,17 @@ var money; var shoot; var prestige;
 var totalShoots; var totalReloads;
 var rank; var rankMultiplier;
 var ranks = [
-    new Rank("Glock-18",        0,  100,        1.05),
-    new Rank("CZ75-Auto",       1,  500,        1.10),
-    new Rank("Dual Berettas",   2,  2500,       1.15),
-    new Rank("UMP-45",          3,  10000,      1.20),
-    new Rank("P90",             4,  25000,      1.25),
-    new Rank("PP-Bizon",        5,  100000,     1.30),
-    new Rank("Galil AR",        6,  250000,     1.35),
-    new Rank("FAMAS",           7,  750000,     1.40),
-    new Rank("AWP",             8,  1500000,    1.45),
-    new Rank("AUG",             9,  5000000,    20),
-    new Rank("AK-47",           10, 25000000,   1.55)
+    new Rank("Glock-18",        0,  100,        1.00),
+    new Rank("CZ75-Auto",       1,  500,        1.05),
+    new Rank("Dual Berettas",   2,  2500,       1.10),
+    new Rank("UMP-45",          3,  10000,      1.15),
+    new Rank("P90",             4,  25000,      1.20),
+    new Rank("PP-Bizon",        5,  100000,     1.25),
+    new Rank("Galil AR",        6,  250000,     1.30),
+    new Rank("FAMAS",           7,  750000,     1.35),
+    new Rank("AWP",             8,  1500000,    1.40),
+    new Rank("AUG",             9,  5000000,    1.45),
+    new Rank("AK-47",           10, 25000000,   1.50)
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
