@@ -24,6 +24,22 @@ function resetData() {
     location.reload();
 };
 function checkData() {
+    if (dealersOwned.length != checkDealers.length) {
+        alert("Old save detected! Game is trying to convert your save, if you see an error like NaN g or $, please wipe your save and let me know that you have the bug! Thanks.");
+        for (var i = 0; i < dealers.length; i++) {
+            if (dealersOwned[i] == undefined) {
+                dealersOwned.push(0);
+            };
+        };
+    };
+    if (buildsOwned.length != checkBuilds.length) {
+        alert("Old save detected! Game is trying to convert your save, if you see an error like NaN instead of numbers, please wipe your save and let me know that you have the bug! Thanks.");
+        for (var i = 0; i < builds.length; i++) {
+            if (buildsOwned[i] == undefined) {
+                buildsOwned.push(0);
+            };
+        };
+    };
 };
 function hardReset() {
     if (confirm("Do you really want to hard-reset the game, lost everything and restart from scratch?")) {

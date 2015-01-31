@@ -71,6 +71,7 @@ var dealers = [
     new Dealer("Royal Dealer",          250000,     1,      1.10, 1, "meth"),
     new Dealer("King Dealer",           5000000,    3,      1.09, 1, "meth")
 ];
+var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
 var allVars = ["money", "shoot", "rank", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
@@ -103,6 +104,14 @@ function initVars() {
     dealersOwned = [];
     for (var i = 0; i < dealers.length; i++)
         dealersOwned.push(0);
+
+    checkDealers = [];
+    for (var i = 0; i < dealers.length; i++)
+        checkDealers.push(0);
+
+    checkBuilds = [];
+    for (var i = 0; i < builds.length; i++)
+        checkBuilds.push(0);
 
     init = true;
 };
@@ -436,7 +445,7 @@ function dealerReward(times) {
                     gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
                     mps1 = (getNormalDealerSell(4) * dPrice[1]) + (getNormalDealerSell(5) * dPrice[1]) + (getNormalDealerSell(6) * dPrice[1]) + (getNormalDealerSell(7) * dPrice[1]);
                     mps1 *= rankMultiplier;
-                }; 
+                };
             };
             if (d.type1 == 2) {
                 if (dStock[2] > 0.01) {
