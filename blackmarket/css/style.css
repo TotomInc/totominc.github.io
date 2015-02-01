@@ -2,7 +2,7 @@
 ::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.0); border-radius: 2px; }
 ::-webkit-scrollbar-thumb { border-radius: 2px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
 
-body { margin: 0; font-family: Consolas; cursor: default; background: #eee; }
+body { margin: 0; font-family: Consolas; cursor: default; background: #fff; }
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
 h1.a-tutorial { text-decoration: underline; font-weight: bold; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
