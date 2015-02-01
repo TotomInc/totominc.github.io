@@ -20,8 +20,6 @@ function resetData() {
     for (var i = 0; i < allVars.length; i++) {
         removeItem(key + allVars[i]);
     };
-    window.clearInterval(intSave);
-    location.reload();
 };
 function checkData() {
     if (dealersOwned.length != checkDealers.length || buildsOwned.length != checkBuilds.length) {
@@ -44,7 +42,23 @@ function checkData() {
     };
 };
 function hardReset() {
-    if (confirm("Do you really want to hard-reset the game, lost everything and restart from scratch?")) {
+    if (confirm("Do you really want to hard-reset the game, lost everything and restart from scratch? You will not earn experience!")) {
+        window.clearInterval(intSave);
         resetData();
+        location.reload();
+    };
+};
+function softReset() {
+    var r = confirm("Do you want to soft-reset? You will earn " + fix(getExperienceOnReset(), 0) + " experience but restart the game from the beggining with a boost.");
+    if (r == true) {
+        window.clearInterval(intSave);
+        var t1 = money[1];
+        var t2 = getExperienceOnReset();
+        resetData();
+        initVars();
+        money[1] = t1;
+        prestige[0] = t2;
+        saveData();
+        location.reload();
     };
 };

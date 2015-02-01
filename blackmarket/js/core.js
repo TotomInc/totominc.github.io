@@ -14,6 +14,21 @@ var ranks = [
     new Rank("AUG",             9,  5000000,    1.45),
     new Rank("AK-47",           10, 25000000,   1.50)
 ];
+var prestigeRank;
+var prestigeRanks = [
+    new PrestigeRank("Bronze",              0,  10,         2.00),
+    new PrestigeRank("Bronze Elite",        1,  50,         3.00),
+    new PrestigeRank("Bronze Master",       2,  200,        4.00),
+    new PrestigeRank("Bronze Guardian",     3,  600,        5.00),
+    new PrestigeRank("Silver",              4,  2500,       6.00),
+    new PrestigeRank("Silver Elite",        5,  10000,      7.00),
+    new PrestigeRank("Silver Master",       6,  25000,      8.00),
+    new PrestigeRank("Silver Guardian",     7,  100000,     9.00),
+    new PrestigeRank("Platinum",            8,  250000,     10.00),
+    new PrestigeRank("Platinum Elite",      9,  950000,     11.00),
+    new PrestigeRank("Platinum Master",     10, 2500000,    12.00),
+    new PrestigeRank("Platinum Garudian",   11, 10000000,   13.00)
+];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
     new Drug("Weed",    20,     0),
@@ -85,14 +100,14 @@ var dealers = [
 var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
+var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
 
 // game display
 function initVars() {
     money = [0, 0, 0];
     shoot = [12, 1, 12, 1500, 5000];
     totalShoots = 0; totalReloads = 0;
-    prestige = [];
+    prestige = [0, 0, "no rank", 1];
     rank = "Glock-18"; rankMultiplier = 1;
     before = new Date().getTime();
 
@@ -212,11 +227,14 @@ function displayGame() {
         // basic stats display
         $("#h-money").html("Money : " + fix(money[0], 2) + "$");
         $("#s-money").html("Money : " + fix(money[0], 2) + "$ (" + fix(money[2], 2) + "$/sec)<br>");
-        $("#s-totalmoney").html("Total money : " + fix(money[1], 2) + "$<br>");
+        $("#s-totalmoney").html("Total money : <b>" + fix(money[1], 2) + "$</b><br>");
         $("#s-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2]);
-        $("#s-totalshoot").html("Total shoot : " + fix(totalShoots, 0) + "<br>");
-        $("#s-totalreload").html("Total reloads : " + fix(totalReloads, 0) + "<br>");
-        $("#a-n1").html("Shoot : +" + fix(shoot[1] * rankMultiplier, 2) + "$");
+        $("#s-totalshoot").html("Total shoot : <b>" + fix(totalShoots, 0) + "</b><br>");
+        $("#s-totalreload").html("Total reloads : <b>" + fix(totalReloads, 0) + "</b><br>");
+        $("#s-experience").html("Experience : <b>" + fix(prestige[0], 0) + "</b><br>");
+        $("#s-experienceOnReset").html("Total experience on reset : <b>" + fix(getExperienceOnReset(), 0) + "</b><br>");
+        prestige[1] = getExperienceOnReset();
+        $("#a-n1").html("Shoot : +" + fix((shoot[1] * rankMultiplier) * prestige[3], 2) + "$");
         $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
         $("#a-d2").html(fix(shoot[4]/1000, 2) + " sec");
@@ -224,6 +242,9 @@ function displayGame() {
         gunRankUp();
         $("#s-cg").html("Current gun : " + rank + "<br>");
         $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
+        prestigeRankUp();
+        $("#s-pr").html("Prestige rank : " + prestige[2] + "<br>");
+        $("#s-pm").html("Prestige multiplier : x" + fix(prestige[3], 2));
     };
 };
 function updateShop() {
@@ -267,12 +288,24 @@ function getDealerSell(index) { // used to gain in functions
 function getNormalDealerSell(index) { // used to display
     return (dealers[index].sell * dealersOwned[index]);
 };
+function getExperienceOnReset() {
+    return Math.floor(20 * Math.sqrt(money[1]/1e6));
+};
 function gunRankUp() {
     for (var i = 0; i < ranks.length; i++) {
         var r = ranks[i];
         if (money[1] >= r.needed) {
             rank = r.name;
             rankMultiplier = r.multiplier;
+        };
+    };
+};
+function prestigeRankUp() {
+    for (var i = 0; i < prestigeRanks.length; i++) {
+        var p = prestigeRanks[i];
+        if (prestige[0] >= p.needed) {
+            prestige[2] = p.name;
+            prestige[3] = p.multiplier;
         };
     };
 };
@@ -291,7 +324,7 @@ function shootAction() {
         window.setTimeout(function() {
             shoot[0] -= 1;
             totalShoots++;
-            gainMoney(shoot[1] * rankMultiplier);
+            gainMoney((shoot[1] * rankMultiplier) * prestige[3]);
             shootEvent();
             $("#p-1").attr("onclick", "shootAction();");
             $("#p-2").attr("onclick", "reloadAction();");
@@ -304,7 +337,7 @@ function shootAction() {
 function shootEvent() {
     var r = Math.floor((Math.random() * 100) + 1);
     if (r < 5) {
-        gainMoney(shoot[1]);
+        gainMoney((shoot[1] * rankMultiplier) * prestige[3]);
         $("#a-eventLog").html("Headshot! Income x2 for this shot!");
         $("#a-eventLog").fadeOut(3000, function() {
             $("#a-eventLog").html("");
@@ -312,7 +345,7 @@ function shootEvent() {
         });
     };
     if (r < 7 && r >= 5) {
-        gainMoney(shoot[1] * 7);
+        gainMoney(((shoot[1] * 7) * rankMultiplier) * prestige[3]);
         $("#a-eventLog").html("Rival gang boss killed! Income x7 for this shot!");
         $("#a-eventLog").fadeOut(3000, function() {
             $("#a-eventLog").html("");
@@ -362,6 +395,12 @@ function Drug(name, price, index) {
     this.index = index;
 };
 function Rank(name, index, needed, multiplier) {
+    this.name = name;
+    this.index = index;
+    this.needed = needed;
+    this.multiplier = multiplier;
+};
+function PrestigeRank(name, index, needed, multiplier) {
     this.name = name;
     this.index = index;
     this.needed = needed;
@@ -446,25 +485,28 @@ function dealerReward(times) {
             if (d.type1 == 0) {
                 if (dStock[0] > 0.01) {
                     dStock[0] -= getDealerSell(i) * times;
-                    gainMoney(((getDealerSell(i) * dPrice[0]) * rankMultiplier) * times);
+                    gainMoney((((getDealerSell(i) * dPrice[0]) * rankMultiplier) * prestige[3]) * times);
                     mps = (getNormalDealerSell(0) * dPrice[0]) + (getNormalDealerSell(1) * dPrice[0]) + (getNormalDealerSell(2) * dPrice[0]) + (getNormalDealerSell(3) * dPrice[0]);
                     mps *= rankMultiplier;
+                    mps *= prestige[3];
                 };
             };
             if (d.type1 == 1) {
                 if (dStock[1] > 0.01) {
                     dStock[1] -= getDealerSell(i) * times;
-                    gainMoney(((getDealerSell(i) * dPrice[1]) * rankMultiplier) * times);
+                    gainMoney((((getDealerSell(i) * dPrice[1]) * rankMultiplier) * prestige[3]) * times);
                     mps1 = (getNormalDealerSell(4) * dPrice[1]) + (getNormalDealerSell(5) * dPrice[1]) + (getNormalDealerSell(6) * dPrice[1]) + (getNormalDealerSell(7) * dPrice[1]);
                     mps1 *= rankMultiplier;
+                    mps1 *= prestige[3];
                 };
             };
             if (d.type1 == 2) {
                 if (dStock[2] > 0.01) {
                     dStock[2] -= getDealerSell(i) * times;
-                    gainMoney(((getDealerSell(i) * dPrice[2]) * rankMultiplier) * times);
+                    gainMoney((((getDealerSell(i) * dPrice[2]) * rankMultiplier) * prestige[3]) * times);
                     mps2 = (getNormalDealerSell(8) * dPrice[2]) + (getNormalDealerSell(9) * dPrice[2]) + (getNormalDealerSell(10) * dPrice[2]) + (getNormalDealerSell(11) * dPrice[2])
                     mps2 *= rankMultiplier;
+                    mps2 *= prestige[3];
                 };
             };
             money[2] = mps + mps1 + mps2;
