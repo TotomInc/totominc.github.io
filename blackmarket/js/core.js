@@ -20,14 +20,14 @@ var prestigeRanks = [
     new PrestigeRank("Bronze Elite",        1,  50,         3.00),
     new PrestigeRank("Bronze Master",       2,  200,        4.00),
     new PrestigeRank("Bronze Guardian",     3,  600,        5.00),
-    new PrestigeRank("Silver",              4,  2500,       6.00),
-    new PrestigeRank("Silver Elite",        5,  10000,      7.00),
-    new PrestigeRank("Silver Master",       6,  25000,      8.00),
-    new PrestigeRank("Silver Guardian",     7,  100000,     9.00),
-    new PrestigeRank("Platinum",            8,  250000,     10.00),
-    new PrestigeRank("Platinum Elite",      9,  950000,     11.00),
-    new PrestigeRank("Platinum Master",     10, 2500000,    12.00),
-    new PrestigeRank("Platinum Garudian",   11, 10000000,   13.00)
+    new PrestigeRank("Silver",              4,  2500,       10.00),
+    new PrestigeRank("Silver Elite",        5,  10000,      15.00),
+    new PrestigeRank("Silver Master",       6,  25000,      20.00),
+    new PrestigeRank("Silver Guardian",     7,  100000,     25.00),
+    new PrestigeRank("Platinum",            8,  250000,     50.00),
+    new PrestigeRank("Platinum Elite",      9,  950000,     75.00),
+    new PrestigeRank("Platinum Master",     10, 2500000,    100.00),
+    new PrestigeRank("Platinum Guardian",   11, 10000000,   125.00)
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
