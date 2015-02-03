@@ -65,11 +65,14 @@
 				  	<span id="s-d1"></span>
 				  	<span id="s-d2"></span>
 				  	<span id="s-d3"></span>
+				  	<div class="line"></div>
 						<span id="s-totalmoney"></span>
 						<span id="s-totalshoot"></span>
 						<span id="s-totalreload"></span>
+						<div class="line"></div>
 						<span id="s-experience"></span>
 						<span id="s-experienceOnReset"></span>
+						<div class="line"></div>
 						<b>Game auto-save every second but you can force-save with the saving button below.</b><br>
 						<b>Note : the game progresses even if it is closed! Offline mode is activate on the game!</b>
 						<p class="s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Hard-Reset</span> - <span class="s-options" onclick="softReset();">Soft-Reset</span></p>
@@ -155,7 +158,30 @@
 						<a id="d-12" class="list-group-item"><span id="d-n12"></span><span id="d-c12"></span><span id="d-r12"></span><span id="d-o12" class="badge"></span></a>
 				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-							<li class="list-group-item list-group-item-warning center bold">Prestige system is available, there will be soon here the prestige upgrades! I'm working on it!</li>
+						<li class="list-group-item list-group-item-warning center bold">Prestige system is available, there will be soon here the prestige upgrades! I'm working on it!</li>
+						<li class="list-group-item list-group-item-danger center bold">What is prestige?<br>
+						Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.<br>
+						When you're going to soft-reset, you lose everything but not total money and experience, but restart everything.</li>
+						<li class="list-group-item list-group-item-info">
+							<p class="s-rank">About the prestige ranks :</p>
+							<table class="table">
+						    <thead><tr><th>Rank</th><th>Experience needed</th><th>Prestige multiplier</th></tr></thead>
+						    <tbody>
+						      <tr><th scope="row">Bronze</th><td>10 exp</td><td>x2.00</td></tr>
+						      <tr><th scope="row">Bronze Elite</th><td>50 exp</td><td>x3.00</td></tr>
+						      <tr><th scope="row">Bronze Master</th><td>200 exp</td><td>x4.00</td></tr>
+						      <tr><th scope="row">Bronze Guardian</th><td>600 exp</td><td>x5.00</td></tr>
+						      <tr><th scope="row">Silver</th><td>2'500 exp</td><td>x10.00</td></tr>
+						      <tr><th scope="row">Silver Elite</th><td>10'000 exp</td><td>x15.00</td></tr>
+						      <tr><th scope="row">Silver Master</th><td>25'000 exp</td><td>x20.00</td></tr>
+						      <tr><th scope="row">Silver Guardian</th><td>100'000 exp</td><td>x25.00</td></tr>
+						      <tr><th scope="row">Platinum</th><td>250'000 exp</td><td>x50.00</td></tr>
+						      <tr><th scope="row">Platinum Elite</th><td>950'000 exp</td><td>x75.00</td></tr>
+						      <tr><th scope="row">Platinum Master</th><td>2'500'000 exp</td><td>x100.00</td></tr>
+						      <tr><th scope="row">Platinum Guardian</th><td>10'000'000 exp</td><td>x125.00</td></tr>
+						    </tbody>
+							</table>
+						</li>
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
 			    	<!-- patch notes section -->
@@ -213,24 +239,6 @@
 						      <tr><th scope="row">AWP</th><td>1'500'000$</td><td>x1.40</td></tr>
 						      <tr><th scope="row">AUG</th><td>5'000'000$</td><td>x1.45</td></tr>
 						      <tr><th scope="row">AK-47</th><td>25'000'000$</td><td>x1.50</td></tr>
-						    </tbody>
-							</table>
-							<p class="s-rank">About the prestige ranks :</p>
-							<table class="table">
-						    <thead><tr><th>Rank</th><th>Experience needed</th><th>Prestige multiplier</th></tr></thead>
-						    <tbody>
-						      <tr><th scope="row">Bronze</th><td>10 exp</td><td>x2.00</td></tr>
-						      <tr><th scope="row">Bronze Elite</th><td>50 exp</td><td>x3.00</td></tr>
-						      <tr><th scope="row">Bronze Master</th><td>200 exp</td><td>x4.00</td></tr>
-						      <tr><th scope="row">Bronze Guardian</th><td>600 exp</td><td>x5.00</td></tr>
-						      <tr><th scope="row">Silver</th><td>2'500 exp</td><td>x10.00</td></tr>
-						      <tr><th scope="row">Silver Elite</th><td>10'000 exp</td><td>x15.00</td></tr>
-						      <tr><th scope="row">Silver Master</th><td>25'000 exp</td><td>x20.00</td></tr>
-						      <tr><th scope="row">Silver Guardian</th><td>100'000 exp</td><td>x25.00</td></tr>
-						      <tr><th scope="row">Platinum</th><td>250'000 exp</td><td>x50.00</td></tr>
-						      <tr><th scope="row">Platinum Elite</th><td>950'000 exp</td><td>x75.00</td></tr>
-						      <tr><th scope="row">Platinum Master</th><td>2'500'000 exp</td><td>x100.00</td></tr>
-						      <tr><th scope="row">Platinum Guardian</th><td>10'000'000 exp</td><td>x125.00</td></tr>
 						    </tbody>
 							</table>
 			    	</li>

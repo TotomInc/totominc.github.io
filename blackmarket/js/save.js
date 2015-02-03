@@ -49,7 +49,7 @@ function hardReset() {
     };
 };
 function softReset() {
-    var r = confirm("Do you want to soft-reset? You will earn " + fix(getExperienceOnReset(), 0) + " experience but restart the game from the beggining with a boost.");
+    var r = confirm("Do you want to soft-reset? You will earn " + fix(getExperienceOnReset(), 0) + " experience but restart the game from the beggining with a boost.\nCheck the prestige tab to read more about the soft-reset.");
     if (r == true) {
         window.clearInterval(intSave);
         var t1 = money[1];
