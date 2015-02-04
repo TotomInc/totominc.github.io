@@ -31,9 +31,9 @@ var prestigeRanks = [
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
-    new Drug("Weed",    20,     0),
-    new Drug("Meth",    60,     1),
-    new Drug("Cocaine", 200,    2)
+    new Drug("Weed",    40,     0),
+    new Drug("Meth",    80,     1),
+    new Drug("Cocaine", 400,    2)
 ];
 var upgradesOwned;
 var upgrades = [
