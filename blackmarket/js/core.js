@@ -69,33 +69,33 @@ var upgrades = [
 ];
 var buildsOwned;
 var builds = [
-    new Build("Weed Plant",         500,        0.1,    1.15, 0, "weed"),
-    new Build("Shed Grow",          5000,       0.5,    1.14, 0, "weed"),
-    new Build("Basement Grow",      30000,      1.25,   1.13, 0, "weed"),
-    new Build("Hydroponic Farm",    500000,     3.5,    1.12, 0, "weed"),
-    new Build("Rusty Van",          3000,       0.1,    1.15, 1, "meth"),
-    new Build("Garage",             30000,      0.5,    1.14, 1, "meth"),
-    new Build("Lab-Assistant",      250000,     1.25,   1.13, 1, "meth"),
-    new Build("Underground Lab",    5000000,    3.5,    1.12, 1, "meth"),
-    new Build("Cocaine Build 1",    25000,      0.1,    1.15, 2, "cocaine"),
-    new Build("Cocaine Build 2",    750000,     0.5,    1.14, 2, "cocaine"),
-    new Build("Cocaine Build 3",    12500000,   1.25,   1.13, 2, "cocaine"),
-    new Build("Cocaine Build 4",    150000000,  3.5,    1.12, 2, "cocaine")
+    new Build("Weed Plant",         500,            0.1,    1.15, 0, "weed"),
+    new Build("Shed Grow",          7500,           0.5,    1.14, 0, "weed"),
+    new Build("Basement Grow",      100000,         1.25,   1.13, 0, "weed"),
+    new Build("Hydroponic Farm",    3500000,        3.5,    1.12, 0, "weed"),
+    new Build("Rusty Van",          50000,          0.1,    1.15, 1, "meth"),
+    new Build("Garage",             1000000,        0.5,    1.14, 1, "meth"),
+    new Build("Lab-Assistant",      75000000,       1.25,   1.13, 1, "meth"),
+    new Build("Underground Lab",    500000000,      3.5,    1.12, 1, "meth"),
+    new Build("Cocaine Build 1",    30000000,       0.1,    1.15, 2, "cocaine"),
+    new Build("Cocaine Build 2",    750000000,      0.5,    1.14, 2, "cocaine"),
+    new Build("Cocaine Build 3",    5000000000,     1.25,   1.13, 2, "cocaine"),
+    new Build("Cocaine Build 4",    75000000000,    3.5,    1.12, 2, "cocaine")
 ];
 var dealersOwned;
 var dealers = [
-    new Dealer("Slave Dealer",          500,        0.05,   1.12, 0, "weed"),
-    new Dealer("Street Dealer",         5000,       0.4,    1.11, 0, "weed"),
-    new Dealer("Dirty Dealer",          30000,      1,      1.10, 0, "weed"),
-    new Dealer("Old Dealer",            500000,     3,      1.09, 0, "weed"),
-    new Dealer("Common Dealer",         3000,       0.05,   1.12, 1, "meth"),
-    new Dealer("Experienced Dealer",    30000,      0.4,    1.11, 1, "meth"),
-    new Dealer("Royal Dealer",          250000,     1,      1.10, 1, "meth"),
-    new Dealer("King Dealer",           5000000,    3,      1.09, 1, "meth"),
-    new Dealer("Cocaine Dealer 1",      25000,      0.05,   1.12, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 2",      750000,     0.4,    1.11, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 3",      12500000,   1,      1.10, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 4",      150000000,  3,      1.09, 2, "cocaine")
+    new Dealer("Slave Dealer",          500,            0.05,   1.12, 0, "weed"),
+    new Dealer("Street Dealer",         7500,           0.4,    1.11, 0, "weed"),
+    new Dealer("Dirty Dealer",          100000,         1,      1.10, 0, "weed"),
+    new Dealer("Old Dealer",            3500000,        3,      1.09, 0, "weed"),
+    new Dealer("Common Dealer",         50000,          0.05,   1.12, 1, "meth"),
+    new Dealer("Experienced Dealer",    1000000,        0.4,    1.11, 1, "meth"),
+    new Dealer("Royal Dealer",          75000000,       1,      1.10, 1, "meth"),
+    new Dealer("King Dealer",           500000000,      3,      1.09, 1, "meth"),
+    new Dealer("Cocaine Dealer 1",      30000000,       0.05,   1.12, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 2",      750000000,      0.4,    1.11, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 3",      5000000000,     1,      1.10, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 4",      75000000000,    3,      1.09, 2, "cocaine")
 ];
 var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;

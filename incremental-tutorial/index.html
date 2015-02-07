@@ -2,90 +2,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Incremental-tutorial</title>
-
-	<link href="favicon.ico" rel="icon" type="image/x-icon" />
-	<script src="src/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" href="src/bootstrap.min.css">
-	<script src="src/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="src/font-awesome.min.css">
+	<script type="text/javascript" src="src/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
+	<script type="text/javascript" src="src/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand">Incremental-Tutorial</a>
-	    </div>
-	  </div>
-	</nav>
-
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-				  <div class="panel-heading">Aperçu final du jeu que l'on va créer</div>
-				  <div class="panel-body">
-						<button onclick="gagnerCookie()">+1 cookie</button><br>
-						<span id="affichageCookies"></span> cookies.
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-8">
-				<div class="panel panel-success">
-				  <div class="panel-heading">Explication</div>
-				  <div class="panel-body">
-				  	<p><b>Voici le code Javascript du jeu :</b></p>
-				  	<pre>
-var cookies = 0;
-
-function gagnerCookie() {
-	cookies += 1;
-	document.getElementById("affichageCookies").innerHTML = cookies;
-};
-
-window.onload = function() {
-	document.getElementById("affichageCookies").innerHTML = cookies;
-};</pre>
-						<p><b>Voici le code HTML du jeu :</b></p>
-						<pre>
-&lt;button onclick="gagnerCookie()"&gt;+1 cookie&lt;/button&gt;&lt;br&gt;
-&lt;span id="affichageCookies"&gt;&lt;/span&gt; cookies.</pre>
-				  	<p>En Javascript, on commence toujours par créer des variables. Ces variables permettent de stocker des données comme des chiffres, des lettres ou même des phrases. Afin de différencier les variables, on doit toujours leur attribuer un nom. Ce nom peut être composé de lettre et de chiffre uniquement. Il est préférable de donner une valeur de base à notre variable après l'avoir créée comme par exemple, un 0. Ce qui voudra dire que notre variable sera égale à 0. Une fois cette variable créée, on termine par un point-virgule afin de dire au Javascript que la création de notre variable s'arrête ici.</p>
-				  	<p>Dans notre cas, nous avons besoin de stocker le nombre de cookies, alors nous allons créer une variable appellée <code>cookies</code> comme ceci :
-				  	<pre>var cookies = 0;</pre></p>
-				  	<p>Ensuite nous allons utiliser les fonctions. Elles sont utilisées pour demander à l'ordinateur d'effectuer les lignes de commandes qui se trouvent dans ces fonctions. Pour créer une fonction, on commence par dire au Javascript que nous voulons déclarer une fonction en commençant par le mot <code>function</code> suivi du nom qu'on souhaite lui donner, comme pour les variables. Ici, nous allons l'appeller <code>gagnerCookie</code>, puis on termine par mettre des parenthèses (nous verrons plus tard a quoi servent-elles). Ensuite, nous devons mettre des accolades qui vont désigner les limites de la fonction, les lignes de code a éxecuter dans cette fonction. Ce qui donne :
-				  	<pre>function gagnerCookie() {
-};</pre>
-				  	</p>
-				  	<p>Maintenant nous devons dire ce qu'il va se passer lorsque nous demandons à l'ordinateur d'éxécuter la fonction <code>gagnerCookie</code>, pour cela nous allons créér de nouvelles lignes de code. Notre but, est d'augmenter notre nombre de cookies lorsque nous appellons cette fonction, par exemple lorsqu'on clique sur le bouton. Alors nous allons devoir modifier la variable <code>cookies</code> lorsqu'on éxécute la fonction <code>gagnerCookie</code>. Pour cela, rien de plus simple, on ajoute dans notre fonction <code>gagnerCookie</code> la ligne de code suivante <u>entre les accolades</u> : <code>cookies = cookies + 1;</code></p>
-				  	<p>Ce qui nous donne maintenant ceci : <pre>
-function gagnerCookie() {
-	cookies += 1;
-};</pre></p>
-						<p>La ligne de code <code>cookies = cookies + 1;</code> demande a l'ordinateur de : prendre la variable cookies, puis de lui dire d'ajouter + 1 au nombre de cookies, rien de plus simple.</p>
-						<p>La prochaine étape est d'ajouter l'affichage du nombre de cookies sur la page. Pour cela, on créé un élément avec le tag <code>&lt;span&gt;&lt;/span&gt;</code> et on lui donne un nom ou alors un id, dans l'attribut <code>id</code>. Par exemple, nous avons notre tag span et allons lui donner le nom <code>affichageCookies</code>, ce qui nous donne :
-<pre>
-&lt;span id="affichageCookies"&gt;&lt;/span&gt;</pre></p>
-						<p>Notre tag span est maintenant identifiable grâce à son nom <code>affichageCookies</code>, donc nous allons pouvoir l'utiliser dans le Javascript. Si on veut actualiser notre nombre de cookies qui sera inclu dans le tag span, il va falloir ajouter une ligne de code en Javascript <b>dans notre fonction gagnerCookie</b>, cette ligne de code : <pre>
-document.getElementById("affichageCookies").innerHTML = cookies;</pre></p>
-						<p><b>Que fait concrètement cette ligne de code ?</b></p>
-						<p>Cette ligne de code va chercher dans le document HTML (<code>document.</code>) un élément, ou un tag si vous préférez qui porte un id (<code>getElementById</code>) que vous précisez entre les parenthèses (<code>("affichageCookies")</code>), puis ensuite on ajoute <code>innerHTML</code>. On fini par mettre le symbole <code>=</code> qui va demander au Javascript d'afficher ce qu'il y a entre l'élément/le tag qui porte pour <code>id</code> <code>affichageCookies</code>. Nous ce qu'on veut c'est juste afficher le nombre de cookies, et ce nombre de cookies est stocké dans notre variable appellée <code>cookies</code>. Alors nous allons tout simplement mettre <code>cookies</code> après le symbole <code>=</code>. Ce qui devrait donner : <pre>
-function gagnerCookie() {
-	cookies += 1;
-	document.getElementById("affichageCookies").innerHTML = cookies;
-};</pre></p>
-					<p>Presque la fin, il nous reste plus qu'a ajouter le bouton dans notre HTML. Pour cela, on peut créer un simple bouton avec le tag <code>&lt;button&gt;&lt;/button&gt;</code>. Ensuite on va ajouter un attribut à ce bouton, l'attribut <code>onclick</code>. Cet attribut permet de demander au bouton que, lorsqu'on clique dessus, il exécute la fonction définie. Pour cela, on met seulement le nom de la fonction dans notre attribut <code>onclick</code> suivi d'un égal, puis on met entre les apostrophes le nom de la variable <b>sans oublier les parenthèses</b> ! On peut par exemple dire pour notre jeu : <pre>
-&lt;button onclick="gagnerCookie()"&gt;&lt;/button&gt;</pre></p>
-					<p>On peut mettre du contenu dans le bouton, du texte qui s'affichera dans le bouton comme ceci : <pre>
-&lt;button onclick="gagnerCookie()"&gt;+1 cookie&lt;/button&gt;</pre></p>
-					<p>Notre jeu est prêt, la base est maintenant créée, dans le prochain tutoriel nous allons voir comme créer un maagasin afin d'acheter des <code>builds</code> qui nous permetteront de gagner des cookies toutes les secondes.</p>
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript" src="game.js"></script>
 </body>
 </html>
