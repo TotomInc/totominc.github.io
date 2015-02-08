@@ -2,13 +2,102 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Incremental-tutorial</title>
 	<script type="text/javascript" src="src/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="src/bootstrap.min.css">
 	<script type="text/javascript" src="src/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="src/rainbow.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="themes/pastie.css">
+
+	<style type="text/css">
+		body { font-family: 'Open Sans', sans-serif; font-weight: 400; background: #ddd; }
+		h4 { font-weight: 700; font-size: 20px; text-align: center; }
+		h6 { font-weight: 700; text-decoration: underline; }
+		.navbar { border-radius: 0; }
+	</style>
 </head>
 
 <body>
+	<nav class="navbar navbar-default navbar-static-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header"><a class="navbar-brand" href="#">Incremental-Tutorial</a></div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="active"><a href="#">Cours 1</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">Notre clone de Cookie Clicker</div>
+			<div class="panel-body">
+				<button class="btn btn-success" onclick="cookieClick()">+1 cookie</button>
+				<span id="affichage-cookies"></span>
+				<script type="text/javascript">
+					var cookies = 0;
+					function cookieClick() {
+						cookies += 1;
+					};
+					function updateShop() {
+						document.getElementById("affichage-cookies").innerHTML = cookies + " cookies";
+					};
+					window.setInterval(function() {
+						updateShop();
+						console.log("onche");
+					}, 10);
+				</script>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">Cours 1 : les bases</div>
+		  <div class="panel-body">
+		  	<h4>Cours 1 : les bases</h4>
+		  	<!-- 1.0 -->
+		  	<h6>Mise en place de la page HTML :</h6>
+		  	<p>Avant de commencer à apprendre et développer notre propre incremental-game, il faut s'assurer d'avoir les bons outils à disposition. On va tenter de créer un petit clone de Cookie Clicker, un clone très simplistique. Nous avons besoin de plusieurs outils :<br>
+		  	- D'un éditeur de texte (Sublime Text 1-2-3, Notepad++ ou même bloc-note).<br>
+		  	- Utiliser un navigateur internet récent comme Google Chrome, Firefox, Opera ou Safari.<br>
+		  	- Un dossier ou stocker tous nos fichiers.<br>
+		  	Il est recommandé de regarder dans le code-source des autres pages web afin de mieux apprendre, par exemple, tu peux regarder dans le code-source du tutoriel en ouvrant la console (F12 ou Ctrl+Shift+I) puis dans l'onglet "Elements", ou alors Ctrl+U pour afficher le code-source dans un autre onglet.</p>
+		  	<p>A partir d'ici, on peut remarquer quelque chose : une page web est toujours construite avec de l'HTML, du CSS et du Javascript. On va donc commencer a créer nos 3 fichiers : index.html - style.css - main.js<br>
+		  	On place ces trois fichiers dans le même dossier, mais il faut maintenant les inclure dans notre page HTML. On fait alors comme ceci pour le CSS :
+		  	<pre><code data-language="html">&lt;link rel="stylesheet" type="text/css" href="style.css"&gt;</code></pre>
+		  	Pour le Javascript :
+		  	<pre><code data-language="html">&lt;script type="text/javascript" src="main.js"&gt;</code></pre></p>
+		  	<p>Nos pages CSS et JS (Javascript) sont maintenant liées à notre HTML, nous pouvons commencer à programmer !</p>
+		  	<!-- 1.1 -->
+		  	<h6>Les bases du clic :</h6>
+		  	<p>Ce que tu apprendras ici agira comme base de tout ce que tu apprendras plus tard dans ce tutoriel, alors assure-toi bien de lire et suivre attentivement. Ce que nous voulons, c'est cliquer sur un bouton et voir le nombre à l'écran augmenter. Ceci nous demande alors plusieurs choses :<br>
+		  	- Un élément de l'interface à cliquer (comme un bouton)<br>
+		  	- Un peu de "game logic" pour garder un suivi des nombres<br>
+		  	- Une fonction en JS nous permettant de faire augmenter (ou réduire) notre chiffre<br>
+		  	- Un élément de l'interface qui affichera notre nombre<br>
+		  	- Un moyen de mettre à jour cet élément de l'interface</p>
+		  	<p>On commence par créer le bouton en lui ajoutant un attribut <b>onclick</b> comme ça :
+		  	<pre><code data-language="html">&lt;button onclick="cookieClick()"&gt;+1 cookie&lt;/button&gt;</code></pre>
+		  	cookieClick() est le nom de notre fonction, a chaque fois qu'on clique sur le bouton, nous appellons notre fonction cookieClick() et elle est donc éxecutée.</p>
+		  	<p>Maintenant il faut garder le suivi de notre chiffre, pour cela on va créer une variable puis la définir à 0, dans notre fichier main.js :<pre><code data-language="javascript">var cookies = 0;</code></pre>
+		  	Notre variable est créée, mais notre fonction qui doit faire augmenter notre variable cookies n'est toujours pas créée, on va maintenant s'en occuper. A chaque fois qu'une fonction est appellée en JS, les lignes de code s'y trouvant à l'interieur sont éxecutées. Dans notre cas, nous voulons une fonction qui, lorsqu'elle est appellée, augmente notre variable cookies par 1. Notre fonction cookieClick() doit ressembler à ça :<pre><code data-language="javascript">function cookieClick() {
+				    cookies += 1;
+				};</code></pre></p>
+		  	<!-- 1.2 -->
+		  	<h6>L'affichage de notre variable cookies :</h6>
+		  	<p>Nous voulons maintenant afficher notre nombre de cookies, qui est inscrit dans la variable cookies. On va tout simplement créer un tag span puis lui ajouter un attribut d'ID appellé "affichage-cookies". On doit avoir ceci : <pre><code data-language="html">&lt;span id="affichage-cookies"&gt;&lt;/span&gt;</code></pre>
+		  	Ensuite on va créer une autre fonction appellée updateGame(), cette fonction va nous permettre de rafraichir les éléments d'affichage, par exemple nos variables qu'on souhaite afficher. Dans cette fonction, on va ajouter cette ligne de code : <pre><code data-language="javascript">document.getElementById("affichage-cookie").innerHTML = cookies;</code></pre>
+		  	Cette ligne de code va chercher dans le document HTML pour l'ID spécifié (donc affichage-cookies pour nous), et modifie le contenu du tag. Dans notre cas, nous voulons afficher la variable cookies, donc la ligne de code nous affichera le nombre de cookies. J'ai ajouté après la variable cookies la chaine de caractères " cookies" car ceci nous permettre de voir le mot cookies après le nombre de cookies, et pas seulement voir un nombre. Notre fonction updateShop() devrait ressembler à ça : <pre><code data-language="javascript">function updateShop() {
+				    document.getElementById("affichage-cookie").innerHTML = cookies + " cookies";
+				};</code></pre>
+				Il faut maintenant placer updateShop() dans une loop. Une loop est un chose qui se répète toutes les X secondes. On fait comme ceci pour en créer une : <pre><code data-language="javascript">window.setInterval(function() {
+				    updateShop();
+				}, 10);</code></pre>
+				J'ai inclus le nom de la fonction au milieu car nous voulons que la fonction soit appellée a chaque fois que la loop s'éxecute. Le temps d'une loop se définit en millisecondes, on le met toujours à la fin avant de refermer par des parenthèses notre loop. Notre loop s'éxécute toutes les 10 millisecondes, soit toutes les 0.01 secondes afin d'éxecuter les fonctions (et donc lignes de codes) qui s'y trouvent à l'intérieur.</p>
+		  </div>
+		</div>
+	</div>
 </body>
 </html>
