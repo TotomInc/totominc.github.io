@@ -65,7 +65,7 @@ var upgrades = [
     new Upgrade("Meth price x3",        82800,      function() {dPrice[1] *= 3 }),
     new Upgrade("Cocaine price x2",     30240,      function() {dPrice[2] *= 2 }),
     new Upgrade("Cocaine price x2",     90720,      function() {dPrice[2] *= 2 }),
-    new Upgrade("Cocaine price x3",     544320,     function() {dPrice[2] *= 2 })
+    new Upgrade("Cocaine price x3",     544320,     function() {dPrice[2] *= 3 })
 ];
 var buildsOwned;
 var builds = [
