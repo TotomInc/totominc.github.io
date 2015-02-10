@@ -67,6 +67,9 @@ var upgrades = [
     new Upgrade("Cocaine price x2",     90720,      function() {dPrice[2] *= 2 }),
     new Upgrade("Cocaine price x3",     544320,     function() {dPrice[2] *= 3 })
 ];
+var prestigeUpgradesOwned;
+var prestigeUpgrades = [
+];
 var buildsOwned;
 var builds = [
     new Build("Weed Plant",             500,            0.1,    1.15, 0, "weed"),
@@ -100,7 +103,7 @@ var dealers = [
 var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "buildsOwned", "dealersOwned", "before"];
+var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "prestigeUpgradesOwned", "buildsOwned", "dealersOwned", "before"];
 
 // game display
 function initVars() {
@@ -122,6 +125,10 @@ function initVars() {
     upgradesOwned = [];
     for (var i = 0; i < upgrades.length; i++)
         upgradesOwned.push(false);
+
+    prestigeUpgradesOwned = [];
+    for (var i = 0; i < prestigeUpgrades.length; i++)
+        prestigeUpgradesOwned.push(false);
 
     buildsOwned = [];
     for (var i = 0; i < builds.length; i++)
@@ -407,6 +414,20 @@ function PrestigeRank(name, index, needed, multiplier) {
     this.needed = needed;
     this.multiplier = multiplier;
 };
+function PrestigeUpgrade(name, price, run) {
+    this.name = name;
+    this.price = price;
+    this.run = run;
+};
+function buyPrestigeUpgrade(index) {
+    if (prestige[0] >= prestigeUpgrades[index-1].price) {
+        prestige[0] -= prestigeUpgrades[index-1].price;
+        prestigeUpgradesOwned[index-1] = true;
+        prestigeUpgrades[index-1].run();
+    } else {
+        console.log("purchase failed : not enough experience");
+    };
+};
 function Upgrade(name, price, run) {
     this.name = name;
     this.price = price;
@@ -420,6 +441,8 @@ function buyUpgrade(index) {
         $("#u-b" + index).html("Bought");
         $("#u-" + index).attr("class", "list-group-item disabled");
         $("#u-" + index).attr("onclick", "");
+    } else {
+        console.log("purchase failed : not enough money");
     };
 };
 function Build(name, price, reward, inflation, type1, type2) {

@@ -54,10 +54,14 @@ function softReset() {
         window.clearInterval(intSave);
         var t1 = money[1];
         var t2 = getExperienceOnReset();
+        var t3 = totalShoots;
+        var t4 = totalReloads;
         resetData();
         initVars();
         money[1] = t1;
         prestige[0] = t2;
+        totalShoots = t3;
+        totalReloads = t4;
         saveData();
         location.reload();
     };
