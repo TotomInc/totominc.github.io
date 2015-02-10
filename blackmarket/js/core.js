@@ -2,37 +2,37 @@ var money; var shoot; var prestige;
 var totalShoots; var totalReloads;
 var rank; var rankMultiplier;
 var ranks = [
-    new Rank("Glock-18",        0,  100,        1.00),
-    new Rank("CZ75-Auto",       1,  500,        1.05),
-    new Rank("Dual Berettas",   2,  2500,       1.10),
-    new Rank("UMP-45",          3,  10000,      1.15),
-    new Rank("P90",             4,  25000,      1.20),
-    new Rank("PP-Bizon",        5,  100000,     1.25),
-    new Rank("Galil AR",        6,  250000,     1.30),
-    new Rank("FAMAS",           7,  750000,     1.35),
-    new Rank("AWP",             8,  1500000,    1.40),
-    new Rank("AUG",             9,  5000000,    1.45),
-    new Rank("AK-47",           10, 25000000,   1.50)
+    new Rank("Glock-18",        0,  0,              1.00),
+    new Rank("CZ75-Auto",       1,  2500,           1.10),
+    new Rank("Dual Berettas",   2,  10000,          1.20),
+    new Rank("UMP-45",          3,  100000,         1.30),
+    new Rank("P90",             4,  250000,         1.40),
+    new Rank("PP-Bizon",        5,  1000000,        1.50),
+    new Rank("Galil AR",        6,  25000000,       1.60),
+    new Rank("FAMAS",           7,  100000000,      1.70),
+    new Rank("AUG",             8,  500000000,      1.80),
+    new Rank("AWP",             9,  2500000000,     1.90),
+    new Rank("AK-47",           10, 50000000000,    2.00)
 ];
 var prestigeRank;
 var prestigeRanks = [
-    new PrestigeRank("Bronze",              0,  10,         2.00),
-    new PrestigeRank("Bronze Elite",        1,  50,         3.00),
-    new PrestigeRank("Bronze Master",       2,  200,        4.00),
-    new PrestigeRank("Bronze Guardian",     3,  600,        5.00),
-    new PrestigeRank("Silver",              4,  2500,       10.00),
-    new PrestigeRank("Silver Elite",        5,  10000,      15.00),
-    new PrestigeRank("Silver Master",       6,  25000,      20.00),
-    new PrestigeRank("Silver Guardian",     7,  100000,     25.00),
-    new PrestigeRank("Platinum",            8,  250000,     50.00),
-    new PrestigeRank("Platinum Elite",      9,  950000,     75.00),
-    new PrestigeRank("Platinum Master",     10, 2500000,    100.00),
-    new PrestigeRank("Platinum Guardian",   11, 10000000,   125.00)
+    new PrestigeRank("Bronze",              0,  25,         2.00),
+    new PrestigeRank("Bronze Elite",        1,  100,        4.00),
+    new PrestigeRank("Bronze Master",       2,  400,        6.00),
+    new PrestigeRank("Bronze Guardian",     3,  1000,       8.00),
+    new PrestigeRank("Silver",              4,  2500,       20.00),
+    new PrestigeRank("Silver Elite",        5,  10000,      30.00),
+    new PrestigeRank("Silver Master",       6,  50000,      40.00),
+    new PrestigeRank("Silver Guardian",     7,  100000,     50.00),
+    new PrestigeRank("Platinum",            8,  500000,     100.00),
+    new PrestigeRank("Platinum Elite",      9,  1000000,    150.00),
+    new PrestigeRank("Platinum Master",     10, 2000000,    200.00),
+    new PrestigeRank("Platinum Guardian",   11, 5000000,    250.00)
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
-    new Drug("Weed",    40,     0),
-    new Drug("Meth",    80,     1),
+    new Drug("Weed",    50,     0),
+    new Drug("Meth",    100,    1),
     new Drug("Cocaine", 400,    2)
 ];
 var upgradesOwned;
@@ -69,18 +69,18 @@ var upgrades = [
 ];
 var buildsOwned;
 var builds = [
-    new Build("Weed Plant",         500,            0.1,    1.15, 0, "weed"),
-    new Build("Shed Grow",          7500,           0.5,    1.14, 0, "weed"),
-    new Build("Basement Grow",      100000,         1.25,   1.13, 0, "weed"),
-    new Build("Hydroponic Farm",    3500000,        3.5,    1.12, 0, "weed"),
-    new Build("Rusty Van",          50000,          0.1,    1.15, 1, "meth"),
-    new Build("Garage",             1000000,        0.5,    1.14, 1, "meth"),
-    new Build("Lab-Assistant",      75000000,       1.25,   1.13, 1, "meth"),
-    new Build("Underground Lab",    500000000,      3.5,    1.12, 1, "meth"),
-    new Build("Cocaine Build 1",    30000000,       0.1,    1.15, 2, "cocaine"),
-    new Build("Cocaine Build 2",    750000000,      0.5,    1.14, 2, "cocaine"),
-    new Build("Cocaine Build 3",    5000000000,     1.25,   1.13, 2, "cocaine"),
-    new Build("Cocaine Build 4",    75000000000,    3.5,    1.12, 2, "cocaine")
+    new Build("Weed Plant",             500,            0.1,    1.15, 0, "weed"),
+    new Build("Shed Grow",              7500,           0.5,    1.14, 0, "weed"),
+    new Build("Basement Grow",          100000,         1.25,   1.13, 0, "weed"),
+    new Build("Hydroponic Farm",        3500000,        3.5,    1.12, 0, "weed"),
+    new Build("Rusty Van",              50000,          0.1,    1.15, 1, "meth"),
+    new Build("Garage",                 1000000,        0.5,    1.14, 1, "meth"),
+    new Build("Lab-Assistant",          75000000,       1.25,   1.13, 1, "meth"),
+    new Build("Underground Lab",        500000000,      3.5,    1.12, 1, "meth"),
+    new Build("Youbzz Research-Center", 30000000,       0.1,    1.15, 2, "cocaine"),
+    new Build("Gop Lab",                750000000,      0.5,    1.14, 2, "cocaine"),
+    new Build("Underwater Laboratory",  5000000000,     1.25,   1.13, 2, "cocaine"),
+    new Build("Cocaine Island",         75000000000,    3.5,    1.12, 2, "cocaine")
 ];
 var dealersOwned;
 var dealers = [
