@@ -10,7 +10,7 @@ var ranks = [
     new Rank("PP-Bizon",        5,  1000000,        1.50),
     new Rank("Galil AR",        6,  25000000,       1.60),
     new Rank("FAMAS",           7,  100000000,      1.70),
-    new Rank("AUG",             8,  500000000,      1.80),
+    new Rank("AWP",             8,  500000000,      1.80),
     new Rank("AUG",             9,  2500000000,     1.90),
     new Rank("AK-47",           10, 50000000000,    2.00)
 ];
@@ -32,8 +32,8 @@ var prestigeRanks = [
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
     new Drug("Weed",    50,     0),
-    new Drug("Meth",    100,    1),
-    new Drug("Cocaine", 400,    2)
+    new Drug("Meth",    300,    1),
+    new Drug("Cocaine", 900,    2)
 ];
 var upgradesOwned;
 var upgrades = [
@@ -60,12 +60,15 @@ var upgrades = [
     new Upgrade("Weed price x2",        760,        function() { dPrice[0] *= 2 }),
     new Upgrade("Weed price x2",        2280,       function() { dPrice[0] *= 2 }),
     new Upgrade("Weed price x3",        13680,      function() { dPrice[0] *= 3 }),
+    new Upgrade("Weed price x2",        109440,     function() { dPrice[0] *= 2 }),
     new Upgrade("Meth price x2",        4600,       function() { dPrice[1] *= 2 }),
     new Upgrade("Meth price x2",        13800,      function() { dPrice[1] *= 2 }),
     new Upgrade("Meth price x3",        82800,      function() { dPrice[1] *= 3 }),
+    new Upgrade("Meth price x3",        662400,     function() { dPrice[1] *= 3 }),
     new Upgrade("Cocaine price x2",     30240,      function() { dPrice[2] *= 2 }),
     new Upgrade("Cocaine price x2",     90720,      function() { dPrice[2] *= 2 }),
-    new Upgrade("Cocaine price x3",     544320,     function() { dPrice[2] *= 3 })
+    new Upgrade("Cocaine price x3",     544320,     function() { dPrice[2] *= 3 }),
+    new Upgrade("Cocaine price x4",     4354560,    function() { dPrice[2] *= 4 })
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [
