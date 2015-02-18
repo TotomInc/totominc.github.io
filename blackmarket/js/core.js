@@ -70,9 +70,6 @@ var upgrades = [
     new Upgrade("Cocaine price x3",     544320,     function() { dPrice[2] *= 3 }),
     new Upgrade("Cocaine price x4",     4354560,    function() { dPrice[2] *= 4 })
 ];
-var prestigeUpgradesOwned;
-var prestigeUpgrades = [
-];
 var buildsOwned;
 var builds = [
     new Build("Weed Plant",             500,            0.1,    1.15, 0, "weed"),
@@ -106,7 +103,8 @@ var dealers = [
 var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
-var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier", "upgradesOwned", "prestigeUpgradesOwned", "buildsOwned", "dealersOwned", "before"];
+var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier",
+"upgradesOwned", "buildsOwned", "dealersOwned", "before"];
 
 // game display
 function initVars() {
@@ -128,10 +126,6 @@ function initVars() {
     upgradesOwned = [];
     for (var i = 0; i < upgrades.length; i++)
         upgradesOwned.push(false);
-
-    prestigeUpgradesOwned = [];
-    for (var i = 0; i < prestigeUpgrades.length; i++)
-        prestigeUpgradesOwned.push(false);
 
     buildsOwned = [];
     for (var i = 0; i < builds.length; i++)
@@ -207,29 +201,6 @@ function displayGame() {
                 $("#u-" + (i+1)).attr("class", "list-group-item bought");
             };
         };
-        // actions basic tutorial
-        if (totalShoots == 0) {
-            $("#a-i1").html("Click on the bar to shoot!");
-        } else {
-            if (totalShoots > 0 && totalShoots < 4) {
-                $("#a-i1").html("Yeah, you understand how it works.<br>Shoot all your bullets now.");
-            } else {
-                if (totalShoots > 4 && totalShoots < 8) {
-                    $("#a-i1").html("When you shoot, you earn dollars.");
-                } else {
-                    if (totalShoots > 8 && totalShoots < 11) {
-                        $("#a-i1").html("You can see your stats on the top-bar.");
-                    };
-                };
-            };
-        };
-        if (totalShoots == 12) {
-            $("#a-i2").html("No more ammo!<br>Click on the bar to reload and gain ammo!");
-            $("#a-i1").css("display", "none");
-        };
-        if (totalReloads > 0) {
-            $("#a-i2").css("display", "none");
-        };
         // hint on reload if needed
         if (shoot[0] < 1) {
             $("#f-1").attr("class", "progress-bar progress-bar-danger progress-bar-striped active");
@@ -244,18 +215,14 @@ function displayGame() {
         $("#s-totalreload").html("Total reloads : <b>" + fix(totalReloads, 0) + "</b><br>");
         $("#s-experience").html("Experience : <b>" + fix(prestige[0], 0) + "</b><br>");
         $("#s-experienceOnReset").html("Total experience on reset : <b>" + fix(getExperienceOnReset(), 0) + "</b><br>");
-        prestige[1] = getExperienceOnReset();
         $("#a-n1").html("Shoot : +" + fix((shoot[1] * rankMultiplier) * prestige[3], 2) + "$");
         $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
         $("#a-d2").html(fix(shoot[4]/1000, 2) + " sec");
-        // rank up and update gun display/multiplier
+        prestige[1] = getExperienceOnReset();
+        tutorial();
         gunRankUp();
-        $("#s-cg").html("Current gun : " + rank + "<br>");
-        $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
         prestigeRankUp();
-        $("#s-pr").html("Prestige rank : " + prestige[2] + "<br>");
-        $("#s-pm").html("Prestige multiplier : x" + fix(prestige[3], 2));
     };
 };
 function updateShop() {
@@ -310,6 +277,8 @@ function gunRankUp() {
             rankMultiplier = r.multiplier;
         };
     };
+    $("#s-cg").html("Current gun : " + rank + "<br>");
+    $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
 };
 function prestigeRankUp() {
     for (var i = 0; i < prestigeRanks.length; i++) {
@@ -319,12 +288,38 @@ function prestigeRankUp() {
             prestige[3] = p.multiplier;
         };
     };
+    $("#s-pr").html("Prestige rank : " + prestige[2] + "<br>");
+    $("#s-pm").html("Prestige multiplier : x" + fix(prestige[3], 2));
 };
 function offlineCalc() {
     var now = new Date().getTime();
     var offlineTime = now - before;
     buildReward(Math.floor(offlineTime/interval));
     dealerReward(Math.floor(offlineTime/interval));
+};
+function tutorial() {
+    if (totalShoots == 0) {
+        $("#a-i1").html("Click on the bar to shoot!");
+    } else {
+        if (totalShoots > 0 && totalShoots < 4) {
+            $("#a-i1").html("Yeah, you understand how it works.<br>Shoot all your bullets now.");
+        } else {
+            if (totalShoots > 4 && totalShoots < 8) {
+                $("#a-i1").html("When you shoot, you earn dollars.");
+            } else {
+                if (totalShoots > 8 && totalShoots < 11) {
+                    $("#a-i1").html("You can see your stats on the top-bar.");
+                };
+            };
+        };
+    };
+    if (totalShoots == 12) {
+        $("#a-i2").html("No more ammo!<br>Click on the bar to reload and gain ammo!");
+        $("#a-i1").css("display", "none");
+    };
+    if (totalReloads > 0) {
+        $("#a-i2").css("display", "none");
+    };
 };
 
 // basic actions functions
@@ -416,20 +411,6 @@ function PrestigeRank(name, index, needed, multiplier) {
     this.index = index;
     this.needed = needed;
     this.multiplier = multiplier;
-};
-function PrestigeUpgrade(name, price, run) {
-    this.name = name;
-    this.price = price;
-    this.run = run;
-};
-function buyPrestigeUpgrade(index) {
-    if (prestige[0] >= prestigeUpgrades[index-1].price) {
-        prestige[0] -= prestigeUpgrades[index-1].price;
-        prestigeUpgradesOwned[index-1] = true;
-        prestigeUpgrades[index-1].run();
-    } else {
-        console.log("purchase failed : not enough experience");
-    };
 };
 function Upgrade(name, price, run) {
     this.name = name;
