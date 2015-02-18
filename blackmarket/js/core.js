@@ -33,7 +33,7 @@ var dStock; var dName; var dPrice; var dPS;
 var dInit = [
     new Drug("Weed",    50,     0),
     new Drug("Meth",    300,    1),
-    new Drug("Cocaine", 900,    2)
+    new Drug("Cocaine", 1200,   2)
 ];
 var upgradesOwned;
 var upgrades = [
@@ -72,33 +72,33 @@ var upgrades = [
 ];
 var buildsOwned;
 var builds = [
-    new Build("Weed Plant",             500,            0.1,    1.15, 0, "weed"),
-    new Build("Shed Grow",              7500,           0.5,    1.14, 0, "weed"),
-    new Build("Basement Grow",          100000,         1.25,   1.13, 0, "weed"),
-    new Build("Hydroponic Farm",        3500000,        3.5,    1.12, 0, "weed"),
-    new Build("Rusty Van",              50000,          0.1,    1.15, 1, "meth"),
-    new Build("Garage",                 1000000,        0.5,    1.14, 1, "meth"),
-    new Build("Lab-Assistant",          75000000,       1.25,   1.13, 1, "meth"),
-    new Build("Underground Lab",        500000000,      3.5,    1.12, 1, "meth"),
-    new Build("Youbzz Research-Center", 30000000,       0.1,    1.15, 2, "cocaine"),
-    new Build("Gop Lab",                750000000,      0.5,    1.14, 2, "cocaine"),
-    new Build("Underwater Laboratory",  5000000000,     1.25,   1.13, 2, "cocaine"),
-    new Build("Cocaine Island",         75000000000,    3.5,    1.12, 2, "cocaine")
+    new Build("Weed Plant",             500,                0.1,    1.15, 0, "weed"),
+    new Build("Shed Grow",              50000,              0.5,    1.14, 0, "weed"),
+    new Build("Basement Grow",          1000000,            1.25,   1.13, 0, "weed"),
+    new Build("Hydroponic Farm",        250000000,          3.5,    1.12, 0, "weed"),
+    new Build("Rusty Van",              250000,             0.1,    1.15, 1, "meth"),
+    new Build("Garage",                 10000000,           0.5,    1.14, 1, "meth"),
+    new Build("Lab-Assistant",          500000000,          1.25,   1.13, 1, "meth"),
+    new Build("Underground Lab",        10000000000,        3.5,    1.12, 1, "meth"),
+    new Build("Youbzz Research-Center", 250000000,          0.1,    1.15, 2, "cocaine"),
+    new Build("Gop Lab",                50000000000,        0.5,    1.14, 2, "cocaine"),
+    new Build("Underwater Laboratory",  750000000000,       1.25,   1.13, 2, "cocaine"),
+    new Build("Cocaine Island",         25000000000000,     3.5,    1.12, 2, "cocaine")
 ];
 var dealersOwned;
 var dealers = [
-    new Dealer("Slave Dealer",          500,            0.05,   1.12, 0, "weed"),
-    new Dealer("Street Dealer",         7500,           0.4,    1.11, 0, "weed"),
-    new Dealer("Dirty Dealer",          100000,         1,      1.10, 0, "weed"),
-    new Dealer("Old Dealer",            3500000,        3,      1.09, 0, "weed"),
-    new Dealer("Common Dealer",         50000,          0.05,   1.12, 1, "meth"),
-    new Dealer("Experienced Dealer",    1000000,        0.4,    1.11, 1, "meth"),
-    new Dealer("Royal Dealer",          75000000,       1,      1.10, 1, "meth"),
-    new Dealer("King Dealer",           500000000,      3,      1.09, 1, "meth"),
-    new Dealer("Cocaine Dealer 1",      30000000,       0.05,   1.12, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 2",      750000000,      0.4,    1.11, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 3",      5000000000,     1,      1.10, 2, "cocaine"),
-    new Dealer("Cocaine Dealer 4",      75000000000,    3,      1.09, 2, "cocaine")
+    new Dealer("Slave Dealer",          500,                0.05,   1.12, 0, "weed"),
+    new Dealer("Street Dealer",         50000,              0.4,    1.11, 0, "weed"),
+    new Dealer("Dirty Dealer",          1000000,            1,      1.10, 0, "weed"),
+    new Dealer("Old Dealer",            250000000,          3,      1.09, 0, "weed"),
+    new Dealer("Common Dealer",         250000,             0.05,   1.12, 1, "meth"),
+    new Dealer("Experienced Dealer",    10000000,           0.4,    1.11, 1, "meth"),
+    new Dealer("Royal Dealer",          500000000,          1,      1.10, 1, "meth"),
+    new Dealer("King Dealer",           10000000000,        3,      1.09, 1, "meth"),
+    new Dealer("Cocaine Dealer 1",      250000000,          0.05,   1.12, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 2",      50000000000,        0.4,    1.11, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 3",      750000000000,       1,      1.10, 2, "cocaine"),
+    new Dealer("Cocaine Dealer 4",      25000000000000,     3,      1.09, 2, "cocaine")
 ];
 var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
@@ -240,140 +240,6 @@ function updateShop() {
         $("#d-c" + (i+1)).html("cost " + fix(getDealerPrice(i), 0) + "$<br>");
         $("#d-r" + (i+1)).html("Sell " + fix(d.sell, 2) + "g/sec of <b>" + d.type2 + "</b>");
         $("#d-o" + (i+1)).html(dealersOwned[i] + " owned");
-    };
-};
-
-// helpers functions
-function gainMoney(source) {
-    money[0] += source;
-    money[1] += source;
-};
-function getBuildPrice(index) {
-    return builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
-};
-function getDealerPrice(index) {
-    return dealers[index].price * Math.pow(dealers[index].inflation, dealersOwned[index]);
-};
-function getDrugInc(index) { // used to gain in functions
-    return ((builds[index].reward * buildsOwned[index])) / 187.5;
-};
-function getNormalDrugInc(index) { // used to display
-    return (builds[index].reward * buildsOwned[index]);
-};
-function getDealerSell(index) { // used to gain in functions
-    return (dealers[index].sell * dealersOwned[index]) / 187.5;
-};
-function getNormalDealerSell(index) { // used to display
-    return (dealers[index].sell * dealersOwned[index]);
-};
-function getExperienceOnReset() {
-    return Math.floor(20 * Math.sqrt(money[1]/1e6));
-};
-function gunRankUp() {
-    for (var i = 0; i < ranks.length; i++) {
-        var r = ranks[i];
-        if (money[1] >= r.needed) {
-            rank = r.name;
-            rankMultiplier = r.multiplier;
-        };
-    };
-    $("#s-cg").html("Current gun : " + rank + "<br>");
-    $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
-};
-function prestigeRankUp() {
-    for (var i = 0; i < prestigeRanks.length; i++) {
-        var p = prestigeRanks[i];
-        if (prestige[0] >= p.needed) {
-            prestige[2] = p.name;
-            prestige[3] = p.multiplier;
-        };
-    };
-    $("#s-pr").html("Prestige rank : " + prestige[2] + "<br>");
-    $("#s-pm").html("Prestige multiplier : x" + fix(prestige[3], 2));
-};
-function offlineCalc() {
-    var now = new Date().getTime();
-    var offlineTime = now - before;
-    buildReward(Math.floor(offlineTime/interval));
-    dealerReward(Math.floor(offlineTime/interval));
-};
-function tutorial() {
-    if (totalShoots == 0) {
-        $("#a-i1").html("Click on the bar to shoot!");
-    } else {
-        if (totalShoots > 0 && totalShoots < 4) {
-            $("#a-i1").html("Yeah, you understand how it works.<br>Shoot all your bullets now.");
-        } else {
-            if (totalShoots > 4 && totalShoots < 8) {
-                $("#a-i1").html("When you shoot, you earn dollars.");
-            } else {
-                if (totalShoots > 8 && totalShoots < 11) {
-                    $("#a-i1").html("You can see your stats on the top-bar.");
-                };
-            };
-        };
-    };
-    if (totalShoots == 12) {
-        $("#a-i2").html("No more ammo!<br>Click on the bar to reload and gain ammo!");
-        $("#a-i1").css("display", "none");
-    };
-    if (totalReloads > 0) {
-        $("#a-i2").css("display", "none");
-    };
-};
-
-// basic actions functions
-function shootAction() {
-    if (shoot[0] > 0) {
-        $("#p-1, #p-2").attr("onclick", "");
-        $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#999");
-        window.setTimeout(function() {
-            shoot[0] -= 1;
-            totalShoots++;
-            gainMoney((shoot[1] * rankMultiplier) * prestige[3]);
-            shootEvent();
-            $("#p-1").attr("onclick", "shootAction();");
-            $("#p-2").attr("onclick", "reloadAction();");
-            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#31708f");
-        }, shoot[3]);
-        $("#f-1").animate({width: "100%"}, shoot[3], "linear");
-        $("#f-1").animate({width: "0%"}, 0, "linear");
-    };
-};
-function shootEvent() {
-    var r = Math.floor((Math.random() * 100) + 1);
-    if (r < 5) {
-        gainMoney((shoot[1] * rankMultiplier) * prestige[3]);
-        $("#a-eventLog").html("Headshot! Income x2 for this shot!");
-        $("#a-eventLog").fadeOut(3000, function() {
-            $("#a-eventLog").html("");
-            $("#a-eventLog").attr("style", "");
-        });
-    };
-    if (r < 7 && r >= 5) {
-        gainMoney(((shoot[1] * 7) * rankMultiplier) * prestige[3]);
-        $("#a-eventLog").html("Rival gang boss killed! Income x7 for this shot!");
-        $("#a-eventLog").fadeOut(3000, function() {
-            $("#a-eventLog").html("");
-            $("#a-eventLog").attr("style", "");
-        });
-    };
-};
-function reloadAction() {
-    if (shoot[0] < shoot[2]) {
-        $("#p-1, #p-2").attr("onclick", "");
-        $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#999");
-        window.setTimeout(function() {
-            shoot[0] = shoot[2];
-            totalReloads++;
-            $("#p-1").attr("onclick", "shootAction();");
-            $("#p-2").attr("onclick", "reloadAction();");
-            $("#f-1").attr("class", "progress-bar progress-bar-success active");
-            $("#f-1").css("width", "0%");
-            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#31708f");
-        }, shoot[4]);
-        $("#f-2").animate({width: "100%"}, shoot[4], "linear");
-        $("#f-2").animate({width: "0%"}, 0, "linear");
     };
 };
 

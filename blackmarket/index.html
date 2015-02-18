@@ -161,7 +161,6 @@
 						<a id="d-12" class="list-group-item"><span id="d-n12"></span><span id="d-c12"></span><span id="d-r12"></span><span id="d-o12" class="badge"></span></a>
 				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-						<li class="list-group-item list-group-item-warning center bold">Prestige system is available, there will be soon here the prestige upgrades! I'm working on it!</li>
 						<li class="list-group-item list-group-item-danger center bold">What is prestige?<br>
 						Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.<br>
 						When you're going to soft-reset, you lose everything but not total money and experience, but restart everything.</li>
@@ -213,13 +212,20 @@
 			    		</p>
 			    		<p class="s-version"><u>v0.13 : prestige update!</u></p>
 			    		<p>
-			    		- Added a prestige system : you got a prestige rank and experience. Experience will determine your prestige rank which will give you a "prestige multipier" on every cash income! (Shooting action and drugs for example)<br>
-			    		- Update may be a bit buggy, please let me know if there is some bugs!
+			    		- Added a prestige system : you got a prestige rank and experience. Experience will determine your prestige rank which will give you a "prestige multipier" on every cash income! (Shooting action and drugs for example)
 			    		</p>
 			    		<p class="s-version"><u>v0.14 : rebalancing the game</u></p>
 			    		<p>
 			    		- Builds/dealers have been totally rebalanced!<br>
 			    		- Drug prices have been a bit boosted.<br>
+			    		</p>
+			    		<p class="s-version"><u>v0.15 : always balancing the game</u></p>
+			    		<p>
+			    		- New upgrades have been added (1 more for weed/meth/cocaine).<br>
+			    		- Builds/dealers have been rebalanced (again!).<br>
+			    		- Drug prices have been boosted, especially meth and cocaine.<br>
+			    		- Experience is now 2x easier to gain!<br>
+			    		- Code have been a bit optimized.
 			    		</p>
 			    	</li>
 			    	<!-- what's next section -->
@@ -260,6 +266,7 @@
 			    	<li class="list-group-item list-group-item-info">
 			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a></p>
 			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a></p>
+			    		<p class="s-links"><a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket">Contribute to the game on the GitHub repo of Blackmarket</a></p>
 			    	</li>
 			    </div>
 			  </div>
@@ -270,15 +277,9 @@
 	<script src="js/resize.js"></script>
 	<script src="js/beautify.js"></script>
 	<script src="js/save.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/actions.js"></script>
 	<script src="js/core.js"></script>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-54540685-10', 'auto');
-	  ga('send', 'pageview');
-	</script>
+	<script src="js/analytics.js"></script>
 </body>
 </html>
