@@ -21,12 +21,17 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 
 #a-n1, #a-n2, #a-d1, #a-d2 { transition: all 0.2s; }
 
+.upgrade-block { width: 140px; height: 140px; margin-left: auto; margin-right: auto; border: 2px solid #31708f; background: #d9edf7; }
+.upgrade-block-name { width: 140px; height: 80px; margin-left: auto; margin-right: auto; }
+.upgrade-level { width: 95%; height: 20px; margin-top: 85%; text-align: right; }
+
 /* custom class */
 .center { text-align: center; }
 .bold { font-weight: bold; }
 .small { font-size: 12px; color: #777 !important; }
 .bought { background: #d6e9c6 !important; }
 .line { margin: 10px 0 10px 0; width: 90%; margin-left: auto; margin-right: auto; border-bottom: 1px solid #31708f; }
+.space { margin-top: 15px; }
 
 /* custom Bootstrap */
 .navbar { background: #eee; border-radius: 0px; border: 0; border-bottom: 1px solid #aaa; }
