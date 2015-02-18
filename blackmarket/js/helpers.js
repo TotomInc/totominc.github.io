@@ -22,7 +22,7 @@ function getNormalDealerSell(index) { // used to display
     return (dealers[index].sell * dealersOwned[index]);
 };
 function getExperienceOnReset() {
-    return Math.floor(40 * Math.sqrt(money[1]/1e6));
+    return Math.floor(25 * Math.sqrt(money[1]/1e6));
 };
 function gunRankUp() {
     for (var i = 0; i < ranks.length; i++) {
