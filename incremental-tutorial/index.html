@@ -26,6 +26,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="active"><a href="#">Cours 1</a></li>
+	        <li><a href="game.html">Game</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -42,11 +43,11 @@
 					function cookieClick() {
 						cookies += 1;
 					};
-					function updateShop() {
+					function updateStats() {
 						document.getElementById("affichage-cookies").innerHTML = cookies + " cookies";
 					};
 					window.setInterval(function() {
-						updateShop();
+						updateStats();
 						console.log("onche");
 					}, 10);
 				</script>
@@ -89,13 +90,13 @@
 		  	<h6>L'affichage de notre variable cookies :</h6>
 		  	<p>Nous voulons maintenant afficher notre nombre de cookies, qui est inscrit dans la variable cookies. On va tout simplement créer un tag span puis lui ajouter un attribut d'ID appellé "affichage-cookies". On doit avoir ceci : <pre><code data-language="html">&lt;span id="affichage-cookies"&gt;&lt;/span&gt;</code></pre>
 		  	Ensuite on va créer une autre fonction appellée updateGame(), cette fonction va nous permettre de rafraichir les éléments d'affichage, par exemple nos variables qu'on souhaite afficher. Dans cette fonction, on va ajouter cette ligne de code : <pre><code data-language="javascript">document.getElementById("affichage-cookie").innerHTML = cookies;</code></pre>
-		  	Cette ligne de code va chercher dans le document HTML pour l'ID spécifié (donc affichage-cookies pour nous), et modifie le contenu du tag. Dans notre cas, nous voulons afficher la variable cookies, donc la ligne de code nous affichera le nombre de cookies. J'ai ajouté après la variable cookies la chaine de caractères " cookies" car ceci nous permettre de voir le mot cookies après le nombre de cookies, et pas seulement voir un nombre. Notre fonction updateShop() devrait ressembler à ça : <pre><code data-language="javascript">function updateShop() {
+		  	Cette ligne de code va chercher dans le document HTML pour l'ID spécifié (donc affichage-cookies pour nous), et modifie le contenu du tag. Dans notre cas, nous voulons afficher la variable cookies, donc la ligne de code nous affichera le nombre de cookies. J'ai ajouté après la variable cookies la chaine de caractères " cookies" car ceci nous permettre de voir le mot cookies après le nombre de cookies, et pas seulement voir un nombre. Notre fonction updateStats() devrait ressembler à ça : <pre><code data-language="javascript">function updateStats() {
 				    document.getElementById("affichage-cookie").innerHTML = cookies + " cookies";
 				};</code></pre>
-				Il faut maintenant placer updateShop() dans une loop. Une loop est un chose qui se répète toutes les X secondes. On fait comme ceci pour en créer une : <pre><code data-language="javascript">window.setInterval(function() {
-				    updateShop();
+			Il faut maintenant placer updateStats() dans une loop. Une loop est un chose qui se répète toutes les X secondes. On fait comme ceci pour en créer une : <pre><code data-language="javascript">window.setInterval(function() {
+				    updateStats();
 				}, 10);</code></pre>
-				J'ai inclus le nom de la fonction au milieu car nous voulons que la fonction soit appellée a chaque fois que la loop s'éxecute. Le temps d'une loop se définit en millisecondes, on le met toujours à la fin avant de refermer par des parenthèses notre loop. Notre loop s'éxécute toutes les 10 millisecondes, soit toutes les 0.01 secondes afin d'éxecuter les fonctions (et donc lignes de codes) qui s'y trouvent à l'intérieur.</p>
+			J'ai inclus le nom de la fonction au milieu car nous voulons que la fonction soit appellée a chaque fois que la loop s'éxecute. Le temps d'une loop se définit en millisecondes, on le met toujours à la fin avant de refermer par des parenthèses notre loop. Notre loop s'éxécute toutes les 10 millisecondes, soit toutes les 0.01 secondes afin d'éxecuter les fonctions (et donc lignes de codes) qui s'y trouvent à l'intérieur.</p>
 		  </div>
 		</div>
 	</div>
