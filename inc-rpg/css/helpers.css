@@ -1,0 +1,11 @@
+.white { color: #fff !important; }
+.dark { color: #666666 !important;}
+.grey { color: #999999 !important; }
+.italic { font-style: italic; }
+.center { text-align: center; }
+.light { font-weight: 300; }
+.regular { font-weight: 400; }
+.right-separator { border-right: 1px solid #4caf50; }
+.left-separator { border-left: 1px solid #4caf50; }
+.cur-d { cursor: default; }
+.cur-p { cursor: pointer; }

@@ -2,12 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link href="favicon.ico" rel="icon" type="image/x-icon">
 	<title>Incremental-RPG</title>
 
 	<script src="src/jquery-1.11.1.min.js"></script>
 	<link rel="stylesheet" href="src/bootstrap.min.css">
 	<link rel="stylesheet" href="src/paper.min.css">
 	<script src="src/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/helpers.css">
 	<link rel="stylesheet" href="css/interface.css">
 </head>
 
@@ -15,14 +17,14 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand">Incremental-RPG</a>
+	      <a class="navbar-brand light">Incremental-RPG</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a><span>HP : 100/100</span> <img class="icon" src="img/P_Red01.png"></a></li>
-	        <li><a><span>XP : 0/150</span> <img class="icon" src="img/P_Yellow01.png"></a></li>
-	        <li><a><span>Gold : 0.00</span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
-	        <li><a><span>Diamond : 0.00</span> <img class="icon" src="img/I_Diamond.png"></a></li>
+	      <ul class="nav navbar-nav navbar-right light">
+	        <li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
+	        <li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
+	        <li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
+	        <li><a><span id="nav-diamond"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -32,19 +34,37 @@
 		<div class="row">
 			<div class="col-md-7">
 			</div>
-			
+
 			<div class="col-md-5">
-				<div class="panel panel-success">
+				<div class="panel panel-success light">
 				  <div class="panel-heading">
-				    <p class="panel-title center">Player stats</p>
+				    <p class="panel-title center bold">Player stats</p>
 				  </div>
 				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-6">
+				  			<p><img class="stats" src="img/P_Red01.png"> <span id="s-hp"></span><br>
+				  			<img class="stats" src="img/P_Yellow01.png"> <span id="s-xp"></span><br>
+				  			<img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
+				  			<img class="stats" src="img/I_Diamond.png"> <span id="s-diamond"></span></p>
+				  		</div>
+				  		<div class="col-md-6 left-separator">
+				  			<p><img class="stats" src="img/C_Elm01.png"> <span id="s-helmet"></span><br>
+				  			<img class="stats" src="img/A_Armour01.png"> <span id="s-armour"></span><br>
+				  			<img class="stats" src="img/Ac_Gloves01.png"> <span id="s-gloves"></span><br>
+				  			<img class="stats" src="img/A_Shoes01.png"> <span id="s-boots"></span><br>
+				  			<img class="stats" src="img/Ac_Necklace01.png"> <span id="s-amulet"></span></p>
+				  		</div>
+				  	</div>
 				  </div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<script src="js/beautify.min.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/save.js"></script>
 	<script src="js/core.js"></script>
 </body>
 </html>
