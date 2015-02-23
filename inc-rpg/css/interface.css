@@ -1,0 +1,10 @@
+body { background: #eee; }
+img.icon { max-height: 20px; }
+img.stats { max-height: 26px; }
+
+.navbar { border-radius: 0; border-bottom: 2px solid #2196f3; }
+
+.white { color: #fff !important; }
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.center { text-align: center; }
