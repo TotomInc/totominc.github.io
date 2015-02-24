@@ -44,8 +44,13 @@
 				<!-- adventure log -->
 				<div class="panel panel-primary light">
 				  <div class="panel-heading"><p class="panel-title center">Adventure Log</p></div>
-				  <div class="panel-body">
-				  	<div class="well well-sm">
+				  <div id="adventures-panel" class="panel-body">
+				  	<div id="adventures-well" class="well well-sm">
+				  		<div id="adventures-row" class="row">
+				  			<div id="adventures-row" class="col-md-6"><span>Plains - required level : none</span></div>
+				  			<div id="adventures-medrow" class="col-md-4"><span>3 to 7 monsters</span></div>
+				  			<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(0);">Start</a></div>
+				  		</div>
 				  	</div>
 				  </div>
 				</div>
@@ -82,5 +87,7 @@
 	<script src="js/save.js"></script>
 	<script src="js/helpers.js"></script>
 	<script src="js/core.js"></script>
+	<script src="js/adventures.js"></script>
+	<script src="js/monsters.js"></script>
 </body>
 </html>

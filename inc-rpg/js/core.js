@@ -7,21 +7,6 @@ var player = {
 	amulet: { itemName: "none", armor: 0 },
 	sword: { itemName: "Copper Sword", damage: 5 }
 };
-var monsters = [
-	new Monster("Dark Howler", 		20, 2, 5, 10),
-	new Monster("Mournmirage", 		20, 2, 5, 10),
-	new Monster("Ashfang", 			20, 2, 5, 10),
-	new Monster("Dreambeast", 		20, 2, 5, 10),
-	new Monster("Smogbrute", 		20, 2, 5, 10),
-	new Monster("Metaltree", 		20, 2, 5, 10),
-	new Monster("Dark Mutt", 		20, 2, 5, 10),
-	new Monster("Putrid Behemoth", 	20, 2, 5, 10),
-	new Monster("Angry Blob", 		20, 2, 5, 10)
-];
-var adventures = [
-	new Adventure("Plains", 1)
-];
-var liveMonsters = []; var liveMonstersIndex = []; var spawnFinished;
 
 var key = "IncRPG_";
 var allVars = ['player'];
@@ -29,20 +14,22 @@ var fps = 60; var interval = (1000 / fps);
 var ps = player.stats;
 
 // methods
-function Monster(name, hp, attack, goldreward, xpreward) {
+function Monster(name, hp, maxHp, attack, goldreward, xpreward) {
 	this.name = name;
 	this.hp = hp;
+	this.maxHp = maxHp;
 	this.attack = attack;
 	this.goldreward = goldreward;
 	this.xpreward = xpreward;
 };
-Monster.invoke = function() {
+Monster.invoke = function(monstersToSpawn) {
 	spawnFinished = false;
-	var r = Math.floor(Math.random() * 1);
+	toSpawn = monstersToSpawn;
 	for (var i = 0; i < monsters.length; i++) {
-		if (i < 1) { // only one monster
+		var r = Math.floor(Math.random() * 9);
+		if (i < toSpawn) { // only one monster
 			liveMonsters.push(monsters[r]);
-			liveMonstersIndex = []; // reset monsters index array
+			liveMonstersIndex = []; // reset live monsters index array
 			for (var e = 0; e < liveMonsters.length; e++) {
 				liveMonstersIndex.push(e);
 			};
@@ -50,13 +37,19 @@ Monster.invoke = function() {
 	};
 	spawnFinished = true;
 };
-function Adventure(name, reqLevel) {
+function Adventure(name, reqLevel, minMonsters, maxMonsters) {
 	this.name = name;
 	this.reqLevel = reqLevel;
+	this.minMonsters = minMonsters;
+	this.maxMonsters = maxMonsters;
 };
 Adventure.start = function(index) {
-	if (ps.level >= adventures[index].reqLevel) {
-		console.log("start adventure!");
+	var a = adventures[index];
+	if (ps.level >= a.reqLevel) {
+		var mToSpawn = Math.floor(Math.random() * (a.maxMonsters - a.minMonsters + 1)) + a.minMonsters;
+		liveAdventure = a.name;
+		Monster.invoke(mToSpawn);
+		Update.monsters();
 	};
 };
 
@@ -80,6 +73,7 @@ Update.monsters = function() {
 		for (var e = 0; e < liveMonstersIndex.length; e++) {
 			var lmi = liveMonstersIndex[e];
 			var lMI = liveMonstersIndex;
+			var lm = liveMonsters[e];
 			// creating div and rows (col-md-6, col-md-4, col-md-2)
 			$("#monsters-well").append('<div id="monster-' + lmi + '" class="monster-div"></div>');
 			$("#monster-" + lmi).append('<div id="monster-row' + lmi + '" class="row"></div>');
@@ -91,11 +85,11 @@ Update.monsters = function() {
 			// health-bar with text (col-md-6)
 			$("#monster-col" + lmi).append('<div id="monster-healthbar' + lmi + '" class="progress"></div>');
 			$("#monster-healthbar" + lmi).append('<div id="monster-hb' + lmi + '" class="progress-bar progress-bar-danger" style="width: 100%"></div>')
-			$("#monster-hb" + lmi).append('<span id="monster-hpdisplay' + lmi + '" class="monster-bar-hp"></span>');
+			$("#monster-hb" + lmi).append('<span id="monster-hpdisplay' + lmi + '" class="monster-bar-hp">' + lm.hp + "/" + lm.maxHp + ' HP</span>');
 			// monster info + img (col-md-4)
 			$("#monster-medcol" + lmi).append('<img class="stats" src="img/E_Bones01.png"> ');
 			$("#monster-medcol" + lmi).append('<span id="monster-info' + lmi + '"></span>');
-			$("#monster-info" + lmi).html("Glowstorm, level 1");
+			$("#monster-info" + lmi).html(lm.name + ", attack : " + lm.attack);
 			// remove no-monsters adventure text
 			if (lMI.length == 0) {
 				$("#monsters-none").css("display", "block");
