@@ -18,11 +18,15 @@ var monsters = [
 	new Monster("Putrid Behemoth", 	20, 2, 5, 10),
 	new Monster("Angry Blob", 		20, 2, 5, 10)
 ];
+var adventures = [
+	new Adventure("Plains", 1)
+];
 var liveMonsters = []; var liveMonstersIndex = []; var spawnFinished;
 
 var key = "IncRPG_";
 var allVars = ['player'];
 var fps = 60; var interval = (1000 / fps);
+var ps = player.stats;
 
 // methods
 function Monster(name, hp, attack, goldreward, xpreward) {
@@ -46,14 +50,23 @@ Monster.invoke = function() {
 	};
 	spawnFinished = true;
 };
+function Adventure(name, reqLevel) {
+	this.name = name;
+	this.reqLevel = reqLevel;
+};
+Adventure.start = function(index) {
+	if (ps.level >= adventures[index].reqLevel) {
+		console.log("start adventure!");
+	};
+};
 
 // update functions
 function Update() { console.log("This is needed to make the other update function to work."); };
 Update.playerStats = function() {
-	$("#s-hp, #nav-hp").html("HP : " + player.stats.hp + "/" + player.stats.maxHp);
-	$("#s-xp, #nav-xp").html("XP : " + player.stats.xp + "/" + player.stats.xpNeeded);
-	$("#s-gold, #nav-gold").html("Gold : " + beautify(player.stats.gold, 0));
-	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(player.stats.diamond, 0));
+	$("#s-hp, #nav-hp").html("HP : " + ps.hp + "/" + ps.maxHp);
+	$("#s-xp, #nav-xp").html("XP : " + ps.xp + "/" + ps.xpNeeded);
+	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
+	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
 
 	$("#s-helmet").html("Helmet : <i>" + player.helmet.itemName + "</i><br>+" + player.helmet.armor + " armor");
 	$("#s-armour").html("Armour : <i>" + player.armour.itemName + "</i><br>+" + player.armour.armor + " armor");

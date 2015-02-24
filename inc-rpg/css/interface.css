@@ -6,7 +6,9 @@ img.stats { max-height: 26px; }
 .monster-bar-hp { font-size: 12px; }
 .monsters-nomonsters { font-size: 16px; }
 
+.adventure-div { width: 100%; padding: 10px; }
+
 .navbar { border-radius: 0; border-bottom: 2px solid #2196f3; }
-.nav.navbar-nav.navbar-right>li>a>span { transition: all 0.2s; }
+.navsmall:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
 .nav.navbar-nav.navbar-right>li>a>span:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
 .progress { margin-bottom: 0; }
