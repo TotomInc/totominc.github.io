@@ -14,28 +14,36 @@ var fps = 60; var interval = (1000 / fps);
 var ps = player.stats;
 
 // methods
-function Monster(name, hp, maxHp, attack, goldreward, xpreward) {
+function Monster(name, hp, maxHp, attack, gold, maxGold, xp, maxXp) {
 	this.name = name;
 	this.hp = hp;
 	this.maxHp = maxHp;
 	this.attack = attack;
-	this.goldreward = goldreward;
-	this.xpreward = xpreward;
+	this.gold = gold;
+	this.maxGold = maxGold;
+	this.xp = xp;
+	this.maxXp = maxXp;
 };
-Monster.invoke = function(monstersToSpawn) {
+Monster.invoke = function(monstersToSpawn) { // called by Adventure.start()
 	spawnFinished = false;
 	toSpawn = monstersToSpawn;
 	for (var i = 0; i < monsters.length; i++) {
 		var r = Math.floor(Math.random() * 9);
-		if (i < toSpawn) { // only one monster
+		if (i < toSpawn) {
+			var lm = liveMonsters;
 			liveMonsters.push(monsters[r]);
-			liveMonstersIndex = []; // reset live monsters index array
+			lm[i].hp = getMonsterHp(lm[i].maxHp, lm[i].hp);
+			lm[i].maxHp = lm[i].hp;
+			lm[i].gold = getMonsterGold(lm[i].maxGold, lm[i].gold);
+			lm[i].xp = getMonsterXp(lm[i].maxXp, lm[i].xp);
+			liveMonstersIndex = []; // reset livemonstersindex array
 			for (var e = 0; e < liveMonsters.length; e++) {
-				liveMonstersIndex.push(e);
+				liveMonstersIndex.push(e); // push monster index to livemonsterindex array
 			};
 		};
 	};
 	spawnFinished = true;
+	Update.monsters();
 };
 function Adventure(name, reqLevel, minMonsters, maxMonsters) {
 	this.name = name;
@@ -49,7 +57,6 @@ Adventure.start = function(index) {
 		var mToSpawn = Math.floor(Math.random() * (a.maxMonsters - a.minMonsters + 1)) + a.minMonsters;
 		liveAdventure = a.name;
 		Monster.invoke(mToSpawn);
-		Update.monsters();
 	};
 };
 
@@ -72,7 +79,6 @@ Update.monsters = function() {
 	if (spawnFinished == true) {
 		for (var e = 0; e < liveMonstersIndex.length; e++) {
 			var lmi = liveMonstersIndex[e];
-			var lMI = liveMonstersIndex;
 			var lm = liveMonsters[e];
 			// creating div and rows (col-md-6, col-md-4, col-md-2)
 			$("#monsters-well").append('<div id="monster-' + lmi + '" class="monster-div"></div>');
@@ -91,10 +97,10 @@ Update.monsters = function() {
 			$("#monster-medcol" + lmi).append('<span id="monster-info' + lmi + '"></span>');
 			$("#monster-info" + lmi).html(lm.name + ", attack : " + lm.attack);
 			// remove no-monsters adventure text
-			if (lMI.length == 0) {
-				$("#monsters-none").css("display", "block");
-			} else {
+			if (typeof liveAdventure == "string") {
 				$("#monsters-none").css("display", "none");
+			} else {
+				$("#monsters-none").css("display", "block");
 			}
 		};
 	};
