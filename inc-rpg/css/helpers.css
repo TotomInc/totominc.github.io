@@ -1,3 +1,6 @@
+::selection { background: rgba(255, 152, 0, .3); }
+::-moz-selection { background: rgba(255, 152, 0, .3); }
+
 .white { color: #fff !important; }
 .dark { color: #666666 !important;}
 .grey { color: #999999 !important; }
