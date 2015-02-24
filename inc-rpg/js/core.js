@@ -53,7 +53,7 @@ function Adventure(name, reqLevel, minMonsters, maxMonsters) {
 };
 Adventure.start = function(index) {
 	var a = adventures[index];
-	if (ps.level >= a.reqLevel) {
+	if (ps.level >= a.reqLevel && typeof liveAdventure !== "string") {
 		var mToSpawn = Math.floor(Math.random() * (a.maxMonsters - a.minMonsters + 1)) + a.minMonsters;
 		liveAdventure = a.name;
 		Monster.invoke(mToSpawn);
@@ -87,7 +87,7 @@ Update.monsters = function() {
 			$("#monster-row" + lmi).append('<div id="monster-medcol' + lmi + '" class="col-md-4"></div>');
 			$("#monster-row" + lmi).append('<div id="monster-smcol' + lmi + '" class="col-md-2"></div>');
 			// attack button (col-md-2)
-			$("#monster-smcol" + lmi).append('<a class="btn btn-default btn-sm">Attack!</a>');
+			$("#monster-smcol" + lmi).append('<a class="btn btn-default btn-sm" onclick="Monster.attack(' + lmi + ');"">Attack!</a>');
 			// health-bar with text (col-md-6)
 			$("#monster-col" + lmi).append('<div id="monster-healthbar' + lmi + '" class="progress"></div>');
 			$("#monster-healthbar" + lmi).append('<div id="monster-hb' + lmi + '" class="progress-bar progress-bar-danger" style="width: 100%"></div>')
