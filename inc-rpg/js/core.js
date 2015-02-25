@@ -14,11 +14,12 @@ var fps = 60; var interval = (1000 / fps);
 var ps = player.stats;
 
 // methods
-function Monster(name, hp, maxHp, attack, gold, maxGold, xp, maxXp) {
+function Monster(name, hp, maxHp, attack, maxAttack, gold, maxGold, xp, maxXp) {
 	this.name = name;
 	this.hp = hp;
 	this.maxHp = maxHp;
 	this.attack = attack;
+	this.maxAttack = maxAttack;
 	this.gold = gold;
 	this.maxGold = maxGold;
 	this.xp = xp;
@@ -44,6 +45,17 @@ Monster.invoke = function(monstersToSpawn) { // called by Adventure.start()
 	};
 	spawnFinished = true;
 	Update.monsters();
+};
+Monster.attack = function(index) {
+	var monsterDmg = getMonsterDamage(liveMonsters[index].maxAttack, liveMonsters[index].attack);
+	var playerDmg = getPlayerDamage();
+	if (ps.hp > monsterDmg) {
+		ps.hp -= monsterDmg;
+		liveMonsters[index].hp -= playerDmg;
+		console.log("player dmg : " + playerDmg);
+		console.log("player hp : " + ps.hp);
+		console.log("monster hp : " + liveMonsters[index].hp);
+	};
 };
 function Adventure(name, reqLevel, minMonsters, maxMonsters) {
 	this.name = name;
@@ -105,6 +117,22 @@ Update.monsters = function() {
 		};
 	};
 };
+Update.refreshMonsters = function() {
+	if (typeof liveAdventure == "string") {
+		for (var e = 0; e < liveMonstersIndex.length; e++) {
+			var lmi = liveMonstersIndex[e];
+			var lm = liveMonsters[e];
+			// updating progress-bar + text
+			var widthHp = 100;
+			widthHp = (lm.hp / lm.maxHp) * 100;
+			$("#monster-hb" + lmi).css("width", widthHp + "%");
+			$("#monster-hpdisplay" + lmi).html(lm.hp + "/" + lm.maxHp + " HP");
+			if (lm.hp <= 0) {
+				$("#monster-" + lmi).remove();
+			};
+		};
+	};
+};
 
 // loading + loop
 window.onload = function() {
@@ -112,4 +140,5 @@ window.onload = function() {
 };
 var mainInterval = window.setInterval(function() {
 	Update.playerStats();
+	Update.refreshMonsters();
 }, interval);

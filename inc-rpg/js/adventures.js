@@ -1,4 +1,4 @@
 var adventures = [
-	new Adventure("Plains", 1, 3, 7)
+	new Adventure("Plains", 1, 3, 5)
 ];
 var liveAdventure; var toSpawn;
