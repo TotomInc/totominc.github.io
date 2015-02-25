@@ -30,13 +30,14 @@ Monster.invoke = function(monstersToSpawn) { // called by Adventure.start()
 	toSpawn = monstersToSpawn;
 	for (var i = 0; i < monsters.length; i++) {
 		var r = Math.floor(Math.random() * 9);
+		var lm = liveMonsters;
 		if (i < toSpawn) {
-			var lm = liveMonsters;
 			liveMonsters.push(monsters[r]);
 			lm[i].hp = getMonsterHp(lm[i].maxHp, lm[i].hp);
 			lm[i].maxHp = lm[i].hp;
 			lm[i].gold = getMonsterGold(lm[i].maxGold, lm[i].gold);
 			lm[i].xp = getMonsterXp(lm[i].maxXp, lm[i].xp);
+			lm[i].key = i;
 			liveMonstersIndex = []; // reset livemonstersindex array
 			for (var e = 0; e < liveMonsters.length; e++) {
 				liveMonstersIndex.push(e); // push monster index to livemonsterindex array

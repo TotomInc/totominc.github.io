@@ -661,7 +661,7 @@ function resetData() {
 function softReset() {
     var r = confirm("Do you want to soft reset, restart everything from the beginning and goes from " + fix(tokens, 0) + " tokens to " + fix(getTokensOn(), 0) + " tokens?")
     if (r == true) {
-        var temp1 = totalMoney; var temp2 = getTokensOn(); var temp3 = cheatAvert;
+        var temp1 = totalMoney; var temp2 = getTokensOn();
         initVars(); totalMoney = temp1; tokens = temp2; saveData();
         location.reload();
     };
