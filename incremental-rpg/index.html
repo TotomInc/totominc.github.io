@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="favicon.ico" rel="icon" type="image/x-icon">
+	<title>Incremental-RPG</title>
+
+	<script src="src/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="src/bootstrap.min.css">
+	<link rel="stylesheet" href="src/paper.css">
+	<script src="src/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/progress.css">
+	<link rel="stylesheet" href="css/helpers.css">
+	<link rel="stylesheet" href="css/interface.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default ">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand light">Incremental-RPG <span class="navsmall small">prototype 0.001</span></a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right light">
+	        <li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
+	        <li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
+	        <li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
+	        <li><a><span id="nav-diamond"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-7">
+				<!-- actions -->
+				<div class="panel panel-primary light">
+				  <div class="panel-heading"><p class="panel-title center">Actions</p></div>
+				  <div id="monsters-panel" class="panel-body">
+						<div id="monsters-well" class="well well-sm"><span id="monsters-none" class="monsters-nomonsters">There is currently no monsters. Start an adventure (on your adventure log) to kill monsters! When you start an adventure, you can't stop it, so be carefull when you choose it!</span></div>
+				  </div>
+				</div>
+				<!-- adventure log -->
+				<div class="panel panel-primary light">
+				  <div class="panel-heading"><p class="panel-title center">Adventure Log</p></div>
+				  <div id="adventures-panel" class="panel-body">
+				  	<div id="adventures-well" class="well well-sm">
+				  		<div id="adventures-row" class="row">
+				  			<div id="adventures-row" class="col-md-6"><span>Plains - required level : 1</span></div>
+				  			<div id="adventures-medrow" class="col-md-4"><span>3 to 5 monsters</span></div>
+				  			<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(0);">Start</a></div>
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<!-- player stats -->
+				<div class="panel panel-success light">
+				  <div class="panel-heading"><p class="panel-title center">Player stats</p></div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-6">
+				  			<p><img class="stats" src="img/P_Red01.png"> <span id="s-hp"></span><br>
+				  			<img class="stats" src="img/P_Yellow01.png"> <span id="s-xp"></span><br>
+				  			<img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
+				  			<img class="stats" src="img/I_Diamond.png"> <span id="s-diamond"></span></p>
+				  		</div>
+				  		<div class="col-md-6 left-separator">
+				  			<p><img class="stats" src="img/C_Elm01.png"> <span id="s-helmet"></span><br>
+				  			<img class="stats" src="img/A_Armour01.png"> <span id="s-armour"></span><br>
+				  			<img class="stats" src="img/Ac_Gloves01.png"> <span id="s-gloves"></span><br>
+				  			<img class="stats" src="img/A_Shoes01.png"> <span id="s-boots"></span><br>
+				  			<img class="stats" src="img/Ac_Necklace01.png"> <span id="s-amulet"></span><br>
+				  			<img class="stats" src="img/W_Sword004.png"> <span id="s-sword"></span></p>
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/beautify.min.js"></script>
+	<script src="js/save.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/core.js"></script>
+	<script src="js/adventures.js"></script>
+	<script src="js/monsters.js"></script>
+</body>
+</html>
