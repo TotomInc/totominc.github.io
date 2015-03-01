@@ -8,7 +8,7 @@
 .center { text-align: center; }
 .light { font-weight: 300; }
 .regular { font-weight: 400; }
-.small { font-size: 12px; }
+.small { font-size: 10px; }
 .right-separator { border-right: 1px solid #4caf50; }
 .left-separator { border-left: 1px solid #4caf50; }
 .cur-d { cursor: default; }

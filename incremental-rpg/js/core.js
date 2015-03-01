@@ -116,8 +116,8 @@ Monster.createDivs = function() {
 			var lmi = liveMonsters[i].index;
 			$("#monsters-well").append('<div id="monster-' + lmi + '" class="monster-div"></div>');
 			$("#monster-" + lmi).append('<div id="monster-row' + lmi + '" class="row"></div>');
-			$("#monster-row" + lmi).append('<div id="monster-col' + lmi + '" class="col-md-6"></div>');
-			$("#monster-row" + lmi).append('<div id="monster-medcol' + lmi + '" class="col-md-4"></div>');
+			$("#monster-row" + lmi).append('<div id="monster-col' + lmi + '" class="col-md-5"></div>');
+			$("#monster-row" + lmi).append('<div id="monster-medcol' + lmi + '" class="col-md-5"></div>');
 			$("#monster-row" + lmi).append('<div id="monster-smcol' + lmi + '" class="col-md-2"></div>');
 			// attack button (col-md-2)
 			$("#monster-smcol" + lmi).append('<a class="btn btn-default btn-sm" onclick="Monster.attack(' + lmi + ');"">Attack!</a>');
@@ -149,7 +149,7 @@ Monster.attack = function(index) {
 // update functions
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
-	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0));
+	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
 	$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
 	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
 	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
