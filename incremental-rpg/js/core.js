@@ -1,6 +1,6 @@
 // https://github.com/TotomInc/totominc.github.io/blob/5ce44b9f8d6d231cd416ccb9b8b81017a8c0a0dd/inc-rpg/js/core.js
 var player = {
-	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0 },
+	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
 	helmet: { itemName: "Leather Helmet", armor: 10 },
 	armour: { itemName: "Leather Armour", armor: 50 },
 	gloves: { itemName: "Leather Gauntlets", armor: 5 },
@@ -145,6 +145,8 @@ Update.playerStats = function() {
 	$("#s-boots").html("Boots : <i>" + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
 	$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
 	$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
+
+	ps.totalArmor = p.helmet.armor + p.armour.armor + p.gloves.armor + p.boots.armor + p.amulet.armor + p.sword.damage;
 };
 Update.monsters = function() {
 	if (typeof liveAdventure == "string") {

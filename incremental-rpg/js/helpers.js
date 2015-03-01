@@ -9,6 +9,9 @@ function getPlayerDamage() {
 function getPlayerHpRegain() {
 	return Math.floor(ps.hpPerSec);
 };
+function getPlayerArmor() { // in percent
+	return Math.floor(Math.sqrt(0.1 * ps.totalArmor))
+};
 function getMonsterHp(maxHp, minHp) {
 	return Math.floor(Math.random() * (((maxHp - minHp)) * ps.level) + minHp);
 };
