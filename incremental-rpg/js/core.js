@@ -67,6 +67,20 @@ Adventure.start = function(index) {
 		Monster.invoke(toSpawn, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp);
 	};
 };
+Adventure.end = function() {
+	var temp = liveMonsters.length;
+	var temp2 = 0;
+	for (var i = 0; i < liveMonsters.length; i++) {
+		if (liveMonsters[i].hp <= 0) {
+			temp2++;
+		};
+		if (temp2 == temp) {
+			liveAdventure = undefined;
+			$("#monster-" + liveMonsters[i].index).remove();
+			liveMonsters = [];
+		};
+	};
+};
 
 // monsters
 function Monster(name, displayName, hp, damage, gold, xp) {
@@ -129,13 +143,14 @@ Monster.attack = function(index) {
 			ps.xp += liveMonsters[index].xp;
 		};
 	};
+	Adventure.end(); // check if adventure is finished
 };
 
 // update functions
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
-	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + ps.maxHp);
-	$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + ps.xpNeeded);
+	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0));
+	$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
 	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
 	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
 
@@ -162,6 +177,9 @@ Update.monsters = function() {
 				$("#monster-" + lmi).remove();
 			};
 		};
+		$("#monsters-msg").css("display", "none");
+	} else {
+		$("#monsters-msg").css("display", "block");
 	};
 };
 
