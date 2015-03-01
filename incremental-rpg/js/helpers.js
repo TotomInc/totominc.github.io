@@ -4,7 +4,10 @@ function getXpNeeded() {
 	};
 };
 function getPlayerDamage() {
-	return Math.floor(player.sword.damage);
+	return Math.floor(p.sword.damage);
+};
+function getPlayerHpRegain() {
+	return Math.floor(ps.hpPerSec);
 };
 function getMonsterHp(maxHp, minHp) {
 	return Math.floor(Math.random() * (((maxHp - minHp)) * ps.level) + minHp);
