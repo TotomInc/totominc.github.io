@@ -1,4 +1,3 @@
-// https://github.com/TotomInc/totominc.github.io/blob/5ce44b9f8d6d231cd416ccb9b8b81017a8c0a0dd/inc-rpg/js/core.js
 var player = {
 	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
 	helmet: { itemName: "Leather Helmet", armor: 10 },
@@ -9,7 +8,9 @@ var player = {
 	sword: { itemName: "Copper Sword", damage: 5 }
 };
 var adventures = [
-	new Adventure("Plains", 1, 3, 5, 35, 25, 6, 3, 20, 10, 15, 10)
+	new Adventure("Plains", 1, 2, 4, 35, 25, 6, 3, 20, 10, 15, 10),
+	new Adventure("The Cave", 3, 3, 6, 75, 50, 7, 5, 45, 30, 35, 25),
+	new Adventure("Undiscovered Caves", 7, 5, 7, 125, 100, 10, 7, 85, 70, 60, 50)
 ];
 var monstersNames = ["Korok", "Urog", "Shadow Drakes", "Cavernhound", "Bonewraith", "Autumn Genie", "Skeletal Griffins", "Dustbrute",
 "Thunderling", "Moldclaw", "Metalflayer", "Infernohand", "Terrorstrike", "Creeping Wolpertinger", "Dawncat", "Abysssnake", "Poisonling"];
@@ -146,13 +147,17 @@ Monster.attack = function(index) {
 	Adventure.end(); // check if adventure is finished
 };
 
-// update functions
+// shop
+function Shop() { console.log("This is needed to make the other Shop.() function to work."); };
+
+// update
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
 	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
 	$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
 	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
 	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
+	$("#s-level").html("Level : " + beautify(ps.level, 0));
 
 	$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
 	$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
@@ -160,8 +165,6 @@ Update.playerStats = function() {
 	$("#s-boots").html("Boots : <i>" + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
 	$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
 	$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
-
-	ps.totalArmor = p.helmet.armor + p.armour.armor + p.gloves.armor + p.boots.armor + p.amulet.armor + p.sword.damage;
 };
 Update.monsters = function() {
 	if (typeof liveAdventure == "string") {

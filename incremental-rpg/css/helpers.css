@@ -13,3 +13,4 @@
 .left-separator { border-left: 1px solid #4caf50; }
 .cur-d { cursor: default; }
 .cur-p { cursor: pointer; }
+.btn-sm-important { margin-top: 10px !important; height: 30px !important; }
