@@ -1,5 +1,5 @@
 var player = {
-	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
+	stats: { hp: 100, maxHp: 100, hpPerSec: 2, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
 	helmet: { itemName: "Leather Helmet", armor: 10 },
 	armour: { itemName: "Leather Armour", armor: 50 },
 	gloves: { itemName: "Leather Gauntlets", armor: 5 },
@@ -7,17 +7,16 @@ var player = {
 	amulet: { itemName: "none", armor: 0 },
 	sword: { itemName: "Copper Sword", damage: 5 }
 };
-var adventures = [
-	new Adventure("Plains", 1, 2, 4, 35, 25, 6, 3, 20, 10, 15, 10),
-	new Adventure("The Cave", 3, 3, 6, 75, 50, 7, 5, 45, 30, 35, 25),
-	new Adventure("Undiscovered Caves", 7, 5, 7, 125, 100, 10, 7, 85, 70, 60, 50)
+var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
+	new Adventure("Plains", 				1, 	2, 	4, 	35, 	25,		4, 	2, 	20, 10, 30, 20),
+	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	5, 	3, 	45, 30, 50,	40),
+	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	10,	7, 	85,	70,	80, 50)
 ];
 var monstersNames = ["Korok", "Urog", "Shadow Drakes", "Cavernhound", "Bonewraith", "Autumn Genie", "Skeletal Griffins", "Dustbrute",
 "Thunderling", "Moldclaw", "Metalflayer", "Infernohand", "Terrorstrike", "Creeping Wolpertinger", "Dawncat", "Abysssnake", "Poisonling"];
 var liveAdventure; var liveMonsters = [];
 
-var key = "IncRPG_"; var allVars = ['player', 'version'];
-var fps = 60; var interval = (1000 / fps); var version = "0.001";
+var fps = 60; var interval = (1000 / fps); var version = 0.001; var init = false;
 var spawnFinished; var p = player; var ps = player.stats;
 
 // player
@@ -142,9 +141,10 @@ Monster.attack = function(index) {
 		if (liveMonsters[index].hp <= 0) {
 			ps.gold += liveMonsters[index].gold;
 			ps.xp += liveMonsters[index].xp;
+			$("#monster-" + index).remove();
+			Adventure.end(); // check if adventure is finished
 		};
 	};
-	Adventure.end(); // check if adventure is finished
 };
 
 // shop
@@ -176,9 +176,6 @@ Update.monsters = function() {
 			widthHp = (lm.hp / lm.maxHp) * 100;
 			$("#monster-hb" + lmi).css("width", widthHp + "%");
 			$("#monster-hpdisplay" + lmi).html(lm.hp + "/" + lm.maxHp + " HP");
-			if (lm.hp <= 0) { // remove monster div if dead
-				$("#monster-" + lmi).remove();
-			};
 		};
 		$("#monsters-msg").css("display", "none");
 	} else {
@@ -188,6 +185,7 @@ Update.monsters = function() {
 
 // loading + loop
 window.onload = function() {
+	init = true;
 	loadData();
 };
 var mainInterval = window.setInterval(function() {
@@ -196,4 +194,7 @@ var mainInterval = window.setInterval(function() {
 }, interval);
 var regainHpInterval = window.setInterval(function() {
 	Player.regainHp();
+}, 1000);
+var saveInterval = window.setInterval(function() {
+	saveData();
 }, 1000);

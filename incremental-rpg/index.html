@@ -18,18 +18,19 @@
 <body>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
-		<div class="navbar-header">
-		  <a class="navbar-brand light">Incremental-RPG <span class="navsmall small">prototype 0.001</span></a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <ul class="nav navbar-nav navbar-right light">
-		  <li class="active"><a href="#">Switch to Inventory</a></li>
-			<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
-			<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
-			<li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
-			<li><a><span id="nav-diamond"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
-		  </ul>
-		</div>
+			<div class="navbar-header">
+			  <a class="navbar-brand light">Incremental-RPG <span class="navsmall small">prototype 0.001</span></a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav navbar-right light">
+			  <li class="active" onclick="resetData()"><a href="#">Hard-Reset</a></li>
+			  <li class="active" onclick='alert("This feature is coming soon!")'><a href="#">Switch to Inventory</a></li>
+				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
+				<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
+				<li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
+				<li><a><span id="nav-diamond"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
+			  </ul>
+			</div>
 	  </div>
 	</nav>
 
@@ -96,9 +97,9 @@
 					</div>
 				  </div>
 				</div>
-
+				<!-- worlds -->
 				<div class="panel panel-success">
-				  <div class="panel-heading"><p class="panel-title center">Shop</p></div>
+				  <div class="panel-heading"><p class="panel-title center">Mining World</p></div>
 				  <div class="panel-body">
 				  </div>
 				</div>

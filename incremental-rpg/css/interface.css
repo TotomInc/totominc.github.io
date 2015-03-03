@@ -1,4 +1,4 @@
-body { background: #eee;  }
+body { background: #eee; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none }
 img.icon { max-height: 20px; }
 img.stats { max-height: 26px; }
 
@@ -12,4 +12,5 @@ img.stats { max-height: 26px; }
 .navbar { border-radius: 0; border-bottom: 2px solid #ff4136; }
 .navsmall:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
 .nav.navbar-nav.navbar-right>li>a>span:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
+.navbar-nav>.active>a { background: #fff !important; }
 .progress { margin-bottom: 0; }

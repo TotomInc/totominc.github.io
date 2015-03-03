@@ -1,11 +1,12 @@
 function getXpNeeded() {
 	if (ps.level > 1) {
-		ps.xpNeeded = ps.level * Math.sqrt(100 * 200);
+		ps.xpNeeded = ps.level * Math.sqrt(100 * 150);
 	};
 };
 function getLevelUp() {
 	if (ps.xp >= ps.xpNeeded) {
 		ps.level++;
+		ps.diamond += ps.level - 1;
 		ps.xp = 0;
 	};
 };
@@ -19,7 +20,7 @@ function getPlayerHp() {
 	return Math.floor(ps.maxHp);
 };
 function getPlayerHpRegain() {
-	ps.hpPerSec = 1 * ps.level;
+	ps.hpPerSec = 2 * ps.level;
 	return Math.floor(ps.hpPerSec);
 };
 function getPlayerArmor() { // in percent
