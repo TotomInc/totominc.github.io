@@ -1,5 +1,5 @@
 var player = {
-	stats: { hp: 100, maxHp: 100, hpPerSec: 2, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
+	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
 	helmet: { itemName: "Leather Helmet", armor: 10 },
 	armour: { itemName: "Leather Armour", armor: 50 },
 	gloves: { itemName: "Leather Gauntlets", armor: 5 },
@@ -8,9 +8,9 @@ var player = {
 	sword: { itemName: "Copper Sword", damage: 5 }
 };
 var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
-	new Adventure("Plains", 				1, 	2, 	4, 	35, 	25,		4, 	2, 	20, 10, 30, 20),
-	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	5, 	3, 	45, 30, 50,	40),
-	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	10,	7, 	85,	70,	80, 50)
+	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 10, 20, 10),
+	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 20, 40,	20),
+	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	12,	8, 	80,	40,	80, 40)
 ];
 var monstersNames = ["Korok", "Urog", "Shadow Drakes", "Cavernhound", "Bonewraith", "Autumn Genie", "Skeletal Griffins", "Dustbrute",
 "Thunderling", "Moldclaw", "Metalflayer", "Infernohand", "Terrorstrike", "Creeping Wolpertinger", "Dawncat", "Abysssnake", "Poisonling"];

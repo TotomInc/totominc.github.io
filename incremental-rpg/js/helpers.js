@@ -1,13 +1,13 @@
 function getXpNeeded() {
 	if (ps.level > 1) {
-		ps.xpNeeded = ps.level * Math.sqrt(100 * 150);
+		ps.xpNeeded = ps.level * Math.sqrt(100 * 175);
 	};
 };
 function getLevelUp() {
 	if (ps.xp >= ps.xpNeeded) {
 		ps.level++;
-		ps.diamond += ps.level - 1;
-		ps.xp = 0;
+		ps.diamond += ps.level;
+		ps.xp -= ps.xpNeeded;
 	};
 };
 function getPlayerDamage() {
@@ -15,12 +15,12 @@ function getPlayerDamage() {
 };
 function getPlayerHp() {
 	if (ps.level > 1) {
-		ps.maxHp = 100 * Math.sqrt(0.75 * ps.level);
+		ps.maxHp = 100 * Math.sqrt(0.60 * ps.level);
 	};
 	return Math.floor(ps.maxHp);
 };
 function getPlayerHpRegain() {
-	ps.hpPerSec = 2 * ps.level;
+	ps.hpPerSec = 1 * ps.level;
 	return Math.floor(ps.hpPerSec);
 };
 function getPlayerArmor() { // in percent
