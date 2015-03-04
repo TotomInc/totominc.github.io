@@ -6,6 +6,7 @@
 .grey { color: #999999 !important; }
 .italic { font-style: italic; }
 .center { text-align: center; }
+.justify { text-align: justify; }
 .light { font-weight: 300; }
 .regular { font-weight: 400; }
 .small { font-size: 10px; }

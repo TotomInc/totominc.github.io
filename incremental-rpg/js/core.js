@@ -5,7 +5,8 @@ var player = {
 	gloves: { itemName: "Leather Gauntlets", armor: 5 },
 	boots: { itemName: "Leather Boots", armor: 15 },
 	amulet: { itemName: "none", armor: 0 },
-	sword: { itemName: "Copper Sword", damage: 5 }
+	sword: { itemName: "Copper Sword", damage: 5 },
+	item: { coal: 0, crystal: 0, jade: 0, ruby: 0, saphire: 0 }
 };
 var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
 	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 10, 20, 10),
@@ -17,7 +18,7 @@ var monstersNames = ["Korok", "Urog", "Shadow Drakes", "Cavernhound", "Bonewrait
 var liveAdventure; var liveMonsters = [];
 
 var fps = 60; var interval = (1000 / fps); var version = 0.001; var init = false;
-var spawnFinished; var p = player; var ps = player.stats;
+var spawnFinished; var p = player; var ps = player.stats; var pi = player.item;
 
 // player
 function Player() { console.log("This is needed to make the other Player.() functions to work."); };
@@ -147,9 +148,6 @@ Monster.attack = function(index) {
 	};
 };
 
-// shop
-function Shop() { console.log("This is needed to make the other Shop.() function to work."); };
-
 // update
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
@@ -158,6 +156,11 @@ Update.playerStats = function() {
 	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
 	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
 	$("#s-level").html("Level : " + beautify(ps.level, 0));
+	$("#s-coal").html("Coal : " + beautify(pi.coal, 0));
+	$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 0));
+	$("#s-jade").html("Jade : " + beautify(pi.jade, 0));
+	$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 0));
+	$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 0));
 
 	$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
 	$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");

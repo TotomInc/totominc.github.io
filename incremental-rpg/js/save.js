@@ -36,6 +36,7 @@ function loadData() {
             var s = savegame;
             var sp = savegame.player;
             var sps = savegame.player.stats;
+            var spi = savegame.player.item;
             ps.hp = sps.hp;
             ps.maxHp = sps.maxHp;
             ps.hpPerSec = sps.hpPerSec;
@@ -57,9 +58,12 @@ function loadData() {
             p.amulet.itemName = sp.amulet.itemName;
             p.sword.armor = sp.sword.armor;
             p.sword.itemName = sp.sword.itemName;
+            pi.coal = spi.coal;
+            pi.crystal = spi.crystal;
+            pi.jade = spi.jade;
+            pi.ruby = spi.ruby;
+            pi.saphire = spi.saphire;
             console.log("Game loaded!");
-        } else {
-            console.log("No save found!");
         };
     };
 };

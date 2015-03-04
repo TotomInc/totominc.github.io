@@ -19,12 +19,11 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 			<div class="navbar-header">
-			  <a class="navbar-brand light">Incremental-RPG <span class="navsmall small">prototype 0.001</span></a>
+			  <a class="navbar-brand light">Incremental-RPG</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
 			  <li class="active" onclick="resetData()"><a href="#">Hard-Reset</a></li>
-			  <li class="active" onclick='alert("This feature is coming soon!")'><a href="#">Switch to Inventory</a></li>
 				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
 				<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
 				<li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
@@ -42,7 +41,7 @@
 				  <div class="panel-heading"><p class="panel-title center">Monsters Area</p></div>
 				  <div id="monsters-panel" class="panel-body">
 						<div id="monsters-well" class="well well-sm">
-							<span id="monsters-msg" class="monsters-nomonsters">There is no monsters, no adventure selected. You should start an adventure, but be carefull, when you start an adventure, you can't stop it! You must finish your current adventure to start another.</span>
+							<span id="monsters-msg" class="monsters-nomonsters justify">There is no monsters, no adventure selected. You should start an adventure, but be carefull, when you start an adventure, you can't stop it! You must finish your current adventure to start another.</span>
 						</div>
 				  </div>
 				</div>
@@ -85,6 +84,11 @@
 							<img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
 							<img class="stats" src="img/I_Diamond.png"> <span id="s-diamond"></span><br>
 							<img class="stats" src="img/Ac_Medal01.png"> <span id="s-level"></span></p>
+							<p><img class="stats" src="img/I_Coal.png"> <span id="s-coal"></span><br>
+							<img class="stats" src="img/I_Crystal01.png"> <span id="s-crystal"></span><br>
+							<img class="stats" src="img/I_Jade.png"> <span id="s-jade"></span><br>
+							<img class="stats" src="img/I_Rubi.png"> <span id="s-ruby"></span><br>
+							<img class="stats" src="img/I_Saphire.png"> <span id="s-saphire"></span></p>
 						</div>
 						<div class="col-md-6 left-separator">
 							<p><img class="stats" src="img/C_Elm01.png"> <span id="s-helmet"></span><br>
@@ -98,8 +102,8 @@
 				  </div>
 				</div>
 				<!-- worlds -->
-				<div class="panel panel-success">
-				  <div class="panel-heading"><p class="panel-title center">Mining World</p></div>
+				<div class="panel panel-success light">
+				  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
 				  <div class="panel-body">
 				  </div>
 				</div>

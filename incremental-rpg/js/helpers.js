@@ -1,6 +1,6 @@
 function getXpNeeded() {
 	if (ps.level > 1) {
-		ps.xpNeeded = ps.level * Math.sqrt(100 * 175);
+		ps.xpNeeded = Math.pow(ps.level, 1.25) * 100;
 	};
 };
 function getLevelUp() {
