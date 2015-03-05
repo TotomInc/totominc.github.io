@@ -3,11 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Blackmarket - Incremental-game</title>
+	<title>Blackmarket - Incremental-game about thuggy business.</title>
 
 	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<script src="src/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" href="http://bootswatch.com/paper/bootstrap.min.css">
+	<link rel="stylesheet" href="src/bootstrap.min.css">
 	<script src="src/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="src/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -16,54 +16,33 @@
 <body>
 	<div class="container-fluid">
 		  <div id="fullscreen">
-		  	<h1>Blackmarket</h1>
+		  	<h1 class="a-title">Blackmarket</h1>
+            <h3>Incremental-game about thuggy business.</h3></br>
 				<div>
 					<h4 class="a-money"><span id="s-money"></span></h4>
 				  	<h5 class="a-guns"><span id="s-cg"></span><span id="s-ob"></span></h5>
 				  	<h5 class="a-guns"><span id="s-pr"></span><span id="s-pm"></span></h5>
 
 						<div class="row">
-						  <div class="col-md-5">
+						  <div class="col-md-6">
 						    <div id="p-1" class="progress">
 						      <div id="f-1" class="progress-bar progress-bar-success active" role="progressbar"></div>
 						    </div>
-						    <h5 class="a-tutorial"><span id="a-i1"></span></h1>
-						    <h1><span id="a-n1"></span></h1>
-						    <h2><span id="a-d1"></span></h2>
-						    <h2><span id="a-eventLog"></span></h2>
+						    <h4 class="a-tutorial"><span id="a-i1"></span></h1>
+						    <h5><span id="a-n1"></span></h1>
+						    <h5><span id="a-d1"></span></h2>
+						    <h6><span id="a-eventLog"></span></h2>
 						    <p class="a-ammos"><span id="s-ammo"></span></p>
 						  </div>
 						  
-						  <div class="col-md-5">
+						  <div class="col-md-6">
 						    <div id="p-2" class="progress">
 						      <div id="f-2" class="progress-bar progress-bar-danger active" role="progressbar"></div>
 						    </div>
-						    <h1 class="a-tutorial"><span id="a-i2"></span></h1>
-						    <h1><span id="a-n2"></span></h1>
-						    <h2><span id="a-d2"></span></h2>
+						    <h4 class="a-tutorial"><span id="a-i2"></span></h1>
+						    <h5><span id="a-n2"></span></h1>
+						    <h5><span id="a-d2"></span></h2>
 						  </div>
-				</div>
-				<div class="panel panel-primary">
-				  <div class="panel-heading center bold">Stats</div>
-				  <div class="panel-body">
-				  	<span id="s-dp1"></span>
-				  	<span id="s-dp2"></span>
-				  	<span id="s-dp3"></span>
-				  	<span id="s-d1"></span>
-				  	<span id="s-d2"></span>
-				  	<span id="s-d3"></span>
-				  	<div class="line"></div>
-						<span id="s-totalmoney"></span>
-						<span id="s-totalshoot"></span>
-						<span id="s-totalreload"></span>
-						<div class="line"></div>
-						<span id="s-experience"></span>
-						<span id="s-experienceOnReset"></span>
-						<div class="line"></div>
-						<b>Game auto-save every second but you can force-save with the saving button below.</b><br>
-						<b>Note : the game progresses even if it is closed! Offline mode is activate on the game!</b>
-						<p class="s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Hard-Reset</span> - <span class="s-options" onclick="softReset();">Soft-Reset</span></p>
-				  </div>
 				</div>
 			      </div>
 		  </div>
@@ -74,12 +53,12 @@
 			    <li role="presentation"><a href="#tab-builds" aria-controls="tab-builds" role="tab" data-toggle="tab">Builds <i class="fa fa-building-o"></i></a></li>
 			    <li role="presentation"><a href="#tab-dealers" aria-controls="tab-dealers" role="tab" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
 			    <li role="presentation"><a href="#tab-prestige" aria-controls="tab-prestige" role="tab" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
-			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
+			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">About <i class="fa fa-info-circle"></i></a></li>
 			  </ul>
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
 						<div class="list-group">
-							<li class="list-group-item list-group-item-warning center bold">Upgrades helps you to be more efficient like earning more $ with shooting, upgrading weed price, etc.</li>
+							<li class="list-group-item list-group-item-danger center bold">Upgrades helps you to improve your whole business. With them, you can increase the money you win when you shoot, the cost of different drugs, etc.</li>
 						  <a id="u-1" class="list-group-item"><span id="u-n1"></span><span id="u-c1"></span><span id="u-b1" class="badge"></span></a>
 						  <a id="u-2" class="list-group-item"><span id="u-n2"></span><span id="u-c2"></span><span id="u-b2" class="badge"></span></a>
 						  <a id="u-3" class="list-group-item"><span id="u-n3"></span><span id="u-c3"></span><span id="u-b3" class="badge"></span></a>
@@ -134,18 +113,18 @@
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-builds">
 						<ul class="list-group">
-							<li class="list-group-item list-group-item-warning center bold">Builds are used to earn drugs every second.</li>
-							<li class="list-group-item list-group-item-success center bold">Weed builds</li>
+							<li class="list-group-item list-group-item-danger center bold">Builds are used to create and stock drugs each second.</li>
+							<li class="list-group-item list-group-item-warning center bold">Weed builds</li>
 							<a id="b-1" class="list-group-item"><span id="b-n1"></span><span id="b-c1"></span><span id="b-r1"></span><span id="b-o1" class="badge"></span></a>
 							<a id="b-2" class="list-group-item"><span id="b-n2"></span><span id="b-c2"></span><span id="b-r2"></span><span id="b-o2" class="badge"></span></a>
 							<a id="b-3" class="list-group-item"><span id="b-n3"></span><span id="b-c3"></span><span id="b-r3"></span><span id="b-o3" class="badge"></span></a>
 							<a id="b-4" class="list-group-item"><span id="b-n4"></span><span id="b-c4"></span><span id="b-r4"></span><span id="b-o4" class="badge"></span></a>
-							<li class="list-group-item list-group-item-success center bold">Meth builds</li>
+							<li class="list-group-item list-group-item-warning center bold">Meth builds</li>
 							<a id="b-5" class="list-group-item"><span id="b-n5"></span><span id="b-c5"></span><span id="b-r5"></span><span id="b-o5" class="badge"></span></a>
 							<a id="b-6" class="list-group-item"><span id="b-n6"></span><span id="b-c6"></span><span id="b-r6"></span><span id="b-o6" class="badge"></span></a>
 							<a id="b-7" class="list-group-item"><span id="b-n7"></span><span id="b-c7"></span><span id="b-r7"></span><span id="b-o7" class="badge"></span></a>
 							<a id="b-8" class="list-group-item"><span id="b-n8"></span><span id="b-c8"></span><span id="b-r8"></span><span id="b-o8" class="badge"></span></a>
-							<li class="list-group-item list-group-item-success center bold">Cocaine builds</li>
+							<li class="list-group-item list-group-item-warning center bold">Cocaine builds</li>
 							<a id="b-9" class="list-group-item"><span id="b-n9"></span><span id="b-c9"></span><span id="b-r9"></span><span id="b-o9" class="badge"></span></a>
 							<a id="b-10" class="list-group-item"><span id="b-n10"></span><span id="b-c10"></span><span id="b-r10"></span><span id="b-o10" class="badge"></span></a>
 							<a id="b-11" class="list-group-item"><span id="b-n11"></span><span id="b-c11"></span><span id="b-r11"></span><span id="b-o11" class="badge"></span></a>
@@ -153,32 +132,32 @@
 							</ul>
 				  </div>
 				  <div role="tabpanel" class="tab-pane fade" id="tab-dealers">
-						<li class="list-group-item list-group-item-warning center bold">Dealers sells drugs every second. Make sure to have enough drug to sell!</li>
-						<li class="list-group-item list-group-item-success center bold">Weed dealers</li>
+						<li class="list-group-item list-group-item-danger center bold">Dealers sells the drug that you stock each second. Make sure to have enough drug in stock!</li>
+						<li class="list-group-item list-group-item-warning center bold">Weed dealers</li>
 						<a id="d-1" class="list-group-item"><span id="d-n1"></span><span id="d-c1"></span><span id="d-r1"></span><span id="d-o1" class="badge"></span></a>
 						<a id="d-2" class="list-group-item"><span id="d-n2"></span><span id="d-c2"></span><span id="d-r2"></span><span id="d-o2" class="badge"></span></a>
 						<a id="d-3" class="list-group-item"><span id="d-n3"></span><span id="d-c3"></span><span id="d-r3"></span><span id="d-o3" class="badge"></span></a>
 						<a id="d-4" class="list-group-item"><span id="d-n4"></span><span id="d-c4"></span><span id="d-r4"></span><span id="d-o4" class="badge"></span></a>
-						<li class="list-group-item list-group-item-success center bold">Meth dealers</li>
+						<li class="list-group-item list-group-item-warning center bold">Meth dealers</li>
 						<a id="d-5" class="list-group-item"><span id="d-n5"></span><span id="d-c5"></span><span id="d-r5"></span><span id="d-o5" class="badge"></span></a>
 						<a id="d-6" class="list-group-item"><span id="d-n6"></span><span id="d-c6"></span><span id="d-r6"></span><span id="d-o6" class="badge"></span></a>
 						<a id="d-7" class="list-group-item"><span id="d-n7"></span><span id="d-c7"></span><span id="d-r7"></span><span id="d-o7" class="badge"></span></a>
 						<a id="d-8" class="list-group-item"><span id="d-n8"></span><span id="d-c8"></span><span id="d-r8"></span><span id="d-o8" class="badge"></span></a>
-						<li class="list-group-item list-group-item-success center bold">Cocaine dealers</li>
+						<li class="list-group-item list-group-item-warning center bold">Cocaine dealers</li>
 						<a id="d-9" class="list-group-item"><span id="d-n9"></span><span id="d-c9"></span><span id="d-r9"></span><span id="d-o9" class="badge"></span></a>
 						<a id="d-10" class="list-group-item"><span id="d-n10"></span><span id="d-c10"></span><span id="d-r10"></span><span id="d-o10" class="badge"></span></a>
 						<a id="d-11" class="list-group-item"><span id="d-n11"></span><span id="d-c11"></span><span id="d-r11"></span><span id="d-o11" class="badge"></span></a>
 						<a id="d-12" class="list-group-item"><span id="d-n12"></span><span id="d-c12"></span><span id="d-r12"></span><span id="d-o12" class="badge"></span></a>
 				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-						<li class="list-group-item list-group-item-danger center bold">What is prestige?<br>
-						Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.<br>
-						When you're going to soft-reset, you lose everything but not total money and experience, but restart everything.</li>
-						<li class="list-group-item list-group-item-info">
-							<p class="s-rank">About the prestige ranks :</p>
+						<li class="list-group-item list-group-item-warning center bold">What is "prestige"?<br>
+						Your prestige rank is determined by your experience. You win experience in Blackmarket by earning cash.<br>
+						To have a prestige rank, you'll have to soft-reset your game. It seems that you lose everything except totals and, obviously, experience.</li>
+						<li class="list-group-item list-group-item-default">
+							<p class="s-rank">Prestige ranks :</p>
 							<table class="table">
 						    <thead><tr><th>Rank</th><th>Experience needed</th><th>Prestige multiplier</th></tr></thead>
-						    <tbody>
+						    <tbody class="a-table">
 						      <tr><th scope="row">Bronze</th><td>25 exp</td><td>x2.00</td></tr>
 						      <tr><th scope="row">Bronze Elite</th><td>100 exp</td><td>x4.00</td></tr>
 						      <tr><th scope="row">Bronze Master</th><td>400 exp</td><td>x6.00</td></tr>
@@ -197,60 +176,29 @@
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
 			    	<!-- patch notes section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-version"><u>v0.1 : beta release!</u></p>
-			    		<p class="s-notes">
-			    		Beta release of the game!<br>
-			    		- Code has been fully rewritten, with some optimizations!<br>
-			    		- New fresh clean UI (essentially build on Bootstrap).<br>
-			    		- Added ranks, which give a total cash multiplier.<br>
-			    		- Helpers are removed.<br>
-			    		</p>
-			    		<p class="s-version"><u>v0.11 : UI changes!</u></p>
-			    		<p class="s-notes">
-			    		- The game UI have changed, I'm always working on it, especially on the upgrades tab.<br>
-			    		- Changed some prices of builds/drugs, game get a good balancing according to me.<br>
-			    		- Fixed saves bug when I add more content like new builds/dealers. Please, let me know if there is still saving bugs!
-			    		</p>
-			    		<p class="s-version"><u>v0.12 : Content update!</u></p>
-			    		<p class="s-notes">
-			    		- Cocaine builds and dealers have been added!<br>
-			    		- 3 upgrades added (cocaine price) and some of them have been rebalanced.<br>
-			    		- When you bought an upgrade, it become green instead of grey.<br>
-			    		- Fixed some bugs.<br>
-			    		- Changed some things about the background, navbar and actions panel colors.
-			    		</p>
-			    		<p class="s-version"><u>v0.13 : prestige update!</u></p>
+			    	<li class="list-group-item list-group-item-primary">
+                        <h5 class="s-version">Actual version</h5>
+			    		<p class="s-version">v0.16 : New design!</p>
 			    		<p>
-			    		- Added a prestige system : you got a prestige rank and experience. Experience will determine your prestige rank which will give you a "prestige multipier" on every cash income! (Shooting action and drugs for example)
-			    		</p>
-			    		<p class="s-version"><u>v0.14 : rebalancing the game</u></p>
-			    		<p>
-			    		- Builds/dealers have been totally rebalanced!<br>
-			    		- Drug prices have been a bit boosted.<br>
-			    		</p>
-			    		<p class="s-version"><u>v0.15 : always balancing the game</u></p>
-			    		<p>
-			    		- New upgrades have been added (1 more for weed/meth/cocaine).<br>
-			    		- Builds/dealers have been rebalanced (again!).<br>
-			    		- Drug prices have been boosted, especially meth and cocaine.<br>
-			    		- Experience is now 2x easier to gain!<br>
-			    		- Code have been a bit optimized.
+			    		This update features a new design that my friend Shy Coder made using Bootstrap and the Bootswatch theme "Paper"!</br>
+                        Also, it's him who is talking to you now ^-^</br>
+                        This design has been optimized for mobile devices too, as the old one was less.</br>
+                        Also, the full changelog has been deleted, but you can still check it out on GitHub!
 			    		</p>
 			    	</li>
 			    	<!-- what's next section -->
-			    	<li class="list-group-item list-group-item-info">
+			    	<li class="list-group-item list-group-item-warning">
 			    		<p class="s-version"><u>What's next now?</u></p>
 			    		<p class="s-notes">
-			    		- <b>A better UI </b>: especially on the upgrades panel. Recently, a user from Reddit (<a href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/co4kukr">/u/LitKing</a>) proposed to me a new display of the upgrades, <a href="http://i.imgur.com/cTvcHRC.png">like this</a>. I really like this display and will work on this, it makes more sense to the user to see "skills to level-up" like in a RPG game where you have to level-up your character.
+			    		- <b>Huh, we don't even know...</b> Is this the final version? ^-^
 			    		</p>
 			    	</li>
 			    	<!-- ranks section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-rank">About the ranks :</p>
+			    	<li class="list-group-item list-group-item-primary">
+			    		<p class="s-rank">Ranks :</p>
 							<table class="table">
 						    <thead><tr><th>Rank</th><th>Total money needed</th><th>Overall bonus</th></tr></thead>
-						    <tbody>
+						    <tbody class="a-table">
 						      <tr><th scope="row">Glock-18</th><td>starting rank</td><td>x1.00</td></tr>
 						      <tr><th scope="row">CZ75-Auto</th><td>2,500$</td><td>x1.10</td></tr>
 						      <tr><th scope="row">Dual Berettas</th><td>10,000$</td><td>x1.20</td></tr>
@@ -266,22 +214,55 @@
 							</table>
 			    	</li>
 			    	<!-- thanks section -->
-			    	<li class="list-group-item list-group-item-info">
+			    	<li class="list-group-item list-group-item-primary">
 			    		<p class="s-thanks">
-			    			Thanks you for playing my game, we reached a total of <b>10,000</b> unique players from the prototype and the current beta!<br>
-			    			Keep an eye on the game, the game is in rapid development! :)
+                            Game created by Thomas Cazade.<br>
+                            Flat theme and translation improvements by Antonin Gay using Bootswatch's "Paper" theme for Bootstrap.<br>
+                            This game is using or has used Bootstrap, Font Awesome, JQuery, Google Analytics and GitHub.<br>
+                            <br>
+                            Thanks to all the players. We reached <b>10,000</b> players on the beta prototype and I hope there will be more players in the future!<br/>
+			    			Also thanks to Bootswatch and to my friend Shy Coder for the flat layout!
 			    		</p>
 			    	</li>
 			    	<!-- links/feedback section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a></p>
-			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a></p>
-			    		<p class="s-links"><a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket">Contribute to the game on the GitHub repo of Blackmarket</a></p>
+			    	<li class="list-group-item list-group-item-primary">
+			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a><i class="fa fa-external-link"></i></p>
+			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a><i class="fa fa-external-link"></i></p>
+			    		<p class="s-links"><a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket">Contribute to the game on the GitHub repo of Blackmarket</a><i class="fa fa-external-link"></i></p>
 			    	</li>
 			    </div>
 			  </div>
 		</div>
+        <div class="panel panel-danger">
+				  <div class="panel-heading center bold" style="color: #fff;">Stats</div>
+				  <div class="panel-body">
+				  	<span id="s-dp1"></span>
+				  	<span id="s-dp2"></span>
+				  	<span id="s-dp3"></span>
+				  	<span id="s-d1"></span>
+				  	<span id="s-d2"></span>
+				  	<span id="s-d3"></span>
+				  	<div class="line"></div>
+						<span id="s-totalmoney"></span>
+						<span id="s-totalshoot"></span>
+						<span id="s-totalreload"></span>
+						<div class="line"></div>
+						<span id="s-experience"></span>
+						<span id="s-experienceOnReset"></span>
+						<div class="line"></div>
+						<b>Blackmarket auto-saves every second but you can force-save with the "Save" button below.</b><br>
+						<b>Note : Even if you're not playing, you're still earning money by selling drugs! Blackmarket never sleeps!</b>
+						<p class="s-links s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Hard-Reset</span> - <span class="s-options" onclick="softReset();">Soft-Reset</span></p>
+				  </div>
+				</div>
+                <li class="list-group-item list-group-item-primary">
+			    		<p class="s-footer">
+                            Made by Totom, 2015.<br>
+                            Powered by Bootstrap, Font Awesome, JQuery, Google Analytics and GitHub.
+			    		</p>
+			    	</li>
 	</div>
+    
 
 	<script src="js/resize.js"></script>
 	<script src="js/beautify.js"></script>
