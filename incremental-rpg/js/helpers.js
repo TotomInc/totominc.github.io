@@ -39,9 +39,3 @@ function getMonsterXp(maxXp, minXp) {
 function getMonsterDamage(maxDmg, minDmg) {
 	return Math.floor(Math.random() * (maxDmg - minDmg) + minDmg);
 };
-
-var helpersInterval = window.setInterval(function() {
-	getXpNeeded();
-	getLevelUp();
-	getPlayerHp();
-}, 100);

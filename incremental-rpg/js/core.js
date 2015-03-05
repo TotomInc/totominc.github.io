@@ -8,17 +8,25 @@ var player = {
 	sword: { itemName: "Copper Sword", damage: 5 },
 	item: { coal: 0, crystal: 0, jade: 0, ruby: 0, saphire: 0 }
 };
+var p = player; var ps = player.stats; var pi = player.item;
+
 var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
 	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 10, 20, 10),
 	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 20, 40,	20),
 	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	12,	8, 	80,	40,	80, 40)
 ];
-var monstersNames = ["Korok", "Urog", "Shadow Drakes", "Cavernhound", "Bonewraith", "Autumn Genie", "Skeletal Griffins", "Dustbrute",
-"Thunderling", "Moldclaw", "Metalflayer", "Infernohand", "Terrorstrike", "Creeping Wolpertinger", "Dawncat", "Abysssnake", "Poisonling"];
-var liveAdventure; var liveMonsters = [];
+var liveAdventure; var liveMonsters = []; var spawnFinished;
+
+var miningBuilds = [
+	new Mining("Coal Miner",	200,	'coal',		1),
+	new Mining("Crystal Miner",	5000,	'crystal',	1),
+	new Mining("Jade Miner",	20000,	'jade',		1),
+	new Mining("Ruby Miner",	75000,	'ruby',		1),
+	new Mining("Saphire Miner",	150000,	'saphire',	1)
+];
+var miningBuildsOwned = [0, 0, 0, 0, 0];
 
 var fps = 60; var interval = (1000 / fps); var version = 0.001; var init = false;
-var spawnFinished; var p = player; var ps = player.stats; var pi = player.item;
 
 // player
 function Player() { console.log("This is needed to make the other Player.() functions to work."); };
@@ -148,6 +156,14 @@ Monster.attack = function(index) {
 	};
 };
 
+// mining
+function Mining(name, price, itemType, perSec) {
+	this.name = name;
+	this.price = price;
+	this.itemType = itemType;
+	this.perSec = perSec;
+};
+
 // update
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
@@ -201,3 +217,8 @@ var regainHpInterval = window.setInterval(function() {
 var saveInterval = window.setInterval(function() {
 	saveData();
 }, 1000);
+var helpersInterval = window.setInterval(function() {
+	getXpNeeded();
+	getLevelUp();
+	getPlayerHp();
+}, 100);

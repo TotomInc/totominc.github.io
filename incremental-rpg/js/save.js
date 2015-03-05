@@ -21,7 +21,7 @@ function resetData() {
     };
 };
 */
-// new saving system (pretty shitty)
+// new saving system (pretty shitty but working)
 function saveData() {
     if (init == true) {
         var toSave = { player: player };
