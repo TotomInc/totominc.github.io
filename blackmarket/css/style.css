@@ -2,13 +2,34 @@ body
 {
   text-align: center; 
 }
+.a-money
+{
+    font-weight: bold;
+}
+.a-tutorial
+{
+    font-weight: bold;
+}
+.a-table td
+{
+    text-align: left;
+}
+.s-version
+{
+    text-decoration: underline;
+    font-weight: 500;
+}
+.s-links
+{
+    color: #e74c3c;
+    cursor: pointer;
+}
 
 /* Custom Bootstrap */
 .progress
 {
+  border-radius: 15px;
   height: 30px;
-  margin-left: 5%;
-  margin-right: 5%;
   margin-bottom: 0;
   cursor: pointer;
 }
