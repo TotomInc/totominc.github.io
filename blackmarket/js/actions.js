@@ -10,7 +10,7 @@ function shootAction() {
             shootEvent();
             $("#p-1").attr("onclick", "shootAction();");
             $("#p-2").attr("onclick", "reloadAction();");
-            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#31708f");
+            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#444");
         }, shoot[3]);
         $("#f-1").animate({width: "100%"}, shoot[3], "linear");
         $("#f-1").animate({width: "0%"}, 0, "linear");
@@ -46,7 +46,7 @@ function reloadAction() {
             $("#p-2").attr("onclick", "reloadAction();");
             $("#f-1").attr("class", "progress-bar progress-bar-success active");
             $("#f-1").css("width", "0%");
-            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#31708f");
+            $("#a-n1, #a-n2, #a-d1, #a-d2").css("color", "#444");
         }, shoot[4]);
         $("#f-2").animate({width: "100%"}, shoot[4], "linear");
         $("#f-2").animate({width: "0%"}, 0, "linear");

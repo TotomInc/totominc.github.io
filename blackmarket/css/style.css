@@ -1,45 +1,37 @@
-body
-{
-  text-align: center;
-}
-.a-money
-{
-    font-weight: bold;
-}
-.a-tutorial
-{
-    font-weight: bold;
-}
-.a-table td
-{
-    text-align: left;
-}
-.s-version
-{
-    text-decoration: underline;
-    font-weight: 500;
-}
-.s-links
-{
-    color: #e74c3c;
-    cursor: pointer;
-}
+body { text-align: center; }
+h1 { margin-top: 4px; margin-bottom: 8px; font-size: 34px; }
+h2 { font-size: 30px; }
+h3 { font-size: 26px; }
+h4 { font-size: 22px; }
+h5 { font-size: 18px; }
+h6 { font-size: 14px; }
+p { line-height: 20px; margin-bottom: 4px; margin-top: 4px; }
 
-/* Custom Bootstrap */
-.progress
-{
-  border-radius: 15px;
-  height: 30px;
-  margin-bottom: 0;
-  cursor: pointer;
-}
-.progress-bar
-{
-  transition: 0;
-}
+/* blackmarket main classes */
+.a-tutorial { font-weight: bold; }
+.a-table td { text-align: left; }
+.s-version { text-decoration: underline; font-weight: 500; }
+.s-links { color: #e74c3c; cursor: pointer; }
+.s-ammo, .s-reload { margin-bottom: 0; font-size: 20px; text-align: right; }
+.line { width: 90%; height: 1px; background: #4caf50; margin-left: auto; margin-right: auto; }
+
+/* custom Bootstrap */
+.progress { border-radius: 10px; height: 30px; margin-bottom: 0; cursor: pointer; }
+.progress-bar { transition: 0; }
+.list-group-item { cursor: pointer; }
 
 /* helpers classes */
-.light { font-weight: 300; }
 .thin { font-weight: 200; }
+.light { font-weight: 300; }
 .regular { font-weight: 400; }
+.fat { font-weight: 500; } /* dat class name lel */
 .italic { font-style: italic; }
+.left { text-align: left; }
+.right { text-align: right; }
+
+.h1-size { font-size: 34px; }
+.h2-size { font-size: 30px; }
+.h3-size { font-size: 26px; }
+.h4-size { font-size: 24px; }
+.h5-size { font-size: 20px; }
+.h6-size { font-size: 16px; }
