@@ -1,6 +1,6 @@
 body
 {
-  text-align: center; 
+  text-align: center;
 }
 .a-money
 {
@@ -37,3 +37,9 @@ body
 {
   transition: 0;
 }
+
+/* helpers classes */
+.light { font-weight: 300; }
+.thin { font-weight: 200; }
+.regular { font-weight: 400; }
+.italic { font-style: italic; }
