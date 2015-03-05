@@ -2,3 +2,15 @@ body
 {
   text-align: center; 
 }
+
+/* Custom Bootstrap */
+.progress
+{
+  height: 30px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.progress-bar
+{
+  transition: 0;
+}
