@@ -24,6 +24,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
+			  <li class="active" onclick="manualLoad();"><a href="#">Load</a></li>
+			  <li class="active" onclick="manualSave();"><a href="#">Save</a></li>
 			  <li class="active" onclick="resetData()"><a href="#">Hard-Reset</a></li>
 				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
 				<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
@@ -68,6 +70,24 @@
 							<div id="adventures-medrow" class="col-md-4"><span>5 to 7 monsters</span></div>
 							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(2);">Start</a></div>
 						</div>
+						<br>
+						<div id="adventures-row" class="row">
+							<div id="adventures-row" class="col-md-6"><span>Dragon Cave - required level : 13</span></div>
+							<div id="adventures-medrow" class="col-md-4"><span>7 to 10 monsters</span></div>
+							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(3);">Start</a></div>
+						</div>
+						<br>
+						<div id="adventures-row" class="row">
+							<div id="adventures-row" class="col-md-6"><span>Haunted Village - required level : 20</span></div>
+							<div id="adventures-medrow" class="col-md-4"><span>7 to 10 monsters</span></div>
+							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(4);">Start</a></div>
+						</div>
+						<br>
+						<div id="adventures-row" class="row">
+							<div id="adventures-row" class="col-md-6"><span>Mansion - required level : 25</span></div>
+							<div id="adventures-medrow" class="col-md-4"><span>5 to 8 monsters</span></div>
+							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(5);">Start</a></div>
+						</div>
 					</div>
 				  </div>
 				</div>
@@ -98,6 +118,7 @@
 							<img class="stats" src="img/A_Shoes01.png"> <span id="s-boots"></span><br>
 							<img class="stats" src="img/Ac_Necklace01.png"> <span id="s-amulet"></span><br>
 							<img class="stats" src="img/W_Sword004.png"> <span id="s-sword"></span></p>
+							<p><span id="s-totalarmor"></span></p>
 						</div>
 					</div>
 				  </div>
@@ -106,6 +127,20 @@
 				<div class="panel panel-success light">
 				  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
 				  <div class="panel-body">
+				  	<div class="col-md-9">
+				  		<p><img class="stats" src="img/I_Coal.png"> <span id="m-i1"></span></p>
+				  		<p><img class="stats" src="img/I_Crystal01.png"> <span id="m-i2"></span></p>
+				  		<p><img class="stats" src="img/I_Jade.png"> <span id="m-i3"></span></p>
+				  		<p><img class="stats" src="img/I_Rubi.png"> <span id="m-i4"></span></p>
+				  		<p><img class="stats" src="img/I_Saphire.png"> <span id="m-i5"></span></p>
+				  	</div>
+				  	<div class="col-md-2">
+				  		<p><a id="m-b1" class="btn btn-primary btn-sm">Buy</a></p>
+				  		<p><a id="m-b2" class="btn btn-primary btn-sm">Buy</a></p>
+				  		<p><a id="m-b3" class="btn btn-primary btn-sm">Buy</a></p>
+				  		<p><a id="m-b4" class="btn btn-primary btn-sm">Buy</a></p>
+				  		<p><a id="m-b5" class="btn btn-primary btn-sm">Buy</a></p>
+				  	</div>
 				  </div>
 				</div>
 			</div>

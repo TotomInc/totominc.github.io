@@ -20,7 +20,7 @@ function getPlayerHp() {
 	return Math.floor(ps.maxHp);
 };
 function getPlayerHpRegain() {
-	ps.hpPerSec = 1 * ps.level;
+	ps.hpPerSec = 2 * ps.level;
 	return Math.floor(ps.hpPerSec);
 };
 function getPlayerArmor() { // in percent
@@ -38,4 +38,14 @@ function getMonsterXp(maxXp, minXp) {
 };
 function getMonsterDamage(maxDmg, minDmg) {
 	return Math.floor(Math.random() * (maxDmg - minDmg) + minDmg);
+};
+function getMiningBuildPrice(index) {
+	if (miningBuildsOwned[index] > 0) {
+		return Math.floor(miningBuilds[index].price * Math.pow(1.30, miningBuildsOwned[index]));
+	} else {
+		return Math.floor(miningBuilds[index].price);
+	};
+};
+function getMiningBuildReward(index) {
+	return Math.floor(miningBuilds[index].perSec * miningBuildsOwned[index]);
 };

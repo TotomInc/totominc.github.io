@@ -1,5 +1,5 @@
 var player = {
-	stats: { hp: 100, maxHp: 100, hpPerSec: 1, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
+	stats: { hp: 100, maxHp: 100, hpPerSec: 2, xp: 0, xpNeeded: 100, level: 1, gold: 0, diamond: 0, totalArmor: 0 },
 	helmet: { itemName: "Leather Helmet", armor: 10 },
 	armour: { itemName: "Leather Armour", armor: 50 },
 	gloves: { itemName: "Leather Gauntlets", armor: 5 },
@@ -11,18 +11,21 @@ var player = {
 var p = player; var ps = player.stats; var pi = player.item;
 
 var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
-	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 10, 20, 10),
-	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 20, 40,	20),
-	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	12,	8, 	80,	40,	80, 40)
+	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 	10, 	20, 	10),
+	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 	20, 	40,		20),
+	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	12,	8, 	80,		40,		80, 	40),
+	new Adventure("Dragon Cave",			13,	7,	10,	200,	150,	15,	10,	180,	80, 	180,	80),
+	new Adventure("Haunted Village",		20,	7,	10,	300,	200,	20,	15,	360,	180,	360,	180),
+	new Adventure("Mansion",				25,	5,	8,	750,	600,	32,	25,	720,	360,	720,	360)
 ];
 var liveAdventure; var liveMonsters = []; var spawnFinished;
 
 var miningBuilds = [
 	new Mining("Coal Miner",	200,	'coal',		1),
-	new Mining("Crystal Miner",	5000,	'crystal',	1),
-	new Mining("Jade Miner",	20000,	'jade',		1),
-	new Mining("Ruby Miner",	75000,	'ruby',		1),
-	new Mining("Saphire Miner",	150000,	'saphire',	1)
+	new Mining("Crystal Miner",	2500,	'crystal',	1),
+	new Mining("Jade Miner",	10000,	'jade',		1),
+	new Mining("Ruby Miner",	50000,	'ruby',		1),
+	new Mining("Saphire Miner",	250000,	'saphire',	1)
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0];
 
@@ -31,7 +34,7 @@ var fps = 60; var interval = (1000 / fps); var version = 0.001; var init = false
 // player
 function Player() { console.log("This is needed to make the other Player.() functions to work."); };
 Player.regainHp = function() {
-	if (ps.hp < ps.maxHp) {
+	if (ps.hp < ps.maxHp && init == true) {
 		var regain = getPlayerHpRegain();
 		var tempHp = ps.hp + regain;
 		var tempRegain = regain;
@@ -145,7 +148,7 @@ Monster.attack = function(index) {
 	var playerDmg = getPlayerDamage();
 	var monsterDmg = liveMonsters[index].damage;
 	if (ps.hp > monsterDmg) {
-		ps.hp -= monsterDmg;
+		ps.hp -= (monsterDmg/getPlayerArmor());
 		liveMonsters[index].hp -= playerDmg;
 		if (liveMonsters[index].hp <= 0) {
 			ps.gold += liveMonsters[index].gold;
@@ -163,30 +166,60 @@ function Mining(name, price, itemType, perSec) {
 	this.itemType = itemType;
 	this.perSec = perSec;
 };
+Mining.reward = function() {
+	for (var i = 0; i < miningBuilds.length; i++) {
+		var m = miningBuilds[i];
+		if (m.itemType == 'coal') {
+			pi.coal += (getMiningBuildReward(i) / 100);
+		};
+		if (m.itemType == 'crystal') {
+			pi.crystal += (getMiningBuildReward(i) / 100);
+		};
+		if (m.itemType == 'jade') {
+			pi.jade += (getMiningBuildReward(i) / 100);
+		};
+		if (m.itemType == 'ruby') {
+			pi.ruby += (getMiningBuildReward(i) / 100);
+		};
+		if (m.itemType == 'saphire') {
+			pi.saphire += (getMiningBuildReward(i) / 100);
+		};
+	};
+};
+Mining.buy = function(index) { // TODO
+	if (ps.gold >= getMiningBuildPrice(index)) {
+		ps.gold -= getMiningBuildPrice(index);
+		miningBuildsOwned[index]++;
+		ps.xp += getMiningBuildPrice(index) / 50;
+	};
+};
 
 // update
 function Update() { console.log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
-	$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
-	$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
-	$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
-	$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
-	$("#s-level").html("Level : " + beautify(ps.level, 0));
-	$("#s-coal").html("Coal : " + beautify(pi.coal, 0));
-	$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 0));
-	$("#s-jade").html("Jade : " + beautify(pi.jade, 0));
-	$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 0));
-	$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 0));
+	if (init == true) {
+		$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
+		$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
+		$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
+		$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
+		$("#s-level").html("Level : " + beautify(ps.level, 0));
+		$("#s-coal").html("Coal : " + beautify(pi.coal, 0));
+		$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 0));
+		$("#s-jade").html("Jade : " + beautify(pi.jade, 0));
+		$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 0));
+		$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 0));
 
-	$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
-	$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
-	$("#s-gloves").html("Gloves : <i>" + p.gloves.itemName + "</i><br>+" + p.gloves.armor + " armor");
-	$("#s-boots").html("Boots : <i>" + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
-	$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
-	$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
+		$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
+		$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
+		$("#s-gloves").html("Gloves : <i>" + p.gloves.itemName + "</i><br>+" + p.gloves.armor + " armor");
+		$("#s-boots").html("Boots : <i>" + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
+		$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
+		$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
+		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage");
+	};
 };
 Update.monsters = function() {
-	if (typeof liveAdventure == "string") {
+	if (typeof liveAdventure == "string" && init == true) {
 		for (var i = 0; i < liveMonsters.length; i++) {
 			var lm = liveMonsters[i];
 			var lmi = liveMonsters[i].index;
@@ -201,6 +234,14 @@ Update.monsters = function() {
 		$("#monsters-msg").css("display", "block");
 	};
 };
+Update.mining = function() {
+	for (var i = 0; i < miningBuilds.length; i++) {
+		var m = miningBuilds[i];
+		var o = miningBuildsOwned[i];
+		$("#m-i" + (i+1)).html(m.name + " : " + beautify(getMiningBuildPrice(i), 2) + " gold - " + o + " owned");
+		$("#m-b" + (i+1)).attr("onclick", 'Mining.buy(' + i + ');');
+	};
+};
 
 // loading + loop
 window.onload = function() {
@@ -210,13 +251,17 @@ window.onload = function() {
 var mainInterval = window.setInterval(function() {
 	Update.playerStats();
 	Update.monsters();
+	Update.mining();
 }, interval);
 var regainHpInterval = window.setInterval(function() {
 	Player.regainHp();
 }, 1000);
 var saveInterval = window.setInterval(function() {
 	saveData();
-}, 1000);
+}, 15000);
+var buildsInterval = window.setInterval(function() {
+	Mining.reward();
+}, 10);
 var helpersInterval = window.setInterval(function() {
 	getXpNeeded();
 	getLevelUp();

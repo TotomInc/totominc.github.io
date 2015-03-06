@@ -22,10 +22,53 @@ function resetData() {
 };
 */
 // new saving system (pretty shitty but working)
+function manualSave() {
+    var toSave = { player: player, miningBuildsOwned: miningBuildsOwned };
+    var saved = JSON.stringify(toSave);
+    var exportSave = btoa(saved);
+    prompt("Here is your encoded save, keep-it safe!", exportSave);
+};
+function manualLoad() {
+    var importSave = prompt("You need to import the code from the save button.", "Put your exported-save here!");
+    var cleanSave = atob(importSave);
+    var savegame = JSON.parse(cleanSave);
+    var s = savegame;
+    var sp = savegame.player;
+    var sps = savegame.player.stats;
+    var spi = savegame.player.item;
+    ps.hp = sps.hp;
+    ps.maxHp = sps.maxHp;
+    ps.hpPerSec = sps.hpPerSec;
+    ps.xp = sps.xp;
+    ps.xpNeeded = sps.xpNeeded;
+    ps.level = sps.level;
+    ps.gold = sps.gold;
+    ps.diamond = sps.diamond;
+    ps.totalArmor = sps.totalArmor;
+    p.helmet.armor = sp.helmet.armor;
+    p.helmet.itemName = sp.helmet.itemName;
+    p.armour.armor = sp.armour.armor;
+    p.armour.itemName = sp.armour.itemName;
+    p.gloves.armor = sp.gloves.armor;
+    p.gloves.itemName = sp.gloves.itemName;
+    p.boots.armor = sp.boots.armor;
+    p.boots.itemName = sp.boots.itemName;
+    p.amulet.armor = sp.amulet.armor;
+    p.amulet.itemName = sp.amulet.itemName;
+    p.sword.armor = sp.sword.armor;
+    p.sword.itemName = sp.sword.itemName;
+    pi.coal = spi.coal;
+    pi.crystal = spi.crystal;
+    pi.jade = spi.jade;
+    pi.ruby = spi.ruby;
+    pi.saphire = spi.saphire;
+    miningBuildsOwned = savegame.miningBuildsOwned;
+    console.log("Game loaded!");
+};
 function saveData() {
     if (init == true) {
-        var toSave = { player: player };
-        localStorage.setItem("IncRPG_Save",JSON.stringify(toSave));
+        var toSave = { player: player, miningBuildsOwned: miningBuildsOwned };
+        localStorage.setItem("IncRPG_Save", JSON.stringify(toSave));
         console.log("Game saved!");
     };
 };
@@ -63,6 +106,7 @@ function loadData() {
             pi.jade = spi.jade;
             pi.ruby = spi.ruby;
             pi.saphire = spi.saphire;
+            miningBuildsOwned = savegame.miningBuildsOwned;
             console.log("Game loaded!");
         };
     };
