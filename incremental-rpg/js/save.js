@@ -63,13 +63,13 @@ function manualLoad() {
     pi.ruby = spi.ruby;
     pi.saphire = spi.saphire;
     miningBuildsOwned = savegame.miningBuildsOwned;
-    console.log("Game loaded!");
+    Log("Game loaded!");
 };
 function saveData() {
     if (init == true) {
         var toSave = { player: player, miningBuildsOwned: miningBuildsOwned };
         localStorage.setItem("IncRPG_Save", JSON.stringify(toSave));
-        console.log("Game saved!");
+        Log("Game saved!");
     };
 };
 function loadData() {
@@ -107,7 +107,7 @@ function loadData() {
             pi.ruby = spi.ruby;
             pi.saphire = spi.saphire;
             miningBuildsOwned = savegame.miningBuildsOwned;
-            console.log("Game loaded!");
+            Log("Game loaded!");
         };
     };
 };

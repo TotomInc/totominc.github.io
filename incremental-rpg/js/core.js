@@ -29,17 +29,16 @@ var miningBuilds = [
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.001; var release = "r-20"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "r-1"; var init = false;
 
 // player
-function Player() { console.log("This is needed to make the other Player.() functions to work."); };
+function Player() { Log("This is needed to make the other Player.() functions to work."); };
 Player.regainHp = function() {
 	if (ps.hp < ps.maxHp && init == true) {
 		var regain = getPlayerHpRegain();
 		var tempHp = ps.hp + regain;
 		var tempRegain = regain;
 		if (tempHp > ps.maxHp) {
-			console.log("too much hp regain");
 			tempRegain = ps.maxHp - ps.hp;
 			ps.hp += tempRegain;
 		} else {
@@ -195,7 +194,7 @@ Mining.buy = function(index) { // TODO
 };
 
 // update
-function Update() { console.log("This is needed to make the other Update.() function to work."); };
+function Update() { Log("This is needed to make the other Update.() function to work."); };
 Update.playerStats = function() {
 	if (init == true) {
 		$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
@@ -242,15 +241,24 @@ Update.mining = function() {
 		$("#m-b" + (i+1)).attr("onclick", 'Mining.buy(' + i + ');');
 	};
 };
-Update.version = function() {
+Update.gameInit = function() {
 	$("#s-version").html("Current game version : v" + version + release);
+	for (var i = 0; i < adventures.length; i++) {
+		var a = adventures[i];
+		$("#a-n" + (i+1)).html(a.name + " - required level : " + a.reqLevel);
+		$("#a-m" + (i+1)).html(a.minMonsters + " to " + a.maxMonsters + " monsters");
+	};
+	init = true;
+};
+
+function Log(text) {
+	console.log("Inc-RPG v" + version + release + " : " + text);
 };
 
 // loading + loop
 window.onload = function() {
-	init = true;
+	Update.gameInit();
 	loadData();
-	Update.version();
 };
 var mainInterval = window.setInterval(function() {
 	Update.playerStats();
