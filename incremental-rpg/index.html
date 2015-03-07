@@ -25,6 +25,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
+			  <li class="active" data-toggle="modal" data-target="#crafting-modal"><a href="#">Crafting</a></li>
 			  <li class="active" data-toggle="modal" data-target="#inventory-modal"><a href="#">Inventory</a></li>
 			  <li class="active" data-toggle="modal" data-target="#options-modal"><a href="#">Options</a></li>
 				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
@@ -153,6 +154,30 @@
 	</div>
 
 <!-- modals -->
+	<div class="modal fade" id="crafting-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    	<div class="modal-header"><p class="modal-title small-font underline">Crafting :</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+	      		<div class="row">
+	      			<div class="col-md-12">
+	      				<div class="well well-lg">
+	      					<p class="light small-font"><img src="img/I_Crystal01.png"> Craft 1 crystal <span class="tiny-font">(10 coals/crystal)</span><br><a class="btn btn-primary btn-sm">Craft</a></p>
+	      					<p class="light small-font"><img src="img/I_Jade.png"> Craft 1 jade <span class="tiny-font">(10 crystals/jade)</span><br><a class="btn btn-primary btn-sm">Craft</a></p>
+	      					<p class="light small-font"><img src="img/I_Rubi.png"> Craft 1 rubi <span class="tiny-font">(10 jades/ruby)</span><br><a class="btn btn-primary btn-sm">Craft</a></p>
+	      					<p class="light small-font"><img src="img/I_Saphire.png"> Craft 1 saphire <span class="tiny-font">(10 rubys/saphire)</span><br><a class="btn btn-primary btn-sm">Craft</a></p>
+	      				</div>
+	      			</div>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
+	    </div>
+	  </div>
+	</div>
+
 	<div class="modal fade" id="inventory-modal" role="dialog" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">

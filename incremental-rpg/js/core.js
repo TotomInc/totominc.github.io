@@ -29,7 +29,7 @@ var miningBuilds = [
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r4"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r5"; var init = false;
 
 // player
 function Player() { Log("This is needed to make the other Player.() functions to work."); };
