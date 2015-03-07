@@ -29,7 +29,7 @@ var miningBuilds = [
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r3"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r4"; var init = false;
 
 // player
 function Player() { Log("This is needed to make the other Player.() functions to work."); };
@@ -199,14 +199,14 @@ Update.playerStats = function() {
 	if (init == true) {
 		$("#s-hp, #nav-hp").html("HP : " + beautify(ps.hp, 0) + "/" + beautify(ps.maxHp, 0) + ' <small class="small">+' + beautify(ps.hpPerSec, 0) + 'HP/s</small>');
 		$("#s-xp, #nav-xp").html("XP : " + beautify(ps.xp, 0) + "/" + beautify(ps.xpNeeded, 0));
-		$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 0));
-		$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 0));
+		$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 2));
+		$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 2));
 		$("#s-level").html("Level : " + beautify(ps.level, 0));
-		$("#s-coal").html("Coal : " + beautify(pi.coal, 0));
-		$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 0));
-		$("#s-jade").html("Jade : " + beautify(pi.jade, 0));
-		$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 0));
-		$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 0));
+		$("#s-coal").html("Coal : " + beautify(pi.coal, 2));
+		$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 2));
+		$("#s-jade").html("Jade : " + beautify(pi.jade, 2));
+		$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 2));
+		$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 2));
 
 		$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
 		$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
@@ -214,7 +214,7 @@ Update.playerStats = function() {
 		$("#s-boots").html("Boots : <i>" + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
 		$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
 		$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
-		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage");
+		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage (currently not implemented)");
 		// hp-bar in the navbar
 		var playerHpBar = 100;
 		playerHpBar = (ps.hp / ps.maxHp) * 100;
