@@ -13,10 +13,10 @@ var p = player; var ps = player.stats; var pi = player.item;
 var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
 	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 	10, 	20, 	10),
 	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 	20, 	40,		20),
-	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	12,	8, 	80,		40,		80, 	40),
-	new Adventure("Dragon Cave",			13,	7,	10,	200,	150,	15,	10,	180,	80, 	180,	80),
-	new Adventure("Haunted Village",		20,	7,	10,	300,	200,	20,	15,	360,	180,	360,	180),
-	new Adventure("Mansion",				25,	5,	8,	750,	600,	32,	25,	720,	360,	720,	360)
+	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	25,	15,	80,		40,		80, 	40),
+	new Adventure("Dragon Cave",			13,	7,	10,	200,	150,	40,	30,	500,	350, 	500,	350),
+	new Adventure("Haunted Village",		20,	7,	10,	300,	200,	55,	40,	2500,	2000,	2500,	2000),
+	new Adventure("Mansion",				25,	5,	8,	750,	600,	65,	55,	7500,	6500,	7500,	6500)
 ];
 var liveAdventure; var liveMonsters = []; var spawnFinished;
 
