@@ -29,7 +29,7 @@ var miningBuilds = [
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r5"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r6"; var init = false;
 
 // player
 function Player() { Log("This is needed to make the other Player.() functions to work."); };
@@ -192,6 +192,24 @@ Mining.buy = function(index) {
 		ps.xp += getMiningBuildPrice(index) / 50;
 	};
 };
+Mining.craft = function(item) {
+	if (item == 'crystal' && pi.coal >= 10) {
+		pi.crystal++;
+		pi.coal -= 10;
+	};
+	if (item == 'jade' && pi.crystal >= 10) {
+		pi.jade++;
+		pi.crystal -= 10;
+	};
+	if (item == 'ruby' && pi.jade >= 10) {
+		pi.jade++;
+		pi.ruby -= 10;
+	};
+	if (item == 'saphire' && pi.jade >= 10) {
+		pi.saphire++;
+		pi.jade -= 10;
+	};
+};
 
 // update
 function Update() { Log("This is needed to make the other Update.() function to work."); };
@@ -202,11 +220,11 @@ Update.playerStats = function() {
 		$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 2));
 		$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 2));
 		$("#s-level").html("Level : " + beautify(ps.level, 0));
-		$("#s-coal").html("Coal : " + beautify(pi.coal, 2));
-		$("#s-crystal").html("Crystal : " + beautify(pi.crystal, 2));
-		$("#s-jade").html("Jade : " + beautify(pi.jade, 2));
-		$("#s-ruby").html("Ruby : " + beautify(pi.ruby, 2));
-		$("#s-saphire").html("Saphire : " + beautify(pi.saphire, 2));
+		$("#s-coal, #modal-coal").html("Coal : " + beautify(pi.coal, 2));
+		$("#s-crystal, #modal-crystal").html("Crystal : " + beautify(pi.crystal, 2));
+		$("#s-jade, #modal-jade").html("Jade : " + beautify(pi.jade, 2));
+		$("#s-ruby, #modal-ruby").html("Ruby : " + beautify(pi.ruby, 2));
+		$("#s-saphire, #modal-saphire").html("Saphire : " + beautify(pi.saphire, 2));
 
 		$("#s-helmet").html("Helmet : <i>" + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
 		$("#s-armour").html("Armour : <i>" + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
@@ -241,7 +259,7 @@ Update.mining = function() {
 	for (var i = 0; i < miningBuilds.length; i++) {
 		var m = miningBuilds[i];
 		var o = miningBuildsOwned[i];
-		$("#m-i" + (i+1)).html(m.name + " : " + beautify(getMiningBuildPrice(i), 2) + " gold - " + o + " owned");
+		$("#m-i" + (i+1)).html(m.name + " : " + beautify(getMiningBuildPrice(i), 0) + " gold - " + o + " owned");
 		$("#m-b" + (i+1)).attr("onclick", 'Mining.buy(' + i + ');');
 	};
 };
@@ -274,7 +292,7 @@ var regainHpInterval = window.setInterval(function() {
 }, 1000);
 var saveInterval = window.setInterval(function() {
 	saveData();
-}, 15000);
+}, 1000);
 var buildsInterval = window.setInterval(function() {
 	Mining.reward();
 }, 10);
