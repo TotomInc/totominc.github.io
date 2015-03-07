@@ -25,11 +25,11 @@ var miningBuilds = [
 	new Mining("Crystal Miner",	2500,	'crystal',	1),
 	new Mining("Jade Miner",	10000,	'jade',		1),
 	new Mining("Ruby Miner",	50000,	'ruby',		1),
-	new Mining("Saphire Miner",	250000,	'saphire',	1)
+	new Mining("Saphire Miner",	250000,	'saphire',	1),
 ];
-var miningBuildsOwned = [0, 0, 0, 0, 0];
+var miningBuildsOwned = [0, 0, 0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r2"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.002; var release = "-r3"; var init = false;
 
 // player
 function Player() { Log("This is needed to make the other Player.() functions to work."); };
@@ -185,7 +185,7 @@ Mining.reward = function() {
 		};
 	};
 };
-Mining.buy = function(index) { // TODO
+Mining.buy = function(index) {
 	if (ps.gold >= getMiningBuildPrice(index)) {
 		ps.gold -= getMiningBuildPrice(index);
 		miningBuildsOwned[index]++;
@@ -215,6 +215,10 @@ Update.playerStats = function() {
 		$("#s-amulet").html("Amulet : <i>" + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
 		$("#s-sword").html("Sword : <i>" + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
 		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage");
+		// hp-bar in the navbar
+		var playerHpBar = 100;
+		playerHpBar = (ps.hp / ps.maxHp) * 100;
+		$("#ps-hpbar").css("width", playerHpBar + "%");
 	};
 };
 Update.monsters = function() {

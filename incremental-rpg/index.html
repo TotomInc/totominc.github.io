@@ -34,6 +34,10 @@
 			  </ul>
 			</div>
 	  </div>
+
+	  <div class="hpbar">
+	  	<div id="ps-hpbar" class="hpbar-filler"></div>
+	  </div>
 	</nav>
 
 <!-- game container -->
@@ -100,7 +104,7 @@
 				  <div class="panel-heading"><p class="panel-title center">Player stats</p></div>
 				  <div class="panel-body">
 					<div class="row">
-						<div class="col-md-6">
+						<div id="ps-col1" class="col-md-6">
 							<p><img class="stats" src="img/P_Red01.png"> <span id="s-hp"></span><br>
 							<img class="stats" src="img/P_Yellow01.png"> <span id="s-xp"></span><br>
 							<img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
@@ -112,7 +116,7 @@
 							<img class="stats" src="img/I_Rubi.png"> <span id="s-ruby"></span><br>
 							<img class="stats" src="img/I_Saphire.png"> <span id="s-saphire"></span></p>
 						</div>
-						<div class="col-md-6 left-separator">
+						<div id="ps-col2" class="col-md-6 left-separator">
 							<p><img class="stats" src="img/C_Elm01.png"> <span id="s-helmet"></span><br>
 							<img class="stats" src="img/A_Armour01.png"> <span id="s-armour"></span><br>
 							<img class="stats" src="img/Ac_Gloves01.png"> <span id="s-gloves"></span><br>
@@ -124,18 +128,18 @@
 					</div>
 				  </div>
 				</div>
-				<!-- worlds -->
+				<!-- mining -->
 				<div class="panel panel-success light">
 				  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
 				  <div class="panel-body">
-				  	<div class="col-md-10">
+				  	<div class="col-md-9">
 				  		<p><img class="stats" src="img/I_Coal.png"> <span id="m-i1"></span></p>
 				  		<p><img class="stats" src="img/I_Crystal01.png"> <span id="m-i2"></span></p>
 				  		<p><img class="stats" src="img/I_Jade.png"> <span id="m-i3"></span></p>
 				  		<p><img class="stats" src="img/I_Rubi.png"> <span id="m-i4"></span></p>
 				  		<p><img class="stats" src="img/I_Saphire.png"> <span id="m-i5"></span></p>
 				  	</div>
-				  	<div class="col-md-2">
+				  	<div class="col-md-3">
 				  		<p><a id="m-b1" class="btn btn-primary btn-sm">Buy</a></p>
 				  		<p><a id="m-b2" class="btn btn-primary btn-sm">Buy</a></p>
 				  		<p><a id="m-b3" class="btn btn-primary btn-sm">Buy</a></p>
@@ -188,12 +192,14 @@
 	      		</div>
 	      	</div>
 	      </div>
+	      <div class="line"></div>
 	      <div class="modal-footer"><p class="light tiny-font"><span id="s-version"></span><br><a target="_blank" href="http://www.reddit.com/user/TotomInc/">Game made by TotomInc</a><br><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me feedback on reddit</a><br><a target="_blank" href="https://github.com/TotomInc/totominc.github.io">GitHub repo, if you want to contribute</a></p></div>
 	    </div>
 	  </div>
 	</div>
 
 <!-- game scripts -->
+	<script src="js/resize.js"></script>
 	<script src="js/helpers.js"></script>
 	<script src="js/monstersname.js"></script>
 	<script src="js/core.js"></script>

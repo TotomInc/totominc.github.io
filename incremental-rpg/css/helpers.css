@@ -1,6 +1,8 @@
 ::selection { background: rgba(255, 152, 0, .3); }
 ::-moz-selection { background: rgba(255, 152, 0, .3); }
 
+.line { width: 90%; height: 1px; background: #4caf50; margin-left: auto; margin-right: auto; }
+
 .white { color: #fff !important; }
 .dark { color: #666666 !important;}
 .grey { color: #999999 !important; }
