@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<!-- navbar  -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 			<div class="navbar-header">
@@ -24,9 +25,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
-			  <li class="active" onclick="manualLoad();"><a href="#">Load</a></li>
-			  <li class="active" onclick="manualSave();"><a href="#">Save</a></li>
-			  <li class="active" onclick="resetData()"><a href="#">Hard-Reset</a></li>
+			  <li class="active" data-toggle="modal" data-target="#inventory-modal"><a href="#">Inventory</a></li>
+			  <li class="active" data-toggle="modal" data-target="#options-modal"><a href="#">Options</a></li>
 				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
 				<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
 				<li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
@@ -36,6 +36,7 @@
 	  </div>
 	</nav>
 
+<!-- game container -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-7">
@@ -147,6 +148,52 @@
 		</div>
 	</div>
 
+<!-- modals -->
+	<div class="modal fade" id="inventory-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header"><p class="modal-title small-font underline" id="myModalLabel">Inventory :</p></div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+	      		<div class="row">
+	      			<div class="col-md-12">
+	      				<div class="well well-lg">
+				      		<p class="light small-font">Helmet :<select class="form-control"><option>Leather Helmet : 10 armor</option></select></p>
+				      		<p class="light small-font">Armour :<select class="form-control"><option>Leather Armour : 50 armor</option></select></p>
+				      		<p class="light small-font">Gloves :<select class="form-control"><option>Leather Gloves : 5 armor</option></select></p>
+				      		<p class="light small-font">Boots :<select class="form-control"><option>Leather Boots : 15 armor</option></select></p>
+				      		<p class="light small-font">Amulet :<select class="form-control"><option>none</option></select></p>
+				      		<p class="light small-font">Sword :<select class="form-control"><option>Copper Sword : 5 damage</option></select></p>
+	      				</div>
+	      			</div>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close & save changes</button></div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    	<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+	      		<div class="row">
+	      			<div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success">Export-code</a></div>
+	      			<div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success">Import-code</a></div>
+	      			<div class="col-md-4"><a href="#" onclick="resetData()" class="btn btn-success">Hard-reset</a></div>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer"><p class="light tiny-font"><span id="s-version"></span><br>Game made by TotomInc</p></div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- game scripts -->
 	<script src="js/helpers.js"></script>
 	<script src="js/monstersname.js"></script>
 	<script src="js/core.js"></script>

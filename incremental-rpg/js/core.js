@@ -29,7 +29,7 @@ var miningBuilds = [
 ];
 var miningBuildsOwned = [0, 0, 0, 0, 0];
 
-var fps = 60; var interval = (1000 / fps); var version = 0.001; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.001; var release = "r-20"; var init = false;
 
 // player
 function Player() { console.log("This is needed to make the other Player.() functions to work."); };
@@ -148,7 +148,7 @@ Monster.attack = function(index) {
 	var playerDmg = getPlayerDamage();
 	var monsterDmg = liveMonsters[index].damage;
 	if (ps.hp > monsterDmg) {
-		ps.hp -= (monsterDmg/getPlayerArmor());
+		ps.hp -= monsterDmg;
 		liveMonsters[index].hp -= playerDmg;
 		if (liveMonsters[index].hp <= 0) {
 			ps.gold += liveMonsters[index].gold;
@@ -242,11 +242,15 @@ Update.mining = function() {
 		$("#m-b" + (i+1)).attr("onclick", 'Mining.buy(' + i + ');');
 	};
 };
+Update.version = function() {
+	$("#s-version").html("Current game version : v" + version + release);
+};
 
 // loading + loop
 window.onload = function() {
 	init = true;
 	loadData();
+	Update.version();
 };
 var mainInterval = window.setInterval(function() {
 	Update.playerStats();

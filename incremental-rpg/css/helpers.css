@@ -4,14 +4,24 @@
 .white { color: #fff !important; }
 .dark { color: #666666 !important;}
 .grey { color: #999999 !important; }
+
 .italic { font-style: italic; }
 .center { text-align: center; }
 .justify { text-align: justify; }
+
+.underline { text-decoration: underline; }
+
 .light { font-weight: 300; }
 .regular { font-weight: 400; }
 .small { font-size: 10px; }
+
 .right-separator { border-right: 1px solid #4caf50; }
 .left-separator { border-left: 1px solid #4caf50; }
+
 .cur-d { cursor: default; }
 .cur-p { cursor: pointer; }
-.btn-sm-important { margin-top: 10px !important; height: 30px !important; }
+
+.fat-font { font-size: 32px; }
+.med-font { font-size: 26px; }
+.small-font { font-size: 20px; }
+.tiny-font { font-size: 14px; }
