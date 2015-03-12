@@ -1,3 +1,7 @@
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #ddd; }
+@-webkit-keyframes tutorial { 0% {color: #333;} 50% {color: #31708f;} 100% {color: #333;} }
+
 body { background: #eee; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none }
 img.icon { max-height: 20px; }
 img.stats { max-height: 26px; }
@@ -14,6 +18,5 @@ img.stats { max-height: 26px; }
 
 .navbar { border-radius: 0; }
 .navsmall:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
-.nav.navbar-nav.navbar-right>li>a>span:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
 .navbar-nav>.active>a { background: #fff !important; }
 .progress { margin-bottom: 0; }

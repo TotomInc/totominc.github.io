@@ -21,23 +21,25 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 			<div class="navbar-header">
-			  <a class="navbar-brand light">Incremental-RPG</a>
+			  <a class="navbar-brand light cur-d">Incremental-RPG</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
+			  <li class="active" data-toggle="modal" data-target="#shop-modal"><a href="#">Shop</a></li>
+			  <li class="active" data-toggle="modal" data-target="#enchantment-modal"><a href="#">Enchantments</a></li>
 			  <li class="active" data-toggle="modal" data-target="#crafting-modal"><a href="#">Crafting</a></li>
 			  <li class="active" data-toggle="modal" data-target="#inventory-modal"><a href="#">Inventory</a></li>
 			  <li class="active" data-toggle="modal" data-target="#options-modal"><a href="#">Options</a></li>
-				<li><a><span id="nav-hp"></span> <img class="icon" src="img/P_Red01.png"></a></li>
-				<li><a><span id="nav-xp"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
-				<li><a><span id="nav-gold"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
-				<li><a><span id="nav-diamond"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
+				<li><a><span id="nav-hp" class="bottom-red cur-d"></span> <img class="icon" src="img/P_Red01.png"></a></li>
+				<li><a><span id="nav-xp" class="bottom-yellowxp cur-d"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
+				<li><a><span id="nav-gold" class="bottom-yellowcoin cur-d"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
+				<li><a><span id="nav-diamond" class="bottom-blue cur-d"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
 			  </ul>
 			</div>
 	  </div>
 
 	  <div class="hpbar">
-	  	<div id="ps-hpbar" class="hpbar-filler"></div>
+		<div id="ps-hpbar" class="hpbar-filler"></div>
 	  </div>
 	</nav>
 
@@ -118,120 +120,204 @@
 							<img class="stats" src="img/I_Saphire.png"> <span id="s-saphire"></span></p>
 						</div>
 						<div id="ps-col2" class="col-md-6 left-separator">
-							<p><img class="stats" src="img/C_Elm01.png"> <span id="s-helmet"></span><br>
-							<img class="stats" src="img/A_Armour01.png"> <span id="s-armour"></span><br>
-							<img class="stats" src="img/Ac_Gloves01.png"> <span id="s-gloves"></span><br>
-							<img class="stats" src="img/A_Shoes01.png"> <span id="s-boots"></span><br>
-							<img class="stats" src="img/Ac_Necklace01.png"> <span id="s-amulet"></span><br>
-							<img class="stats" src="img/W_Sword004.png"> <span id="s-sword"></span></p>
+							<p><span id="s-helmet"></span><br>
+							<span id="s-armour"></span><br>
+							<span id="s-gloves"></span><br>
+							<span id="s-boots"></span><br>
+							<span id="s-amulet"></span><br>
+							<span id="s-sword"></span></p>
 							<p><span id="s-totalarmor"></span></p>
 						</div>
 					</div>
 				  </div>
 				</div>
-				<!-- mining -->
-				<div class="panel panel-success light">
-				  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
-				  <div class="panel-body">
-				  	<div class="col-md-9">
-				  		<p><img class="stats" src="img/I_Coal.png"> <span id="m-i1"></span></p>
-				  		<p><img class="stats" src="img/I_Crystal01.png"> <span id="m-i2"></span></p>
-				  		<p><img class="stats" src="img/I_Jade.png"> <span id="m-i3"></span></p>
-				  		<p><img class="stats" src="img/I_Rubi.png"> <span id="m-i4"></span></p>
-				  		<p><img class="stats" src="img/I_Saphire.png"> <span id="m-i5"></span></p>
-				  	</div>
-				  	<div class="col-md-3">
-				  		<p><a id="m-b1" class="btn btn-primary btn-sm">Buy</a></p>
-				  		<p><a id="m-b2" class="btn btn-primary btn-sm">Buy</a></p>
-				  		<p><a id="m-b3" class="btn btn-primary btn-sm">Buy</a></p>
-				  		<p><a id="m-b4" class="btn btn-primary btn-sm">Buy</a></p>
-				  		<p><a id="m-b5" class="btn btn-primary btn-sm">Buy</a></p>
-				  	</div>
-				  </div>
-				</div>
+				<!-- alerts -->
+				<div id="alerts"></div>
 			</div>
 		</div>
 	</div>
 
 <!-- modals -->
+	<div class="modal fade" id="shop-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><p class="modal-title small-font underline">Shop :</p></div>
+		  <div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+				<!-- mining -->
+					<div class="panel panel-success light">
+					  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
+					  <div class="panel-body">
+						<div class="col-md-10">
+							<p class="shop-p"><img class="stats" src="img/I_Coal.png"> <span id="m-i1"></span></p>
+							<p class="shop-p"><img class="stats" src="img/I_Crystal01.png"> <span id="m-i2"></span></p>
+							<p class="shop-p"><img class="stats" src="img/I_Jade.png"> <span id="m-i3"></span></p>
+							<p class="shop-p"><img class="stats" src="img/I_Rubi.png"> <span id="m-i4"></span></p>
+							<p class="shop-p"><img class="stats" src="img/I_Saphire.png"> <span id="m-i5"></span></p>
+						</div>
+						<div class="col-md-2">
+							<p><a id="m-b1" class="btn btn-primary btn-sm">Buy</a></p>
+							<p><a id="m-b2" class="btn btn-primary btn-sm">Buy</a></p>
+							<p><a id="m-b3" class="btn btn-primary btn-sm">Buy</a></p>
+							<p><a id="m-b4" class="btn btn-primary btn-sm">Buy</a></p>
+							<p><a id="m-b5" class="btn btn-primary btn-sm">Buy</a></p>
+						</div>
+					  </div>
+					</div>
+				<!-- shop -->
+					<div class="panel panel-success light">
+					  <div class="panel-heading"><p class="panel-title center">Shop</p></div>
+					  <div class="panel-body">
+					  	<div class="col-md-10">
+					  		<p id="s-helmet1" class="p-align"></p>
+					  		<p id="s-helmet2" class="p-align"></p>
+					  		<p id="s-helmet3" class="p-align"></p>
+					  		<p id="s-armour1" class="p-align"></p>
+					  		<p id="s-armour2" class="p-align"></p>
+					  		<p id="s-armour3" class="p-align"></p>
+					  		<p id="s-gloves1" class="p-align"></p>
+					  		<p id="s-gloves2" class="p-align"></p>
+					  		<p id="s-gloves3" class="p-align"></p>
+					  		<p id="s-boots1" class="p-align"></p>
+					  		<p id="s-boots2" class="p-align"></p>
+					  		<p id="s-boots3" class="p-align"></p>
+					  		<p id="s-sword1" class="p-align"></p>
+					  		<p id="s-sword2" class="p-align"></p>
+					  		<p id="s-sword3" class="p-align"></p>
+					  	</div>
+					  	<div class="col-md-2">
+					  		<p id="s-helmet-btn1"></p>
+					  		<p id="s-helmet-btn2"></p>
+					  		<p id="s-helmet-btn3"></p>
+					  		<p id="s-armour-btn1"></p>
+					  		<p id="s-armour-btn2"></p>
+					  		<p id="s-armour-btn3"></p>
+					  		<p id="s-gloves-btn1"></p>
+					  		<p id="s-gloves-btn2"></p>
+					  		<p id="s-gloves-btn3"></p>
+					  		<p id="s-boots-btn1"></p>
+					  		<p id="s-boots-btn2"></p>
+					  		<p id="s-boots-btn3"></p>
+					  		<p id="s-sword-btn1"></p>
+					  		<p id="s-sword-btn2"></p>
+					  		<p id="s-sword-btn3"></p>
+					  	</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close</button></div>
+		</div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="enchantment-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><p class="modal-title small-font underline">Enchantments :</p></div>
+		  <div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<p class="light med-font center">This feature is coming soon!</p>
+				</div>
+			</div>
+		  </div>
+		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
+		</div>
+	  </div>
+	</div>
+
 	<div class="modal fade" id="crafting-modal" role="dialog" aria-hidden="true">
 	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    	<div class="modal-header"><p class="modal-title small-font underline">Crafting :</p>
-	      </div>
-	      <div class="modal-body">
-	      	<div class="container-fluid">
-	      		<div class="row">
-	      			<div class="col-md-12">
-	      				<div class="well well-lg">
-	      					<p class="light small-font"><img class="stats" src="img/I_Coal.png"> <span id="modal-coal"></span><br>
-	      					<img class="stats" src="img/I_Crystal01.png"> <span id="modal-crystal"></span><br>
-	      					<img class="stats" src="img/I_Jade.png"> <span id="modal-jade"></span><br>
-	      					<img class="stats" src="img/I_Rubi.png"> <span id="modal-ruby"></span><br>
-	      					<img class="stats" src="img/I_Saphire.png"> <span id="modal-saphire"></span></p>
-	      					<p class="light small-font"><img src="img/I_Crystal01.png"> Craft 1 crystal <span class="tiny-font">(10 coals/crystal)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('crystal')">Craft</a></p>
-	      					<p class="light small-font"><img src="img/I_Jade.png"> Craft 1 jade <span class="tiny-font">(10 crystals/jade)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('jade')">Craft</a></p>
-	      					<p class="light small-font"><img src="img/I_Rubi.png"> Craft 1 ruby <span class="tiny-font">(10 jades/ruby)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('ruby')">Craft</a></p>
-	      					<p class="light small-font"><img src="img/I_Saphire.png"> Craft 1 saphire <span class="tiny-font">(10 rubys/saphire)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('saphire')">Craft</a></p>
-	      				</div>
-	      			</div>
-	      		</div>
-	      	</div>
-	      </div>
-	      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
-	    </div>
+		<div class="modal-content">
+			<div class="modal-header"><p class="modal-title small-font underline">Crafting :</p>
+		  </div>
+		  <div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="well well-lg">
+							<p class="light small-font"><img class="stats" src="img/I_Coal.png"> <span id="modal-coal"></span><br>
+							<img class="stats" src="img/I_Crystal01.png"> <span id="modal-crystal"></span><br>
+							<img class="stats" src="img/I_Jade.png"> <span id="modal-jade"></span><br>
+							<img class="stats" src="img/I_Rubi.png"> <span id="modal-ruby"></span><br>
+							<img class="stats" src="img/I_Saphire.png"> <span id="modal-saphire"></span></p>
+							<p class="light small-font"><img src="img/I_Crystal01.png"> Craft 1 crystal <span class="tiny-font">(10 coals/crystal)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('crystal')">Craft</a></p>
+							<p class="light small-font"><img src="img/I_Jade.png"> Craft 1 jade <span class="tiny-font">(10 crystals/jade)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('jade')">Craft</a></p>
+							<p class="light small-font"><img src="img/I_Rubi.png"> Craft 1 ruby <span class="tiny-font">(10 jades/ruby)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('ruby')">Craft</a></p>
+							<p class="light small-font"><img src="img/I_Saphire.png"> Craft 1 saphire <span class="tiny-font">(10 rubys/saphire)</span><br><a class="btn btn-primary btn-sm" onclick="Mining.craft('saphire')">Craft</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
+		</div>
 	  </div>
 	</div>
 
 	<div class="modal fade" id="inventory-modal" role="dialog" aria-hidden="true">
 	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header"><p class="modal-title small-font underline" id="myModalLabel">Inventory :</p></div>
-	      <div class="modal-body">
-	      	<div class="container-fluid">
-	      		<div class="row">
-	      			<div class="col-md-12">
-	      				<div class="well well-lg">
-				      		<p class="light small-font">Helmet :<select class="form-control"><option>Leather Helmet : 10 armor</option></select></p>
-				      		<p class="light small-font">Armour :<select class="form-control"><option>Leather Armour : 50 armor</option></select></p>
-				      		<p class="light small-font">Gloves :<select class="form-control"><option>Leather Gloves : 5 armor</option></select></p>
-				      		<p class="light small-font">Boots :<select class="form-control"><option>Leather Boots : 15 armor</option></select></p>
-				      		<p class="light small-font">Amulet :<select class="form-control"><option>none</option></select></p>
-				      		<p class="light small-font">Sword :<select class="form-control"><option>Copper Sword : 5 damage</option></select></p>
-	      				</div>
-	      			</div>
-	      		</div>
-	      	</div>
-	      </div>
-	      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
-	    </div>
+		<div class="modal-content">
+		  <div class="modal-header"><p class="modal-title small-font underline" id="myModalLabel">Inventory :</p></div>
+		  <div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="well well-lg">
+							<p class="light small-font">Helmet :<select id="inv-helmet" class="form-control"></select></p>
+							<p class="light small-font">Armour :<select id="inv-armour" class="form-control"></select></p>
+							<p class="light small-font">Gloves :<select id="inv-gloves" class="form-control"></select></p>
+							<p class="light small-font">Boots :<select id="inv-boots" class="form-control"></select></p>
+							<p class="light small-font">Amulet :<select id="inv-amulet" class="form-control"></select></p>
+							<p class="light small-font">Sword :<select id="inv-sword" class="form-control"></select></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal" onclick="Inventory.check();">Close & save changes</button></div>
+		</div>
 	  </div>
 	</div>
 
 	<div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
 	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    	<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p>
-	      </div>
-	      <div class="modal-body">
-	      	<div class="container-fluid">
-	      		<div class="row">
-	      			<div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success">Export-code</a></div>
-	      			<div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success">Import-code</a></div>
-	      			<div class="col-md-4"><a href="#" onclick="resetData()" class="btn btn-success">Hard-reset</a></div>
-	      		</div>
-	      	</div>
-	      </div>
-	      <div class="line"></div>
-	      <div class="modal-footer"><p class="light tiny-font"><span id="s-version"></span><br><a target="_blank" href="http://www.reddit.com/user/TotomInc/">Game made by TotomInc</a><br><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me feedback on reddit</a><br><a target="_blank" href="https://github.com/TotomInc/totominc.github.io">GitHub repo, if you want to contribute</a></p></div>
-	    </div>
+		<div class="modal-content">
+			<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p>
+		  </div>
+		  <div class="modal-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success btn-sm center-btn">Export-code</a></div>
+						<div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success btn-sm center-btn">Import-code</a></div>
+						<div class="col-md-4"><a href="#" onclick="resetData()" class="btn btn-danger btn-sm center-btn">Hard-reset</a></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-4"><a href="#" onclick="saveData();" class="btn btn-info btn-sm center-btn">Force save</a></div>
+						<div class="col-md-4"><a href="#" onclick="loadData()" class="btn btn-info btn-sm center-btn">Force load</a></div>
+						<div class="col-md-4"><p class="light center small-font">Autosave : 10s</p></div>
+					</div>
+				</div>
+		  </div>
+		  <div class="line"></div>
+		  <div class="modal-footer"><p class="light tiny-font"><span id="s-version"></span><br><a target="_blank" href="http://www.reddit.com/user/TotomInc/">Game made by TotomInc</a><br><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me feedback on reddit</a><br><a target="_blank" href="https://github.com/TotomInc/totominc.github.io">GitHub repo, if you want to contribute</a></p></div>
+		</div>
 	  </div>
 	</div>
 
 <!-- game scripts -->
 	<script src="js/resize.js"></script>
 	<script src="js/helpers.js"></script>
-	<script src="js/monstersname.js"></script>
+	<script src="js/player.js"></script>
+	<script src="js/shop.js"></script>
+	<script src="js/mining.js"></script>
+	<script src="js/monsters.js"></script>
+	<script src="js/adventures.js"></script>
+	<script src="js/inventory.js"></script>
 	<script src="js/core.js"></script>
 	<script src="js/save.js"></script>
 </body>
