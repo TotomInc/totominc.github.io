@@ -24,6 +24,9 @@ function getNormalDealerSell(index) { // used to display
 function getExperienceOnReset() {
     return Math.floor(25 * Math.sqrt(money[1]/1e6));
 };
+function getShootPercent() {
+    return shootPercentCash = (shootPercent * money[2]) / 100;
+};
 function gunRankUp() {
     for (var i = 0; i < ranks.length; i++) {
         var r = ranks[i];
@@ -75,4 +78,7 @@ function tutorial() {
     if (totalReloads > 0) {
         $("#a-i2").css("display", "none");
     };
+};
+function whatIsPrestige() {
+    alert("Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.\nWhen you're going to soft-reset, you lose everything but not total money and experience, but restart everything.\nYour prestige rank (if you got one) will give you a prestige multiplier determined by your prestige rank.\nFor example, if you do a reset and got 100 exp, you will gain the rank Bronze Elite, which will give you a prestige multiplier of x6.00");
 };

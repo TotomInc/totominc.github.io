@@ -1,33 +1,38 @@
-var money; var shoot; var prestige;
+var money; var shoot; var shootPercent; var shootPercentCash;
+var prestige;
 var totalShoots; var totalReloads;
 var rank; var rankMultiplier;
 var ranks = [
-    new Rank("Glock-18",        0,  0,              1.00),
-    new Rank("CZ75-Auto",       1,  2500,           1.10),
-    new Rank("Dual Berettas",   2,  10000,          1.20),
-    new Rank("UMP-45",          3,  100000,         1.30),
-    new Rank("P90",             4,  250000,         1.40),
-    new Rank("PP-Bizon",        5,  1000000,        1.50),
-    new Rank("Galil AR",        6,  25000000,       1.60),
-    new Rank("FAMAS",           7,  100000000,      1.70),
-    new Rank("AWP",             8,  500000000,      1.80),
-    new Rank("AUG",             9,  2500000000,     1.90),
-    new Rank("AK-47",           10, 50000000000,    2.00)
+    new Rank("Glock-18",            0,  0,                  1.00),
+    new Rank("CZ75-Auto",           1,  2500,               1.10),
+    new Rank("Dual Berettas",       2,  10000,              1.20),
+    new Rank("UMP-45",              3,  100000,             1.30),
+    new Rank("P90",                 4,  250000,             1.40),
+    new Rank("PP-Bizon",            5,  1000000,            1.50),
+    new Rank("Galil AR",            6,  25000000,           1.60),
+    new Rank("FAMAS",               7,  100000000,          1.70),
+    new Rank("AWP",                 8,  500000000,          1.80),
+    new Rank("AUG",                 9,  2500000000,         1.90),
+    new Rank("AK-47",               10, 50000000000,        2.00),
+    new Rank("Grenade Launcher",    11, 1500000000000,      3.00),
+    new Rank("Atomic Bomb",         12, 750000000000000,    4.00)
 ];
 var prestigeRank;
 var prestigeRanks = [
-    new PrestigeRank("Bronze",              0,  25,         2.00),
-    new PrestigeRank("Bronze Elite",        1,  100,        4.00),
-    new PrestigeRank("Bronze Master",       2,  400,        6.00),
-    new PrestigeRank("Bronze Guardian",     3,  1000,       8.00),
-    new PrestigeRank("Silver",              4,  2500,       20.00),
-    new PrestigeRank("Silver Elite",        5,  10000,      30.00),
-    new PrestigeRank("Silver Master",       6,  50000,      40.00),
-    new PrestigeRank("Silver Guardian",     7,  100000,     50.00),
-    new PrestigeRank("Platinum",            8,  500000,     100.00),
-    new PrestigeRank("Platinum Elite",      9,  1000000,    150.00),
-    new PrestigeRank("Platinum Master",     10, 2000000,    200.00),
-    new PrestigeRank("Platinum Guardian",   11, 5000000,    250.00)
+    new PrestigeRank("Bronze",                  0,  25,         2.00),
+    new PrestigeRank("Bronze Elite",            1,  100,        4.00),
+    new PrestigeRank("Bronze Master",           2,  400,        6.00),
+    new PrestigeRank("Bronze Guardian",         3,  1000,       8.00),
+    new PrestigeRank("Silver",                  4,  2500,       20.00),
+    new PrestigeRank("Silver Elite",            5,  10000,      30.00),
+    new PrestigeRank("Silver Master",           6,  50000,      40.00),
+    new PrestigeRank("Silver Guardian",         7,  100000,     50.00),
+    new PrestigeRank("Platinum",                8,  500000,     100.00),
+    new PrestigeRank("Platinum Elite",          9,  1000000,    150.00),
+    new PrestigeRank("Platinum Master",         10, 2000000,    200.00),
+    new PrestigeRank("Platinum Guardian",       11, 5000000,    250.00),
+    new PrestigeRank("Legendary Dealer",        12, 10000000,   400.00),
+    new PrestigeRank("Legendary Eagle Dealer",  13, 50000000,   500.00)
 ];
 var dStock; var dName; var dPrice; var dPS;
 var dInit = [
@@ -70,6 +75,18 @@ var upgrades = [
     new Upgrade("Cocaine price x3",     544320,     function() { dPrice[2] *= 3 }),
     new Upgrade("Cocaine price x4",     4354560,    function() { dPrice[2] *= 4 })
 ];
+var prestigeUpgradesOwned;
+var prestigeUpgrades = [
+    new PrestigeUpgrade("All drugs prices x2!",     10,         function() { dPrice[0] *= 2; dPrice[1] *= 2; dPrice[2] *= 2; }),
+    new PrestigeUpgrade("Shoot earn 5% of $/sec",   250,        function() { shootPercent += 5; }),
+    new PrestigeUpgrade("All drugs prices x2!",     500,        function() { dPrice[0] *= 2; dPrice[1] *= 2; dPrice[2] *= 2; }),
+    new PrestigeUpgrade("Shoot earn 5% of $/sec",   5000,       function() { shootPercent += 5; }),
+    new PrestigeUpgrade("All drugs prices x5!",     10000,      function() { dPrice[0] *= 5; dPrice[1] *= 5; dPrice[2] *= 5; }),
+    new PrestigeUpgrade("Shoot earn 5% of $/sec",   50000,      function() { shootPercent += 5; }),
+    new PrestigeUpgrade("Shoot earn 10% of $/sec",  750000,     function() { shootPercent += 10; }),
+    new PrestigeUpgrade("All drugs prices x5!",     5000000,    function() { dPrice[0] *= 5; dPrice[1] *= 5; dPrice[2] *= 5; }),
+    new PrestigeUpgrade("Shoot earn 15% of $/sec",  12500000,   function() { shootPercent += 15; })
+];
 var buildsOwned;
 var builds = [
     new Build("Weed Plant",             500,                0.1,    1.50, 0, "weed"),
@@ -81,7 +98,7 @@ var builds = [
     new Build("Lab-Assistant",          500000000,          1.25,   1.40, 1, "meth"),
     new Build("Underground Lab",        10000000000,        3.5,    1.35, 1, "meth"),
     new Build("Youbzz Research-Center", 250000000,          0.1,    1.50, 2, "cocaine"),
-    new Build("Gop Lab",                50000000000,        0.5,    1.45, 2, "cocaine"),
+    new Build("Gop Sky-Lab",            50000000000,        0.5,    1.45, 2, "cocaine"),
     new Build("Underwater Laboratory",  750000000000,       1.25,   1.40, 2, "cocaine"),
     new Build("Cocaine Island",         25000000000000,     3.5,    1.35, 2, "cocaine")
 ];
@@ -104,12 +121,13 @@ var checkDealers; var checkBuilds;
 var mps = 0; var mps1 = 0; var mps2 = 0;
 var init; var fps = 60; var interval = (1000 / fps); var before; var before; var key = "BM-INC_";
 var allVars = ["money", "shoot", "rank", "prestige", "totalShoots", "totalReloads", "dStock", "dName", "dPrice", "rank", "rankMultiplier",
-"upgradesOwned", "buildsOwned", "dealersOwned", "before"];
+"upgradesOwned", "prestigeUpgradesOwned", "buildsOwned", "dealersOwned", "shootPercent", "before"];
 
 // game display
 function initVars() {
     money = [0, 0, 0];
     shoot = [12, 1, 12, 1500, 5000];
+    shootPercent = 0; shootPercentCash = 0;
     totalShoots = 0; totalReloads = 0;
     prestige = [0, 0, "no rank", 1];
     rank = "Glock-18"; rankMultiplier = 1;
@@ -126,6 +144,10 @@ function initVars() {
     upgradesOwned = [];
     for (var i = 0; i < upgrades.length; i++)
         upgradesOwned.push(false);
+
+    prestigeUpgradesOwned = [];
+    for (var i = 0; i < prestigeUpgrades.length; i++)
+        prestigeUpgradesOwned.push(false);
 
     buildsOwned = [];
     for (var i = 0; i < builds.length; i++)
@@ -156,7 +178,16 @@ function initGame() {
             $("#u-" + (i+1)).attr("onclick", "");
         };
     };
-
+    for (var i = 0; i < prestigeUpgrades.length; i++) {
+        var p = prestigeUpgrades[i];
+        $("#pu-" + (i+1)).attr("onclick", "buyPrestigeUpgrade(" + (i+1) + ");");
+        $("#pu-n" + (i+1)).html(p.name + " : ");
+        $("#pu-c" + (i+1)).html(fix(p.price, 0) + " experience");
+        if (prestigeUpgradesOwned[i]) {
+            $("#pu-b" + (i+1)).html("Bought");
+            $("#pu-" + (i+1)).attr("onclick", "");
+        };
+    };
     for (var i = 0; i < builds.length; i++) {
         var b = builds[i];
         $("#b-n" + (i+1)).html("<b>" + b.name + "</b> : ");
@@ -165,7 +196,6 @@ function initGame() {
         $("#b-o" + (i+1)).html(buildsOwned[i] + " owned");
         $("#b-" + (i+1)).attr("onclick", "buyBuild(" + i + ");");
     };
-
     for (var i = 0; i < dealers.length; i++) {
         var d = dealers[i];
         $("#d-n" + (i+1)).html("<b>" + d.name + "</b> : ");
@@ -197,8 +227,19 @@ function displayGame() {
             } else {
                 $("#u-" + (i+1)).attr("class", "list-group-item");
             };
-            if (upgradesOwned[i] == true) {
+            if (upgradesOwned[i]) {
                 $("#u-" + (i+1)).attr("class", "list-group-item bought");
+            };
+        };
+        for (var i = 0; i < prestigeUpgrades.length; i++) {
+            var p = prestigeUpgrades[i];
+            if (prestige[0] < p.price) {
+                $("#pu-" + (i+1)).attr("class", "list-group-item disabled");
+            } else {
+                $("#pu-" + (i+1)).attr("class", "list-group-item");
+            };
+            if (prestigeUpgradesOwned[i]) {
+                $("#pu-" + (i+1)).attr("class", "list-group-item bought");
             };
         };
         // hint on reload if needed
@@ -215,7 +256,7 @@ function displayGame() {
         $("#s-totalreload").html("Total reloads : <b>" + fix(totalReloads, 0) + "</b><br>");
         $("#s-experience").html("Experience : <b>" + fix(prestige[0], 0) + "</b><br>");
         $("#s-experienceOnReset").html("Total experience on reset : <b>" + fix(getExperienceOnReset(), 0) + "</b><br>");
-        $("#a-n1").html("Shoot : +" + fix((shoot[1] * rankMultiplier) * prestige[3], 2) + "$");
+        $("#a-n1").html("Shoot : +" + fix(((shoot[1] + shootPercentCash) * rankMultiplier) * prestige[3], 2) + "$");
         $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
         $("#a-d2").html(fix(shoot[4]/1000, 2) + " sec");
@@ -223,6 +264,7 @@ function displayGame() {
         tutorial();
         gunRankUp();
         prestigeRankUp();
+        getShootPercent();
     };
 };
 function updateShop() {
@@ -291,8 +333,21 @@ function buyUpgrade(index) {
         $("#u-b" + index).html("Bought");
         $("#u-" + index).attr("class", "list-group-item disabled");
         $("#u-" + index).attr("onclick", "");
-    } else {
-        console.log("purchase failed : not enough money");
+    };
+};
+function PrestigeUpgrade(name, price, run) {
+    this.name = name;
+    this.price = price;
+    this.run = run;
+};
+function buyPrestigeUpgrade(index) {
+    if (prestige[0] >= prestigeUpgrades[index-1].price) {
+        prestige[0] -= prestigeUpgrades[index-1].price;
+        prestigeUpgradesOwned[index-1] = true;
+        prestigeUpgrades[index-1].run();
+        $("#pu-b" + index).html("Bought");
+        $("#pu-" + index).attr("class", "list-group-item disabled");
+        $("#pu-" + index).attr("onclick", "");
     };
 };
 function Build(name, price, reward, inflation, type1, type2) {
@@ -383,7 +438,7 @@ function dealerReward(times) {
                     mps2 *= prestige[3];
                 };
             };
-            money[2] = mps + mps1 + mps2;
+            money[2] = Math.floor(mps + mps1 + mps2);
         };
     };
 };
@@ -396,5 +451,5 @@ window.onload = function() {
     initGame();
     offlineCalc();
 };
-var intSave = window.setInterval(function() {saveData(); }, 1000);
+var intSave = window.setInterval(function() {saveData(); }, 5000);
 var intCore = window.setInterval(function() {coreUpdate(); }, interval);

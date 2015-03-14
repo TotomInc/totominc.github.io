@@ -6,7 +6,7 @@ function shootAction() {
         window.setTimeout(function() {
             shoot[0] -= 1;
             totalShoots++;
-            gainMoney((shoot[1] * rankMultiplier) * prestige[3]);
+            gainMoney(((shoot[1] + shootPercentCash) * rankMultiplier) * prestige[3]);
             shootEvent();
             $("#p-1").attr("onclick", "shootAction();");
             $("#p-2").attr("onclick", "reloadAction();");

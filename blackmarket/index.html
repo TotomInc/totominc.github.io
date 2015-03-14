@@ -32,7 +32,7 @@
 	<div class="container-fluid">
 		<div class="row">
 		<!-- actions row -->
-		  <div class="col-xs-6 col-md-5">
+		  <div class="col-md-5">
 				<div class="panel panel-info">
 				  <div class="panel-heading center bold">Actions</div>
 				  <div class="panel-body">
@@ -73,11 +73,12 @@
 						<span id="s-experience"></span>
 						<span id="s-experienceOnReset"></span>
 						<div class="line"></div>
-						<b>Game auto-save every second but you can force-save with the saving button below.</b><br>
+						<b>Game auto-save every 5 seconds but you can force-save with the saving button below.</b><br>
 						<b>Note : the game progresses even if it is closed! Offline mode is activate on the game!</b>
 						<p class="s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Hard-Reset</span> - <span class="s-options" onclick="softReset();">Soft-Reset</span></p>
 				  </div>
 				</div>
+				<!--
 				<div class="panel panel-danger">
 				  <div class="panel-heading center bold">Where I am in the development</div>
 				  <div class="panel-body">
@@ -88,6 +89,7 @@
 				  	This is not nothing, it's huge for my first real project and makes me want to continue in programming. Thanks you! Maybe I will go back to the development of the game , so take a look from time to time! :)</p>
 				  </div>
 				</div>
+				-->
 		  </div>
 		<!-- tabs row -->
 		  <div class="col-md-7">
@@ -97,6 +99,7 @@
 			    <li role="presentation"><a href="#tab-dealers" aria-controls="tab-dealers" role="tab" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
 			    <li role="presentation"><a href="#tab-prestige" aria-controls="tab-prestige" role="tab" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
 			    <li role="presentation"><a href="#tab-notes" aria-controls="tab-notes" role="tab" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
+			    <li role="presentation"><a href="#tab-tables" aria-controls="tab-tables" role="tab" data-toggle="tab">Tables <i class="fa fa-table"></i></a></li>
 			  </ul>
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane fade in active" id="tab-up">
@@ -131,28 +134,6 @@
 						  <a id="u-27" class="list-group-item"><span id="u-n27"></span><span id="u-c27"></span><span id="u-b27" class="badge"></span></a>
 						  <a id="u-28" class="list-group-item"><span id="u-n28"></span><span id="u-c28"></span><span id="u-b28" class="badge"></span></a>
 						</div>
-						<!-- new upgrades display!
-						<div class="row space">
-							<div class="col-md-4">
-								<div class="upgrade-block">
-									<div class="upgrade-level"><span>Lvl 0</span></div>
-								</div>
-								<div class="upgrade-block-name center"><span>Shoot reward x3<br>12$</span></div>
-							</div>
-							<div class="col-md-4">
-								<div class="upgrade-block">
-									<div class="upgrade-level"><span>Lvl 0</span></div>
-								</div>
-								<div class="upgrade-block-name center"><span>Shoot time /1.50<br>90$</span></div>
-							</div>
-							<div class="col-md-4">
-								<div class="upgrade-block">
-									<div class="upgrade-level"><span>Lvl 0</span></div>
-								</div>
-								<div class="upgrade-block-name center"><span>Ammo stock x3<br>90$</span></div>
-							</div>
-						</div>
-						-->
 			    </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-builds">
 						<ul class="list-group">
@@ -193,11 +174,99 @@
 						<a id="d-12" class="list-group-item"><span id="d-n12"></span><span id="d-c12"></span><span id="d-r12"></span><span id="d-o12" class="badge"></span></a>
 				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-						<li class="list-group-item list-group-item-danger center bold">What is prestige?<br>
-						Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.<br>
-						When you're going to soft-reset, you lose everything but not total money and experience, but restart everything.</li>
+						<li class="list-group-item list-group-item-warning center bold"><a onclick="whatIsPrestige();">What is prestige? (click here)</a><br>Warning : prestige upgrades cost EXPERIENCE!</li>
+						<a id="pu-1" class="list-group-item"><span id="pu-n1"></span><span id="pu-c1"></span><span id="pu-b1" class="badge"></span></a>
+						<a id="pu-2" class="list-group-item"><span id="pu-n2"></span><span id="pu-c2"></span><span id="pu-b2" class="badge"></span></a>
+						<a id="pu-3" class="list-group-item"><span id="pu-n3"></span><span id="pu-c3"></span><span id="pu-b3" class="badge"></span></a>
+			    	<a id="pu-4" class="list-group-item"><span id="pu-n4"></span><span id="pu-c4"></span><span id="pu-b4" class="badge"></span></a>
+			    	<a id="pu-5" class="list-group-item"><span id="pu-n5"></span><span id="pu-c5"></span><span id="pu-b5" class="badge"></span></a>
+			    	<a id="pu-6" class="list-group-item"><span id="pu-n6"></span><span id="pu-c6"></span><span id="pu-b6" class="badge"></span></a>
+			    	<a id="pu-7" class="list-group-item"><span id="pu-n7"></span><span id="pu-c7"></span><span id="pu-b7" class="badge"></span></a>
+			    	<a id="pu-8" class="list-group-item"><span id="pu-n8"></span><span id="pu-c8"></span><span id="pu-b8" class="badge"></span></a>
+			    	<a id="pu-9" class="list-group-item"><span id="pu-n9"></span><span id="pu-c9"></span><span id="pu-b9" class="badge"></span></a>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
+			    	<!-- patch notes section -->
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-version"><u>v0.20 : prestige upgrades update!</u></p>
+			    		<p>Hey! It's been a big time since an update! Here I've implemented the <b>prestige upgrades!</b> Just look at the <b>prestige</b> panel!<br>
+			    		- Prestige upgrades of course!<br>
+			    		- Added 2 ranks and 2 prestige ranks.<br>
+			    		- Code a bit optimized.</p>
+			    		<p class="s-version"><u>v0.15 : always balancing the game</u></p>
+			    		<p>
+			    		- New upgrades have been added (1 more for weed/meth/cocaine).<br>
+			    		- Builds/dealers have been rebalanced (again!).<br>
+			    		- Drug prices have been boosted, especially meth and cocaine.<br>
+			    		- Experience is now 2x easier to gain!<br>
+			    		- Code have been a bit optimized.
+			    		</p>
+			    		<p class="s-version"><u>v0.14 : rebalancing the game</u></p>
+			    		<p>
+			    		- Builds/dealers have been totally rebalanced!<br>
+			    		- Drug prices have been a bit boosted.<br>
+			    		</p>
+			    		<p class="s-version"><u>v0.13 : prestige update!</u></p>
+			    		<p>
+			    		- Added a prestige system : you got a prestige rank and experience. Experience will determine your prestige rank which will give you a "prestige multipier" on every cash income! (Shooting action and drugs for example)
+			    		</p>
+			    		<p class="s-version"><u>v0.12 : Content update!</u></p>
+			    		<p class="s-notes">
+			    		- Cocaine builds and dealers have been added!<br>
+			    		- 3 upgrades added (cocaine price) and some of them have been rebalanced.<br>
+			    		- When you bought an upgrade, it become green instead of grey.<br>
+			    		- Fixed some bugs.<br>
+			    		- Changed some things about the background, navbar and actions panel colors.
+			    		</p>
+			    		<p class="s-version"><u>v0.11 : UI changes!</u></p>
+			    		<p class="s-notes">
+			    		- The game UI have changed, I'm always working on it, especially on the upgrades tab.<br>
+			    		- Changed some prices of builds/drugs, game get a good balancing according to me.<br>
+			    		- Fixed saves bug when I add more content like new builds/dealers. Please, let me know if there is still saving bugs!
+			    		</p>
+			    		<p class="s-version"><u>v0.1 : beta release!</u></p>
+			    		<p class="s-notes">
+			    		Beta release of the game!<br>
+			    		- Code has been fully rewritten, with some optimizations!<br>
+			    		- New fresh clean UI (essentially build on Bootstrap).<br>
+			    		- Added ranks, which give a total cash multiplier.<br>
+			    		- Helpers are removed.<br>
+			    		</p>
+			    	</li>
+			    	<!-- thanks section -->
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-thanks">Thanks you for playing my game, we reached a total of <b>10,000</b> unique players from the prototype and the current beta and have something like 500 regulars players!</p>
+			    	</li>
+			    	<!-- links/feedback section -->
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a></p>
+			    		<p class="s-links"><a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket">Contribute to the game on the GitHub repo of Blackmarket</a></p>
+			    	</li>
+			    </div>
+			    <div role="tabpanel" class="tab-pane fade" id="tab-tables">
+			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-rank">Ranks :</p>
+							<table class="table">
+						    <thead><tr><th>Rank</th><th>Total money needed</th><th>Overall bonus</th></tr></thead>
+						    <tbody>
+						      <tr><th scope="row">Glock-18</th><td>starting rank</td><td>x1.00</td></tr>
+						      <tr><th scope="row">CZ75-Auto</th><td>2,500$</td><td>x1.10</td></tr>
+						      <tr><th scope="row">Dual Berettas</th><td>10,000$</td><td>x1.20</td></tr>
+						      <tr><th scope="row">UMP-45</th><td>100,000$</td><td>x1.30</td></tr>
+						      <tr><th scope="row">P90</th><td>250,000$</td><td>x1.40</td></tr>
+						      <tr><th scope="row">PP-Bizon</th><td>1,000,000$</td><td>x1.50</td></tr>
+						      <tr><th scope="row">Galil AR</th><td>25,000,000$</td><td>x1.60</td></tr>
+						      <tr><th scope="row">FAMAS</th><td>100,000,000$</td><td>x1.70</td></tr>
+						      <tr><th scope="row">AWP</th><td>500,000,000$</td><td>x1.80</td></tr>
+						      <tr><th scope="row">AUG</th><td>2.500 billion $</td><td>x1.90</td></tr>
+						      <tr><th scope="row">AK-47</th><td>50.000 billion $</td><td>x2.00</td></tr>
+						      <tr><th scope="row">Grenade Launcher</th><td>1.500 trillion $</td><td>x3.00</td></tr>
+						      <tr><th scope="row">Atomic Bomb</th><td>750.000 trillion $</td><td>x4.00</td></tr>
+						    </tbody>
+							</table>
+			    	</li>
 						<li class="list-group-item list-group-item-info">
-							<p class="s-rank">About the prestige ranks :</p>
+							<p class="s-rank">Prestige ranks :</p>
 							<table class="table">
 						    <thead><tr><th>Rank</th><th>Experience needed</th><th>Prestige multiplier</th></tr></thead>
 						    <tbody>
@@ -213,93 +282,11 @@
 						      <tr><th scope="row">Platinum Elite</th><td>1,000,000 exp</td><td>x150.00</td></tr>
 						      <tr><th scope="row">Platinum Master</th><td>2,000,000 exp</td><td>x200.00</td></tr>
 						      <tr><th scope="row">Platinum Guardian</th><td>5,000,000 exp</td><td>x250.00</td></tr>
+						      <tr><th scope="row">Legendary Dealer</th><td>10,000,000 exp</td><td>x300.00</td></tr>
+						      <tr><th scope="row">Legendary Eagle Deaker</th><td>50,000,000 exp</td><td>x400.00</td></tr>
 						    </tbody>
 							</table>
 						</li>
-			    </div>
-			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
-			    	<!-- patch notes section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-version"><u>v0.1 : beta release!</u></p>
-			    		<p class="s-notes">
-			    		Beta release of the game!<br>
-			    		- Code has been fully rewritten, with some optimizations!<br>
-			    		- New fresh clean UI (essentially build on Bootstrap).<br>
-			    		- Added ranks, which give a total cash multiplier.<br>
-			    		- Helpers are removed.<br>
-			    		</p>
-			    		<p class="s-version"><u>v0.11 : UI changes!</u></p>
-			    		<p class="s-notes">
-			    		- The game UI have changed, I'm always working on it, especially on the upgrades tab.<br>
-			    		- Changed some prices of builds/drugs, game get a good balancing according to me.<br>
-			    		- Fixed saves bug when I add more content like new builds/dealers. Please, let me know if there is still saving bugs!
-			    		</p>
-			    		<p class="s-version"><u>v0.12 : Content update!</u></p>
-			    		<p class="s-notes">
-			    		- Cocaine builds and dealers have been added!<br>
-			    		- 3 upgrades added (cocaine price) and some of them have been rebalanced.<br>
-			    		- When you bought an upgrade, it become green instead of grey.<br>
-			    		- Fixed some bugs.<br>
-			    		- Changed some things about the background, navbar and actions panel colors.
-			    		</p>
-			    		<p class="s-version"><u>v0.13 : prestige update!</u></p>
-			    		<p>
-			    		- Added a prestige system : you got a prestige rank and experience. Experience will determine your prestige rank which will give you a "prestige multipier" on every cash income! (Shooting action and drugs for example)
-			    		</p>
-			    		<p class="s-version"><u>v0.14 : rebalancing the game</u></p>
-			    		<p>
-			    		- Builds/dealers have been totally rebalanced!<br>
-			    		- Drug prices have been a bit boosted.<br>
-			    		</p>
-			    		<p class="s-version"><u>v0.15 : always balancing the game</u></p>
-			    		<p>
-			    		- New upgrades have been added (1 more for weed/meth/cocaine).<br>
-			    		- Builds/dealers have been rebalanced (again!).<br>
-			    		- Drug prices have been boosted, especially meth and cocaine.<br>
-			    		- Experience is now 2x easier to gain!<br>
-			    		- Code have been a bit optimized.
-			    		</p>
-			    	</li>
-			    	<!-- what's next section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-version"><u>What's next now?</u></p>
-			    		<p class="s-notes">
-			    		- <b>A better UI </b>: especially on the upgrades panel. Recently, a user from Reddit (<a href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/co4kukr">/u/LitKing</a>) proposed to me a new display of the upgrades, <a href="http://i.imgur.com/cTvcHRC.png">like this</a>. I really like this display and will work on this, it makes more sense to the user to see "skills to level-up" like in a RPG game where you have to level-up your character.
-			    		</p>
-			    	</li>
-			    	<!-- ranks section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-rank">About the ranks :</p>
-							<table class="table">
-						    <thead><tr><th>Rank</th><th>Total money needed</th><th>Overall bonus</th></tr></thead>
-						    <tbody>
-						      <tr><th scope="row">Glock-18</th><td>starting rank</td><td>x1.00</td></tr>
-						      <tr><th scope="row">CZ75-Auto</th><td>2,500$</td><td>x1.10</td></tr>
-						      <tr><th scope="row">Dual Berettas</th><td>10,000$</td><td>x1.20</td></tr>
-						      <tr><th scope="row">UMP-45</th><td>100,000$</td><td>x1.30</td></tr>
-						      <tr><th scope="row">P90</th><td>250,000$</td><td>x1.40</td></tr>
-						      <tr><th scope="row">PP-Bizon</th><td>1,000,000$</td><td>x1.50</td></tr>
-						      <tr><th scope="row">Galil AR</th><td>25,000,000$</td><td>x1.60</td></tr>
-						      <tr><th scope="row">FAMAS</th><td>100,000,000$</td><td>x1.70</td></tr>
-						      <tr><th scope="row">AWP</th><td>500,000,000$</td><td>x1.80</td></tr>
-						      <tr><th scope="row">AUG</th><td>2.500 billion $</td><td>x1.90</td></tr>
-						      <tr><th scope="row">AK-47</th><td>50.000 billion $</td><td>x2.00</td></tr>
-						    </tbody>
-							</table>
-			    	</li>
-			    	<!-- thanks section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-thanks">
-			    			Thanks you for playing my game, we reached a total of <b>10,000</b> unique players from the prototype and the current beta!<br>
-			    			Keep an eye on the game, the game is in rapid development! :)
-			    		</p>
-			    	</li>
-			    	<!-- links/feedback section -->
-			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me your feedback on my Reddit account</a></p>
-			    		<p class="s-links"><a target="_blank" href="http://www.reddit.com/r/incremental_games/comments/2tvael/blackmarket/">Latest thread on /r/incremental_games for Blackmarket</a></p>
-			    		<p class="s-links"><a target="_blank" href="https://github.com/TotomInc/totominc.github.io/tree/master/blackmarket">Contribute to the game on the GitHub repo of Blackmarket</a></p>
-			    	</li>
 			    </div>
 			  </div>
 		  </div>
