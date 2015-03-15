@@ -1,38 +1,15 @@
-/* old saving system (not working)
-function setItem(key, value) { localStorage.setItem(key, JSON.stringify(value)); };
-function getItem(key) { return JSON.parse(localStorage.getItem(key)); };
-function removeItem(key) { localStorage.removeItem(key); };
-function saveData() {
-    for (var i = 0; i < allVars.length; i++) {
-        setItem(key + allVars[i], window[allVars[i]]);
-    };
-    console.log("Game saved");
-};
-function loadData() {
-    for (var i = 0; i < allVars.length; i++) {
-        if (getItem(key + allVars[i]) != null && getItem(key + allVars[i]) != undefined) {
-            window[allVars[i]] = getItem(key + allVars[i]);
-        };
-    };
-};
-function resetData() {
-    for (var i = 0; i < allVars.length; i++) {
-        removeItem(key + allVars[i]);
-    };
-};
-*/
-// new saving system (pretty shitty but working)*
-var toSave = {
-    player: player,
-    miningBuildsOwned: miningBuildsOwned,
-    helmetsOwned: helmetsOwned,
-    armoursOwned: armoursOwned,
-    glovesOwned: glovesOwned,
-    bootsOwned: bootsOwned,
-    amuletsOwned: amuletsOwned,
-    swordOwned: swordOwned
-};
+// new saving system (pretty shitty but working)
 function manualSave() {
+    var toSave = {
+        player: player,
+        mbo: miningBuildsOwned,
+        helmetsOwned: helmetsOwned,
+        armoursOwned: armoursOwned,
+        glovesOwned: glovesOwned,
+        bootsOwned: bootsOwned,
+        amuletsOwned: amuletsOwned,
+        swordOwned: swordOwned
+    };
     var saved = JSON.stringify(toSave);
     var exportSave = btoa(saved);
     prompt("Here is your encoded save, keep-it safe!", exportSave);
@@ -95,6 +72,16 @@ function manualLoad() {
 };
 function saveData() {
     if (init == true) {
+        var toSave = {
+            player: player,
+            mbo: miningBuildsOwned,
+            helmetsOwned: helmetsOwned,
+            armoursOwned: armoursOwned,
+            glovesOwned: glovesOwned,
+            bootsOwned: bootsOwned,
+            amuletsOwned: amuletsOwned,
+            swordOwned: swordOwned
+        };
         localStorage.setItem("IncRPG_Save", JSON.stringify(toSave));
         Log("Game saved!");
     };
@@ -136,9 +123,9 @@ function loadData() {
             p.amulet.itemName = sp.amulet.itemName;
             p.amulet.img = sp.amulet.img;
 
-        p.sword.damage = sp.sword.damage;
-        p.sword.itemName = sp.sword.itemName;
-        p.sword.img = sp.sword.img;
+            p.sword.damage = sp.sword.damage;
+            p.sword.itemName = sp.sword.itemName;
+            p.sword.img = sp.sword.img;
 
             ps.totalArmor = sps.totalArmor;
 
@@ -148,13 +135,15 @@ function loadData() {
             pi.ruby = spi.ruby;
             pi.saphire = spi.saphire;
 
-            miningBuildsOwned = s.miningBuildsOwned;
+            miningBuildsOwned = s.mbo;
             helmetsOwned = s.helmetsOwned;
             armoursOwned = s.armoursOwned;
             glovesOwned = s.glovesOwned;
             bootsOwned = s.bootsOwned;
             amuletsOwned = s.amuletsOwned;
             swordOwned = s.swordOwned;
+            Log(s.mbo);
+            Log("Game loaded!");
         };
     };
 };

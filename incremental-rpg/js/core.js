@@ -1,4 +1,7 @@
-var fps = 60; var interval = (1000 / fps); var version = 0.003; var release = "-r1"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.003; var release = "-r2"; var init = false;
+
+// log
+function Log(text) { console.log("Inc-RPG v" + version + release + " : " + text); };
 
 // update
 function Update() { Log("This is needed to make the other Update.() function to work."); };
@@ -51,18 +54,20 @@ Update.gameInit = function() {
 	Shop.init();
 	Player.init(); // init materials
 	init = true;
-	loadData();
-	Mining.check();
-	Shop.check();
-	Log("You can play, the game is fully loaded! Have fun!");
 };
-
-// log
-function Log(text) { console.log("Inc-RPG v" + version + release + " : " + text); };
+Update.loadSavegame = function() {
+	if (init == true) {
+		loadData();
+		Mining.check();
+		Shop.check();
+		Log("You can play, the game is fully loaded! Have fun!");
+	};
+};
 
 // loading + loop
 window.onload = function() {
 	Update.gameInit();
+	Update.loadSavegame();
 };
 var mainInterval = window.setInterval(function() {
 	Update.playerStats();

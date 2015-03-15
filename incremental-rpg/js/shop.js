@@ -100,6 +100,7 @@ Shop.buy = function(itemType, index) {
 		$("#s-sword-btn-info" + (index+1)).attr("onclick", "");
 		$("#s-sword-btn-info" + (index+1)).html("owned");
 	};
+	Shop.check();
 };
 Shop.init = function() {
 	Log("Calling Shop.init()");
@@ -109,7 +110,6 @@ Shop.init = function() {
 		$("#s-helmet" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
 		$("#s-helmet-btn" + (i+1)).html('<a id="s-helmet-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
 		$("#s-helmet-btn-info" + (i+1)).attr("onclick", "Shop.buy('helmet', " + i + ");");
-		$("#inv-helmet").append('<option value="' + i + '">' + s.name + '</option>');
 	};
 	for (var i = 0; i < shopArmours.length; i++) {
 		var s = shopArmours[i];
@@ -117,7 +117,6 @@ Shop.init = function() {
 		$("#s-armour" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
 		$("#s-armour-btn" + (i+1)).html('<a id="s-armour-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
 		$("#s-armour-btn-info" + (i+1)).attr("onclick", "Shop.buy('armour', " + i + ");");
-		$("#inv-armour").append('<option value="' + i + '">' + s.name + '</option>');
 	};
 	for (var i = 0; i < shopGloves.length; i++) {
 		var s = shopGloves[i];
@@ -125,7 +124,6 @@ Shop.init = function() {
 		$("#s-gloves" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
 		$("#s-gloves-btn" + (i+1)).html('<a id="s-gloves-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
 		$("#s-gloves-btn-info" + (i+1)).attr("onclick", "Shop.buy('gloves', " + i + ");");
-		$("#inv-gloves").append('<option value="' + i + '">' + s.name + '</option>');
 	};
 	for (var i = 0; i < shopBoots.length; i++) {
 		var s = shopBoots[i];
@@ -133,7 +131,6 @@ Shop.init = function() {
 		$("#s-boots" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
 		$("#s-boots-btn" + (i+1)).html('<a id="s-boots-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
 		$("#s-boots-btn-info" + (i+1)).attr("onclick", "Shop.buy('boots', " + i + ");");
-		$("#inv-boots").append('<option value="' + i + '">' + s.name + '</option>')
 	};
 	for (var i = 0; i < shopSwords.length; i++) {
 		var s = shopSwords[i];
@@ -141,8 +138,12 @@ Shop.init = function() {
 		$("#s-sword" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel)
 		$("#s-sword-btn" + (i+1)).html('<a id="s-sword-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
 		$("#s-sword-btn-info" + (i+1)).attr("onclick", "Shop.buy('sword', " + i + ");");
-		$("#inv-sword").append('<option value="' + i + '">' + s.name + '</option>');
 	};
+	helmetsOwned[0] = true;
+	armoursOwned[0] = true;
+	glovesOwned[0] = true;
+	bootsOwned[0] = true;
+	swordOwned[0] = true;
 };
 Shop.check = function() {
 	Log("Calling Shop.check()");
@@ -150,30 +151,35 @@ Shop.check = function() {
 		if (helmetsOwned[i] == true) {
 			$("#s-helmet-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-helmet-btn-info" + (i+1)).html("owned");
+			$("#inv-helmet").append('<option value="' + i + '">' + shopHelmets[i].name + ' - ' + shopHelmets[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopArmours.length; i++) {
 		if (armoursOwned[i] == true) {
 			$("#s-armour-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-armour-btn-info" + (i+1)).html("owned");
+			$("#inv-armour").append('<option value="' + i + '">' + shopArmours[i].name + ' - ' + shopArmours[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopGloves.length; i++) {
 		if (glovesOwned[i] == true) {
 			$("#s-gloves-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-gloves-btn-info" + (i+1)).html("owned");
+			$("#inv-gloves").append('<option value="' + i + '">' + shopGloves[i].name + ' - ' + shopGloves[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopBoots.length; i++) {
 		if (bootsOwned[i] == true) {
 			$("#s-boots-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-boots-btn-info" + (i+1)).html("owned");
+			$("#inv-boots").append('<option value="' + i + '">' + shopBoots[i].name + ' - ' + shopBoots[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopSwords.length; i++) {
 		if (swordOwned[i] == true) {
 			$("#s-sword-btn-info" + (i+1)).attr("onclick", ""),
 			$("#s-sword-btn-info" + (i+1)).html("owned");
+			$("#inv-sword").append('<option value="' + i + '">' + shopSwords[i].name + ' - ' + shopSwords[i].damagePts + ' damage</option>');
 		};
 	};
 };
