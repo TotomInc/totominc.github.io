@@ -36,22 +36,21 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading center bold">Actions</div>
 				  <div class="panel-body">
-				  	<p class="a-guns"><span id="s-cg"></span><span id="s-ob"></span></p>
-				  	<p class="a-guns"><span id="s-pr"></span><span id="s-pm"></span></p>
-
+				  	<h1 class="a-tutorial"><span id="a-i1"></span></h1>
 						<div id="p-1" class="progress">
+							<span id="a-t1" class="progress-value">Click here to shoot</span>
 						  <div id="f-1" class="progress-bar progress-bar-success active" role="progressbar"></div>
 						</div>
-						<h1 class="a-tutorial"><span id="a-i1"></span></h1>
 						<h1><span id="a-n1"></span></h1>
 						<h2><span id="a-d1"></span></h2>
 						<h2><span id="a-eventLog"></span></h2>
 						<p class="a-ammos"><span id="s-ammo"></span></p>
 
+						<h1 class="a-tutorial"><span id="a-i2"></span></h1>
 						<div id="p-2" class="progress">
+							<span id="a-t1" class="progress-value">Click here to reload</span>
 						  <div id="f-2" class="progress-bar progress-bar-success active" role="progressbar"></div>
 						</div>
-						<h1 class="a-tutorial"><span id="a-i2"></span></h1>
 						<h1><span id="a-n2"></span></h1>
 						<h2><span id="a-d2"></span></h2>
 				  </div>
@@ -59,6 +58,9 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading center bold">Stats</div>
 				  <div class="panel-body">
+				  	<span id="s-cg"></span><span id="s-ob"></span><br>
+				  	<span id="s-pr"></span><span id="s-pm"></span>
+				  	<div class="line"></div>
 				  	<span id="s-dp1"></span>
 				  	<span id="s-dp2"></span>
 				  	<span id="s-dp3"></span>
@@ -78,18 +80,6 @@
 						<p class="s-save"><span class="s-options" onclick="saveData();">Save</span> - <span class="s-options" onclick="loadData();">Load</span> - <span class="s-options" onclick="hardReset();">Hard-Reset</span> - <span class="s-options" onclick="softReset();">Soft-Reset</span></p>
 				  </div>
 				</div>
-				<!--
-				<div class="panel panel-danger">
-				  <div class="panel-heading center bold">Where I am in the development</div>
-				  <div class="panel-body">
-				  	<p class="justify">So, the game has currently nice core features, who may keep you a good time. But I know, there are a lot of features that I said (on reddit) that there is not : like prestige upgrades, achievements, safe/work mode, ...<br>
-				  	<b>For now, I put the development of the game paused.</b><br>
-				  	I don't have any great idea of things to implement and I'm a bit discouraged of adding more content.<br>
-				  	A big thanks for you, for playing my game, you were a total of approximatively 15'000 unique players/visitors and something like 1'000 regular players to go everyday on the game.<br>
-				  	This is not nothing, it's huge for my first real project and makes me want to continue in programming. Thanks you! Maybe I will go back to the development of the game , so take a look from time to time! :)</p>
-				  </div>
-				</div>
-				-->
 		  </div>
 		<!-- tabs row -->
 		  <div class="col-md-7">
@@ -174,7 +164,7 @@
 						<a id="d-12" class="list-group-item"><span id="d-n12"></span><span id="d-c12"></span><span id="d-r12"></span><span id="d-o12" class="badge"></span></a>
 				  </div>
 			    <div role="tabpanel" class="tab-pane fade" id="tab-prestige">
-						<li class="list-group-item list-group-item-warning center bold"><a onclick="whatIsPrestige();">What is prestige? (click here)</a><br>Warning : prestige upgrades cost EXPERIENCE!</li>
+						<li class="list-group-item list-group-item-warning center bold"><a data-toggle="modal" data-target="#prestige-modal">What is prestige? (click here)</a><br>Warning : prestige upgrades cost EXPERIENCE! But you keep them through soft-resets.</li>
 						<a id="pu-1" class="list-group-item"><span id="pu-n1"></span><span id="pu-c1"></span><span id="pu-b1" class="badge"></span></a>
 						<a id="pu-2" class="list-group-item"><span id="pu-n2"></span><span id="pu-c2"></span><span id="pu-b2" class="badge"></span></a>
 						<a id="pu-3" class="list-group-item"><span id="pu-n3"></span><span id="pu-c3"></span><span id="pu-b3" class="badge"></span></a>
@@ -188,6 +178,14 @@
 			    <div role="tabpanel" class="tab-pane fade" id="tab-notes">
 			    	<!-- patch notes section -->
 			    	<li class="list-group-item list-group-item-info">
+			    		<p class="s-version"><u>v0.21 : bugs-bugs-bugs update!</u></p>
+			    		<p>Many players comment on Blackmarket thread (on reddit) that there were a lot of bugs! I solved some of them.<br>
+			    		- Progress-bar works properly on Firefox and Opera.<br>
+			    		- Fixed some typos.<br>
+			    		- Changed a bit the "Actions" tab and the small tutorial.<br>
+			    		<b>Known bugs :</b><br>
+			    		- About drug production! (should be fixed in the next days)<br>
+			    		- Drug display.</p>
 			    		<p class="s-version"><u>v0.20 : prestige upgrades update!</u></p>
 			    		<p>Hey! It's been a big time since an update! Here I've implemented the <b>prestige upgrades!</b> Just look at the <b>prestige</b> panel!<br>
 			    		- Prestige upgrades of course!<br>
@@ -224,7 +222,7 @@
 			    		- Changed some prices of builds/drugs, game get a good balancing according to me.<br>
 			    		- Fixed saves bug when I add more content like new builds/dealers. Please, let me know if there is still saving bugs!
 			    		</p>
-			    		<p class="s-version"><u>v0.1 : beta release!</u></p>
+			    		<p class="s-version"><u>v0.10 : beta release!</u></p>
 			    		<p class="s-notes">
 			    		Beta release of the game!<br>
 			    		- Code has been fully rewritten, with some optimizations!<br>
@@ -235,7 +233,7 @@
 			    	</li>
 			    	<!-- thanks section -->
 			    	<li class="list-group-item list-group-item-info">
-			    		<p class="s-thanks">Thanks you for playing my game, we reached a total of <b>10,000</b> unique players from the prototype and the current beta and have something like 500 regulars players!</p>
+			    		<p class="s-thanks">Thanks you for playing my game, we reached a total of <b>10,000</b> unique players!</p>
 			    	</li>
 			    	<!-- links/feedback section -->
 			    	<li class="list-group-item list-group-item-info">
@@ -284,7 +282,7 @@
 						      <tr><th scope="row">Platinum Master</th><td>2,000,000 exp</td><td>x200.00</td></tr>
 						      <tr><th scope="row">Platinum Guardian</th><td>5,000,000 exp</td><td>x250.00</td></tr>
 						      <tr><th scope="row">Legendary Dealer</th><td>10,000,000 exp</td><td>x300.00</td></tr>
-						      <tr><th scope="row">Legendary Eagle Deaker</th><td>50,000,000 exp</td><td>x400.00</td></tr>
+						      <tr><th scope="row">Legendary Eagle Dealer</th><td>50,000,000 exp</td><td>x400.00</td></tr>
 						    </tbody>
 							</table>
 						</li>
@@ -292,6 +290,20 @@
 			  </div>
 		  </div>
 		</div>
+	</div>
+
+	<div class="modal fade" id="prestige-modal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title">What is prestige?</p>
+		  </div>
+		  <div class="modal-body">
+		  	<p>Your prestige rank is determined by your experience. Check the tables panel to see what prestige ranks are available, and how many experienced they need. When you're going to soft-reset, you lose everything but not total money and experience, but restart everything.Your prestige rank (if you got one) will give you a prestige multiplier determined by your prestige rank.</p>
+		  	<p>For example, if you do a reset and got 100 exp, you will gain the rank Bronze Elite, which will give you a prestige multiplier of x6.00.</p>
+		  	<p>With this experience, you can buy prestige upgrades which are powerfull upgrades, but they cost experience. If you buy a prestige upgrade, you keep-it thought soft-resets.</p>
+		  </div>
+		</div>
+	  </div>
 	</div>
 
 	<script src="js/resize.js"></script>

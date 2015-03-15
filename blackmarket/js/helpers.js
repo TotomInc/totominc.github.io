@@ -35,8 +35,8 @@ function gunRankUp() {
             rankMultiplier = r.multiplier;
         };
     };
-    $("#s-cg").html("Current gun : " + rank + "<br>");
-    $("#s-ob").html("Overall bonus : x" + fix(rankMultiplier, 2));
+    $("#s-cg").html("Current gun : <b>" + rank + "</b><br>");
+    $("#s-ob").html("Overall bonus : <b>x" + fix(rankMultiplier, 2) + "</b>");
 };
 function prestigeRankUp() {
     for (var i = 0; i < prestigeRanks.length; i++) {
@@ -46,8 +46,8 @@ function prestigeRankUp() {
             prestige[3] = p.multiplier;
         };
     };
-    $("#s-pr").html("Prestige rank : " + prestige[2] + "<br>");
-    $("#s-pm").html("Prestige multiplier : x" + fix(prestige[3], 2));
+    $("#s-pr").html("Prestige rank : <b>" + prestige[2] + "</b><br>");
+    $("#s-pm").html("Prestige multiplier : <b>x" + fix(prestige[3], 2) + "</b>");
 };
 function offlineCalc() {
     var now = new Date().getTime();
@@ -57,28 +57,25 @@ function offlineCalc() {
 };
 function tutorial() {
     if (totalShoots == 0) {
-        $("#a-i1").html("Click on the bar to shoot!");
+        $("#a-i1").html("Tutorial : Click on the bar to shoot!");
     } else {
         if (totalShoots > 0 && totalShoots < 4) {
-            $("#a-i1").html("Yeah, you understand how it works.<br>Shoot all your bullets now.");
+            $("#a-i1").html("Tutorial : Yeah, you understand how it works.<br>Shoot all your bullets now.");
         } else {
             if (totalShoots > 4 && totalShoots < 8) {
-                $("#a-i1").html("When you shoot, you earn dollars.");
+                $("#a-i1").html("Tutorial : When you shoot, you earn dollars.");
             } else {
                 if (totalShoots > 8 && totalShoots < 11) {
-                    $("#a-i1").html("You can see your stats on the top-bar.");
+                    $("#a-i1").html("Tutorial : You can see your stats on the top-bar.");
                 };
             };
         };
     };
     if (totalShoots == 12) {
-        $("#a-i2").html("No more ammo!<br>Click on the bar to reload and gain ammo!");
+        $("#a-i2").html("Tutorial : No more ammo!<br>Click on the bar to reload and gain ammo!");
         $("#a-i1").css("display", "none");
     };
     if (totalReloads > 0) {
         $("#a-i2").css("display", "none");
     };
-};
-function whatIsPrestige() {
-    alert("Your prestige rank is determined by your experience. Check the table below to see what ranks are available, and how many experienced they need.\nWhen you're going to soft-reset, you lose everything but not total money and experience, but restart everything.\nYour prestige rank (if you got one) will give you a prestige multiplier determined by your prestige rank.\nFor example, if you do a reset and got 100 exp, you will gain the rank Bronze Elite, which will give you a prestige multiplier of x6.00");
 };

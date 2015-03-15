@@ -246,6 +246,7 @@ function displayGame() {
         if (shoot[0] < 1) {
             $("#f-1").attr("class", "progress-bar progress-bar-danger progress-bar-striped active");
             $("#f-1").css("width", "100%");
+            $("#a-t1").css("display", "none");
         };
         // basic stats display
         $("#h-money").html("Money : " + fix(money[0], 2) + "$");
@@ -256,7 +257,7 @@ function displayGame() {
         $("#s-totalreload").html("Total reloads : <b>" + fix(totalReloads, 0) + "</b><br>");
         $("#s-experience").html("Experience : <b>" + fix(prestige[0], 0) + "</b><br>");
         $("#s-experienceOnReset").html("Total experience on reset : <b>" + fix(getExperienceOnReset(), 0) + "</b><br>");
-        $("#a-n1").html("Shoot : +" + fix(((shoot[1] + shootPercentCash) * rankMultiplier) * prestige[3], 2) + "$");
+        $("#a-n1").html("Shoot : +" + fix((shoot[1] * rankMultiplier) * prestige[3] + shootPercentCash, 2) + "$");
         $("#a-d1").html(fix(shoot[3]/1000, 2) + " sec/shoot");
         $("#a-n2").html("Reload : +" + fix(shoot[2], 0) + " ammo");
         $("#a-d2").html(fix(shoot[4]/1000, 2) + " sec");

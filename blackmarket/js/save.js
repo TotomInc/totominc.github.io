@@ -56,12 +56,14 @@ function softReset() {
         var t2 = getExperienceOnReset();
         var t3 = totalShoots;
         var t4 = totalReloads;
+        var t5 = prestigeUpgradesOwned;
         resetData();
         initVars();
         money[1] = t1;
         prestige[0] = t2;
         totalShoots = t3;
         totalReloads = t4;
+        prestigeUpgradesOwned = t5;
         saveData();
         location.reload();
     };

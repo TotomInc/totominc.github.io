@@ -1,0 +1,11 @@
+                var sold = getDealerSell(i) * times;
+                if (dStock[0] < sold) {
+                    sold = dStock[0];
+                    mps = (((sold * dPrice[0]) * rankMultiplier) * prestige[3]) * times
+                } else {
+                    mps = (getNormalDealerSell(0) * dPrice[0]) + (getNormalDealerSell(1) * dPrice[0]) + (getNormalDealerSell(2) * dPrice[0]) + (getNormalDealerSell(3) * dPrice[0]);
+                    mps *= rankMultiplier;
+                    mps *= prestige[3];
+                };
+                dStock[0] -= sold;
+                gainMoney((((sold * dPrice[0]) * rankMultiplier) * prestige[3]) * times);

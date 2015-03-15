@@ -1,10 +1,10 @@
 ::-webkit-scrollbar { width: 7px; }
 ::-webkit-scrollbar-thumb { background: #ccc; }
-@-webkit-keyframes tutorial { 0% {color: #333;} 50% {color: #31708f;} 100% {color: #333;} }
+@-webkit-keyframes tutorial { 0% {color: #333;} 50% {color: #795548;} 100% {color: #333;} }
 
 body { margin: 0; font-family: Consolas; cursor: default; background: #fff; }
 h1 { margin: 5px 0 5px 0; font-size: 16px; text-align: center; }
-h1.a-tutorial { text-decoration: underline; font-weight: bold; -webkit-animation: tutorial 1.0s infinite; animation: tutorial 1.0s infinite; }
+h1.a-tutorial { margin: 0 0 15px 0; text-decoration: underline; font-weight: bold; -webkit-animation: tutorial 1.0s infinite; animation: tutorial 1.0s infinite; }
 h2 { margin: 0 0 5px 0; font-size: 14px; text-align: center; }
 p { margin: 5px 0 5px 0; }
 p.s-version { text-align: center; font-weight: bold; font-size: 18px; }
@@ -38,9 +38,10 @@ span.s-options { text-decoration: underline; cursor: pointer; }
 .panel-info>.panel-body { background: rgba(217,237,247,0.1); color: #31708f; }
 .list-group-item:first-child { border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
 .list-group-item-success, .list-group-item-info, .list-group-item-warning, .list-group-item-danger { cursor: default !important; }
-.progress { height: 30px; margin-bottom: 0; cursor: pointer; }
-.progress-bar { transition: 0; }
+.progress { height: 30px; text-align:center; margin-bottom: 0; background: #eee; cursor: pointer; border: 1px solid #aaa; }
+.progress-bar { transition: 0; -o-transition: 0; -moz-transition: 0; }
 .list-group-item { cursor: pointer; transition: all 0.1s; }
 .list-group-item:hover { transition: all 0.1s; }
 .list-group-item-info { background: rgba(217,237,247,0.1); border: 1px solid #C6DBE5; }
 .stats-heading { cursor: default; color: #31708f; background: #d9edf7; border: 1px solid #C6DBE5; }
+.progress-value { position:absolute; right:0; left:0; color: rgb(153, 153, 153); line-height: 30px; }
