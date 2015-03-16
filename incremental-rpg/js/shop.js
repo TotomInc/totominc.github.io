@@ -1,27 +1,27 @@
 var shopHelmets = [
 	new Helmet("Newbie Helmet",				0,		1,		15,		"img/C_Hat03.png"),
-	new Helmet("Bronze Helmet",				100,	5,		75,		"img/C_Elm01.png"),
-	new Helmet("Iron Helmet",				5000,	10,		150,	"img/C_Elm02.png")
+	new Helmet("Bronze Helmet",				4000,	5,		75,		"img/C_Elm01.png"),
+	new Helmet("Iron Helmet",				17000,	10,		150,	"img/C_Elm02.png")
 ];
 var shopArmours = [
 	new Armour("Newbie Armour",				0,		1,		40,		"img/A_Clothing02.png"),
-	new Armour("Bronze Armour",				350,	5,		95,		"img/A_Armour01.png"),
-	new Armour("Iron Armour",				7500,	10,		200,	"img/A_Armour02.png")
+	new Armour("Bronze Armour",				5000,	5,		95,		"img/A_Armour01.png"),
+	new Armour("Iron Armour",				20000,	10,		200,	"img/A_Armour02.png")
 ];
 var shopGloves = [
 	new Gloves("Newbie Gloves",				0,		1,		10,		"img/Ac_Gloves02.png"),
-	new Gloves("Leather Gloves",			75,		5,		30,		"img/Ac_Gloves01.png"),
-	new Gloves("Reinforced Leather Gloves",	2250,	10,		100,	"img/Ac_Gloves04.png")
+	new Gloves("Leather Gloves",			4000,	5,		30,		"img/Ac_Gloves01.png"),
+	new Gloves("Reinforced Leather Gloves",	12500,	10,		100,	"img/Ac_Gloves04.png")
 ];
 var shopBoots = [
 	new Boots("Newbie Boots",				0,		1,		30,		"img/A_Shoes01.png"),
 	new Boots("Reinforced Boots",			200,	5,		75,		"img/A_Shoes03.png"),
-	new Boots("Iron Boots",					6000,	10,		175,	"img/A_Shoes07.png")
+	new Boots("Iron Boots",					18000,	10,		175,	"img/A_Shoes07.png")
 ];
 var shopSwords = [
 	new Sword("Newbie Sword",				0,		1,		5,		"img/W_Sword001.png"),
-	new Sword("Reinforced Sword",			100,	5,		15,		"img/W_Sword005.png"),
-	new Sword("Iron Sword",					5500,	10,		40,		"img/W_Sword007.png")
+	new Sword("Reinforced Sword",			3500,	5,		15,		"img/W_Sword005.png"),
+	new Sword("Iron Sword",					15000,	10,		40,		"img/W_Sword007.png")
 ];
 
 var helmetsOwned = []; var armoursOwned = []; var glovesOwned = []; var bootsOwned = []; var amuletsOwned = []; var swordOwned = [];
@@ -151,35 +151,40 @@ Shop.check = function() {
 		if (helmetsOwned[i] == true) {
 			$("#s-helmet-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-helmet-btn-info" + (i+1)).html("owned");
-			$("#inv-helmet").append('<option value="' + i + '">' + shopHelmets[i].name + ' - ' + shopHelmets[i].armorPts + ' armor</option>');
+			$("#inv-helmet-" + i).remove();
+			$("#inv-helmet").append('<option id="inv-helmet-' + i + '" value="' + i + '">' + shopHelmets[i].name + ' - ' + shopHelmets[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopArmours.length; i++) {
 		if (armoursOwned[i] == true) {
 			$("#s-armour-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-armour-btn-info" + (i+1)).html("owned");
-			$("#inv-armour").append('<option value="' + i + '">' + shopArmours[i].name + ' - ' + shopArmours[i].armorPts + ' armor</option>');
+			$("#inv-armour-" + i).remove();
+			$("#inv-armour").append('<option id="inv-armour-' + i + '" value="' + i + '">' + shopArmours[i].name + ' - ' + shopArmours[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopGloves.length; i++) {
 		if (glovesOwned[i] == true) {
 			$("#s-gloves-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-gloves-btn-info" + (i+1)).html("owned");
-			$("#inv-gloves").append('<option value="' + i + '">' + shopGloves[i].name + ' - ' + shopGloves[i].armorPts + ' armor</option>');
+			$("#inv-gloves-" + i).remove();
+			$("#inv-gloves").append('<option id="inv-gloves-' + i + '" value="' + i + '">' + shopGloves[i].name + ' - ' + shopGloves[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopBoots.length; i++) {
 		if (bootsOwned[i] == true) {
 			$("#s-boots-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-boots-btn-info" + (i+1)).html("owned");
-			$("#inv-boots").append('<option value="' + i + '">' + shopBoots[i].name + ' - ' + shopBoots[i].armorPts + ' armor</option>');
+			$("#inv-boots-" + i).remove();
+			$("#inv-boots").append('<option id="inv-boots-' + i + '" value="' + i + '">' + shopBoots[i].name + ' - ' + shopBoots[i].armorPts + ' armor</option>');
 		};
 	};
 	for (var i = 0; i < shopSwords.length; i++) {
 		if (swordOwned[i] == true) {
 			$("#s-sword-btn-info" + (i+1)).attr("onclick", ""),
 			$("#s-sword-btn-info" + (i+1)).html("owned");
-			$("#inv-sword").append('<option value="' + i + '">' + shopSwords[i].name + ' - ' + shopSwords[i].damagePts + ' damage</option>');
+			$("#inv-sword-" + i).remove();
+			$("#inv-sword").append('<option id="inv-sword-' + i + '" value="' + i + '">' + shopSwords[i].name + ' - ' + shopSwords[i].damagePts + ' damage</option>');
 		};
 	};
 };

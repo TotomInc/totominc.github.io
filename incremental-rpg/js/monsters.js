@@ -72,8 +72,9 @@ Monster.attack = function(index) {
 	var playerDmg = getPlayerDamage();
 	var monsterDmg = liveMonsters[index].damage;
 	var oldLevel = ps.level;
+	var armor = getPlayerArmor();
 	if (ps.hp > monsterDmg) {
-		ps.hp -= monsterDmg;
+		ps.hp -= monsterDmg - ((armor/100) * monsterDmg);
 		liveMonsters[index].hp -= playerDmg;
 		if (liveMonsters[index].hp <= 0) {
 			ps.gold += liveMonsters[index].gold;

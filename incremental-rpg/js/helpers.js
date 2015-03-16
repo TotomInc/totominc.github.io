@@ -1,6 +1,6 @@
 function getXpNeeded() {
 	if (ps.level > 1) {
-		ps.xpNeeded = Math.pow(ps.level, 1.30) * 100;
+		ps.xpNeeded = Math.pow(ps.level, 1.20) * 100;
 	};
 };
 function getLevelUp() {
@@ -15,7 +15,7 @@ function getPlayerDamage() {
 };
 function getPlayerHp() {
 	if (ps.level > 1) {
-		ps.maxHp = 100 * Math.sqrt(1.75 * ps.level);
+		ps.maxHp = 100 * Math.sqrt(2.75 * ps.level);
 	};
 	return Math.floor(ps.maxHp);
 };

@@ -24,7 +24,7 @@ Update.playerStats = function() {
 		$("#s-boots").html('<img class="stats" src="' + p.boots.img + '"> Boots : <i>' + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
 		$("#s-amulet").html('<img class="stats" src="' + p.amulet.img + '"> Amulet : <i>' + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
 		$("#s-sword").html('<img class="stats" src="' + p.sword.img + '"> Sword : <i>' + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
-		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage (currently not implemented)");
+		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage");
 		// hp-bar in the navbar
 		var playerHpBar = 100;
 		playerHpBar = (ps.hp / ps.maxHp) * 100;
