@@ -107,36 +107,51 @@ Shop.init = function() {
 	for (var i = 0; i < shopHelmets.length; i++) {
 		var s = shopHelmets[i];
 		helmetsOwned.push(false);
-		$("#s-helmet" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
-		$("#s-helmet-btn" + (i+1)).html('<a id="s-helmet-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
+		$("#s-helmet-n" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name);
+		$("#s-helmet-p" + (i+1)).html(beautify(s.price, 0) + " gold");
+		$("#s-helmet-s" + (i+1)).html("+" + s.armorPts + " armor");
+		$("#s-helmet-l" + (i+1)).html(s.reqLevel);
+		$("#s-helmet-btn" + (i+1)).html('<a id="s-helmet-btn-info' + (i+1) + '" class="btn btn-primary btn-sm center-btn">Buy it</a>');
 		$("#s-helmet-btn-info" + (i+1)).attr("onclick", "Shop.buy('helmet', " + i + ");");
 	};
 	for (var i = 0; i < shopArmours.length; i++) {
 		var s = shopArmours[i];
 		armoursOwned.push(false);
-		$("#s-armour" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
-		$("#s-armour-btn" + (i+1)).html('<a id="s-armour-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
+		$("#s-armour-n" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name);
+		$("#s-armour-p" + (i+1)).html(beautify(s.price, 0) + " gold");
+		$("#s-armour-s" + (i+1)).html("+" + s.armorPts + " armor");
+		$("#s-armour-l" + (i+1)).html(s.reqLevel);
+		$("#s-armour-btn" + (i+1)).html('<a id="s-armour-btn-info' + (i+1) + '" class="btn btn-primary btn-sm center-btn">Buy it</a>');
 		$("#s-armour-btn-info" + (i+1)).attr("onclick", "Shop.buy('armour', " + i + ");");
 	};
 	for (var i = 0; i < shopGloves.length; i++) {
 		var s = shopGloves[i];
 		glovesOwned.push(false);
-		$("#s-gloves" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
-		$("#s-gloves-btn" + (i+1)).html('<a id="s-gloves-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
+		$("#s-gloves-n" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name);
+		$("#s-gloves-p" + (i+1)).html(beautify(s.price, 0) + " gold");
+		$("#s-gloves-s" + (i+1)).html("+" + s.armorPts + " armor");
+		$("#s-gloves-l" + (i+1)).html(s.reqLevel);
+		$("#s-gloves-btn" + (i+1)).html('<a id="s-gloves-btn-info' + (i+1) + '" class="btn btn-primary btn-sm center-btn">Buy it</a>');
 		$("#s-gloves-btn-info" + (i+1)).attr("onclick", "Shop.buy('gloves', " + i + ");");
 	};
 	for (var i = 0; i < shopBoots.length; i++) {
 		var s = shopBoots[i];
 		bootsOwned.push(false);
-		$("#s-boots" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel);
-		$("#s-boots-btn" + (i+1)).html('<a id="s-boots-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
+		$("#s-boots-n" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name);
+		$("#s-boots-p" + (i+1)).html(beautify(s.price, 0) + " gold");
+		$("#s-boots-s" + (i+1)).html("+" + s.armorPts + " armor");
+		$("#s-boots-l" + (i+1)).html(s.reqLevel);
+		$("#s-boots-btn" + (i+1)).html('<a id="s-boots-btn-info' + (i+1) + '" class="btn btn-primary btn-sm center-btn">Buy it</a>');
 		$("#s-boots-btn-info" + (i+1)).attr("onclick", "Shop.buy('boots', " + i + ");");
 	};
 	for (var i = 0; i < shopSwords.length; i++) {
 		var s = shopSwords[i];
 		swordOwned.push(false);
-		$("#s-sword" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name + " : " + beautify(s.price, 0) + " gold - required level : " + s.reqLevel)
-		$("#s-sword-btn" + (i+1)).html('<a id="s-sword-btn-info' + (i+1) + '" class="btn btn-primary btn-sm">Buy it</a>');
+		$("#s-sword-n" + (i+1)).html('<img class="stats" src="' + s.img + '"> ' + s.name);
+		$("#s-sword-p" + (i+1)).html(beautify(s.price, 0) + " gold");
+		$("#s-sword-s" + (i+1)).html("+" + s.damagePts + " damage");
+		$("#s-sword-l" + (i+1)).html(s.reqLevel);
+		$("#s-sword-btn" + (i+1)).html('<a id="s-sword-btn-info' + (i+1) + '" class="btn btn-primary btn-sm center-btn">Buy it</a>');
 		$("#s-sword-btn-info" + (i+1)).attr("onclick", "Shop.buy('sword', " + i + ");");
 	};
 	helmetsOwned[0] = true;
@@ -149,6 +164,7 @@ Shop.check = function() {
 	Log("Calling Shop.check()");
 	for (var i = 0; i < shopHelmets.length; i++) {
 		if (helmetsOwned[i] == true) {
+			$("#s-helmet-btn-info" + (i+1)).addClass("btn-info");
 			$("#s-helmet-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-helmet-btn-info" + (i+1)).html("owned");
 			$("#inv-helmet-" + i).remove();
@@ -157,6 +173,7 @@ Shop.check = function() {
 	};
 	for (var i = 0; i < shopArmours.length; i++) {
 		if (armoursOwned[i] == true) {
+			$("#s-armour-btn-info" + (i+1)).addClass("btn-info");
 			$("#s-armour-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-armour-btn-info" + (i+1)).html("owned");
 			$("#inv-armour-" + i).remove();
@@ -165,6 +182,7 @@ Shop.check = function() {
 	};
 	for (var i = 0; i < shopGloves.length; i++) {
 		if (glovesOwned[i] == true) {
+			$("#s-gloves-btn-info" + (i+1)).addClass("btn-info");
 			$("#s-gloves-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-gloves-btn-info" + (i+1)).html("owned");
 			$("#inv-gloves-" + i).remove();
@@ -173,6 +191,7 @@ Shop.check = function() {
 	};
 	for (var i = 0; i < shopBoots.length; i++) {
 		if (bootsOwned[i] == true) {
+			$("#s-boots-btn-info" + (i+1)).addClass("btn-info");
 			$("#s-boots-btn-info" + (i+1)).attr("onclick", "");
 			$("#s-boots-btn-info" + (i+1)).html("owned");
 			$("#inv-boots-" + i).remove();
@@ -181,6 +200,7 @@ Shop.check = function() {
 	};
 	for (var i = 0; i < shopSwords.length; i++) {
 		if (swordOwned[i] == true) {
+			$("#s-sword-btn-info" + (i+1)).addClass("btn-info");
 			$("#s-sword-btn-info" + (i+1)).attr("onclick", ""),
 			$("#s-sword-btn-info" + (i+1)).html("owned");
 			$("#inv-sword-" + i).remove();

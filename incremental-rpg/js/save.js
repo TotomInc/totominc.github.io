@@ -68,6 +68,9 @@ function manualLoad() {
     amuletsOwned = s.amuletsOwned;
     swordOwned = s.swordOwned;
 
+    Mining.check();
+    Shop.check();
+
     Log("Game loaded!");
 };
 function saveData() {
@@ -142,7 +145,7 @@ function loadData() {
             bootsOwned = s.bootsOwned;
             amuletsOwned = s.amuletsOwned;
             swordOwned = s.swordOwned;
-            Log(s.mbo);
+
             Log("Game loaded!");
         };
     };

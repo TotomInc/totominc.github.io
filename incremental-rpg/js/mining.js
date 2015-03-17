@@ -71,7 +71,10 @@ Mining.check = function() {
 	for (var i = 0; i < miningBuilds.length; i++) {
 		var m = miningBuilds[i];
 		var o = miningBuildsOwned[i];
-		$("#m-i" + (i+1)).html(m.name + " : " + beautify(getMiningBuildPrice(i), 0) + " gold - " + o + " owned - level required : " + m.levelReq);
+		$("#m-n" + (i+1)).html(m.name);
+		$("#m-p" + (i+1)).html(beautify(getMiningBuildPrice(i), 0) + " gold");
+		$("#m-o" + (i+1)).html(o + " owned");
+		$("#m-l" + (i+1)).html(m.levelReq);
 		$("#m-b" + (i+1)).attr("onclick", 'Mining.buy(' + i + ');');
 	};
 };

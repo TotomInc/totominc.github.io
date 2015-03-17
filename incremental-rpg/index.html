@@ -146,26 +146,174 @@
 			<div class="container-fluid">
 				<div class="row">
 				<!-- mining -->
-					<div class="panel panel-success light">
-					  <div class="panel-heading"><p class="panel-title center">Mining</p></div>
-					  <div class="panel-body">
-						<div class="col-md-10">
-							<p class="shop-p"><img class="stats" src="img/I_Coal.png"> <span id="m-i1"></span></p>
-							<p class="shop-p"><img class="stats" src="img/I_Crystal01.png"> <span id="m-i2"></span></p>
-							<p class="shop-p"><img class="stats" src="img/I_Jade.png"> <span id="m-i3"></span></p>
-							<p class="shop-p"><img class="stats" src="img/I_Rubi.png"> <span id="m-i4"></span></p>
-							<p class="shop-p"><img class="stats" src="img/I_Saphire.png"> <span id="m-i5"></span></p>
-						</div>
-						<div class="col-md-2">
-							<p><a id="m-b1" class="btn btn-primary btn-sm">Buy</a></p>
-							<p><a id="m-b2" class="btn btn-primary btn-sm">Buy</a></p>
-							<p><a id="m-b3" class="btn btn-primary btn-sm">Buy</a></p>
-							<p><a id="m-b4" class="btn btn-primary btn-sm">Buy</a></p>
-							<p><a id="m-b5" class="btn btn-primary btn-sm">Buy</a></p>
-						</div>
-					  </div>
-					</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Building</th>
+								<th>Price</th>
+								<th>Owned</th>
+								<th>Level needed</th>
+								<th>Button</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="active">
+								<td><img class="stats" src="img/I_Coal.png"> <span id="m-n1"></span></td>
+								<td><span id="m-p1"></span></td>
+								<td><span id="m-o1"></span></td>
+								<td><span id="m-l1"></span></td>
+								<td><a id="m-b1" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+							</tr>
+							<tr class="active">
+								<td><img class="stats" src="img/I_Crystal01.png"> <span id="m-n2"></span></td>
+								<td><span id="m-p2"></span></td>
+								<td><span id="m-o2"></span></td>
+								<td><span id="m-l2"></span></td>
+								<td><a id="m-b2" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+							</tr>
+							<tr class="active">
+								<td><img class="stats" src="img/I_Jade.png"> <span id="m-n3"></span></td>
+								<td><span id="m-p3"></span></td>
+								<td><span id="m-o3"></span></td>
+								<td><span id="m-l3"></span></td>
+								<td><a id="m-b3" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+							</tr>
+							<tr class="active">
+								<td><img class="stats" src="img/I_Rubi.png"> <span id="m-n4"></span></td>
+								<td><span id="m-p4"></span></td>
+								<td><span id="m-o4"></span></td>
+								<td><span id="m-l4"></span></td>
+								<td><a id="m-b4" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+							</tr>
+							<tr class="active">
+								<td><img class="stats" src="img/I_Saphire.png"> <span id="m-n5"></span></td>
+								<td><span id="m-p5"></span></td>
+								<td><span id="m-o5"></span></td>
+								<td><span id="m-l5"></span></td>
+								<td><a id="m-b5" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+							</tr>
+						</tbody>
+					</table>
 				<!-- shop -->
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Price</th>
+								<th>Stats</th>
+								<th>Level needed</th>
+								<th>Button</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="active">
+								<td><span id="s-helmet-n1"></span></td>
+								<td><span id="s-helmet-p1"></span></td>
+								<td><span id="s-helmet-s1"></span></td>
+								<td><span id="s-helmet-l1"></span></td>
+								<td><span id="s-helmet-btn1"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-helmet-n2"></span></td>
+								<td><span id="s-helmet-p2"></span></td>
+								<td><span id="s-helmet-s2"></span></td>
+								<td><span id="s-helmet-l2"></span></td>
+								<td><span id="s-helmet-btn2"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-helmet-n3"></span></td>
+								<td><span id="s-helmet-p3"></span></td>
+								<td><span id="s-helmet-s3"></span></td>
+								<td><span id="s-helmet-l3"></span></td>
+								<td><span id="s-helmet-btn3"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-armour-n1"></span></td>
+								<td><span id="s-armour-p1"></span></td>
+								<td><span id="s-armour-s1"></span></td>
+								<td><span id="s-armour-l1"></span></td>
+								<td><span id="s-armour-btn1"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-armour-n2"></span></td>
+								<td><span id="s-armour-p2"></span></td>
+								<td><span id="s-armour-s2"></span></td>
+								<td><span id="s-armour-l2"></span></td>
+								<td><span id="s-armour-btn2"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-armour-n3"></span></td>
+								<td><span id="s-armour-p3"></span></td>
+								<td><span id="s-armour-s3"></span></td>
+								<td><span id="s-armour-l3"></span></td>
+								<td><span id="s-armour-btn3"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-gloves-n1"></span></td>
+								<td><span id="s-gloves-p1"></span></td>
+								<td><span id="s-gloves-s1"></span></td>
+								<td><span id="s-gloves-l1"></span></td>
+								<td><span id="s-gloves-btn1"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-gloves-n2"></span></td>
+								<td><span id="s-gloves-p2"></span></td>
+								<td><span id="s-gloves-s2"></span></td>
+								<td><span id="s-gloves-l2"></span></td>
+								<td><span id="s-gloves-btn2"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-gloves-n3"></span></td>
+								<td><span id="s-gloves-p3"></span></td>
+								<td><span id="s-gloves-s3"></span></td>
+								<td><span id="s-gloves-l3"></span></td>
+								<td><span id="s-gloves-btn3"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-boots-n1"></span></td>
+								<td><span id="s-boots-p1"></span></td>
+								<td><span id="s-boots-s1"></span></td>
+								<td><span id="s-boots-l1"></span></td>
+								<td><span id="s-boots-btn1"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-boots-n2"></span></td>
+								<td><span id="s-boots-p2"></span></td>
+								<td><span id="s-boots-s2"></span></td>
+								<td><span id="s-boots-l2"></span></td>
+								<td><span id="s-boots-btn2"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-boots-n3"></span></td>
+								<td><span id="s-boots-p3"></span></td>
+								<td><span id="s-boots-s3"></span></td>
+								<td><span id="s-boots-l3"></span></td>
+								<td><span id="s-boots-btn3"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-sword-n1"></span></td>
+								<td><span id="s-sword-p1"></span></td>
+								<td><span id="s-sword-s1"></span></td>
+								<td><span id="s-sword-l1"></span></td>
+								<td><span id="s-sword-btn1"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-sword-n2"></span></td>
+								<td><span id="s-sword-p2"></span></td>
+								<td><span id="s-sword-s2"></span></td>
+								<td><span id="s-sword-l2"></span></td>
+								<td><span id="s-sword-btn2"></span></td>
+							</tr>
+							<tr class="active">
+								<td><span id="s-sword-n3"></span></td>
+								<td><span id="s-sword-p3"></span></td>
+								<td><span id="s-sword-s3"></span></td>
+								<td><span id="s-sword-l3"></span></td>
+								<td><span id="s-sword-btn3"></span></td>
+							</tr>
+						</tbody>
+					</table>
+					<!--
 					<div class="panel panel-success light">
 					  <div class="panel-heading"><p class="panel-title center">Shop</p></div>
 					  <div class="panel-body">
@@ -205,6 +353,7 @@
 					  	</div>
 					  </div>
 					</div>
+					-->
 				</div>
 			</div>
 		  </div>
@@ -258,25 +407,25 @@
 					          <td><img class="stats" src="img/I_Crystal01.png"> Crystal</td>
 					          <td><span id="modal-crystal"></span></td>
 					          <td>10 coal/crystal</td>
-					          <td><a class="btn btn-primary btn-xs center-btn" onclick="Mining.craft('crystal')">Craft</a></td>
+					          <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('crystal')">Craft</a></td>
 					        </tr>
 					        <tr class="active">
 					          <td><img class="stats" src="img/I_Jade.png"> Jade</td>
 					          <td><span id="modal-jade"></span></td>
 					          <td>10 crystal/jade</td>
-					          <td><a class="btn btn-primary btn-xs center-btn" onclick="Mining.craft('jade')">Craft</a></td>
+					          <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('jade')">Craft</a></td>
 					        </tr>
 					        <tr class="active">
 					          <td><img class="stats" src="img/I_Rubi.png"> Ruby</td>
 					          <td><span id="modal-ruby"></span></td>
 					          <td>10 jade/ruby</td>
-					          <td><a class="btn btn-primary btn-xs center-btn" onclick="Mining.craft('ruby')">Craft</a></td>
+					          <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('ruby')">Craft</a></td>
 					        </tr>
 					        <tr class="active">
 					          <td><img class="stats" src="img/I_Saphire.png"> Saphire</td>
 					          <td><span id="modal-saphire"></span></td>
 					          <td>10 ruby/saphire</td>
-					          <td><a class="btn btn-primary btn-xs center-btn" onclick="Mining.craft('saphire')">Craft</a></td>
+					          <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('saphire')">Craft</a></td>
 					        </tr>
 					      </tbody>
 					    </table>

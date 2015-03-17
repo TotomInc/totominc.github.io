@@ -1,4 +1,4 @@
-var fps = 60; var interval = (1000 / fps); var version = 0.003; var release = "-r2"; var init = false;
+var fps = 60; var interval = (1000 / fps); var version = 0.004; var release = "-r1"; var init = false;
 
 // log
 function Log(text) { console.log("Inc-RPG v" + version + release + " : " + text); };
