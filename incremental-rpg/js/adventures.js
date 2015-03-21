@@ -4,8 +4,7 @@ var adventures = [ // name, lvl, minMonsters, maxMonsters, maxHp, minHp, maxDmg,
 	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	25,		15,		80,		40,		80, 	40),
 	new Adventure("Dragon Cave",			12,	7,	10,	200,	150,	40,		30,		500,	350, 	500,	350),
 	new Adventure("Haunted Village",		15,	7,	10,	300,	200,	55,		40,		1500,	1000,	1000,	750),
-	new Adventure("Mansion",				20,	5,	8,	750,	600,	65,		55,		3000,	1750,	1500,	1000),
-	new Adventure("Mathys Van's",			1,	1,	1,	1000,	1000,	66,		66,		10000,	10000,	5000,	5000)
+	new Adventure("Mansion",				20,	5,	8,	750,	600,	65,		55,		3000,	1750,	1500,	1000)
 ];
 var liveAdventure;
 
