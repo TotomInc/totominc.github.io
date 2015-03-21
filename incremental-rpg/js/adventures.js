@@ -1,10 +1,13 @@
 var adventures = [ // name, lvl, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
 	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 		3, 		20, 	10, 	20, 	10),
 	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 		5, 		40, 	20, 	40,		20),
-	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	25,		15,		80,		40,		80, 	40),
-	new Adventure("Dragon Cave",			12,	7,	10,	200,	150,	40,		30,		500,	350, 	500,	350),
-	new Adventure("Haunted Village",		15,	7,	10,	300,	200,	55,		40,		1500,	1000,	1000,	750),
-	new Adventure("Mansion",				20,	5,	8,	750,	600,	65,		55,		3000,	1750,	1500,	1000)
+	new Adventure("Sacred Wood", 			7, 	5, 	7, 	125, 	100,	25,		15,		80,		40,		80, 	40),
+	new Adventure("Dragon Cave",			12,	7,	10,	200,	150,	40,		30,		500,	350, 	200,	150),
+	new Adventure("Haunted Village",		15,	7,	10,	300,	200,	55,		40,		1500,	1000,	750,	500),
+	new Adventure("Darwaeton Castle",		20,	5,	8,	750,	600,	65,		55,		3000,	1750,	1000,	750),
+	new Adventure("The Hospital",			30,	4,	8,	1200,	1000,	100,	80,		6000,	5000,	2000,	1500),
+	new Adventure("Kraps Forest",			40,	4,	7,	1600,	1400,	150,	125,	10000,	8000,	3500,	2750),
+	new Adventure("The Deep Quarters",		50,	9,	12,	2000,	1800,	200,	150,	15000,	12500,	5000,	4000)
 ];
 var liveAdventure;
 

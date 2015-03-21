@@ -1,27 +1,32 @@
 var shopHelmets = [
 	new Helmet("Newbie Helmet",				0,		1,		15,		"img/C_Hat03.png"),
 	new Helmet("Bronze Helmet",				2500,	5,		100,	"img/C_Elm01.png"),
-	new Helmet("Iron Helmet",				12500,	10,		250,	"img/C_Elm02.png")
+	new Helmet("Iron Helmet",				12500,	15,		250,	"img/C_Elm02.png"),
+	new Helmet("Knight Helmet",				22000,	25,		600,	"img/C_Elm03.png")
 ];
 var shopArmours = [
 	new Armour("Newbie Armour",				0,		1,		40,		"img/A_Clothing02.png"),
 	new Armour("Bronze Armour",				3500,	5,		150,	"img/A_Armour01.png"),
-	new Armour("Iron Armour",				17000,	10,		375,	"img/A_Armour02.png")
+	new Armour("Iron Armour",				17000,	15,		375,	"img/A_Armour02.png"),
+	new Armour("Copper Armour",				35000,	25,		950,	"img/A_Armor05.png")
 ];
 var shopGloves = [
 	new Gloves("Newbie Gloves",				0,		1,		10,		"img/Ac_Gloves02.png"),
 	new Gloves("Leather Gloves",			2500,	5,		70,		"img/Ac_Gloves01.png"),
-	new Gloves("Reinforced Leather Gloves",	12500,	10,		175,	"img/Ac_Gloves04.png")
+	new Gloves("Reinforced Leather Gloves",	12500,	15,		175,	"img/Ac_Gloves04.png"),
+	new Gloves("Iron Gloves",				19000,	25,		500,	"img/Ac_Gloves05.png")
 ];
 var shopBoots = [
 	new Boots("Newbie Boots",				0,		1,		30,		"img/A_Shoes01.png"),
 	new Boots("Reinforced Boots",			2000,	5,		90,		"img/A_Shoes03.png"),
-	new Boots("Iron Boots",					15000,	10,		200,	"img/A_Shoes07.png")
+	new Boots("Iron Boots",					15000,	15,		200,	"img/A_Shoes07.png"),
+	new Boots("Reinforced Iron Boots",		20000,	25,		550,	"img/A_Shoes04.png")
 ];
 var shopSwords = [
 	new Sword("Newbie Sword",				0,		1,		5,		"img/W_Sword001.png"),
 	new Sword("Reinforced Sword",			3500,	5,		15,		"img/W_Sword005.png"),
-	new Sword("Iron Sword",					15000,	10,		40,		"img/W_Sword007.png")
+	new Sword("Iron Sword",					15000,	15,		40,		"img/W_Sword007.png"),
+	new Sword("Mystic Sword",				30000,	25,		200,	"img/W_Sword009.png")
 ];
 
 var helmetsOwned = []; var armoursOwned = []; var glovesOwned = []; var bootsOwned = []; var amuletsOwned = []; var swordOwned = [];
