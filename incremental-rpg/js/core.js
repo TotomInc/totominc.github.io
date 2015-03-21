@@ -18,12 +18,18 @@ Update.playerStats = function() {
 		$("#s-ruby, #modal-ruby").html("Ruby : " + beautify(pi.ruby, 2));
 		$("#s-saphire, #modal-saphire").html("Saphire : " + beautify(pi.saphire, 2));
 
-		$("#s-helmet").html('<img class="stats" src="' + p.helmet.img + '"> Helmet : <i>' + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor");
-		$("#s-armour").html('<img class="stats" src="' + p.armour.img + '"> Armour : <i>' + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor");
-		$("#s-gloves").html('<img class="stats" src="' + p.gloves.img + '"> Gloves : <i>' + p.gloves.itemName + "</i><br>+" + p.gloves.armor + " armor");
-		$("#s-boots").html('<img class="stats" src="' + p.boots.img + '"> Boots : <i>' + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor");
-		$("#s-amulet").html('<img class="stats" src="' + p.amulet.img + '"> Amulet : <i>' + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor");
-		$("#s-sword").html('<img class="stats" src="' + p.sword.img + '"> Sword : <i>' + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage");
+		$("#s-helmet").html('<img class="stats" src="' + p.helmet.img + '"> Helmet : <i>' + p.helmet.itemName + "</i><br>+" + p.helmet.armor + " armor - enchantment : " + p.helmet.enchantment);
+		$("#inv-helmet-img").attr("src", p.helmet.img);
+		$("#s-armour").html('<img class="stats" src="' + p.armour.img + '"> Armour : <i>' + p.armour.itemName + "</i><br>+" + p.armour.armor + " armor - enchantment : " + p.armour.enchantment);
+		$("#inv-armour-img").attr("src", p.armour.img);
+		$("#s-gloves").html('<img class="stats" src="' + p.gloves.img + '"> Gloves : <i>' + p.gloves.itemName + "</i><br>+" + p.gloves.armor + " armor - enchantment : " + p.gloves.enchantment);
+		$("#inv-gloves-img").attr("src", p.gloves.img);
+		$("#s-boots").html('<img class="stats" src="' + p.boots.img + '"> Boots : <i>' + p.boots.itemName + "</i><br>+" + p.boots.armor + " armor - enchantment : " + p.boots.enchantment);
+		$("#inv-boots-img").attr("src", p.boots.img);
+		$("#s-amulet").html('<img class="stats" src="' + p.amulet.img + '"> Amulet : <i>' + p.amulet.itemName + "</i><br>+" + p.amulet.armor + " armor - enchantment : " + p.amulet.enchantment);
+		$("#inv-amulet-img").attr("src", p.amulet.img);
+		$("#s-sword").html('<img class="stats" src="' + p.sword.img + '"> Sword : <i>' + p.sword.itemName + "</i><br>+" + p.sword.damage + " damage - enchantment : " + p.sword.enchantment);
+		$("#inv-sword-img").attr("src", p.sword.img);
 		$("#s-totalarmor").html("Total armor : " + getPlayerArmor() + "% reduction of monster damage");
 		// hp-bar in the navbar
 		var playerHpBar = 100;

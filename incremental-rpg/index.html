@@ -96,6 +96,12 @@
 							<div id="adventures-medrow" class="col-md-4"><span id="a-m6"></span></div>
 							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(5);">Start</a></div>
 						</div>
+						<br>
+						<div id="adventures-row" class="row">
+							<div id="adventures-row" class="col-md-6"><span id="a-n7"></span></div>
+							<div id="adventures-medrow" class="col-md-4"><span id="a-m7"></span></div>
+							<div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(6);">Start</a></div>
+						</div>
 					</div>
 				  </div>
 				</div>
@@ -447,12 +453,12 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="well well-lg">
-							<p class="light small-font">Helmet :<select id="inv-helmet" class="form-control"></select></p>
-							<p class="light small-font">Armour :<select id="inv-armour" class="form-control"></select></p>
-							<p class="light small-font">Gloves :<select id="inv-gloves" class="form-control"></select></p>
-							<p class="light small-font">Boots :<select id="inv-boots" class="form-control"></select></p>
-							<p class="light small-font">Amulet :<select id="inv-amulet" class="form-control"></select></p>
-							<p class="light small-font">Sword :<select id="inv-sword" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-helmet-img"> Helmet :<select id="inv-helmet" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-armour-img"> Armour :<select id="inv-armour" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-gloves-img"> Gloves :<select id="inv-gloves" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-boots-img"> Boots :<select id="inv-boots" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-amulet-img"> Amulet :<select id="inv-amulet" class="form-control"></select></p>
+							<p class="light small-font"><img id="inv-sword-img"> Sword :<select id="inv-sword" class="form-control"></select></p>
 						</div>
 					</div>
 				</div>
@@ -471,8 +477,8 @@
 		  <div class="modal-body">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success btn-sm center-btn">Export-code</a></div>
-						<div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success btn-sm center-btn">Import-code</a></div>
+						<div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success btn-sm center-btn">Export-code/bugged</a></div>
+						<div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success btn-sm center-btn">Import-code/bugged</a></div>
 						<div class="col-md-4"><a href="#" onclick="resetData()" class="btn btn-danger btn-sm center-btn">Hard-reset</a></div>
 					</div>
 					<br>
@@ -498,6 +504,7 @@
 	<script src="js/monsters.js"></script>
 	<script src="js/adventures.js"></script>
 	<script src="js/inventory.js"></script>
+	<script src="js/enchantments.js"></script>
 	<script src="js/core.js"></script>
 	<script src="js/save.js"></script>
 </body>

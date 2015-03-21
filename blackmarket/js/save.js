@@ -64,6 +64,11 @@ function softReset() {
         totalShoots = t3;
         totalReloads = t4;
         prestigeUpgradesOwned = t5;
+        for (var i = 0; i < prestigeUpgrades.length; i++) {
+            if (prestigeUpgradesOwned[i] == true) {
+                prestigeUpgrades[i].run();
+            };
+        };
         saveData();
         location.reload();
     };

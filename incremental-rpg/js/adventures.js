@@ -1,10 +1,11 @@
-var adventures = [ // name, reqLevel, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
-	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 	3, 	20, 	10, 	20, 	10),
-	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 	5, 	40, 	20, 	40,		20),
-	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	25,	15,	80,		40,		80, 	40),
-	new Adventure("Dragon Cave",			13,	7,	10,	200,	150,	40,	30,	500,	350, 	500,	350),
-	new Adventure("Haunted Village",		20,	7,	10,	300,	200,	55,	40,	2500,	2000,	2500,	2000),
-	new Adventure("Mansion",				25,	5,	8,	750,	600,	65,	55,	7500,	6500,	7500,	6500)
+var adventures = [ // name, lvl, minMonsters, maxMonsters, maxHp, minHp, maxDmg, minDmg, maxGold, minGold, maxXp, minXp
+	new Adventure("Plains", 				1, 	2, 	4, 	40, 	25,		5, 		3, 		20, 	10, 	20, 	10),
+	new Adventure("The Cave", 				3, 	3, 	6, 	75, 	50, 	7, 		5, 		40, 	20, 	40,		20),
+	new Adventure("Undiscovered Caves", 	7, 	5, 	7, 	125, 	100,	25,		15,		80,		40,		80, 	40),
+	new Adventure("Dragon Cave",			12,	7,	10,	200,	150,	40,		30,		500,	350, 	500,	350),
+	new Adventure("Haunted Village",		15,	7,	10,	300,	200,	55,		40,		1500,	1000,	1000,	750),
+	new Adventure("Mansion",				20,	5,	8,	750,	600,	65,		55,		3000,	1750,	1500,	1000),
+	new Adventure("Mathys Van's",			1,	1,	1,	1000,	1000,	66,		66,		10000,	10000,	5000,	5000)
 ];
 var liveAdventure;
 

@@ -55,9 +55,9 @@ Mining.craft = function(item) {
 		pi.ruby++;
 		pi.jade -= 10;
 	};
-	if (item == 'saphire' && pi.jade >= 10) {
+	if (item == 'saphire' && pi.ruby >= 10) {
 		pi.saphire++;
-		pi.jade -= 10;
+		pi.ruby -= 10;
 	};
 };
 Mining.init = function() {
