@@ -21,19 +21,21 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 			<div class="navbar-header">
-			  <a class="navbar-brand light cur-d">Incremental-RPG</a>
+			  <a class="navbar-brand light cur-d"><span><img src="img/W_Sword017.png"> Incremental-RPG</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav navbar-right light">
-			  <li class="active" data-toggle="modal" data-target="#shop-modal"><a href="#">Shop</a></li>
+			  <li class="active li-btn" data-toggle="modal" data-target="#shop-modal"><a href="#">Shop</a></li>
 			  <li class="active" data-toggle="modal" data-target="#enchantment-modal"><a href="#">Enchantments</a></li>
 			  <li class="active" data-toggle="modal" data-target="#crafting-modal"><a href="#">Crafting</a></li>
 			  <li class="active" data-toggle="modal" data-target="#inventory-modal"><a href="#">Inventory</a></li>
 			  <li class="active" data-toggle="modal" data-target="#options-modal"><a href="#">Options</a></li>
+			  <!--
 				<li><a><span id="nav-hp" class="bottom-red cur-d"></span> <img class="icon" src="img/P_Red01.png"></a></li>
 				<li><a><span id="nav-xp" class="bottom-yellowxp cur-d"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
 				<li><a><span id="nav-gold" class="bottom-yellowcoin cur-d"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
 				<li><a><span id="nav-diamond" class="bottom-blue cur-d"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
+				-->
 			  </ul>
 			</div>
 	  </div>
@@ -130,7 +132,8 @@
 							<img class="stats" src="img/P_Yellow01.png"> <span id="s-xp"></span><br>
 							<img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
 							<img class="stats" src="img/I_Diamond.png"> <span id="s-diamond"></span><br>
-							<img class="stats" src="img/Ac_Medal01.png"> <span id="s-level"></span></p>
+							<img class="stats" src="img/Ac_Medal01.png"> <span id="s-level"></span><br>
+							<img class="stats" src="img/Ac_Medal04.png"> <span id="s-medals"></span></p>
 							<p><img class="stats" src="img/I_Coal.png"> <span id="s-coal"></span><br>
 							<img class="stats" src="img/I_Crystal01.png"> <span id="s-crystal"></span><br>
 							<img class="stats" src="img/I_Jade.png"> <span id="s-jade"></span><br>
@@ -224,6 +227,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						<!--
 							<tr class="active">
 								<td><span id="s-helmet-n1"></span></td>
 								<td><span id="s-helmet-p1"></span></td>
@@ -231,6 +235,7 @@
 								<td><span id="s-helmet-l1"></span></td>
 								<td><span id="s-helmet-btn1"></span></td>
 							</tr>
+						-->
 							<tr class="active">
 								<td><span id="s-helmet-n2"></span></td>
 								<td><span id="s-helmet-p2"></span></td>
@@ -252,6 +257,7 @@
 								<td><span id="s-helmet-l4"></span></td>
 								<td><span id="s-helmet-btn4"></span></td>
 							</tr>
+							<!--
 							<tr class="active">
 								<td><span id="s-armour-n1"></span></td>
 								<td><span id="s-armour-p1"></span></td>
@@ -259,6 +265,7 @@
 								<td><span id="s-armour-l1"></span></td>
 								<td><span id="s-armour-btn1"></span></td>
 							</tr>
+							-->
 							<tr class="active">
 								<td><span id="s-armour-n2"></span></td>
 								<td><span id="s-armour-p2"></span></td>
@@ -280,6 +287,7 @@
 								<td><span id="s-armour-l4"></span></td>
 								<td><span id="s-armour-btn4"></span></td>
 							</tr>
+							<!--
 							<tr class="active">
 								<td><span id="s-gloves-n1"></span></td>
 								<td><span id="s-gloves-p1"></span></td>
@@ -287,6 +295,7 @@
 								<td><span id="s-gloves-l1"></span></td>
 								<td><span id="s-gloves-btn1"></span></td>
 							</tr>
+							-->
 							<tr class="active">
 								<td><span id="s-gloves-n2"></span></td>
 								<td><span id="s-gloves-p2"></span></td>
@@ -308,6 +317,7 @@
 								<td><span id="s-gloves-l4"></span></td>
 								<td><span id="s-gloves-btn4"></span></td>
 							</tr>
+							<!--
 							<tr class="active">
 								<td><span id="s-boots-n1"></span></td>
 								<td><span id="s-boots-p1"></span></td>
@@ -315,6 +325,7 @@
 								<td><span id="s-boots-l1"></span></td>
 								<td><span id="s-boots-btn1"></span></td>
 							</tr>
+							-->
 							<tr class="active">
 								<td><span id="s-boots-n2"></span></td>
 								<td><span id="s-boots-p2"></span></td>
@@ -336,6 +347,7 @@
 								<td><span id="s-boots-l4"></span></td>
 								<td><span id="s-boots-btn4"></span></td>
 							</tr>
+							<!--
 							<tr class="active">
 								<td><span id="s-sword-n1"></span></td>
 								<td><span id="s-sword-p1"></span></td>
@@ -343,6 +355,7 @@
 								<td><span id="s-sword-l1"></span></td>
 								<td><span id="s-sword-btn1"></span></td>
 							</tr>
+							-->
 							<tr class="active">
 								<td><span id="s-sword-n2"></span></td>
 								<td><span id="s-sword-p2"></span></td>
@@ -381,11 +394,32 @@
 		  <div class="modal-body">
 			<div class="container-fluid">
 				<div class="row">
-					<p class="light med-font center">This feature is coming soon!</p>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Level needed</th>
+								<th>Items needed</th>
+								<th>Effect</th>
+								<th>Button</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="active">
+								<td><span id="e-n1"></span></td>
+								<td><span id="e-desc1"></span></td>
+								<td><span id="e-lvl1"></span></td>
+								<td><span id="e-items1"></span></td>
+								<td><span id="e-effect1"></span></td>
+								<td><span id="e-btn1"></span></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		  </div>
-		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close & save changes</button></div>
+		  <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close</button></div>
 		</div>
 	  </div>
 	</div>

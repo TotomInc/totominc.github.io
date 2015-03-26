@@ -12,6 +12,7 @@ Update.playerStats = function() {
 		$("#s-gold, #nav-gold").html("Gold : " + beautify(ps.gold, 2));
 		$("#s-diamond, #nav-diamond").html("Diamond : " + beautify(ps.diamond, 2));
 		$("#s-level").html("Level : " + beautify(ps.level, 0));
+		$("#s-medals").html("Medals : " + beautify(ps.medals, 0));
 		$("#s-coal, #modal-coal").html("Coal : " + beautify(pi.coal, 2));
 		$("#s-crystal, #modal-crystal").html("Crystal : " + beautify(pi.crystal, 2));
 		$("#s-jade, #modal-jade").html("Jade : " + beautify(pi.jade, 2));
@@ -58,7 +59,8 @@ Update.gameInit = function() {
 	Adventure.init();
 	Mining.init();
 	Shop.init();
-	Player.init(); // init materials
+	Enchant.init();
+	Player.init();
 	init = true;
 };
 Update.loadSavegame = function() {
@@ -66,6 +68,7 @@ Update.loadSavegame = function() {
 		loadData();
 		Mining.check();
 		Shop.check();
+		Enchant.check();
 		Log("You can play, the game is fully loaded! Have fun!");
 	};
 };

@@ -19,5 +19,6 @@ td { font-weight: 300; }
 
 .navbar { border-radius: 0; }
 .navsmall:hover { border-bottom: 3px solid #2196f3; transition: all 0.2s; }
-.navbar-nav>.active>a { background: #fff !important; }
+.navbar-nav>.active>a { background: #fff !important; text-decoration: underline; }
+.modal-dialog { width: 800px; }
 .progress { margin-bottom: 0; }

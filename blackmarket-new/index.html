@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Blackmarket - Incremental-game</title>
+
+	<link href="favicon.ico" rel="icon" type="image/x-icon" />
+	<script src="src/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="src/bootstrap.min.css">
+	<link rel="stylesheet" href="src/paper.bootstrap.css">
+	<link rel="stylesheet" href="src/font-awesome.min.css">
+	<link rel="stylesheet" href="css/interface.css">
+	<script src="src/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- navbar -->
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+			<div class="navbar-header"><a class="navbar-brand">Money: 0.00$</a></div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+			  <ul class="nav navbar-nav navbar-right">
+				<li class="active"><a>Weed: 0.00g <small>(0.00g/s)</small></a></li>
+				<li class="active"><a>Meth: 0.00g <small>(0.00g/s)</small></a></li>
+				<li class="active"><a>Cocaine: 0.00g <small>(0.00g/s)</small></a></li>
+			  </ul>
+			</div>
+	  </div>
+	  <div class="bar">
+	  	<div class="shoot-bar"><div id="shoot-navbar" class="shoot-filler"></div></div>
+	  	<div class="reload-bar"><div id="reload-navbar" class="reload-filler"></div></div>
+	  </div>
+	</nav>
+
+<!-- game area -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">
+			<!-- actions panel -->
+				<div class="panel panel-primary light">
+				  <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-6">
+				  			<p class="center"><span id="action-shoot"></span></p>
+				  			<div class="progress"><div id="shoot-actions" class="progress-bar progress-bar-success shoot-color"></div></div>
+				  		</div>
+				  		<div class="col-md-6">
+				  			<p class="center"><span id="action-reload"></span></p>
+				  			<div class="progress"><div id="reload-actions" class="progress-bar progress-bar-danger reload-color"></div></div>
+				  		</div>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-md-4 col-md-offset-1"><a onclick="Action.shoot();" id="a-1" class="btn btn-success center-btn">Shoot</a></div>
+				  		<div class="col-md-4 col-md-offset-2"><a onclick="Action.reload();" id="a-2" class="btn btn-success center-btn">Reload</a></div>
+				  	</div>
+				  </div>
+				</div>
+			<!-- stats panel -->
+				<div class="panel panel-success light">
+				  <div class="panel-heading"><h3 class="panel-title center">Stats</h3></div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-6 right-separator"><p><span id="stats-ammo"></span></p></div>
+				  		<div class="col-md-6"><p><span id="stats-money"></span></p></div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-md-7">
+				<ul class="nav nav-tabs nav-justified">
+				  <li class="active"><a href="#tab-up" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
+				  <li><a href="#tab-builds" data-toggle="tab">Builds <i class="fa fa-building-o"></i></a></li>
+				  <li><a href="#tab-dealers" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
+				  <li><a href="#tab-prestige" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
+				  <li><a href="#tab-patch" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
+				  <li><a href="#tab-tables" data-toggle="tab">Tables <i class="fa fa-table"></i></a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+				  <div class="tab-pane fade active in" id="tab-up"></div>
+				  <div class="tab-pane fade" id="tab-builds"></div>
+				  <div class="tab-pane fade" id="tab-dealers"></div>
+				  <div class="tab-pane fade" id="tab-prestige"></div>
+				  <div class="tab-pane fade" id="tab-patch"></div>
+				  <div class="tab-pane fade" id="tab-tables"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- scripts -->
+	<script src="src/beautify.min.js"></script>
+	<script src="js/core.js"></script>
+</body>
+</html>

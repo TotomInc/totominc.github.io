@@ -1,0 +1,32 @@
+body { background: #eee; font-weight: 400; }
+small { font-size: 75%; }
+
+.thin { font-weight: 100; }
+.light { font-weight: 300; }
+.normal { font-weight: 400; }
+
+.center { text-align: center; }
+.right { text-align: right; }
+.underline { text-decoration: underline; }
+.bold { font-weight: bold; }
+
+.blue { background: #2196F3 !important; }
+.shoot-color { background: #4CAF50 !important; }
+.reload-color { background: #F44336 !important; }
+
+.right-separator { height: 100%; border-right: 1px solid #3F51B5; }
+
+.center-btn { display: block; margin-left: auto; margin-right: auto; }
+
+/* progress-bar */
+.bar { width: 100%; height: 4px; background: #ddd; }
+.progress { height: 10px; }
+.shoot-bar { width: 50%; height: 100%; border-right: 2px solid #303F9F; }
+.shoot-filler { height: 100%; width: 0%; background: #4CAF50; }
+.reload-bar { margin-top: -4px; margin-left: 50%; width: 50%; height: 100%; }
+.reload-filler { height: 100%; width: 0%; background: #F44336; }
+
+/* custom Bootswatch */
+.navbar { border-radius: 0; background: #5C6BC0; }
+.navbar-brand { color: #fff !important; }
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover { background: #3F51B5; }
