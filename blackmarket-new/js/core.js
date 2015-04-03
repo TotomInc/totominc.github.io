@@ -6,13 +6,14 @@ var drugInit = [
     new Drug("Cocaine",     1250)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var before; var now; var key = "Blackmarket-";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-";
+var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'before',
     'drugStock', 'drugMultiplier',
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
-    'weedBuildsOwned',
-    'weedDealersOwned'
+    'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
+    'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
 ];
 
 function Log(text) { console.log("Blackmarket - " + text); };

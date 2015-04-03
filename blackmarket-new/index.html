@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -19,9 +19,18 @@
 <!-- navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top light">
     <div class="container-fluid">
-      <div class="navbar-header"><a class="navbar-brand"><span id="navbar-money"></span></a></div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand"><span id="navbar-money"></span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
         <ul class="nav navbar-nav navbar-right">
+          <li><a class="underline white cur-p" data-toggle="modal" data-target="#options-modal">Options</a></li>
           <li class="active"><a>Weed: 0.00g <small>(0.00g/s)</small></a></li>
           <li class="active"><a>Meth: 0.00g <small>(0.00g/s)</small></a></li>
           <li class="active"><a>Cocaine: 0.00g <small>(0.00g/s)</small></a></li>
@@ -72,17 +81,6 @@
             </div>
           </div>
         </div>
-      <!-- options panel -->
-        <div class="panel panel-primary light">
-          <div class="panel-heading"><h3 class="panel-title center">Options</h3></div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-4 col-xs-6"><a onclick="saveData();" class="btn btn-success center-btn">Save</a></div>
-              <div class="col-md-4 col-xs-6"><a onclick="hardReset();" class="btn btn-success center-btn">Hard-reset</a></div>
-              <div class="col-md-4 col-xs-12"><a onclick="softReset();" class="btn btn-success center-btn">Soft-reset</a></div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="col-md-7 light">
@@ -120,15 +118,19 @@
           </div>
           <div class="tab-pane fade" id="tab-builds">
             <ul id="builds-weed" class="list-group"></ul>
+            <ul id="builds-meth" class="list-group"></ul>
+            <ul id="builds-cocaine" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-dealers">
             <ul id="dealers-weed" class="list-group"></ul>
+            <ul id="dealers-meth" class="list-group"></ul>
+            <ul id="dealers-cocaine" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-prestige"></div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
               <p class="lead center underline">v1.00 : total remake, full release!</p>
-              <p class="justify tiny-font">Blackmarket entered in his first release version with a new interface! Code have been also remade from scratch, some bugs that were in the old version should now be fixed. I also added more upgrades, more builds and dealers. The game is now better balanced and should be a bit harder than is was.<br>
+              <p class="justify tiny-font">Blackmarket entered in his first release version with a new interface! Code have been also remade from scratch, some bugs that were in the old version should now be fixed. I also added more upgrades, more builds and dealers. The game is now better balanced and should be a bit harder than it was.<br>
               Give me your feedback about this new user-interface and, of course, bugs reports!</p>
             </div>
           </div>
@@ -138,8 +140,27 @@
     </div>
   </div>
 
+  <div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p></div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
+          <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-success btn-sm center-btn">Hard-reset</a></div>
+          <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-success btn-sm center-btn">Soft-reset</a></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p>Code with <i class="fa fa-heart"></i> by <a target="_blank" href="https://github.com/TotomInc">TotomInc</a>.<br>
+        Share, fork and give me ideas : <a target="_blank" href="https://github.com/TotomInc/totominc.github.io">the repo is on GitHub!</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+
 <!-- scripts -->
-  <script src="src/resize.js"></script>
+  <script src="js/resize.js"></script>
   <script src="js/save.js"></script>
   <script src="js/helpers.js"></script>
   <script src="js/upgrades.js"></script>
