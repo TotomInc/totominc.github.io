@@ -43,15 +43,15 @@ Init.update = function() {
         $("#navbar-money").html("Money : " + fix(money[0]) + "$");
         $("#action-shoot").html("+" + fix(getShootReward()) + "$/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000)) + " sec/reload");
-        $("#stats-money").html("Money : " + fix(money[0]) + "$<br>Total Money : " + fix(money[1]) + "$");
-        $("#stats-ammo").html("Ammo : " + shoot[0] + "/" + shoot[2] + "<br>Total shoots : " + shoot[5] + "<br>Total reloads : " + shoot[6]);
-        $("#stats-weed").html("Weed stock : " + fix(drugStock[0]) + "g (" + fix(drugPerSec[0]) + "g/sec)<br>Weed price : " + fix(getDrugPrice(0)) + "$/g<br>Weed multiplier : x" + fix(drugMultiplier[0]));
-        $("#stats-meth").html("Meth stock : " + fix(drugStock[1]) + "g (" + fix(drugPerSec[1]) + "g/sec)<br>Meth price : " + fix(getDrugPrice(1)) + "$/g<br>Meth multiplier : x" + fix(drugMultiplier[1]));
-        $("#stats-cocaine").html("Cocaine stock : " + fix(drugStock[2]) + "g (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine price : " + fix(getDrugPrice(2)) + "$/g<br>Cocaine multiplier : x" + fix(drugMultiplier[2]));
-        $("#stats-weedcash").html("Money from weed : " + fix(moneyPerSec[0]) + "$/sec<br>");
-        $("#stats-methcash").html("Money from meth : " + fix(moneyPerSec[1]) + "$/sec<br>");
-        $("#stats-cocainecash").html("Money from cocaine : " + fix(moneyPerSec[2]) + "$/sec<br>");
-        $("#stats-totalmoneypersec").html("Money per sec : " + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec");
+        $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b>");
+        $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shoots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
+        $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0]) + "g</b> (" + fix(drugPerSec[0]) + "g/sec)<br>Weed price : <b>" + fix(getDrugPrice(0)) + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0]) + '</b>');
+        $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1]) + "g</b> (" + fix(drugPerSec[1]) + "g/sec)<br>Meth price : <b>" + fix(getDrugPrice(1)) + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1]) + '</b>');
+        $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2]) + "g</b> (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine price : <b>" + fix(getDrugPrice(2)) + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2]) + '</b>');
+        $("#stats-weedcash").html("Money from weed : <b>" + fix(moneyPerSec[0]) + "$/sec</b><br>");
+        $("#stats-methcash").html("Money from meth : <b>" + fix(moneyPerSec[1]) + "$/sec</b><br>");
+        $("#stats-cocainecash").html("Money from cocaine : <b>" + fix(moneyPerSec[2]) + "$/sec</b><br>");
+        $("#stats-totalmoneypersec").html("Money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
 
         if (shoot > 0) {
             $("#a-1").attr("class", "btn btn-success center-btn");
@@ -85,10 +85,10 @@ Init.coreUpdate = function() {
         var elapsedTime = now - before;
         if (elapsedTime > interval) {
             Build.earn(Math.floor(elapsedTime / interval));
-            Dealer.sell();
+            Dealer.sell(Math.floor(elapsedTime / interval));
         } else {
             Build.earn(1);
-            Dealer.sell();
+            Dealer.sell(1);
         };
         Init.update();
         before = new Date().getTime();
