@@ -31,6 +31,8 @@ b { font-weight: 400; }
 .small-font { font-size: 20px; }
 .tiny-font { font-size: 14px; }
 
+.line { width: 90%; height: 1px; margin-left: auto; margin-right: auto; background: #5C6BC0; }
+
 .center-btn { display: block; margin-left: auto; margin-right: auto; }
 
 /* upgrade square */

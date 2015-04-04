@@ -6,7 +6,7 @@ var drugInit = [
     new Drug("Cocaine",     1250)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "1.00"; var release = "-r1";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'before',
@@ -53,6 +53,7 @@ Init.update = function() {
         $("#stats-methcash").html("Money from meth : <b>" + fix(moneyPerSec[1]) + "$/sec</b><br>");
         $("#stats-cocainecash").html("Money from cocaine : <b>" + fix(moneyPerSec[2]) + "$/sec</b><br>");
         $("#stats-totalmoneypersec").html("Money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
+        $("#options-version").html("Current version : " + version + release);
 
         if (shoot > 0) {
             $("#a-1").attr("class", "btn btn-success center-btn");
