@@ -2,11 +2,14 @@ function gainMoney(source) {
     money[0] += source;
     money[1] += source;
 };
+function getExperience() {
+	prestige[1] = 25 * Math.sqrt(money[1]/1e6);
+};
 function getDrugPrice(index) {
-    return drugPrice[index] * drugMultiplier[index];
+    return (drugPrice[index] * drugMultiplier[index]) * prestige[2];
 };
 function getShootReward() {
-	return shoot[1] * shoot[7];
+	return (shoot[1] * shoot[7]) * prestige[2];
 };
 function getBuildPrice(index, jsType) {
 	if (jsType == 0) {
@@ -74,4 +77,7 @@ function getDealerSell(index, jsType) {
 	if (jsType == 2) {
 		return cocaineDealers[index].sell;
 	};
+};
+function isOdd(number) {
+	return number % 2;
 };

@@ -9,7 +9,8 @@ var drugInit = [
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "1.00"; var release = "-r1";
 var before; var now;
 var allVars = [
-    'money', 'shoot', 'prestige', 'before',
+    'money', 'shoot', 'prestige',
+    'before',
     'drugStock', 'drugMultiplier',
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
@@ -52,8 +53,13 @@ Init.update = function() {
         $("#stats-weedcash").html("Money from weed : <b>" + fix(moneyPerSec[0]) + "$/sec</b><br>");
         $("#stats-methcash").html("Money from meth : <b>" + fix(moneyPerSec[1]) + "$/sec</b><br>");
         $("#stats-cocainecash").html("Money from cocaine : <b>" + fix(moneyPerSec[2]) + "$/sec</b><br>");
-        $("#stats-totalmoneypersec").html("Money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
+        $("#stats-totalmoneypersec").html("Total money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
+        $("#stats-experience").html("Experience : <b>" + fix(prestige[0]) + "</b><br>Experience on reset : <b>" + fix(prestige[1]) + "</b>");
+        $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2]) + "</b>");
         $("#options-version").html("Current version : " + version + release);
+
+        getExperience();
+        PrestigeRank.rankup();
 
         if (shoot > 0) {
             $("#a-1").attr("class", "btn btn-success center-btn");
@@ -79,6 +85,7 @@ Init.game = function() {
     Upgrade.saveCheck();
     Build.check();
     Dealer.check();
+    PrestigeRank.fillTable();
     resize();
 };
 Init.coreUpdate = function() {
@@ -108,4 +115,4 @@ window.onload = function() {
 window.setInterval(function() {
     Init.coreUpdate();
 }, interval);
-var intSave = window.setInterval(function() {saveData(); }, 5000);
+var intSave = window.setInterval(function() {saveData(); }, 10000);

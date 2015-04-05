@@ -28,3 +28,23 @@ function hardReset() {
         location.reload();
     };
 };
+function softReset() {
+    if (confirm("You are trying to soft-reset. This means that you will start the game over but with " + fix(prestige[1]) + " experience. Check-out the tables panel to verify if you will get a prestige multiplier after your reset.")) {
+        window.clearInterval(intSave);
+        var temp = money[1];
+        var temp2 = prestige[1];
+        var temp3 = shoot[5];
+        var temp4 = shoot[6];
+        resetData();
+        Init.variables();
+        Upgrade.init();
+        Build.init();
+        Dealer.init();
+        money[1] = temp;
+        prestige[0] = temp2;
+        shoot[5] = temp3;
+        shoot[6] = temp4;
+        saveData();
+        location.reload();
+    };
+};

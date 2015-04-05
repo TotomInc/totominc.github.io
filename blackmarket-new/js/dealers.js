@@ -89,34 +89,34 @@ Dealer.buy = function(index, jsType) {
 	Dealer.check();
 };
 Dealer.sell = function(times) {
-	moneyPerSec[0] = (getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0)) * drugPrice[0];
+	moneyPerSec[0] = ((getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0)) * drugPrice[0]) * prestige[2];
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
 		if (drugStock[0] >= 1) {
 			drugStock[0] -= (getDealerSelling(i, 0) * times) / fps;
-			gainMoney(((getDealerSelling(i, 0) * drugPrice[0]) * times) / fps);
+			gainMoney((((getDealerSelling(i, 0) * drugPrice[0]) * prestige[2]) * times) / fps);
 		};
 		if (drugStock[0] <= 0) {
 			drugStock[0] = 1;
 		};
 	};
-	moneyPerSec[1] = (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1)) * drugPrice[1];
+	moneyPerSec[1] = ((getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1)) * drugPrice[1]) * prestige[2];
 	for (var i = 0; i < methDealers.length; i++) {
 		var m = methDealers[i];
 		if (drugStock[1] >= 1) {
 			drugStock[1] -= (getDealerSelling(i, 1) * times) / fps;
-			gainMoney(((getDealerSelling(i, 1) * drugPrice[1]) * times) / fps);
+			gainMoney((((getDealerSelling(i, 1) * drugPrice[1]) * prestige[2]) * times) / fps);
 		};
 		if (drugStock[1] <= 0) {
 			drugStock[1] = 1;
 		};
 	};
-	moneyPerSec[2] = (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2)) * drugPrice[2];
+	moneyPerSec[2] = ((getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2)) * drugPrice[2]) * prestige[2];
 	for (var i = 0; i < cocaineDealers.length; i++) {
 		var c = cocaineDealers[i];
 		if (drugStock[2] >= 1) {
 			drugStock[2] -= (getDealerSelling(i, 2) * times) / fps;
-			gainMoney(((getDealerSelling(i, 2) * drugPrice[2]) * times) / fps);
+			gainMoney((((getDealerSelling(i, 2) * drugPrice[2]) * prestige[2]) * times) / fps);
 		};
 		if (drugStock[2] <= 0) {
 			drugStock[2] = 1;
