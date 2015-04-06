@@ -24,7 +24,7 @@ Init.variables = function() {
 	Log("Calling Init.variables()");
 	money = [0, 0];
 	shoot = [12, 1, 12, 1500, 5000, 0, 0, 1];
-    prestige = [0, 0, 0, "no rank"];
+    prestige = [0, 0, 1, "no rank"];
 
     drugStock = []; drugName = []; drugPrice = []; drugMultiplier = []; drugPerSec = []; moneyPerSec = [];
     for (var i = 0; i < drugInit.length; i++) {
