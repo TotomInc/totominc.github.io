@@ -30,6 +30,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
         <ul class="nav navbar-nav navbar-right">
+          <li><a class="underline white cur-p" data-toggle="modal" data-target="#help-modal">Help!</a></li>
           <li><a class="underline white cur-p" data-toggle="modal" data-target="#options-modal">Options</a></li>
           <li class="active"><a>Weed: 0.00g <small>(0.00g/s)</small></a></li>
           <li class="active"><a>Meth: 0.00g <small>(0.00g/s)</small></a></li>
@@ -47,46 +48,46 @@
   <div class="container-fluid">
     <div class="row">
       <div id="panels-col" class="col-md-6 light">
-      <!-- actions panel -->
-        <div class="panel panel-primary light">
-          <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <p class="center"><span id="action-shoot"></span></p>
-                <div class="progress"><div id="shoot-actions" class="progress-bar progress-bar-success shoot-color"></div></div>
+        <!-- actions panel -->
+          <div class="panel panel-primary light">
+            <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <p class="center"><span id="action-shoot"></span></p>
+                  <div class="progress"><div id="shoot-actions" class="progress-bar progress-bar-success shoot-color"></div></div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                  <p class="center"><span id="action-reload"></span></p>
+                  <div class="progress"><div id="reload-actions" class="progress-bar progress-bar-danger reload-color"></div></div>
+                </div>
               </div>
-              <div class="col-md-6 col-xs-6">
-                <p class="center"><span id="action-reload"></span></p>
-                <div class="progress"><div id="reload-actions" class="progress-bar progress-bar-danger reload-color"></div></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-6"><a onclick="Action.shoot();" id="a-1" class="btn btn-success center-btn">Shoot</a></div>
-              <div class="col-md-6 col-xs-6"><a onclick="Action.reload();" id="a-2" class="btn btn-success center-btn">Reload</a></div>
-            </div>
-          </div>
-        </div>
-      <!-- stats panel -->
-        <div class="panel panel-success light">
-          <div class="panel-heading"><h3 class="panel-title center">Stats</h3></div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <p><span id="stats-money"></span></p>
-                <p><span id="stats-ammo"></span></p>
-                <p><span id="stats-experience"></span></p>
-                <p><span id="stats-prestige"></span></p>
-              </div>
-              <div class="col-md-6 col-xs-6 left-separator">
-                <p><span id="stats-weed"></span></p>
-                <p><span id="stats-meth"></span></p>
-                <p><span id="stats-cocaine"></span></p>
-                <p><span id="stats-weedcash"></span><span id="stats-methcash"></span><span id="stats-cocainecash"></span><span id="stats-totalmoneypersec"></span></p>
+              <div class="row">
+                <div class="col-md-6 col-xs-6"><a onclick="Action.shoot();" id="a-1" class="btn btn-success center-btn">Shoot</a></div>
+                <div class="col-md-6 col-xs-6"><a onclick="Action.reload();" id="a-2" class="btn btn-success center-btn">Reload</a></div>
               </div>
             </div>
           </div>
-        </div>
+        <!-- stats panel -->
+          <div class="panel panel-success light">
+            <div class="panel-heading"><h3 class="panel-title center">Stats</h3></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <p><span id="stats-money"></span></p>
+                  <p><span id="stats-ammo"></span></p>
+                  <p><span id="stats-experience"></span></p>
+                  <p><span id="stats-prestige"></span></p>
+                </div>
+                <div class="col-md-6 col-xs-6 left-separator">
+                  <p><span id="stats-weed"></span></p>
+                  <p><span id="stats-meth"></span></p>
+                  <p><span id="stats-cocaine"></span></p>
+                  <p><span id="stats-weedcash"></span><span id="stats-methcash"></span><span id="stats-cocainecash"></span><span id="stats-totalmoneypersec"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
       <div class="col-md-6 light">
@@ -96,7 +97,7 @@
           <li><a href="#tab-dealers" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
           <li><a href="#tab-prestige" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
           <li><a href="#tab-patch" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
-          <li><a href="#tab-tables" data-toggle="tab">Tables <i class="fa fa-table"></i></a></li>
+          <li><a href="#tab-tables" data-toggle="tab">Table <i class="fa fa-table"></i></a></li>
         </ul>
         <div id="tab-content" class="tab-content">
           <div class="tab-pane fade active in" id="tab-up">
@@ -150,17 +151,19 @@
             </div>
           </div>
           <div class="tab-pane fade light" id="tab-tables">
-            <p class="center med-font">Prestige ranks :</p>
-            <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th class="light underline">Rank</th>
-                  <th class="light underline">Exp. needed</th>
-                  <th class="light underline">Prestige multiplier</th>
-                </tr>
-              </thead>
-              <tbody id="prestige-table"></tbody>
-            </table>
+            <div class="well">
+              <p class="lead center underline">Prestige ranks :</p>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="light underline">Rank</th>
+                    <th class="light underline">Exp. needed</th>
+                    <th class="light underline">Prestige multiplier</th>
+                  </tr>
+                </thead>
+                <tbody id="prestige-table"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -169,22 +172,52 @@
 
   <div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p></div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
-          <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-success btn-sm center-btn">Hard-reset</a></div>
-          <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-success btn-sm center-btn">Soft-reset</a></div>
+      <div class="modal-content">
+        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
+            <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-success btn-sm center-btn">Hard-reset</a></div>
+            <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-success btn-sm center-btn">Soft-reset</a></div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="modal-footer">
+          <p><span id="options-version"></span><br>
+          Code with <i class="fa fa-heart"></i> by <a target="_blank" href="https://github.com/TotomInc">TotomInc</a>.<br>
+          Share, fork and give me ideas : <a target="_blank" href="https://github.com/TotomInc/totominc.github.io">the repo is on GitHub!</a></p>
         </div>
       </div>
-      <div class="line"></div>
-      <div class="modal-footer">
-        <p><span id="options-version"></span><br>
-        Code with <i class="fa fa-heart"></i> by <a target="_blank" href="https://github.com/TotomInc">TotomInc</a>.<br>
-        Share, fork and give me ideas : <a target="_blank" href="https://github.com/TotomInc/totominc.github.io">the repo is on GitHub!</a></p>
-      </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="help-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
+        <div class="modal-body light">
+          <p class="lead underline">How to play?</p>
+          <p class="tiny-font justify">Welcome to <b>Blackmarket</b>!<br>
+          In this <b>incremental-game</b>, you have to manage an empire of <b>drug</b>! At the beggining, you're poor, very poor. And you only got a gun.<br>
+          To earn your first $$$ bills, you have to <b>shoot, shoot, shoot</b>! You can buy upgrades to help you gain money even faster.<br>
+          After you got a decent amount of $$$, you can start buying some <b>builds</b>, which will produce a certain amount of <b>specified drug every second</b>.<br>
+          Then you got some builds, you can hire <b>dealers</b>, which will sells an <b>amount of specified drug every second</b>!<br>
+          It's as simple as that, the business of the drug.<br>
+          Note that <b>Blackmarket</b> never sleeps! Even if you have not left the game open, your business is always <b>producing and selling</b> drugs!</p>
+          <p class="lead underline">What is prestige?</p>
+          <p class="tiny-font justify">A prestige in some incremental-games is, when you reset everything from the beggining but with a bonus (for example : a multiplier) to reach even further in the game.<br>
+          In <b>Blackmarket</b>, the prestige currency is "experience", and this number of experience will determine your prestige rank, which will give a prestige multiplier.<br>
+          Take a look in the "table" panel which show all the prestige ranks, experience they need and prestige multiplier they give.<br>
+          The prestige multiplier affect the shoot reward and the drugs prices.</p>
+          <p class="lead underline">How to prestige and gain experience?</p>
+          <p class="tiny-font justify">In many incremental-games, when you want to prestige, you have to reset your game, but this reset is special. This reset is often named "soft-reset". This soft-reset will make you start everything from the beggining but you will gain an amount of experience based on your total money.<br>
+          But if you want to really reset everything and lost also your experience, you have to do an "hard-reset".<br>
+          Be carefull with the hard-reset : <b>it will reset everything!</b></p>
+          <p class="lead underline">How is determined experience?</p>
+          <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
+          <span class="code">25 * Math.sqrt(totalMoney/1e6)</span></p>
+        </div>
+      </div>
     </div>
   </div>
 
