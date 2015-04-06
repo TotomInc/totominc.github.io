@@ -43,6 +43,9 @@ Init.variables = function() {
 Init.update = function() {
     if (init == true) {
         $("#navbar-money").html("Money : " + fix(money[0]) + "$");
+        $("#navbar-weed").html("Weed : " + fix(drugStock[0]) + "g (<small>" + fix(drugPerSec[0]) + "g/sec</small>)");
+        $("#navbar-meth").html("Meth : " + fix(drugStock[1]) + "g (<small>" + fix(drugPerSec[1]) + "g/sec</small>)");
+        $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2]) + "g (<small>" + fix(drugPerSec[2]) + "g/sec</small>)");
         $("#action-shoot").html("+" + fix(getShootReward()) + "$/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000)) + " sec/reload");
         $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b>");
