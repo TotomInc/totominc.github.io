@@ -15,6 +15,7 @@ function loadData() {
             window[allVars[i]] = getItem(key + allVars[i]);
         };
     };
+    Log("Savegame loaded! Game have to check things before playing.");
 };
 function resetData() {
     for (var i = 0; i < allVars.length; i++) {

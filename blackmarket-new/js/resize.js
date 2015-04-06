@@ -4,6 +4,7 @@ var marginpx = 150;
 var panelspx = 40;
 
 function resize() {
+	Log("Browser width : " + widthpx + "px - browser height : " + maxpx + "px");
 	if (widthpx >= 768) {
 		$("#panels-col").css('max-height', (maxpx - marginpx + panelspx) + 'px');
 		$("#panels-col").css('overflow-y', 'auto');
@@ -13,4 +14,5 @@ function resize() {
 		$(".tab-content").css('max-height', (maxpx - marginpx) + 'px');
 		$("#panels-col").css('max-height', (maxpx - marginpx + panelspx) + 'px');
 	};
+	Log("Game resized to browser height and width. You can play!");
 };

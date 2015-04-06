@@ -30,6 +30,7 @@ function Build(name, price, reward, inflation, jsType) {
 	this.jsType = jsType;
 };
 Build.init = function() {
+	Log("Calling Build.init()");
 	weedBuildsOwned = [];
 	for (var i = 0; i < weedBuilds.length; i++) {
 		var w = weedBuilds[i];
@@ -56,6 +57,7 @@ Build.init = function() {
 	};
 };
 Build.check = function() {
+	Log("Calling Build.check()")
 	for (var i = 0; i < weedBuilds.length; i++) {
 		var w = weedBuilds[i];
 		$("#builds-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : ' + fix(getBuildPrice(i, 0)) + '$<br>Produce ' + fix(getDrugProduction(i, 0)) + "g/sec of <b>weed</b>");

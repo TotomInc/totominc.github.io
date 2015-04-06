@@ -17,7 +17,7 @@ var allVars = [
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
 ];
 
-function Log(text) { console.log("Blackmarket - " + text); };
+function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 
 function Init() { Log("Calling Init()"); };
 Init.variables = function() {

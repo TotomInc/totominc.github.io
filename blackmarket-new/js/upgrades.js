@@ -128,6 +128,7 @@ Upgrade.init = function() {
 	};
 };
 Upgrade.saveCheck = function() {
+	Log("Calling Upgrade.saveCheck()");
 	for (var i = 0; i < shootRewardUpgrades.length; i++) {
 		var s = shootRewardUpgrades[i];
 		if (shootRewardUpgradesOwned[i] == true) {

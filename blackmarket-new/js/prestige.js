@@ -44,4 +44,5 @@ PrestigeRank.fillTable = function() {
 			$("#tr-" + i).attr("class", "success");
 		};
 	};
+	Log("Prestige-table filled!");
 };

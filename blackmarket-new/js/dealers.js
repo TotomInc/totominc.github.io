@@ -30,6 +30,7 @@ function Dealer(name, price, sell, inflation, jsType) {
 	this.jsType = jsType;
 };
 Dealer.init = function() {
+	Log("Calling Dealer.init()");
 	weedDealersOwned = [];
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
@@ -56,6 +57,7 @@ Dealer.init = function() {
 	};
 };
 Dealer.check = function() {
+	Log("Calling Dealer.check()");
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
 		$("#dealers-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : ' + fix(getDealerPrice(i, 0)) + '$<br>Sell ' + fix(getDealerSell(i, 0)) + 'g/sec of <b>weed</b>');
