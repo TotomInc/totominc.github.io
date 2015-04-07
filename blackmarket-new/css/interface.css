@@ -1,7 +1,7 @@
 ::-webkit-scrollbar { width: 7px; }
 ::-webkit-scrollbar-thumb { background: #ccc; }
 
-body { cursor: default; padding-top: 80px; background: #ddd; font-weight: 400; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+body { cursor: default; padding-top: 80px; background: #eee; font-weight: 400; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 small { font-size: 75%; }
 b { font-weight: 400; }
 

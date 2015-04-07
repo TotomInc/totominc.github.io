@@ -91,12 +91,12 @@ Dealer.buy = function(index, jsType) {
 	Dealer.check();
 };
 Dealer.sell = function(times) {
-	moneyPerSec[0] = ((getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0)) * drugPrice[0]) * prestige[2];
+	moneyPerSec[0] = ((getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0)) * getDrugPrice(0)) * prestige[2];
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
 		if (drugStock[0] >= 1) {
 			drugStock[0] -= (getDealerSelling(i, 0) * times) / fps;
-			gainMoney((((getDealerSelling(i, 0) * drugPrice[0]) * prestige[2]) * times) / fps);
+			gainMoney((((getDealerSelling(i, 0) * getDrugPrice(0)) * prestige[2]) * times) / fps);
 		};
 		if (drugStock[0] <= 0) {
 			drugStock[0] = 1;
