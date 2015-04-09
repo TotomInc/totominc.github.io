@@ -91,16 +91,17 @@ Build.buy = function(index, jsType) {
 };
 Build.earn = function(times) {
 	drugPerSec[0] = (getDrugIncome(0, 0) + getDrugIncome(1, 0) + getDrugIncome(2, 0) + getDrugIncome(3, 0)) - (getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0));
+	drugPerSec[1] = (getDrugIncome(0, 1) + getDrugIncome(1, 1) + getDrugIncome(2, 1) + getDrugIncome(3, 1)) - (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1));
+	drugPerSec[2] = (getDrugIncome(0, 2) + getDrugIncome(1, 2) + getDrugIncome(2, 2) + getDrugIncome(3, 2)) - (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2));
+
 	for (var i = 0; i < weedBuilds.length; i++) {
 		var w = weedBuilds[i];
 		drugStock[0] += (getDrugIncome(i, 0) * times) / fps;
 	};
-	drugPerSec[1] = (getDrugIncome(0, 1) + getDrugIncome(1, 1) + getDrugIncome(2, 1) + getDrugIncome(3, 1)) - (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1));
 	for (var i = 0; i < methBuilds.length; i++) {
 		var m = methBuilds[i];
 		drugStock[1] += (getDrugIncome(i, 1) * times) / fps;
 	};
-	drugPerSec[2] = (getDrugIncome(0, 2) + getDrugIncome(1, 2) + getDrugIncome(2, 2) + getDrugIncome(3, 2)) - (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2));
 	for (var i = 0; i < cocaineBuilds.length; i++) {
 		var c = cocaineBuilds[i];
 		drugStock[2] += (getDrugIncome(i, 2) * times) / fps;

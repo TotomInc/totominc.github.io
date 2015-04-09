@@ -6,13 +6,14 @@ var drugInit = [
     new Drug("Cocaine",     1250)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "1.00"; var release = "-r1";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "0.90"; var release = "-r1";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
     'before',
     'drugStock', 'drugMultiplier',
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
+    'prestigeUpgradesOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
 ];
@@ -42,14 +43,14 @@ Init.variables = function() {
 };
 Init.update = function() {
     if (init == true) {
-        $("#navbar-money").html("Money : " + fix(money[0]) + "$");
+        $("#navbar-money").html("Money : " + fix(money[0]) + "$ <small>(" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0]) + "g (<small>" + fix(drugPerSec[0]) + "g/sec</small>)");
         $("#navbar-meth").html("Meth : " + fix(drugStock[1]) + "g (<small>" + fix(drugPerSec[1]) + "g/sec</small>)");
         $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2]) + "g (<small>" + fix(drugPerSec[2]) + "g/sec</small>)");
         $("#action-shoot").html("+" + fix(getShootReward()) + "$/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000)) + " sec/reload");
         $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b>");
-        $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shoots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
+        $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
         $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0]) + "g</b> (" + fix(drugPerSec[0]) + "g/sec)<br>Weed price : <b>" + fix(getDrugPrice(0)) + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0]) + '</b>');
         $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1]) + "g</b> (" + fix(drugPerSec[1]) + "g/sec)<br>Meth price : <b>" + fix(getDrugPrice(1)) + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1]) + '</b>');
         $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2]) + "g</b> (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine price : <b>" + fix(getDrugPrice(2)) + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2]) + '</b>');
@@ -84,11 +85,13 @@ Init.game = function() {
     Upgrade.init();
     Build.init();
     Dealer.init();
+    PrestigeUpgrade.init();
     loadData();
     Upgrade.saveCheck();
     Build.check();
     Dealer.check();
     PrestigeRank.fillTable();
+    PrestigeUpgrade.saveCheck();
     resize();
 };
 Init.coreUpdate = function() {

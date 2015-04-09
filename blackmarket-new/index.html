@@ -134,10 +134,22 @@
             <ul id="dealers-cocaine" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-prestige">
+            <div class="well">
+              <p class="lead underline center">Warning!</p>
+              <p class="tiny-font center">You don't keep prestige upgrades when you go <b>soft-reset</b>! Be carefull!</p>
+            </div>
             <ul id="prestige-upgrades" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
+              <p class="lead center underline">v0.90 : beta-testing!</p>
+              <p class="justify tiny-font">
+                - The bug with <b>weed/meth/cocaine upgrades</b> is fixed!<br>
+                - <b>Added prestige upgrades!</b><br>
+                - I know about the <b>dealers selling bug</b>, I'm working on it but it's pretty hard to fix it. <b>Be patient please!</b> ;)<br>
+                - <b>Changed ranks names!</b> Check-out the tables section!
+              </p>
+              <!--
               <p class="lead center underline">v1.00 : total remake, full release!</p>
               <p class="justify tiny-font">
                 - <u>New interface :</u> Blackmarket interface has been totally remade from scratch. Blackmarket is always essentially build with <b>Bootstrap</b> and <b>"paper"</b> theme from <b>Bootswatch</b>.<br>
@@ -145,13 +157,17 @@
                 - <u>New content :</u> some upgrades have been added.<br>
                 - <u>Blackmarket is harder :</u> I made sure that the game is more harder than it was before (in his alpha/beta stage). It's a new challenge for you, fellow dealers! ;)
               </p>
+              -->
               <p class="center tiny-font">As always, I'm looking for feedback (especially about the new UI and game balancing) and bugs reports! :)<br>
-              Thanks for playing <b><u>Blackmarket!</u></b><br>
-              <a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me a message on my reddit account</a></p>
+              Thanks for playing <b><u>Blackmarket!</u></b></p>
+              <p class="center tiny-font">
+                <a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me a message on my reddit account</a><br>
+                <a target="_blank" href="http://steamcommunity.com/groups/incremental-games">Join the incremental-games Steam group!</a>
+              </p>
             </div>
           </div>
-          <div class="tab-pane fade light" id="tab-tables">
-            <div class="well">
+          <div class="tab-pane fade" id="tab-tables">
+            <div class="well light">
               <p class="lead center underline">Prestige ranks :</p>
               <table class="table table-striped table-hover">
                 <thead>
@@ -225,5 +241,6 @@
   <script src="js/actions.js"></script>
   <script src="js/prestige.js"></script>
   <script src="js/core.js"></script>
+  <script src="src/analytics.js"></script>
 </body>
 </html>

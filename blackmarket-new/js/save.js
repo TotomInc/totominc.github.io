@@ -41,6 +41,7 @@ function softReset() {
         Upgrade.init();
         Build.init();
         Dealer.init();
+        PrestigeUpgrade.init();
         money[1] = temp;
         prestige[0] = temp2;
         shoot[5] = temp3;
