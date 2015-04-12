@@ -1,12 +1,15 @@
 var shootRewardUpgradesOwned;
 var shootRewardUpgrades = [
-    new Upgrade("Shoot reward x3",      12,         function() { shoot[7] *= 3 }),
-    new Upgrade("Shoot reward x3",      60,         function() { shoot[7] *= 3 }),
-    new Upgrade("Shoot reward x3",      820,        function() { shoot[7] *= 3 }),
-    new Upgrade("Shoot reward x2",      3200,       function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x2",      24000,      function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x2",		204000,		function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x3",		13250000,	function() { shoot[7] *= 3 })
+    new Upgrade("Shoot reward x5",      12,         	function() { shoot[7] *= 5 }),
+    new Upgrade("Shoot reward x4",      160,         	function() { shoot[7] *= 4 }),
+    new Upgrade("Shoot reward x3",      820,        	function() { shoot[7] *= 3 }),
+    new Upgrade("Shoot reward x2",      3200,       	function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x2",      24000,      	function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x2",		204000,			function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x3",		13250000,		function() { shoot[7] *= 3 }),
+    new Upgrade("Shoot reward x4",		385000000,		function() { shoot[7] *= 4 }),
+    new Upgrade("Shoot reward x5",		2750000000, 	function() { shoot[7] *= 5 }),
+    new Upgrade("Shoot reward x10",		550000000000,	function() { shoot[7] *= 10 })
 ];
 var shootTimeUpgradesOwned;
 var shootTimeUpgrades = [
@@ -19,9 +22,9 @@ var shootTimeUpgrades = [
 ];
 var ammoStockUpgradesOwned;
 var ammoStockUpgrades = [
-    new Upgrade("Ammo stock x3",        90,         function() { shoot[2] *= 3 }),
-    new Upgrade("Ammo stock x3",        2500,       function() { shoot[2] *= 3 }),
-    new Upgrade("Ammo stock x3",        55000,      function() { shoot[2] *= 3 }),
+    new Upgrade("Ammo stock x2",        90,         function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x2",        2500,       function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x2",        55000,      function() { shoot[2] *= 2 }),
     new Upgrade("Ammo stock x2",		7500000,	function() { shoot[2] *= 2 })
 ];
 var reloadTimeUpgradesOwned;
@@ -34,30 +37,30 @@ var reloadTimeUpgrades = [
 ];
 var weedPriceUpgradesOwned;
 var weedPriceUpgrades = [
-    new Upgrade("Weed price x2",        760,        function() { drugMultiplier[0] *= 2 }),
-    new Upgrade("Weed price x2",        2400,       function() { drugMultiplier[0] *= 2 }),
-    new Upgrade("Weed price x3",        14500,      function() { drugMultiplier[0] *= 3 }),
-    new Upgrade("Weed price x2",        215000,     function() { drugMultiplier[0] *= 2 }),
-    new Upgrade("Weed price x9.99",		3250000,	function() { drugMultiplier[0] *= 9.99 }),
-    new Upgrade("Weed price x5",		75000000,	function() { drugMultiplier[0] *= 5})
+    new Upgrade("Weed price x2",        760,				function() { drugMultiplier[0] *= 2 }),
+    new Upgrade("Weed price x2",        2400,				function() { drugMultiplier[0] *= 2 }),
+    new Upgrade("Weed price x3",        14500,				function() { drugMultiplier[0] *= 3 }),
+    new Upgrade("Weed price x4",        215000,				function() { drugMultiplier[0] *= 4 }),
+    new Upgrade("Weed price x5",		3250000,			function() { drugMultiplier[0] *= 5 }),
+    new Upgrade("Weed price x5",		75000000,			function() { drugMultiplier[0] *= 5 })
 ];
 var methPriceUpgradesOwned;
 var methPriceUpgrades = [
-    new Upgrade("Meth price x2",        4600,       function() { drugMultiplier[1] *= 2 }),
-    new Upgrade("Meth price x2",        16800,      function() { drugMultiplier[1] *= 2 }),
-    new Upgrade("Meth price x3",        100000,     function() { drugMultiplier[1] *= 3 }),
-    new Upgrade("Meth price x3",        750000,     function() { drugMultiplier[1] *= 3 }),
-    new Upgrade("Meth price x8.88",		12750000,	function() { drugMultiplier[1] *= 8.88 }),
-    new Upgrade("Meth price x4",		500000000,	function() { drugMultiplier[1] *= 4})
+    new Upgrade("Meth price x2",        500000,				function() { drugMultiplier[1] *= 2 }),
+    new Upgrade("Meth price x2",        750000,				function() { drugMultiplier[1] *= 2 }),
+    new Upgrade("Meth price x2",        95000000,			function() { drugMultiplier[1] *= 2 }),
+    new Upgrade("Meth price x3",        1000000000,			function() { drugMultiplier[1] *= 3 }),
+    new Upgrade("Meth price x4",		9999000000,			function() { drugMultiplier[1] *= 4 }),
+    new Upgrade("Meth price x5",		250000000000,		function() { drugMultiplier[1] *= 5 })
 ];
 var cocainePriceUpgradesOwned;
 var cocainePriceUpgrades = [
-    new Upgrade("Cocaine price x2",     35000,      function() { drugMultiplier[2] *= 2 }),
-    new Upgrade("Cocaine price x2",     125000,     function() { drugMultiplier[2] *= 2 }),
-    new Upgrade("Cocaine price x3",     650000,     function() { drugMultiplier[2] *= 3 }),
-    new Upgrade("Cocaine price x4",     5250000,    function() { drugMultiplier[2] *= 4 }),
-    new Upgrade("Cocaine price x7.77",	75000000,	function() { drugMultiplier[2] *= 7.77 }),
-    new Upgrade("Cocaine price x3",		1750000000,	function() { drugMultiplier[2] *= 3 })
+    new Upgrade("Cocaine price x2",     500000000,			function() { drugMultiplier[2] *= 2 }),
+    new Upgrade("Cocaine price x2",     10000000000,		function() { drugMultiplier[2] *= 2 }),
+    new Upgrade("Cocaine price x2",     25000000000,     	function() { drugMultiplier[2] *= 2 }),
+    new Upgrade("Cocaine price x2",     125000000000,    	function() { drugMultiplier[2] *= 2 }),
+    new Upgrade("Cocaine price x3",		850000000000,		function() { drugMultiplier[2] *= 3 }),
+    new Upgrade("Cocaine price x4",		1750000000000,		function() { drugMultiplier[2] *= 4 })
 ];
 
 function Upgrade(name, price, run) {

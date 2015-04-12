@@ -1,25 +1,25 @@
 var weedDealersOwned;
 var weedDealers = [
-    new Dealer("Dealer 1",		500,                0.05,   1.30,	0),
-    new Dealer("Dealer 2",		50000,              0.4,    1.25,	0),
-    new Dealer("Dealer 3",		1000000,            1,      1.20,	0),
-    new Dealer("Dealer 4",		250000000,          3,      1.15,	0),
+    new Dealer("Dealer 1",		500,                0.15,   1.30,	0),
+    new Dealer("Dealer 2",		50000,              0.75,	1.25,	0),
+    new Dealer("Dealer 3",		1000000,            2,      1.20,	0),
+    new Dealer("Dealer 4",		250000000,          5,      1.15,	0),
 ];
 
 var methDealersOwned;
 var methDealers = [
-    new Dealer("Dealer 1",		250000,            	0.05,   1.30, 	1),
-    new Dealer("Dealer 2",		10000000,          	0.4,    1.25, 	1),
-    new Dealer("Dealer 3",  	500000000,         	1,      1.20, 	1),
-    new Dealer("Dealer 4",		10000000000,		3,      1.15, 	1),
+    new Dealer("Dealer 1",		250000,            	0.15,   1.30, 	1),
+    new Dealer("Dealer 2",		10000000,          	0.75,	1.25, 	1),
+    new Dealer("Dealer 3",  	500000000,         	2,      1.20, 	1),
+    new Dealer("Dealer 4",		10000000000,		5,      1.15, 	1),
 ];
 
 var cocaineDealersOwned;
 var cocaineDealers = [
-    new Dealer("Dealer 1",      250000000,          0.05,   1.30,	2),
-    new Dealer("Dealer 2",      50000000000,        0.4,    1.25,	2),
-    new Dealer("Dealer 3",      750000000000,       1,      1.20,	2),
-    new Dealer("Dealer 4",      25000000000000,     3,      1.15,	2)
+    new Dealer("Dealer 1",      250000000,          0.15,   1.30,	2),
+    new Dealer("Dealer 2",      50000000000,        0.75,	1.25,	2),
+    new Dealer("Dealer 3",      750000000000,       2,      1.20,	2),
+    new Dealer("Dealer 4",      25000000000000,     5,      1.15,	2)
 ];
 
 function Dealer(name, price, sell, inflation, jsType) {

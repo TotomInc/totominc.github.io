@@ -2,11 +2,11 @@ var money; var moneyPerSec; var shoot; var prestige;
 var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
     new Drug("Weed",        50),
-    new Drug("Meth",        300),
-    new Drug("Cocaine",     1250)
+    new Drug("Meth",        500),
+    new Drug("Cocaine",     2000)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "0.90"; var release = "-r1";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "Blackmarket-"; var version = "0.91"; var release = "-r1";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
@@ -27,13 +27,14 @@ Init.variables = function() {
 	shoot = [12, 1, 12, 1500, 5000, 0, 0, 1];
     prestige = [0, 0, 1, "no rank"];
 
-    drugStock = []; drugName = []; drugPrice = []; drugMultiplier = []; drugPerSec = []; moneyPerSec = [];
+    drugStock = []; drugName = []; drugPrice = []; drugMultiplier = []; drugPerSec = []; drugNetPerSec = []; moneyPerSec = [];
     for (var i = 0; i < drugInit.length; i++) {
         var d = drugInit[i];
         drugStock.push(0);
         drugName.push(d.name);
         drugPrice.push(d.price);
         drugPerSec.push(0);
+        drugNetPerSec.push(0);
         drugMultiplier.push(1);
         moneyPerSec.push(0);
     };
@@ -49,11 +50,11 @@ Init.update = function() {
         $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2]) + "g (<small>" + fix(drugPerSec[2]) + "g/sec</small>)");
         $("#action-shoot").html("+" + fix(getShootReward()) + "$/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000)) + " sec/reload");
-        $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b>");
+        $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b><br>Money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
         $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
-        $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0]) + "g</b> (" + fix(drugPerSec[0]) + "g/sec)<br>Weed price : <b>" + fix(getDrugPrice(0)) + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0]) + '</b>');
-        $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1]) + "g</b> (" + fix(drugPerSec[1]) + "g/sec)<br>Meth price : <b>" + fix(getDrugPrice(1)) + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1]) + '</b>');
-        $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2]) + "g</b> (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine price : <b>" + fix(getDrugPrice(2)) + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2]) + '</b>');
+        $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0]) + "g</b> (" + fix(drugPerSec[0]) + "g/sec)<br>Weed selling : <b>" + fix(drugNetPerSec[0]) + "g/sec</b><br>Weed price : <b>" + fix(getDrugPrice(0)) + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0]) + '</b>');
+        $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1]) + "g</b> (" + fix(drugPerSec[1]) + "g/sec)<br>Meth selling : <b>" + fix(drugNetPerSec[1]) + "g/sec</b><br>Meth price : <b>" + fix(getDrugPrice(1)) + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1]) + '</b>');
+        $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2]) + "g</b> (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine selling : <b>" + fix(drugNetPerSec[2]) + "g/sec</b><br>Cocaine price : <b>" + fix(getDrugPrice(2)) + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2]) + '</b>');
         $("#stats-weedcash").html("Money from weed : <b>" + fix(moneyPerSec[0]) + "$/sec</b><br>");
         $("#stats-methcash").html("Money from meth : <b>" + fix(moneyPerSec[1]) + "$/sec</b><br>");
         $("#stats-cocainecash").html("Money from cocaine : <b>" + fix(moneyPerSec[2]) + "$/sec</b><br>");

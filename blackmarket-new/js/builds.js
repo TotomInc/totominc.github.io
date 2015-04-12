@@ -1,25 +1,25 @@
 var weedBuildsOwned;
 var weedBuilds = [
-    new Build("Build 1",	500,            0.1,    1.60, 0),
-    new Build("Build 2",	50000,          0.5,    1.50, 0),
-    new Build("Build 3",	1000000,        1.5,   	1.40, 0),
-    new Build("Build 4",	250000000,		4.0,    1.30, 0)
+    new Build("Build 1",	500,            	0.2,    1.60, 0),
+    new Build("Build 2",	50000,          	1,    	1.50, 0),
+    new Build("Build 3",	1000000,        	3,   	1.40, 0),
+    new Build("Build 4",	250000000,			7,    	1.30, 0),
 ];
 
 var methBuildsOwned;
 var methBuilds = [
-    new Build("Build 1",    250000,         0.1,    1.50, 1),
-    new Build("Build 2",    10000000,       0.5,    1.45, 1),
-    new Build("Build 3",    500000000,      1.5,	1.40, 1),
-    new Build("Build 4",	10000000000,	4.0,    1.35, 1)
+    new Build("Build 1",    250000,         	0.2,    1.60, 1),
+    new Build("Build 2",    10000000,       	1,    	1.50, 1),
+    new Build("Build 3",    500000000,      	3,		1.40, 1),
+    new Build("Build 4",	10000000000,		7,    	1.30, 1),
 ];
 
 var cocaineBuildsOwned;
 var cocaineBuilds = [
-    new Build("Builds 1",	250000000,		0.1,    1.50, 2),
-    new Build("Builds 2",	50000000000,    0.5,    1.45, 2),
-    new Build("Builds 3",	750000000000,   1.5,	1.40, 2),
-    new Build("Builds 4",	25000000000000, 4.0,	1.35, 2)
+    new Build("Build 1",	250000000,			0.2,    1.60, 2),
+    new Build("Build 2",	50000000000,    	1,    	1.50, 2),
+    new Build("Build 3",	750000000000,   	3,		1.40, 2),
+    new Build("Build 4",	25000000000000, 	7,		1.30, 2),
 ];
 
 function Build(name, price, reward, inflation, jsType) {
@@ -90,6 +90,10 @@ Build.buy = function(index, jsType) {
 	Build.check();
 };
 Build.earn = function(times) {
+	drugNetPerSec[0] = (getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0));
+	drugNetPerSec[1] = (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1));
+	drugNetPerSec[2] = (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2));
+
 	drugPerSec[0] = (getDrugIncome(0, 0) + getDrugIncome(1, 0) + getDrugIncome(2, 0) + getDrugIncome(3, 0)) - (getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0));
 	drugPerSec[1] = (getDrugIncome(0, 1) + getDrugIncome(1, 1) + getDrugIncome(2, 1) + getDrugIncome(3, 1)) - (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1));
 	drugPerSec[2] = (getDrugIncome(0, 2) + getDrugIncome(1, 2) + getDrugIncome(2, 2) + getDrugIncome(3, 2)) - (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2));
