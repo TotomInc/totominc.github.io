@@ -15,7 +15,8 @@ var allVars = [
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
     'prestigeUpgradesOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
-    'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
+    'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned',
+    'firstVisit'
 ];
 
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
