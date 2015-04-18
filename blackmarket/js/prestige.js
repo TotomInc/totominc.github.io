@@ -1,7 +1,7 @@
 var prestigeRanks = [
-    new PrestigeRank("Bronze I",				0,  25,         		2.00),
-    new PrestigeRank("Bronze II",            	1,  100,        		4.00),
-    new PrestigeRank("Bronze III",           	2,  400,        		6.00),
+    new PrestigeRank("Bronze I",				0,  25,         		2.22),
+    new PrestigeRank("Bronze II",            	1,  100,        		4.44),
+    new PrestigeRank("Bronze III",           	2,  400,        		6.66),
     new PrestigeRank("Bronze Master",         	3,  1000,       		8.88),
     new PrestigeRank("Silver I",				4,  2500,       		10.00),
     new PrestigeRank("Silver II",            	5,  10000,      		15.00),
@@ -11,15 +11,15 @@ var prestigeRanks = [
     new PrestigeRank("Platinum II",          	9,  2500000,    		75.00),
     new PrestigeRank("Platinum III",         	10, 10000000,			100.00),
     new PrestigeRank("Platinum Master",			11, 250000000,			125.00),
-    new PrestigeRank("Legendary Dealer I",		12, 1000000000, 		150.00),
-    new PrestigeRank("Legendary Dealer II",  	13, 5000000000,   		200.00),
-    new PrestigeRank("Legendary Dealer III",  	14, 25000000000,  		250.00),
-    new PrestigeRank("Legendary Dealer Master",	15,	100000000000,		300.00),
-    new PrestigeRank("Diamond Dealer I",		16,	350000000000,		444.44),
-    new PrestigeRank("Diamond Dealer II",		17,	850000000000,		555.55),
-    new PrestigeRank("Diamond Dealer III",		18,	8500000000000,		666.66),
-    new PrestigeRank("Diamond Dealer Master",	19,	77777000000000,		777.77),
-    new PrestigeRank("Hacker I",				20,	1000000000000000,	1000.00)
+    new PrestigeRank("Legendary Dealer I",		12, 1000000000, 		200.00),
+    new PrestigeRank("Legendary Dealer II",  	13, 5000000000,   		300.00),
+    new PrestigeRank("Legendary Dealer III",  	14, 25000000000,  		400.00),
+    new PrestigeRank("Legendary Dealer Master",	15,	100000000000,		500.00),
+    new PrestigeRank("Diamond Dealer I",		16,	350000000000,		750.00),
+    new PrestigeRank("Diamond Dealer II",		17,	850000000000,		1000.00),
+    new PrestigeRank("Diamond Dealer III",		18,	8500000000000,		1250.00),
+    new PrestigeRank("Diamond Dealer Master",	19,	77777000000000,		1500.00),
+    new PrestigeRank("Hacker I",				20,	1000000000000000,	2000.00)
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [

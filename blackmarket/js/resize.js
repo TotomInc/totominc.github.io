@@ -1,11 +1,18 @@
 var maxpx = $(document).height();
 var widthpx = $(document).width();
-var marginpx = 110;
+var marginpx = 150;
+var panelspx = 40;
 
-$(".container-fluid, .col-md-5, .col-md-7").css('max-height', (maxpx - marginpx) + 'px');
-$(".col-md-5, .col-md-7").css('overflow-y', 'auto');
-if (widthpx <= 780) {
-	$("#s-d1, #s-d2, #s-d3").css("display", "true");
-} else {
-	$("#s-d1, #s-d2, #s-d3").css("display", "none");
+function resize() {
+	Log("Browser width : " + widthpx + "px - browser height : " + maxpx + "px");
+	if (widthpx >= 768) {
+		$("#panels-col").css('max-height', (maxpx - marginpx + panelspx) + 'px');
+		$("#panels-col").css('overflow-y', 'auto');
+		$(".tab-content").css('max-height', (maxpx - marginpx) + 'px');
+		$(".tab-content").css('overflow-y', 'auto');
+	} else {
+		$(".tab-content").css('max-height', (maxpx - marginpx) + 'px');
+		$("#panels-col").css('max-height', (maxpx - marginpx + panelspx) + 'px');
+	};
+	Log("Game resized to browser height and width. You can play!");
 };

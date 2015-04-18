@@ -15,60 +15,37 @@ function loadData() {
             window[allVars[i]] = getItem(key + allVars[i]);
         };
     };
+    Log("Savegame loaded! Game have to check things before playing.");
 };
 function resetData() {
     for (var i = 0; i < allVars.length; i++) {
         removeItem(key + allVars[i]);
     };
 };
-function checkData() {
-    if (dealersOwned.length != checkDealers.length || buildsOwned.length != checkBuilds.length) {
-        if (dealersOwned.length != checkDealers.length) {
-            alert("Old save detected! Game is trying to convert your save, if you see an error like NaN g or $, please wipe your save and let me know that you have the bug! Thanks.");
-            for (var i = 0; i < dealers.length; i++) {
-                if (dealersOwned[i] == undefined) {
-                    dealersOwned.push(0);
-                };
-            };
-        };
-        if (buildsOwned.length != checkBuilds.length) {
-            alert("Old save detected! Game is trying to convert your save, if you see an error like NaN instead of numbers, please wipe your save and let me know that you have the bug! Thanks.");
-            for (var i = 0; i < builds.length; i++) {
-                if (buildsOwned[i] == undefined) {
-                    buildsOwned.push(0);
-                };
-            };
-        };
-    };
-};
 function hardReset() {
-    if (confirm("Do you really want to hard-reset the game, lost everything and restart from scratch? You will not earn experience!")) {
+    if (confirm("You are trying to hard-reset your save, it means that you will be restarting everything from scratch without any multiplier or bonuses! Note : this is not the prestige reset/soft-reset.")) {
         window.clearInterval(intSave);
         resetData();
         location.reload();
     };
 };
 function softReset() {
-    var r = confirm("Do you want to soft-reset? You will earn " + fix(getExperienceOnReset(), 0) + " experience but restart the game from the beggining with a boost.\nCheck the prestige tab to read more about the soft-reset.");
-    if (r == true) {
+    if (confirm("You are trying to soft-reset. This means that you will start the game over but with " + fix(prestige[1]) + " experience. Check-out the tables panel to verify if you will get a prestige multiplier after your reset.")) {
         window.clearInterval(intSave);
-        var t1 = money[1];
-        var t2 = getExperienceOnReset();
-        var t3 = totalShoots;
-        var t4 = totalReloads;
-        var t5 = prestigeUpgradesOwned;
+        var temp = money[1];
+        var temp2 = prestige[1];
+        var temp3 = shoot[5];
+        var temp4 = shoot[6];
         resetData();
-        initVars();
-        money[1] = t1;
-        prestige[0] = t2;
-        totalShoots = t3;
-        totalReloads = t4;
-        prestigeUpgradesOwned = t5;
-        for (var i = 0; i < prestigeUpgrades.length; i++) {
-            if (prestigeUpgradesOwned[i] == true) {
-                prestigeUpgrades[i].run();
-            };
-        };
+        Init.variables();
+        Upgrade.init();
+        Build.init();
+        Dealer.init();
+        PrestigeUpgrade.init();
+        money[1] = temp;
+        prestige[0] = temp2;
+        shoot[5] = temp3;
+        shoot[6] = temp4;
         saveData();
         location.reload();
     };

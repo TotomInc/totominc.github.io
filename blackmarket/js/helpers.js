@@ -1,81 +1,83 @@
-// helpers functions
 function gainMoney(source) {
     money[0] += source;
     money[1] += source;
 };
-function getBuildPrice(index) {
-    return builds[index].price * Math.pow(builds[index].inflation, buildsOwned[index]);
+function getExperience() {
+	prestige[1] = Math.floor(25 * Math.sqrt(money[1]/1e6));
 };
-function getDealerPrice(index) {
-    return dealers[index].price * Math.pow(dealers[index].inflation, dealersOwned[index]);
+function getDrugPrice(index) {
+    return (drugPrice[index] * drugMultiplier[index]) * prestige[2];
 };
-function getDrugInc(index) { // used to gain in functions
-    return ((builds[index].reward * buildsOwned[index])) / 187.5;
+function getShootReward() {
+	return (shoot[1] * shoot[7]) * prestige[2];
 };
-function getNormalDrugInc(index) { // used to display
-    return (builds[index].reward * buildsOwned[index]);
+function getBuildPrice(index, jsType) {
+	if (jsType == 0) {
+		return weedBuilds[index].price * Math.pow(weedBuilds[index].inflation, weedBuildsOwned[index]);
+	};
+	if (jsType == 1) {
+		return methBuilds[index].price * Math.pow(methBuilds[index].inflation, methBuildsOwned[index]);
+	};
+	if (jsType == 2) {
+		return cocaineBuilds[index].price * Math.pow(cocaineBuilds[index].inflation, cocaineBuildsOwned[index]);
+	};
 };
-function getDealerSell(index) { // used to gain in functions
-    return (dealers[index].sell * dealersOwned[index]) / 187.5;
+function getDealerPrice(index, jsType) {
+	if (jsType == 0) {
+		return weedDealers[index].price * Math.pow(weedDealers[index].inflation, weedDealersOwned[index]);
+	};
+	if (jsType == 1) {
+		return methDealers[index].price * Math.pow(methDealers[index].inflation, methDealersOwned[index]);
+	};
+	if (jsType == 2) {
+		return cocaineDealers[index].price * Math.pow(cocaineDealers[index].inflation, cocaineDealersOwned[index]);
+	};
 };
-function getNormalDealerSell(index) { // used to display
-    return (dealers[index].sell * dealersOwned[index]);
+function getDrugIncome(index, jsType) {
+	if (jsType == 0) {
+		return weedBuilds[index].reward * weedBuildsOwned[index];
+	};
+	if (jsType == 1) {
+		return methBuilds[index].reward * methBuildsOwned[index];
+	};
+	if (jsType == 2) {
+		return cocaineBuilds[index].reward * cocaineBuildsOwned[index];
+	};
 };
-function getExperienceOnReset() {
-    return Math.floor(25 * Math.sqrt(money[1]/1e6));
+function getDealerSelling(index, jsType) {
+	if (jsType == 0) {
+		return weedDealers[index].sell * weedDealersOwned[index];
+	};
+	if (jsType == 1) {
+		return methDealers[index].sell * methDealersOwned[index];
+	};
+	if (jsType == 2) {
+		return cocaineDealers[index].sell * cocaineDealersOwned[index];
+	};
 };
-function getShootPercent() {
-    return shootPercentCash = (shootPercent * money[2]) / 100;
+/* display functions */
+function getDrugProduction(index, jsType) {
+	if (jsType == 0) {
+		return weedBuilds[index].reward;
+	};
+	if (jsType == 1) {
+		return methBuilds[index].reward;
+	};
+	if (jsType == 2) {
+		return cocaineBuilds[index].reward;
+	};
 };
-function gunRankUp() {
-    for (var i = 0; i < ranks.length; i++) {
-        var r = ranks[i];
-        if (money[1] >= r.needed) {
-            rank = r.name;
-            rankMultiplier = r.multiplier;
-        };
-    };
-    $("#s-cg").html("Current gun : <b>" + rank + "</b><br>");
-    $("#s-ob").html("Overall bonus : <b>x" + fix(rankMultiplier, 2) + "</b>");
+function getDealerSell(index, jsType) {
+	if (jsType == 0) {
+		return weedDealers[index].sell;
+	};
+	if (jsType == 1) {
+		return methDealers[index].sell;
+	};
+	if (jsType == 2) {
+		return cocaineDealers[index].sell;
+	};
 };
-function prestigeRankUp() {
-    for (var i = 0; i < prestigeRanks.length; i++) {
-        var p = prestigeRanks[i];
-        if (prestige[0] >= p.needed) {
-            prestige[2] = p.name;
-            prestige[3] = p.multiplier;
-        };
-    };
-    $("#s-pr").html("Prestige rank : <b>" + prestige[2] + "</b><br>");
-    $("#s-pm").html("Prestige multiplier : <b>x" + fix(prestige[3], 2) + "</b>");
-};
-function offlineCalc() {
-    var now = new Date().getTime();
-    var offlineTime = now - before;
-    buildReward(Math.floor(offlineTime/interval));
-    dealerReward(Math.floor(offlineTime/interval));
-};
-function tutorial() {
-    if (totalShoots == 0) {
-        $("#a-i1").html("Tutorial : Click on the bar to shoot!");
-    } else {
-        if (totalShoots > 0 && totalShoots < 4) {
-            $("#a-i1").html("Tutorial : Yeah, you understand how it works.<br>Shoot all your bullets now.");
-        } else {
-            if (totalShoots > 4 && totalShoots < 8) {
-                $("#a-i1").html("Tutorial : When you shoot, you earn dollars.");
-            } else {
-                if (totalShoots > 8 && totalShoots < 11) {
-                    $("#a-i1").html("Tutorial : You can see your stats on the top-bar.");
-                };
-            };
-        };
-    };
-    if (totalShoots == 12) {
-        $("#a-i2").html("Tutorial : No more ammo!<br>Click on the bar to reload and gain ammo!");
-        $("#a-i1").css("display", "none");
-    };
-    if (totalReloads > 0) {
-        $("#a-i2").css("display", "none");
-    };
+function isOdd(number) {
+	return number % 2;
 };
