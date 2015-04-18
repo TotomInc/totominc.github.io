@@ -6,7 +6,7 @@ var drugInit = [
     new Drug("Cocaine",     2000)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.00"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.01"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
@@ -44,21 +44,21 @@ Init.variables = function() {
 };
 Init.update = function() {
     if (init == true) {
-        $("#navbar-money").html("Money : " + fix(money[0]) + "$ <small>(" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec)</small>");
+        $("#navbar-money").html("Money : $" + fix(money[0]) + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0]) + "g (<small>" + fix(drugPerSec[0]) + "g/sec</small>)");
         $("#navbar-meth").html("Meth : " + fix(drugStock[1]) + "g (<small>" + fix(drugPerSec[1]) + "g/sec</small>)");
         $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2]) + "g (<small>" + fix(drugPerSec[2]) + "g/sec</small>)");
-        $("#action-shoot").html("+" + fix(getShootReward()) + "$/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
+        $("#action-shoot").html("+ $" + fix(getShootReward()) + "/shoot<br>" + fix((shoot[3] / 1000)) + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000)) + " sec/reload");
-        $("#stats-money").html("Money : <b>" + fix(money[0]) + "$</b><br>Total money : <b>" + fix(money[1]) + "$</b><br>Money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
+        $("#stats-money").html("Money : <b>$" + fix(money[0]) + "</b><br>Total money : <b>$" + fix(money[1]) + "</b><br>Money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "/sec</b>");
         $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
         $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0]) + "g</b> (" + fix(drugPerSec[0]) + "g/sec)<br>Weed selling : <b>" + fix(drugNetPerSec[0]) + "g/sec</b><br>Weed price : <b>" + fix(getDrugPrice(0)) + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0]) + '</b>');
         $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1]) + "g</b> (" + fix(drugPerSec[1]) + "g/sec)<br>Meth selling : <b>" + fix(drugNetPerSec[1]) + "g/sec</b><br>Meth price : <b>" + fix(getDrugPrice(1)) + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1]) + '</b>');
         $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2]) + "g</b> (" + fix(drugPerSec[2]) + "g/sec)<br>Cocaine selling : <b>" + fix(drugNetPerSec[2]) + "g/sec</b><br>Cocaine price : <b>" + fix(getDrugPrice(2)) + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2]) + '</b>');
-        $("#stats-weedcash").html("Money from weed : <b>" + fix(moneyPerSec[0]) + "$/sec</b><br>");
-        $("#stats-methcash").html("Money from meth : <b>" + fix(moneyPerSec[1]) + "$/sec</b><br>");
-        $("#stats-cocainecash").html("Money from cocaine : <b>" + fix(moneyPerSec[2]) + "$/sec</b><br>");
-        $("#stats-totalmoneypersec").html("Total money per sec : <b>" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "$/sec</b>");
+        $("#stats-weedcash").html("Money from weed : <b>$" + fix(moneyPerSec[0]) + "/sec</b><br>");
+        $("#stats-methcash").html("Money from meth : <b>$" + fix(moneyPerSec[1]) + "/sec</b><br>");
+        $("#stats-cocainecash").html("Money from cocaine : <b>$" + fix(moneyPerSec[2]) + "/sec</b><br>");
+        $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "/sec</b>");
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0]) + "</b><br>Experience on reset : <b>" + fix(prestige[1]) + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2]) + "</b>");
         $("#options-version").html("Current version : " + version + release);
@@ -122,4 +122,4 @@ window.onload = function() {
 window.setInterval(function() {
     Init.coreUpdate();
 }, interval);
-var intSave = window.setInterval(function() {saveData(); }, 10000);
+var intSave = window.setInterval(function() {saveData(); }, interval);

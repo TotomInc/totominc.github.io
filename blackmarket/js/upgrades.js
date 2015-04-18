@@ -48,19 +48,19 @@ var methPriceUpgradesOwned;
 var methPriceUpgrades = [
     new Upgrade("Meth price x2",        500000,				function() { drugMultiplier[1] *= 2 }),
     new Upgrade("Meth price x2",        750000,				function() { drugMultiplier[1] *= 2 }),
-    new Upgrade("Meth price x2",        95000000,			function() { drugMultiplier[1] *= 2 }),
-    new Upgrade("Meth price x3",        1000000000,			function() { drugMultiplier[1] *= 3 }),
-    new Upgrade("Meth price x4",		9999000000,			function() { drugMultiplier[1] *= 4 }),
+    new Upgrade("Meth price x3",        95000000,			function() { drugMultiplier[1] *= 3 }),
+    new Upgrade("Meth price x4",        1000000000,			function() { drugMultiplier[1] *= 4 }),
+    new Upgrade("Meth price x5",		9999000000,			function() { drugMultiplier[1] *= 5 }),
     new Upgrade("Meth price x5",		250000000000,		function() { drugMultiplier[1] *= 5 })
 ];
 var cocainePriceUpgradesOwned;
 var cocainePriceUpgrades = [
     new Upgrade("Cocaine price x2",     500000000,			function() { drugMultiplier[2] *= 2 }),
     new Upgrade("Cocaine price x2",     10000000000,		function() { drugMultiplier[2] *= 2 }),
-    new Upgrade("Cocaine price x2",     25000000000,     	function() { drugMultiplier[2] *= 2 }),
-    new Upgrade("Cocaine price x2",     125000000000,    	function() { drugMultiplier[2] *= 2 }),
-    new Upgrade("Cocaine price x3",		850000000000,		function() { drugMultiplier[2] *= 3 }),
-    new Upgrade("Cocaine price x4",		1750000000000,		function() { drugMultiplier[2] *= 4 })
+    new Upgrade("Cocaine price x3",     25000000000,     	function() { drugMultiplier[2] *= 3 }),
+    new Upgrade("Cocaine price x4",     125000000000,    	function() { drugMultiplier[2] *= 4 }),
+    new Upgrade("Cocaine price x5",		850000000000,		function() { drugMultiplier[2] *= 5 }),
+    new Upgrade("Cocaine price x5",		1750000000000,		function() { drugMultiplier[2] *= 5 })
 ];
 
 function Upgrade(name, price, run) {
@@ -77,56 +77,47 @@ Upgrade.init = function() {
 	weedPriceUpgradesOwned = [];
 	methPriceUpgradesOwned = [];
 	cocainePriceUpgradesOwned = [];
-	/*
-	for (var i = 0; i < shootRewardUpgrades.length; i++) {
-		shootRewardUpgradesOwned.push(true);
-		$("#up-shoot-indicator-container").append('<div id="up-shoot-' + (i+1) + '" class="up-indicator"></div>');
-        if ((i+1) > 1) {
-            $("#up-shoot-" + (i+1)).css("margin-left", (i * 14) + "px");
-            $("#up-shoot-" + (i+1)).css("margin-top", "-10px");
-        };
-	};
-	*/
+
 	for (var i = 0; i < shootRewardUpgrades.length; i++) {
 		var s = shootRewardUpgrades[i];
 		shootRewardUpgradesOwned.push(false);
-		$("#up-shoot-reward").append('<li id="up-shoot-reward-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost ' + fix(s.price) + '$</li>');
+		$("#up-shoot-reward").append('<li id="up-shoot-reward-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price) + '</li>');
 		$("#up-shoot-reward-" + (i+1)).attr("onclick", "Upgrade.buy('shoot-reward', " + i + ");");
 	};
 	for (var i = 0; i < shootTimeUpgrades.length; i++) {
 		var s = shootTimeUpgrades[i];
 		shootTimeUpgradesOwned.push(false);
-		$("#up-shoot-time").append('<li id="up-shoot-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost ' + fix(s.price) + '$</li>');
+		$("#up-shoot-time").append('<li id="up-shoot-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price) + '</li>');
 		$("#up-shoot-time-" + (i+1)).attr("onclick", "Upgrade.buy('shoot-time', " + i + ");");
 	};
 	for (var i = 0; i < ammoStockUpgrades.length; i++) {
 		var a = ammoStockUpgrades[i];
 		ammoStockUpgradesOwned.push(false);
-		$("#up-ammo-stock").append('<li id="up-ammo-stock-' + (i+1) + '" class="list-group-item cur-p"><b>' + a.name + ' :</b> cost ' + fix(a.price) + '$</li>');
+		$("#up-ammo-stock").append('<li id="up-ammo-stock-' + (i+1) + '" class="list-group-item cur-p"><b>' + a.name + ' :</b> cost $' + fix(a.price) + '</li>');
 		$("#up-ammo-stock-" + (i+1)).attr("onclick", "Upgrade.buy('ammo-stock', " + i + ");");
 	};
 	for (var i = 0; i < reloadTimeUpgrades.length; i++) {
 		var r = reloadTimeUpgrades[i];
 		reloadTimeUpgradesOwned.push(false);
-		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' :</b> cost ' + fix(r.price) + '$</li>');
+		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' :</b> cost $' + fix(r.price) + '</li>');
 		$("#up-reload-time-" + (i+1)).attr("onclick", "Upgrade.buy('reload-time', " + i + ");");
 	};
 	for (var i = 0; i < weedPriceUpgrades.length; i++) {
 		var w = weedPriceUpgrades[i];
 		weedPriceUpgradesOwned.push(false);
-		$("#up-weed-price").append('<li id="up-weed-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + ' :</b> cost ' + fix(w.price) + '$</li>');
+		$("#up-weed-price").append('<li id="up-weed-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + ' :</b> cost $' + fix(w.price) + '</li>');
 		$("#up-weed-price-" + (i+1)).attr("onclick", "Upgrade.buy('weed-price', " + i + ");");
 	};
 	for (var i = 0; i < methPriceUpgrades.length; i++) {
 		var m = methPriceUpgrades[i];
 		methPriceUpgradesOwned.push(false);
-		$("#up-meth-price").append('<li id="up-meth-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + ' :</b> cost ' + fix(m.price) + '$</li>');
+		$("#up-meth-price").append('<li id="up-meth-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + ' :</b> cost $' + fix(m.price) + '</li>');
 		$("#up-meth-price-" + (i+1)).attr("onclick", "Upgrade.buy('meth-price', " + i + ");");
 	};
 	for (var i = 0; i < cocainePriceUpgrades.length; i++) {
 		var c = cocainePriceUpgrades[i];
 		cocainePriceUpgradesOwned.push(false);
-		$("#up-cocaine-price").append('<li id="up-cocaine-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + ' :</b> cost ' + fix(c.price) + '$</li>');
+		$("#up-cocaine-price").append('<li id="up-cocaine-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + ' :</b> cost $' + fix(c.price) + '</li>');
 		$("#up-cocaine-price-" + (i+1)).attr("onclick", "Upgrade.buy('cocaine-price', " + i + ");");
 	};
 };

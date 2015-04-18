@@ -10,16 +10,20 @@ var prestigeRanks = [
     new PrestigeRank("Platinum I",				8,  500000,     		50.00),
     new PrestigeRank("Platinum II",          	9,  2500000,    		75.00),
     new PrestigeRank("Platinum III",         	10, 10000000,			100.00),
-    new PrestigeRank("Platinum Master",			11, 250000000,			125.00),
-    new PrestigeRank("Legendary Dealer I",		12, 1000000000, 		200.00),
-    new PrestigeRank("Legendary Dealer II",  	13, 5000000000,   		300.00),
-    new PrestigeRank("Legendary Dealer III",  	14, 25000000000,  		400.00),
-    new PrestigeRank("Legendary Dealer Master",	15,	100000000000,		500.00),
-    new PrestigeRank("Diamond Dealer I",		16,	350000000000,		750.00),
-    new PrestigeRank("Diamond Dealer II",		17,	850000000000,		1000.00),
-    new PrestigeRank("Diamond Dealer III",		18,	8500000000000,		1250.00),
-    new PrestigeRank("Diamond Dealer Master",	19,	77777000000000,		1500.00),
-    new PrestigeRank("Hacker I",				20,	1000000000000000,	2000.00)
+    new PrestigeRank("Platinum Master",			11, 50000000,			125.00),
+    new PrestigeRank("Legendary Dealer I",		12, 500000000, 			200.00),
+    new PrestigeRank("Legendary Dealer II",  	13, 2500000000,   		300.00),
+    new PrestigeRank("Legendary Dealer III",  	14, 17500000000,  		400.00),
+    new PrestigeRank("Legendary Dealer Master",	15,	75000000000,		500.00),
+    new PrestigeRank("Diamond Dealer I",		16,	200000000000,		750.00),
+    new PrestigeRank("Diamond Dealer II",		17,	750000000000,		1000.00),
+    new PrestigeRank("Diamond Dealer III",		18,	1500000000000,		1250.00),
+    new PrestigeRank("Diamond Dealer Master",	19,	10000000000000,		1500.00),
+    new PrestigeRank("Hacker I",				20,	50000000000000,		2000.00),
+    new PrestigeRank("Hacker II",				21,	250000000000000,	2500.00),
+    new PrestigeRank("Hacker III",				22,	1000000000000000,	3000.00),
+    new PrestigeRank("Hacker IV",				23,	2000000000000000,	4000.00),
+    new PrestigeRank("Hacker V",				24,	10000000000000000,	4500.00)
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [

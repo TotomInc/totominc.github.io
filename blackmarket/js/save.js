@@ -6,7 +6,6 @@ function saveData() {
         for (var i = 0; i < allVars.length; i++) {
             setItem(key + allVars[i], window[allVars[i]]);
         };
-        console.log("Game saved!");
     };
 };
 function loadData() {
