@@ -95,24 +95,34 @@ Dealer.sell = function(times) {
 	moneyPerSec[1] = ((getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1)) * getDrugPrice(1)) * prestige[2];
 	moneyPerSec[2] = ((getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2)) * getDrugPrice(2)) * prestige[2];
 
-	var weedSold = (getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0)) * times;
-	if (drugStock[0] < weedSold) {
-		weedSold = drugStock[0];
+	for (var i = 0; i < weedDealers.length; i++) {
+		var w = weedDealers[i];
+		if (drugStock[0] >= 1) {
+			drugStock[0] -= (getDealerSelling(i, 0) * times) / fps;
+			gainMoney((((getDealerSelling(i, 0) * getDrugPrice(0)) * prestige[2]) * times) / fps);
+		};
+		if (drugStock[0] <= 0) {
+			drugStock[0] = 1;
+		};
 	};
-	drugStock[0] -= weedSold;
-	gainMoney(((weedSold * getDrugPrice(0)) * prestige[2]) * times);
-
-	var methSold = (getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1)) * times;
-	if (drugStock[1] < methSold) {
-		methSold = drugStock[1];
+	for (var i = 0; i < methDealers.length; i++) {
+		var m = methDealers[i];
+		if (drugStock[1] >= 1) {
+			drugStock[1] -= (getDealerSelling(i, 1) * times) / fps;
+			gainMoney((((getDealerSelling(i, 1) * getDrugPrice(1)) * prestige[2]) * times) / fps);
+		};
+		if (drugStock[1] <= 0) {
+			drugStock[1] = 1;
+		};
 	};
-	drugStock[1] -= methSold;
-	gainMoney(((methSold * getDrugPrice(1)) * prestige[2]) * times);
-
-	var cocaineSold = (getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2)) * times;
-	if (drugStock[2] < cocaineSold) {
-		cocaineSold = drugStock[2];
+	for (var i = 0; i < cocaineDealers.length; i++) {
+		var c = cocaineDealers[i];
+		if (drugStock[2] >= 1) {
+			drugStock[2] -= (getDealerSelling(i, 2) * times) / fps;
+			gainMoney((((getDealerSelling(i, 2) * getDrugPrice(2)) * prestige[2]) * times) / fps);
+		};
+		if (drugStock[2] <= 0) {
+			drugStock[2] = 1;
+		};
 	};
-	drugStock[2] -= cocaineSold;
-	gainMoney(((cocaineSold * getDrugPrice(2)) * prestige[2]) * times);
 };
