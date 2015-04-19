@@ -56,9 +56,9 @@ b { font-weight: 400; }
 .reload-filler { height: 100%; width: 0%; background: #F44336; }
 
 /* custom Bootswatch */
-.navbar { border-radius: 0; background: #5C6BC0; }
+.navbar { border-radius: 0; background: #43A047; }
 .navbar-brand { color: #fff !important; }
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover { background: #3F51B5; }
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover { background: #388E3C; }
 .list-group-item-text { color: #666 !important; }
 .list-group-item { transition: all 0.3s; }
 .list-group-item:hover { transition: all 0.3s; background: #eee; }
