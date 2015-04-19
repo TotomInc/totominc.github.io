@@ -6,7 +6,7 @@ var drugInit = [
     new Drug("Cocaine",     1500)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.03"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.02"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
@@ -18,7 +18,19 @@ var allVars = [
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
 ];
 
+var inputFps = document.getElementById("update-fps");
+var inputValue = inputFps.value;
+var refreshRate = 60;
+
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
+function Drug(name, price) {
+    this.name = name;
+    this.price = price;
+};
+function modulableInterval() {
+    Init.update();
+    setTimeout(modulableInterval, refreshRate);
+};
 
 function Init() { Log("Calling Init()"); };
 Init.variables = function() {
@@ -44,6 +56,9 @@ Init.variables = function() {
 };
 Init.update = function() {
     if (init == true) {
+        getExperience();
+        PrestigeRank.rankup();
+
         $("#navbar-money").html("Money : $" + fix(money[0]) + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2]) + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0]) + "g (<small>" + fix(drugPerSec[0]) + "g/sec</small>)");
         $("#navbar-meth").html("Meth : " + fix(drugStock[1]) + "g (<small>" + fix(drugPerSec[1]) + "g/sec</small>)");
@@ -62,9 +77,8 @@ Init.update = function() {
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0]) + "</b><br>Experience on reset : <b>" + fix(prestige[1]) + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2]) + "</b>");
         $("#options-version").html("Current version : " + version + release);
+        $("#options-currentFps").html(inputValue + " frames per second. ");
 
-        getExperience();
-        PrestigeRank.rankup();
 
         if (shoot > 0) {
             $("#a-1").attr("class", "btn btn-success center-btn");
@@ -106,20 +120,13 @@ Init.coreUpdate = function() {
             Build.earn(1);
             Dealer.sell(1);
         };
-        Init.update();
         before = new Date().getTime();
+        inputValue = inputFps.value;
+        refreshRate = (1000 / inputValue);
     };
 };
 
-function Drug(name, price) {
-    this.name = name;
-    this.price = price;
-};
-
-window.onload = function() {
-    Init.game();
-};
-window.setInterval(function() {
-    Init.coreUpdate();
-}, interval);
-var intSave = window.setInterval(function() {saveData(); }, interval);
+window.onload = function() { Init.game(); };
+var intMain = window.setInterval(function() { Init.coreUpdate(); }, interval);
+var intSave = window.setInterval(function() { saveData(); }, interval);
+setTimeout(modulableInterval, refreshRate);
