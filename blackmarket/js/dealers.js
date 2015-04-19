@@ -91,51 +91,37 @@ Dealer.buy = function(index, jsType) {
 	Dealer.check();
 };
 Dealer.sell = function(times) {
-	moneyPerSec[0] = ((getDealerSelling(0, 0) + getDealerSelling(1, 0) + getDealerSelling(2, 0) + getDealerSelling(3, 0)) * getDrugPrice(0)) * prestige[2];
-	moneyPerSec[1] = ((getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1)) * getDrugPrice(1)) * prestige[2];
-	moneyPerSec[2] = ((getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2)) * getDrugPrice(2)) * prestige[2];
-
-	/*
+	/* thanks to grammarxcore (http://www.reddit.com/user/grammarxcore) for this code! */
+	moneyPerSec[0] = 0;
 	for (var i = 0; i < weedDealers.length; i++) {
-		var w = weedDealers[i];
-		var sold = (getDealerSelling(i, 0) * times);
-		if (drugStock[0] < sold) {
-			sold = drugStock[0];
-			console.log("if condition");
-		};
-		drugStock[0] -= (sold / fps) * times;
-		gainMoney((sold * getDrugPrice(0)) * times);
+	    var sold = (getDealerSelling(i, 0) * times) / fps;
+	    if (sold > drugStock[0]){
+	        sold = drugStock[0];
+	    };
+	    drugStock[0] -= sold;
+	    gainMoney(sold * getDrugPrice(0));
+	    moneyPerSec[0] += sold * getDrugPrice(0) * fps;
 	};
-	*/
 
-	for (var i = 0; i < weedDealers.length; i++) {
-		var w = weedDealers[i];
-		if (drugStock[0] >= 1) {
-			drugStock[0] -= (getDealerSelling(i, 0) * times) / fps;
-			gainMoney((((getDealerSelling(i, 0) * getDrugPrice(0)) * prestige[2]) * times) / fps);
-		};
-		if (drugStock[0] <= 0) {
-			drugStock[0] = 1;
-		};
-	};
+	moneyPerSec[1] = 0;
 	for (var i = 0; i < methDealers.length; i++) {
-		var m = methDealers[i];
-		if (drugStock[1] >= 1) {
-			drugStock[1] -= (getDealerSelling(i, 1) * times) / fps;
-			gainMoney((((getDealerSelling(i, 1) * getDrugPrice(1)) * prestige[2]) * times) / fps);
-		};
-		if (drugStock[1] <= 0) {
-			drugStock[1] = 1;
-		};
+	    var sold = (getDealerSelling(i, 1) * times) / fps;
+	    if (sold > drugStock[1]){
+	        sold = drugStock[1];
+	    };
+	    drugStock[1] -= sold;
+	    gainMoney(sold * getDrugPrice(1));
+	    moneyPerSec[1] += sold * getDrugPrice(1) * fps;
 	};
+
+	moneyPerSec[2] = 0;
 	for (var i = 0; i < cocaineDealers.length; i++) {
-		var c = cocaineDealers[i];
-		if (drugStock[2] >= 1) {
-			drugStock[2] -= (getDealerSelling(i, 2) * times) / fps;
-			gainMoney((((getDealerSelling(i, 2) * getDrugPrice(2)) * prestige[2]) * times) / fps);
-		};
-		if (drugStock[2] <= 0) {
-			drugStock[2] = 1;
-		};
+	    var sold = (getDealerSelling(i, 2) * times) / fps;
+	    if (sold > drugStock[2]){
+	        sold = drugStock[2];
+	    };
+	    drugStock[2] -= sold;
+	    gainMoney(sold * getDrugPrice(2));
+	    moneyPerSec[2] += sold * getDrugPrice(2) * fps;
 	};
 };
