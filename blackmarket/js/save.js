@@ -49,3 +49,65 @@ function softReset() {
         location.reload();
     };
 };
+
+function exportSave() {
+    var toSave = {
+        money: money,
+        shoot: shoot,
+        prestige: prestige,
+        before: before,
+        drugStock: drugStock,
+        drugMultiplier: drugMultiplier,
+        shootRewardUpgradesOwned: shootRewardUpgradesOwned,
+        shootTimeUpgradesOwned: shootTimeUpgradesOwned,
+        ammoStockUpgradesOwned: ammoStockUpgradesOwned,
+        reloadTimeUpgradesOwned: reloadTimeUpgradesOwned,
+        weedPriceUpgradesOwned: weedPriceUpgradesOwned,
+        methPriceUpgradesOwned: methPriceUpgradesOwned,
+        cocainePriceUpgradesOwned: cocainePriceUpgradesOwned,
+        prestigeUpgradesOwned: prestigeUpgradesOwned,
+        weedBuildsOwned: weedBuildsOwned,
+        methBuildsOwned: methBuildsOwned,
+        cocaineBuildsOwned: cocaineBuildsOwned,
+        weedDealersOwned: weedDealersOwned,
+        methDealersOwned: methDealersOwned,
+        cocaineDealersOwned: cocaineDealersOwned
+    };
+
+    var saved = JSON.stringify(toSave);
+    var exportSaved = btoa(saved);
+    prompt("Here is your exported save!", exportSaved);
+};
+function importSave() {
+    var importSave = prompt("You need to import the code from the export-save button.", "Put your save here!");
+    var cleanSave = atob(importSave);
+    var savegame = JSON.parse(cleanSave);
+    save = JSON.parse(cleanSave);
+
+    money = savegame.money;
+    shoot = savegame.shoot;
+    prestige = savegame.prestige;
+    before = savegame.before;
+    drugStock = savegame.drugStock;
+    drugMultiplier = savegame.drugMultiplier;
+    shootRewardUpgradesOwned = savegame.shootRewardUpgradesOwned;
+    shootTimeUpgradesOwned = savegame.shootTimeUpgradesOwned;
+    ammoStockUpgradesOwned = savegame.ammoStockUpgradesOwned;
+    reloadTimeUpgradesOwned = savegame.reloadTimeUpgradesOwned;
+    weedPriceUpgradesOwned = savegame.weedPriceUpgradesOwned;
+    methPriceUpgradesOwned = savegame.methPriceUpgradesOwned;
+    cocainePriceUpgradesOwned = savegame.cocainePriceUpgradesOwned;
+    prestigeUpgradesOwned = savegame.prestigeUpgradesOwned;
+    weedBuildsOwned = savegame.weedBuildsOwned;
+    methBuildsOwned = savegame.methBuildsOwned;
+    cocaineBuildsOwned = savegame.cocaineBuildsOwned;
+    weedDealersOwned = savegame.weedDealersOwned;
+    methDealersOwned = savegame.methDealersOwned;
+    cocaineDealersOwned = savegame.cocaineDealersOwned;
+
+    Build.check();
+    Dealer.check();
+    saveData();
+};
+
+var save = undefined;

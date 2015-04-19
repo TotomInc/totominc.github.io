@@ -6,7 +6,7 @@ var drugInit = [
     new Drug("Cocaine",     1500)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.02"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.03"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
