@@ -1,12 +1,12 @@
 var money; var moneyPerSec; var shoot; var prestige;
 var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
-    new Drug("Weed",        50),
-    new Drug("Meth",        500),
-    new Drug("Cocaine",     2000)
+    new Drug("Weed",        100),
+    new Drug("Meth",        350),
+    new Drug("Cocaine",     1500)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.01"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.02"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',

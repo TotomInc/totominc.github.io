@@ -95,6 +95,19 @@ Dealer.sell = function(times) {
 	moneyPerSec[1] = ((getDealerSelling(0, 1) + getDealerSelling(1, 1) + getDealerSelling(2, 1) + getDealerSelling(3, 1)) * getDrugPrice(1)) * prestige[2];
 	moneyPerSec[2] = ((getDealerSelling(0, 2) + getDealerSelling(1, 2) + getDealerSelling(2, 2) + getDealerSelling(3, 2)) * getDrugPrice(2)) * prestige[2];
 
+	/*
+	for (var i = 0; i < weedDealers.length; i++) {
+		var w = weedDealers[i];
+		var sold = (getDealerSelling(i, 0) * times);
+		if (drugStock[0] < sold) {
+			sold = drugStock[0];
+			console.log("if condition");
+		};
+		drugStock[0] -= (sold / fps) * times;
+		gainMoney((sold * getDrugPrice(0)) * times);
+	};
+	*/
+
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
 		if (drugStock[0] >= 1) {

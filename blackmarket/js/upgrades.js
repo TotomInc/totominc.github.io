@@ -29,8 +29,8 @@ var ammoStockUpgrades = [
 ];
 var reloadTimeUpgradesOwned;
 var reloadTimeUpgrades = [
-    new Upgrade("Reload time /1.50",    270,        function() { shoot[4] /= 1.5 }),
-    new Upgrade("Reload time /1.50",    2000,       function() { shoot[4] /= 1.5 }),
+    new Upgrade("Reload time /1.50",    270,        function() { shoot[4] /= 1.50 }),
+    new Upgrade("Reload time /1.50",    2000,       function() { shoot[4] /= 1.50 }),
     new Upgrade("Reload time /1.25",    17500,      function() { shoot[4] /= 1.25 }),
     new Upgrade("Reload time /1.25",    125000,     function() { shoot[4] /= 1.25 }),
     new Upgrade("Reload time /1.10",	10000000,	function() { shoot[4] /= 1.10 })
