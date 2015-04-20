@@ -75,7 +75,7 @@ Init.update = function() {
         $("#stats-cocainecash").html("Money from cocaine : <b>$" + fix(moneyPerSec[2], "money") + "/sec</b><br>");
         $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b>");
-        $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "prestige") + "</b>");
+        $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
         $("#options-version").html("Current version : " + version + release);
         $("#options-currentFps").html(inputValue + " frames per second. ");
 
