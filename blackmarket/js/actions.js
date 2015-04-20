@@ -13,8 +13,6 @@ Action.shoot = function() {
         }, shoot[3]);
         $("#shoot-actions").animate({width: "100%"}, shoot[3], "linear");
         $("#shoot-actions").animate({width: "0%"}, 0, "linear");
-        $("#shoot-navbar").animate({width: "100%"}, shoot[3], "linear");
-        $("#shoot-navbar").animate({width: "0%"}, 0, "linear");
 	};
 };
 Action.reload = function() {
@@ -30,7 +28,5 @@ Action.reload = function() {
         }, shoot[4]);
         $("#reload-actions").animate({width: "100%"}, shoot[4], "linear");
         $("#reload-actions").animate({width: "0%"}, 0, "linear");
-        $("#reload-navbar").animate({width: "100%"}, shoot[4], "linear");
-        $("#reload-navbar").animate({width: "0%"}, 0, "linear");
 	};
 };
