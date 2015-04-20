@@ -57,7 +57,7 @@ b { font-weight: 400; }
 
 /* custom Bootswatch */
 .navbar { border-radius: 0; background: #43A047; }
-.navbar-brand { color: #fff !important; }
+.navbar-brand { font-size: 22px !important; color: #fff !important; }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover { background: #388E3C; }
 .list-group-item-text { color: #666 !important; }
 .list-group-item { transition: all 0.3s; }
