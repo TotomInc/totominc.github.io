@@ -16,10 +16,10 @@ var methBuilds = [
 
 var cocaineBuildsOwned;
 var cocaineBuilds = [
-    new Build("Build 1",	250000000,			0.2,    1.60, 2),
-    new Build("Build 2",	50000000000,    	1,    	1.50, 2),
-    new Build("Build 3",	750000000000,   	3,		1.40, 2),
-    new Build("Build 4",	25000000000000, 	7,		1.30, 2),
+    new Build("Build 1",	75000000,			0.2,    1.60, 2),
+    new Build("Build 2",	2500000000,    		1,    	1.50, 2),
+    new Build("Build 3",	50000000000,   		3,		1.40, 2),
+    new Build("Build 4",	2500000000000, 		7,		1.30, 2),
 ];
 
 function Build(name, price, reward, inflation, jsType) {

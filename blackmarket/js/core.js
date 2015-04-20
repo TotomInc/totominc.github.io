@@ -6,14 +6,14 @@ var drugInit = [
     new Drug("Cocaine",     1500)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.02"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.03"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige',
     'before',
     'drugStock', 'drugMultiplier',
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
-    'prestigeUpgradesOwned',
+    'prestigeUpgradesOwned', 'prestigeShootOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
 ];
@@ -58,6 +58,7 @@ Init.update = function() {
     if (init == true) {
         getExperience();
         PrestigeRank.rankup();
+        getShootPercent();
 
         $("#navbar-money").html("Money : $" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g (<small>" + fix(drugPerSec[0], "drug") + "g/sec</small>)");

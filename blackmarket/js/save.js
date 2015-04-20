@@ -55,9 +55,12 @@ function exportSave() {
         money: money,
         shoot: shoot,
         prestige: prestige,
+        
         before: before,
+
         drugStock: drugStock,
         drugMultiplier: drugMultiplier,
+
         shootRewardUpgradesOwned: shootRewardUpgradesOwned,
         shootTimeUpgradesOwned: shootTimeUpgradesOwned,
         ammoStockUpgradesOwned: ammoStockUpgradesOwned,
@@ -66,9 +69,12 @@ function exportSave() {
         methPriceUpgradesOwned: methPriceUpgradesOwned,
         cocainePriceUpgradesOwned: cocainePriceUpgradesOwned,
         prestigeUpgradesOwned: prestigeUpgradesOwned,
+        prestigeShootOwned: prestigeShootOwned,
+
         weedBuildsOwned: weedBuildsOwned,
         methBuildsOwned: methBuildsOwned,
         cocaineBuildsOwned: cocaineBuildsOwned,
+
         weedDealersOwned: weedDealersOwned,
         methDealersOwned: methDealersOwned,
         cocaineDealersOwned: cocaineDealersOwned
@@ -87,9 +93,12 @@ function importSave() {
     money = savegame.money;
     shoot = savegame.shoot;
     prestige = savegame.prestige;
+
     before = savegame.before;
+
     drugStock = savegame.drugStock;
     drugMultiplier = savegame.drugMultiplier;
+
     shootRewardUpgradesOwned = savegame.shootRewardUpgradesOwned;
     shootTimeUpgradesOwned = savegame.shootTimeUpgradesOwned;
     ammoStockUpgradesOwned = savegame.ammoStockUpgradesOwned;
@@ -97,10 +106,14 @@ function importSave() {
     weedPriceUpgradesOwned = savegame.weedPriceUpgradesOwned;
     methPriceUpgradesOwned = savegame.methPriceUpgradesOwned;
     cocainePriceUpgradesOwned = savegame.cocainePriceUpgradesOwned;
+
     prestigeUpgradesOwned = savegame.prestigeUpgradesOwned;
+    prestigeShootOwned = savegame.prestigeShootOwned;
+
     weedBuildsOwned = savegame.weedBuildsOwned;
     methBuildsOwned = savegame.methBuildsOwned;
     cocaineBuildsOwned = savegame.cocaineBuildsOwned;
+
     weedDealersOwned = savegame.weedDealersOwned;
     methDealersOwned = savegame.methDealersOwned;
     cocaineDealersOwned = savegame.cocaineDealersOwned;

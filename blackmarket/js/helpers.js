@@ -9,7 +9,10 @@ function getDrugPrice(index) {
     return (drugPrice[index] * drugMultiplier[index]) * prestige[2];
 };
 function getShootReward() {
-	return (shoot[1] * shoot[7]) * prestige[2];
+	return (((shoot[1] * shoot[7]) * prestige[2]) + shoot[6]);
+};
+function getShootPercent() {
+	return shoot[6] = (shoot[5] * (moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2])) / 100;
 };
 function getBuildPrice(index, jsType) {
 	if (jsType == 0) {

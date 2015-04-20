@@ -16,10 +16,10 @@ var methDealers = [
 
 var cocaineDealersOwned;
 var cocaineDealers = [
-    new Dealer("Dealer 1",      250000000,          0.15,   1.30,	2),
-    new Dealer("Dealer 2",      50000000000,        0.75,	1.25,	2),
-    new Dealer("Dealer 3",      750000000000,       2,      1.20,	2),
-    new Dealer("Dealer 4",      25000000000000,     5,      1.15,	2)
+    new Dealer("Dealer 1",      75000000,          	0.15,   1.30,	2),
+    new Dealer("Dealer 2",      2500000000,        	0.75,	1.25,	2),
+    new Dealer("Dealer 3",      50000000000,       	2,      1.20,	2),
+    new Dealer("Dealer 4",      2500000000000,     	5,      1.15,	2)
 ];
 
 function Dealer(name, price, sell, inflation, jsType) {

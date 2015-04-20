@@ -31,7 +31,18 @@ var prestigeUpgrades = [
 	new PrestigeUpgrade("All drugs prices x2",	500,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
 	new PrestigeUpgrade("All drugs prices x2",	10000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
 	new PrestigeUpgrade("All drugs prices x2",	50000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	5000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; })
+	new PrestigeUpgrade("All drugs prices x2",	5000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	35000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; })
+];
+var prestigeShootOwned;
+var prestigeShoot = [
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	250,		function() { shoot[5] += 1; }),
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	6666,		function() { shoot[5] += 1; }),
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	35000,		function() { shoot[5] += 1; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	75000,		function() { shoot[5] += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	250000,		function() { shoot[5] += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	1000000,	function() { shoot[5] += 2; }),
+	new PrestigeUpgrade("Shoot earn 4% of $/sec",	25000000,	function() { shoot[5] += 4; })
 ];
 
 function PrestigeRank(name, index, needed, multiplier) {
@@ -77,7 +88,14 @@ PrestigeUpgrade.init = function() {
 		var p = prestigeUpgrades[i];
 		prestigeUpgradesOwned.push(false);
 		$("#prestige-upgrades").append('<li id="prestige-upgrade-' + (i+1) + '" class="list-group-item cur-p"><b>' + p.name + '</b> : cost ' + fix(p.price, "money") + ' experience');
-		$("#prestige-upgrade-" + (i+1)).attr("onclick", "PrestigeUpgrade.buy(" + i + ");");
+		$("#prestige-upgrade-" + (i+1)).attr("onclick", "PrestigeUpgrade.buy('drugs', " + i + ");");
+	};
+	prestigeShootOwned = [];
+	for (var i = 0; i < prestigeShoot.length; i++) {
+		var p = prestigeShoot[i];
+		prestigeShootOwned.push(false);
+		$("#prestige-shoot").append('<li id="prestige-shoot-' + (i+1) + '" class="list-group-item cur-p"><b>' + p.name + '</b> : cost ' + fix(p.price, "money") + ' experience');
+		$("#prestige-shoot-" + (i+1)).attr("onclick", "PrestigeUpgrade.buy('shoot', " + i + ");");
 	};
 };
 PrestigeUpgrade.saveCheck = function() {
@@ -90,14 +108,30 @@ PrestigeUpgrade.saveCheck = function() {
 			$("#prestige-upgrade-" + (i+1)).append('<span class="badge">Owned</span>');
 		};
 	};
+	for (var i = 0; i < prestigeShoot.length; i++) {
+		var p = prestigeShoot[i];
+		if (prestigeShootOwned[i] == true) {
+			$("#prestige-shoot-" + (i+1)).attr("onclick", "");
+			$("#prestige-shoot-" + (i+1)).attr("class", "list-group-item up-list-group-owned");
+			$("#prestige-shoot-" + (i+1)).append('<span class="badge">Owned</span>');
+		};
+	};
 };
-PrestigeUpgrade.buy = function(index) {
-	if (prestige[0] >= prestigeUpgrades[index].price) {
+PrestigeUpgrade.buy = function(type, index) {
+	if (prestige[0] >= prestigeUpgrades[index].price && type == "drugs") {
 		prestige[0] -= prestigeUpgrades[index].price;
 		prestigeUpgradesOwned[index] = true;
 		prestigeUpgrades[index].run();
 		$("#prestige-upgrade-" + (index+1)).attr("onclick", "");
 		$("#prestige-upgrade-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
 		$("#prestige-upgrade-" + (index+1)).append('<span class="badge">Owned</span>');
+	};
+	if (prestige[0] >= prestigeShoot[index].price && type == "shoot") {
+		prestige[0] -= prestigeShoot[index].price;
+		prestigeShootOwned[index] = true;
+		prestigeShoot[index].run();
+		$("#prestige-shoot-" + (index+1)).attr("onclick", "");
+		$("#prestige-shoot-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
+		$("#prestige-shoot-" + (index+1)).append('<span class="badge">Owned</span>');
 	};
 };

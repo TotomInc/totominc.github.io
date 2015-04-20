@@ -241,16 +241,41 @@
               <p class="lead underline center">Warning!</p>
               <p class="tiny-font center">You don't keep prestige upgrades when you go <b>soft-reset</b>! Be carefull!</p>
             </div>
-            <ul id="prestige-upgrades" class="list-group"></ul>
-           	<ul id="prestige-dealers" class="list-group"></ul>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-drugs-panel" href="javascript:" class="collapsed">Prestige drugs prices upgrades <li class="fa fa-caret-down"></li></a></h4>
+                <div id="prestige-drugs-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="prestige-upgrades" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-shoot-panel" href="javascript:" class="collapsed">Prestige shoot reward upgrades <li class="fa fa-caret-down"></li></a></h4>
+                <div id="prestige-shoot-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="prestige-shoot" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
+              <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>
+              <p class="justify tiny-font">
+                - Added new upgrades, changed prices of some of them.<br>
+                - Added new prestige-upgrades and changed their layout. New prestige upgrades make the shooting reward earn x % of your current $/sec.<br>
+                - Some backends invisible changes.
+              </p>
+
               <p class="lead center underline">v1.02 (04/20/2015) : dealers selling bug (really fixed?)</p>
               <p class="justify tiny-font">
                 - New drugs prices : weed is boosted at 100$/g, meth is nerfed at 350 $/g, cocaine is nerfed at 1500$/g.<br>
                 - Bugs with drugs prices when you got all upgrades and prestige upgrades is fixed! Have to soft-reset to see it.<br>
-                - Some backups invisible changes.<br>
+                - Some backend invisible changes.<br>
                 - Dealers selling bug should be fixed! Please, I need feedback about it! I want to give a huge thank to <a target="_blank" href="http://www.reddit.com/user/grammarxcore">/u/grammarxcore</a> for totally helping me to kill this nasty bug!<br>
                 - Added an option to export and import your progress! Very useful if you want to keep the same game and have to switch between multiples computers/smartphones/tablets! <b>(Warning: export/import is in beta-testing!)</b><br>
                 - Added an option to change the frames per second of the game, it will change the refresh rate of every stats you can see on the game!<br>
