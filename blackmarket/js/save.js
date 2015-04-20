@@ -55,6 +55,8 @@ function exportSave() {
         money: money,
         shoot: shoot,
         prestige: prestige,
+        shootPercent: shootPercent,
+        shootPercentCash: shootPercentCash,
         
         before: before,
 
@@ -93,6 +95,8 @@ function importSave() {
     money = savegame.money;
     shoot = savegame.shoot;
     prestige = savegame.prestige;
+    shootPercent = savegame.shootPercent;
+    shootPercentCash = savegame.shootPercentCash;
 
     before = savegame.before;
 

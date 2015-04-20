@@ -36,13 +36,12 @@ var prestigeUpgrades = [
 ];
 var prestigeShootOwned;
 var prestigeShoot = [
-	new PrestigeUpgrade("Shoot earn 1% of $/sec",	250,		function() { shoot[5] += 1; }),
-	new PrestigeUpgrade("Shoot earn 1% of $/sec",	6666,		function() { shoot[5] += 1; }),
-	new PrestigeUpgrade("Shoot earn 1% of $/sec",	35000,		function() { shoot[5] += 1; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	75000,		function() { shoot[5] += 2; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	250000,		function() { shoot[5] += 2; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	1000000,	function() { shoot[5] += 2; }),
-	new PrestigeUpgrade("Shoot earn 4% of $/sec",	25000000,	function() { shoot[5] += 4; })
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	250,		function() { shootPercent += 1; }),
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	6666,		function() { shootPercent += 1; }),
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	35000,		function() { shootPercent += 1; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	75000,		function() { shootPercent += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	250000,		function() { shootPercent += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	1000000,	function() { shootPercent += 2; })
 ];
 
 function PrestigeRank(name, index, needed, multiplier) {
