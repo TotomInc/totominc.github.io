@@ -61,9 +61,9 @@ Init.update = function() {
         getShootPercent();
 
         $("#navbar-money").html("Money : $" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
-        $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g (<small>" + fix(drugPerSec[0], "drug") + "g/sec</small>)");
-        $("#navbar-meth").html("Meth : " + fix(drugStock[1], "drug") + "g (<small>" + fix(drugPerSec[1], "drug") + "g/sec</small>)");
-        $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2], "drug") + "g (<small>" + fix(drugPerSec[2], "drug") + "g/sec</small>)");
+        $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
+        $("#navbar-meth").html("Meth : " + fix(drugStock[1], "drug") + "g");
+        $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2], "drug") + "g");
         $("#action-shoot").html("+ $" + fix(getShootReward(), "money") + "/shoot<br>" + fix((shoot[3] / 1000), "time") + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000), "time") + " sec/reload");
         $("#stats-money").html("Money : <b>$" + fix(money[0], "money") + "</b><br>Total money : <b>$" + fix(money[1], "money") + "</b><br>Money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
