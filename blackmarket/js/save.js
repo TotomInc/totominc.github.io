@@ -120,6 +120,8 @@ function importSave() {
 
     Build.check();
     Dealer.check();
+    Upgrade.saveCheck();
+    PrestigeUpgrade.saveCheck();
     saveData();
 };
 
