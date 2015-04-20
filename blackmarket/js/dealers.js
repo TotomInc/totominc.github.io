@@ -35,7 +35,7 @@ Dealer.init = function() {
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
 		weedDealersOwned.push(0);
-		$("#dealers-weed").append('<li id="dealers-weed-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + '</b> cost : $' + fix(getDealerPrice(i, 0)) + '<br>Sell ' + fix(getDealerSell(i, 0)) + 'g/sec of <b>weed</b>');
+		$("#dealers-weed").append('<li id="dealers-weed-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + '</b> cost : $' + fix(getDealerPrice(i, 0), "money") + '<br>Sell ' + fix(getDealerSell(i, 0), "drug") + 'g/sec of <b>weed</b>');
 		$("#dealers-weed-" + (i+1)).attr("onclick", 'Dealer.buy(' + i + ', 0);');
 		$("#dealers-weed-" + (i+1)).append('<span id="dealers-weed-owned-' + (i+1) + '" class="badge">' + weedDealersOwned[i] + ' owned</span>');
 	};
@@ -43,7 +43,7 @@ Dealer.init = function() {
 	for (var i = 0; i < methDealers.length; i++) {
 		var m = methDealers[i];
 		methDealersOwned.push(0);
-		$("#dealers-meth").append('<li id="dealers-meth-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + '</b> cost : $' + fix(getDealerPrice(i, 1)) + '<br>Sell ' + fix(getDealerSell(i, 1)) + 'g/sec of <b>meth</b>');
+		$("#dealers-meth").append('<li id="dealers-meth-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + '</b> cost : $' + fix(getDealerPrice(i, 1), "money") + '<br>Sell ' + fix(getDealerSell(i, 1), "drug") + 'g/sec of <b>meth</b>');
 		$("#dealers-meth-" + (i+1)).attr("onclick", 'Dealer.buy(' + i + ', 1);');
 		$("#dealers-meth-" + (i+1)).append('<span id="dealers-meth-owned-' + (i+1) + '" class="badge">' + methDealersOwned[i] + ' owned</span>');
 	};
@@ -51,7 +51,7 @@ Dealer.init = function() {
 	for (var i = 0; i < cocaineDealers.length; i++) {
 		var c = cocaineDealers[i];
 		cocaineDealersOwned.push(0);
-		$("#dealers-cocaine").append('<li id="dealers-cocaine-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + '</b> cost : $' + fix(getDealerPrice(i, 2)) + '<br>Sell ' + fix(getDealerSell(i, 2)) + 'g/sec of <b>cocaine</b>');
+		$("#dealers-cocaine").append('<li id="dealers-cocaine-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + '</b> cost : $' + fix(getDealerPrice(i, 2), "money") + '<br>Sell ' + fix(getDealerSell(i, 2), "drug") + 'g/sec of <b>cocaine</b>');
 		$("#dealers-cocaine-" + (i+1)).attr("onclick", 'Dealer.buy(' + i + ', 2);');
 		$("#dealers-cocaine-" + (i+1)).append('<span id="dealers-cocaine-owned-' + (i+1) + '" class="badge">' + cocaineDealersOwned[i] + ' owned</span>');
 	};
@@ -60,17 +60,17 @@ Dealer.check = function() {
 	Log("Calling Dealer.check()");
 	for (var i = 0; i < weedDealers.length; i++) {
 		var w = weedDealers[i];
-		$("#dealers-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : $' + fix(getDealerPrice(i, 0)) + '<br>Sell ' + fix(getDealerSell(i, 0)) + 'g/sec of <b>weed</b>');
+		$("#dealers-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : $' + fix(getDealerPrice(i, 0), "money") + '<br>Sell ' + fix(getDealerSell(i, 0), "drug") + 'g/sec of <b>weed</b>');
 		$("#dealers-weed-" + (i+1)).append('<span id="dealers-weed-owned-' + (i+1) + '" class="badge">' + weedDealersOwned[i] + ' owned</span>');
 	};
 	for (var i = 0; i < methDealers.length; i++) {
 		var m = methDealers[i];
-		$("#dealers-meth-" + (i+1)).html('<b>' + m.name + '</b> cost : $' + fix(getDealerPrice(i, 1)) + '<br>Sell ' + fix(getDealerSell(i, 1)) + 'g/sec of <b>meth</b>');
+		$("#dealers-meth-" + (i+1)).html('<b>' + m.name + '</b> cost : $' + fix(getDealerPrice(i, 1), "money") + '<br>Sell ' + fix(getDealerSell(i, 1), "drug") + 'g/sec of <b>meth</b>');
 		$("#dealers-meth-" + (i+1)).append('<span id="dealers-meth-owned-' + (i+1) + '" class="badge">' + methDealersOwned[i] + ' owned</span>');	
 	};
 	for (var i = 0; i < cocaineDealers.length; i++) {
 		var c = cocaineDealers[i];
-		$("#dealers-cocaine-" + (i+1)).html('<b>' + c.name + '</b> cost : $' + fix(getDealerPrice(i, 2)) + '<br>Sell ' + fix(getDealerSell(i, 2)) + 'g/sec of <b>cocaine</b>');
+		$("#dealers-cocaine-" + (i+1)).html('<b>' + c.name + '</b> cost : $' + fix(getDealerPrice(i, 2), "money") + '<br>Sell ' + fix(getDealerSell(i, 2), "drug") + 'g/sec of <b>cocaine</b>');
 		$("#dealers-cocaine-" + (i+1)).append('<span id="dealers-cocaine-owned-' + (i+1) + '" class="badge">' + cocaineDealersOwned[i] + ' owned</span>');	
 
 	};

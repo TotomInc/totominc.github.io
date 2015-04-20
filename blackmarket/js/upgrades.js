@@ -81,43 +81,43 @@ Upgrade.init = function() {
 	for (var i = 0; i < shootRewardUpgrades.length; i++) {
 		var s = shootRewardUpgrades[i];
 		shootRewardUpgradesOwned.push(false);
-		$("#up-shoot-reward").append('<li id="up-shoot-reward-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price) + '</li>');
+		$("#up-shoot-reward").append('<li id="up-shoot-reward-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price, "money") + '</li>');
 		$("#up-shoot-reward-" + (i+1)).attr("onclick", "Upgrade.buy('shoot-reward', " + i + ");");
 	};
 	for (var i = 0; i < shootTimeUpgrades.length; i++) {
 		var s = shootTimeUpgrades[i];
 		shootTimeUpgradesOwned.push(false);
-		$("#up-shoot-time").append('<li id="up-shoot-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price) + '</li>');
+		$("#up-shoot-time").append('<li id="up-shoot-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + s.name + ' :</b> cost $' + fix(s.price, "money") + '</li>');
 		$("#up-shoot-time-" + (i+1)).attr("onclick", "Upgrade.buy('shoot-time', " + i + ");");
 	};
 	for (var i = 0; i < ammoStockUpgrades.length; i++) {
 		var a = ammoStockUpgrades[i];
 		ammoStockUpgradesOwned.push(false);
-		$("#up-ammo-stock").append('<li id="up-ammo-stock-' + (i+1) + '" class="list-group-item cur-p"><b>' + a.name + ' :</b> cost $' + fix(a.price) + '</li>');
+		$("#up-ammo-stock").append('<li id="up-ammo-stock-' + (i+1) + '" class="list-group-item cur-p"><b>' + a.name + ' :</b> cost $' + fix(a.price, "money") + '</li>');
 		$("#up-ammo-stock-" + (i+1)).attr("onclick", "Upgrade.buy('ammo-stock', " + i + ");");
 	};
 	for (var i = 0; i < reloadTimeUpgrades.length; i++) {
 		var r = reloadTimeUpgrades[i];
 		reloadTimeUpgradesOwned.push(false);
-		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' :</b> cost $' + fix(r.price) + '</li>');
+		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' :</b> cost $' + fix(r.price, "money") + '</li>');
 		$("#up-reload-time-" + (i+1)).attr("onclick", "Upgrade.buy('reload-time', " + i + ");");
 	};
 	for (var i = 0; i < weedPriceUpgrades.length; i++) {
 		var w = weedPriceUpgrades[i];
 		weedPriceUpgradesOwned.push(false);
-		$("#up-weed-price").append('<li id="up-weed-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + ' :</b> cost $' + fix(w.price) + '</li>');
+		$("#up-weed-price").append('<li id="up-weed-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + ' :</b> cost $' + fix(w.price, "money") + '</li>');
 		$("#up-weed-price-" + (i+1)).attr("onclick", "Upgrade.buy('weed-price', " + i + ");");
 	};
 	for (var i = 0; i < methPriceUpgrades.length; i++) {
 		var m = methPriceUpgrades[i];
 		methPriceUpgradesOwned.push(false);
-		$("#up-meth-price").append('<li id="up-meth-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + ' :</b> cost $' + fix(m.price) + '</li>');
+		$("#up-meth-price").append('<li id="up-meth-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + ' :</b> cost $' + fix(m.price, "money") + '</li>');
 		$("#up-meth-price-" + (i+1)).attr("onclick", "Upgrade.buy('meth-price', " + i + ");");
 	};
 	for (var i = 0; i < cocainePriceUpgrades.length; i++) {
 		var c = cocainePriceUpgrades[i];
 		cocainePriceUpgradesOwned.push(false);
-		$("#up-cocaine-price").append('<li id="up-cocaine-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + ' :</b> cost $' + fix(c.price) + '</li>');
+		$("#up-cocaine-price").append('<li id="up-cocaine-price-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + ' :</b> cost $' + fix(c.price, "money") + '</li>');
 		$("#up-cocaine-price-" + (i+1)).attr("onclick", "Upgrade.buy('cocaine-price', " + i + ");");
 	};
 };

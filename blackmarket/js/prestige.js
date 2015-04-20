@@ -57,8 +57,8 @@ PrestigeRank.fillTable = function() {
 		$("#tr-" + i).append('<td id="td-exp-' + i + '"></td>');
 		$("#tr-" + i).append('<td id="td-multiplier-' + i + '"></td>');
 		$("#td-rank-" + i).html(p.name);
-		$("#td-exp-" + i).html(fix(p.needed) + " exp.");
-		$("#td-multiplier-" + i).html("x" + fix(p.multiplier));
+		$("#td-exp-" + i).html(fix(p.needed, "prestige") + " exp.");
+		$("#td-multiplier-" + i).html("x" + fix(p.multiplier, "multiplier"));
 		if (isOdd(i) == 1) {
 			$("#tr-" + i).attr("class", "success");
 		};
@@ -76,7 +76,7 @@ PrestigeUpgrade.init = function() {
 	for (var i = 0; i < prestigeUpgrades.length; i++) {
 		var p = prestigeUpgrades[i];
 		prestigeUpgradesOwned.push(false);
-		$("#prestige-upgrades").append('<li id="prestige-upgrade-' + (i+1) + '" class="list-group-item cur-p"><b>' + p.name + '</b> : cost ' + fix(p.price) + ' experience');
+		$("#prestige-upgrades").append('<li id="prestige-upgrade-' + (i+1) + '" class="list-group-item cur-p"><b>' + p.name + '</b> : cost ' + fix(p.price, "money") + ' experience');
 		$("#prestige-upgrade-" + (i+1)).attr("onclick", "PrestigeUpgrade.buy(" + i + ");");
 	};
 };

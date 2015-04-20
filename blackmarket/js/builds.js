@@ -35,7 +35,7 @@ Build.init = function() {
 	for (var i = 0; i < weedBuilds.length; i++) {
 		var w = weedBuilds[i];
 		weedBuildsOwned.push(0);
-		$("#builds-weed").append('<li id="builds-weed-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + '</b> cost : $' + fix(getBuildPrice(i, 0)) + '<br>Produce ' + fix(getDrugProduction(i, 0)) + "g/sec of <b>weed</b>");
+		$("#builds-weed").append('<li id="builds-weed-' + (i+1) + '" class="list-group-item cur-p"><b>' + w.name + '</b> cost : $' + fix(getBuildPrice(i, 0), "money") + '<br>Produce ' + fix(getDrugProduction(i, 0), "drug") + "g/sec of <b>weed</b>");
 		$("#builds-weed-" + (i+1)).attr("onclick", 'Build.buy(' + i + ', 0);');
 		$("#builds-weed-" + (i+1)).append('<span id="builds-weed-owned-' + (i+1) + '" class="badge">' + weedBuildsOwned[i] + ' owned</span>');
 	};
@@ -43,7 +43,7 @@ Build.init = function() {
 	for (var i = 0; i < methBuilds.length; i++) {
 		var m = methBuilds[i];
 		methBuildsOwned.push(0);
-		$("#builds-meth").append('<li id="builds-meth-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + '</b> cost : $' + fix(getBuildPrice(i, 1)) + '<br>Produce ' + fix(getDrugProduction(i, 1)) + "g/sec of <b>meth</b>");
+		$("#builds-meth").append('<li id="builds-meth-' + (i+1) + '" class="list-group-item cur-p"><b>' + m.name + '</b> cost : $' + fix(getBuildPrice(i, 1), "money") + '<br>Produce ' + fix(getDrugProduction(i, 1), "drug") + "g/sec of <b>meth</b>");
 		$("#builds-meth-" + (i+1)).attr("onclick", 'Build.buy(' + i + ', 1);');
 		$("#builds-meth-" + (i+1)).append('<span id="builds-meth-owned-' + (i+1) + '" class="badge">' + methBuildsOwned[i] + ' owned</span>');
 	};
@@ -51,7 +51,7 @@ Build.init = function() {
 	for (var i = 0; i < cocaineBuilds.length; i++) {
 		var c = cocaineBuilds[i];
 		cocaineBuildsOwned.push(0);
-		$("#builds-cocaine").append('<li id="builds-cocaine-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + '</b> cost : $' + fix(getBuildPrice(i, 2)) + '<br>Produce ' + fix(getDrugProduction(i, 2)) + "g/sec of <b>cocaine</b>");
+		$("#builds-cocaine").append('<li id="builds-cocaine-' + (i+1) + '" class="list-group-item cur-p"><b>' + c.name + '</b> cost : $' + fix(getBuildPrice(i, 2), "money") + '<br>Produce ' + fix(getDrugProduction(i, 2), "drug") + "g/sec of <b>cocaine</b>");
 		$("#builds-cocaine-" + (i+1)).attr("onclick", 'Build.buy(' + i + ', 2);');
 		$("#builds-cocaine-" + (i+1)).append('<span id="builds-cocaine-owned-' + (i+1) + '" class="badge">' + cocaineBuildsOwned[i] + ' owned</span>');
 	};
@@ -60,17 +60,17 @@ Build.check = function() {
 	Log("Calling Build.check()")
 	for (var i = 0; i < weedBuilds.length; i++) {
 		var w = weedBuilds[i];
-		$("#builds-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : $' + fix(getBuildPrice(i, 0)) + '<br>Produce ' + fix(getDrugProduction(i, 0)) + "g/sec of <b>weed</b>");
+		$("#builds-weed-" + (i+1)).html('<b>' + w.name + '</b> cost : $' + fix(getBuildPrice(i, 0), "money") + '<br>Produce ' + fix(getDrugProduction(i, 0), "drug") + "g/sec of <b>weed</b>");
 		$("#builds-weed-" + (i+1)).append('<span id="builds-weed-owned-' + (i+1) + '" class="badge">' + weedBuildsOwned[i] + ' owned</span>');
 	};
 	for (var i = 0; i < methBuilds.length; i++) {
 		var m = methBuilds[i];
-		$("#builds-meth-" + (i+1)).html('<b>' + m.name + '</b> cost : $' + fix(getBuildPrice(i, 1)) + '<br>Produce ' + fix(getDrugProduction(i, 1)) + "g/sec of <b>meth</b>");
+		$("#builds-meth-" + (i+1)).html('<b>' + m.name + '</b> cost : $' + fix(getBuildPrice(i, 1), "money") + '<br>Produce ' + fix(getDrugProduction(i, 1), "drug") + "g/sec of <b>meth</b>");
 		$("#builds-meth-" + (i+1)).append('<span id="builds-meth-owned-' + (i+1) + '" class="badge">' + methBuildsOwned[i] + ' owned</span>');		
 	};
 	for (var i = 0; i < cocaineBuilds.length; i++) {
 		var c = cocaineBuilds[i];
-		$("#builds-cocaine-" + (i+1)).html('<b>' + c.name + '</b> cost : $' + fix(getBuildPrice(i, 2)) + '<br>Produce ' + fix(getDrugProduction(i, 2)) + "g/sec of <b>cocaine</b>");
+		$("#builds-cocaine-" + (i+1)).html('<b>' + c.name + '</b> cost : $' + fix(getBuildPrice(i, 2), "money") + '<br>Produce ' + fix(getDrugProduction(i, 2), "drug") + "g/sec of <b>cocaine</b>");
 		$("#builds-cocaine-" + (i+1)).append('<span id="builds-cocaine-owned-' + (i+1) + '" class="badge">' + cocaineBuildsOwned[i] + ' owned</span>');		
 	};
 };
