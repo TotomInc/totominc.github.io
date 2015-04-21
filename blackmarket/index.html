@@ -62,6 +62,15 @@
                 <div class="col-md-6 col-xs-6"><a onclick="Action.shoot();" id="a-1" class="btn btn-success center-btn">Shoot</a></div>
                 <div class="col-md-6 col-xs-6"><a onclick="Action.reload();" id="a-2" class="btn btn-success center-btn">Reload</a></div>
               </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <div id="actions-auto-shoot" class="radio tiny-font center"><label><input type="radio" id="enableAutoShoot" onclick="shootClick = true; Automation.autoShoot();"> Enable auto-shooting</label></div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                  <div id="actions-auto-reload" class="radio tiny-font center"><label><input type="radio" id="enableAutoReload" onclick="reloadClick = true; Automation.autoReload();"> Enable auto-reloading</label></div>
+                </div>
+              </div>
             </div>
           </div>
         <!-- stats panel -->
@@ -204,18 +213,21 @@
                 </div>
               </div>
             </div>
+            <ul id="prestige-shooting" class="list-group"></ul>
+            <ul id="prestige-reloading" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
               <p class="lead center underline">v1.04 (04/22/2015) : small changes</p>
               <p class="justify tiny-font">
                 - Added an option to hide/show upgrades owned!<br>
+                - Added auto-shooting/reloading. If you want to disable them, you must reload the page, sorry!<br>
                 - Changed builds/dealers prices.<br>
                 - Builds/dealers produces/sells a bit more.<br>
                 - Changed upgrades layout.<br>
                 - Fixed a bug with prestige-upgrades.<br>
                 - Experience formula have been a bit nerfed, it's now :<br>
-                <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e8))</span>.<br>
+                <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e7))</span>.<br>
               </p>
 
               <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>
@@ -341,7 +353,7 @@
           The prestige multiplier affects the shoot reward and the drugs prices.</p>
           <p class="lead underline">How is determined experience determined?</p>
           <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
-          <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e8))</span></p>
+          <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e7))</span></p>
         </div>
       </div>
     </div>
@@ -357,6 +369,7 @@
   <script src="js/actions.js"></script>
   <script src="js/prestige.js"></script>
   <script src="js/cheats.js"></script>
+  <script src="js/automation.js"></script>
   <script src="js/core.js"></script>
   <script src="src/browser.js"></script>
   <script src="src/analytics.js"></script>

@@ -48,4 +48,10 @@ Action.check = function() {
             };
         }
     };
+    if (enableAutoShootCheckBox.checked == true) {
+        $("#a-1").attr("class", "btn btn-success center-btn disabled");
+    };
+    if (enableAutoReloadCheckBox.checked == true) {
+        $("#a-2").attr("class", "btn btn-success center-btn disabled");
+    };
 };

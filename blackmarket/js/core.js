@@ -17,14 +17,17 @@ var allVars = [
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
     'prestigeUpgradesOwned', 'prestigeShootOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
-    'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned'
+    'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned',
+    'prestigeShootingOwned', 'prestigeReloadingOwned'
 ];
 
 var inputFps = document.getElementById("update-fps");
 var inputValue = inputFps.value;
 var refreshRate = 60;
 
-showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+var showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+var enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
+var enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 function Drug(name, price) {
@@ -69,6 +72,8 @@ Init.update = function() {
         Action.check();
 
         showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+        enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
+        enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 
         $("#navbar-money").html("Money : $" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
