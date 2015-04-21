@@ -185,6 +185,7 @@ Upgrade.saveCheck = function() {
 			$("#up-cocaine-price-" + (i+1)).append('<span class="badge">Owned</span>');
 		};
 	};
+	Upgrade.hide();
 };
 Upgrade.buy = function(type, index) {
 	if (type == 'shoot-reward' && money[0] >= shootRewardUpgrades[index].price) {
@@ -242,5 +243,95 @@ Upgrade.buy = function(type, index) {
 		$("#up-cocaine-price-" + (index+1)).attr("onclick", "");
 		$("#up-cocaine-price-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
 		$("#up-cocaine-price-" + (index+1)).append('<span class="badge">Owned</span>');
+	};
+	Upgrade.hide();
+};
+Upgrade.hide = function() {
+	if (showUpgradesOwnedCheckBox.checked == false) {
+		for (var i = 0; i < shootRewardUpgrades.length; i++) {
+			var s = shootRewardUpgrades[i];
+			if (shootRewardUpgradesOwned[i] == true) {
+				$("#up-shoot-reward-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < shootTimeUpgrades.length; i++) {
+			var s = shootTimeUpgrades[i];
+			if (shootTimeUpgradesOwned[i] == true) {
+				$("#up-shoot-time-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < ammoStockUpgrades.length; i++) {
+			var a = ammoStockUpgrades[i];
+			if (ammoStockUpgradesOwned[i] == true) {
+				$("#up-ammo-stock-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < reloadTimeUpgrades.length; i++) {
+			var r = reloadTimeUpgrades[i];
+			if (reloadTimeUpgradesOwned[i] == true) {
+				$("#up-reload-time-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < weedPriceUpgrades.length; i++) {
+			var w = weedPriceUpgrades[i];
+			if (weedPriceUpgradesOwned[i] == true) {
+				$("#up-weed-price-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < methPriceUpgrades.length; i++) {
+			var m = methPriceUpgrades[i];
+			if (methPriceUpgradesOwned[i] == true) {
+				$("#up-meth-price-" + (i+1)).css("display", "none");
+			};
+		};
+		for (var i = 0; i < cocainePriceUpgrades.length; i++) {
+			var c = cocainePriceUpgrades[i];
+			if (cocainePriceUpgradesOwned[i] == true) {
+				$("#up-cocaine-price-" + (i+1)).css("display", "none");
+			};
+		};
+	} else {
+		for (var i = 0; i < shootRewardUpgrades.length; i++) {
+			var s = shootRewardUpgrades[i];
+			if (shootRewardUpgradesOwned[i] == true) {
+				$("#up-shoot-reward-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < shootTimeUpgrades.length; i++) {
+			var s = shootTimeUpgrades[i];
+			if (shootTimeUpgradesOwned[i] == true) {
+				$("#up-shoot-time-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < ammoStockUpgrades.length; i++) {
+			var a = ammoStockUpgrades[i];
+			if (ammoStockUpgradesOwned[i] == true) {
+				$("#up-ammo-stock-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < reloadTimeUpgrades.length; i++) {
+			var r = reloadTimeUpgrades[i];
+			if (reloadTimeUpgradesOwned[i] == true) {
+				$("#up-reload-time-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < weedPriceUpgrades.length; i++) {
+			var w = weedPriceUpgrades[i];
+			if (weedPriceUpgradesOwned[i] == true) {
+				$("#up-weed-price-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < methPriceUpgrades.length; i++) {
+			var m = methPriceUpgrades[i];
+			if (methPriceUpgradesOwned[i] == true) {
+				$("#up-meth-price-" + (i+1)).css("display", "block");
+			};
+		};
+		for (var i = 0; i < cocainePriceUpgrades.length; i++) {
+			var c = cocainePriceUpgrades[i];
+			if (cocainePriceUpgradesOwned[i] == true) {
+				$("#up-cocaine-price-" + (i+1)).css("display", "block");
+			};
+		};
 	};
 };

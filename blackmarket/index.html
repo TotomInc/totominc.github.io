@@ -103,6 +103,8 @@
         </ul>
         <div id="tab-content" class="tab-content">
           <div class="tab-pane fade active in" id="tab-up">
+            <div class="well"><div class="checkbox tiny-font center"><label><input type="checkbox" id="showUpgradesOwned" onclick="Upgrade.hide();"> Show upgrades owned</label></div></div>
+
             <ul id="up-shoot-reward" class="list-group"></ul>
             <ul id="up-shoot-time" class="list-group"></ul>
             <ul id="up-ammo-stock" class="list-group"></ul>
@@ -110,6 +112,8 @@
             <ul id="up-weed-price" class="list-group"></ul>
             <ul id="up-meth-price" class="list-group"></ul>
             <ul id="up-cocaine-price" class="list-group"></ul>
+
+            <ul id="up-shoot-reward-bought" class="list-group"></ul>
           </div>
           <div class="tab-pane fade" id="tab-builds">
             <div class="panel panel-default">
@@ -205,12 +209,13 @@
             <div class="well">
               <p class="lead center underline">v1.04 (04/22/2015) : small changes</p>
               <p class="justify tiny-font">
+                - Added an option to hide/show upgrades owned!<br>
+                - Changed builds/dealers prices.<br>
                 - Changed upgrades layout.<br>
                 - Fixed a bug with prestige-upgrades.<br>
                 - Experience formula have been a bit nerfed, it's now :<br>
                 <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e8))</span>.<br>
                 - Changed a bit drug prices.<br>
-                - <b>Actually working on the game balancing. It should take few days.</b>
               </p>
 
               <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>

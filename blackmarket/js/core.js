@@ -24,6 +24,8 @@ var inputFps = document.getElementById("update-fps");
 var inputValue = inputFps.value;
 var refreshRate = 60;
 
+showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 function Drug(name, price) {
     this.name = name;
@@ -64,6 +66,9 @@ Init.update = function() {
         getExperience();
         PrestigeRank.rankup();
         getShootPercent();
+        Action.check();
+
+        showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
 
         $("#navbar-money").html("Money : $" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
@@ -84,20 +89,6 @@ Init.update = function() {
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
         $("#options-version").html("Current version : " + version + release);
         $("#options-currentFps").html(inputValue + " frames per second. ");
-
-        if (shoot > 0) {
-            $("#a-1").attr("class", "btn btn-success center-btn");
-            $("#a-2").attr("class", "btn btn-success center-btn");
-        } else {
-            if (shoot[0] == shoot[2]) {
-                $("#a-2").attr("class", "btn btn-success center-btn disabled");
-            } else {
-                if (shoot[0] == 0 && isReloading == false) {
-                    $("#a-1").attr("class", "btn btn-success center-btn disabled");
-                    $("#a-2").attr("class", "btn btn-danger center-btn");
-                };
-            }
-        };
     };
 };
 Init.game = function() {
