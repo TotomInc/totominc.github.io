@@ -7,6 +7,9 @@ function getExperience() {
 	if (prestige[1] < 0) {
 		prestige[1] = 0;
 	};
+	if (prestige[0] < 0) {
+		prestige[0] = 0;
+	};
 };
 function getDrugPrice(index) {
     return (drugPrice[index] * drugMultiplier[index]) * prestige[2];
