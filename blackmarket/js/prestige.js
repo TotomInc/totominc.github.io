@@ -120,6 +120,7 @@ PrestigeUpgrade.buy = function(type, index) {
 	if (prestige[0] >= prestigeUpgrades[index].price && type == "drugs") {
 		prestige[0] -= prestigeUpgrades[index].price;
 		prestigeUpgradesOwned[index] = true;
+		experienceSpent += prestigeUpgrades[index].price;
 		prestigeUpgrades[index].run();
 		$("#prestige-upgrade-" + (index+1)).attr("onclick", "");
 		$("#prestige-upgrade-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
@@ -128,6 +129,7 @@ PrestigeUpgrade.buy = function(type, index) {
 	if (prestige[0] >= prestigeShoot[index].price && type == "shoot") {
 		prestige[0] -= prestigeShoot[index].price;
 		prestigeShootOwned[index] = true;
+		experienceSpent += prestigeShoot[index].price;
 		prestigeShoot[index].run();
 		$("#prestige-shoot-" + (index+1)).attr("onclick", "");
 		$("#prestige-shoot-" + (index+1)).attr("class", "list-group-item up-list-group-owned");

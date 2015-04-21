@@ -1,5 +1,6 @@
 var money; var moneyPerSec; var shoot; var prestige;
 var shootPercent; var shootPercentCash;
+var experienceSpent;
 var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
     new Drug("Weed",        100),
@@ -10,7 +11,7 @@ var drugInit = [
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.03"; var release = "-official";
 var before; var now;
 var allVars = [
-    'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash',
+    'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
     'before',
     'drugStock', 'drugMultiplier',
     'shootRewardUpgradesOwned', 'shootTimeUpgradesOwned', 'ammoStockUpgradesOwned', 'reloadTimeUpgradesOwned', 'weedPriceUpgradesOwned', 'methPriceUpgradesOwned', 'cocainePriceUpgradesOwned',
@@ -41,6 +42,7 @@ Init.variables = function() {
     prestige = [0, 0, 1, "no rank"];
     shootPercent = 0;
     shootPercentCash = 0;
+    experienceSpent = 0;
 
     drugStock = []; drugName = []; drugPrice = []; drugMultiplier = []; drugPerSec = []; drugNetPerSec = []; moneyPerSec = [];
     for (var i = 0; i < drugInit.length; i++) {

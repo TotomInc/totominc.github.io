@@ -35,6 +35,7 @@ function softReset() {
         var temp2 = prestige[1];
         var temp3 = shoot[5];
         var temp4 = shoot[6];
+        var temp5 = experienceSpent;
         resetData();
         Init.variables();
         Upgrade.init();
@@ -45,6 +46,7 @@ function softReset() {
         prestige[0] = temp2;
         shoot[5] = temp3;
         shoot[6] = temp4;
+        experienceSpent = temp5;
         saveData();
         location.reload();
     };
@@ -57,6 +59,7 @@ function exportSave() {
         prestige: prestige,
         shootPercent: shootPercent,
         shootPercentCash: shootPercentCash,
+        experienceSpent: experienceSpent,
         
         before: before,
 
@@ -97,6 +100,7 @@ function importSave() {
     prestige = savegame.prestige;
     shootPercent = savegame.shootPercent;
     shootPercentCash = savegame.shootPercentCash;
+    experienceSpent = savegame.experienceSpent;
 
     before = savegame.before;
 
