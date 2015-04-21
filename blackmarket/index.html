@@ -84,6 +84,12 @@
               </div>
             </div>
           </div>
+        <!-- warning info -->
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+              <p class="tiny-font center justify">I'm really sorry for the negative experience bug, but if you get a lower amount of experience than before, it was because I changed the formula to gain experience. The new formula make experience harder than before to gain. If you got a negative amount of experience on reset, it <b>should</b> be fixed now.<br>
+              Sorry for the inconvenience, and thanks for playing! :)</p>
+          </div>
       </div>
 
       <div class="col-md-6 light">
@@ -330,7 +336,7 @@
           The prestige multiplier affects the shoot reward and the drugs prices.</p>
           <p class="lead underline">How is determined experience determined?</p>
           <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
-          <span class="code">25 * Math.sqrt(totalMoney/1e6)</span></p>
+          <span class="code">Math.floor(20 * Math.sqrt(totalMoney/1e8))</span></p>
         </div>
       </div>
     </div>
