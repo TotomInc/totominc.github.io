@@ -5,7 +5,7 @@ var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
     new Drug("Weed",        50),
     new Drug("Meth",        400),
-    new Drug("Cocaine",     1750)
+    new Drug("Cocaine",     2500)
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.04"; var release = "-official";
@@ -92,7 +92,7 @@ Init.update = function() {
             if (shoot[0] == shoot[2]) {
                 $("#a-2").attr("class", "btn btn-success center-btn disabled");
             } else {
-                if (shoot[0] == 0) {
+                if (shoot[0] == 0 && isReloading == false) {
                     $("#a-1").attr("class", "btn btn-success center-btn disabled");
                     $("#a-2").attr("class", "btn btn-danger center-btn");
                 };

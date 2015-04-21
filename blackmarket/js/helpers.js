@@ -3,7 +3,7 @@ function gainMoney(source) {
     money[1] += source;
 };
 function getExperience() {
-	prestige[1] = Math.floor(20 * Math.sqrt(money[1]/1e6)) - experienceSpent;
+	prestige[1] = Math.floor(20 * Math.sqrt(money[1]/1e8)) - experienceSpent;
 };
 function getDrugPrice(index) {
     return (drugPrice[index] * drugMultiplier[index]) * prestige[2];

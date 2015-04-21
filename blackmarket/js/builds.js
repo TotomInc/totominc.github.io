@@ -8,18 +8,18 @@ var weedBuilds = [
 
 var methBuildsOwned;
 var methBuilds = [
-    new Build("Build 1",    250000,         	0.2,    1.60, 1),
-    new Build("Build 2",    10000000,       	1,    	1.50, 1),
-    new Build("Build 3",    500000000,      	3,		1.40, 1),
-    new Build("Build 4",	10000000000,		7,    	1.30, 1),
+    new Build("Build 1",    1000000,         	0.2,    1.60, 1),
+    new Build("Build 2",    100000000,       	1,    	1.50, 1),
+    new Build("Build 3",    7500000000,      	3,		1.40, 1),
+    new Build("Build 4",	100000000000,		7,    	1.30, 1),
 ];
 
 var cocaineBuildsOwned;
 var cocaineBuilds = [
-    new Build("Build 1",	75000000,			0.2,    1.60, 2),
-    new Build("Build 2",	2500000000,    		1,    	1.50, 2),
-    new Build("Build 3",	50000000000,   		3,		1.40, 2),
-    new Build("Build 4",	2500000000000, 		7,		1.30, 2),
+    new Build("Build 1",	750000000,			0.2,    1.60, 2),
+    new Build("Build 2",	25000000000,    	1,    	1.50, 2),
+    new Build("Build 3",	500000000000,   	3,		1.40, 2),
+    new Build("Build 4",	25000000000000, 	7,		1.30, 2),
 ];
 
 function Build(name, price, reward, inflation, jsType) {

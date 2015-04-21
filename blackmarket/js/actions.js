@@ -1,3 +1,5 @@
+var isReloading = false;
+
 function Action() { Log("Calling Action()"); };
 Action.shoot = function() {
 	if (shoot[0] > 0) {
@@ -17,6 +19,7 @@ Action.shoot = function() {
 };
 Action.reload = function() {
 	if (shoot[0] < shoot[2]) {
+        isReloading = true;
 		$("#a-1, #a-2").attr("onclick", "");
 		$("#a-1, #a-2").attr("class", "btn btn-success center-btn disabled");
         window.setTimeout(function() {
@@ -24,6 +27,7 @@ Action.reload = function() {
             shoot[6]++;
             $("#a-1").attr("onclick", "Action.shoot();");
             $("#a-2").attr("onclick", "Action.reload();");
+            isReloading = false;
             $("#a-1, #a-2").attr("class", "btn btn-success center-btn");
         }, shoot[4]);
         $("#reload-actions").animate({width: "100%"}, shoot[4], "linear");
