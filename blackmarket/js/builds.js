@@ -1,25 +1,25 @@
 var weedBuildsOwned;
 var weedBuilds = [
-    new Build("Build 1",	500,            	0.2,    1.60, 0),
-    new Build("Build 2",	500000,          	1,    	1.50, 0),
-    new Build("Build 3",	25000000,        	3,   	1.40, 0),
-    new Build("Build 4",	750000000,			7,    	1.30, 0),
+    new Build("Build 1",	500,            	0.5,    1.60, 0),
+    new Build("Build 2",	500000,          	2,    	1.50, 0),
+    new Build("Build 3",	25000000,        	4,   	1.40, 0),
+    new Build("Build 4",	750000000,			8,    	1.30, 0),
 ];
 
 var methBuildsOwned;
 var methBuilds = [
-    new Build("Build 1",    1000000,         	0.2,    1.60, 1),
-    new Build("Build 2",    750000000,       	1,    	1.50, 1),
-    new Build("Build 3",    50000000000,      	3,		1.40, 1),
-    new Build("Build 4",	1000000000000,		7,    	1.30, 1),
+    new Build("Build 1",    1000000,         	0.5,    1.60, 1),
+    new Build("Build 2",    750000000,       	2,    	1.50, 1),
+    new Build("Build 3",    50000000000,      	4,		1.40, 1),
+    new Build("Build 4",	1000000000000,		8,    	1.30, 1),
 ];
 
 var cocaineBuildsOwned;
 var cocaineBuilds = [
-    new Build("Build 1",	25000000000,		0.2,    1.60, 2),
-    new Build("Build 2",	750000000000,    	1,    	1.50, 2),
-    new Build("Build 3",	2500000000000,   	3,		1.40, 2),
-    new Build("Build 4",	1000000000000000, 	7,		1.30, 2),
+    new Build("Build 1",	25000000000,		0.5,    1.60, 2),
+    new Build("Build 2",	750000000000,    	2,    	1.50, 2),
+    new Build("Build 3",	2500000000000,   	4,		1.40, 2),
+    new Build("Build 4",	1000000000000000, 	8,		1.30, 2),
 ];
 
 function Build(name, price, reward, inflation, jsType) {
