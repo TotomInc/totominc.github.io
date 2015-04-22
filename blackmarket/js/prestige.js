@@ -3,14 +3,14 @@ var prestigeRanks = [
     new PrestigeRank("Bronze II",            	1,  100,        		4.44),
     new PrestigeRank("Bronze III",           	2,  400,        		6.66),
     new PrestigeRank("Bronze Master",         	3,  1000,       		8.88),
-    new PrestigeRank("Silver I",				4,  2500,       		10.00),
-    new PrestigeRank("Silver II",            	5,  10000,      		15.00),
-    new PrestigeRank("Silver III",           	6,  25000,      		20.00),
-    new PrestigeRank("Silver Master",         	7,  50000,     			25.00),
-    new PrestigeRank("Platinum I",				8,  100000,     		50.00),
-    new PrestigeRank("Platinum II",          	9,  250000,    			75.00),
-    new PrestigeRank("Platinum III",         	10, 1000000,			100.00),
-    new PrestigeRank("Platinum Master",			11, 5000000,			125.00),
+    new PrestigeRank("Silver I",				4,  2500,       		20.00),
+    new PrestigeRank("Silver II",            	5,  10000,      		30.00),
+    new PrestigeRank("Silver III",           	6,  25000,      		40.00),
+    new PrestigeRank("Silver Master",         	7,  50000,     			50.00),
+    new PrestigeRank("Platinum I",				8,  100000,     		75.00),
+    new PrestigeRank("Platinum II",          	9,  250000,    			100.00),
+    new PrestigeRank("Platinum III",         	10, 1000000,			125.00),
+    new PrestigeRank("Platinum Master",			11, 5000000,			150.00),
     new PrestigeRank("Legendary Dealer I",		12, 17500000, 			200.00),
     new PrestigeRank("Legendary Dealer II",  	13, 50000000,   		300.00),
     new PrestigeRank("Legendary Dealer III",  	14, 100000000,  		400.00),
@@ -20,10 +20,10 @@ var prestigeRanks = [
     new PrestigeRank("Diamond Dealer III",		18,	2000000000,			1250.00),
     new PrestigeRank("Diamond Dealer Master",	19,	5000000000,			1500.00),
     new PrestigeRank("Hacker I",				20,	10000000000,		2000.00),
-    new PrestigeRank("Hacker II",				21,	25000000000,		2500.00),
-    new PrestigeRank("Hacker III",				22,	50000000000,		3000.00),
-    new PrestigeRank("Hacker IV",				23,	100000000000,		4000.00),
-    new PrestigeRank("Hacker V",				24,	250000000000,		4500.00)
+    new PrestigeRank("Hacker II",				21,	25000000000,		3000.00),
+    new PrestigeRank("Hacker III",				22,	50000000000,		4000.00),
+    new PrestigeRank("Hacker IV",				23,	100000000000,		5000.00),
+    new PrestigeRank("Hacker V",				24,	250000000000,		6000.00)
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [
@@ -50,10 +50,10 @@ var prestigeShoot = [
 ];
 var prestigeShootingOwned;
 var prestigeShooting = [
-	new PrestigeUpgrade("Enable auto-shooting",	100,		function() { prestigeShootingOwned = true; })
+	new PrestigeUpgrade("Enable auto-shooting",		100,	function() { prestigeShootingOwned = true; })
 ];
 var prestigeReloading = [
-	new PrestigeUpgrade("Enable auto-reloading",	100,		function() { prestigeReloadingOwned = true; })
+	new PrestigeUpgrade("Enable auto-reloading",	100,	function() { prestigeReloadingOwned = true; })
 ];
 
 function PrestigeRank(name, index, needed, multiplier) {

@@ -4,12 +4,12 @@ var experienceSpent;
 var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
     new Drug("Weed",        50),
-    new Drug("Meth",        400),
-    new Drug("Cocaine",     2500)
+    new Drug("Meth",        500),
+    new Drug("Cocaine",     3000)
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
-var version = "1.04"; var release = "-official"; var build = 1041;
+var version = "1.04"; var release = "-official"; var build = 1042;
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
@@ -83,7 +83,7 @@ Init.update = function() {
         $("#action-shoot").html("+ $" + fix(getShootReward(), "money") + "/shoot<br>" + fix((shoot[3] / 1000), "time") + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000), "time") + " sec/reload");
         $("#stats-money").html("Money : <b>$" + fix(money[0], "money") + "</b><br>Total money : <b>$" + fix(money[1], "money") + "</b><br>Money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
-        $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b>');
+        $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + shoot[5] + "</b><br>Total reloads : <b>" + shoot[6] + '</b><br>Shoot earn <b>' + shootPercent + '% of your total $/sec</b>');
         $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0], "drug") + "g</b> (" + fix(drugPerSec[0], "drug") + "g/sec)<br>Weed selling : <b>" + fix(drugNetPerSec[0], "drug") + "g/sec</b><br>Weed price : <b>" + fix(getDrugPrice(0), "drug") + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0], "multiplier") + '</b>');
         $("#stats-meth").html("Meth stock : <b>" + fix(drugStock[1], "drug") + "g</b> (" + fix(drugPerSec[1], "drug") + "g/sec)<br>Meth selling : <b>" + fix(drugNetPerSec[1], "drug") + "g/sec</b><br>Meth price : <b>" + fix(getDrugPrice(1), "drug") + "$/g</b><br>Meth multiplier : <b>x" + fix(drugMultiplier[1], "multiplier") + '</b>');
         $("#stats-cocaine").html("Cocaine stock : <b>" + fix(drugStock[2], "drug") + "g</b> (" + fix(drugPerSec[2], "drug") + "g/sec)<br>Cocaine selling : <b>" + fix(drugNetPerSec[2], "drug") + "g/sec</b><br>Cocaine price : <b>" + fix(getDrugPrice(2), "drug") + "$/g</b><br>Cocaine multiplier : <b>x" + fix(drugMultiplier[2], "multiplier") + '</b>');

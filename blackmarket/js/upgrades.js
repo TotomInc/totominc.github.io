@@ -1,15 +1,19 @@
 var shootRewardUpgradesOwned;
 var shootRewardUpgrades = [
-    new Upgrade("Shoot reward x5",      12,         	function() { shoot[7] *= 5 }),
-    new Upgrade("Shoot reward x4",      160,         	function() { shoot[7] *= 4 }),
-    new Upgrade("Shoot reward x3",      820,        	function() { shoot[7] *= 3 }),
-    new Upgrade("Shoot reward x2",      3200,       	function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x2",      24000,      	function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x2",		204000,			function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x6.66",	13250000,		function() { shoot[7] *= 6.66 }),
-    new Upgrade("Shoot reward x8.88",	385000000,		function() { shoot[7] *= 8.88 }),
-    new Upgrade("Shoot reward x10",		2750000000, 	function() { shoot[7] *= 10 }),
-    new Upgrade("Shoot reward x12",		500000000000,	function() { shoot[7] *= 12 })
+    new Upgrade("Shoot reward x5",      12,         		function() { shoot[7] *= 5 }),
+    new Upgrade("Shoot reward x4",      160,         		function() { shoot[7] *= 4 }),
+    new Upgrade("Shoot reward x3",      820,        		function() { shoot[7] *= 3 }),
+    new Upgrade("Shoot reward x2",      3200,       		function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x2",      24000,      		function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x2",		204000,				function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x6.66",	13250000,			function() { shoot[7] *= 6.66 }),
+    new Upgrade("Shoot reward x8.88",	385000000,			function() { shoot[7] *= 8.88 }),
+    new Upgrade("Shoot reward x10",		2750000000, 		function() { shoot[7] *= 10 }),
+    new Upgrade("Shoot reward x12",		500000000000,		function() { shoot[7] *= 12 }),
+    new Upgrade("Shoot reward x14",		2500000000000,		function() { shoot[7] *= 14 }),
+    new Upgrade("Shoot reward x16",		25000000000000,		function() { shoot[7] *= 16 }),
+    new Upgrade("Shoot reward x18",		350000000000000,	function() { shoot[7] *= 18 }),
+    new Upgrade("Shoot reward x20",		1000000000000000,	function() { shoot[7] *= 20 })
 ];
 var shootTimeUpgradesOwned;
 var shootTimeUpgrades = [
