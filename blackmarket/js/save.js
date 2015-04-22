@@ -29,7 +29,7 @@ function hardReset() {
     };
 };
 function softReset() {
-    if (confirm("You are trying to soft-reset. This means that you will start the game over but with " + fix(prestige[1]) + " experience. Check-out the tables panel to verify if you will get a prestige multiplier after your reset.")) {
+    if (confirm("You are trying to soft-reset. This means that you will start the game over but with " + fix(prestige[1], "prestige") + " experience. Check-out the tables panel to verify if you will get a prestige multiplier after your reset.")) {
         window.clearInterval(intSave);
         var temp = money[1];
         var temp2 = prestige[1];
