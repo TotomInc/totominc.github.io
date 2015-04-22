@@ -23,8 +23,8 @@ b { font-weight: 400; }
 .shoot-color { background: #4CAF50 !important; }
 .reload-color { background: #F44336 !important; }
 
-.right-separator { height: 100%; border-right: 1px solid #4caf50; }
-.left-separator { height: 100%; border-left: 1px solid #4caf50; }
+.right-separator { height: 100%; border-right: 1px solid #2196f3; }
+.left-separator { height: 100%; border-left: 1px solid #2196f3; }
 
 .cur-d { cursor: default; }
 .cur-p { cursor: pointer; }

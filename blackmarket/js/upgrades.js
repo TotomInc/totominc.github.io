@@ -9,7 +9,7 @@ var shootRewardUpgrades = [
     new Upgrade("Shoot reward x6.66",	13250000,		function() { shoot[7] *= 6.66 }),
     new Upgrade("Shoot reward x8.88",	385000000,		function() { shoot[7] *= 8.88 }),
     new Upgrade("Shoot reward x10",		2750000000, 	function() { shoot[7] *= 10 }),
-    new Upgrade("Shoot reward x12",		550000000000,	function() { shoot[7] *= 12 })
+    new Upgrade("Shoot reward x12",		500000000000,	function() { shoot[7] *= 12 })
 ];
 var shootTimeUpgradesOwned;
 var shootTimeUpgrades = [

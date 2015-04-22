@@ -27,21 +27,26 @@ var prestigeRanks = [
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [
-	new PrestigeUpgrade("All drugs prices x2",	10,			function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	500,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	10000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	50000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	5000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
-	new PrestigeUpgrade("All drugs prices x2",	35000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; })
+	new PrestigeUpgrade("All drugs prices x2",	10,				function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	500,			function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	10000,			function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	50000,			function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	5000000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	75000000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x3",	500000000,		function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; }),
+	new PrestigeUpgrade("All drugs prices x3",	15000000000,	function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; })
 ];
 var prestigeShootOwned;
 var prestigeShoot = [
 	new PrestigeUpgrade("Shoot earn 1% of $/sec",	250,		function() { shootPercent += 1; }),
 	new PrestigeUpgrade("Shoot earn 1% of $/sec",	6666,		function() { shootPercent += 1; }),
 	new PrestigeUpgrade("Shoot earn 1% of $/sec",	35000,		function() { shootPercent += 1; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	75000,		function() { shootPercent += 2; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	250000,		function() { shootPercent += 2; }),
-	new PrestigeUpgrade("Shoot earn 2% of $/sec",	1000000,	function() { shootPercent += 2; })
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	75000,		function() { shootPercent += 1; }),
+	new PrestigeUpgrade("Shoot earn 1% of $/sec",	250000,		function() { shootPercent += 1; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	1000000,	function() { shootPercent += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	75000000,	function() { shootPercent += 2; }),
+	new PrestigeUpgrade("Shoot earn 2% of $/sec",	250000000,	function() { shootPercent += 2; }),
+	new PrestigeUpgrade("Shoot earn 4% of $/sec",	1000000000,	function() { shootPercent += 4; })
 ];
 var prestigeShootingOwned;
 var prestigeShooting = [
