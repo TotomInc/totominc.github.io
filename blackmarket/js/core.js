@@ -8,7 +8,8 @@ var drugInit = [
     new Drug("Cocaine",     2500)
 ];
 
-var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-"; var version = "1.04"; var release = "-official";
+var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
+var version = "1.04"; var release = "-official"; var build = 1041;
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
@@ -92,7 +93,7 @@ Init.update = function() {
         $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
-        $("#options-version").html("Current version : " + version + release);
+        $("#options-version").html("Current version : " + version + "-b" + build);
         $("#options-currentFps").html(inputValue + " frames per second. ");
     };
 };
