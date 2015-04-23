@@ -1,5 +1,3 @@
-checkCodeInput = document.getElementById('checkCode').value;
-
 function devMode(number) {
 	if (number == 0) {
 		money[0] = 1e7;
@@ -13,7 +11,6 @@ function devMode(number) {
 };
 function updateCheckCodeInput() {
 	checkCodeInput = document.getElementById('checkCode').value;
-
 	checkCode(checkCodeInput);
 };
 function checkCode(check) {

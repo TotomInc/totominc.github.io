@@ -29,6 +29,7 @@ var refreshRate = 60;
 var showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
 var enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
 var enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
+var checkCodeInput = document.getElementById('checkCode').value;
 
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 function Drug(name, price) {
