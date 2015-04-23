@@ -1,9 +1,12 @@
 function beautify(x, n) {
 	if (x >= 1e6) {
 		var z = Math.floor(logFloor(x)/3);
-		var prefixes = ["million ","billion ","trillion ","quadrillion ","quintillion ","sextillion ","septillion ", "octillion ", "nonillion ",
+		var prefixes = ["million ","billion ","trillion ","quadrillion ","quintillion ","sextillion ","septillion ","octillion ","nonillion ",
 		"decillion ","undecillion ","duodecillion ","tredecillion ","quattuordecillion ","quindecillion ","sexdecillion ","septendecillion ","octodecillion ","novemdecillion ",
-		"vigintillion "];
+		"vigintillion ","unvigintillion ","duovigintillion ","trevigintillion ","quattuorvigintillion ","quinvigintillion ","sexvigintillion ","septenvigintillion ","octovigintillion ","novemvigintillion ",
+		"trigintillion ","untrigintillion ","duotrigintillion ","tretrigintillion ","quattuortrigintillion ","quintrigintillion ","sextrigintillion ","septentrigintillion ","octotrigintillion ","novemtrigintillion ",
+		"quadragintillion ","unquadragintillion ","duoquadragintillion ","trequadragintillion ","quattuorquadragintillion ","quinquadragintillion ","sexquadragintillion ","septenquadragintillion ","octoquadragintillion ","novemquadragintillion ",
+		"quinquagintillion "];
 		var s = beautify(x/Math.pow(10,3*z),n);
 		return s+" "+prefixes[z-2];
 	} else {

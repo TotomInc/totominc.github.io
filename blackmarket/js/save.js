@@ -36,17 +36,29 @@ function softReset() {
         var temp3 = shoot[5];
         var temp4 = shoot[6];
         var temp5 = experienceSpent;
+        var temp6 = prestigeUpgradesOwned;
+        var temp7 = prestigeShootOwned;
+        var temp8 = prestigeShootingOwned;
+        var temp9 = prestigeReloadingOwned;
+
         resetData();
         Init.variables();
         Upgrade.init();
         Build.init();
         Dealer.init();
         PrestigeUpgrade.init();
+
         money[1] = temp;
         prestige[0] = temp2;
         shoot[5] = temp3;
         shoot[6] = temp4;
         experienceSpent = temp5;
+        prestigeUpgradesOwned = temp6;
+        prestigeShootOwned = temp7;
+        prestigeShootingOwned = temp8;
+        prestigeReloadingOwned = temp9;
+        
+        PrestigeUpgrade.afterReset();
         saveData();
         location.reload();
     };

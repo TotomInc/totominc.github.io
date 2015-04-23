@@ -9,7 +9,7 @@ var drugInit = [
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
-var version = "1.04"; var release = "-official"; var build = 1042;
+var version = "1.05"; var release = "-official"; var build = 1050;
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',

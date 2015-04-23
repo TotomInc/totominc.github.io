@@ -52,6 +52,7 @@ var prestigeShootingOwned;
 var prestigeShooting = [
 	new PrestigeUpgrade("Enable auto-shooting",		100,	function() { prestigeShootingOwned = true; })
 ];
+var prestigeReloadingOwned;
 var prestigeReloading = [
 	new PrestigeUpgrade("Enable auto-reloading",	100,	function() { prestigeReloadingOwned = true; })
 ];
@@ -163,7 +164,7 @@ PrestigeUpgrade.saveCheck = function() {
 	};
 };
 PrestigeUpgrade.buy = function(type, index) {
-	if (prestige[0] >= prestigeUpgrades[index].price && type == "drugs") {
+	if (type == "drugs" && prestige[0] >= prestigeUpgrades[index].price) {
 		prestige[0] -= prestigeUpgrades[index].price;
 		prestigeUpgradesOwned[index] = true;
 		experienceSpent += prestigeUpgrades[index].price;
@@ -172,7 +173,7 @@ PrestigeUpgrade.buy = function(type, index) {
 		$("#prestige-upgrade-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
 		$("#prestige-upgrade-" + (index+1)).append('<span class="badge">Owned</span>');
 	};
-	if (prestige[0] >= prestigeShoot[index].price && type == "shoot") {
+	if (type == "shoot" && prestige[0] >= prestigeShoot[index].price) {
 		prestige[0] -= prestigeShoot[index].price;
 		prestigeShootOwned[index] = true;
 		experienceSpent += prestigeShoot[index].price;
@@ -181,7 +182,7 @@ PrestigeUpgrade.buy = function(type, index) {
 		$("#prestige-shoot-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
 		$("#prestige-shoot-" + (index+1)).append('<span class="badge">Owned</span>');
 	};
-	if (prestige[0] >= prestigeShooting[index].price && type == "autoshoot") {
+	if (type == "autoshoot" && prestige[0] >= prestigeShooting[index].price) {
 		prestige[0] -= prestigeShooting[index].price;
 		prestigeShootingOwned = true;
 		experienceSpent += prestigeShooting[index].price;
@@ -191,7 +192,7 @@ PrestigeUpgrade.buy = function(type, index) {
 		$("#prestige-shooting-" + (index+1)).append('<span class="badge">Owned</span>');
 		$("#actions-auto-shoot").css("display", "block");
 	};
-	if (prestige[0] >= prestigeReloading[index].price && type == "autoreload") {
+	if (type == "autoreload" && prestige[0] >= prestigeReloading[index].price) {
 		prestige[0] -= prestigeReloading[index].price;
 		prestigeReloadingOwned = true;
 		experienceSpent += prestigeReloading[index].price;
@@ -200,5 +201,26 @@ PrestigeUpgrade.buy = function(type, index) {
 		$("#prestige-reloading-" + (index+1)).attr("class", "list-group-item up-list-group-owned");
 		$("#prestige-reloading-" + (index+1)).append('<span class="badge">Owned</span>');
 		$("#actions-auto-reload").css("display", "block");
+	};
+};
+PrestigeUpgrade.afterReset = function() {
+	for (var i = 0; i < prestigeUpgrades.length; i++) {
+		var p = prestigeUpgrades[i];
+		if (prestigeUpgradesOwned[i] == true) {
+			p.run();
+		};
+	};
+	for (var i = 0; i < prestigeShoot.length; i++) {
+		var p = prestigeShoot[i];
+		if (prestigeShootOwned[i] == true) {
+			p.run();
+		};
+	};
+
+	if (prestigeShootingOwned == true) {
+		prestigeShooting[0].run();
+	};
+	if (prestigeReloadingOwned == true) {
+		prestigeReloading[0].run();
 	};
 };
