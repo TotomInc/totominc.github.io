@@ -1,6 +1,6 @@
 var maxpx = $(document).height();
 var widthpx = $(document).width();
-var marginpx = 170;
+var marginpx = 150;
 var panelspx = 40;
 
 function resize() {
