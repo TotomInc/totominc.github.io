@@ -18,7 +18,5 @@ function checkCode(check) {
 
 	if (cleanInput == "Marc") {
 		prestige[0] = 1e21;
-		$("#nav-tab-content, #panels-col").css("opacity", 0.3);
-		$("body").css("background", "url('https://newevolutiondesigns.com/images/freebies/cat-wallpaper-24.jpg')");
 	};
 };
