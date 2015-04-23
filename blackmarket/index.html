@@ -54,7 +54,7 @@
 <!-- game area -->
   <div class="container-fluid">
     <div class="row">
-      <div id="panels-col" class="col-md-6 light">
+      <div id="panels-col" class="col-md-5 light">
         <!-- actions panel -->
           <div class="panel panel-primary light">
             <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
@@ -106,28 +106,89 @@
           </div>
       </div>
 
-      <div id="nav-tab-content" class="col-md-6 light">
+      <div id="nav-tab-content" class="col-md-7 light">
         <ul class="nav nav-pills nav-justified">
           <li class="active"><a href="#tab-up" data-toggle="tab">Upgrades <i class="fa fa-level-up"></i></a></li>
           <li><a href="#tab-builds" data-toggle="tab">Buildings <i class="fa fa-building-o"></i></a></li>
           <li><a href="#tab-dealers" data-toggle="tab">Dealers <i class="fa fa-users"></i></a></li>
           <li><a href="#tab-prestige" data-toggle="tab">Prestige <i class="fa fa-star"></i></a></li>
+          <li><a href="#tab-ach" data-toggle="tab">Achievements <i class="fa fa-trophy"></i></a></li>
           <li><a href="#tab-patch" data-toggle="tab">Patch <i class="fa fa-pencil"></i></a></li>
           <li><a href="#tab-tables" data-toggle="tab">Table <i class="fa fa-table"></i></a></li>
         </ul>
         <div id="tab-content" class="tab-content">
           <div class="tab-pane fade active in" id="tab-up">
             <div class="well"><div class="checkbox tiny-font center"><label><input type="checkbox" id="showUpgradesOwned" onclick="Upgrade.hide();"> Show upgrades owned</label></div></div>
-
-            <ul id="up-shoot-reward" class="list-group"></ul>
-            <ul id="up-shoot-time" class="list-group"></ul>
-            <ul id="up-ammo-stock" class="list-group"></ul>
-            <ul id="up-reload-time" class="list-group"></ul>
-            <ul id="up-weed-price" class="list-group"></ul>
-            <ul id="up-meth-price" class="list-group"></ul>
-            <ul id="up-cocaine-price" class="list-group"></ul>
-
-            <ul id="up-shoot-reward-bought" class="list-group"></ul>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shootreward-panel" href="javascript:" class="collapsed">Shoot reward upgrades <span id="up-shootreward-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shootreward-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-shoot-reward" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shoottime-panel" href="javascript:" class="collapsed">Shoot time upgrades <span id="up-shoottime-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shoottime-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-shoot-time" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shootammo-panel" href="javascript:" class="collapsed">Ammo upgrades <span id="up-ammo-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shootammo-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-ammo-stock" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-reloadtime-panel" href="javascript:" class="collapsed">Reload time upgrades <span id="up-reloadtime-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-reloadtime-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-reload-time" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-weedprice-panel" href="javascript:" class="collapsed">Weed price upgrades <span id="up-weedprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-weedprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-weed-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-methprice-panel" href="javascript:" class="collapsed">Meth price upgrades <span id="up-methprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-methprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-meth-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-cocaineprice-panel" href="javascript:" class="collapsed">Cocaine price upgrades <span id="up-cocaineprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-cocaineprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-cocaine-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="tab-builds">
             <div class="panel panel-default">
@@ -222,16 +283,69 @@
             <ul id="prestige-shooting" class="list-group"></ul>
             <ul id="prestige-reloading" class="list-group"></ul>
           </div>
+          <div class="tab-pane fade" id="tab-ach">
+            <div class="well"><div class="checkbox tiny-font center"><label><input type="checkbox" id="showAchOwned" onclick="Achievement.hide()"> Show achievements owned</label></div></div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-totalmoney-panel" href="javascript:" class="collapsed">Total-money achievements <span id="ach-totalmoney-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-totalmoney-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-totalmoney" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-experience-panel" href="javascript:" class="collapsed">Experience achievements <span id="ach-experience-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-experience-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-experience" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-shoot-panel" href="javascript:" class="collapsed">Shoot achievements <span id="ach-shoot-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-shoot-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-shoot" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-reload-panel" href="javascript:" class="collapsed">Reload achievements <span id="ach-reload-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-reload-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-reload" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
-              <p class="lead center underline">v1.05-b1050 (04/23/2015) : prestige-upgrades changed!</p>
+              <p class="lead center underline">v1.06 (04/24/2015) : achievements and game balancing.</p>
+              <p class="justify tiny-font">
+                - Added achievements! Actually, you don't gain any bonuses from them, but it's planned, to gain a certain % from these achievements!<br>
+                - Meth and cocaine buildings/dealers have been boosted, they produces/sell more.<br>
+                - Weed price is nerfed, meth and cocaine is a bit boosted.<br>
+                - Some bugs fixed.<br>
+                - Some backend improvement.
+              </p>
+
+              <p class="lead center underline">v1.05 (04/23/2015) : prestige-upgrades changed!</p>
               <p class="justify tiny-font">
                 - Changed prestige-upgrades, now you keep prestige-upgrades when going to soft-reset!<br>
                 - Fixed some bugs with prestige-upgrades.<br>
                 - Numbers can go up to 10e153 (quinquagintillion).
               </p>
 
-              <p class="lead center underline">v1.04-b1040 (04/22/2015) : small changes</p>
+              <p class="lead center underline">v1.04 (04/22/2015) : small changes</p>
               <p class="justify tiny-font">
                 - Changed experience required for ranks! It should be easier now.<br>
                 - Added an option to hide/show upgrades owned!<br>
@@ -244,7 +358,7 @@
                 <span class="code">Math.floor(30 * Math.sqrt(totalMoney/1e7))</span>.<br>
               </p>
 
-              <p class="lead center underline">v1.03-b1030 (04/21/2015) : new upgrades</p>
+              <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>
               <p class="justify tiny-font">
                 - Added new upgrades, changed prices of some of them.<br>
                 - Added new prestige-upgrades and changed their layout. New prestige upgrades make the shooting reward earn x % of your current $/sec.<br>
@@ -255,7 +369,7 @@
                 - Some backends invisible changes.
               </p>
 
-              <p class="lead center underline">v1.02-b1020 (04/20/2015) : dealers selling bug (really fixed?)</p>
+              <p class="lead center underline">v1.02 (04/20/2015) : dealers selling bug (really fixed?)</p>
               <p class="justify tiny-font">
                 - New drugs prices : weed is boosted at 100$/g, meth is nerfed at 350 $/g, cocaine is nerfed at 1500$/g.<br>
                 - Bugs with drugs prices when you got all upgrades and prestige upgrades is fixed! Have to soft-reset to see it.<br>
@@ -268,7 +382,7 @@
                 - Some backend invisible changes.
               </p>
 
-              <p class="lead center underline">v1.01-b1010 (04/19/2015) : bugs fixes</p>
+              <p class="lead center underline">v1.01 (04/19/2015) : bugs fixes</p>
               <p class="justify tiny-font">
                 - <s>Fixed a bug with dealers drug selling.</s><br>
                 - New layout for upgrades/builds/dealers.<br>
@@ -277,7 +391,7 @@
                 - Some backup invisibles changes.
               </p>
 
-            	<p class="lead center underline">v1.00-b1000 (04/18/2015) : official release!</p>
+            	<p class="lead center underline">v1.00 (04/18/2015) : official release!</p>
             	<p class="justify tiny-font">
             		After months of prototype/alpha and beta, the game has now entered on his official release stage!<br>
             		<b>What's new in this version?</b><br>
@@ -326,8 +440,8 @@
           </div>
           <br>
           <div class="row">
-            <div class="col-md-6 col-xs-6"><a onclick="exportSave();" class="btn btn-success btn-sm center-btn">Export-save</a></div>
-            <div class="col-md-6 col-xs-6"><a onclick="importSave();" class="btn btn-success btn-sm center-btn">Import-save</a></div>
+            <div class="col-md-6 col-xs-6"><a onclick="exportSave();" class="btn btn-warning btn-sm center-btn">Export-save</a></div>
+            <div class="col-md-6 col-xs-6"><a onclick="importSave();" class="btn btn-warning btn-sm center-btn">Import-save</a></div>
           </div>
           <br>
           <div class="row">
@@ -388,6 +502,7 @@
   <script src="js/upgrades.js"></script>
   <script src="js/builds.js"></script>
   <script src="js/dealers.js"></script>
+  <script src="js/achievements.js"></script>
   <script src="js/actions.js"></script>
   <script src="js/prestige.js"></script>
   <script src="js/cheats.js"></script>

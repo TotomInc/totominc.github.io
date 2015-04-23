@@ -15,8 +15,4 @@ function updateCheckCodeInput() {
 };
 function checkCode(check) {
 	var cleanInput = atob(check);
-
-	if (cleanInput == "Marc") {
-		prestige[0] = 1e21;
-	};
 };

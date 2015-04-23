@@ -87,6 +87,87 @@ function getDealerSell(index, jsType) {
 		return cocaineDealers[index].sell;
 	};
 };
+function getAchievementsOwned(type) {
+	if (type == "money") {
+		var owned = 0;
+		for (var i = 0; i < totalMoneyAchOwned.length; i++) {
+			if (totalMoneyAchOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "exp") {
+		var owned = 0;
+		for (var i = 0; i < experienceAchOwned.length; i++) {
+			if (experienceAchOwned[i] == true) { owned++; };	
+		};
+		return owned;
+	};
+	if (type == "shoot") {
+		var owned = 0;
+		for (var i = 0; i < shootAchOwned.length; i++) {
+			if (shootAchOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "reload") {
+		var owned = 0;
+		for (var i = 0; i < reloadAchOwned.length; i++) {
+			if (reloadAchOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+};
+function getUpgradesOwned(type) {
+	if (type == "shoot-reward") {
+		var owned = 0;
+		for (var i = 0; i < shootRewardUpgrades.length; i++) {
+			if (shootRewardUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "shoot-time") {
+		var owned = 0;
+		for (var i = 0; i < shootTimeUpgradesOwned.length; i++) {
+			if (shootTimeUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "ammo") {
+		var owned = 0;
+		for (var i = 0; i < ammoStockUpgradesOwned.length; i++) {
+			if (ammoStockUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "reload-time") {
+		var owned = 0;
+		for (var i = 0; i < reloadTimeUpgradesOwned.length; i++) {
+			if (reloadTimeUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "weed-price") {
+		var owned = 0;
+		for (var i = 0; i < weedPriceUpgradesOwned.length; i++) {
+			if (weedPriceUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "meth-price") {
+		var owned = 0;
+		for (var i = 0; i < methPriceUpgradesOwned.length; i++) {
+			if (methPriceUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == "cocaine-price") {
+		var owned = 0;
+		for (var i = 0; i < cocainePriceUpgradesOwned.length; i++) {
+			if (cocainePriceUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+};
 function isOdd(number) {
 	return number % 2;
 };

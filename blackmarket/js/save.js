@@ -97,7 +97,12 @@ function exportSave() {
         cocaineDealersOwned: cocaineDealersOwned,
 
         prestigeShootingOwned: prestigeShootingOwned,
-        prestigeReloadingOwned: prestigeReloadingOwned
+        prestigeReloadingOwned: prestigeReloadingOwned,
+
+        totalMoneyAchOwned: totalMoneyAchOwned,
+        experienceAchOwned: experienceAchOwned,
+        shootAchOwned: shootAchOwned,
+        reloadAchOwned: reloadAchOwned
     };
 
     var saved = JSON.stringify(toSave);
@@ -144,6 +149,10 @@ function importSave() {
     prestigeShootingOwned = savegame.prestigeShootingOwned;
     prestigeReloadingOwned = savegame.prestigeReloadingOwned;
 
+    totalMoneyAchOwned = savegame.totalMoneyAchOwned;
+    experienceAchOwned = savegame.experienceAchOwned;
+    shootAchOwned = savegame.shootAchOwned;
+    reloadAchOwned = savegame.reloadAchOwned;
 
     Build.check();
     Dealer.check();

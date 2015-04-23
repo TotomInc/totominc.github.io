@@ -4,12 +4,12 @@ var experienceSpent;
 var drugStock; var drugName; var drugPrice; var drugMultiplier; var drugPerSec;
 var drugInit = [
     new Drug("Weed",        50),
-    new Drug("Meth",        500),
-    new Drug("Cocaine",     3000)
+    new Drug("Meth",        750),
+    new Drug("Cocaine",     3500)
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
-var version = "1.05"; var release = "-official"; var build = 1050;
+var version = "1.06"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
@@ -19,7 +19,8 @@ var allVars = [
     'prestigeUpgradesOwned', 'prestigeShootOwned',
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned',
-    'prestigeShootingOwned', 'prestigeReloadingOwned'
+    'prestigeShootingOwned', 'prestigeReloadingOwned',
+    'totalMoneyAchOwned', 'experienceAchOwned', 'shootAchOwned', 'reloadAchOwned'
 ];
 
 var inputFps = document.getElementById("update-fps");
@@ -27,6 +28,7 @@ var inputValue = inputFps.value;
 var refreshRate = 60;
 
 var showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+var showAchOwnedCheckBox = document.getElementById('showAchOwned');
 var enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
 var enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 var checkCodeInput = document.getElementById('checkCode').value;
@@ -72,8 +74,10 @@ Init.update = function() {
         PrestigeRank.rankup();
         getShootPercent();
         Action.check();
+        Achievement.check();
 
         showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
+        showAchOwnedCheckBox = document.getElementById('showAchOwned');
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 
@@ -94,8 +98,19 @@ Init.update = function() {
         $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
-        $("#options-version").html("Current version : " + version + "-b" + build);
+        $("#options-version").html("Current version : " + version);
         $("#options-currentFps").html(inputValue + " frames per second. ");
+        $("#ach-totalmoney-stats").html("(" + getAchievementsOwned("money") + "/" + totalMoneyAchOwned.length + ")");
+        $("#ach-experience-stats").html("(" + getAchievementsOwned("exp") + "/" + experienceAchOwned.length + ")");
+        $("#ach-shoot-stats").html("(" + getAchievementsOwned("shoot") + "/" + shootAchOwned.length + ")");
+        $("#ach-reload-stats").html("(" + getAchievementsOwned("reload") + "/" + reloadAchOwned.length + ")");
+        $("#up-shootreward-stats").html("(" + getUpgradesOwned("shoot-reward") + "/" + shootRewardUpgradesOwned.length + ")");
+        $("#up-shoottime-stats").html("(" + getUpgradesOwned("shoot-time") + "/" + shootTimeUpgradesOwned.length + ")");
+        $("#up-ammo-stats").html("(" + getUpgradesOwned("ammo") + "/" + ammoStockUpgradesOwned.length + ")");
+        $("#up-reloadtime-stats").html("(" + getUpgradesOwned("reload-time") + "/" + reloadTimeUpgradesOwned.length + ")");
+        $("#up-weedprice-stats").html("(" + getUpgradesOwned("weed-price") + "/" + weedPriceUpgradesOwned.length + ")");
+        $("#up-methprice-stats").html("(" + getUpgradesOwned("meth-price") + "/" + methPriceUpgradesOwned.length + ")");
+        $("#up-cocaineprice-stats").html("(" + getUpgradesOwned("cocaine-price") + "/" + cocainePriceUpgradesOwned.length + ")");
     };
 };
 Init.game = function() {
@@ -104,6 +119,7 @@ Init.game = function() {
     Build.init();
     Dealer.init();
     PrestigeUpgrade.init();
+    Achievement.init();
     loadData();
     Upgrade.saveCheck();
     Build.check();
