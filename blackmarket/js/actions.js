@@ -42,7 +42,7 @@ Action.check = function() {
         if (shoot[0] == shoot[2]) {
             $("#a-2").attr("class", "btn btn-success center-btn disabled");
         } else {
-            if (shoot[0] == 0 && isReloading == false) {
+            if (shoot[0] <= 0 && isReloading == false) {
                 $("#a-1").attr("class", "btn btn-success center-btn disabled");
                 $("#a-2").attr("class", "btn btn-danger center-btn");
             };
