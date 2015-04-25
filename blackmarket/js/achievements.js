@@ -20,7 +20,7 @@ var experienceAch = [
 	new Achievement("Experienced VI",	"Earn 1.000 million experience",		1e6),
 	new Achievement("Experienced VII",	"Earn 100.000 million experience",		1e8),
 	new Achievement("Experienced VIII",	"Earn 1.000 billion experience",		1e9),
-	new Achievement("Experienced VIV",	"Earn 250.000 billion experience",		25e10),
+	new Achievement("Experienced IX",	"Earn 250.000 billion experience",		25e10),
 	new Achievement("Experienced X",	"Earn 1.000 trillion experience",		1e12)
 ];
 var shootAchOwned;
@@ -33,7 +33,7 @@ var shootAch = [
 	new Achievement("Shooter VI",		"Shoot 2,500 times",	2500),
 	new Achievement("Shooter VII",		"Shoot 5,000 times",	5000),
 	new Achievement("Shooter VIII",		"Shoot 10,000 times",	10000),
-	new Achievement("Shooter VIV",		"Shoot 25,000 times",	25000),
+	new Achievement("Shooter IX",		"Shoot 25,000 times",	25000),
 	new Achievement("Shooter X",		"Shoot 100,000 times",	100000)
 ];
 var reloadAchOwned;
@@ -46,7 +46,7 @@ var reloadAch = [
 	new Achievement("Reloader VI",		"Reload 250 times",		250),
 	new Achievement("Reloader VII",		"Reload 500 times",		500),
 	new Achievement("Reloader VIII",	"Reload 1,000 times",	1000),
-	new Achievement("Reloader VIV",		"Reload 2,500 times",	2500),
+	new Achievement("Reloader IX",		"Reload 2,500 times",	2500),
 	new Achievement("Reloader X",		"Reload 10,000 times",	10000)
 ];
 
