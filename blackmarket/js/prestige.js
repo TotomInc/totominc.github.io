@@ -66,7 +66,7 @@ function PrestigeRank(name, index, needed, multiplier) {
 PrestigeRank.rankup = function() {
 	for (var i = 0; i < prestigeRanks.length; i++) {
 		var p = prestigeRanks[i];
-		if (prestige[0] >= p.needed) {
+		if (prestige[0] + experienceSpent >= p.needed) {
 			prestige[3] = p.name;
 			prestige[2] = p.multiplier;
 		};
