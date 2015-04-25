@@ -107,11 +107,14 @@ function exportSave() {
 
     var saved = JSON.stringify(toSave);
     var exportSaved = btoa(saved);
-    prompt("Here is your exported save!", exportSaved);
+    // prompt("Here is your exported save!", exportSaved);
+    var exportField = document.getElementById("exportSaveField");
+    exportField.value = exportSaved;
 };
 function importSave() {
-    var importSave = prompt("You need to import the code from the export-save button.", "Put your save here!");
-    var cleanSave = atob(importSave);
+    var importField = document.getElementById("importSaveField");
+    // var importSave = prompt("You need to import the code from the export-save button.", "Put your save here!");
+    var cleanSave = atob(importField.value);
     var savegame = JSON.parse(cleanSave);
     save = JSON.parse(cleanSave);
 

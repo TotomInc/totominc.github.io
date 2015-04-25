@@ -10,11 +10,4 @@
 			money[0] = 1e20;
 		};
 	};
-	function updateCheckCodeInput() {
-		checkCodeInput = document.getElementById('checkCode').value;
-		checkCode(checkCodeInput);
-	};
-	function checkCode(check) {
-		var cleanInput = atob(check);
-	};
 })();
