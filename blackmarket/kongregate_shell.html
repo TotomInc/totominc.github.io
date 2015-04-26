@@ -26,10 +26,12 @@
         // manually create your own iframe, this function is just for convenience. 
         // This example also passes along the kongregate user_id and game_auth_token so 
         // that the page can use them for authentication.
+        // Pass the user_id and game_auth_token parameters through for authentication.
         var params = "kongregate_user_id=" + kongregate.services.getUserId() + 
-                   "&kongregate_game_auth_token=" + kongregate.services.getGameAuthToken() +
-                   "&random=" + (Math.random() * 1000000000);
-        kongregateAPI.embedFrame("game.html?" + params);
+                           "&kongregate_game_auth_token=" + kongregate.services.getGameAuthToken();
+
+        // Embed the kongregate-game.php file into the element named "contentdiv"
+        kongregateAPI.embedFrame("http://totominc.github.io/blackmarket/index.html?" + params, "contentdiv");
       };
       
       // Begin the process of loading the Kongregate API:
@@ -37,8 +39,6 @@
     </script>
     
     <!-- The div that the game will be placed into. Make sure to set the width and height properly -->
-    <div id="contentdiv" style="top:0px; left:0px; borders:none;">
-      <iframe src="http://totominc.github.io/blackmarket/" width="1250" height="680"></iframe>
-    </div>
+    <div id="contentdiv" style="top:0px; left:0px; borders:none; width:1250px; height: 680px;"></div>
   </body>
 </html>
