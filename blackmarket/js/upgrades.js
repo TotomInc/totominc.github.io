@@ -13,16 +13,19 @@ var shootRewardUpgrades = [
     new Upgrade("Shoot reward x14",		2500000000000,		function() { shoot[7] *= 14 }),
     new Upgrade("Shoot reward x16",		25000000000000,		function() { shoot[7] *= 16 }),
     new Upgrade("Shoot reward x18",		350000000000000,	function() { shoot[7] *= 18 }),
-    new Upgrade("Shoot reward x20",		1000000000000000,	function() { shoot[7] *= 20 })
+    new Upgrade("Shoot reward x20",		1000000000000000,	function() { shoot[7] *= 20 }),
+    new Upgrade("Shoot reward x2",		150000000000000000,	function() { shoot[7] *= 2 })
 ];
 var shootTimeUpgradesOwned;
 var shootTimeUpgrades = [
-    new Upgrade("Shoot time /1.50",     90,         	function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.50",     630,        	function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.25",     5750,       	function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.25",     50000,      	function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.10",		375000,			function() { shoot[3] /= 1.10 }),
-    new Upgrade("Shoot time /1.10",		1300000,		function() { shoot[3] /= 1.10 })
+    new Upgrade("Shoot time /1.50",     90,         		function() { shoot[3] /= 1.5 }),
+    new Upgrade("Shoot time /1.50",     630,        		function() { shoot[3] /= 1.5 }),
+    new Upgrade("Shoot time /1.25",     5750,       		function() { shoot[3] /= 1.25 }),
+    new Upgrade("Shoot time /1.25",     50000,      		function() { shoot[3] /= 1.25 }),
+    new Upgrade("Shoot time /1.10",		375000,				function() { shoot[3] /= 1.10 }),
+    new Upgrade("Shoot time /1.10",		1300000,			function() { shoot[3] /= 1.10 }),
+    new Upgrade("Shoot time /1.25",		1000000000000,		function() { shoot[3] /= 1.25 }),
+    new Upgrade("Shoot time /1.25",		1000000000000000,	function() { shoot[3] /= 1.25 })
 ];
 var ammoStockUpgradesOwned;
 var ammoStockUpgrades = [

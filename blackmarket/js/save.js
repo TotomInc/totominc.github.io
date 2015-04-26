@@ -163,5 +163,9 @@ function importSave() {
     PrestigeUpgrade.saveCheck();
     saveData();
 };
+function checkCode() {
+    var promotionField = document.getElementById("promotionField");
+    var cleanCode = atob(promotionField.value);
+};
 
 var save = undefined;

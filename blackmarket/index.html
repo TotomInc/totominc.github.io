@@ -109,7 +109,7 @@
           <div class="alert alert-dismissible alert-danger">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <p class="light justify tiny-font"><span class="center small-font">Warning!</span><br>
-            There is currently a bug with import/export! I'm still trying to fix it, but it may take some time... If you lose your savefile, just send me a PM on Kongregate with your number of experience!<br>
+            I recommend to export your savefile before closing the page since many players have saving problems! Import/export is fixed, and works correctly.<br>
             Blackmarket auto-save every second, but it saves on your local-storage. Local-storage is supported by almost every modern browsers like Chrome, Firefox, Safari, Opera, iOS Safari, Chrome for Android.</p>
           </div>
       </div>
@@ -261,8 +261,8 @@
           <div class="tab-pane fade" id="tab-prestige">
             <div class="well">
               <p class="lead underline center">Important change!</p>
-              <p class="tiny-font center">Now you keep prestige-upgrades when you soft-reset!<br>
-              <b>Have fun!</b></p>
+              <p class="tiny-font center">When you buy a prestige-upgrade, you lose experience, if you lose too much experience you can get unranked, for example, you can go from Silver I to Bronze Master! Be carefull before buying prestige-upgrades!<br>
+              Now you keep prestige-upgrades when you soft-reset!</p>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -447,6 +447,19 @@
           </div>
           <br>
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <a onclick="checkCode();" class="btn btn-danger btn-sm center-btn">Check code</a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" id="promotionField" type="text" value='Check promotion code'>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
             <div class="col-md-12"><p class="justify tiny-font light">Game is currently running at : <span id="options-currentFps"></span>You may have to reduce fps if the game is slowing down your computer.<br>
             <b>Warning : this doesn't affect the general gameplay, you will not produce more or less drugs, etc.</b></p></div>
           </div>
@@ -525,10 +538,13 @@
   <script src="js/achievements.js"></script>
   <script src="js/actions.js"></script>
   <script src="js/prestige.js"></script>
-  <script src="js/misc.js"></script>
   <script src="js/automation.js"></script>
   <script src="js/core.js"></script>
   <script src="src/browser.js"></script>
   <script src="src/analytics.js"></script>
+<!-- alert on exit -->
+  <script type="text/javascript">
+    window.onbeforeunload = function() { return "Sorry about this alert but, according to some players, Blackmarket got some saving problems. Please, grab the export-code in the options and paste-it somewhere safe. Sorry again about this inconvenience, but I don't want to waste your progress..." };
+  </script>
 </body>
 </html>
