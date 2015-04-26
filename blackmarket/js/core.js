@@ -125,8 +125,6 @@ Init.update = function() {
 
         $("#pup-drugs-stats").html("(" + getPrestigeUpgradesOwned("drugs") + "/" + prestigeUpgrades.length + ")");
         $("#pup-shootreward-stats").html("(" + getPrestigeUpgradesOwned("shoot-reward") + "/" + prestigeShoot.length + ")");
-
-        console.log(fix(moneyPerSec[2], "money"));
     };
 };
 Init.game = function() {
