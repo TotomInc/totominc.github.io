@@ -1,0 +1,7 @@
+/* Set up some styles. Note the border, margin, and padding settings to make things fit cleanly in the iframe */
+html{border: none; overflow: hidden; background-color: #333;height: 100%; margin:0; padding:0;}
+body{border: none; background-color: #333; margin:0; padding:0;}
+div.background{top:0px; left:0px; width:700px; height:500px; background-image:url(background.jpg);}
+div.dialog{position:relative; border: 4px solid; background:#333333; border-color:#000000; color:#ffffff; margin-left:auto; margin-right:auto; top:150px;text-align:center;}
+p{margin:4px;padding:0;}
+select#item_list{width:150px;}

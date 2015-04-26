@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Javascript API Example Game</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+    <link href="assets/style.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    <div class="background">
+      <!-- The login box -->
+      <div id="login" class="dialog" style="width:300px;height:50px;display:none;">
+        <p>You must be logged in to proceed!</p>
+        <p><button type="button" onclick="kongregate.services.showSignInBox()">Login/Register</button></p>
+      </div>
+      
+      <!-- The main "game" UI -->
+      <div id="gameui" style="display:none;">
+        
+        <!-- Show information about the user -->
+        <div id="user" class="dialog" style="width:600px;height:50px;top:5px;">
+          <p>Username: <span id="username"></span><br/>
+             Auth Token: <span id="auth_token"></span></p>
+        </div>
+        
+        <!-- Statistics API functionality -->
+        <div id="stats" class="dialog" style="width:300px;height:75px;top:10px;">
+          <p>Statistics</p><hr/>
+          <p>Score:<input id="score" type="textbox" value="100"/><button type="button" onclick="submitScore()">Submit</button></p>
+        </div>
+        
+        <!-- Microtransaction API functionality -->
+        <div id="mtx" class="dialog" style="width:600px;height:275px;top:15px;">
+          <div id="items">
+            <p>Microtransactions</p><hr/>
+            <p>
+              All Available Items: <select id="item_list"></select>
+              <button type="button" id="purchase_button" onclick="purchaseItem()" disabled="true">Purchase</button>
+              <button type="button" onclick="requestItemList()">Refresh</button>
+               | Result: <span id="purchase_result"></span>
+            </p><hr/>
+            <p>Player Inventory <button type="button" onclick="requestPlayerInventory()">Refresh</button></p>
+            <select id="inventory" size="8" style="width:550px;"></select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- The main game script -->
+    <script type="text/javascript">
+      // Get the reference to the Kongregate API from the parent
+      var kongregate = parent.kongregate;
+      
+      /**  
+       * This function checks if the user is logged in. If they aren't,
+       * it displays the login dialog
+       */
+      function checkUserAuthenticated(){
+        if(!kongregate.services.isGuest()){
+          $('username').update(kongregate.services.getUsername());
+          $('auth_token').update(kongregate.services.getGameAuthToken());
+          $('login').hide();
+          $('gameui').show();
+        } else {
+          $('login').show();
+        }
+      }
+      
+      /**
+       * Called when the submit score button is pressed. Uses the
+       * statistics API to submit the given score to the server
+       */
+      function submitScore(){
+        var score = parseInt($('score').value);
+        if(score != NaN){
+          kongregate.stats.submit("Score",score);
+        }
+      }
+      
+      /**
+       * Requests a list of items from the server, and updates
+       * the dropdown list.
+       */
+      function requestItemList(){
+        // Define a callback function to handle the result
+        var onItemList = function(result){
+          if(result.success){
+            var items = result.data;
+            var html = "";
+            
+            // For each item available, create an <option> tag
+            for( var i = 0; i < items.length; i++ ){
+              var identifier = items[i].identifier;
+              html += "<option value='" + identifier + "'>" + identifier + "</option>";
+            }
+            
+            // Update the item list <select> element
+            $('item_list').update(html);
+          }
+          
+          // Now that we have the items, we can enable the purchase button
+          $('purchase_button').disabled = false;
+        }
+        
+        // Request the items from the server
+        kongregate.mtx.requestItemList(null,onItemList)
+      }
+      
+      /**
+       * Called when the purchase item button is clicked, requests
+       * the purchase of the current item in the dropdown.
+       */
+      function purchaseItem(){
+        var onPurchaseResult = function(result){
+          $('purchase_result').update(result.success);
+        }
+        
+        // Purchase the item
+        var identifier = $('item_list').value;
+        kongregate.mtx.purchaseItems([identifier],onPurchaseResult);
+      }
+      
+      /**
+       * Called when the "refresh" button is clicked for the player's
+       * inventory, and also when the user is authenticated initially.
+       */
+      function requestPlayerInventory(){
+        // Create a function to handle the result
+        var onUserItemList = function(result){
+          if(result.success){
+            var items = result.data;
+            var html = "";
+            
+            // Go through each item instance and add an <option> tag for it
+            for( var i = 0; i < items.length; i++ ){
+              var instance = items[i];
+              html += "<option>id:" + instance.id + ", identifier:" + instance.identifier;
+              html += ", name:" + instance.name + ", remaining uses:" + instance.remaining_uses;
+            }
+            
+            // Update the <select> element with the new data
+            $('inventory').update(html);
+          }
+        }
+        
+        // Make the request
+        kongregate.mtx.requestUserItemList(null,onUserItemList);
+      }
+      
+      // Register for the "login" event so we can tell when a user logs in
+      kongregate.services.addEventListener("login",checkUserAuthenticated);
+      
+      // Check to see if the user is already authenticated
+      checkUserAuthenticated();
+      requestItemList();
+    </script>
+  </body>
+</html>

@@ -105,12 +105,10 @@
               </div>
             </div>
           </div>
-        <!-- warning alert -->
-          <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <p class="light justify tiny-font"><span class="center small-font">Warning!</span><br>
-            I recommend to export your savefile before closing the page since many players have saving problems! Import/export is fixed, and works correctly.<br>
-            Blackmarket auto-save every second, but it saves on your local-storage. Local-storage is supported by almost every modern browsers like Chrome, Firefox, Safari, Opera, iOS Safari, Chrome for Android.</p>
+        <!-- beta test -->
+          <div id="betatest" class="panel panel-primary light" style="display: none;">
+            <div class="panel-heading"><h3 class="panel-title center">Beta-testing</h3></div>
+            <div class="panel-body"></div>
           </div>
       </div>
 
@@ -542,6 +540,7 @@
   <script src="js/core.js"></script>
   <script src="src/browser.js"></script>
   <script src="src/analytics.js"></script>
+<!-- KongregateAPI -->
   <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
   <script type="text/javascript">
     var kongregate;
