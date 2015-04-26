@@ -543,6 +543,17 @@
   <script src="src/browser.js"></script>
   <script src="src/analytics.js"></script>
   <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
+  <script type="text/javascript">
+    var kongregate;
+    kongregateAPI.loadAPI(onComplete);
+
+    // Callback function
+    function onComplete(){
+      kongregate = kongregateAPI.getAPI();
+    };
+
+    console.log(kongregate);
+  </script>
 <!-- alert on exit -->
   <script type="text/javascript">
     window.onbeforeunload = function() { return "Sorry about this alert but, according to some players, Blackmarket got some saving problems. Please, grab the export-code in the options and paste-it somewhere safe. Sorry again about this inconvenience, but I don't want to waste your progress..." };
