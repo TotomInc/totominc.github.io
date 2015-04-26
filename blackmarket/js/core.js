@@ -84,8 +84,10 @@ Init.update = function() {
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
         $("#navbar-meth").html("Meth : " + fix(drugStock[1], "drug") + "g");
         $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2], "drug") + "g");
+        
         $("#action-shoot").html("+ $" + fix(getShootReward(), "money") + "/shoot<br>" + fix((shoot[3] / 1000), "time") + " sec/shoot");
         $("#action-reload").html(shoot[0] + "/" + shoot[2] + " ammo<br>" + fix((shoot[4] / 1000), "time") + " sec/reload");
+        
         $("#stats-money").html("Money : <b>$" + fix(money[0], "money") + "</b><br>Total money : <b>$" + fix(money[1], "money") + "</b><br>Money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
         $("#stats-ammo").html("Ammo : <b>" + shoot[0] + "/" + shoot[2] + "</b><br>Total shots : <b>" + fix(shoot[5], "money") + "</b><br>Total reloads : <b>" + fix(shoot[6], "money") + '</b><br>Shoot earn <b>' + shootPercent + '% of your total $/sec</b>');
         $("#stats-weed").html("Weed stock : <b>" + fix(drugStock[0], "drug") + "g</b> (" + fix(drugPerSec[0], "drug") + "g/sec)<br>Weed selling : <b>" + fix(drugNetPerSec[0], "drug") + "g/sec</b><br>Weed price : <b>" + fix(getDrugPrice(0), "drug") + "$/g</b><br>Weed multiplier : <b>x" + fix(drugMultiplier[0], "multiplier") + '</b>');
@@ -97,19 +99,34 @@ Init.update = function() {
         $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
         $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
+        
         $("#options-version").html("Current version : " + version);
         $("#options-currentFps").html(inputValue + " frames per second. ");
-        $("#ach-totalmoney-stats").html("(" + getAchievementsOwned("money") + "/" + totalMoneyAchOwned.length + ")");
-        $("#ach-experience-stats").html("(" + getAchievementsOwned("exp") + "/" + experienceAchOwned.length + ")");
-        $("#ach-shoot-stats").html("(" + getAchievementsOwned("shoot") + "/" + shootAchOwned.length + ")");
-        $("#ach-reload-stats").html("(" + getAchievementsOwned("reload") + "/" + reloadAchOwned.length + ")");
-        $("#up-shootreward-stats").html("(" + getUpgradesOwned("shoot-reward") + "/" + shootRewardUpgradesOwned.length + ")");
-        $("#up-shoottime-stats").html("(" + getUpgradesOwned("shoot-time") + "/" + shootTimeUpgradesOwned.length + ")");
-        $("#up-ammo-stats").html("(" + getUpgradesOwned("ammo") + "/" + ammoStockUpgradesOwned.length + ")");
-        $("#up-reloadtime-stats").html("(" + getUpgradesOwned("reload-time") + "/" + reloadTimeUpgradesOwned.length + ")");
-        $("#up-weedprice-stats").html("(" + getUpgradesOwned("weed-price") + "/" + weedPriceUpgradesOwned.length + ")");
-        $("#up-methprice-stats").html("(" + getUpgradesOwned("meth-price") + "/" + methPriceUpgradesOwned.length + ")");
-        $("#up-cocaineprice-stats").html("(" + getUpgradesOwned("cocaine-price") + "/" + cocainePriceUpgradesOwned.length + ")");
+
+        $("#builds-weedstats").html("(" + weedBuildsOwned[0] + "/" + weedBuildsOwned[1] + "/" + weedBuildsOwned[2] + "/" + weedBuildsOwned[3] + ")");
+        $("#builds-methstats").html("(" + methBuildsOwned[0] + "/" + methBuildsOwned[1] + "/" + methBuildsOwned[2] + "/" + methBuildsOwned[3] + ")");
+        $("#builds-cocainestats").html("(" + cocaineBuildsOwned[0] + "/" + cocaineBuildsOwned[1] + "/" + cocaineBuildsOwned[2] + "/" + cocaineBuildsOwned[3] + ")");
+        $("#dealers-weedstats").html("(" + weedDealersOwned[0] + "/" + weedDealersOwned[1] + "/" + weedDealersOwned[2] + "/" + weedDealersOwned[3] + ")");
+        $("#dealers-methstats").html("(" + methDealersOwned[0] + "/" + methDealersOwned[1] + "/" + methDealersOwned[2] + "/" + methDealersOwned[3] + ")");
+        $("#dealers-cocainestats").html("(" + cocaineDealersOwned[0] + "/" + cocaineDealersOwned[1] + "/" + cocaineDealersOwned[2] + "/" + cocaineDealersOwned[3] + ")");
+
+        $("#ach-totalmoney-stats").html("(" + getAchievementsOwned("money") + "/" + totalMoneyAch.length + ")");
+        $("#ach-experience-stats").html("(" + getAchievementsOwned("exp") + "/" + experienceAch.length + ")");
+        $("#ach-shoot-stats").html("(" + getAchievementsOwned("shoot") + "/" + shootAch.length + ")");
+        $("#ach-reload-stats").html("(" + getAchievementsOwned("reload") + "/" + reloadAch.length + ")");
+
+        $("#up-shootreward-stats").html("(" + getUpgradesOwned("shoot-reward") + "/" + shootRewardUpgrades.length + ")");
+        $("#up-shoottime-stats").html("(" + getUpgradesOwned("shoot-time") + "/" + shootTimeUpgrades.length + ")");
+        $("#up-ammo-stats").html("(" + getUpgradesOwned("ammo") + "/" + ammoStockUpgrades.length + ")");
+        $("#up-reloadtime-stats").html("(" + getUpgradesOwned("reload-time") + "/" + reloadTimeUpgrades.length + ")");
+        $("#up-weedprice-stats").html("(" + getUpgradesOwned("weed-price") + "/" + weedPriceUpgrades.length + ")");
+        $("#up-methprice-stats").html("(" + getUpgradesOwned("meth-price") + "/" + methPriceUpgrades.length + ")");
+        $("#up-cocaineprice-stats").html("(" + getUpgradesOwned("cocaine-price") + "/" + cocainePriceUpgrades.length + ")");
+
+        $("#pup-drugs-stats").html("(" + getPrestigeUpgradesOwned("drugs") + "/" + prestigeUpgrades.length + ")");
+        $("#pup-shootreward-stats").html("(" + getPrestigeUpgradesOwned("shoot-reward") + "/" + prestigeShoot.length + ")");
+
+        console.log(fix(moneyPerSec[2], "money"));
     };
 };
 Init.game = function() {

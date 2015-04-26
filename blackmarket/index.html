@@ -77,10 +77,10 @@
               <br>
               <div class="row">
                 <div class="col-md-6 col-xs-6">
-                  <div id="actions-auto-shoot" class="radio tiny-font center"><label><input type="radio" id="enableAutoShoot" onclick="shootClick = true; Automation.autoShoot();"> Enable auto-shooting</label></div>
+                  <div id="actions-auto-shoot" class="checkbox tiny-font center"><label><input type="checkbox" id="enableAutoShoot" onclick="shootClick = true; Automation.autoShoot();"> Enable auto-shooting</label></div>
                 </div>
                 <div class="col-md-6 col-xs-6">
-                  <div id="actions-auto-reload" class="radio tiny-font center"><label><input type="radio" id="enableAutoReload" onclick="reloadClick = true; Automation.autoReload();"> Enable auto-reloading</label></div>
+                  <div id="actions-auto-reload" class="checkbox tiny-font center"><label><input type="checkbox" id="enableAutoReload" onclick="reloadClick = true; Automation.autoReload();"> Enable auto-reloading</label></div>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@
           <div class="tab-pane fade" id="tab-builds">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-weed-panel" href="javascript:" class="collapsed">Weed builds <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-weed-panel" href="javascript:" class="collapsed">Weed builds <span id="builds-weedstats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="builds-weed-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="builds-weed" class="list-group"></ul>
@@ -209,7 +209,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-weed-panel" href="javascript:" class="collapsed">Weed dealers <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-weed-panel" href="javascript:" class="collapsed">Weed dealers <span id="dealers-weedstats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="dealers-weed-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="dealers-weed" class="list-group"></ul>
@@ -219,7 +219,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-meth-panel" href="javascript:" class="collapsed">Meth builds <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-meth-panel" href="javascript:" class="collapsed">Meth builds <span id="builds-methstats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="builds-meth-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="builds-meth" class="list-group"></ul>
@@ -229,7 +229,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-meth-panel" href="javascript:" class="collapsed">Meth dealers <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-meth-panel" href="javascript:" class="collapsed">Meth dealers <span id="dealers-methstats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="dealers-meth-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="dealers-meth" class="list-group"></ul>
@@ -239,7 +239,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-cocaine-panel" href="javascript:" class="collapsed">Cocaine builds <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-cocaine-panel" href="javascript:" class="collapsed">Cocaine builds <span id="builds-cocainestats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="builds-cocaine-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="builds-cocaine" class="list-group"></ul>
@@ -249,7 +249,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-cocaine-panel" href="javascript:" class="collapsed">Cocaine dealers <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-cocaine-panel" href="javascript:" class="collapsed">Cocaine dealers <span id="dealers-cocainestats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="dealers-cocaine-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="dealers-cocaine" class="list-group"></ul>
@@ -266,7 +266,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-drugs-panel" href="javascript:" class="collapsed">Prestige drugs prices upgrades <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-drugs-panel" href="javascript:" class="collapsed">Prestige drugs prices upgrades <span id="pup-drugs-stats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="prestige-drugs-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="prestige-upgrades" class="list-group"></ul>
@@ -276,7 +276,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-shoot-panel" href="javascript:" class="collapsed">Prestige shoot reward upgrades <li class="fa fa-caret-down"></li></a></h4>
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-shoot-panel" href="javascript:" class="collapsed">Prestige shoot reward upgrades <span id="pup-shootreward-stats"></span><li class="fa fa-caret-down"></li></a></h4>
                 <div id="prestige-shoot-panel" class="panel-collapse collapse" style="height: 0px;">
                   <div class="panel-body">
                     <ul id="prestige-shoot" class="list-group"></ul>

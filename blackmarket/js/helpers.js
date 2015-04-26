@@ -168,6 +168,22 @@ function getUpgradesOwned(type) {
 		return owned;
 	};
 };
+function getPrestigeUpgradesOwned(type) {
+	if (type == 'drugs') {
+		var owned = 0;
+		for (var i = 0; i < prestigeUpgrades.length; i++) {
+			if (prestigeUpgradesOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+	if (type == 'shoot-reward') {
+		var owned = 0;
+		for (var i = 0; i < prestigeShoot.length; i++) {
+			if (prestigeShootOwned[i] == true) { owned++; };
+		};
+		return owned;
+	};
+};
 function isOdd(number) {
 	return number % 2;
 };
