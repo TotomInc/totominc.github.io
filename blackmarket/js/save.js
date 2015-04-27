@@ -168,10 +168,17 @@ function checkCode() {
     var cleanCode = atob(promotionField.value);
     // MTAwayBnYW1lcGxheXM=
     if (cleanCode == "100k gameplays") {
-        var username = kongregate.services.getUsername();
-        
         $("#betatest").css("display", "block");
-        $("#betatest-welcome").html("Welcome beta-tester " + username);
+        var username;
+        var authtoken;
+        if (!kongregate.services.isGuest()) {
+            username = kongregate.services.getUsername();
+            authtoken = kongregate.services.getGameAuthToken();
+            $("#betatest-welcome").html("Welcome beta-tester <b>" + username + "</b>! Thanks for beta-testing this new section.");
+            $("#betatest-authtoken").html("Your authtoken is : <b>" + authtoken + "</b>");
+        } else {
+            $("#betatest-guest").css("display", "block");
+        };
     };
 };
 
