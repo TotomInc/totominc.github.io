@@ -3,7 +3,7 @@ function gainMoney(source) {
     money[1] += source;
 };
 function getExperience() {
-	prestige[1] = Math.floor(35 * Math.sqrt(money[1]/1e7));
+	prestige[1] = Math.floor(35 * Math.sqrt(money[1]/1e7)) - (experienceSpent);
 	if (prestige[1] < 0) {
 		prestige[1] = 0;
 	};

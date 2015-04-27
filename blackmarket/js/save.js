@@ -168,9 +168,9 @@ function checkCode() {
     var cleanCode = atob(promotionField.value);
     // MTAwayBnYW1lcGxheXM=
     if (cleanCode == "100k gameplays") {
-        console.log("welcome beta tester!");
-        $("#betatest").css("display", "block");
         var username = kongregate.services.getUsername();
+        
+        $("#betatest").css("display", "block");
         $("#betatest-welcome").html("Welcome beta-tester " + username);
     };
 };
