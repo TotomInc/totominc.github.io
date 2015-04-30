@@ -175,9 +175,9 @@ function checkCode() {
             username = kongregate.services.getUsername();
             authtoken = kongregate.services.getGameAuthToken();
             $("#betatest-welcome").html("Welcome beta-tester <b>" + username + "</b>! Thanks for beta-testing this new section.");
-            $("#betatest-authtoken").html("Your authtoken is : <b>" + authtoken + "</b>");
+            $("#betatest-authtoken").html("Your authtoken is : <small><b>" + authtoken + "</b></small>");
         } else {
-            $("#betatest-guest").css("display", "block");
+            $("#alert-konglog").css("display", "block");
         };
     };
 };
