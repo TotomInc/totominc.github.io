@@ -172,6 +172,7 @@ function checkCode() {
         var username;
         var authtoken;
         if (!kongregate.services.isGuest()) {
+            kongregate.services.connect();
             username = kongregate.services.getUsername();
             authtoken = kongregate.services.getGameAuthToken();
             $("#betatest-welcome").html("Welcome beta-tester <b>" + username + "</b>! Thanks for beta-testing this new section.");
