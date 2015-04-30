@@ -117,7 +117,8 @@
               <p class="center tiny-font">
                 <span id="betatest-guest" style="display: none;">You are not logged in Kongregate.</span><br>
                 <span id="betatest-welcome"></span><br>
-                <span id="betatest-authtoken"></span>
+                <span id="betatest-authtoken"></span><br>
+                <a onclick="submitScore();" class="btn btn-success center-btn">Submit score</a>
               </p>
             </div>
           </div>
@@ -497,7 +498,7 @@
     function submitScore() {
       var score = money[1];
       if (score !== NaN) {
-        kongregate.stats.submit("Total money", score);
+        kongregate.stats.submit("TotalMoney", score);
       };
     };
   </script>
