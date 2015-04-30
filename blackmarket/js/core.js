@@ -9,7 +9,7 @@ var drugInit = [
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
-var version = "1.06"; var release = "-official";
+var version = "1.07"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
@@ -80,7 +80,7 @@ Init.update = function() {
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 
-        $("#navbar-money").html("Money : $" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
+        $("#navbar-money").html("$" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
         $("#navbar-meth").html("Meth : " + fix(drugStock[1], "drug") + "g");
         $("#navbar-cocaine").html("Cocaine : " + fix(drugStock[2], "drug") + "g");
@@ -97,7 +97,7 @@ Init.update = function() {
         $("#stats-methcash").html("Money from meth : <b>$" + fix(moneyPerSec[1], "money") + "/sec</b><br>");
         $("#stats-cocainecash").html("Money from cocaine : <b>$" + fix(moneyPerSec[2], "money") + "/sec</b><br>");
         $("#stats-totalmoneypersec").html("Total money per sec : <b>$" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec</b>");
-        $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b>");
+        $("#stats-experience").html("Experience : <b>" + fix(prestige[0], "prestige") + "</b><br>Experience on reset : <b>" + fix(prestige[1], "prestige") + "</b><br>Experience spent : <b>" + fix(experienceSpent, "prestige") + "</b>");
         $("#stats-prestige").html("Prestige rank : <b>" + prestige[3] + "</b><br>Prestige multiplier : <b>x" + fix(prestige[2], "multiplier") + "</b>");
         
         $("#options-version").html("Current version : " + version);

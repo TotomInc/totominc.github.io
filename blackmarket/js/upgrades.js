@@ -29,9 +29,9 @@ var shootTimeUpgrades = [
 ];
 var ammoStockUpgradesOwned;
 var ammoStockUpgrades = [
-    new Upgrade("Ammo stock x2",        90,         	function() { shoot[2] *= 2 }),
-    new Upgrade("Ammo stock x2",        2500,       	function() { shoot[2] *= 2 }),
-    new Upgrade("Ammo stock x2",        55000,      	function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x2",      	90,         	function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x2",      	2500,       	function() { shoot[2] *= 2 }),
+    new Upgrade("Ammo stock x2",      	55000,      	function() { shoot[2] *= 2 }),
     new Upgrade("Ammo stock x2",		7500000,		function() { shoot[2] *= 2 })
 ];
 var reloadTimeUpgradesOwned;
