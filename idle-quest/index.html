@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Idle-Quest</title>
+
+	<script src="src/jquery-1.11.1.min.js"></script>
+	<script src="src/bootstrap.min.js"></script>
+	<link id="stylesheet" rel="stylesheet" href="src/bootstrap.min.css">
+	<link rel="stylesheet" href="css/interface.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand">Idle-Quest</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="navbar-collapse">
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a><span id="nav-gold"></span></a></li>
+	      	<li><a><span id="nav-level"></span></a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+		  <ul class="nav nav-tabs nav-justified" role="tablist">
+		    <li class="active"><a href="#craft" aria-controls="home" role="tab" data-toggle="tab">Crafting</a></li>
+		    <li><a href="#skills" aria-controls="profile" role="tab" data-toggle="tab">Skills</a></li>
+		    <li><a href="#options" aria-controls="profile" role="tab" data-toggle="tab">Options</a></li>
+		  </ul>
+
+			<div class="tab-content">
+			  <div role="tabpanel" class="tab-pane fade in active" id="crafting"></div>
+			  <div role="tabpanel" class="tab-pane fade" id="skills"></div>
+			  <div role="tabpanel" class="tab-pane fade" id="options">
+					<select id="theme-select" name="select">
+					  <option value="0" selected>Default</option> 
+						<option value="1">Cerulean</option>
+						<option value="2">Cosmo</option>
+						<option value="3">Darkly</option>
+						<option value="4">Flatly</option>
+						<option value="5">Paper</option>
+						<option value="5">Sandstone</option>
+						<option value="6">Simplex</option>
+						<option value="7">Slate</option>
+						<option value="8">Spacelab</option>
+						<option value="9">United</option>
+						<option value="10">Yeti</option>
+					</select>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<script src="src/beautify.js"></script>
+	<script src="js/options.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/player.js"></script>
+</body>
+</html>

@@ -7,23 +7,30 @@ var prestigeRanks = [
     new PrestigeRank("Silver II",            	5,  10000,      		30.00),
     new PrestigeRank("Silver III",           	6,  25000,      		40.00),
     new PrestigeRank("Silver Master",         	7,  50000,     			50.00),
-    new PrestigeRank("Platinum I",				8,  100000,     		75.00),
-    new PrestigeRank("Platinum II",          	9,  250000,    			100.00),
-    new PrestigeRank("Platinum III",         	10, 1000000,			125.00),
-    new PrestigeRank("Platinum Master",			11, 5000000,			150.00),
-    new PrestigeRank("Legendary Dealer I",		12, 17500000, 			200.00),
-    new PrestigeRank("Legendary Dealer II",  	13, 50000000,   		300.00),
-    new PrestigeRank("Legendary Dealer III",  	14, 100000000,  		400.00),
-    new PrestigeRank("Legendary Dealer Master",	15,	250000000,			500.00),
-    new PrestigeRank("Diamond Dealer I",		16,	500000000,			750.00),
-    new PrestigeRank("Diamond Dealer II",		17,	1000000000,			1000.00),
-    new PrestigeRank("Diamond Dealer III",		18,	2000000000,			1250.00),
-    new PrestigeRank("Diamond Dealer Master",	19,	5000000000,			1500.00),
-    new PrestigeRank("Hacker I",				20,	10000000000,		2000.00),
-    new PrestigeRank("Hacker II",				21,	25000000000,		3000.00),
-    new PrestigeRank("Hacker III",				22,	50000000000,		4000.00),
-    new PrestigeRank("Hacker IV",				23,	100000000000,		5000.00),
-    new PrestigeRank("Hacker V",				24,	250000000000,		6000.00)
+    new PrestigeRank("Gold I",					8,  100000,     		75.00),
+    new PrestigeRank("Gold II",          		9,  250000,    			100.00),
+    new PrestigeRank("Gold III",         		10, 1000000,			125.00),
+    new PrestigeRank("Gold Master",				11, 5000000,			150.00),
+    new PrestigeRank("Diamond I",				12, 17500000, 			200.00),
+    new PrestigeRank("Diamond II",  			13, 50000000,   		300.00),
+    new PrestigeRank("Diamond III",  			14, 100000000,  		400.00),
+    new PrestigeRank("Diamond Master",			15,	250000000,			500.00),
+    new PrestigeRank("Platinum I",				16,	500000000,			750.00),
+    new PrestigeRank("Platinum II",				17,	1000000000,			1000.00),
+    new PrestigeRank("Platinum III",			18,	2000000000,			1250.00),
+    new PrestigeRank("Platinum Master",			19,	5000000000,			1500.00),
+    new PrestigeRank("Legendary Dealer I",		20,	10000000000,		2000.00),
+    new PrestigeRank("Legendary Dealer II",		21,	25000000000,		3000.00),
+    new PrestigeRank("Legendary Dealer III",	22,	50000000000,		4000.00),
+    new PrestigeRank("Legendary Dealer IV",		23,	100000000000,		5000.00),
+    new PrestigeRank("Legendary Dealer V",		24,	200000000000,		6000.00),
+    new PrestigeRank("Legendary Dealer Master",	25,	500000000000,		7000.00),
+    new PrestigeRank("Hacker I",				26,	1000000000000,		9000.00),
+    new PrestigeRank("Hacker II",				27,	1500000000000,		11000.00),
+    new PrestigeRank("Hacker III",				28,	3000000000000,		13000.00),
+    new PrestigeRank("Hacker IV",				29,	7500000000000,		15000.00),
+    new PrestigeRank("Hacker V",				30,	20000000000000,		17000.00),
+    new PrestigeRank("Hacker Master",			31,	50000000000000,		19000.00)
 ];
 var prestigeUpgradesOwned;
 var prestigeUpgrades = [
@@ -34,7 +41,11 @@ var prestigeUpgrades = [
 	new PrestigeUpgrade("All drugs prices x2",	5000000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
 	new PrestigeUpgrade("All drugs prices x2",	75000000,		function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
 	new PrestigeUpgrade("All drugs prices x3",	500000000,		function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; }),
-	new PrestigeUpgrade("All drugs prices x3",	15000000000,	function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; })
+	new PrestigeUpgrade("All drugs prices x3",	1500000000,		function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; }),
+	new PrestigeUpgrade("All drugs prices x3",	10000000000,	function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; }),
+	new PrestigeUpgrade("All drugs prices x2",	75000000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x2",	500000000000,	function() { drugMultiplier[0] *= 2; drugMultiplier[1] *= 2; drugMultiplier[2] *= 2; }),
+	new PrestigeUpgrade("All drugs prices x3",	1000000000000,	function() { drugMultiplier[0] *= 3; drugMultiplier[1] *= 3; drugMultiplier[2] *= 3; })
 ];
 var prestigeShootOwned;
 var prestigeShoot = [
