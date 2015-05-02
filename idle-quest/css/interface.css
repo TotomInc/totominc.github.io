@@ -1,7 +1,16 @@
 body {
 	cursor: default;
+	background: #eee;
+	font-weight: 300; /* support for material design */
 }
 
+/* custom bootstrap */
 .navbar {
 	border-radius: 0;
+}
+#player-progressbar {
+	transition: all 0.2s;
+}
+#quest-progressbar {
+	transition: all 0s;
 }

@@ -31,6 +31,13 @@ function fix(x, type) {
 			return beautify(x, 0);
 		};
 	};
+	if (type == "1d") { // 2 digits if x >= 1e6
+		if (x >= 1e6) {
+			return beautify(x, 2);
+		} else {
+			return beautify(x, 0);
+		};
+	};
 	if (type == "3d") { // 3 digits if x >= 1e6
 		if (x >= 1e6) {
 			return beautify(x, 3);

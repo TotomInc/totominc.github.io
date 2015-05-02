@@ -11,8 +11,9 @@
 </head>
 
 <body>
+<!-- navbar -->
 	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
+	  <div class="container">
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 	        <span class="sr-only">Toggle navigation</span>
@@ -25,47 +26,87 @@
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
 	      	<li><a><span id="nav-gold"></span></a></li>
+	      	<li><a><span id="nav-gems"></span></a></li>
 	      	<li><a><span id="nav-level"></span></a></li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-
+<!-- game area -->
 	<div class="container">
-		<div class="col-md-6"></div>
-		<div class="col-md-6">
-		  <ul class="nav nav-tabs nav-justified" role="tablist">
-		    <li class="active"><a href="#craft" aria-controls="home" role="tab" data-toggle="tab">Crafting</a></li>
-		    <li><a href="#skills" aria-controls="profile" role="tab" data-toggle="tab">Skills</a></li>
-		    <li><a href="#options" aria-controls="profile" role="tab" data-toggle="tab">Options</a></li>
-		  </ul>
-
-			<div class="tab-content">
-			  <div role="tabpanel" class="tab-pane fade in active" id="crafting"></div>
-			  <div role="tabpanel" class="tab-pane fade" id="skills"></div>
-			  <div role="tabpanel" class="tab-pane fade" id="options">
-					<select id="theme-select" name="select">
-					  <option value="0" selected>Default</option> 
-						<option value="1">Cerulean</option>
-						<option value="2">Cosmo</option>
-						<option value="3">Darkly</option>
-						<option value="4">Flatly</option>
-						<option value="5">Paper</option>
-						<option value="5">Sandstone</option>
-						<option value="6">Simplex</option>
-						<option value="7">Slate</option>
-						<option value="8">Spacelab</option>
-						<option value="9">United</option>
-						<option value="10">Yeti</option>
-					</select>
-			  </div>
-			</div>
+		<div class="row">
+			<!-- player & quest progress + stats -->
+				<div class="col-md-6">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="progress"><div id="player-progressbar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;"><span id="player-progressbar-percent"></span></div></div>
+								<p class="text-center"><span id="player-level"></span><br><span id="player-xp"></span><br><span id="player-gold"></span></p>
+							</div>
+							<div class="col-md-6">
+								<div class="progress"><div id="quest-progressbar" class="progress-bar progress-bar-striped active" role="progressbar" style="min-width: 2em;"><span id="quest-progressbar-percent"></span></div></div>
+								<p class="text-center"><span id="quest-info"></span></p>
+								<a onclick="quest.click()" class="btn btn-success center-block" role="button">Quest!</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 text-center">
+								<p><span id="player-sword"></span><br><span id="player-sword-percent"></span></p>
+							</div>
+							<div class="col-md-6 text-center">
+								<p><span id="player-boots"></span><br><span id="player-boots-percent"></span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+				<!-- crafting -->
+					<div class="well">
+						<div class="row">
+							<div class="col-md-9"><input id="craft-gold" type="range" min="1" max="100" step="1"></input></div>
+							<div class="col-md-3 text-center"><p><span id="craft-goldcost"></span></p></div>
+							<div class="col-md-9"><input id="craft-level" type="range" min="1" max="1" step="1"></input></div>
+							<div class="col-md-3 text-center"><p><span id="craft-levelcost"></span></p></div>
+						</div>
+						<div class="row">
+						  <div class="col-md-12">
+						  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
+						  	<div class="col-md-6"><a id="craft-btn-sword" class="btn btn-success center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
+						  	<div class="col-md-6"><a id="craft-btn-boots" class="btn btn-success center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
+						  </div>
+						</div>
+					</div>
+				<!-- options -->
+					<div class="well">
+						<div class="col-md-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
+						<div class="col-md-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
+						<div class="col-md-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
+						<div style="height: 50px;"></div>
+						<p class="text-center">Theme switcher</p>
+						<select id="theme-select" class="center-block" name="select">
+							<option id="t-0" value="0">Default</option> 
+							<option id="t-1" value="1">Cerulean</option>
+							<option id="t-2" value="2">Paper</option>
+							<option id="t-3" value="3">Sandstone</option>
+							<option id="t-4" value="4">Simplex</option>
+							<option id="t-5" value="5">Spacelab</option>
+							<option id="t-6" value="6">United</option>
+							<option id="t-7" value="7">Yeti</option>
+						</select>
+						<div class="checkbox">
+						  <label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
-
+<!-- scripts -->
 	<script src="src/beautify.js"></script>
+	<script src="js/themes.js"></script>
 	<script src="js/options.js"></script>
 	<script src="js/helpers.js"></script>
 	<script src="js/player.js"></script>
+	<script src="js/quest.js"></script>
+	<script src="js/save.js"></script>
 </body>
 </html>

@@ -1,27 +1,32 @@
-var themeSelected = document.getElementById("theme-select");
-var themes = [
-	new Theme("Default",		"./src/bootstrap.min.css"),
-	new Theme("Cerulean",		"./themes/cerulean.css"),
-	new Theme("Cosmo",			"./themes/cosmo.css"),
-	new Theme("Darkly",			"./themes/darkly.css"),
-	new Theme("Flatly",			"./themes/flatly.css"),
-	new Theme("Paper",			"./themes/paper.css"),
-	new Theme("Sandstone",		"./themes/sandstone.css"),
-	new Theme("Simplex",		"./themes/simplex.css"),
-	new Theme("Slate",			"./themes/slate.css"),
-	new Theme("Spacelab",		"./themes/spacelab.css"),
-	new Theme("United",			"./themes/united.css"),
-	new Theme("Yeti",			"./themes/yeti.css")
-];
+var options = {
+	fps: 60,
+	interval: (1000/60),
+	now: undefined,
+	before: undefined,
+	theme: "Default",
 
-function Theme(name, path) {
-	this.name = name;
-	this.path = path;
-};
-Theme.update = function() {
-	$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
-};
+	init: function() {
+		this.before = new Date().getTime();
+		$("#t-" + this.theme).attr("selected", "");
+	},
+	update: function() {
+		this.now = new Date().getTime();
+		var elapsedTime = this.now - this.before;
+		if (elapsedTime > 17)
+			quest.idle(Math.floor(elapsedTime/this.interval));
+		else
+			quest.idle(1);
+		this.before = new Date().getTime();
 
+		player.display();
+		quest.display();
+	}
+}
+
+window.onload = function() {
+	save.loadData();
+	options.init();
+};
 window.setInterval(function() {
-	Theme.update();
-}, 1000);
+	options.update();
+}, options.interval)
