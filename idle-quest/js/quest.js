@@ -29,7 +29,7 @@ var quest = {
 		if (player.xp >= player.xpNeeded) {
 			player.xp -= player.xpNeeded;
 			player.level++;
-			player.xpNeeded = helpers.questXpNeeded();
+			player.xpNeeded = helpers.playerXpNeeded();
 			this.xpNeeded = helpers.questXpNeeded();
 		};
 	},

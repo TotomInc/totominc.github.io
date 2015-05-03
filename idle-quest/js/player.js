@@ -51,7 +51,7 @@ var player = {
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
 
-		effect = (0.05 * goldCost) * (0.1 * levelCost);
+		effect = (0.03 * goldCost) * (0.07 * levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
@@ -66,6 +66,8 @@ var player = {
 					this.level = 1;
 				this.xp = 0;
 				quest.xp = 0;
+				quest.xpNeeded = helpers.questXpNeeded();
+				this.xpNeeded = helpers.playerXpNeeded();
 				if (type == "sword") {
 					this.sword.damage = effect;
 					this.sword.percent = percent;

@@ -1,13 +1,13 @@
 var helpers = {
 	playerXpNeeded: function() {
 		if (player.level > 1) 
-			return Math.floor(100 * Math.pow(1.15, player.level));
+			return Math.floor(100 * Math.pow(1.25, player.level));
 		else
 			return 100;
 	},
 	questXpNeeded: function() {
 		if (player.level > 1) 
-			return Math.floor(100 * Math.pow(1.2, player.level));
+			return Math.floor(100 * Math.pow(1.3, player.level));
 		else
 			return 100;
 	},
