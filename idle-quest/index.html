@@ -8,6 +8,7 @@
 	<script src="src/bootstrap.min.js"></script>
 	<link id="stylesheet" rel="stylesheet" href="src/bootstrap.min.css">
 	<link rel="stylesheet" href="css/interface.css">
+	<link rel="stylesheet" href="css/slider.css">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand">Idle-Quest</a>
+	      <a class="navbar-brand">Idle-Quest <small>(beta)</small></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
@@ -58,6 +59,16 @@
 							</div>
 						</div>
 					</div>
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<p class="text-center"><span id="player-prestigecost"></span><br><span id="player-prestigemultiplier"></span></p>
+							</div>
+							<div class="col-md-6">
+								<a onclick="player.prestige();" class="btn btn-success center-block" role="button">Prestige!</a>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-6">
 				<!-- crafting -->
@@ -78,10 +89,19 @@
 					</div>
 				<!-- options -->
 					<div class="well">
-						<div class="col-md-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
-						<div class="col-md-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
-						<div class="col-md-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
-						<div style="height: 50px;"></div>
+						<div class="row">
+							<div class="col-md-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
+							<div class="col-md-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
+							<div class="col-md-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
+							<div class="col-md-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
+							<div class="col-md-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
+						</div><br>
 						<p class="text-center">Theme switcher</p>
 						<select id="theme-select" class="center-block" name="select">
 							<option id="t-0" value="0">Default</option> 
@@ -93,9 +113,7 @@
 							<option id="t-6" value="6">United</option>
 							<option id="t-7" value="7">Yeti</option>
 						</select>
-						<div class="checkbox">
-						  <label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label>
-						</div>
+						<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
 					</div>
 				</div>
 		</div>

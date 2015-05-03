@@ -4,6 +4,9 @@ var player = {
 	level: 1,
 	gold: 0,
 	gems: 0,
+	multiplier: 1,
+	prestigeCost: 100,
+	prestigeTimes: 1,
 
 	sword: {
 		name: "Sword",
@@ -38,6 +41,8 @@ var player = {
 		$("#player-sword-percent").html("(" + fix(this.sword.percent, "1d") + "%)");
 		$("#player-boots").html(this.boots.name + " : +" + fix(this.boots.speed, "1d") + " speed/click");
 		$("#player-boots-percent").html("(" + fix(this.boots.percent, "1d") + "%)");
+		$("#player-prestigecost").html("Prestige cost : " + fix(helpers.prestigeCost(), "0d") + " levels");
+		$("#player-prestigemultiplier").html("Prestige multiplier : x" + fix(this.multiplier, "0d"));
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
 		$("#craft-level").attr("max", this.level);
@@ -51,7 +56,7 @@ var player = {
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
 
-		effect = (0.03 * goldCost) * (0.07 * levelCost);
+		effect = (0.05 * goldCost) * (0.1 * levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
@@ -80,5 +85,18 @@ var player = {
 		};
 		levelRange.value = 0;
 		$("#craft-level").attr("max", this.level);
+	},
+	prestige: function() {
+		var cost = helpers.prestigeCost();
+		if (player.level >= cost) {
+			this.prestigeTimes++;
+			this.level = 0;
+			this.xp = 0;
+			this.xpNeeded = 100;
+			quest.xp = 0;
+			quest.xpNeeded = 100;
+			this.gold = 0;
+			this.multiplier = helpers.prestigeMultiplier();
+		};
 	}
 }

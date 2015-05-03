@@ -1,7 +1,10 @@
 function beautify(x, n) {
 	if (x >= 1e6) {
 		var z = Math.floor(logFloor(x)/3);
-		var prefixes = ["m ","b ","t ","q ","Q ","s ","S ","o ","n "];
+		var prefixes = ["m ","b ","t ","q ","Q ","s ","S ","o ","n ",
+		"D ","UD ","DD ","TD ","qD ","QD ","sD ","SD ","OD ","ND ",
+		"V ","UV ","DV ","TV ","qV ","QV ","sV ","SV ","OV ","NV ",
+		"T ","UT ","DT ","TT ","qT ","QT ","sT ","ST ","OT ","NT "];
 		var s = beautify(x/Math.pow(10,3*z),n);
 		return s+""+prefixes[z-2];
 	} else {

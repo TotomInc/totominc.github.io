@@ -15,8 +15,10 @@ function Theme(name, path) {
 	this.path = path;
 };
 Theme.update = function() {
-	$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
-	options.theme = themeSelected.selectedIndex;
+	if (options.theme !== themeSelected.selectedIndex) {
+		$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
+		options.theme = themeSelected.selectedIndex;
+	};
 };
 
 window.setInterval(function() {
