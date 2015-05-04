@@ -1,9 +1,10 @@
 var quest = {
 	xp: 0,
 	xpNeeded: 100,
-	name: "Quest",
+	name: "Killing mammoth",
 	type: "attack",
 	autoIdle: true,
+	idleMultiplier: 1.00,
 
 	click: function() {
 		if (this.type == "attack")
@@ -17,9 +18,9 @@ var quest = {
 	idle: function(times) {
 		if (this.autoIdle == true) {
 			if (this.type == "attack")
-				this.xp += (helpers.playerAttack() / options.fps) * times;
+				this.xp += ((helpers.playerAttack() / options.fps) * this.idleMultiplier) * times;
 			else
-				this.xp += (helpers.playerSpeed() / options.fps) * times;
+				this.xp += ((helpers.playerSpeed() / options.fps) * this.idleMultiplier) * times;
 
 			this.levelUp();
 			this.questUp();
@@ -40,11 +41,12 @@ var quest = {
 			player.gold += helpers.questGold();
 			this.gemDrop();
 			this.changeType();
+			this.name = helpers.questName();
 		};
 	},
 	gemDrop: function() {
 		var random = Math.floor(Math.random() * 1000);
-		if (random >= 999)
+		if (random >= 995)
 			player.gems++;
 	},
 	changeType: function() {
@@ -68,5 +70,9 @@ var quest = {
 		$("#quest-progressbar").css("width", progress + "%");
 		$("#quest-progressbar-percent").html(progress + "%");
 		$("#quest-info").html("Quest type : " + this.type);
+		$("#quest-name").html(this.name);
+		$("#quest-multiplier").html("Idle speed multiplier : x" + fix(this.idleMultiplier, "2d"));
+		var progress = Math.floor((player.xp/player.xpNeeded) * 100);
+		document.title = "IQ - Level " + player.level + " (" + progress + "%)";
 	}
 }

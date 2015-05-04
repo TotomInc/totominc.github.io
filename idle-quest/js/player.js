@@ -9,15 +9,27 @@ var player = {
 	prestigeTimes: 1,
 
 	sword: {
-		name: "Sword",
+		name: "Mediocre Stick",
 		base: 100,
 		damage: 100,
 		percent: 100
 	},
 	boots: {
-		name: "Boots",
+		name: "Leather Boots",
 		base: 100,
 		speed: 100,
+		percent: 100
+	},
+	amulet: {
+		name: "Old Amulet",
+		base: 100,
+		luck: 100,
+		percent: 100
+	},
+	charisma: {
+		name: "Charisma",
+		base: 100,
+		charisma: 100,
 		percent: 100
 	},
 
@@ -27,12 +39,13 @@ var player = {
 		var progress = Math.floor((this.xp/this.xpNeeded) * 100);
 		if (progress > 100)
 			progress = 100;
-
-		$("#player-progressbar").css("width", progress + "%");
-		$("#player-progressbar-percent").html(progress + "%");
+		// nav stats
 		$("#nav-gold").html("Gold : " + fix(this.gold, "3d"));
 		$("#nav-gems").html("Gems : " + fix(this.gems, "3d"));
 		$("#nav-level").html("Level : " + fix(this.level, "0d"));
+		// player related stats
+		$("#player-progressbar").css("width", progress + "%");
+		$("#player-progressbar-percent").html(progress + "%");
 		$("#player-level").html("Level : " + fix(this.level, "0d"));
 		$("#player-xp").html("XP : " + fix(this.xp, "1d") + "/" + fix(this.xpNeeded, "1d"));
 		$("#player-gold").html("Gold : " + fix(this.gold, "3d"));
@@ -41,8 +54,13 @@ var player = {
 		$("#player-sword-percent").html("(" + fix(this.sword.percent, "1d") + "%)");
 		$("#player-boots").html(this.boots.name + " : +" + fix(this.boots.speed, "1d") + " speed/click");
 		$("#player-boots-percent").html("(" + fix(this.boots.percent, "1d") + "%)");
+		$("#player-amulet").html(this.amulet.name + " : +" + fix(this.amulet.luck, "1d") + " luck");
+		$("#player-amulet-percent").html("(" + fix(this.amulet.percent, "1d") + "%)");
+		$("#player-charisma").html(this.charisma.name + " : +" + fix(this.charisma.charisma, "1d") + " chr");
+		$("#player-charisma-percent").html("(" + fix(this.charisma.charisma, "1d") + "%)");
 		$("#player-prestigecost").html("Prestige cost : " + fix(helpers.prestigeCost(), "0d") + " levels");
 		$("#player-prestigemultiplier").html("Prestige multiplier : x" + fix(this.multiplier, "0d"));
+		// craft related stats
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
 		$("#craft-level").attr("max", this.level);
@@ -56,14 +74,14 @@ var player = {
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
 
-		effect = (0.05 * goldCost) * (0.1 * levelCost);
+		effect = (0.05 * goldCost) * (0.10 * levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
 			return effect;
 		if (type == "stats-percent")
 			return percent;
-		if (type == "sword" || type == "boots") {
+		if (type == "sword" || type == "boots" || type == "amulet") {
 			if (effect >= this.sword.effect || effect > this.boots.speed) { // check if item will be better
 				this.gold -= goldCost;
 				this.level -= levelCost;
@@ -76,10 +94,17 @@ var player = {
 				if (type == "sword") {
 					this.sword.damage = effect;
 					this.sword.percent = percent;
+					this.sword.name = helpers.swordName();
 				};
 				if (type == "boots") {
 					this.boots.speed = effect;
 					this.boots.percent = percent;
+					this.boots.name = helpers.bootsName();
+				};
+				if (type == "amulet") {
+					this.amulet.luck = effect;
+					this.amulet.percent = percent;
+					this.amulet.name = helpers.amuletName();
 				};
 			};
 		};
@@ -97,6 +122,7 @@ var player = {
 			quest.xpNeeded = 100;
 			this.gold = 0;
 			this.multiplier = helpers.prestigeMultiplier();
+			quest.idleMultiplier = helpers.idleMultiplier();
 		};
 	}
 }

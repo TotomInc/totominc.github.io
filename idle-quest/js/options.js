@@ -8,6 +8,7 @@ var options = {
 	init: function() {
 		this.before = new Date().getTime();
 		$("#t-" + this.theme).attr("selected", "");
+		$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
 	},
 	update: function() {
 		this.now = new Date().getTime();
