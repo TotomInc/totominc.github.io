@@ -22,7 +22,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand">Idle-Quest <small>(v0.02)</small></a>
+	      <a class="navbar-brand">Idle-Quest <small>(v0.021)</small></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
@@ -103,26 +103,29 @@
 						<div class="row">
 						  <div class="col-md-12">
 						  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
-						  	<div class="col-md-4"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
-						  	<div class="col-md-4"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
-						  	<div class="col-md-4"><a id="craft-btn-amulet" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
+						  	<div class="col-md-4 col-xs-4"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
+						  	<div class="col-md-4 col-xs-4"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
+						  	<div class="col-md-4 col-xs-4"><a id="craft-btn-amulet" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
 						  </div>
 						</div>
 					</div>
 				<!-- options -->
 					<div class="well">
 						<div class="row">
-							<div class="col-md-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
-							<div class="col-md-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
-							<div class="col-md-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
+							<div class="col-md-4 col-xs-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
+							<div class="col-md-4 col-xs-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
+							<div class="col-md-4 col-xs-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
 						</div><br>
 						<div class="row">
-							<div class="col-md-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
-							<div class="col-md-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
+							<div class="col-md-6 col-xs-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
+							<div class="col-md-6 col-xs-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
 						</div><br>
 						<div class="row">
-							<div class="col-md-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
-							<div class="col-md-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
+							<div class="col-md-6 col-xs-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
+							<div class="col-md-6 col-xs-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4"><a class="btn btn-success center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
 						</div><br>
 						<p class="text-center">Theme switcher</p>
 						<select id="theme-select" class="center-block" name="select">
@@ -139,6 +142,29 @@
 					</div>
 				</div>
 		</div>
+	</div>
+<!-- help modal -->
+	<div id="help" class="modal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	        <h4 class="modal-title">Help, I don't understand the game!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p class="text-center">Welcome to Idle-Quest!<br>
+	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game</a>.</p>
+	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
+	        Your player got a sword, boots and an amulet. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels.</p>
+	        <p class="text-justify">Attack (so your sword damage) impacts how quickly you will complete 'attack quests'.<br>
+	        Speed (so your boots speed) impacts how quickly you will complete 'speed quests'.<br>
+	        Amulet (so your amulet luck) impacts the gold reward of each quests.</p>
+	        <p class="text-justify">The game runs also when it's closed. So don't worry about this, but you can always active/disable 'auto-idle'.</p>
+	        <p class="text-justify">About the prestige system, it will consume all your levels and gold, and reset all your equipment. It's recommended to prestige as soon as possible!</p>
+	      </div>
+	      <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
+	    </div>
+	  </div>
 	</div>
 <!-- scripts -->
 	<script src="src/beautify.js"></script>

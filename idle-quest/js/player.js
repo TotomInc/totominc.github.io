@@ -108,6 +108,7 @@ var player = {
 				};
 			};
 		};
+		
 		levelRange.value = 0;
 		$("#craft-level").attr("max", this.level);
 	},

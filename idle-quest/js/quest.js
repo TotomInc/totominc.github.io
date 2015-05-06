@@ -32,6 +32,8 @@ var quest = {
 			player.level++;
 			player.xpNeeded = helpers.playerXpNeeded();
 			this.xpNeeded = helpers.questXpNeeded();
+			var levelRange = document.getElementById("craft-level");
+			levelRange.value = player.level;
 		};
 	},
 	questUp: function() {
