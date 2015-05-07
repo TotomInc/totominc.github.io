@@ -36,6 +36,7 @@ var player = {
 	display: function() {
 		var goldRange = document.getElementById("craft-gold");
 		var levelRange = document.getElementById("craft-level");
+		var gemsRange = document.getElementById("craft-gems");
 		var progress = Math.floor((this.xp/this.xpNeeded) * 100);
 		if (progress > 100)
 			progress = 100;
@@ -43,6 +44,7 @@ var player = {
 		$("#nav-gold").html("Gold : " + fix(this.gold, "3d"));
 		$("#nav-gems").html("Gems : " + fix(this.gems, "3d"));
 		$("#nav-level").html("Level : " + fix(this.level, "0d"));
+		$("#nav-playerprogress").css("width", progress + "%");
 		// player related stats
 		$("#player-progressbar").css("width", progress + "%");
 		$("#player-progressbar-percent").html(progress + "%");
@@ -63,18 +65,27 @@ var player = {
 		// craft related stats
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
+		$("#craft-gemscost").html(gemsRange.value + " gems");
 		$("#craft-level").attr("max", this.level);
+		$("#craft-gems").attr("max", this.gems);
 		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
 	},
 	craft: function(type) {
 		var goldRange = document.getElementById("craft-gold");
 		var levelRange = document.getElementById("craft-level");
+		var gemsRange = document.getElementById("craft-gems");
 		var effect = 0;
 		var percent = 0;
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
+		var gemsCost = gemsRange.value;
 
-		effect = (0.05 * goldCost) * (0.10 * levelCost);
+		if (gemsCost == 0)
+			effect = (0.05 * goldCost) * (0.10 * levelCost);
+		else
+			if (gemsCost >= 1)
+				effect = (0.05 * goldCost) * (0.10 * levelCost) * (1 * gemsCost);
+
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
@@ -87,6 +98,7 @@ var player = {
 				this.level -= levelCost;
 				if (this.level == 0)
 					this.level = 1;
+				this.gems -= gemsCost;
 				this.xp = 0;
 				quest.xp = 0;
 				quest.xpNeeded = helpers.questXpNeeded();
@@ -111,6 +123,8 @@ var player = {
 		
 		levelRange.value = 0;
 		$("#craft-level").attr("max", this.level);
+		gemsRange.value = 0;
+		$("#craft-gems").attr("max", this.gems);
 	},
 	prestige: function() {
 		var cost = helpers.prestigeCost();

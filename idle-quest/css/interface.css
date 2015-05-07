@@ -1,8 +1,38 @@
 body {
-	padding-top: 70px;
+	padding-top: 80px;
 	cursor: default;
 	background: #eee;
 	font-weight: 300; /* support for material design */
+}
+
+.bars {
+	border-top: 1px solid #e7e7e7;
+	width: 100%;
+	height: 8px;
+}
+.left-bar {
+	width: 50%;
+	height: 100%;
+	border-right: 1px solid #e7e7e7;
+	background: #fff;
+}
+.left-bar-filler {
+	background: #43A047;
+	height: 100%;
+	width: 50%;
+	transition: all 0.2s;
+}
+.right-bar {
+	margin-left: 50%;
+	margin-top: -7px;
+	width: 50%;
+	height: 100%;
+	background: #fff;
+}
+.right-bar-filler {
+	background: #039BE5;
+	height: 100%;
+	width: 50%;
 }
 
 /* custom bootstrap */
@@ -14,7 +44,4 @@ body {
 }
 #quest-progressbar {
 	transition: all 0s;
-}
-.modal-backdrop.in {
-	opacity: 0;
 }

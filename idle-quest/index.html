@@ -23,7 +23,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand">Idle-Quest <small>(v0.022)</small></a>
+	      <a class="navbar-brand">Idle-Quest <small>(v0.023)</small></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
@@ -32,6 +32,10 @@
 	      	<li><a><span id="nav-level"></span></a></li>
 	      </ul>
 	    </div>
+	  </div>
+	  <div class="bars">
+	  	<div class="left-bar"><div id="nav-playerprogress" class="left-bar-filler"></div></div>
+	  	<div class="right-bar"><div id="nav-questprogress" class="right-bar-filler"></div></div>
 	  </div>
 	</nav>
 <!-- game area -->
@@ -98,8 +102,10 @@
 						<div class="row">
 							<div class="col-md-9"><input id="craft-gold" type="range" min="1" max="100" step="1"></input></div>
 							<div class="col-md-3 text-center"><p><span id="craft-goldcost"></span></p></div>
-							<div class="col-md-9"><input id="craft-level" type="range" min="1" max="1" step="1"></input></div>
+							<div class="col-md-9"><input id="craft-level" type="range" min="1" max="0" step="1"></input></div>
 							<div class="col-md-3 text-center"><p><span id="craft-levelcost"></span></p></div>
+							<div class="col-md-9"><input id="craft-gems" type="range" min="0" max="0" step="1"></input></div>
+							<div class="col-md-3 text-center"><p><span id="craft-gemscost"></span></p></div>
 						</div>
 						<div class="row">
 						  <div class="col-md-12">
@@ -145,7 +151,7 @@
 		</div>
 	</div>
 <!-- help modal -->
-	<div id="help" class="modal">
+	<div id="help" class="modal fade">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">

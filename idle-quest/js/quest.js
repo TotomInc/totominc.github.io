@@ -69,6 +69,7 @@ var quest = {
 		var progress = Math.floor((this.xp/this.xpNeeded) * 100);
 		if (progress > 100)
 			progress = 100;
+		$("#nav-questprogress").css("width", progress + "%");
 		$("#quest-progressbar").css("width", progress + "%");
 		$("#quest-progressbar-percent").html(progress + "%");
 		$("#quest-info").html("Quest type : " + this.type);
