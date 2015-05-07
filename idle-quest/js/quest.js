@@ -39,7 +39,7 @@ var quest = {
 	questUp: function() {
 		if (this.xp >= this.xpNeeded) {
 			this.xp -= this.xpNeeded;
-			player.xp += (this.xpNeeded / 4);
+			player.xp += (this.xpNeeded / 4.5);
 			player.gold += helpers.questGold();
 			this.gemDrop();
 			this.changeType();
@@ -48,7 +48,7 @@ var quest = {
 	},
 	gemDrop: function() {
 		var random = Math.floor(Math.random() * 1000);
-		if (random >= 995)
+		if (random >= 990)
 			player.gems++;
 	},
 	changeType: function() {

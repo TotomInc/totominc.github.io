@@ -68,7 +68,7 @@ var player = {
 		$("#craft-gemscost").html(gemsRange.value + " gems");
 		$("#craft-level").attr("max", this.level);
 		$("#craft-gems").attr("max", this.gems);
-		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
+		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed/luck (" + fix(this.craft("stats-percent"), "1d") + "%)");
 	},
 	craft: function(type) {
 		var goldRange = document.getElementById("craft-gold");
@@ -81,10 +81,10 @@ var player = {
 		var gemsCost = gemsRange.value;
 
 		if (gemsCost == 0)
-			effect = (0.05 * goldCost) * (0.10 * levelCost);
+			effect = (0.06 * goldCost) * (0.15* levelCost);
 		else
 			if (gemsCost >= 1)
-				effect = (0.05 * goldCost) * (0.10 * levelCost) * (1 * gemsCost);
+				effect = (0.06 * goldCost) * (0.15 * levelCost) * (1 * gemsCost);
 
 		percent = (effect/player.sword.base) * 100;
 

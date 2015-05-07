@@ -5,6 +5,7 @@ body {
 	font-weight: 300; /* support for material design */
 }
 
+/* bars */
 .bars {
 	border-top: 1px solid #e7e7e7;
 	width: 100%;
@@ -19,7 +20,7 @@ body {
 .left-bar-filler {
 	background: #43A047;
 	height: 100%;
-	width: 50%;
+	width: 0%;
 	transition: all 0.2s;
 }
 .right-bar {
@@ -32,7 +33,7 @@ body {
 .right-bar-filler {
 	background: #039BE5;
 	height: 100%;
-	width: 50%;
+	width: 0%;
 }
 
 /* custom bootstrap */
