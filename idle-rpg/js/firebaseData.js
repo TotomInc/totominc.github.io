@@ -34,8 +34,8 @@ function getScore() {
 			$("#data-" + (i+1)).append('<td id="data-gold-' + (i+1) + '"></td>');
 			$("#data-" + (i+1)).append('<td id="data-level-' + (i+1) + '"></td>');
 			$("#data-name-" + (i+1)).html(scoreboard[i].name);
-			$("#data-gold-" + (i+1)).html(fix(scoreboard[i].gold, "1d"));
-			$("#data-level-" + (i+1)).html(fix(scoreboard[i].level, "0d"));
+			$("#data-gold-" + (i+1)).html(scoreboard[i].gold);
+			$("#data-level-" + (i+1)).html(scoreboard[i].level);
 		};
 	});
 };
