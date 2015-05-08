@@ -76,6 +76,6 @@ var quest = {
 		$("#quest-name").html(this.name);
 		$("#quest-multiplier").html("Idle speed multiplier : x" + fix(this.idleMultiplier, "2d"));
 		var progress = Math.floor((player.xp/player.xpNeeded) * 100);
-		document.title = "IQ - Level " + player.level + " (" + progress + "%)";
+		document.title = "I-RPG - Level " + player.level + " (" + progress + "%)";
 	}
 }

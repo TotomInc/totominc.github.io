@@ -8,6 +8,7 @@ var save = {
 		localStorage.setItem('IdleQuestSave', JSON.stringify(this.toSave));
 	},
 	removeData: function() {
+		this.saveInterval = undefined;
 		localStorage.removeItem('IdleQuestSave');
 		location.reload();
 	},

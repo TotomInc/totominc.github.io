@@ -3,10 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Idle-Quest</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<title>Idle-RPG</title>
 
 	<script src="src/jquery-1.11.1.min.js"></script>
 	<script src="src/bootstrap.min.js"></script>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<link id="stylesheet" rel="stylesheet" href="src/bootstrap.min.css">
 	<link rel="stylesheet" href="css/interface.css">
 	<link rel="stylesheet" href="css/slider.css">
@@ -23,7 +26,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand">Idle-Quest <small>(v0.023)</small></a>
+	      <a class="navbar-brand">Idle-RPG <small>(v0.03)</small></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
@@ -96,56 +99,93 @@
 						</div>
 					</div>
 				</div>
+			<!-- nav tabs/panels -->
 				<div class="col-md-6">
-				<!-- crafting -->
-					<div class="well">
-						<div class="row">
-							<div class="col-md-9"><input id="craft-gold" type="range" min="1" max="100" step="1"></input></div>
-							<div class="col-md-3 text-center"><p><span id="craft-goldcost"></span></p></div>
-							<div class="col-md-9"><input id="craft-level" type="range" min="1" max="0" step="1"></input></div>
-							<div class="col-md-3 text-center"><p><span id="craft-levelcost"></span></p></div>
-							<div class="col-md-9"><input id="craft-gems" type="range" min="0" max="0" step="1"></input></div>
-							<div class="col-md-3 text-center"><p><span id="craft-gemscost"></span></p></div>
-						</div>
-						<div class="row">
-						  <div class="col-md-12">
-						  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
-						  	<div id="craft-sword" class="col-md-4 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
-						  	<div id="craft-boots" class="col-md-4 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
-						  	<div id="craft-amulet" class="col-md-4 col-xs-12"><a id="craft-btn-amulet" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
-						  </div>
-						</div>
-					</div>
-				<!-- options -->
-					<div class="well">
-						<div class="row">
-							<div class="col-md-4 col-xs-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
-							<div class="col-md-4 col-xs-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
-							<div class="col-md-4 col-xs-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
-						</div><br>
-						<div class="row">
-							<div class="col-md-6 col-xs-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
-							<div class="col-md-6 col-xs-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
-						</div><br>
-						<div class="row">
-							<div class="col-md-6 col-xs-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
-							<div class="col-md-6 col-xs-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
-						</div><br>
-						<div class="row">
-							<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4"><a class="btn btn-success center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
-						</div><br>
-						<p class="text-center">Theme switcher</p>
-						<select id="theme-select" class="center-block" name="select">
-							<option id="t-0" value="0">Default</option> 
-							<option id="t-1" value="1">Cerulean</option>
-							<option id="t-2" value="2">Paper</option>
-							<option id="t-3" value="3">Sandstone</option>
-							<option id="t-4" value="4">Simplex</option>
-							<option id="t-5" value="5">Spacelab</option>
-							<option id="t-6" value="6">United</option>
-							<option id="t-7" value="7">Yeti</option>
-						</select>
-						<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
+				  <ul class="nav nav-tabs nav-justified" role="tablist">
+				    <li role="presentation" class="active"><a href="#craft" aria-controls="craft" role="tab" data-toggle="tab">Craft</a></li>
+				    <li role="presentation"><a href="#options" aria-controls="options" role="tab" data-toggle="tab">Options</a></li>
+				    <li role="presentation"><a href="#leaderboards" aria-controls="leaderboards" role="tab" data-toggle="tab">Leaderboards</a></li>
+				  </ul>
+
+					<div class="tab-content">
+					<!-- craft panel -->
+					  <div role="tabpanel" class="tab-pane fade in active" id="craft">
+							<div class="well">
+								<div class="row">
+									<div class="col-md-9"><input id="craft-gold" type="range" min="1" max="100" step="1"></input></div>
+									<div class="col-md-3 text-center"><p><span id="craft-goldcost"></span></p></div>
+									<div class="col-md-9"><input id="craft-level" type="range" min="1" max="0" step="1"></input></div>
+									<div class="col-md-3 text-center"><p><span id="craft-levelcost"></span></p></div>
+									<div class="col-md-9"><input id="craft-gems" type="range" min="0" max="0" step="1"></input></div>
+									<div class="col-md-3 text-center"><p><span id="craft-gemscost"></span></p></div>
+								</div>
+								<div class="row">
+								  <div class="col-md-12">
+								  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
+								  	<div id="craft-sword" class="col-md-4 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
+								  	<div id="craft-boots" class="col-md-4 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
+								  	<div id="craft-amulet" class="col-md-4 col-xs-12"><a id="craft-btn-amulet" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
+								  </div>
+								</div>
+							</div>
+					  </div>
+					<!-- options panel -->
+					  <div role="tabpanel" class="tab-pane fade" id="options">
+							<div class="well">
+								<div class="row">
+									<div class="col-md-4 col-xs-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
+									<div class="col-md-4 col-xs-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
+									<div class="col-md-4 col-xs-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
+								</div><br>
+								<div class="row">
+									<div class="col-md-6 col-xs-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
+									<div class="col-md-6 col-xs-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
+								</div><br>
+								<div class="row">
+									<div class="col-md-6 col-xs-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
+									<div class="col-md-6 col-xs-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
+								</div><br>
+								<div class="row">
+									<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4"><a class="btn btn-success center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
+								</div><br>
+								<p class="text-center">Theme switcher</p>
+								<select id="theme-select" class="center-block" name="select">
+									<option id="t-0" value="0">Default</option> 
+									<option id="t-1" value="1">Cerulean</option>
+									<option id="t-2" value="2">Paper</option>
+									<option id="t-3" value="3">Sandstone</option>
+									<option id="t-4" value="4">Simplex</option>
+									<option id="t-5" value="5">Spacelab</option>
+									<option id="t-6" value="6">United</option>
+									<option id="t-7" value="7">Yeti</option>
+								</select>
+								<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
+							</div>
+					  </div>
+					<!-- leaderboards panel -->
+					  <div role="tabpanel" class="tab-pane fade" id="leaderboards">
+					  	<div class="well">
+								<table class="table table-condensed">
+						      <thead>
+						        <tr>
+						          <th>Name</th>
+						          <th>Gold</th>
+						          <th>Level</th>
+						        </tr>
+						      </thead>
+						      <tbody id="leaderboard-body"></tbody>
+						    </table>
+					  	</div>
+					  	<div class="well">
+					  		<p class="text-center">Choose a nickname and post your score to the leaderboards!<br>
+					  		Become the best idler now!</p>
+
+								<div class="row">
+									<div class="col-md-7 col-md-offset-1"><input type="text" id="data-setnickname" class="form-control" placeholder="Choose a nickname (more than 3 letters)"></div>
+									<div class="col-md-4"><a onclick="submitScore();" class="btn btn-success" role="button">Submit stats</a></div>
+								</div>
+					  	</div>
+					  </div>
 					</div>
 				</div>
 		</div>
@@ -159,8 +199,8 @@
 	        <h4 class="modal-title">Help, I don't understand the game!</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p class="text-center">Welcome to Idle-Quest!<br>
-	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game</a>.</p>
+	        <p class="text-center">Welcome to Idle-RPG!<br>
+	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game : Idle-Quest</a>.</p>
 	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
 	        Your player got a sword, boots and an amulet. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels.</p>
 	        <p class="text-justify">Attack (so your sword damage) impacts how quickly you will complete 'attack quests'.<br>
@@ -175,6 +215,7 @@
 	</div>
 <!-- scripts -->
 	<script src="src/beautify.js"></script>
+	<script src="js/firebaseData.js"></script>
 	<script src="js/res.js"></script>
 	<script src="js/themes.js"></script>
 	<script src="js/options.js"></script>

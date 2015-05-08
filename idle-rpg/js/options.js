@@ -27,6 +27,7 @@ var options = {
 window.onload = function() {
 	save.loadData();
 	options.init();
+	getScore();
 };
 window.setInterval(function() {
 	options.update();
