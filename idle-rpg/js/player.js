@@ -130,7 +130,7 @@ var player = {
 		var cost = helpers.prestigeCost();
 		if (player.level >= cost) {
 			this.prestigeTimes++;
-			this.level = 0;
+			this.level = 1;
 			this.xp = 0;
 			this.xpNeeded = 100;
 			quest.xp = 0;
@@ -138,6 +138,26 @@ var player = {
 			this.gold = 0;
 			this.multiplier = helpers.prestigeMultiplier();
 			quest.idleMultiplier = helpers.idleMultiplier();
+
+			this.sword.name = "Mediocre Stick";
+			this.sword.base = 100;
+			this.sword.damage = 100;
+			this.sword.percent = 100;
+
+			this.boots.name = "Leather Boots";
+			this.boots.base = 100;
+			this.boots.speed = 100;
+			this.boots.percent = 100;
+
+			this.amulet.name = "Old Amulet";
+			this.amulet.base = 100;
+			this.amulet.luck = 100;
+			this.amulet.percent = 100;
+
+			this.charisma.name = "Charisma";
+			this.charisma.base = 100;
+			this.charisma.charisma = 100;
+			this.charisma.percent = 100;
 		};
 	}
 }
