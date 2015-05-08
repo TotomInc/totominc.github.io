@@ -7,12 +7,12 @@ function submitScore() {
 	if (nickname.value.length >= 3) {
 		var playerName = nickname.value;
 		var playerGold = Math.floor(player.gold);
-		var prestigeTimes = Math.floor(player.prestigeTimes);
+		var prestigeMultiplier = Math.floor(player.multiplier);
 		var playerLevel = Math.floor(player.level);
 		ref.child(playerName).set({
 			name: playerName,
 		  	gold: playerGold,
-		  	prestige: prestigeTimes,
+		  	prestige: prestigeMultiplier,
 		  	level: playerLevel
 		});
 	} else {
@@ -36,7 +36,7 @@ function getScore() {
 			$("#data-" + (i+1)).append('<td id="data-level-' + (i+1) + '"></td>');
 			$("#data-name-" + (i+1)).html(scoreboard[i].name);
 			$("#data-gold-" + (i+1)).html(fix(scoreboard[i].gold, "1d"));
-			$("#data-prestige-" + (i+1)).html(fix(scoreboard[i].prestige, "0d"));
+			$("#data-prestige-" + (i+1)).html("x" + fix(scoreboard[i].prestige, "0d"));
 			$("#data-level-" + (i+1)).html(fix(scoreboard[i].level, "0d"));
 		};
 	});
