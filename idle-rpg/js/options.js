@@ -5,7 +5,7 @@ var options = {
 	before: undefined,
 	init: false,
 	theme: "Default",
-	version: "v0.032",
+	version: "v0.033",
 
 	init: function() {
 		save.loadData();
