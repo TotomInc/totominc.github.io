@@ -4,7 +4,8 @@ function beautify(x, n) {
 		var prefixes = ["m ","b ","t ","q ","Q ","s ","S ","o ","n ",
 		"D ","UD ","DD ","TD ","qD ","QD ","sD ","SD ","OD ","ND ",
 		"V ","UV ","DV ","TV ","qV ","QV ","sV ","SV ","OV ","NV ",
-		"T ","UT ","DT ","TT ","qT ","QT ","sT ","ST ","OT ","NT "];
+		"T ","UT ","DT ","TT ","qT ","QT ","sT ","ST ","OT ","NT ",
+		"~q ","Uq ","Dq ","Tq ","qq ","Qq ","sq ","Sq ","Oq ","Nq "];
 		var s = beautify(x/Math.pow(10,3*z),n);
 		return s+""+prefixes[z-2];
 	} else {

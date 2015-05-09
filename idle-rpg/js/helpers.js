@@ -14,9 +14,9 @@ var helpers = {
 	questGold: function() {
 		var random = Math.random() + 1;
 		if (player.level > 1)
-			return Math.floor((85 * Math.pow(1.15, player.level) * (player.amulet.luck / 100)) * random) * player.multiplier;
+			return Math.floor((85 * Math.pow(1.15, player.level)) * random) * player.multiplier;
 		else
-			return (85 * random) * (player.amulet.luck / 100);
+			return (85 * random);
 	},
 	playerAttack: function() {
 		return (player.sword.damage * player.multiplier);
@@ -29,12 +29,6 @@ var helpers = {
 	},
 	playerSpeedPercent: function() {
 		return (player.boots.speed/player.boots.base) * 100;
-	},
-	playerLuck: function() {
-		return (player.amulet.luck/player.amulet.base);
-	},
-	playerLuckPercent: function() {
-		return (player.amulet.luck/player.amulet.base) * 100;
 	},
 	prestigeCost: function() {
 		return (player.prestigeTimes) * 100;
@@ -63,13 +57,6 @@ var helpers = {
 		var prefixRandom = Math.floor(Math.random() * bootPrefix.length);
 		var rootRandom = Math.floor(Math.random() * bootRoot.length);
 		str = bootPrefix[prefixRandom] + " " + bootRoot[rootRandom];
-		return str;
-	},
-	amuletName: function() {
-		var str;
-		var prefixRandom = Math.floor(Math.random() * amuletPrefix.length);
-		var rootRandom = Math.floor(Math.random() * amuletRoot.length);
-		str = amuletPrefix[prefixRandom] + " " + amuletRoot[rootRandom];
 		return str;
 	},
 	questName: function() {

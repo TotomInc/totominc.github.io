@@ -26,7 +26,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand">Idle-RPG <small>(v0.031)</small></a>
+	      <a class="navbar-brand"><span><img src="img/sword.png" height="30" width="30"> Idle-RPG <small id="nav-version"></small></span></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
@@ -72,15 +72,6 @@
 								<p><span id="player-boots"></span><br><span id="player-boots-percent"></span></p>
 							</div>
 						</div>
-					<!-- amulet/charisma -->
-						<div class="row">
-							<div class="col-md-6 text-center">
-								<p><span id="player-amulet"></span><br><span id="player-amulet-percent"></span></p>
-							</div>
-							<div class="col-md-6 text-center">
-								<p><span id="player-charisma"></span><br><span id="player-charisma-percent"></span></p>
-							</div>
-						</div><br>
 					<!-- quest button -->
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3"><a onclick="quest.click()" class="btn btn-success center-block" role="button">Quest!</a></div>
@@ -116,15 +107,12 @@
 									<div class="col-md-3 text-center"><p><span id="craft-goldcost"></span></p></div>
 									<div class="col-md-9"><input id="craft-level" type="range" min="1" max="0" step="1"></input></div>
 									<div class="col-md-3 text-center"><p><span id="craft-levelcost"></span></p></div>
-									<div class="col-md-9"><input id="craft-gems" type="range" min="0" max="0" step="1"></input></div>
-									<div class="col-md-3 text-center"><p><span id="craft-gemscost"></span></p></div>
 								</div>
 								<div class="row">
 								  <div class="col-md-12">
 								  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
-								  	<div id="craft-sword" class="col-md-4 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
-								  	<div id="craft-boots" class="col-md-4 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
-								  	<div id="craft-amulet" class="col-md-4 col-xs-12"><a id="craft-btn-amulet" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
+								  	<div id="craft-sword" class="col-md-6 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
+								  	<div id="craft-boots" class="col-md-6 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
 								  </div>
 								</div>
 							</div>
@@ -169,7 +157,6 @@
 						      <thead>
 						        <tr>
 						          <th>Name</th>
-						          <th>Gold</th>
 						          <th>Prestige</th>
 						          <th>Level</th>
 						        </tr>
@@ -182,8 +169,8 @@
 					  		Become the best idler now!</p>
 
 								<div class="row">
-									<div class="col-md-7 col-md-offset-1"><input type="text" id="data-setnickname" class="form-control" placeholder="Choose a nickname (more than 3 letters)"></div>
-									<div class="col-md-4"><a onclick="submitScore();" class="btn btn-success" role="button">Submit stats</a></div>
+									<div class="col-md-7 col-md-offset-1"><input type="text" id="data-setnickname" class="form-control" placeholder="Disabled"></div>
+									<div class="col-md-4"><a onclick="submitScore();" class="btn btn-success" role="button" disabled="disabled">Submit stats</a></div>
 								</div>
 					  	</div>
 					  </div>
@@ -203,12 +190,12 @@
 	        <p class="text-center">Welcome to Idle-RPG!<br>
 	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game : Idle-Quest</a>.</p>
 	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
-	        Your player got a sword, boots and an amulet. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels.</p>
+	        Your player got a sword and boots. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels.</p>
 	        <p class="text-justify">Attack (so your sword damage) impacts how quickly you will complete 'attack quests'.<br>
-	        Speed (so your boots speed) impacts how quickly you will complete 'speed quests'.<br>
-	        Amulet (so your amulet luck) impacts the gold reward of each quests.</p>
+	        Speed (so your boots speed) impacts how quickly you will complete 'speed quests'.</p>
 	        <p class="text-justify">The game runs also when it's closed. So don't worry about this, but you can always active/disable 'auto-idle'.</p>
 	        <p class="text-justify">About the prestige system, it will consume all your levels and gold, and reset all your equipment. It's recommended to prestige as soon as possible!</p>
+	        <p class="text-danger">Warning! If you are using a different theme than the 'Default' this modal is bugged, but you can close it by clicking/tapping everywhere in the screen.</p>
 	      </div>
 	      <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
 	    </div>
@@ -216,8 +203,6 @@
 	</div>
 <!-- scripts -->
 	<script src="src/beautify.js"></script>
-	<script src="js/firebaseData.js"></script>
-	<script src="js/res.js"></script>
 	<script src="js/themes.js"></script>
 	<script src="js/options.js"></script>
 	<script src="js/helpers.js"></script>
@@ -225,5 +210,7 @@
 	<script src="js/quest.js"></script>
 	<script src="js/names.js"></script>
 	<script src="js/save.js"></script>
+	<script src="src/resolution.js"></script>
+	<script src="src/fbdata.js"></script>
 </body>
 </html>

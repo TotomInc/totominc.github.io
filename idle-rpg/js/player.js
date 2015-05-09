@@ -7,6 +7,7 @@ var player = {
 	multiplier: 1,
 	prestigeCost: 100,
 	prestigeTimes: 1,
+	nickname: undefined,
 
 	sword: {
 		name: "Mediocre Stick",
@@ -18,18 +19,6 @@ var player = {
 		name: "Leather Boots",
 		base: 100,
 		speed: 100,
-		percent: 100
-	},
-	amulet: {
-		name: "Old Amulet",
-		base: 100,
-		luck: 100,
-		percent: 100
-	},
-	charisma: {
-		name: "Charisma",
-		base: 100,
-		charisma: 100,
 		percent: 100
 	},
 
@@ -56,43 +45,31 @@ var player = {
 		$("#player-sword-percent").html("(" + fix(this.sword.percent, "1d") + "%)");
 		$("#player-boots").html(this.boots.name + " : +" + fix(this.boots.speed, "1d") + " speed/click");
 		$("#player-boots-percent").html("(" + fix(this.boots.percent, "1d") + "%)");
-		$("#player-amulet").html(this.amulet.name + " : +" + fix(this.amulet.luck, "1d") + " luck");
-		$("#player-amulet-percent").html("(" + fix(this.amulet.percent, "1d") + "%)");
-		$("#player-charisma").html(this.charisma.name + " : +" + fix(this.charisma.charisma, "1d") + " chr");
-		$("#player-charisma-percent").html("(" + fix(this.charisma.charisma, "1d") + "%)");
 		$("#player-prestigecost").html("Prestige cost : " + fix(helpers.prestigeCost(), "0d") + " levels");
 		$("#player-prestigemultiplier").html("Prestige multiplier : x" + fix(this.multiplier, "0d"));
 		// craft related stats
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
-		$("#craft-gemscost").html(gemsRange.value + " gems");
 		$("#craft-level").attr("max", this.level);
 		$("#craft-gems").attr("max", this.gems);
-		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed/luck (" + fix(this.craft("stats-percent"), "1d") + "%)");
+		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
 	},
 	craft: function(type) {
 		var goldRange = document.getElementById("craft-gold");
 		var levelRange = document.getElementById("craft-level");
-		var gemsRange = document.getElementById("craft-gems");
 		var effect = 0;
 		var percent = 0;
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
-		var gemsCost = gemsRange.value;
 
-		if (gemsCost == 0)
-			effect = (0.06 * goldCost) * (0.15* levelCost);
-		else
-			if (gemsCost >= 1)
-				effect = (0.06 * goldCost) * (0.15 * levelCost) * (1 * gemsCost);
-
+		effect = (0.06 * goldCost) * (0.15* levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
 			return effect;
 		if (type == "stats-percent")
 			return percent;
-		if (type == "sword" || type == "boots" || type == "amulet") {
+		if (type == "sword" || type == "boots") {
 			if (effect >= this.sword.effect || effect > this.boots.speed) { // check if item will be better
 				this.gold -= goldCost;
 				this.level -= levelCost;
@@ -113,18 +90,11 @@ var player = {
 					this.boots.percent = percent;
 					this.boots.name = helpers.bootsName();
 				};
-				if (type == "amulet") {
-					this.amulet.luck = effect;
-					this.amulet.percent = percent;
-					this.amulet.name = helpers.amuletName();
-				};
 			};
 		};
 		
 		levelRange.value = 0;
 		$("#craft-level").attr("max", this.level);
-		gemsRange.value = 0;
-		$("#craft-gems").attr("max", this.gems);
 	},
 	prestige: function() {
 		var cost = helpers.prestigeCost();
@@ -148,16 +118,6 @@ var player = {
 			this.boots.base = 100;
 			this.boots.speed = 100;
 			this.boots.percent = 100;
-
-			this.amulet.name = "Old Amulet";
-			this.amulet.base = 100;
-			this.amulet.luck = 100;
-			this.amulet.percent = 100;
-
-			this.charisma.name = "Charisma";
-			this.charisma.base = 100;
-			this.charisma.charisma = 100;
-			this.charisma.percent = 100;
 		};
 	}
 }
