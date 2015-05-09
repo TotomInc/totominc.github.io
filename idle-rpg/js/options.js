@@ -4,8 +4,9 @@ var options = {
 	now: undefined,
 	before: undefined,
 	init: false,
+	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.033",
+	version: "v0.034",
 
 	init: function() {
 		save.loadData();
@@ -32,6 +33,14 @@ var options = {
 			player.display();
 			quest.display();
 		};
+	},
+	trigger: function() {
+		var shortscale = document.getElementById("options-shortscale");
+		var scientific = document.getElementById("options-scientific");
+		if (shortscale.checked == true)
+			this.numbers = "shortscale";
+		else
+			this.numbers = "scientific";
 	}
 }
 

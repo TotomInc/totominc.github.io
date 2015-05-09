@@ -7,7 +7,7 @@ var helpers = {
 	},
 	questXpNeeded: function() {
 		if (player.level > 1) 
-			return Math.floor(100 * Math.pow(1.27, player.level));
+			return Math.floor(100 * Math.pow(1.25, player.level));
 		else
 			return 100;
 	},

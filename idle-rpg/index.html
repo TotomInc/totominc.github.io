@@ -137,18 +137,32 @@
 								<div class="row">
 									<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4"><a class="btn btn-success center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
 								</div><br>
-								<p class="text-center">Theme switcher</p>
-								<select id="theme-select" class="center-block" name="select">
-									<option id="t-0" value="0">Default</option> 
-									<option id="t-1" value="1">Cerulean</option>
-									<option id="t-2" value="2">Paper</option>
-									<option id="t-3" value="3">Sandstone</option>
-									<option id="t-4" value="4">Simplex</option>
-									<option id="t-5" value="5">Spacelab</option>
-									<option id="t-6" value="6">United</option>
-									<option id="t-7" value="7">Yeti</option>
-								</select>
-								<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
+								<div class="row">
+									<div class="col-md-4">
+										<p class="text-center">Theme switcher</p>
+										<select id="theme-select" class="center-block" name="select">
+											<option id="t-0" value="0">Default</option> 
+											<option id="t-1" value="1">Cerulean</option>
+											<option id="t-2" value="2">Paper</option>
+											<option id="t-3" value="3">Sandstone</option>
+											<option id="t-4" value="4">Simplex</option>
+											<option id="t-5" value="5">Spacelab</option>
+											<option id="t-6" value="6">United</option>
+											<option id="t-7" value="7">Yeti</option>
+										</select>
+									</div>
+									<div class="col-md-4">
+										<div class="radio">
+										  <label><input type="radio" id="options-shortscale" onclick="options.trigger();" name="optionsRadios" id="optionsRadios1" value="option1" checked> Short scale numbers</label>
+										</div>
+										<div class="radio">
+										  <label><input type="radio" id="options-scientific" onclick="options.trigger();" name="optionsRadios" id="optionsRadios2" value="option2"> Scientific notation</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
+									</div>
+								</div><br>
 							</div>
 					  </div>
 					<!-- leaderboards panel -->
@@ -188,15 +202,25 @@
 	        <h4 class="modal-title">Help, I don't understand the game!</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p class="text-center">Welcome to Idle-RPG!<br>
+	        <p class="text-danger text-center">Warning! If you are using a different theme than the 'Default' this modal is bugged, but you can close it by clicking/tapping everywhere in the screen.<br>
+	        Please, use the 'Default' theme to read informations on the modal!</p>
+	        <p class="text-center"><u>Welcome to Idle-RPG!</u><br>
 	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game : Idle-Quest</a>.</p>
 	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
 	        Your player got a sword and boots. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels.</p>
-	        <p class="text-justify">Attack (so your sword damage) impacts how quickly you will complete 'attack quests'.<br>
-	        Speed (so your boots speed) impacts how quickly you will complete 'speed quests'.</p>
+	        <p class="text-justify">Attack (sword damage) impacts how quickly you will complete 'attack quests'.<br>
+	        Speed (boots speed) impacts how quickly you will complete 'speed quests'.</p>
 	        <p class="text-justify">The game runs also when it's closed. So don't worry about this, but you can always active/disable 'auto-idle'.</p>
+	        <p class="text-justify">Gems are randomly gained when finishing a quest. Theses gems can be used to purchase specials items.</p>
 	        <p class="text-justify">About the prestige system, it will consume all your levels and gold, and reset all your equipment. It's recommended to prestige as soon as possible!</p>
-	        <p class="text-danger">Warning! If you are using a different theme than the 'Default' this modal is bugged, but you can close it by clicking/tapping everywhere in the screen.</p>
+	        <p class="text-justify"><u>About the short scale of numbers :</u><br>
+	        	<div class="row">
+	        		<div class="col-md-4">m : million<br>b : billion<br>t : trillion<br>q : quadrillion<br>Q : quintillion<br>s : sextillion<br>S : septillion<br>o : octillion<br>n : nonillion<br>D : decillion</div>
+	        		<div class="col-md-4">UD : undecillion<br>DD : duodecillion<br>TD : tredecillion<br>qD : quattuordecillion<br>QD : quindecillion<br>sD : sexdecillion<br>SD : septdecillion<br>OD : octodecillion<br>ND : novemdecillion<br>V : vigintillion</div>
+	        		<div class="col-md-4">UV : unvigintillion<br>DV : duovigintillion<br>TV : trevigintillion<br>qV : quattuorvigintillion<br>QV : quinvigintillion<br>sV : sexvigintillion<br>SV : septenvigintillion<br>OV : octovigintillion<br>NV : novemvigintillion<br>T : trigintillion</div>
+	        	</div>
+					</p>
+					<p class="text-justify">And so on, and so forth... If you need informations about big numbers, <a target="_blank" href="http://bmanolov.free.fr/numbers_names.php">take a look here</a>.</p>
 	      </div>
 	      <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
 	    </div>
