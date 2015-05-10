@@ -10,5 +10,8 @@ Idle-RPG is the web-version of the original game <a href="https://play.google.co
 <h3><a href="http://totominc.github.io/moneylife"><u>Money-Life</u></a></h3>
 Money-Life is a simple <a href="http://www.kongregate.com/games/hyperhippogames/adventure-capitalist">Adventure Capitalist</a> clone, which was made to help me to learn Javascript. This game is pretty old and ugly.
 
+<h3><a href="http://totominc.github.io/trianglify"><u>Trianglify</u></a></h3>
+Just a simple web-page including the Trianglify.js script to create random and beautiful flat wallpapers!
+
 <h5>You want to contribute?</h5>
 If you really like theses projects, you can contribute to them. Everything is open-source, you can take a look and help me to kill bugs, improve games and add new things! Just fork or clone the repo on your computer!
