@@ -8,6 +8,7 @@ var player = {
 	prestigeCost: 100,
 	prestigeTimes: 1,
 	nickname: undefined,
+	name: "undefined",
 
 	sword: {
 		name: "Mediocre Stick",
@@ -37,7 +38,7 @@ var player = {
 		// player related stats
 		$("#player-progressbar").css("width", progress + "%");
 		$("#player-progressbar-percent").html(progress + "%");
-		$("#player-level").html("Level : " + fix(this.level, "0d"));
+		$("#player-level").html(this.name + " level : " + fix(this.level, "0d"));
 		$("#player-xp").html("XP : " + fix(this.xp, "1d") + "/" + fix(this.xpNeeded, "1d"));
 		$("#player-gold").html("Gold : " + fix(this.gold, "3d"));
 		$("#player-gems").html("Gems : " + fix(this.gems, "3d"));
@@ -53,6 +54,8 @@ var player = {
 		$("#craft-level").attr("max", this.level);
 		$("#craft-gems").attr("max", this.gems);
 		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
+		// leaderboards related
+		$("#leaderboard-intro").html("Post your stats as the name of <u>" + this.name + "</u>.");
 	},
 	craft: function(type) {
 		var goldRange = document.getElementById("craft-gold");
@@ -118,6 +121,13 @@ var player = {
 			this.boots.base = 100;
 			this.boots.speed = 100;
 			this.boots.percent = 100;
+		};
+	},
+	setName: function() {
+		var inputName = document.getElementById("begin-playername");
+		if (inputName.value.length > 1) {
+			this.name = inputName.value;
+			$("#begin-playername").attr("disabled", "");
 		};
 	}
 }

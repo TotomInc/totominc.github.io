@@ -180,12 +180,11 @@
 						    </table>
 					  	</div>
 					  	<div class="well">
-					  		<p class="text-center">Choose a nickname and post your score to the leaderboards!<br>
+					  		<p id="leaderboard-intro" class="text-center">Choose a nickname and post your score to the leaderboards!<br>
 					  		Become the best idler now!</p>
 
 								<div class="row">
-									<div class="col-md-7 col-md-offset-1"><input type="text" id="data-setnickname" class="form-control" placeholder="Disabled"></div>
-									<div class="col-md-4"><a onclick="submitScore();" class="btn btn-success" role="button" disabled="disabled">Submit stats</a></div>
+									<div class="col-md-4 col-md-offset-4"><a onclick="submitScore();" class="btn btn-success center-block" role="button">Submit stats</a></div>
 								</div>
 					  	</div>
 					  </div>
@@ -226,6 +225,34 @@
 	    </div>
 	  </div>
 	</div>
+<!-- beginner modal -->
+	<div id="begin" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">Welcome to Idle-Quester!</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<p class="text-center"><u>Welcome to Idle-Quester, made by TotomInc.</u></p>
+	      	<p class="text-center">Before to start questing, we need to know your player name!<br>
+	      	<span class="text-danger">Warning, you can't change your player name after!</span>
+	      		<div class="row">
+	      			<div class="col-md-5 col-md-offset-3">
+								<div class="form-group"><input class="form-control" id="begin-playername" placeholder="Enter your player name..."></div>
+	      			</div>
+	      			<div class="col-md-3">
+	      				<a class="btn btn-success" role="button" onclick="player.setName();">Done!</a><br>
+	      			</div>
+	      		</div>
+	      		<span id="begin-alert" class="text-danger text-center" style="display: none"><u>Please, choose a player name before closing this modal!</u></span>
+	      	</p>
+	      	<p class="text-justify">The game is not easy to understand at the beginning, we highly recommend to you to read how to play the game on the 'options' panel then click on the 'Help' button. We explain everything what you need!</p>
+	      	<p class="text-center text-primary">Good luck and have fun!</p>
+	      </div>
+	      <div class="modal-footer"><button type="button" class="btn btn-danger" onclick="options.closeModalBegin();">Close</button></div>
+	    </div>
+	  </div>
+	</div>
 <!-- scripts -->
 	<script src="src/beautify.js"></script>
 	<script src="js/themes.js"></script>
@@ -234,6 +261,7 @@
 	<script src="js/player.js"></script>
 	<script src="js/quest.js"></script>
 	<script src="js/names.js"></script>
+	<script src="js/skills.js"></script>
 	<script src="js/save.js"></script>
 	<script src="src/resolution.js"></script>
 	<script src="src/fbdata.js"></script>

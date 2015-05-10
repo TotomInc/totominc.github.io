@@ -4,8 +4,8 @@ var nickname = document.getElementById("data-setnickname");
 function submitScore() {
 	var ref = new Firebase("https://idlerpg.firebaseio.com/scorelist/");
 
-	if (nickname.value.length >= 3) {
-		var playerName = nickname.value;
+	if (player.name !== "undefined") {
+		var playerName = player.name;
 		var prestigeMultiplier = Math.floor(player.multiplier);
 		var playerLevel = Math.floor(player.level);
 		ref.child(playerName).set({
@@ -13,8 +13,6 @@ function submitScore() {
 		  	prestige: prestigeMultiplier,
 		  	level: playerLevel
 		});
-	} else {
-		console.log("Error : nickname not >= 3");
 	};
 };
 function getScore() {

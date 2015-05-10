@@ -30,6 +30,7 @@ var save = {
 			pp.multiplier = p.multiplier;
 			pp.prestigeCost = p.prestigeCost;
 			pp.prestigeTimes = p.prestigeTimes;
+			pp.name = p.name;
 			// quest
 			var q = savegame.quest;
 			var qq = quest;
@@ -68,6 +69,7 @@ var save = {
 		pp.multiplier = p.multiplier;
 		pp.prestigeCost = p.prestigeCost;
 		pp.prestigeTimes = p.prestigeTimes;
+		pp.name = p.name;
 		// quest
 		var q = saved.quest;
 		var qq = quest;

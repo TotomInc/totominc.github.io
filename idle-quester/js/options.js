@@ -6,7 +6,7 @@ var options = {
 	init: false,
 	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.04",
+	version: "v0.041",
 
 	init: function() {
 		save.loadData();
@@ -15,6 +15,9 @@ var options = {
 		$("#t-" + this.theme).attr("selected", "");
 		$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
 		$("#nav-version").html("(" + this.version + ")");
+		
+		if (player.name == "undefined")
+			$('#begin').modal('show');
 
 		getScore(); // retrieve score for leaderboard
 
@@ -41,6 +44,13 @@ var options = {
 			this.numbers = "shortscale";
 		else
 			this.numbers = "scientific";
+	},
+	closeModalBegin: function() {
+		if (player.name !== "undefined") {
+			$('#begin').modal('hide');
+		} else {
+			$("#begin-alert").css('display', 'block');
+		}
 	}
 }
 
