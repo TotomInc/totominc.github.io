@@ -52,7 +52,6 @@ var player = {
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
 		$("#craft-level").attr("max", this.level);
-		$("#craft-gems").attr("max", this.gems);
 		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
 		// leaderboards related
 		$("#leaderboard-intro").html("Post your stats as the name of <u>" + this.name + "</u>.");
@@ -65,7 +64,7 @@ var player = {
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
 
-		effect = (0.06 * goldCost) * (0.15* levelCost);
+		effect = (0.06 * goldCost) * (0.15 * levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
@@ -78,7 +77,6 @@ var player = {
 				this.level -= levelCost;
 				if (this.level == 0)
 					this.level = 1;
-				this.gems -= gemsCost;
 				this.xp = 0;
 				quest.xp = 0;
 				quest.xpNeeded = helpers.questXpNeeded();
