@@ -95,13 +95,6 @@ var options = {
 			this.numbers = "shortscale";
 		else
 			this.numbers = "scientific";
-	},
-	closeModalBegin: function() {
-		if (player.name !== "undefined") {
-			$('#begin').modal('hide');
-		} else {
-			$("#begin-alert").css('display', 'block');
-		}
 	}
 }
 

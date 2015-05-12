@@ -104,6 +104,12 @@ var player = {
 		if (inputName.value.length > 1) {
 			this.name = inputName.value;
 			$("#begin-playername").attr("disabled", "");
+			$('#begin').modal('hide');
+		};
+		if (player.name !== "undefined") {
+			$('#begin').modal('hide');
+		} else {
+			$("#begin-alert").css('display', 'block');
 		};
 	}
 }
