@@ -22,6 +22,12 @@ var player = {
 		speed: 100,
 		percent: 100
 	},
+	amulet: {
+		name: "Old Amulet",
+		base: 100,
+		luck: 100,
+		percent: 100
+	},
 
 	display: function() {
 		var goldRange = document.getElementById("craft-gold");
@@ -46,12 +52,15 @@ var player = {
 		$("#player-sword-percent").html("(" + fix(this.sword.percent, "1d") + "%)");
 		$("#player-boots").html(this.boots.name + " : +" + fix(this.boots.speed, "1d") + " speed/click");
 		$("#player-boots-percent").html("(" + fix(this.boots.percent, "1d") + "%)");
+		$("#player-amulet").html(this.amulet.name + " : +" + fix(this.amulet.luck, "1d") + " luck");
+		$("#player-amulet-percent").html("(" + fix(this.amulet.percent, "1d") + "%)");
 		$("#player-prestigecost").html("Prestige cost : " + fix(helpers.prestigeCost(), "0d") + " levels");
 		$("#player-prestigemultiplier").html("Prestige multiplier : x" + fix(this.multiplier, "0d"));
 		// craft related stats
 		$("#craft-goldcost").html(goldRange.value + "% gold");
 		$("#craft-levelcost").html(levelRange.value + " levels");
 		$("#craft-level").attr("max", this.level);
+		$("#craft-gems").attr("max", this.gems);
 		$("#craft-effect").html(fix(this.craft("stats-effect"), "1d") + " damage/speed (" + fix(this.craft("stats-percent"), "1d") + "%)");
 		// leaderboards related
 		$("#leaderboard-intro").html("Post your stats as the name of <u>" + this.name + "</u>.");
@@ -64,14 +73,14 @@ var player = {
 		var goldCost = goldRange.value * this.gold / 100;
 		var levelCost = levelRange.value;
 
-		effect = (0.06 * goldCost) * (0.15 * levelCost);
+		effect = (0.06 * goldCost) * (0.15* levelCost);
 		percent = (effect/player.sword.base) * 100;
 
 		if (type == "stats-effect")
 			return effect;
 		if (type == "stats-percent")
 			return percent;
-		if (type == "sword" || type == "boots") {
+		if (type == "sword" || type == "boots" || type == "amulet") {
 			if (effect >= this.sword.effect || effect > this.boots.speed) { // check if item will be better
 				this.gold -= goldCost;
 				this.level -= levelCost;
@@ -90,6 +99,10 @@ var player = {
 					this.boots.speed = effect;
 					this.boots.percent = percent;
 					this.boots.name = helpers.bootsName();
+				};
+				if (type == "amulet") {
+					this.amulet.luck = effect;
+					this.amulet.percent = percent;
 				};
 			};
 		};

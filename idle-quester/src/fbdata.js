@@ -1,6 +1,7 @@
 var data = new Firebase("https://idlerpg.firebaseio.com/");
 var nickname = document.getElementById("data-setnickname");
 
+/*
 function submitScore() {
 	var ref = new Firebase("https://idlerpg.firebaseio.com/scorelist/");
 
@@ -15,6 +16,7 @@ function submitScore() {
 		});
 	};
 };
+*/
 function getScore() {
 	var ref = new Firebase("https://idlerpg.firebaseio.com/scorelist/");
 	ref.on("value", function(snapshot) {
