@@ -15,3 +15,5 @@ Just a simple web-page including the Trianglify.js script to create random and b
 
 <h5>You want to contribute?</h5>
 If you really like theses projects, you can contribute to them. Everything is open-source, you can take a look and help me to kill bugs, improve games and add new things! Just fork or clone the repo on your computer!
+
+Test
