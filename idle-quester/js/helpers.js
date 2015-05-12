@@ -15,11 +15,14 @@ var helpers = {
 		var random = Math.random() + 1;
 		if (player.level > 1)
 			if ((player.amulet.luck * 0.1) >= 100)
-				return Math.floor((85 * Math.pow(1.15, player.level)) * (player.amulet.luck * 0.1) * random) * player.multiplier;
+				return Math.floor((85 * Math.pow(1.15, player.level)) + (player.amulet.luck * 0.1) * random) * player.multiplier;
 			else
 				return Math.floor((85 * Math.pow(1.15, player.level)) * random) * player.multiplier;
 		else
-			return (85 * random);
+			if ((player.amulet.luck * 0.1) >= 100)
+				return ((85 * random) + (player.amulet.luck * 0.1)) * player.multiplier;
+			else
+				return (85 * random) * player.multiplier;
 	},
 	playerAttack: function() {
 		return (player.sword.damage * player.multiplier);
@@ -66,6 +69,13 @@ var helpers = {
 		var prefixRandom = Math.floor(Math.random() * bootPrefix.length);
 		var rootRandom = Math.floor(Math.random() * bootRoot.length);
 		str = bootPrefix[prefixRandom] + " " + bootRoot[rootRandom];
+		return str;
+	},
+	amuletName: function() {
+		var str;
+		var prefixRandom = Math.floor(Math.random() * amuletPrefix.length);
+		var rootRandom = Math.floor(Math.random() * amuletRoot.length);
+		str = amuletPrefix[prefixRandom] + " " + amuletRoot[rootRandom];
 		return str;
 	},
 	questName: function() {

@@ -64,18 +64,5 @@ var quest = {
 		else
 			if (this.autoIdle == false)
 				this.autoIdle = true;
-	},
-	display: function() {
-		var progress = Math.floor((this.xp/this.xpNeeded) * 100);
-		if (progress > 100)
-			progress = 100;
-		$("#nav-questprogress").css("width", progress + "%");
-		$("#quest-progressbar").css("width", progress + "%");
-		$("#quest-progressbar-percent").html(progress + "%");
-		$("#quest-info").html("Quest type : " + this.type);
-		$("#quest-name").html(this.name);
-		$("#quest-multiplier").html("Idle speed multiplier : x" + fix(this.idleMultiplier, "2d"));
-		var progress = Math.floor((player.xp/player.xpNeeded) * 100);
-		document.title = "IQ - Level " + player.level + " (" + progress + "%)";
 	}
 }
