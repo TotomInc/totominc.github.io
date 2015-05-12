@@ -110,6 +110,7 @@ var player = {
 			$('#begin').modal('hide');
 		} else {
 			$("#begin-alert").css('display', 'block');
+			$("#begin-input").attr('class', 'form-group has-error')
 		};
 	}
 }
