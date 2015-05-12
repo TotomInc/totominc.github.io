@@ -13,6 +13,7 @@ var helpers = {
 	},
 	questGold: function() {
 		var random = Math.random() + 1;
+		
 		if (player.level > 1)
 			if ((player.amulet.luck * 0.1) >= 100)
 				return Math.floor((85 * Math.pow(1.15, player.level)) + (player.amulet.luck * 0.1) * random) * player.multiplier;
