@@ -75,10 +75,10 @@
 						</div>
 					<!-- amulet -->
 						<div class="row">
-							<div class="col-md-6 text-center">
+							<div class="col-md-12 text-center">
 								<p><span id="player-amulet"></span><br><span id="player-amulet-percent"></span></p>
 							</div>
-							<div class="col-md-6 text-center"></div>
+							<div class="col-md-12 text-center"></div>
 						</div>
 					<!-- quest button -->
 						<div class="row">
@@ -121,7 +121,7 @@
 								  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
 								  	<div id="craft-sword" class="col-md-4 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
 								  	<div id="craft-boots" class="col-md-4 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
-								  	<div id="craft-amulet" class="col-md-4 col-xs-12"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button">Craft amulet</a></div>
+								  	<div class="col-md-4 col-xs-12" data-toggle="tooltip" data-placement="top" title="Amulet is currently disabled..."><div id="craft-amulet"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button" disabled>Craft amulet</a></div></div>
 								  </div>
 								</div>
 							</div>
@@ -129,7 +129,22 @@
 					<!-- gemshop panel -->
 						<div role="tabpanel" class="tab-pane fade" id="gemshop">
 							<div class="well">
-								<p class="text-center">Awesome stuff will be here soon, you will be able to spend your hard gained gems!</p>
+								<div class="row">
+									<div class="col-md-8">
+										<p class="text-center"><span id="skills-idlemultiplier"></span></p>
+									</div>
+									<div class="col-md-4">
+										<a class="btn btn-success center-block" onclick="skills.buyIdleMultiplier();" role="button">Buy</a>
+									</div>
+								</div><br>
+								<div class="row">
+									<div class="col-md-8">
+										<p class="text-center"><span id="skills-instantgold"></span></p>
+									</div>
+									<div class="col-md-4">
+										<a class="btn btn-success center-block" onclick="skills.buyInstantGold();" role="button">Buy</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					<!-- options panel -->

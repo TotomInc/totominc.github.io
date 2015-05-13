@@ -13,7 +13,6 @@ var helpers = {
 	},
 	questGold: function() {
 		var random = Math.random() + 1;
-
 		if (player.level > 1)
 			if ((player.amulet.luck * 0.1) >= 100)
 				return Math.floor((85 * Math.pow(1.15, player.level)) * random) * player.multiplier;
@@ -21,7 +20,7 @@ var helpers = {
 				return Math.floor((85 * Math.pow(1.15, player.level)) * random) * player.multiplier;
 		else
 			if ((player.amulet.luck * 0.1) >= 100)
-				return ((85 * random) + (player.amulet.luck * 0.1)) * player.multiplier;
+				return (85 * random) * player.multiplier;
 			else
 				return (85 * random) * player.multiplier;
 	},
@@ -52,11 +51,17 @@ var helpers = {
 		else
 			return (player.multiplier + player.multiplier);
 	},
-	idleMultiplier: function() {
-		if (player.prestigeTimes == 2)
-			return 1.10;
+	idleMultiplierCost: function() {
+		if (skills.idleMultiplierBought == 1)
+			return 1;
 		else
-			return (1.10 + (player.prestigeTimes / 10) - 0.2)
+			return skills.idleMultiplierBought * 2;
+	},
+	idleMultiplier: function() {
+		if (skills.idleMultiplierBought == 1)
+			return 1;
+		else
+			return 1 + (skills.idleMultiplierBought / 10) - 0.1;
 	},
 	swordName: function() {
 		var str;
@@ -103,7 +108,7 @@ var helpers = {
 		}
 	},
 }
-
+// misc
 Object.size = function(obj) { // get object length
     var size = 0, key;
     for (key in obj) {

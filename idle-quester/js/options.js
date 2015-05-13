@@ -6,7 +6,7 @@ var options = {
 	init: false,
 	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.051",
+	version: "v0.052",
 
 	init: function() {
 		save.loadData();
@@ -19,6 +19,10 @@ var options = {
 		if (player.name == "undefined") {
 			$('#begin').modal('show');
 		};
+		// init bootstrap tooltip.js
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		});
 
 		this.init = true;
 	},
@@ -84,6 +88,9 @@ var options = {
 			$("#quest-name").html(quest.name);
 			$("#quest-multiplier").html("Idle speed multiplier : x" + fix(quest.idleMultiplier, "2d"));
 			document.title = "IQ - Level " + player.level + " (" + qprogress + "%)";
+			// skills related
+			$("#skills-idlemultiplier").html("Upgrade your idle-multiplier by 0.10!<br>Upgrade cost : " + fix(skills.idleMultiplierCost, "0d") + " gems");
+			$("#skills-instantgold").html("Earn gold like if you were at level " + fix(player.level + 50, "0d") + "!<br>Cost : " + fix(skills.instantGoldCost, "0d") + " gems");
 		};
 	},
 	trigger: function() {

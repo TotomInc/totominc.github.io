@@ -2,6 +2,7 @@ var save = {
 	toSave: {
 		player: player,
 		quest: quest,
+		skills: skills,
 		options: options
 	},
 	saveData: function() {
@@ -41,6 +42,12 @@ var save = {
 			qq.type = q.type;
 			qq.autoIdle = q.autoIdle;
 			qq.idleMultiplier = q.idleMultiplier;
+			// skills
+			var s = savegame.skills;
+			var ss = skills;
+			ss.idleMultiplierCost = s.idleMultiplierCost;
+			ss.idleMultiplierBought = s.idleMultiplierBought;
+			ss.instantGoldBought = s.instantGoldBought;
 			// options
 			var o = savegame.options;
 			var oo = options;
@@ -81,6 +88,12 @@ var save = {
 		qq.type = q.type;
 		qq.autoIdle = q.autoIdle;
 		qq.idleMultiplier = q.idleMultiplier;
+		// skills
+		var s = savegame.skills;
+		var ss = skills;
+		ss.idleMultiplierCost = s.idleMultiplierCost;
+		ss.idleMultiplierBought = s.idleMultiplierBought;
+		ss.instantGoldBought = s.instantGoldBought;
 		// options
 		var o = saved.options;
 		var oo = options;
