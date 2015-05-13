@@ -2,18 +2,18 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="Cache-control" content="public">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<title>Idle-Quester</title>
 
-	<script src="src/jquery-1.11.1.min.js"></script>
-	<script src="src/bootstrap.min.js"></script>
-	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-	<link id="stylesheet" rel="stylesheet" href="src/bootstrap.min.css">
-	<link rel="stylesheet" href="src/font-awesome.min.css">
+	<link id="stylesheet" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/interface.css">
 	<link rel="stylesheet" href="css/slider.css">
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -102,8 +102,7 @@
 				<div class="col-md-6">
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
 				    <li role="presentation" class="active"><a href="#craft" aria-controls="craft" role="tab" data-toggle="tab">Craft <i class="fa fa-wrench"></i></a></li>
-				    <li role="presentation"><a href="#gemshop" aria-controls="gemshop" role="tab" data-toggle="tab">Gem Shop <i class="fa fa-cart-plus"></i></a></li>
-				    <li role="presentation"><a href="#leaderboards" aria-controls="leaderboards" role="tab" data-toggle="tab">Leaderboards <i class="fa fa-trophy"></i></a></li>
+				    <li role="presentation"><a href="#gemshop" aria-controls="gemshop" role="tab" data-toggle="tab">Gem-shop <i class="fa fa-cart-plus"></i></a></li>
 				    <li role="presentation"><a href="#options" aria-controls="options" role="tab" data-toggle="tab">Options <i class="fa fa-cog"></i></a></li>
 				  </ul>
 
@@ -130,33 +129,9 @@
 					<!-- gemshop panel -->
 						<div role="tabpanel" class="tab-pane fade" id="gemshop">
 							<div class="well">
-								<p class="text-center text-primary">Soon, you will be able to buy awesome stuff with your hardly gained gems!</p>
+								<p class="text-center">Awesome stuff will be here soon, you will be able to spend your hard gained gems!</p>
 							</div>
 						</div>
-					<!-- leaderboards panel -->
-					  <div role="tabpanel" class="tab-pane fade" id="leaderboards">
-					  	<div class="well">
-								<table class="table table-condensed">
-						      <thead>
-						        <tr>
-						          <th>Name</th>
-						          <th>Prestige</th>
-						          <th>Level</th>
-						        </tr>
-						      </thead>
-						      <tbody id="leaderboard-body"></tbody>
-						    </table>
-						    <p class="text-center text-danger">Leaderboard disabled for a while, I'm working on it!</p>
-					  	</div>
-					  	<div class="well">
-					  		<p id="leaderboard-intro" class="text-center">Choose a nickname and post your score to the leaderboards!<br>
-					  		Become the best idler now!</p>
-
-								<div class="row">
-									<div class="col-md-4 col-md-offset-4"><a onclick="submitScore();" class="btn btn-success center-block" role="button">Submit stats</a></div>
-								</div>
-					  	</div>
-					  </div>
 					<!-- options panel -->
 					  <div role="tabpanel" class="tab-pane fade" id="options">
 							<div class="well">
@@ -277,7 +252,6 @@
 	<script src="js/skills.js"></script>
 	<script src="js/save.js"></script>
 	<script src="src/resolution.js"></script>
-	<script src="src/fbdata.js"></script>
 	<script src="src/analytics.js"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 var themeSelected = document.getElementById("theme-select");
 var themes = [
-	new Theme("Default",		"./src/bootstrap.min.css"),
-	new Theme("Cerulean",		"./themes/cerulean.css"),
-	new Theme("Paper",			"./themes/paper.css"),
-	new Theme("Sandstone",		"./themes/sandstone.css"),
-	new Theme("Simplex",		"./themes/simplex.css"),
-	new Theme("Spacelab",		"./themes/spacelab.css"),
-	new Theme("United",			"./themes/united.css"),
-	new Theme("Yeti",			"./themes/yeti.css")
+	new Theme("Default",		"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"),
+	new Theme("Cerulean",		"http://bootswatch.com/cerulean/bootstrap.min.css"),
+	new Theme("Paper",			"http://bootswatch.com/paper/bootstrap.min.css"),
+	new Theme("Sandstone",		"http://bootswatch.com/sandstone/bootstrap.min.css"),
+	new Theme("Simplex",		"http://bootswatch.com/simplex/bootstrap.min.css"),
+	new Theme("Spacelab",		"http://bootswatch.com/spacelab/bootstrap.min.css"),
+	new Theme("United",			"http://bootswatch.com/united/bootstrap.min.css"),
+	new Theme("Yeti",			"http://bootswatch.com/yeti/bootstrap.min.css")
 ];
 
 function Theme(name, path) {

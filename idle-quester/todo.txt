@@ -6,3 +6,4 @@
 _______________________________________________________
 
 - look for a formula about player amulet and gold drops
+- add upgrade for idle speed multiplier

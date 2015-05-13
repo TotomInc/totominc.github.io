@@ -20,8 +20,6 @@ var options = {
 			$('#begin').modal('show');
 		};
 
-		getScore(); // retrieve score for leaderboard
-
 		this.init = true;
 	},
 	update: function() {
