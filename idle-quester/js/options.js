@@ -6,7 +6,7 @@ var options = {
 	init: false,
 	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.100",
+	version: "v0.101",
 
 	init: function() {
 		save.loadData();
@@ -19,6 +19,7 @@ var options = {
 		
 		if (player.name == "undefined") {
 			$('#begin').modal('show');
+			$('#alert-newplayer').css("display", "block");
 		};
 		// init bootstrap tooltip.js
 		$(function () {

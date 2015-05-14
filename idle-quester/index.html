@@ -67,16 +67,16 @@
 					<!-- sword/boots -->
 						<div class="row">
 							<div class="col-md-6 text-center">
-								<p><span id="player-sword"></span><br><span id="player-sword-percent"></span></p>
+								<p data-toggle="tooltip" data-placement="top" title="Your sword, helps you when the quest type is attack."><span id="player-sword"></span><br><span id="player-sword-percent"></span></p>
 							</div>
 							<div class="col-md-6 text-center">
-								<p><span id="player-boots"></span><br><span id="player-boots-percent"></span></p>
+								<p data-toggle="tooltip" data-placement="top" title="Your boots, helps you when the quest type is speed."><span id="player-boots"></span><br><span id="player-boots-percent"></span></p>
 							</div>
 						</div>
 					<!-- amulet -->
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<p><span id="player-amulet"></span><br><span id="player-amulet-percent"></span></p>
+								<p data-toggle="tooltip" data-placement="top" title="Your amulet, currently disabled."><span id="player-amulet"></span><br><span id="player-amulet-percent"></span></p>
 							</div>
 							<div class="col-md-12 text-center"></div>
 						</div>
@@ -101,9 +101,18 @@
 			<!-- nav tabs/panels -->
 				<div class="col-md-6">
 				  <ul class="nav nav-tabs nav-justified" role="tablist">
-				    <li role="presentation" class="active"><a href="#craft" aria-controls="craft" role="tab" data-toggle="tab">Craft <i class="fa fa-wrench"></i></a></li>
-				    <li role="presentation"><a href="#gemshop" aria-controls="gemshop" role="tab" data-toggle="tab">Gem-shop <i class="fa fa-cart-plus"></i></a></li>
-				    <li role="presentation"><a href="#options" aria-controls="options" role="tab" data-toggle="tab">Options <i class="fa fa-cog"></i></a></li>
+				    <li role="presentation" class="active"><a href="#craft" aria-controls="craft" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> Craft</a></li>
+				    <li role="presentation"><a href="#gemshop" aria-controls="gemshop" role="tab" data-toggle="tab"><i class="fa fa-cart-plus"></i> Gem-shop</a></li>
+					  <li role="presentation" class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					      More <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu" role="menu">
+					    	<li role="presentation"><a href="#options" aria-controls="options" role="tab" data-toggle="tab"><i class="fa fa-cog"></i> Options</a></li>
+					    	<li role="presentation"><a href="#success" aria-controls="success" role="tab" data-toggle="tab"><i class="fa fa-trophy"></i> Success</a></li>
+					    	<li role="presentation"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab"><i class="fa fa-bar-chart"></i> Stats</a></li>
+					    </ul>
+					  </li>
 				  </ul>
 					<div class="tab-content">
 					<!-- craft panel -->
@@ -191,7 +200,32 @@
 								</div><br>
 							</div>
 					  </div>
+					<!-- success panel -->
+						<div role="tabpanel" class="tab-pane fade" id="success">
+							<div class="well">
+								<p class="text-center text-primary">Success will be here soon! Stay tuned!</p>
+							</div>
+						</div>
+					<!-- stats panel -->
+						<div role="tabpanel" class="tab-pane fade" id="stats">
+							<div class="well">
+								<p class="text-center text-primary">More stats will be soon here!</p>
+							</div>
+						</div>
 					</div>
+					<!-- tutorial -->
+						<div id="alert-newplayer" class="alert alert-info alert-dismissible" role="alert" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<p class="text-center">Welcome to Idle-Quester!<br>
+							Here is a small tutorial to explain the basics of the game.</p>
+							<p class="text-justify">Your player gain XP, and will level-up. Your player level determine how hard the quest will be.<br>
+							Your player can be better by crafting better piece of sword/boots/amulets. You must spend gold and/or player levels to craft better pieces.</p>
+							<p class="text-justify">There are 2 types of quests :<br>
+							<u>'Attack quests' :</u> your sword damage impact how quickly you will finish this quest.<br>
+							<u>'Speed quests ' :</u> your boots speed impact how quickly you will finish this quest.</p>
+							<p class="text-justify">You can randomly gain gems, after finishing a quest and spend them in the gem-shop for example.</p>
+							<p class="text-justify">After reaching a certain level, you can prestige. This will reset your equipment and gold (not gems) but will start with a better prestige multiplier.</p>
+						</div>
 				</div>
 		</div>
 	</div>
