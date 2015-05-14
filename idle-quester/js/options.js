@@ -6,7 +6,7 @@ var options = {
 	init: false,
 	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.052",
+	version: "v0.100",
 
 	init: function() {
 		save.loadData();

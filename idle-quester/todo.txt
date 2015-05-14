@@ -6,5 +6,3 @@
 _______________________________________________________
 
 - look for a formula about player amulet and gold drops
-- look at the save system :
-	- error when you try to load a save which doesn't contains the new variables added in the new version
