@@ -6,4 +6,5 @@
 _______________________________________________________
 
 - look for a formula about player amulet and gold drops
-- add upgrade for idle speed multiplier
+- look at the save system :
+	- error when you try to load a save which doesn't contains the new variables added in the new version

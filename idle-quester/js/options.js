@@ -10,6 +10,7 @@ var options = {
 
 	init: function() {
 		save.loadData();
+		save.checkData();
 
 		this.before = new Date().getTime();
 		$("#t-" + this.theme).attr("selected", "");

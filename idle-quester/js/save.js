@@ -100,6 +100,18 @@ var save = {
 		oo.theme = o.theme;
 		oo.before = o.before;
 	},
+	checkData: function() {
+		// restore defaults variables if not found (undefined)
+		var s = skills;
+		if (typeof s.idleMultiplierCost !== "number")
+			s.idleMultiplierCost = 1;
+		if (typeof s.idleMultiplierBought !== "number")
+			s.idleMultiplierBought = 1;
+		if (typeof s.instantGoldCost !== "number")
+			s.instantGoldCost = 10;
+		if (typeof s.instantGoldBought !== "number")
+			s.instantGoldBought = 0;
+	},
 	saveInterval: window.setInterval(function() {
 		save.saveData();
 	}, 1000)
