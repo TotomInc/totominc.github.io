@@ -48,15 +48,14 @@
 			<!-- player & quest progress + stats -->
 				<div class="col-md-6">
 					<div class="well">
+					<!-- player & quest stats -->
 						<div class="row">
-						<!-- player progress/player stats -->
 							<div class="col-md-6">
 								<div class="progress"><div id="player-progressbar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;"><span id="player-progressbar-percent"></span></div></div>
 								<p class="text-center"><span id="player-level"></span></p>
 								<p class="text-center"><span id="player-xp"></span></p>
 								<p class="text-center"><span id="player-gold"></span></p><br>
 							</div>
-						<!-- quest progress/quest stats -->
 							<div class="col-md-6">
 								<div class="progress"><div id="quest-progressbar" class="progress-bar progress-bar-striped active" role="progressbar" style="min-width: 2em;"><span id="quest-progressbar-percent"></span></div></div>
 								<p class="text-center"><span id="quest-info"></span></p>
@@ -64,7 +63,7 @@
 								<p class="text-center"><span id="quest-multiplier"></span></p><br>
 							</div>
 						</div>
-					<!-- sword/boots -->
+					<!-- sword/boots stats -->
 						<div class="row">
 							<div class="col-md-6 text-center">
 								<p data-toggle="tooltip" data-placement="top" title="Your sword, helps you when the quest type is attack."><span id="player-sword"></span><br><span id="player-sword-percent"></span></p>
@@ -73,7 +72,7 @@
 								<p data-toggle="tooltip" data-placement="top" title="Your boots, helps you when the quest type is speed."><span id="player-boots"></span><br><span id="player-boots-percent"></span></p>
 							</div>
 						</div>
-					<!-- amulet -->
+					<!-- amulet stats -->
 						<div class="row">
 							<div class="col-md-12 text-center">
 								<p data-toggle="tooltip" data-placement="top" title="Your amulet, currently disabled."><span id="player-amulet"></span><br><span id="player-amulet-percent"></span></p>
@@ -82,18 +81,20 @@
 						</div>
 					<!-- quest button -->
 						<div class="row">
-							<div class="col-md-6 col-md-offset-3"><a onclick="quest.click()" class="btn btn-success center-block" role="button">Quest!</a></div>
+							<div class="col-md-4 col-md-offset-1"><a onclick="quest.click()" class="btn btn-success center-block" role="button">Quest!</a></div>
+							<div class="col-md-6 col-md-offset-1">
+								<div class="checkbox text-center"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle (pause)</label></div>
+							</div>
 						</div>
 					</div>
+				<!-- prestige well -->
 					<div class="well">
 						<div class="row">
-						<!-- prestige multiplier -->
 							<div class="col-md-6">
 								<p class="text-center"><span id="player-prestigecost"></span><br><span id="player-prestigemultiplier"></span></p>
 							</div>
-						<!-- prestige button -->
 							<div class="col-md-6">
-								<a onclick="player.prestige();" class="btn btn-success center-block" role="button">Prestige!</a>
+								<div data-toggle="tooltip" data-placement="top" title="Lose equipment, gold and levels but earn a better prestige multiplier."><a onclick="player.prestige();" class="btn btn-success center-block" role="button">Prestige!</a></div>
 							</div>
 						</div>
 					</div>
@@ -127,8 +128,10 @@
 								<div class="row">
 								  <div class="col-md-12">
 								  	<br><p class="text-center"><span id="craft-effect"></span></p><br>
-								  	<div id="craft-sword" class="col-md-4 col-xs-6"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div>
-								  	<div id="craft-boots" class="col-md-4 col-xs-6"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div>
+								  	<div class="col-md-4 col-xs-12" data-toggle="tooltip" data-placement="top" title="Increase the damage of your sword!"><div id="craft-sword"><a id="craft-btn-sword" class="btn btn-warning center-block" onclick="player.craft('sword');" role="button">Craft sword</a></div></div>
+
+								  	<div class="col-md-4 col-xs-12" data-toggle="tooltip" data-placement="top" title="Increase the speed of your boots!"><div id="craft-boots"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('boots');" role="button">Craft boots</a></div></div>
+
 								  	<div class="col-md-4 col-xs-12" data-toggle="tooltip" data-placement="top" title="Amulet is currently disabled..."><div id="craft-amulet"><a id="craft-btn-boots" class="btn btn-warning center-block" onclick="player.craft('amulet');" role="button" disabled>Craft amulet</a></div></div>
 								  </div>
 								</div>
@@ -159,24 +162,24 @@
 					  <div role="tabpanel" class="tab-pane fade" id="options">
 							<div class="well">
 								<div class="row">
-									<div class="col-md-4 col-xs-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button">Save</a></div>
-									<div class="col-md-4 col-xs-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button">Load</a></div>
-									<div class="col-md-4 col-xs-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button">Reset</a></div>
+									<div class="col-md-4 col-xs-4"><a onclick="save.saveData();" class="btn btn-success center-block" role="button"><i class="fa fa-upload"></i> Save</a></div>
+									<div class="col-md-4 col-xs-4"><a onclick="save.loadData();" class="btn btn-success center-block" role="button"><i class="fa fa-download"></i> Load</a></div>
+									<div class="col-md-4 col-xs-4"><a onclick="save.removeData();" class="btn btn-danger center-block" role="button"><i class="fa fa-trash-o"></i> Reset</a></div>
 								</div><br>
 								<div class="row">
-									<div class="col-md-6 col-xs-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button">Export save</a></div>
-									<div class="col-md-6 col-xs-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button">Import save</a></div>
+									<div class="col-md-6 col-xs-6"><a onclick="save.exportData();" class="btn btn-warning center-block" role="button"><i class="fa fa-upload"></i> Export save</a></div>
+									<div class="col-md-6 col-xs-6"><a onclick="save.importData();" class="btn btn-warning center-block" role="button"><i class="fa fa-download"></i> Import save</a></div>
 								</div><br>
 								<div class="row">
 									<div class="col-md-6 col-xs-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here"></div>
 									<div class="col-md-6 col-xs-6"><input id="options-import" type="text" class="form-control" placeholder="Paste the save here then import"></div>
 								</div><br>
 								<div class="row">
-									<div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2"><a class="btn btn-warning center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
-									<div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2"><a class="btn btn-warning center-block" role="button" data-toggle="modal" data-target="#info">Infos</a></div>
+									<div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2"><a class="btn btn-warning center-block" role="button" data-toggle="modal" data-target="#help"><i class="fa fa-question"></i> Help</a></div>
+									<div class="col-md-3 col-md-offset-2 col-xs-3 col-xs-offset-2"><a class="btn btn-warning center-block" role="button" data-toggle="modal" data-target="#info"><i class="fa fa-info-circle"></i> About</a></div>
 								</div><br>
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<p class="text-center">Theme switcher</p>
 										<select id="theme-select" class="center-block" name="select">
 											<option id="t-0" value="0">Default</option> 
@@ -189,13 +192,10 @@
 											<option id="t-7" value="7">Yeti</option>
 										</select>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="radio">
 										  <label><input type="radio" id="options-shortscale" onclick="options.trigger();" name="optionsRadios" id="optionsRadios1" value="option1" checked> Short scale numbers</label>
 										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="checkbox"><label><input type="checkbox" value="" onclick="quest.trigger();" checked>Trigger auto-idle</label></div>
 									</div>
 								</div><br>
 							</div>
