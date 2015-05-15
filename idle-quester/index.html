@@ -46,7 +46,7 @@
 	<div id="game-area" class="container">
 		<div class="row">
 			<!-- player & quest progress + stats -->
-				<div class="col-md-6">
+				<div id="info-col" class="col-md-6">
 					<div class="well">
 					<!-- player & quest stats -->
 						<div class="row">
@@ -98,6 +98,19 @@
 							</div>
 						</div>
 					</div>
+				<!-- tutorial -->
+						<div id="alert-newplayer" class="alert alert-info alert-dismissible" role="alert" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<p class="text-center">Welcome to Idle-Quester!<br>
+							Here is a small tutorial to explain the basics of the game.</p>
+							<p class="text-justify">Your player gain XP, and will level-up. Your player level determine how hard the quest will be.<br>
+							Your player can be better by crafting better piece of sword/boots/amulets. You must spend gold and/or player levels to craft better pieces.</p>
+							<p class="text-justify">There are 2 types of quests :<br>
+							<u>'Attack quests' :</u> your sword damage impact how quickly you will finish this quest.<br>
+							<u>'Speed quests ' :</u> your boots speed impact how quickly you will finish this quest.</p>
+							<p class="text-justify">You can randomly gain gems, after finishing a quest and spend them in the gem-shop for example.</p>
+							<p class="text-justify">After reaching a certain level, you can prestige. This will reset your equipment and gold (not gems) but will start with a better prestige multiplier.</p>
+						</div>
 				</div>
 			<!-- nav tabs/panels -->
 				<div class="col-md-6">
@@ -110,6 +123,7 @@
 					    </a>
 					    <ul class="dropdown-menu" role="menu">
 					    	<li role="presentation"><a href="#options" aria-controls="options" role="tab" data-toggle="tab"><i class="fa fa-cog"></i> Options</a></li>
+					    	<li role="presentation" class="divider"></li>
 					    	<li role="presentation"><a href="#success" aria-controls="success" role="tab" data-toggle="tab"><i class="fa fa-trophy"></i> Success</a></li>
 					    	<li role="presentation"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab"><i class="fa fa-bar-chart"></i> Stats</a></li>
 					    </ul>
@@ -203,7 +217,23 @@
 					<!-- success panel -->
 						<div role="tabpanel" class="tab-pane fade" id="success">
 							<div class="well">
-								<p class="text-center text-primary">Success will be here soon! Stay tuned!</p>
+								<div class="row">
+									<div class="col-md-4">
+									  <div class="checkbox text-center"><label><input id="success-show-gold" onclick="success.hide();" type="checkbox" checked> Show gold success</label></div>
+									</div>
+									<div class="col-md-4">
+									  <div class="checkbox text-center"><label><input id="success-show-level" onclick="success.hide();" type="checkbox" checked> Show level success</label></div>
+									</div>
+									<div class="col-md-4">
+									  <div class="checkbox text-center"><label><input id="success-show-prestige" onclick="success.hide();" type="checkbox" checked> Show prestige success</label></div>
+									</div>
+								</div>
+
+								<p class="text-center"><span id="success-points"></span></p>
+
+								<div id="success-gold"></div>
+								<div id="success-level"></div>
+								<div id="success-prestige"></div>
 							</div>
 						</div>
 					<!-- stats panel -->
@@ -213,19 +243,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- tutorial -->
-						<div id="alert-newplayer" class="alert alert-info alert-dismissible" role="alert" style="display: none;">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<p class="text-center">Welcome to Idle-Quester!<br>
-							Here is a small tutorial to explain the basics of the game.</p>
-							<p class="text-justify">Your player gain XP, and will level-up. Your player level determine how hard the quest will be.<br>
-							Your player can be better by crafting better piece of sword/boots/amulets. You must spend gold and/or player levels to craft better pieces.</p>
-							<p class="text-justify">There are 2 types of quests :<br>
-							<u>'Attack quests' :</u> your sword damage impact how quickly you will finish this quest.<br>
-							<u>'Speed quests ' :</u> your boots speed impact how quickly you will finish this quest.</p>
-							<p class="text-justify">You can randomly gain gems, after finishing a quest and spend them in the gem-shop for example.</p>
-							<p class="text-justify">After reaching a certain level, you can prestige. This will reset your equipment and gold (not gems) but will start with a better prestige multiplier.</p>
-						</div>
 				</div>
 		</div>
 	</div>
@@ -238,8 +255,6 @@
 	        <h4 class="modal-title">Help, I don't understand the game!</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p class="text-danger text-center">Warning! If you are using a different theme than the 'Default' this modal is bugged, but you can close it by clicking/tapping everywhere in the screen.<br>
-	        Please, use the 'Default' theme to read informations on the modal!</p>
 	        <p class="text-center"><u>Welcome to Idle-Quester!</u><br>
 	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game : Idle-Quest</a>.</p>
 	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
@@ -271,8 +286,6 @@
 	        <h4 class="modal-title">Useful informations</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<p class="text-center text-danger">Warning! If you are using a different theme than the 'Default' this modal is bugged, but you can close it by clicking/tapping everywhere in the screen.<br>
-	        Please, use the 'Default' theme to read informations on the modal!</p>
 	      	<p class="text-justify">You can contribute to the <i class="fa fa-github"></i> GitHub repo of the game <a target="_blank" href="https://github.com/TotomInc/totominc.github.io/">here (in the folder idle-quester)</a>.<br>
 	      	In GitHub, you can access to the full source of the game, it's essentially made in JavaScript.<br>
 	      	You can contribute on it by forking/cloning the repo on your computer and send me pull-request. Or just by creating an issue which explain, for example, a bug or some feedback.</p>
@@ -317,6 +330,7 @@
 	<script src="js/quest.js"></script>
 	<script src="js/names.js"></script>
 	<script src="js/skills.js"></script>
+	<script src="js/success.js"></script>
 	<script src="js/save.js"></script>
 	<script src="src/resolution.js"></script>
 	<script src="src/analytics.js"></script>

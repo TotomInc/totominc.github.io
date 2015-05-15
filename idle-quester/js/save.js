@@ -24,6 +24,7 @@ var save = {
 			pp.xp = p.xp;
 			pp.xpNeeded = p.xpNeeded;
 			pp.level = p.level;
+			pp.maxLevel = p.maxLevel;
 			pp.gold = p.gold;
 			pp.gems = p.gems;
 			pp.sword = p.sword;
@@ -70,6 +71,7 @@ var save = {
 		pp.xp = p.xp;
 		pp.xpNeeded = p.xpNeeded;
 		pp.level = p.level;
+		pp.maxLevel = p.maxLevel;
 		pp.gold = p.gold;
 		pp.gems = p.gems;
 		pp.sword = p.sword;
@@ -102,6 +104,9 @@ var save = {
 	},
 	checkData: function() {
 		// restore defaults variables if not found (undefined)
+		var p = player;
+		if (typeof p.maxLevel !== "number")
+			p.maxLevel = 1;
 		var s = skills;
 		if (typeof s.idleMultiplierCost !== "number")
 			s.idleMultiplierCost = 1;

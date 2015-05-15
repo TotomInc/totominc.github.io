@@ -6,11 +6,13 @@ var options = {
 	init: false,
 	numbers: "shortscale",
 	theme: "Default",
-	version: "v0.102",
+	version: "v0.103",
 
 	init: function() {
 		save.loadData();
 		save.checkData();
+
+		success.init();
 
 		this.before = new Date().getTime();
 		$("#t-" + this.theme).attr("selected", "");
@@ -39,6 +41,7 @@ var options = {
 			this.before = new Date().getTime();
 
 			this.display();
+			success.check();
 		};
 	},
 	display: function() {
@@ -93,6 +96,8 @@ var options = {
 			// skills related
 			$("#skills-idlemultiplier").html("Upgrade your idle-multiplier by 0.10!<br>Upgrade cost : " + fix(skills.idleMultiplierCost, "0d") + " gems");
 			$("#skills-instantgold").html("Earn gold like if you were at level " + fix(player.level + 50, "0d") + "!<br>Cost : " + fix(skills.instantGoldCost, "0d") + " gems");
+			// success related
+			$("#success-points").html(fix(success.points, "0d") + " achievements points (currently useless)");
 		};
 	},
 	trigger: function() {
@@ -107,6 +112,9 @@ var options = {
 
 window.onload = function() {
 	options.init();
+};
+window.onbeforeunload = function() {
+	save.saveInterval = undefined; // clean save interval if connection is very bad to prevent save lose...
 };
 window.setInterval(function() {
 	options.update();

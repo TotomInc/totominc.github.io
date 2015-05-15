@@ -30,6 +30,8 @@ var quest = {
 		if (player.xp >= player.xpNeeded) {
 			player.xp -= player.xpNeeded;
 			player.level++;
+			if (player.level > player.maxLevel)
+				player.maxLevel = player.level;
 			player.xpNeeded = helpers.playerXpNeeded();
 			this.xpNeeded = helpers.questXpNeeded();
 			var levelRange = document.getElementById("craft-level");

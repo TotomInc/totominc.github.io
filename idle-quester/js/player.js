@@ -2,6 +2,7 @@ var player = {
 	xp: 0,
 	xpNeeded: 100,
 	level: 1,
+	maxLevel: 1,
 	gold: 0,
 	gems: 0,
 	multiplier: 1,

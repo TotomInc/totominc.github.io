@@ -1,7 +1,7 @@
 body {
 	padding-top: 80px;
 	cursor: default;
-	background: #E4E4E4;
+	background: #eee;
 	font-weight: 300; /* support for material design */
 }
 
@@ -34,6 +34,11 @@ body {
 	background: #039BE5;
 	height: 100%;
 	width: 0%;
+}
+
+/* achievements */
+.achieve-icon {
+	left: 15px!important;
 }
 
 /* custom bootstrap */
