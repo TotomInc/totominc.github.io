@@ -163,3 +163,6 @@ window.onload = function() { Init.game(); };
 var intMain = window.setInterval(function() { Init.coreUpdate(); }, interval);
 var intSave = window.setInterval(function() { saveData(); }, interval);
 setTimeout(modulableInterval, refreshRate);
+window.onbeforeunload = function() {
+    intSave = undefined; // clean save interval if connection is very bad to prevent save lose...
+};

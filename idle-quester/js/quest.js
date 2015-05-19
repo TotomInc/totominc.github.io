@@ -5,6 +5,7 @@ var quest = {
 	type: "attack",
 	autoIdle: true,
 	idleMultiplier: 1.00,
+	gemDropped: false,
 
 	click: function() {
 		if (this.type == "attack")
@@ -50,8 +51,12 @@ var quest = {
 	},
 	gemDrop: function() {
 		var random = Math.floor(Math.random() * 1000);
-		if (random >= 990)
-			player.gems++;
+		if (this.gemDropped == false) {
+			if (random >= 990) {
+				player.gems++;
+				quest.gemDropped = true;
+			};
+		};
 	},
 	changeType: function() {
 		if (this.type == "attack")

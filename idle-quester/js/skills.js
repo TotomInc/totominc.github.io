@@ -13,7 +13,7 @@ var skills = {
 		};
 	},
 	buyInstantGold: function() {
-		if (player.gems >+ this.instantGoldCost) {
+		if (player.gems >= this.instantGoldCost) {
 			player.gems -= this.instantGoldCost;
 			this.instantGoldBought++;
 			var random = Math.random() + 1;

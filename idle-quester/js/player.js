@@ -55,6 +55,7 @@ var player = {
 				quest.xp = 0;
 				quest.xpNeeded = helpers.questXpNeeded();
 				this.xpNeeded = helpers.playerXpNeeded();
+				quest.gemDropped = false;
 				if (type == "sword") {
 					this.sword.damage = effect;
 					this.sword.percent = percent;
