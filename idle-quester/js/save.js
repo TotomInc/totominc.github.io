@@ -26,6 +26,7 @@ var save = {
 			pp.level = p.level;
 			pp.maxLevel = p.maxLevel;
 			pp.gold = p.gold;
+			pp.maxGold = p.maxGold;
 			pp.gems = p.gems;
 			pp.sword = p.sword;
 			pp.amulet = p.amulet;
@@ -73,6 +74,7 @@ var save = {
 		pp.level = p.level;
 		pp.maxLevel = p.maxLevel;
 		pp.gold = p.gold;
+		pp.maxGold = p.maxGold;
 		pp.gems = p.gems;
 		pp.sword = p.sword;
 		pp.boots = p.boots;
@@ -107,6 +109,8 @@ var save = {
 		var p = player;
 		if (typeof p.maxLevel !== "number")
 			p.maxLevel = 1;
+		if (typeof p.maxGold !== "number")
+			p.maxGold = 0;
 		var s = skills;
 		if (typeof s.idleMultiplierCost !== "number")
 			s.idleMultiplierCost = 1;

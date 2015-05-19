@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="css/slider.css">
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="src/Chart.js"></script>
 </head>
 
 <body>
@@ -239,7 +240,14 @@
 					<!-- stats panel -->
 						<div role="tabpanel" class="tab-pane fade" id="stats">
 							<div class="well">
-								<p class="text-center text-primary">More stats will be soon here!</p>
+								<div class="row">
+									<div class="col-md-6">
+										<p id="stats-player" class="text-center"></p>
+									</div>
+									<div class="col-md-6">
+										<p class="text-center"></p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -339,6 +347,7 @@
 	<script src="js/skills.js"></script>
 	<script src="js/success.js"></script>
 	<script src="js/save.js"></script>
+	<script src="js/charts.js"></script>
 	<script src="src/resolution.js"></script>
 	<script src="src/analytics.js"></script>
 </body>

@@ -44,6 +44,7 @@ var quest = {
 			this.xp -= this.xpNeeded;
 			player.xp += (this.xpNeeded / 4.5);
 			player.gold += helpers.questGold();
+			player.maxGold += helpers.questGold();;
 			this.gemDrop();
 			this.changeType();
 			this.name = helpers.questName();

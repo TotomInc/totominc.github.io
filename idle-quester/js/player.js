@@ -4,6 +4,7 @@ var player = {
 	level: 1,
 	maxLevel: 1,
 	gold: 0,
+	maxGold: 0,
 	gems: 0,
 	multiplier: 1,
 	prestigeCost: 100,
