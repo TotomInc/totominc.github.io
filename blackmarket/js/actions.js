@@ -3,14 +3,14 @@ var isReloading = false;
 function Action() { Log("Calling Action()"); };
 Action.shoot = function() {
 	if (shoot[0] > 0) {
-		$("#a-1, #a-2").attr("onclick", "");
+		$("#a-1, #a-2").attr("oncheck", "");
 		$("#a-1, #a-2").attr("class", "btn btn-success center-btn disabled");
         window.setTimeout(function() {
             shoot[0]--;
             shoot[5]++;
             gainMoney(getShootReward());
-            $("#a-1").attr("onclick", "Action.shoot();");
-            $("#a-2").attr("onclick", "Action.reload();");
+            $("#a-1").attr("oncheck", "Action.shoot();");
+            $("#a-2").attr("oncheck", "Action.reload();");
             $("#a-1, #a-2").attr("class", "btn btn-success center-btn");
         }, shoot[3]);
         $("#shoot-actions").animate({width: "100%"}, shoot[3], "linear");
@@ -20,13 +20,13 @@ Action.shoot = function() {
 Action.reload = function() {
 	if (shoot[0] < shoot[2]) {
         isReloading = true;
-		$("#a-1, #a-2").attr("onclick", "");
+		$("#a-1, #a-2").attr("oncheck", "");
 		$("#a-1, #a-2").attr("class", "btn btn-success center-btn disabled");
         window.setTimeout(function() {
             shoot[0] = shoot[2];
             shoot[6]++;
-            $("#a-1").attr("onclick", "Action.shoot();");
-            $("#a-2").attr("onclick", "Action.reload();");
+            $("#a-1").attr("oncheck", "Action.shoot();");
+            $("#a-2").attr("oncheck", "Action.reload();");
             isReloading = false;
             $("#a-1, #a-2").attr("class", "btn btn-success center-btn");
         }, shoot[4]);
