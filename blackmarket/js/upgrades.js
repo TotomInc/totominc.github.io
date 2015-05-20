@@ -18,9 +18,9 @@ var shootRewardUpgrades = [
     new Upgrade("Shoot reward x4",		750000000000000000,		function() { shoot[7] *= 4 }),
     new Upgrade("Shoot reward x3",		1500000000000000000,	function() { shoot[7] *= 3 }),
     new Upgrade("Shoot reward x2",		10000000000000000000,	function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x2",		50000000000000000000,	function() { shoot[7] *= 2 }),
     new Upgrade("Shoot reward x2",		12500000000000000000,	function() { shoot[7] *= 2 }),
-    new Upgrade("Shoot reward x3",		25000000000000000000,	function() { shoot[7] *= 3 }),
+    new Upgrade("Shoot reward x2",		25000000000000000000,	function() { shoot[7] *= 2 }),
+    new Upgrade("Shoot reward x3",		50000000000000000000,	function() { shoot[7] *= 3 }),
     new Upgrade("Shoot reward x4",		75000000000000000000,	function() { shoot[7] *= 4 }),
     new Upgrade("Shoot reward x5",		500000000000000000000,	function() { shoot[7] *= 5 })
 ];
