@@ -26,33 +26,33 @@ var shootRewardUpgrades = [
 ];
 var shootTimeUpgradesOwned;
 var shootTimeUpgrades = [
-    new Upgrade("Shoot time /1.50",     90,         				function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.50",     630,        				function() { shoot[3] /= 1.5 }),
-    new Upgrade("Shoot time /1.25",     5750,       				function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.25",     50000,      				function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.10",		375000,						function() { shoot[3] /= 1.10 }),
-    new Upgrade("Shoot time /1.10",		1000000000,					function() { shoot[3] /= 1.10 }),
-    new Upgrade("Shoot time /1.25",		1000000000000,				function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.25",		1000000000000000,			function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.25",		1000000000000000000,		function() { shoot[3] /= 1.25 }),
-    new Upgrade("Shoot time /1.25",		1000000000000000000000,		function() { shoot[3] /= 1.25 })
+    new Upgrade("Weston Select Trigger",     90,         				function() { shoot[3] /= 1.5 }),
+    new Upgrade("Trigger Assembly Upgrade",     630,        				function() { shoot[3] /= 1.5 }),
+    new Upgrade("Selector Switch Upgrade",     5750,       				function() { shoot[3] /= 1.25 }),
+    new Upgrade("Hammer Upgrade",     50000,      				function() { shoot[3] /= 1.25 }),
+    new Upgrade("Automatic Selector",		375000,						function() { shoot[3] /= 1.10 }),
+    new Upgrade("BuzzFire Trigger Kit",		1000000000,					function() { shoot[3] /= 1.10 }),
+    new Upgrade("Internal Hammer",		1000000000000,				function() { shoot[3] /= 1.25 }),
+    new Upgrade("Competition Shooter Series Kit",		1000000000000000,			function() { shoot[3] /= 1.25 }),
+    new Upgrade("Fully Automatic Kit",		1000000000000000000,		function() { shoot[3] /= 1.25 }),
+    new Upgrade("Special Operations Kit",		1000000000000000000000,		function() { shoot[3] /= 1.25 })
 ];
 var ammoStockUpgradesOwned;
 var ammoStockUpgrades = [
-    new Upgrade("Ammo stock x2",      	90,         	function() { shoot[2] *= 2 }),
-    new Upgrade("Ammo stock x2",      	2500,       	function() { shoot[2] *= 2 }),
-    new Upgrade("Ammo stock x2",      	55000,      	function() { shoot[2] *= 2 }),
-    new Upgrade("Ammo stock x2",		7500000,		function() { shoot[2] *= 2 })
+    new Upgrade("Ammunition Pouch",      	90,         	function() { shoot[2] *= 2 }),
+    new Upgrade("Extra Magazine",      	2500,       	function() { shoot[2] *= 2 }),
+    new Upgrade("LR Magazine Extension kit",      	55000,      	function() { shoot[2] *= 2 }),
+    new Upgrade("X250 Dual Sport Magazine",		7500000,		function() { shoot[2] *= 2 })
 ];
 var reloadTimeUpgradesOwned;
 var reloadTimeUpgrades = [
-    new Upgrade("Reload time /1.50",    270,        	function() { shoot[4] /= 1.50 }),
-    new Upgrade("Reload time /1.50",    2000,       	function() { shoot[4] /= 1.50 }),
-    new Upgrade("Reload time /1.25",    17500,      	function() { shoot[4] /= 1.25 }),
-    new Upgrade("Reload time /1.25",    125000,     	function() { shoot[4] /= 1.25 }),
-    new Upgrade("Reload time /1.10",	10000000,		function() { shoot[4] /= 1.10 }),
-    new Upgrade("Reload time /1.25",	10000000000,	function() { shoot[4] /= 1.25 }),
-    new Upgrade("Reload time /1.25",	10000000000000,	function() { shoot[4] /= 1.25 })
+    new Upgrade("Magazine Ejector",    270,        	function() { shoot[4] /= 1.50 }),
+    new Upgrade("Magazine Ejector Upgrade",    2000,       	function() { shoot[4] /= 1.50 }),
+    new Upgrade("Integrated Ejection Switch",    17500,      	function() { shoot[4] /= 1.25 }),
+    new Upgrade("Automatic Ejection System",    125000,     	function() { shoot[4] /= 1.25 }),
+    new Upgrade("Competitive Series Ejector",	10000000,		function() { shoot[4] /= 1.10 }),
+    new Upgrade("Wulframe Signature Series Ejector",	10000000000,	function() { shoot[4] /= 1.25 }),
+    new Upgrade("Special Operations Ejection System",	10000000000000,	function() { shoot[4] /= 1.25 })
 ];
 var weedPriceUpgradesOwned;
 var weedPriceUpgrades = [
