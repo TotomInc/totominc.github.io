@@ -97,7 +97,8 @@ var options = {
 			$("#skills-idlemultiplier").html("Upgrade your idle-multiplier by 0.10!<br>Upgrade cost : " + fix(skills.idleMultiplierCost, "0d") + " gems");
 			$("#skills-instantgold").html("Earn gold like if you were at level " + fix(player.level + 50, "0d") + "!<br>Cost : " + fix(skills.instantGoldCost, "0d") + " gems");
 			// stats panel
-			$("#stats-player").html("Current gold : " + fix(player.gold, "3d") + "<br>Total gold earned : " + fix(player.maxGold, "3d") + "<br>Current level : " + fix(player.level, "0d") + "<br>Max level : " + fix(player.maxLevel, "0d") + "<br>");
+			$("#stats-1").html("Current gold : " + fix(player.gold, "3d") + "<br>Total gold earned : " + fix(player.maxGold, "3d"));
+			$("#stats-2").html("Current level : " + fix(player.level, "0d") + "<br>Max level : " + fix(player.maxLevel, "0d"))
 			// success related
 			$("#success-points").html(fix(success.points, "0d") + " achievements points (currently useless)");
 		};
