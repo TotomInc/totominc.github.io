@@ -109,9 +109,6 @@ b {
 #tab-builds {
 	color: red !important;
 }
-ul>li>a.tabs-selectors {
-	background: #f9f9f9;
-}
 ul>li>a {
 	font-size: 12px;
 }

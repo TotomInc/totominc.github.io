@@ -9,7 +9,7 @@ var drugInit = [
 ];
 
 var fps = 60; var interval = (1000 / fps); var init = false; var key = "BmInc-";
-var version = "1.07"; var release = "-official";
+var version = "1.10"; var release = "-official";
 var before; var now;
 var allVars = [
     'money', 'shoot', 'prestige', 'shootPercent', 'shootPercentCash', 'experienceSpent',
@@ -161,7 +161,10 @@ Init.coreUpdate = function() {
 
 window.onload = function() { Init.game(); };
 var intMain = window.setInterval(function() { Init.coreUpdate(); }, interval);
-var intSave = window.setInterval(function() { saveData(); }, interval);
+var intSave = window.setInterval(function() {
+    if (init == true)
+        saveData();
+}, interval);
 setTimeout(modulableInterval, refreshRate);
 window.onbeforeunload = function() {
     intSave = undefined; // clean save interval if connection is very bad to prevent save lose...

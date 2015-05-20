@@ -1,22 +1,11 @@
-<!--
- _______   __         ______    ______   __    __  __       __   ______   _______   __    __  ________  ________ 
-|       \ |  \       /      \  /      \ |  \  /  \|  \     /  \ /      \ |       \ |  \  /  \|        \|        \
-| $$$$$$$\| $$      |  $$$$$$\|  $$$$$$\| $$ /  $$| $$\   /  $$|  $$$$$$\| $$$$$$$\| $$ /  $$| $$$$$$$$ \$$$$$$$$
-| $$__/ $$| $$      | $$__| $$| $$   \$$| $$/  $$ | $$$\ /  $$$| $$__| $$| $$__| $$| $$/  $$ | $$__       | $$   
-| $$    $$| $$      | $$    $$| $$      | $$  $$  | $$$$\  $$$$| $$    $$| $$    $$| $$  $$  | $$  \      | $$   
-| $$$$$$$\| $$      | $$$$$$$$| $$   __ | $$$$$\  | $$\$$ $$ $$| $$$$$$$$| $$$$$$$\| $$$$$\  | $$$$$      | $$   
-| $$__/ $$| $$_____ | $$  | $$| $$__/  \| $$ \$$\ | $$ \$$$| $$| $$  | $$| $$  | $$| $$ \$$\ | $$_____    | $$   
-| $$    $$| $$     \| $$  | $$ \$$    $$| $$  \$$\| $$  \$ | $$| $$  | $$| $$  | $$| $$  \$$\| $$     \   | $$   
- \$$$$$$$  \$$$$$$$$ \$$   \$$  \$$$$$$  \$$   \$$ \$$      \$$ \$$   \$$ \$$   \$$ \$$   \$$ \$$$$$$$$    \$$   
--->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <title>Blackmarket - Incremental-game</title>
 
-  <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <script src="src/jquery-1.11.1.min.js"></script>
   <link rel="stylesheet" href="src/bootstrap.min.css">
   <link rel="stylesheet" href="src/paper.bootstrap.css">
@@ -41,9 +30,6 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="underline white cur-p" data-toggle="modal" data-target="#ranks-modal">Tables</a></li>
-          <li><a class="underline white cur-p" data-toggle="modal" data-target="#help-modal">Help!</a></li>
-          <li><a class="underline white cur-p" data-toggle="modal" data-target="#options-modal">Options</a></li>
           <li class="active"><a><span id="navbar-weed"></span></a></li>
           <li class="active"><a><span id="navbar-meth"></span></a></li>
           <li class="active"><a><span id="navbar-cocaine"></span></a></li>
@@ -51,10 +37,10 @@
       </div>
     </div>
   </nav>
-
 <!-- game area -->
   <div class="container-fluid">
     <div class="row">
+    <!-- player stats + actions -->
       <div id="panels-col" class="col-md-6 light">
         <!-- actions panel -->
           <div class="panel panel-primary light">
@@ -105,32 +91,25 @@
               </div>
             </div>
           </div>
-        <!-- Kongregate login alert -->
-          <div id="alert-konglog" class="alert alert-dismissible alert-danger" style="display: none">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            Warning! You are not logged into your Kongregate account.
-          </div>
-        <!-- beta test -->
-          <div id="betatest" class="panel panel-primary light" style="display: none;">
-            <div class="panel-heading"><h3 class="panel-title center">Beta-testing</h3></div>
-            <div class="panel-body">
-              <p class="center tiny-font">
-                <span id="betatest-guest" style="display: none;">You are not logged in Kongregate.</span><br>
-                <span id="betatest-welcome"></span><br>
-                <span id="betatest-authtoken"></span><br>
-                <a onclick="submitScore();" class="btn btn-success center-btn">Submit score</a>
-              </p>
-            </div>
-          </div>
       </div>
-
+    <!-- tab-content -->
       <div id="nav-tab-content" class="col-md-6 light">
-        <ul class="nav nav-pills nav-justified">
-          <li class="active"><a href="#tab-up" data-toggle="tab" class="tabs-selectors">Upgrades</a></li>
-          <li><a href="#tab-builds" data-toggle="tab" class="tabs-selectors">Drugs/Dealers</a></li>
-          <li><a href="#tab-prod" data-toggle="tab" class="tabs-selectors">Factory</a></li>
-          <li><a href="#tab-prestige" data-toggle="tab" class="tabs-selectors">Prestige</a></li>
-          <li><a href="#tab-ach" data-toggle="tab" class="tabs-selectors">Success</a></li>
+        <ul class="nav nav-pills nav-justified" role="tablist">
+          <li><a href="#tab-builds" data-toggle="tab" class="tabs-selectors"><i class="fa fa-users"></i> Drugs/Dealers</a></li>
+          <li class="active"><a href="#tab-up" data-toggle="tab" class="tabs-selectors"><i class="fa fa-arrow-circle-up"></i> Upgrades</a></li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">More <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#tab-prestige" data-toggle="tab" class="tabs-selectors"><i class="fa fa-star"></i> Prestige</a></li>
+              <li><a href="#tab-prod" data-toggle="tab" class="tabs-selectors"><i class="fa fa-wrench"></i> Factory</a></li>
+              <li><a href="#tab-ach" data-toggle="tab" class="tabs-selectors"><i class="fa fa-trophy"></i> Success</a></li>
+              <li class="divider"></li>
+              <li><a href="#tab-options" data-toggle="tab" class="tabs-selectors"><i class="fa fa-cog"></i> Options</a></li>
+              <li><a href="#tab-help" data-toggle="tab" class="tabs-selectors"><i class="fa fa-question-circle"></i> Help</a></li>
+              <li><a href="#tab-ranks" data-toggle="tab" class="tabs-selectors"><i class="fa fa-table"></i> Ranks</a></li>
+              <li><a href="#tab-patch" data-toggle="tab" class="tabs-selectors"><i class="fa fa-pencil-square-o"></i> Patch</a></li>
+            </ul>
+          </li>
         </ul>
         <div id="tab-content" class="tab-content">
           <div class="tab-pane fade active in" id="tab-up">
@@ -355,107 +334,61 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p></div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
-            <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-success btn-sm center-btn">Hard-reset</a></div>
-            <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-success btn-sm center-btn">Soft-reset</a></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-6 col-xs-6"><a onclick="exportSave();" class="btn btn-warning btn-sm center-btn">Export-save</a></div>
-            <div class="col-md-6 col-xs-6"><a onclick="importSave();" class="btn btn-warning btn-sm center-btn">Import-save</a></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input class="form-control" id="exportSaveField" type="text" value='Exported-save will be here'>
+          <div class="tab-pane fade" id="tab-options">
+            <div class="well">
+              <div class="row">
+                <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
+                <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-danger btn-sm center-btn">Hard-reset</a></div>
+                <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-warning btn-sm center-btn">Soft-reset</a></div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input class="form-control" id="importSaveField" type="text" value='Paste your save here'>
+              <br>
+              <div class="row">
+                <div class="col-md-6 col-xs-6"><a onclick="exportSave();" class="btn btn-success btn-sm center-btn">Export-save</a></div>
+                <div class="col-md-6 col-xs-6"><a onclick="importSave();" class="btn btn-success btn-sm center-btn">Import-save</a></div>
               </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <a onclick="checkCode();" class="btn btn-danger btn-sm center-btn">Check code</a>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" id="exportSaveField" type="text" value='Exported-save will be here'>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" id="importSaveField" type="text" value='Paste your save here'>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-12"><p class="justify tiny-font light">Game is currently running at : <span id="options-currentFps"></span>You may have to reduce fps if the game is slowing down your computer.<br>
+                <b>Warning : this doesn't affect the general gameplay, you will not produce more or less drugs, etc.</b></p></div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input class="form-control" id="promotionField" type="text" value='Check promotion code'>
+              <br>
+              <div class="row">
+                <div class="col-md-12"><input id="update-fps" type="range" min="1" max="60" step="1"></input></div>
               </div>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12"><p class="justify tiny-font light">Game is currently running at : <span id="options-currentFps"></span>You may have to reduce fps if the game is slowing down your computer.<br>
-            <b>Warning : this doesn't affect the general gameplay, you will not produce more or less drugs, etc.</b></p></div>
+          <div class="tab-pane fade" id="tab-help">
+            <div class="well">
+              <p class="lead underline text-center">How to play?</p>
+              <p class="tiny-font justify"><b>Welcome to Blackmarket!</b><br>
+              In this incremental-game, you have to <b>manage an empire of drugs</b>! At the beginning, you're poor, very poor. And you you've only got a gun. To earn your first <b>$$$ bills</b>, you have to shoot, shoot, shoot! You can buy <b>upgrades</b> to help you gain money even faster.<br>
+              After you got a decent amount of $$$, you can start buying some <b>buildings</b> (drug-producing), which will produce a certain amount of <b>specified drug every second</b>.<br>
+              There are three types of drugs in the game (<b>weed, meth and cocaine</b>) and each drug has its own line of buildings. When you got some buildings, you can hire different <b>dealers</b> for each drug, which will sells an amount of <b>their respective drug every second</b>!<br>
+              It's as simple as that, the business of the drugs!<br>
+              <b>Note that Blackmarket never sleeps! Even if you have not left do not leave the game open, your business is always producing and selling drugs!</b></p>
+              <p class="lead underline text-center">What is prestige?</p>
+              <p class="tiny-font justify"><b>A prestige</b> in some incremental-games is, when <b>you reset everything from the beggining but with a bonus</b> (for example : a multiplier) to reach even further in the game. When you reach a certain point in gameplay, you may choose to prestige because <b>it's the only way to be further in the game</b>. This is done by going to the <b>options-menu</b> and choosing <b>"soft-reset"</b>. Doing that will reset your game and force you to start from the beginning, but - <b>depending on your progress</b> - you will be given a certain amount of <b>"experience"</b>.<br>
+              In Blackmarket, the prestige currency is "experience", and the amount of experience will determine your <b>prestige rank</b>, which will give a <b>prestige multiplier</b>. Take a look in the "table" panel which shows all the prestige ranks, experience they need needed for them and prestige multiplier these ranks give.<br>
+              The prestige multiplier affects the shoot reward and the drugs prices.</p>
+              <p class="lead underline text-center">How is determined experience determined?</p>
+              <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
+              <span class="code">Math.floor(35 * Math.sqrt(totalMoney/1e7))</span></p>
+            </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12"><input id="update-fps" type="range" min="1" max="60" step="1"></input></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12"><p class="center tiny-font light">Thanks to Tompaine for donating 10€!</p></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <p>Patch-notes are <a target="_blank" href="http://totominc.github.io/blackmarket/patch-notes.html">here</a>!<br>
-          <span id="options-version"></span><br>
-          Code with <i class="fa fa-heart"></i> by <a target="_blank" href="https://github.com/TotomInc">TotomInc</a>.<br>
-          Share, fork and give me ideas : <a target="_blank" href="https://github.com/TotomInc/totominc.github.io">the repo is on GitHub!</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="help-modal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
-        <div class="modal-body light">
-          <p class="lead underline">How to play?</p>
-          <p class="tiny-font justify"><b>Welcome to Blackmarket!</b><br>
-          In this incremental-game, you have to <b>manage an empire of drugs</b>! At the beginning, you're poor, very poor. And you you've only got a gun. To earn your first <b>$$$ bills</b>, you have to shoot, shoot, shoot! You can buy <b>upgrades</b> to help you gain money even faster.<br>
-          After you got a decent amount of $$$, you can start buying some <b>buildings</b> (drug-producing), which will produce a certain amount of <b>specified drug every second</b>.<br>
-          There are three types of drugs in the game (<b>weed, meth and cocaine</b>) and each drug has its own line of buildings. When you got some buildings, you can hire different <b>dealers</b> for each drug, which will sells an amount of <b>their respective drug every second</b>!<br>
-          It's as simple as that, the business of the drugs!<br>
-          <b>Note that Blackmarket never sleeps! Even if you have not left do not leave the game open, your business is always producing and selling drugs!</b></p>
-          <p class="lead underline">What is prestige?</p>
-          <p class="tiny-font justify"><b>A prestige</b> in some incremental-games is, when <b>you reset everything from the beggining but with a bonus</b> (for example : a multiplier) to reach even further in the game. When you reach a certain point in gameplay, you may choose to prestige because <b>it's the only way to be further in the game</b>. This is done by going to the <b>options-menu</b> and choosing <b>"soft-reset"</b>. Doing that will reset your game and force you to start from the beginning, but - <b>depending on your progress</b> - you will be given a certain amount of <b>"experience"</b>.<br>
-          In Blackmarket, the prestige currency is "experience", and the amount of experience will determine your <b>prestige rank</b>, which will give a <b>prestige multiplier</b>. Take a look in the "table" panel which shows all the prestige ranks, experience they need needed for them and prestige multiplier these ranks give.<br>
-          The prestige multiplier affects the shoot reward and the drugs prices.</p>
-          <p class="lead underline">How is determined experience determined?</p>
-          <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
-          <span class="code">Math.floor(35 * Math.sqrt(totalMoney/1e7))</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="ranks-modal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Prestige-ranks :</p></div>
-        <div class="modal-body">
-            <div class="well light">
-              <p class="lead center underline">Prestige ranks :</p>
+          <div class="tab-pane fade" id="tab-ranks">
+            <div class="well">
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
@@ -467,11 +400,106 @@
                 <tbody id="prestige-table"></tbody>
               </table>
             </div>
+          </div>
+          <div class="tab-pane fade" id="tab-patch">
+            <div class="well">
+              <p class="lead center underline">v1.10 (05/20/2015) : back to the dev!</p>
+              <p class="justify tiny-font">
+                - We are now 2 guys working on Blackmarket : welcome to Latteralus!<br>
+                - Reworked the UI.<br>
+                - Changed names of builds, dealers, some upgrades and of ranks!<br>
+                - Some small bugs fixed (especially about saving)!<br>
+                - Some backends invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.07 (04/30/2015) : small fixes.</p>
+              <p class="justify tiny-font">
+                - Slightly changed prestige panel.<br>
+                - Worked about the experience spent and prestige-ranks bug (It should be fixed now).<br>
+                - Some backend improvement.
+              </p>
+
+              <p class="lead center underline">v1.06 (04/24/2015) : achievements and game balancing.</p>
+              <p class="justify tiny-font">
+                - Added achievements! Actually, you don't gain any bonuses from them, but it's planned, to gain a certain % from these achievements!<br>
+                - Meth and cocaine buildings/dealers have been boosted, they produces/sell more.<br>
+                - Weed price is nerfed, meth and cocaine is a bit boosted.<br>
+                - Some bugs fixed.<br>
+                - Some backend improvement.
+              </p>
+
+              <p class="lead center underline">v1.05 (04/23/2015) : prestige-upgrades changed!</p>
+              <p class="justify tiny-font">
+                - Changed prestige-upgrades, now you keep prestige-upgrades when going to soft-reset!<br>
+                - Fixed some bugs with prestige-upgrades.<br>
+                - Numbers can go up to 10e153 (quinquagintillion).
+              </p>
+
+              <p class="lead center underline">v1.04 (04/22/2015) : small changes</p>
+              <p class="justify tiny-font">
+                - Changed experience required for ranks! It should be easier now.<br>
+                - Added an option to hide/show upgrades owned!<br>
+                - Added auto-shooting/reloading. If you want to disable them, you must reload the page, sorry!<br>
+                - Changed builds/dealers prices.<br>
+                - Builds/dealers produces/sells a bit more.<br>
+                - Changed upgrades layout.<br>
+                - Fixed a bug with prestige-upgrades.<br>
+                - Experience formula have been a bit nerfed, it's now :<br>
+                <span class="code">Math.floor(30 * Math.sqrt(totalMoney/1e7))</span>.<br>
+              </p>
+
+              <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>
+              <p class="justify tiny-font">
+                - Added new upgrades, changed prices of some of them.<br>
+                - Added new prestige-upgrades and changed their layout. New prestige upgrades make the shooting reward earn x % of your current $/sec.<br>
+                - Fixed a bug with the shooting reward.<br>
+                - Removed the g/sec in the navbar of each drug to make the game more user friendly interface on Kongregate.<br>
+                - Fixed a bug with import/export and upgrades.<br>
+                - Added an alert when using Internet Explorer (Blackmarket doesn't work correctly with ANY versions of IE).<br>
+                - Some backends invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.02 (04/20/2015) : dealers selling bug (really fixed?)</p>
+              <p class="justify tiny-font">
+                - New drugs prices : weed is boosted at 100$/g, meth is nerfed at 350 $/g, cocaine is nerfed at 1500$/g.<br>
+                - Bugs with drugs prices when you got all upgrades and prestige upgrades is fixed! Have to soft-reset to see it.<br>
+                - Some backend invisible changes.<br>
+                - Dealers selling bug should be fixed! Please, I need feedback about it! I want to give a huge thank to <a target="_blank" href="http://www.reddit.com/user/grammarxcore">/u/grammarxcore</a> for totally helping me to kill this nasty bug!<br>
+                - Added an option to export and import your progress! Very useful if you want to keep the same game and have to switch between multiples computers/smartphones/tablets! <b>(Warning: export/import is in beta-testing!)</b><br>
+                - Added an option to change the frames per second of the game, it will change the refresh rate of every stats you can see on the game!<br>
+                <b>Please note : this option doesn't affect gameplay! You will not gain more or less drug for example!</b><br>
+                - Numbers are easier to read.<br>
+                - Some backend invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.01 (04/19/2015) : bugs fixes</p>
+              <p class="justify tiny-font">
+                - <s>Fixed a bug with dealers drug selling.</s><br>
+                - New layout for upgrades/builds/dealers.<br>
+                - Balanced (again) prestige-ranks and added some.<br>
+                - Balanced some upgrades (weed/meth/cocaine price upgrades).<br>
+                - Some backup invisibles changes.
+              </p>
+
+              <p class="lead center underline">v1.00 (04/18/2015) : official release!</p>
+              <p class="justify tiny-font">
+                After months of prototype/alpha and beta, the game has now entered on his official release stage!<br>
+                <b>What's new in this version?</b><br>
+                - Material design UI!<br>
+                - Code totally rewritten, it let me add more content and fix bugs easily!<br>
+                - More upgrades, more prestige ranks (but not enough prestige upgrades)!<br>
+                - Game rebalanced.<br>
+                Thanks you for playing Blackmarket, which is my first biggest project. From the beginning, it reached a total of 50k unique players!<br>
+                Keep an eye on Blackmarket, more features are planned!<br>
+              </p>
+              <p class="center tiny-font"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me a message on my reddit account</a><br>
+              <a target="_blank" href="http://github.com/TotomInc/totominc.github.io">GitHub repo : if you want to contribute or take a look</a></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 <!-- scripts -->
   <script src="js/resize.js"></script>
   <script src="js/save.js"></script>
@@ -486,21 +514,5 @@
   <script src="js/core.js"></script>
   <script src="src/browser.js"></script>
   <script src="src/analytics.js"></script>
-<!-- KongregateAPI -->
-  <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
-  <script type="text/javascript">
-    var kongregate;
-    kongregateAPI.loadAPI(onComplete);
-
-    function onComplete(){
-      kongregate = kongregateAPI.getAPI();
-    };
-    function submitScore() {
-      var score = money[1];
-      if (score !== NaN) {
-        kongregate.stats.submit("TotalMoney", score);
-      };
-    };
-  </script>
 </body>
 </html>
