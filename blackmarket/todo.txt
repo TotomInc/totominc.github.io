@@ -1,2 +1,4 @@
 In this file put everything that need to be done, update it everytime you finish something.
 Also add ideas on it.
+
+- add an if condition on the save interval with init == true to prevent save loss
