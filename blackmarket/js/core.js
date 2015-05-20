@@ -167,5 +167,5 @@ var intSave = window.setInterval(function() {
 }, interval);
 setTimeout(modulableInterval, refreshRate);
 window.onbeforeunload = function() {
-    intSave = undefined; // clean save interval if connection is very bad to prevent save lose...
+    intSave = undefined;
 };
