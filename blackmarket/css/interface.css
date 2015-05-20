@@ -142,6 +142,13 @@ li>a>span {
 }
 .progress {
 	height: 10px;
+	border-radius: 0;
+}
+.progress-bar {
+	-webkit-transition: all 0s;
+	-o-transition: all 0s;
+	-moz-transition: all 0s;
+	transition: all 0s;
 }
 .shoot-bar {
 	width: 50%;
