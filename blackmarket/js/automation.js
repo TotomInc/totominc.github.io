@@ -6,7 +6,7 @@ Automation.autoShoot = function() {
 	if (enableAutoShootCheckBox.checked == true && (prestigeShootingOwned == true && shootClick == true)) {
 		Action.shoot();
 		setTimeout(Automation.autoShoot, shoot[3]);
-		$("#enableAutoShoot").attr("onclick", "shootClick = true");
+		$("#enableAutoShoot").attr("oncheck", "shootClick = true");
 	};
 };
 Automation.autoReload = function() {
@@ -15,6 +15,6 @@ Automation.autoReload = function() {
 			Action.reload();
 		};
 		setTimeout(Automation.autoReload, shoot[4]);
-		$("#enableAutoReload").attr("onclick", "reloadClick = true");
+		$("#enableAutoReload").attr("oncheck", "reloadClick = true");
 	};
 };
