@@ -1,6 +1,6 @@
 var weedBuildsOwned;
 var weedBuilds = [
-    new Build("Closet Grow Room",	500,            	0.5,    1.60, 0),
+    new Build("Closet Grow Room",	250,            	0.5,    1.60, 0),
     new Build("Backyard",	500000,          	2,    	1.50, 0),
     new Build("Green House",	25000000,        	4,   	1.40, 0),
     new Build("Brazilian Farm",	750000000,			8,    	1.30, 0),
