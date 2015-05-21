@@ -1,4 +1,4 @@
-<h1>totominc.github.io</h1>
+<h1>totominc.github.io - <a href="http://github.com/TotomInc/totominc.github.io/wiki">wiki is here</a></h1>
 <h4><b>It's the official repo for all my web-projects, like incremental-games.</b></h4>
 
 <h3><a href="http://totominc.github.io/blackmarket"><u>Blackmarket</u></a></h3>
