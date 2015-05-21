@@ -1,0 +1,39 @@
+::selection { background: rgba(255, 152, 0, .3); }
+::-moz-selection { background: rgba(255, 152, 0, .3); }
+
+.line { width: 90%; height: 1px; background: #4caf50; margin-left: auto; margin-right: auto; }
+
+.white { color: #fff !important; }
+.dark { color: #666666 !important;}
+.grey { color: #999999 !important; }
+
+.italic { font-style: italic; }
+.center { text-align: center; }
+.justify { text-align: justify; }
+
+.underline { text-decoration: underline; }
+
+.light { font-weight: 300; }
+.regular { font-weight: 400; }
+.small { font-size: 10px; }
+
+.right-separator { border-right: 1px solid #4caf50; }
+.left-separator { border-left: 1px solid #4caf50; }
+
+.cur-d { cursor: default; }
+.cur-p { cursor: pointer; }
+
+.fat-font { font-size: 32px; }
+.med-font { font-size: 26px; }
+.small-font { font-size: 20px; }
+.tiny-font { font-size: 14px; }
+
+.center { margin-left: auto; margin-right: auto; }
+.center-btn { display: block; margin-left: auto; margin-right: auto; }
+
+.p-align { margin-bottom: 16px; line-height: 21px; }
+
+.bottom-red:hover { border-bottom: 3px solid #ff4136; transition: all 0.2s; }
+.bottom-yellowxp:hover { border-bottom: 3px solid #F0B82E; transition: all 0.2s; }
+.bottom-yellowcoin:hover { border-bottom: 3px solid #FEDD43; transition: all 0.2s; }
+.bottom-blue:hover { border-bottom: 3px solid #9EB3B5; transition: all 0.2s; }

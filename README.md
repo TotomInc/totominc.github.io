@@ -7,6 +7,9 @@ Another simple incremental-game, about selling drugs. You start with only a gun,
 <h3><a href="http://totominc.github.io/idle-quester"><u>Idle-Quester</u></a></h3>
 Idle-RPG is the web-version of the original game <a href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android&hl=fr">Idle-Quest</a> on Android. It's just a simple web-remake, and I use my own formulas on this game. It's a simple project to help me learn more.
 
+<h3><a href="http://totominc.github.io/incremental-rpg">Incremental-RPG</a></h3>
+A simple incremental-game with a touch of RPG on it. It was just to help me learn more (again!), and it's now currently not updated anymore.
+
 <h3><a href="http://totominc.github.io/moneylife"><u>Money-Life</u></a></h3>
 Money-Life is a simple <a href="http://www.kongregate.com/games/hyperhippogames/adventure-capitalist">Adventure Capitalist</a> clone, which was made to help me to learn Javascript. This game is pretty old and ugly.
 
