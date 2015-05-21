@@ -1,6 +1,6 @@
 var weedDealersOwned;
 var weedDealers = [
-    new Dealer("Backyard Dealer",		500,                0.40,   1.30,	0),
+    new Dealer("Backyard Dealer",		250,                0.40,   1.30,	0),
     new Dealer("Small Time Dealer",		500000,             1,		1.25,	0),
     new Dealer("Downtown Dealer",		25000000,           3,      1.20,	0),
     new Dealer("Nightclub Owner",		750000000,          6,      1.15,	0),
