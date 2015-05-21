@@ -375,17 +375,17 @@
             <div class="well">
               <p class="lead underline text-center">How to play?</p>
               <p class="tiny-font justify"><b>Welcome to Blackmarket!</b><br>
-              In this incremental-game, you have to <b>manage an empire of drugs</b>! At the beginning, you're poor, very poor. And you you've only got a gun. To earn your first <b>$$$ bills</b>, you have to shoot, shoot, shoot! You can buy <b>upgrades</b> to help you gain money even faster.<br>
-              After you got a decent amount of $$$, you can start buying some <b>buildings</b> (drug-producing), which will produce a certain amount of <b>specified drug every second</b>.<br>
-              There are three types of drugs in the game (<b>weed, meth and cocaine</b>) and each drug has its own line of buildings. When you got some buildings, you can hire different <b>dealers</b> for each drug, which will sells an amount of <b>their respective drug every second</b>!<br>
-              It's as simple as that, the business of the drugs!<br>
-              <b>Note that Blackmarket never sleeps! Even if you have not left do not leave the game open, your business is always producing and selling drugs!</b></p>
+              Blackmarket is an incremental game where you <b>manage a Drug Empire</b>! In the beginning, you're a poor Street Rat with a gun you stole from Uncle Ronny. To earn your first few <b>$$$ bills</b>, you have to shoot! You can buy <b>upgrades</b> to improve your operations and boost your cash flow.<br>
+              Once you have some cash to spend, you can invest in some <b>"buildings"</b> that will produce "candy" (We mean drugs, LOTS of drugs!). Buildings produce a specific amount of drugs which you can then sell for sweet $Cash Money$! .<br>
+              Blackmarket has three primary drugs (<b>weed, meth and cocaine</b>). Each drug has its own line of buildings and dealers. Once you have a few buildings, you can hire <b>dealers</b>. Dealers sell an amount of <b>their respective drug every second</b>!<br>
+              It's as simple as that, the business of drugs!<br>
+              <b>Note that Blackmarket never sleeps! Even if you close Blackmarket your business will continue producing and selling drugs!</b></p>
               <p class="lead underline text-center">What is prestige?</p>
-              <p class="tiny-font justify"><b>A prestige</b> in some incremental-games is, when <b>you reset everything from the beggining but with a bonus</b> (for example : a multiplier) to reach even further in the game. When you reach a certain point in gameplay, you may choose to prestige because <b>it's the only way to be further in the game</b>. This is done by going to the <b>options-menu</b> and choosing <b>"soft-reset"</b>. Doing that will reset your game and force you to start from the beginning, but - <b>depending on your progress</b> - you will be given a certain amount of <b>"experience"</b>.<br>
-              In Blackmarket, the prestige currency is "experience", and the amount of experience will determine your <b>prestige rank</b>, which will give a <b>prestige multiplier</b>. Take a look in the "table" panel which shows all the prestige ranks, experience they need needed for them and prestige multiplier these ranks give.<br>
-              The prestige multiplier affects the shoot reward and the drugs prices.</p>
-              <p class="lead underline text-center">How is determined experience determined?</p>
-              <p class="tiny-font justify">Your amount of experience is determined by your total money. And the formula is :<br>
+              <p class="tiny-font justify"><b>Prestige</b> is earned as you play and gain more money. <b>Once you're ready you can soft-reset and begin again with a multiplier.</b> When you reach a certain point during game play, you may choose to prestige as <b>it's the best way to get further in the game</b>. This is done by going to the <b>options-menu</b> and choosing <b>"soft-reset"</b>. <b>depending on your progress</b> - you will be given a certain amount of <b>"experience"</b>.<br>
+              In Blackmarket, the prestige currency is "experience", and the amount of experience will determine your <b>prestige rank</b>, which will give a <b>prestige multiplier</b>. Take a look in the "table" panel which shows all the prestige ranks, experience needed for them and prestige multiplier these ranks give.<br>
+              The prestige multiplier affect both the shoot reward and drug prices.</p>
+              <p class="lead underline text-center">How is experience determined?</p>
+              <p class="tiny-font justify">Your amount of experience is determined by your total money. The current formula is :<br>
               <span class="code">Math.floor(35 * Math.sqrt(totalMoney/1e7))</span></p>
             </div>
           </div>
@@ -405,20 +405,21 @@
           </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
-              <p class="lead center underline">v1.10 (05/20/2015) : back to the dev!</p>
+              <p class="lead center underline">v1.10 (05/20/2015) : Back to Development!</p>
               <p class="justify tiny-font">
-                - We are now 2 guys working on Blackmarket : welcome to Latteralus!<br>
+                - Blackmarket now has two Developers! : Welcome Latteralus!<br>
                 - Reworked the UI.<br>
-                - Changed names of builds, dealers, some upgrades and of ranks!<br>
-                - Some small bugs fixed (especially about saving)!<br>
-                - Some backends invisible changes.
+				- Drugs/Builds/Upgrades Balancing
+                - Changed names of builds, dealers, upgrades and ranks! (More to come soon!)<br>
+                - Some small bug fixes (especially about saving)!<br>
+                - Some back end invisible changes.
               </p>
 
               <p class="lead center underline">v1.07 (04/30/2015) : small fixes.</p>
               <p class="justify tiny-font">
                 - Slightly changed prestige panel.<br>
                 - Worked about the experience spent and prestige-ranks bug (It should be fixed now).<br>
-                - Some backend improvement.
+                - Some back end improvement.
               </p>
 
               <p class="lead center underline">v1.06 (04/24/2015) : achievements and game balancing.</p>
@@ -427,7 +428,7 @@
                 - Meth and cocaine buildings/dealers have been boosted, they produces/sell more.<br>
                 - Weed price is nerfed, meth and cocaine is a bit boosted.<br>
                 - Some bugs fixed.<br>
-                - Some backend improvement.
+                - Some back end improvement.
               </p>
 
               <p class="lead center underline">v1.05 (04/23/2015) : prestige-upgrades changed!</p>
