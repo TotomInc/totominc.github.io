@@ -1,2 +1,15 @@
 In this file put everything that need to be done, update it every time you finish something.
 Also add ideas on it.
+
+//Latteralus 05/20/2015//
+ - 1. Slight overhaul of Upgrades.js
+  - I added more beginning shoot upgrades so it doesn't
+  - take as long to get up and running with a Build & Dealer.
+ - 2. Added more upgrades for Weed, Meth and Cocaine. 
+  - Should help with end-game players who are just waiting for
+  the factory.
+ - 3. Balanced the Upgrades.js multipliers, should be much more even and less
+ long waits between upgrades. I also tried to make Guns less powerful while adding
+ more features and upgrades for the drugs. This way your primary source of income
+ isn't a gun. 
+ - 4. Modified Builds and Dealers for more balanced early game
