@@ -173,7 +173,7 @@ Upgrade.init = function() {
 	for (var i = 0; i < reloadTimeUpgrades.length; i++) {
 		var r = reloadTimeUpgrades[i];
 		reloadTimeUpgradesOwned.push(false);
-		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' </b>: ' + a.desc + ' - <i>cost $' + fix(r.price, "money") + '</i></li>');
+		$("#up-reload-time").append('<li id="up-reload-time-' + (i+1) + '" class="list-group-item cur-p"><b>' + r.name + ' </b>: ' + r.desc + ' - <i>cost $' + fix(r.price, "money") + '</i></li>');
 		$("#up-reload-time-" + (i+1)).attr("onclick", "Upgrade.buy('reload-time', " + i + ");");
 	};
 	for (var i = 0; i < weedPriceUpgrades.length; i++) {
