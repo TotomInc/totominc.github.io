@@ -129,17 +129,24 @@ Init.update = function() {
 };
 Init.game = function() {
     Init.variables();
+    
     Upgrade.init();
     Build.init();
     Dealer.init();
     PrestigeUpgrade.init();
     Achievement.init();
+    Part.init();
+    Gun.init();
+
     loadData();
+
     Upgrade.saveCheck();
     Build.check();
     Dealer.check();
+
     PrestigeRank.fillTable();
     PrestigeUpgrade.saveCheck();
+
     resize();
 };
 Init.coreUpdate = function() {
