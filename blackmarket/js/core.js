@@ -80,10 +80,12 @@ Init.update = function() {
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 
+        /*
         if (prestige[0] >= 200000) {
             $("#factory-locked").css("display", "none");
             $("#factory-unlocked").css("display", "block");
         };
+        */
 
         $("#navbar-money").html("$" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
