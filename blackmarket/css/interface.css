@@ -22,6 +22,9 @@ small {
 b {
 	font-weight: 400;
 }
+th {
+	font-weight: normal;
+}
 .code {
 	font-family: 'Consolas';
 }

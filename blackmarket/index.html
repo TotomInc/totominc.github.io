@@ -41,7 +41,7 @@
   <div class="container-fluid">
     <div class="row">
     <!-- player stats + actions -->
-      <div id="panels-col" class="col-md-6 light">
+      <div id="panels-col" class="col-md-5 light">
         <!-- actions panel -->
           <div class="panel panel-primary light">
             <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
@@ -93,7 +93,7 @@
           </div>
       </div>
     <!-- tabs -->
-      <div id="nav-tab-content" class="col-md-6 light">
+      <div id="nav-tab-content" class="col-md-7 light">
       <!-- nav pills -->
         <ul class="nav nav-tabs nav-justified" role="tablist">
           <li><a href="#tab-builds" data-toggle="tab" class="tabs-selectors"><i class="fa fa-users"></i> Drugs/Dealers</a></li>
@@ -251,8 +251,47 @@
           </div>
           <div class="tab-pane fade" id="tab-prod">
             <div class="well">
-              <p class="tiny-font center">This feature will be available soon!<br>
-              This will be a new feature available for mid-players : available for players with more than 250,000 exp.</p>
+              <div id="factory-locked" class="tiny-font center">
+                <p id="factory-start">Factory (or called also gun-production) is available only for players with more than 200,000 experience!<br>
+                Keep playing to unlock it! It really worth it! ;)</p>
+              </div>
+              <div id="factory-unlocked" style="display: none;">
+                <div class="row">
+                  <div class="col-md-4"><p class="text-center">Workers : 0 owned<br>Workers at work : 0/0</p></div>
+                  <div class="col-md-4"><p class="text-center">Next worker cost :<br>1 quadrillion $</p></div>
+                  <div class="col-md-4"><a class="btn btn-success center-block" onclick="Worker.buy();">Buy a worker</a></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="text-center"><b>Guns table</b></p>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Time</th><th>Reward</th></tr></thead>
+                      <tbody id="factory-table"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="text-center"><b>Parts table</b></p>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Time</th><th>Owned</th></tr></thead>
+                      <tbody id="parts-table"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="text-center"><b>Guns assembly table</b></p>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="text-center"><b>Parts creating table</b></p>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Time left</th><th>Craft</th></tr></thead>
+                      <tbody id="parts-crafting-table"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="tab-prestige">
@@ -409,7 +448,7 @@
               <p class="justify tiny-font">
                 - Blackmarket now has two Developers! : Welcome Latteralus!<br>
                 - Reworked the UI.<br>
-				- Drugs/Builds/Upgrades Balancing
+				        - Drugs/Builds/Upgrades Balancing
                 - Changed names of builds, dealers, upgrades and ranks! (More to come soon!)<br>
                 - Some small bug fixes (especially about saving)!<br>
                 - Some back end invisible changes.
