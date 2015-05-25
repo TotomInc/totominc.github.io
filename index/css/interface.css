@@ -1,0 +1,100 @@
+::selection {
+  background: #B2DFDB; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #B2DFDB; /* Gecko Browsers */
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #eee;
+}
+header {
+	padding: 150px 0;
+	background-color: #009688;
+	background-image: url('congruent_outline.png');
+}
+header.alternative {
+	padding: 50px 0;
+	background-image: url('footer_lodyas.png');
+}
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+}
+b {
+	font-family: 'Montserrat', sans-serif;
+}
+a {
+	color: #fff;
+	transition: all 0.2s;
+}
+a:hover {
+	color: #fff;
+	transition: all 0.2s;
+}
+h1 {
+	font-size: 50px;
+}
+p.divider {
+	width: 150px;
+	height: 1px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color: rgba(0,0,0,.2);
+}
+.navbar {
+	margin-bottom: 0;
+}
+.btn-default {
+	padding: 15px 0;
+	background-color: transparent;
+	color: #fff;
+	font-size: 18px;
+	border: 1px solid #fff;
+}
+.btn-default:hover {
+	color: #000;
+	border: 1px solid #fff;
+	background-color: #fff;
+}
+.btn-danger {
+	padding: 7px 0;
+	background-color: #eee;
+	color: #333;
+	font-size: 18px;
+	border: 1px solid #999;
+}
+.btn-danger:hover {
+	background-color: #333;
+	color: #fff;
+	border: 1px solid #333;
+}
+.btn-danger:active {
+	background-color: #333;
+	color: #fff;
+	border: 1px solid #333;
+}
+.blank {
+	width: 100%;
+	height: 50px;
+}
+.text-yellow {
+	color: #f1c40f;
+}
+.text-red {
+	color: #C62828;
+}
+.text-grey {
+	color: #263238;
+}
+.text-white {
+	color: #fff;
+}
+.top-margin {
+	margin-top: 35px;
+}
