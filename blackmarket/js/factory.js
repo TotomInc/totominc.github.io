@@ -18,6 +18,8 @@ var guns = [
 	new Gun("Glock-18",		1,	10)
 ];
 
+var autocraft = false;
+
 function Part(name, cost, time) {
 	this.name = name;
 	this.cost = cost;
@@ -67,6 +69,8 @@ Part.check = function() {
 		$("#factory-parts-table-time-" + (i+1)).html(parts[i].time + " sec");
 	};
 };
+Part.autocraft = function() {
+};
 
 function Gun(name, reward, time) {
 	this.name = name;
@@ -90,6 +94,10 @@ Gun.craft = function(index) {
 	if (gunsTrigged[index] !== true && partsOwned[0] > 0 && partsOwned[1] > 0 && partsOwned[2] > 0 && partsOwned[3] > 0) {
 		gunsTrigged[index] = true;
 		currentTimeGuns[index] = guns[index].time;
+		partsOwned[0]--;
+		partsOwned[1]--;
+		partsOwned[2]--;
+		partsOwned[3]--;
 	};
 };
 Gun.update = function(times) {
@@ -103,11 +111,6 @@ Gun.update = function(times) {
 				currentTimeGuns[i] = false;
 				gunsTrigged[i] = false;
 				gunsOwned[i]++;
-				partsOwned[0]--;
-				partsOwned[1]--;
-				partsOwned[2]--;
-				partsOwned[3]--;
-				gainMoney(guns[i].reward * prestige[2]);
 				Part.check();
 				Gun.check();
 				$("#factory-guns-table-time-" + (i+1)).html(Math.round(guns[i].time) + " sec");
@@ -120,5 +123,32 @@ Gun.check = function() {
 	for (var i = 0; i < guns.length; i++) {
 		$("#factory-guns-table-owned-" + (i+1)).html(gunsOwned[i]);
 		$("#factory-guns-table-time-" + (i+1)).html(guns[i].time + " sec");
+		$("#market-guns-table-owned-" + (i+1)).html(gunsOwned[i]);
+	};
+};
+Gun.sell = function(index) {
+	if (gunsOwned[index] > 0) {
+		gunsOwned[index]--;
+		gainMoney(getGunReward(index));
+		Gun.check();
+		Market.check();
+	};
+};
+
+function Market() { Log("This is needed"); };
+Market.init = function() {
+	for (var i = 0; i < guns.length; i++) {
+		$("#market-guns-table").append('<tr id="market-guns-table-tr-' + (i+1) + '"></tr>');
+		$("#market-guns-table-tr-" + (i+1)).append('<td id="market-guns-table-name-' + (i+1) + '">' + guns[i].name + '</td>');
+		$("#market-guns-table-tr-" + (i+1)).append('<td id="market-guns-table-reward-' + (i+1) + '">' + fix(getGunReward(i), 'money') + '$</td>');
+		$("#market-guns-table-tr-" + (i+1)).append('<td id="market-guns-table-owned-' + (i+1) + '">' + gunsOwned[i] + '</td>');
+		$("#market-guns-table-tr-" + (i+1)).append('<td id="market-guns-table-sell-' + (i+1) + '">' + '<a class="btn btn-success btn-sm center-block" onclick="Gun.sell(' + i + ');">Sell</a>' + '</td>');
+	};
+};
+Market.check = function() {
+	for (var i = 0; i < guns.length; i++) {
+		$("#market-guns-table-reward-" + (i+1)).html(fix(getGunReward(i), 'money') + '$');
+		$("#factory-guns-table-owned-" + (i+1)).html(gunsOwned[i]);
+		$("#market-guns-table-owned-" + (i+1)).html(gunsOwned[i]);
 	};
 };

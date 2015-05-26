@@ -253,20 +253,21 @@
           <div class="tab-pane fade" id="tab-prod">
             <div class="well">
               <div id="factory-locked" class="tiny-font center">
-                <p id="factory-start">Factory (or called also gun-production) WILL BE available only for players with more than 200,000 experience!<br>
+                <p id="factory-start">Factory (or called also gun-production) WILL BE available only for players with more than 1.000 million of experience!<br>
                 We are actually working on the factory, keep playing, it will be live soon!</p>
               </div>
               <div id="factory-unlocked" style="display: none;">
+                <div class="checkbox tiny-font center"><label><input type="checkbox" id="partAutocraft" onclick="Part.autocraft();"> Enable auto-craft (TODO)</label></div>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="text-center"><u>Craft some guns parts :</u></p>
+                    <h6 class="text-center"><u>Craft some guns parts :</u></h6>
                     <table class="table table-striped table-hover">
                       <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
                       <tbody id="factory-parts-table"></tbody>
                     </table>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-center"><u>Craft guns :</u></p>
+                    <h6 class="text-center"><u>Craft guns :</u></h6>
                     <table class="table table-striped table-hover">
                       <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
                       <tbody id="factory-guns-table"></tbody>
@@ -275,7 +276,8 @@
                   <div class="col-md-12">
                     <p class="text-center"><b>Welcome to the factory, here you can produces parts of guns to craft guns.<br>
                     Each gun require at least one of all parts.<br>
-                    After crafting your guns, you can sell them on the 'gun-market'.</b></p>
+                    After crafting your guns, you can sell them on the 'gun-market'.<br>
+                    Note about autocraft : it will try to craft all parts when it's possible.</b></p>
                   </div>
                 </div>
               </div>
@@ -284,12 +286,22 @@
           <div class="tab-pane fade" id="tab-gun">
             <div class="well">
               <div id="market-locked" class="tiny-font center">
-                <p id="market-start">Gun-market WILL BE available only for player with more than 200,000 experience!<br>
+                <p id="market-start">Gun-market WILL BE available only for player with more than 1.000 experience!<br>
                 Ii will be unlocked for players that have unlocked the factory feature.<br>
                 Note that we are working on the factory and gun-market!<br>
                 Keep playing, available soon, I promise! ;)</p>
               </div>
-              <div id="market-unlocked" class="tiny-font center" style="display: none;"></div>
+              <div id="market-unlocked" class="tiny-font" style="display: none;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="text-center"><u>Sell guns here :</u></h6>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Reward</th><th>Owned</th><th>Sell</th></tr></thead>
+                      <tbody id="market-guns-table"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="tab-prestige">

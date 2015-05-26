@@ -20,7 +20,9 @@ var allVars = [
     'weedBuildsOwned', 'methBuildsOwned', 'cocaineBuildsOwned',
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned',
     'prestigeShootingOwned', 'prestigeReloadingOwned',
-    'totalMoneyAchOwned', 'experienceAchOwned', 'shootAchOwned', 'reloadAchOwned'
+    'totalMoneyAchOwned', 'experienceAchOwned', 'shootAchOwned', 'reloadAchOwned',
+    'partsOwned', 'partsTrigged', 'currentTimeParts',
+    'gunsOwned', 'gunsTrigged', 'currentTimeGuns'
 ];
 
 var inputFps = document.getElementById("update-fps");
@@ -31,6 +33,7 @@ var showUpgradesOwnedCheckBox = document.getElementById('showUpgradesOwned');
 var showAchOwnedCheckBox = document.getElementById('showAchOwned');
 var enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
 var enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
+var enableAutoCraft = document.getElementById('partAutocraft');
 
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 function Drug(name, price) {
@@ -65,7 +68,10 @@ Init.variables = function() {
     };
 
     before = new Date().getTime();
-    init = true;
+
+    if (jQuery) {
+        init = true;
+    };
 };
 Init.update = function() {
     if (init == true) {
@@ -79,12 +85,12 @@ Init.update = function() {
         showAchOwnedCheckBox = document.getElementById('showAchOwned');
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
-        /*
-        if (prestige[0] >= 200000) {
+        enableAutoCraft = document.getElementById('partAutocraft');
+        
+        if (prestige[0] >= 1000000) {
             $("#factory-locked, #market-locked").css("display", "none");
             $("#factory-unlocked, #market-unlocked").css("display", "block");
         };
-        */
 
         $("#navbar-money").html("$" + fix(money[0], "money") + " <small>($" + fix(moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2], "money") + "/sec)</small>");
         $("#navbar-weed").html("Weed : " + fix(drugStock[0], "drug") + "g");
@@ -143,6 +149,7 @@ Init.game = function() {
     Achievement.init();
     Part.init();
     Gun.init();
+    Market.init();
 
     loadData();
 
@@ -151,6 +158,7 @@ Init.game = function() {
     Dealer.check();
     Part.check();
     Gun.check();
+    Market.check();
 
     PrestigeRank.fillTable();
     PrestigeUpgrade.saveCheck();

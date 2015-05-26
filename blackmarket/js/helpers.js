@@ -184,6 +184,9 @@ function getPrestigeUpgradesOwned(type) {
 		return owned;
 	};
 };
+function getGunReward(index) {
+	return guns[index].reward * prestige[2];
+};
 function isOdd(number) {
 	return number % 2;
 };
