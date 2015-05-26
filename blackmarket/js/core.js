@@ -79,11 +79,10 @@ Init.update = function() {
         showAchOwnedCheckBox = document.getElementById('showAchOwned');
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
-
         /*
         if (prestige[0] >= 200000) {
-            $("#factory-locked").css("display", "none");
-            $("#factory-unlocked").css("display", "block");
+            $("#factory-locked, #market-locked").css("display", "none");
+            $("#factory-unlocked, #market-unlocked").css("display", "block");
         };
         */
 
@@ -150,6 +149,8 @@ Init.game = function() {
     Upgrade.saveCheck();
     Build.check();
     Dealer.check();
+    Part.check();
+    Gun.check();
 
     PrestigeRank.fillTable();
     PrestigeUpgrade.saveCheck();
@@ -164,10 +165,12 @@ Init.coreUpdate = function() {
             Build.earn(Math.floor(elapsedTime / interval));
             Dealer.sell(Math.floor(elapsedTime / interval));
             Part.update(Math.floor(elapsedTime / interval));
+            Gun.update(Math.floor(elapsedTime / interval));
         } else {
             Build.earn(1);
             Dealer.sell(1);
             Part.update(1);
+            Gun.update(1);
         };
         before = new Date().getTime();
         inputValue = inputFps.value;
