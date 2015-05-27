@@ -257,7 +257,10 @@
                 We are actually working on the factory, keep playing, it will be live soon!</p>
               </div>
               <div id="factory-unlocked" style="display: none;">
-                <div class="checkbox tiny-font center"><label><input type="checkbox" id="partAutocraft" onclick="Part.autocraft();"> Enable auto-craft (TODO)</label></div>
+                <div class="row">
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="partAutocraft" onclick="Part.autocraft();"> Enable auto-craft parts</label></div></div>
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="gunAutocraft" onclick="Gun.autocraft();"> Enable auto-craft guns</label></div></div>
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <h6 class="text-center"><u>Craft some guns parts :</u></h6>
@@ -299,6 +302,11 @@
                       <thead><tr><th>Name</th><th>Reward</th><th>Owned</th><th>Sell</th></tr></thead>
                       <tbody id="market-guns-table"></tbody>
                     </table>
+                  </div>
+                  <div class="col-md-12">
+                    <p class="text-center"><b>Welcome to the gun-market!<br>
+                    Here you will be able to sell your hardly crafted guns.<br>
+                    You can increase the prices of guns by their specific buying upgrades.</b></p>
                   </div>
                 </div>
               </div>

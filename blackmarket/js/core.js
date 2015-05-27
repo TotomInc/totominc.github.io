@@ -21,8 +21,8 @@ var allVars = [
     'weedDealersOwned', 'methDealersOwned', 'cocaineDealersOwned',
     'prestigeShootingOwned', 'prestigeReloadingOwned',
     'totalMoneyAchOwned', 'experienceAchOwned', 'shootAchOwned', 'reloadAchOwned',
-    'partsOwned', 'partsTrigged', 'currentTimeParts',
-    'gunsOwned', 'gunsTrigged', 'currentTimeGuns'
+    'partsOwned', 'partsTrigged', 'currentTimeParts', 'partsTimeMultiplier',
+    'gunsOwned', 'gunsTrigged', 'currentTimeGuns', 'gunsTimeMultiplier'
 ];
 
 var inputFps = document.getElementById("update-fps");
@@ -34,6 +34,7 @@ var showAchOwnedCheckBox = document.getElementById('showAchOwned');
 var enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
 var enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
 var enableAutoCraft = document.getElementById('partAutocraft');
+var enableAutoCraft2 = document.getElementById('gunAutocraft');
 
 function Log(text) { console.log("Blackmarket v" + version + release + " - " + text); };
 function Drug(name, price) {
@@ -86,6 +87,7 @@ Init.update = function() {
         enableAutoShootCheckBox = document.getElementById('enableAutoShoot');
         enableAutoReloadCheckBox = document.getElementById('enableAutoReload');
         enableAutoCraft = document.getElementById('partAutocraft');
+        enableAutoCraft2 = document.getElementById('gunAutocraft');
         
         if (prestige[0] >= 1000000) {
             $("#factory-locked, #market-locked").css("display", "none");

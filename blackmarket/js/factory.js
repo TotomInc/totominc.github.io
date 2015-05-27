@@ -1,21 +1,23 @@
 var partsOwned = [];
 var partsTrigged = [];
 var currentTimeParts = [];
+var partsTimeMultiplier = [];
 var parts = [
-	new Part("Magazine",	0,	5),
+	new Part("Magazine",	0,	3),
 	new Part("Trigger",		0,	5),
-	new Part("Barrel",		0,	5),
-	new Part("Grip",		0,	5)
+	new Part("Barrel",		0,	7),
+	new Part("Grip",		0,	10)
 ];
 
 var gunsOwned = [];
 var gunsTrigged = [];
 var currentTimeGuns = [];
+var gunsTimeMultiplier = [];
 var guns = [
-	new Gun("AK-47",		1,	10),
-	new Gun("M4A4",			1,	10),
+	new Gun("AK-47",		1,	5),
+	new Gun("M4A4",			1,	7),
 	new Gun("USP-S",		1,	10),
-	new Gun("Glock-18",		1,	10)
+	new Gun("Glock-18",		1,	13)
 ];
 
 var autocraft = false;
@@ -58,7 +60,11 @@ Part.update = function(times) {
 				Part.check();
 				Gun.check();
 				$("#factory-parts-table-time-" + (i+1)).html(parts[i].time + " sec");
-				$("#factory-parts-btn-" + (i+1)).removeAttr('disabled');
+				if (enableAutoCraft.checked == true) {
+					$("#factory-parts-btn-" + (i+1)).attr('disabled', 'disabled');
+				} else {
+					$("#factory-parts-btn-" + (i+1)).removeAttr('disabled');
+				};
 			};
 		};
 	};
@@ -70,6 +76,20 @@ Part.check = function() {
 	};
 };
 Part.autocraft = function() {
+	if (enableAutoCraft.checked == true) {
+		for (var i = 0; i < parts.length; i++) {
+			$("#factory-parts-btn-" + (i+1)).attr('onclick', '');
+			if (currentTimeParts[i] == false && partsTrigged[i] !== true) {
+				partsTrigged[i] = true;
+				currentTimeParts[i] = parts[i].time;
+				setTimeout(Part.autocraft, (parts[i].time * 1000 + 250));
+			};
+		};
+	} else {
+		for (var i = 0; i < parts.length; i++) {
+			$("#factory-parts-btn-" + (i+1)).attr('onclick', 'Part.craft(' + i + ');');
+		};
+	}
 };
 
 function Gun(name, reward, time) {
@@ -113,8 +133,12 @@ Gun.update = function(times) {
 				gunsOwned[i]++;
 				Part.check();
 				Gun.check();
+				if (enableAutoCraft2.checked == true) {
+					$("#factory-guns-btn-" + (i+1)).attr('disabled', 'disabled');
+				} else {
+					$("#factory-guns-btn-" + (i+1)).removeAttr('disabled');
+				};
 				$("#factory-guns-table-time-" + (i+1)).html(Math.round(guns[i].time) + " sec");
-				$("#factory-guns-btn-" + (i+1)).removeAttr('disabled');
 			};
 		};
 	};
@@ -132,6 +156,26 @@ Gun.sell = function(index) {
 		gainMoney(getGunReward(index));
 		Gun.check();
 		Market.check();
+	};
+};
+Gun.autocraft = function() {
+	if (enableAutoCraft2.checked == true) {
+		for (var i = 0; i < guns.length; i++) {
+			$("#factory-guns-btn-" + (i+1)).attr('onclick', '');
+			if (currentTimeGuns[i] == false && gunsTrigged[i] !== true && partsOwned[0] > 0 && partsOwned[1] > 0 && partsOwned[2] > 0 && partsOwned[3] > 0) {
+				gunsTrigged[i] = true;
+				currentTimeGuns[i] = guns[i].time;
+				partsOwned[0]--;
+				partsOwned[1]--;
+				partsOwned[2]--;
+				partsOwned[3]--;
+				setTimeout(Gun.autocraft, (guns[i].time * 1000 + 250));
+			};
+		};
+	} else {
+		for (var i = 0; i < guns.length; i++) {
+			$("#factory-guns-btn-" + (i+1)).attr('onclick', 'Gun.craft(' + i + ');');
+		};
 	};
 };
 
