@@ -3,10 +3,10 @@ var partsTrigged = [];
 var currentTimeParts = [];
 var partsTimeMultiplier = [];
 var parts = [
-	new Part("Magazine",	0,	3),
-	new Part("Trigger",		0,	5),
-	new Part("Barrel",		0,	7),
-	new Part("Grip",		0,	10)
+	new Part("Magazine",	0,	25),
+	new Part("Trigger",		0,	10),
+	new Part("Barrel",		0,	15),
+	new Part("Grip",		0,	30)
 ];
 
 var gunsOwned = [];
@@ -14,10 +14,10 @@ var gunsTrigged = [];
 var currentTimeGuns = [];
 var gunsTimeMultiplier = [];
 var guns = [
-	new Gun("AK-47",		1,	5),
-	new Gun("M4A4",			1,	7),
-	new Gun("USP-S",		1,	10),
-	new Gun("Glock-18",		1,	13)
+	new Gun("AK-47",		1,	120,	0.007),
+	new Gun("M4A4",			1,	90,		0.012),
+	new Gun("USP-S",		1,	45,		0.09),
+	new Gun("Glock-18",		1,	60,		0.07)
 ];
 
 var autocraft = false;
@@ -77,6 +77,7 @@ Part.check = function() {
 };
 Part.autocraft = function() {
 	if (enableAutoCraft.checked == true) {
+		enableAutoCraftCheck = true;
 		for (var i = 0; i < parts.length; i++) {
 			$("#factory-parts-btn-" + (i+1)).attr('onclick', '');
 			if (currentTimeParts[i] == false && partsTrigged[i] !== true) {
@@ -86,16 +87,18 @@ Part.autocraft = function() {
 			};
 		};
 	} else {
+		enableAutoCraftCheck = false;
 		for (var i = 0; i < parts.length; i++) {
 			$("#factory-parts-btn-" + (i+1)).attr('onclick', 'Part.craft(' + i + ');');
 		};
 	}
 };
 
-function Gun(name, reward, time) {
+function Gun(name, reward, time, multiplier) {
 	this.name = name;
 	this.reward = reward;
 	this.time = time;
+	this.multiplier = multiplier;
 };
 Gun.init = function() {
 	for (var i = 0; i < guns.length; i++) {
@@ -160,6 +163,7 @@ Gun.sell = function(index) {
 };
 Gun.autocraft = function() {
 	if (enableAutoCraft2.checked == true) {
+		enableAutoCraftCheck2 = true;
 		for (var i = 0; i < guns.length; i++) {
 			$("#factory-guns-btn-" + (i+1)).attr('onclick', '');
 			if (currentTimeGuns[i] == false && gunsTrigged[i] !== true && partsOwned[0] > 0 && partsOwned[1] > 0 && partsOwned[2] > 0 && partsOwned[3] > 0) {
@@ -173,6 +177,7 @@ Gun.autocraft = function() {
 			};
 		};
 	} else {
+		enableAutoCraftCheck2 = false;
 		for (var i = 0; i < guns.length; i++) {
 			$("#factory-guns-btn-" + (i+1)).attr('onclick', 'Gun.craft(' + i + ');');
 		};

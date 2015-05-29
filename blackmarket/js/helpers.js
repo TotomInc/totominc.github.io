@@ -185,7 +185,8 @@ function getPrestigeUpgradesOwned(type) {
 	};
 };
 function getGunReward(index) {
-	return guns[index].reward * prestige[2];
+	var mps = moneyPerSec[0] + moneyPerSec[1] + moneyPerSec[2];
+	return mps / guns[index].multiplier;
 };
 function isOdd(number) {
 	return number % 2;
