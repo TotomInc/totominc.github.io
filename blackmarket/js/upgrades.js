@@ -84,7 +84,12 @@ var weedPriceUpgrades = [
 	new Upgrade("Genetically Modified Weed II",             125000000000000000000,      function() { drugMultiplier[0] *= 2 },    "weed price x2"),
 	new Upgrade("Genetically Modified Weed III",	        725000000000000000000,	    function() { drugMultiplier[0] *= 3 },    "weed price x3"),
     new Upgrade("Genetically Modified Weed IV",	            1750000000000000000000,	    function() { drugMultiplier[0] *= 2 },    "weed price x2"),
-	new Upgrade("Genetically Modified Weed V",              12500000000000000000000,    function() { drugMultiplier[0] *= 2 },    "weed price x2")
+	new Upgrade("Genetically Modified Weed V",              12500000000000000000000,    function() { drugMultiplier[0] *= 2 },    "weed price x2"),
+    new Upgrade("Another weed price upgrade...",            150000000000000000000000,   function() { drugMultiplier[0] *= 3 },    "weed price x3"),
+    new Upgrade("Another weed price upgrade...",            650000000000000000000000,   function() { drugMultiplier[0] *= 2 },    "weed price x2"),
+    new Upgrade("Another weed price upgrade...",            1250000000000000000000000,  function() { drugMultiplier[0] *= 3 },    "weed price x3"),
+    new Upgrade("Antoher weed price upgrade...",            150000000000000000000000000,    function() { drugMultiplier[0] *= 2 },    "weed price x2"),
+    new Upgrade("Another weed price upgrade...",            750000000000000000000000000,    function() { drugMultiplier[0] *= 3 },    "weed price x3")
 ];
 
 var methPriceUpgradesOwned;
@@ -108,7 +113,12 @@ var methPriceUpgrades = [
 	new Upgrade("Tubes, Lots of Tubes",		        750000000000000000000,	    function() { drugMultiplier[1] *= 2 },    "meth price x2"),
 	new Upgrade("High-Tech Lab",	                1500000000000000000000,	    function() { drugMultiplier[1] *= 2 },    "meth price x2"),
 	new Upgrade("Ivy League Chemists",	            5000000000000000000000,	    function() { drugMultiplier[1] *= 3 },    "meth price x3"),
-	new Upgrade("Amezcua State-of-the-Art Lab",	    10000000000000000000000,	function() { drugMultiplier[1] *= 2 },    "meth price x2")
+	new Upgrade("Amezcua State-of-the-Art Lab",	    10000000000000000000000,	function() { drugMultiplier[1] *= 2 },    "meth price x2"),
+    new Upgrade("Another meth price upgrade...",    150000000000000000000000,   function() { drugMultiplier[1] *= 3 },    "meth price x3"),
+    new Upgrade("Another meth price upgrade...",    750000000000000000000000,   function() { drugMultiplier[1] *= 2 },    "meth price x2"),
+    new Upgrade("Another meth price upgrade...",    13500000000000000000000000,     function() { drugMultiplier[1] *= 3 },    "meth price x3"),
+    new Upgrade("Another meth price upgrade...",    250000000000000000000000000,    function() { drugMultiplier[1] *= 2 },    "meth price x2"),
+    new Upgrade("Another meth price upgrade...",    950000000000000000000000000,    function() { drugMultiplier[1] *= 3 },    "meth price x3")
 ];
 
 var cocainePriceUpgradesOwned;
@@ -133,7 +143,12 @@ var cocainePriceUpgrades = [
     new Upgrade("Professional Underground Lab",		    5000000000000000000000,	    function() { drugMultiplier[2] *= 2 },    "cocaine price x2"),
     new Upgrade("Field Expansion V",		            12500000000000000000000,	function() { drugMultiplier[2] *= 2 },    "cocaine price x2"),
     new Upgrade("Field Expansion VI",		            65400000000000000000000,	function() { drugMultiplier[2] *= 3 },    "cocaine price x3"),
-    new Upgrade("Professional Underground Lab II",		150000000000000000000000,	function() { drugMultiplier[2] *= 2 },    "cocaine price x2")
+    new Upgrade("Professional Underground Lab II",		150000000000000000000000,	function() { drugMultiplier[2] *= 2 },    "cocaine price x2"),
+    new Upgrade("Another cocaine price upgrade...",     1000000000000000000000000,  function() { drugMultiplier[2] *= 3 },    "cocaine price x3"),
+    new Upgrade("Another cocaine price upgrade...",     25000000000000000000000000,     function() { drugMultiplier[2] *= 2 },    "cocaine price x2"),
+    new Upgrade("Another cocaine price upgrade...",     175000000000000000000000000,    function() { drugMultiplier[2] *= 3 },    "cocaine price x3"),
+    new Upgrade("Another cocaine price upgrade...",     825000000000000000000000000,    function() { drugMultiplier[2] *= 2 },    "cocaine price x2"),
+    new Upgrade("Another cocaine price upgrade...",     10000000000000000000000000000,  function() { drugMultiplier[2] *= 3 },    "cocaine price x3")
 ];
 
 function Upgrade(name, price, run, desc) {

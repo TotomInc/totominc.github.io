@@ -22,7 +22,12 @@ var experienceAch = [
 	new Achievement("Experienced VII",	"Earn 100.000 million experience",		1e8),
 	new Achievement("Experienced VIII",	"Earn 1.000 billion experience",		1e9),
 	new Achievement("Experienced IX",	"Earn 250.000 billion experience",		25e10),
-	new Achievement("Experienced X",	"Earn 1.000 trillion experience",		1e12)
+	new Achievement("Experienced X",	"Earn 1.000 trillion experience",		1e12),
+	new Achievement("Prestigious I",	"Earn 100.000 trillion experience",		1e14),
+	new Achievement("Prestigious II",	"Earn 500.000 trillion experience",		5e14),
+	new Achievement("Prestigious III",	"Earn 1.000 quadrillion experience",	1e15),
+	new Achievement("Prestigious IV",	"Earn 5.000 quadrillion experience",	5e15),
+	new Achievement("Prestigious V",	"Earn 50.000 quadrillion experience",	5e16)
 ];
 var shootAchOwned;
 var shootAch = [
