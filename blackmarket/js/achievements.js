@@ -67,7 +67,8 @@ var reloadAch = [
 	new Achievement("Master Reloader VI",	"Reload 750,000 times",			750000),
 	new Achievement("Master Reloader VII",	"Reload 2.500 million times",	2500000),
 	new Achievement("Master Reloader VIII",	"Reload 7.500 million times",	7500000),
-	new Achievement("Master Reloader X",	"Reload 25.000 million times",	25000000),
+	new Achievement("Master Reloader IX",	"Reload 15.000 million times",	15000000),
+	new Achievement("Master Reloader X",	"Reload 25.000 million times",	25000000)
 ];
 
 function Achievement(name, text, reqNum) {

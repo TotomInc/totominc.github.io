@@ -1,7 +1,7 @@
 var maxpx = $(document).height();
 var widthpx = $(document).width();
-var marginpx = 200;
-var panelspx = 150;
+var marginpx = 150;
+var panelspx = 100;
 
 function resize() {
 	Log("Browser width : " + widthpx + "px - browser height : " + maxpx + "px");

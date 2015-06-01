@@ -253,29 +253,36 @@
           <div class="tab-pane fade" id="tab-prod">
             <div class="well">
               <div id="factory-locked" class="tiny-font center">
-                <p id="factory-start">Factory (or called also gun-production) WILL BE available only for players with more than 200,000 experience!<br>
+                <p id="factory-start">Factory (or called also gun-production) WILL BE available only for players with more than 1.000 million of experience!<br>
                 We are actually working on the factory, keep playing, it will be live soon!</p>
               </div>
               <div id="factory-unlocked" style="display: none;">
                 <div class="row">
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="partAutocraft" onclick="Part.autocraft();"> Enable auto-craft parts</label></div></div>
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="gunAutocraft" onclick="Gun.autocraft();"> Enable auto-craft guns</label></div></div>
+                </div>
+                <div class="row">
                   <div class="col-md-6">
-                    <p class="text-center"><u>Craft some guns parts :</u></p>
+                    <h6 class="text-center"><u>Craft some guns parts :</u></h6>
                     <table class="table table-striped table-hover">
                       <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
                       <tbody id="factory-parts-table"></tbody>
                     </table>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-center"><u>Craft guns :</u></p>
+                    <h6 class="text-center"><u>Craft guns :</u></h6>
                     <table class="table table-striped table-hover">
                       <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
                       <tbody id="factory-guns-table"></tbody>
                     </table>
                   </div>
                   <div class="col-md-12">
+                    <h6 class="text-center">Warning : offline parts/gun production doesn't work ATM, we are working on it!</h6>
                     <p class="text-center"><b>Welcome to the factory, here you can produces parts of guns to craft guns.<br>
                     Each gun require at least one of all parts.<br>
-                    After crafting your guns, you can sell them on the 'gun-market'.</b></p>
+                    After crafting your guns, you can sell them on the 'gun-market'.<br>
+                    Note about autocraft : it will try to craft all parts when it's possible.<br>
+                    Autocraft for the guns will craft the first gun of the list of there is not enough parts.</b></p>
                   </div>
                 </div>
               </div>
@@ -284,12 +291,26 @@
           <div class="tab-pane fade" id="tab-gun">
             <div class="well">
               <div id="market-locked" class="tiny-font center">
-                <p id="market-start">Gun-market WILL BE available only for player with more than 200,000 experience!<br>
+                <p id="market-start">Gun-market WILL BE available only for player with more than 1.000 experience!<br>
                 Ii will be unlocked for players that have unlocked the factory feature.<br>
                 Note that we are working on the factory and gun-market!<br>
                 Keep playing, available soon, I promise! ;)</p>
               </div>
-              <div id="market-unlocked" class="tiny-font center" style="display: none;"></div>
+              <div id="market-unlocked" class="tiny-font" style="display: none;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="text-center"><u>Sell guns here :</u></h6>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Reward</th><th>Owned</th><th>Sell</th></tr></thead>
+                      <tbody id="market-guns-table"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-12">
+                    <p class="text-center"><b>Welcome to the gun-market!<br>
+                    Here you will be able to sell your hardly crafted guns.</b></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="tab-prestige">
@@ -442,6 +463,17 @@
           </div>
           <div class="tab-pane fade" id="tab-patch">
             <div class="well">
+              <p class="lead center underline">v1.20 : factory/gun-production</p>
+              <p class="justify tiny-font">
+                - New features have been added : the factory (also called gun-production) and the gun-market!<br>
+                - Some small balancing.</p>
+              <p class="center tiny-font"><b>
+                I think it will be the end of Blackmarket, I don't plan to add anymore new content/features.<br>
+                It was a pleasure to develop this game, I enjoyed to make it.<br>
+                I hope you enjoyed Blackmarket as much as we enjoy making it!<br>
+                Thanks for playing Blackmarket!</b>
+              </p>
+
               <p class="lead center underline">v1.10 (05/20/2015) : Back to Development!</p>
               <p class="justify tiny-font">
                 - Blackmarket now has two Developers! : Welcome Latteralus!<br>
