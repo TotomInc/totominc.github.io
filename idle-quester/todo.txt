@@ -7,4 +7,3 @@ _______________________________________________________
 
 - look for a formula about player amulet and exp decrease
 - add random events
-- add charts in stats
