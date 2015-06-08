@@ -1,124 +1,99 @@
-var options = {
-	fps: 60,
-	interval: (1000/60),
-	now: undefined,
-	before: undefined,
-	init: false,
-	numbers: "shortscale",
-	theme: "Default",
-	version: "v0.104",
+var options = o = {};
+var optionsfunctions = of = {};
 
-	init: function() {
-		save.loadData();
-		save.checkData();
+o.init = false;
+o.version = 0.001;
+o.fps = 60;
+o.interval = (1000/o.fps);
+o.saving = true;
+o.autoidle = true;
+o.before = new Date().getTime();
+o.now = new Date().getTime();
 
-		success.init();
+of.display = function() {
+	var playerProgress = Math.floor((p.xp/p.xpNeeded) * 100);
+	var questProgress = Math.floor((p.questXp/p.questXpNeeded) * 100);
 
-		this.before = new Date().getTime();
-		$("#t-" + this.theme).attr("selected", "");
-		$("#stylesheet").attr("href", themes[themeSelected.selectedIndex].path);
-		$("#nav-version").html("(" + this.version + ")");
-		
-		if (player.name == "undefined") {
-			$('#begin').modal('show');
-			$('#alert-newplayer').css("display", "block");
-		};
-		// init bootstrap tooltip.js
-		$(function () {
-		  $('[data-toggle="tooltip"]').tooltip()
-		});
+	var a = document.getElementById('gold-slider');
+	var b = document.getElementById('level-slider');
 
-		this.init = true;
-	},
-	update: function() {
-		if (this.init == true) {
-			this.now = new Date().getTime();
-			var elapsedTime = this.now - this.before;
-			if (elapsedTime > 17)
-				quest.idle(Math.floor(elapsedTime/this.interval));
-			else
-				quest.idle(1);
-			this.before = new Date().getTime();
+	$("#nav-title").html("Idle-Quester <small>(" + o.version + ")</small>");
+	$("#nav-gold").html("Gold : " + fix(p.gold, 2));
+	$("#nav-gems").html("Gems : " + fix(p.gems, 0));
+	$("#nav-level").html("Level : " + fix(p.level, 0));
 
-			this.display();
-			success.check();
-		};
-	},
-	display: function() {
-		if (this.init == true) {
-			var goldRange = document.getElementById("craft-gold");
-			var levelRange = document.getElementById("craft-level");
-			var gemsRange = document.getElementById("craft-gems");
-			var progress = Math.floor((player.xp/player.xpNeeded) * 100);
-			var qprogress = Math.floor((quest.xp/quest.xpNeeded) * 100);
+	$("#quest-progress").css('width', questProgress + '%');
+	$("#quest-progress").html(questProgress + '%');
+	$("#player-progress").css('width', playerProgress + '%');
+	$("#player-progress").html(playerProgress + '%');
 
-			if (progress > 100)
-				progress = 100;
-			if (qprogress > 100)
-				qprogress = 100;
-			
-			// nav stats
-			$("#nav-gold").html("Gold : " + fix(player.gold, "3d"));
-			$("#nav-gems").html("Gems : " + fix(player.gems, "3d"));
-			$("#nav-level").html("Level : " + fix(player.level, "0d"));
-			$("#nav-playerprogress").css("width", progress + "%");
-			// player related stats
-			$("#player-progressbar").css("width", progress + "%");
-			$("#player-progressbar-percent").html(progress + "%");
-			$("#player-level").html(player.name + " level : " + fix(player.level, "0d"));
-			$("#player-xp").html("XP : " + fix(player.xp, "1d") + "/" + fix(player.xpNeeded, "1d"));
-			$("#player-gold").html("Gold : " + fix(player.gold, "3d"));
-			$("#player-gems").html("Gems : " + fix(player.gems, "3d"));
-			$("#player-sword").html(player.sword.name + " : +" + fix(player.sword.damage, "1d") + " dmg/click");
-			$("#player-sword-percent").html("(" + fix(player.sword.percent, "1d") + "%)");
-			$("#player-boots").html(player.boots.name + " : +" + fix(player.boots.speed, "1d") + " speed/click");
-			$("#player-boots-percent").html("(" + fix(player.boots.percent, "1d") + "%)");
-			$("#player-amulet").html(player.amulet.name + " : +" + fix(player.amulet.luck, "1d") + " luck");
-			$("#player-amulet-percent").html("(" + fix(player.amulet.percent, "1d") + "%)");
-			$("#player-prestigecost").html("Prestige cost : " + fix(helpers.prestigeCost(), "0d") + " levels");
-			$("#player-prestigemultiplier").html("Prestige multiplier : x" + fix(player.multiplier, "0d"));
-			// craft related stats
-			$("#craft-goldcost").html(goldRange.value + "% gold");
-			$("#craft-levelcost").html(levelRange.value + " levels");
-			$("#craft-level").attr("max", player.level);
-			$("#craft-gems").attr("max", player.gems);
-			$("#craft-effect").html(fix(player.craft("stats-effect"), "1d") + " damage/speed (" + fix(player.craft("stats-percent"), "1d") + "%)");
-			// leaderboards related
-			$("#leaderboard-intro").html("Post your stats as the name of <u>" + player.name + "</u>.");
-			// quest related
-			$("#nav-questprogress").css("width", qprogress + "%");
-			$("#quest-progressbar").css("width", qprogress + "%");
-			$("#quest-progressbar-percent").html(qprogress + "%");
-			$("#quest-info").html("Quest type : " + quest.type);
-			$("#quest-name").html(quest.name);
-			$("#quest-multiplier").html("Idle speed multiplier : x" + fix(quest.idleMultiplier, "2d"));
-			document.title = "IQ - Level " + player.level + " (" + qprogress + "%)";
-			// skills related
-			$("#skills-idlemultiplier").html("Upgrade your idle-multiplier by 0.10!<br>Upgrade cost : " + fix(skills.idleMultiplierCost, "0d") + " gems");
-			$("#skills-instantgold").html("Earn gold like if you were at level " + fix(player.level + 50, "0d") + "!<br>Cost : " + fix(skills.instantGoldCost, "0d") + " gems");
-			// stats panel
-			$("#stats-1").html("Current gold : " + fix(player.gold, "3d") + "<br>Total gold earned : " + fix(player.maxGold, "3d"));
-			$("#stats-2").html("Current level : " + fix(player.level, "0d") + "<br>Max level : " + fix(player.maxLevel, "0d"))
-			// success related
-			$("#success-points").html(fix(success.points, "0d") + " achievements points (currently useless)");
-		};
-	},
-	trigger: function() {
-		var shortscale = document.getElementById("options-shortscale");
-		var scientific = document.getElementById("options-scientific");
-		if (shortscale.checked == true)
-			this.numbers = "shortscale";
+	$("#quest-stats").html("Quest type : " + returnQuestType() + "<br>Quest XP : " + fix(p.questXp, 0) + "/" + fix(p.questXpNeeded, 0) + "<br>" + p.questName);
+	$("#player-stats").html("Gold : " + fix(p.gold, 2) + "<br>XP : " + fix(p.xp, 0) + "/" + fix(p.xpNeeded, 0) + "<br>" + p.name + " level : " + fix(p.level, 0));
+	$("#player-sword").html(ps.name + " : +" + fix(ps.effect, 0) + " dmg<br>+" + fix(ps.percent, 0) + "%");
+	$("#player-boots").html(pb.name + " : +" + fix(pb.effect, 0) + " spd<br>+" + fix(pb.percent, 0) + "%");
+
+	$("#prestige-info").html("Prestige cost : " + fix(getPrestigeCost(), 0) + " levels<br>Current multiplier : x" + fix(p.multiplier, 2) + "<br>Tokens : " + fix(p.tokens, 0));
+
+	$("#craft-gold").html(a.value + "% gold");
+	$("#craft-level").html(b.value + " levels");
+	$("#craft-effect").html(fix(pf.craft("stats"), 0) + " dmg (sword) / spd (boots)");
+	$("#level-slider").attr('max', p.level);
+};
+of.autoidle = function() {
+	var a = document.getElementById('autoidle-input');
+	if (a.checked == true)
+		o.autoidle = true;
+	else
+		o.autoidle = false;
+};
+of.coreloop = function() {
+	if (o.init == true) {
+		o.now = new Date().getTime();
+		var elapsedTime = o.now - o.before;
+
+		if (elapsedTime > 17)
+			pf.idle(Math.floor(elapsedTime/o.interval));
 		else
-			this.numbers = "scientific";
-	}
-}
+			pf.idle(1);
+
+		o.before = new Date().getTime();
+
+		of.display();
+		scf.check();
+	};
+};
+of.loading = function() {
+	loadData();
+	scf.init();
+
+	if (p.name == undefined) {
+		$('#begin').modal('show');
+		var a = document.getElementById('autoidle-input');
+		a.checked = false;
+		of.autoidle();
+	};
+
+	o.init = true;
+
+	of.waitingScreen();
+};
+of.waitingScreen = function() {
+	if (o.init = true) {
+		$("#game-area").css('display', 'block');
+		$("#loading-area").css('display', 'none');
+	} else {
+		$("#game-area").css('display', 'none');
+		$("#loading-area").css('display', 'block');
+	};
+};
 
 window.onload = function() {
-	options.init();
+	of.loading();
 };
-window.onbeforeunload = function() {
-	save.saveInterval = undefined; // clean save interval if connection is very bad to prevent save lose...
-};
-window.setInterval(function() {
-	options.update();
-}, options.interval)
+var coreInterval = window.setInterval(function() {
+	of.coreloop();
+}, o.interval);
+var saveDataInterval = window.setInterval(function() {
+	if (o.init == true && o.saving == true)
+		saveData();
+}, 20);

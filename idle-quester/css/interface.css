@@ -1,53 +1,20 @@
-body {
-	padding-top: 80px;
-	cursor: default;
-	background: #eee;
-	font-weight: 300; /* support for material design */
-}
+body { margin: 0; padding-top: 80px; font-family: 'Lato', sans-serif; font-weight: 400; cursor: default; background: #eee; }
+input.gold-slider { -webkit-appearance: none; display: block; margin: auto; margin-bottom: 10px; outline: none; height: 10px; margin: 5px 10px; border-radius: 6px; background: #BFDFFF; }
+input.gold-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 10px; background: #3F9EFF; position: relative; z-index: 3; }
+input.level-slider { -webkit-appearance: none; display: block; margin: auto; margin-bottom: 10px; outline: none; height: 10px; margin: 5px 10px; border-radius: 6px; background: #F3D2B4; }
+input.level-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 10px; background: #F38522; position: relative; z-index: 3; }
 
-/* bars */
-.bars {
-	border-top: 1px solid #e7e7e7;
-	width: 100%;
-	height: 8px;
-}
-.left-bar {
-	width: 50%;
-	height: 100%;
-	border-right: 1px solid #e7e7e7;
-	background: #fff;
-}
-.left-bar-filler {
-	background: #43A047;
-	height: 100%;
-	width: 0%;
-	transition: all 0.2s;
-}
-.right-bar {
-	margin-left: 50%;
-	margin-top: -7px;
-	width: 50%;
-	height: 100%;
-	background: #fff;
-}
-.right-bar-filler {
-	background: #039BE5;
-	height: 100%;
-	width: 0%;
-}
+.navbar.navbar-default { background-color: #3F51B5; }
+.navbar-brand { color: #fff !important; }
+.navbar-nav>li>a { color: #fff !important; }
 
-/* achievements */
-.achieve-icon {
-	left: 15px!important;
-}
+.progress { height: 23px; border-radius: 4px; }
+.progress, .progress-bar { transition: none; -o-transition: none; -webkit-transition: none; }
+#player-progress { transition: all 0.2s; -o-transition: all 0.2s; -webkit-transition: all 0.2s; }
 
-/* custom bootstrap */
-.navbar {
-	border-radius: 0;
-}
-#player-progressbar {
-	transition: all 0.2s;
-}
-#quest-progressbar {
-	transition: all 0s;
-}
+/* fix for quest name taking 2 lines and move the quest button */
+#player-stats { height: 80px; }
+
+.panel-heading { padding: 0; }
+
+.noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }

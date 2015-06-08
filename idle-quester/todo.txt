@@ -1,9 +1,4 @@
-				  _____ ___  ____   ___  
-				 |_   _/ _ \|  _ \ / _ \ 
-				   | || | | | | | | | | |
-				   | || |_| | |_| | |_| |
-				   |_| \___/|____/ \___/ 				                         
-_______________________________________________________
-
-- look for a formula about player amulet and exp decrease
-- add random events
+- add adsense
+- check if we need to add success variables
+  to the save variables to load
+- work on the mobile-version
