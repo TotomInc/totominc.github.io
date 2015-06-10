@@ -4,6 +4,7 @@ input.gold-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: n
 input.level-slider { -webkit-appearance: none; display: block; margin: auto; margin-bottom: 10px; outline: none; height: 10px; margin: 5px 10px; border-radius: 6px; background: #F3D2B4; }
 input.level-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 10px; background: #F38522; position: relative; z-index: 3; }
 p { margin: 0 0 0.5em; }
+th { font-weight: 400; }
 
 .navbar.navbar-default { background-color: #3F51B5; }
 .navbar-brand { color: #fff !important; }

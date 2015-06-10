@@ -39,6 +39,8 @@ of.display = function() {
 	$("#craft-level").html(b.value + " levels");
 	$("#craft-effect").html(fix(pf.craft("stats"), 3) + " dmg (sword) / spd (boots)");
 	$("#level-slider").attr('max', p.level);
+
+	$("#leaderboard-info").html("Stats will be submitted as " + p.name + ".");
 };
 of.autoidle = function() {
 	var a = document.getElementById('autoidle-input');
@@ -81,6 +83,14 @@ of.loading = function() {
 
 	o.init = true;
 	of.waitingScreen();
+	initScore();
+	var t = window.setInterval(function() {
+		if (score !== undefined) {
+			generate();
+			refreshScore();
+			clearInterval(t);
+		};
+	}, 500);
 };
 of.waitingScreen = function() {
 	if (o.init = true) {
