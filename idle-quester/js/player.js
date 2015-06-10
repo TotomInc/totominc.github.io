@@ -103,25 +103,27 @@ pf.craft = function(type) {
 	if (type == "stats")
 		return effect;
 	if (type == "sword" || type == "boots") {
-		p.gold -= goldcost;
-		p.level -= levelcost;
-		if (p.level <= 0)
-			p.level = 1;
-		p.xp = 0;
-		p.xpNeeded = getPlayerXpNeeded();
-		p.questXp = 0;
-		p.questXpNeeded = getQuestXpNeeded();
-		p.gemDropped = false;
+		if (effect >= 100) {
+			p.gold -= goldcost;
+			p.level -= levelcost;
+			if (p.level <= 0)
+				p.level = 1;
+			p.xp = 0;
+			p.xpNeeded = getPlayerXpNeeded();
+			p.questXp = 0;
+			p.questXpNeeded = getQuestXpNeeded();
+			p.gemDropped = false;
 
-		if (type == "sword") {
-			ps.effect = effect;
-			ps.percent = (effect/ps.base) * 100;
-			ps.name = getSwordName();
-		};
-		if (type == "boots") {
-			pb.effect = effect;
-			pb.percent = (effect/pb.base) * 100;
-			pb.name = getBootsName();
+			if (type == "sword") {
+				ps.effect = effect;
+				ps.percent = (effect/ps.base) * 100;
+				ps.name = getSwordName();
+			};
+			if (type == "boots") {
+				pb.effect = effect;
+				pb.percent = (effect/pb.base) * 100;
+				pb.name = getBootsName();
+			};
 		};
 	};
 };
