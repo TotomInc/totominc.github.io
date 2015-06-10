@@ -38,5 +38,5 @@ function fix(x, type) {
 		if (x >= 1e6)
 			return beautify(x, 3);
 		else
-			return beautify(x, 2);
+			return beautify(x, 0);
 };

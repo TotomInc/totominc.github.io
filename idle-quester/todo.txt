@@ -1,4 +1,3 @@
 - add adsense
-- check if we need to add success variables
-  to the save variables to load
 - work on the mobile-version
+- add new skills variables to the formulas

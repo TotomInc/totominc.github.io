@@ -115,6 +115,7 @@
 			<div id="panels-col" class="col-md-6">
 				<ul class="nav nav-tabs nav-justified">
 					<li class="active"><a href="#craft" aria-controls="craft" data-toggle="tab"><i class="fa fa-wrench"></i> Craft</a></li>
+					<li><a href="#skills" aria-controls="skills" data-toggle="tab"><i class="fa fa-level-up"></i> Skills</a></li>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">More <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -139,6 +140,40 @@
 							<div class="col-md-12"><p id="craft-effect" class="text-center"></p></div>
 							<div class="col-md-5 col-md-offset-1"><a href="#" onclick="pf.craft('sword');" class="btn btn-success center-block">Craft sword</a></div>
 							<div class="col-md-5"><a href="#" onclick="pf.craft('boots');" class="btn btn-success center-block">Craft boots</a></div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="skills"><div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div id="skills-div-1" class="skills-div center-block"></div>
+								<p id="skills-p-1" class="text-center"></p>
+							</div>
+							<div class="col-md-6">
+								<div id="skills-div-2" class="skills-div center-block"></div>
+								<p id="skills-p-2" class="text-center"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><p class="text-center big-arrows"><i class="fa fa-long-arrow-down"></i></p></div>
+							<div class="col-md-6"><p class="text-center big-arrows"><i class="fa fa-long-arrow-down"></i></p></div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div id="skills-div-3" class="skills-div center-block"></div>
+								<p id="skills-p-3" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-4" class="skills-div center-block"></div>
+								<p id="skills-p-4" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-5" class="skills-div center-block"></div>
+								<p id="skills-p-5" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-6" class="skills-div center-block"></div>
+								<p id="skills-p-6" class="text-center"></p>
+							</div>
 						</div>
 					</div></div>
 					<div class="tab-pane fade" id="prestige"><div class="well">
@@ -194,14 +229,16 @@
 								<p class="pull-right">Code with <i class="fa fa-heart"></i> by TotomInc.</p>
 							</div>
 						</div>
-					</div>
+					</div></div>
 					<div class="tab-pane fade" id="notes"><div class="well">
 						<div id="accordion" class="panel-group">
 							<div class="panel-heading"><h4 class="panel-heading text-center"><a data-toggle="collapse" data-parent="#accordion" data-target="#notes-alpha" href="javascript:" class="collapsed">Alpha v0.00x <i class="fa fa-caret-down"></i></a></h4></div>
 
 							<div id="notes-alpha" class="panel-collapse collapse">
 								<div class="panel-body">
-									<h5>Alpha 0.001 <small>(00/00/0000)</small></h5>
+									<h5>Alpha 0.002 <small>(2015/06/10)</small></h5>
+									<ul><li>Added skills : they will made the game easier.</li></ul>
+									<h5>Alpha 0.001 <small>(2015/06/08)</small></h5>
 									<ul><li>Initial alpha release of the game, may be pretty buggy.</li></ul>
 									<ul><li>During the alpha stage, progress can be reset (intentionally) for testing purposes.</li></ul>
 								</div>
@@ -224,6 +261,7 @@
 	<script src="js/names.min.js"></script>
 	<script src="js/success.js"></script>
 	<script src="js/player.js"></script>
+	<script src="js/skills.js"></script>
 	<script src="js/helpers.js"></script>
 	<script src="js/options.js"></script>
 	<script src="js/save.js"></script>

@@ -5,7 +5,6 @@ var baseQuestXp = 150;
 var questXpPower = 1.25;
 var questDivisor = 3;
 
-var goldDefaultDrop = 85;
 var goldPower = 1.15;
 
 function getPlayerAttack() {
@@ -22,7 +21,10 @@ function getPlayerXpNeeded() {
 };
 function getQuestXpNeeded() {
 	if (p.level > 1)
-		return Math.floor(baseQuestXp * Math.pow(questXpPower, player.level));
+		if (p.questType == 1)
+			return Math.floor(baseQuestXp * Math.pow(questXpPower, p.level) * p.attackQuestMultiplier);
+		else
+			return Math.floor(baseQuestXp * Math.pow(questXpPower, p.level) * p.speedQuestMultiplier);
 	else
 		return baseQuestXp;
 };
@@ -32,9 +34,9 @@ function getPlayerXpReward() {
 function getQuestGoldReward() {
 	var random = Math.random() + 1;
 	if (p.level > 1)
-		return Math.floor((goldDefaultDrop * Math.pow(goldPower, p.level)) * random) * p.multiplier;
+		return Math.floor((p.goldDrop * Math.pow(goldPower, p.level)) * random) * p.multiplier;
 	else
-		return (goldDefaultDrop * random) * p.multiplier;
+		return (p.goldDrop * random) * p.multiplier;
 };
 function getPrestigeCost() {
 	return (p.prestiges * 100);

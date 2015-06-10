@@ -17,6 +17,7 @@ p.name = undefined;
 p.nickname = undefined;
 
 p.gold = 0;
+p.goldDrop = 85;
 p.gems = 0;
 p.gemDropped = false;
 p.level = 1;
@@ -31,6 +32,8 @@ p.questXp = 0;
 p.questXpNeeded = 100;
 p.questType = 0;
 p.questName = "Killing game devs";
+p.speedQuestMultiplier = 1;
+p.attackQuestMultiplier = 1;
 
 p.multiplier = 1;
 p.prestiges = 1; // number of prestige times (default is 1)

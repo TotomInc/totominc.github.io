@@ -1,6 +1,6 @@
 var save = s = {};
 
-s.tosave = { player: player, options: options };
+s.tosave = { player: player, options: options, skills: skills };
 
 function saveData() {
 	localStorage.setItem('IdleQuest-Save', JSON.stringify(s.tosave));
@@ -19,6 +19,7 @@ function loadData() {
 		var sp = savegame.player;
 		var sps = savegame.player.sword;
 		var spb = savegame.player.boots;
+		var ssk = savegame.skills;
 
 		if (o.version !== so.version)
 			console.log("Warning! Loading save from an older version.");
@@ -37,6 +38,7 @@ function loadData() {
 		p.nickname = sp.nickname;
 
 		p.gold = sp.gold;
+		p.goldDrop = sp.goldDrop;
 		p.gems = sp.gems;
 		p.gemDropped = sp.gemDropped;
 		p.level = sp.level;
@@ -56,11 +58,26 @@ function loadData() {
 		p.prestiges = sp.prestiges;
 		p.tokens = sp.tokens;
 
+		p.speedQuestMultiplier = sp.speedQuestMultiplier;
+		p.attackQuestMultiplier = sp.attackQuestMultiplier;
+
+		sk.bought = ssk.bought;
+
 		o.before = so.before;
 		o.now = so.now;
 
 		console.log("Save found and loaded.");
 	};
+};
+function checkSave() {
+	if (typeof sk.bought !== "object")
+		sk.bought = [];
+	if (typeof p.goldDrop !== "number")
+		p.goldDrop = 85;
+	if (typeof p.speedQuestMultiplier !== "number")
+		p.speedQuestMultiplier = 1;
+	if (typeof p.attackQuestMultiplier !== "number")
+		p.attackQuestMultiplier = 1;
 };
 function importData() {
 	var a = document.getElementById("options-import");
