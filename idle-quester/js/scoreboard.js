@@ -1,5 +1,7 @@
 var data = new Firebase("https://idlequester.firebaseio.com/");
 var ref = new Firebase("https://idlequester.firebaseio.com/scorelist/");
+var LEADERBOARD_SIZE = 10;
+var htmlForPath = {};
 var score;
 
 function submitScore() {
@@ -7,11 +9,11 @@ function submitScore() {
 	var playerGold = Math.floor(p.gold);
 	var playerLevel = Math.floor(p.level);
 
-	ref.child(playerName).set({
+	ref.child(playerName).setWithPriority({
 		name: playerName,
 		gold: playerGold,
 		level: playerLevel
-	});
+	}, playerLevel);
 };
 function initScore() {
 	ref.on("value", function(snapshot) {
@@ -23,29 +25,24 @@ function initScore() {
 		score = scoreboard;
 	});
 };
-function refreshScore() {
-	ref.on("value", function(snapshot) {
-		var list = snapshot.val();
-		// converting objects to arrays
-		var scoreboard = $.map(list, function(value, index) {
-		    return [value];
-		});
-		// updating scoreboard in html
-		score = scoreboard;
-		for (var i = 0; i < scoreboard.length; i++) {
-			console.log("refreshScore");
-			$("#data-name-" + (i+1)).html(score[i].name);
-			$("#data-gold-" + (i+1)).html(fix(score[i].gold, 3));
-			$("#data-level-" + (i+1)).html(fix(score[i].level, 0));
-		};
-	});
+
+function handleScoreAdded(scoreSnapshot, prevScoreName) {
+    var newScoreRow = $("<tr/>");
+    newScoreRow.append($("<td/>").append($("<span/>").text(scoreSnapshot.val().name)));
+    newScoreRow.append($("<td/>").text(fix(scoreSnapshot.val().gold, 3)));
+    newScoreRow.append($("<td/>").text(fix(scoreSnapshot.val().level, 0)));
+
+    // Store a reference to the table row so we can get it again later.
+    htmlForPath[scoreSnapshot.key()] = newScoreRow;
+
+    // Insert the new score in the appropriate place in the table.
+    if (prevScoreName === null) {
+      	$("#leaderboard-body").append(newScoreRow);
+    } else {
+      	var lowerScoreRow = htmlForPath[prevScoreName];
+      	lowerScoreRow.before(newScoreRow);
+    };
 };
-function generate() {
-	for (var i = 0; i < score.length; i++) {
-		console.log("Generating leaderboard table...");
-		$("#leaderboard-body").append('<tr id="data-' + (i+1) + '"></tr>');
-		$("#data-" + (i+1)).append('<th id="data-name-' + (i+1) + '"></th></tr>');
-		$("#data-" + (i+1)).append('<td id="data-gold-' + (i+1) + '"></td>');
-		$("#data-" + (i+1)).append('<td id="data-level-' + (i+1) + '"></td>');
-	};
-};
+ref.on('child_added', function(newScoreSnapshot, prevScoreName) {
+    handleScoreAdded(newScoreSnapshot, prevScoreName);
+});

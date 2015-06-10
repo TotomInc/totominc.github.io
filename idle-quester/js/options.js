@@ -84,13 +84,14 @@ of.loading = function() {
 	o.init = true;
 	of.waitingScreen();
 	initScore();
-	var t = window.setInterval(function() {
+	/* var t = window.setInterval(function() {
 		if (score !== undefined) {
 			generate();
 			refreshScore();
 			clearInterval(t);
 		};
 	}, 500);
+	*/
 };
 of.waitingScreen = function() {
 	if (o.init = true) {
