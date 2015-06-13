@@ -1,0 +1,1 @@
+- display ressources in upgrade menu
