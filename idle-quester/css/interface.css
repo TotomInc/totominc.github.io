@@ -6,9 +6,9 @@ input.level-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: 
 p { margin: 0 0 0.5em; }
 th { font-weight: 400; }
 
-.navbar.navbar-default { background-color: #3F51B5; }
-.navbar-brand { color: #fff !important; }
-.navbar-nav>li>a { color: #fff !important; }
+.navbar.navbar-default { background-color: #fff; }
+.navbar-brand { color: #333 !important; }
+.navbar-nav>li>a { color: #333 !important; }
 
 .progress { height: 23px; border-radius: 4px; }
 .progress, .progress-bar { transition: none; -o-transition: none; -webkit-transition: none; }

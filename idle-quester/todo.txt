@@ -1,3 +1,2 @@
 - add adsense
 - work on the mobile-version
-- add new skills variables to the formulas
