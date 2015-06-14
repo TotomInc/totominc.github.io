@@ -65,6 +65,8 @@ bp.init = function() {
 		$("#bp-name-" + (i+1)).html(a.name);
 		$("#bp-time-" + (i+1)).html(a.time + " seconds");
 		$("#bp-infos-" + (i+1)).html("Owned : " + bb.owned[i] + "<br>+" + fix(a.ressourceReward, 2) + " " + a.ressource + "<br>+" + fix(a.moneyReward, 2) + "$<br>Cost " + fix(a.price, 2) + "$");
+		var b = window["c"][a.ressource];
+		$("#bp-ressource-" + (i+1)).html(fix(b, 2) + " " + a.ressource);
 	};
 	bp.init = true;
 };
@@ -72,17 +74,31 @@ bp.init = function() {
 bb.update = function() {
 	for (var i = 0; i < bb.list.length; i++) {
 		var a = bb.list[i];
+		var b = h.bb.displayPrice(c.buy, i);
 		$("#bb-time-" + (i+1)).html(a.time + " seconds");
-		$("#bb-infos-" + (i+1)).html("Owned : " + bb.owned[i] + "<br>+" + fix(h.bb.getMoneyReward(i), 2) + "$<br>Cost " + fix(h.bb.getPrice(i), 2) + "$");
+		$("#bb-infos-" + (i+1)).html("Owned : " + bb.owned[i] + "<br>+" + fix(h.bb.getMoneyReward(i), 2) + "$<br>Cost " + fix(b, 2) + "$");
 	};
 };
 // buying functions
 bb.buy = function(i) {
 	var a = h.bb.getPrice(i);
-	if (c.money >= a) {
-		c.money -= a;
+	var b = c.buy;
+
+	if (b > 1) {
+		for (var e = 0; e < b; e++)
+			bb.buyOnce(i);
+	}
+	else
+		bb.buyOnce(i);
+
+	bb.update();
+};
+bb.buyOnce = function(i) {
+	if (c.money < h.bb.getPrice(i))
+		return;
+	else {
+		c.money -= h.bb.getPrice(i);
 		bb.owned[i]++;
-		bb.update();
 	};
 };
 // builds functions to gain money + ressources

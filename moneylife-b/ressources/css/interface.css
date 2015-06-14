@@ -19,7 +19,7 @@ ul>li>a:hover { transition: all .2s; text-decoration: none; color: #111; }
 .header-title { margin: 0; font-size: 2.5em; line-height: 70px; }
 .header-stats { margin: 0; font-size: 1.75em; line-height: 70px; text-align: right; }
 
-.game-container { padding-right: 5px; padding-left: 5px; margin-right: auto; margin-left: auto; }
+.game-container, .loading-container { padding-right: 5px; padding-left: 5px; margin-right: auto; margin-left: auto; }
 .tab-container { border: 1px solid #222227; border-radius: 4px; box-shadow: 1px 1px 4px #aaa; }
 .main-tab { width: 100%; height: 100%; background: inherit; }
 
@@ -29,8 +29,8 @@ ul>li>a:hover { transition: all .2s; text-decoration: none; color: #111; }
 .main-btn:active { transition: all .2s; box-shadow: 1px 1px 4px #aaa; }
 .main-btn.active { background: #636173; }
 
-.progress { height: 30px; }
-.progress-bar { line-height: 30px; transition: none; -webkit-transition: none; -o-transition: none;  }
+.progress { height: 15px; }
+.progress-bar { line-height: 15px; transition: none; -webkit-transition: none; -o-transition: none;  }
 
 .row.tabs { margin: 0; height: 50%; }
 
@@ -40,10 +40,21 @@ ul>li>a:hover { transition: all .2s; text-decoration: none; color: #111; }
 .prod-time:hover, .business-time:hover { transition: all .2s; background: #636173; }
 
 .prod-stats>h5, .business-stats>h5 { margin-top: 5px; margin-bottom: 5px; }
-.prod-stats, .business-stats { transition: all .2s;  width: 100%; background: #3e3d48; border: 1px solid #222227; border-radius: 4px;
+.prod-stats { margin-bottom: 5px; }
+.prod-stats, .business-stats { transition: all .2s; width: 100%; background: #3e3d48; border: 1px solid #222227; border-radius: 4px;
 	color: #eee; box-shadow: 1px 3px 6px #aaa; cursor: pointer; }
 .prod-stats:hover, .business-stats:hover { transition: all .2s; background: #636173; }
 .prod-stats:active, .business-stats:active { transition: all .2s; box-shadow: 1px 1px 4px #aaa; }
+
+.prod-ressources>h5 { margin-top: 5px; margin-bottom: 5px; }
+.prod-ressources { width: 100%; background: #636173; border: 1px solid #222227; border-radius: 4px;
+	color: #eee; box-shadow: 1px 3px 6px #aaa; }
+
+.upgrade { transition: all .2s; margin-bottom: 5px; width: 100%; background: #3e3d48; border: 1px solid #222227; border-radius: 4px;
+	color: #eee; box-shadow: 1px 3px 6px #aaa; cursor: pointer; }
+.upgrade:hover { transition: all .2s; background: #636173; }
+.upgrade:active { transition: all .2s; box-shadow: 1px 1px 4px #aaa; }
+.upgrade.bought { background: #8F8D9B; }
 
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none;
 	-ms-user-select: none; user-select: none; }
