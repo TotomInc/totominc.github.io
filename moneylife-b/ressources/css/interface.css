@@ -32,7 +32,8 @@ ul>li>a:hover { transition: all .2s; text-decoration: none; color: #111; }
 .progress { height: 15px; }
 .progress-bar { line-height: 15px; transition: none; -webkit-transition: none; -o-transition: none;  }
 
-.row.tabs { margin: 0; height: 50%; }
+.row.tabs { margin: 0; }
+.row.tabs.full { height: 50%; }
 
 .prod-time>h5, .business-time>h5 { margin-top: 5px; margin-bottom: 5px; }
 .prod-time, .business-time { transition: all .2s; margin-bottom: 5px; width: 100%; background: #3e3d48; border: 1px solid #222227;
@@ -50,11 +51,11 @@ ul>li>a:hover { transition: all .2s; text-decoration: none; color: #111; }
 .prod-ressources { width: 100%; background: #636173; border: 1px solid #222227; border-radius: 4px;
 	color: #eee; box-shadow: 1px 3px 6px #aaa; }
 
-.upgrade { transition: all .2s; margin-bottom: 5px; width: 100%; background: #3e3d48; border: 1px solid #222227; border-radius: 4px;
-	color: #eee; box-shadow: 1px 3px 6px #aaa; cursor: pointer; }
-.upgrade:hover { transition: all .2s; background: #636173; }
-.upgrade:active { transition: all .2s; box-shadow: 1px 1px 4px #aaa; }
-.upgrade.bought { background: #8F8D9B; }
+.upgrade, .achievement { transition: all .2s; margin-bottom: 5px; width: 100%; background: #3e3d48; border: 1px solid #222227;
+	border-radius: 4px; color: #eee; box-shadow: 1px 3px 6px #aaa; cursor: pointer; }
+.upgrade:hover, .achievement:hover { transition: all .2s; background: #636173; }
+.upgrade:active, .achievement:active { transition: all .2s; box-shadow: 1px 1px 4px #aaa; }
+.upgrade.bought, .achievement.bought { background: #8F8D9B; }
 
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none;
 	-ms-user-select: none; user-select: none; }

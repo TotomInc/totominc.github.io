@@ -1,7 +1,5 @@
 var core = c = {};
 
-c.test = 1;
-
 c.money = 4;
 c.totalMoney = 4;
 c.parts = 0;
@@ -17,24 +15,29 @@ c.init = false;
 c.version = 0.001;
 c.fps = 60;
 c.interval = (1000/c.fps);
-c.wait = 1;
+c.wait = 2500;
 
-core.init = function() {	
+core.init = function() {
+	// builds init
 	bb.init();
 	bp.init();
+	// achievements init
 	u.bb.init();
-
-	$("#nav-version").html("Money-Life <small>(v" + c.version + ")</small>");
-
+	a.bb.init();
+	// display builds
 	bb.update();
-
+	bp.update();
+	// loading save
+	save.loadData();
+	// misc
+	$("#nav-version").html("Money-Life <small>(v" + c.version + ")</small>");
+	// interval with loading screen
 	window.setInterval(function() {
 		c.init = true;
 		$(".loading-container").css('display', 'none');
 		$(".game-container").css('display', 'block');
 	}, c.wait);
 };
-
 core.display = function() {
 	$("#nav-money").html("$" + fix(c.money, 2));
 
@@ -46,19 +49,21 @@ core.display = function() {
 
 	$("#options-buy").html("Buy x" + c.buy);
 };
-
 core.loop = function() {
 	if (c.init == true) {
 		c.now = new Date().getTime();
 		var a = (c.now - c.before);
 		if (a > 17) {
 			bb.gain(Math.floor(a / 17));
+			bp.gain(Math.floor(a / 17));
 		} else {
 			bb.gain(1);
+			bp.gain(1);
 		};
 		c.before = new Date().getTime();
 
 		core.display();
+		achievements.loop();
 	};
 };
 
@@ -68,3 +73,6 @@ window.onload = function() {
 c.displayLoop = window.setInterval(function() {
 	core.loop();
 }, c.interval);
+c.saveLoop = window.setInterval(function() {
+	save.saveData();
+}, 10000);

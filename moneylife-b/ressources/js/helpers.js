@@ -23,10 +23,14 @@ h.buySwitch = function() {
 					c.buy = 1
 
 	bb.update();
+	bp.update();
 };
-
+// business builds helpers
 h.bb.getMoneyReward = function(i) {
 	return (bb.list[i].moneyReward * bb.owned[i]) * bb.multiplier[i];
+};
+h.bb.getMps = function(i) {
+	return (h.bb.getMoneyReward(i) / h.bb.getTime(i));
 };
 h.bb.getPrice = function(i) {
 	return (bb.list[i].price * Math.pow(bb.list[i].inflation, bb.owned[i]));
@@ -43,6 +47,34 @@ h.bb.displayPrice = function(a, z) {
 		amount--;
 		to = amount + bb.owned[z];
 		tp += (bb.list[z].price * Math.pow(bb.list[z].inflation, to));
+	};
+	return tp;
+};
+// builds production helpers
+h.bp.getMoneyReward = function(i) {
+	return (bp.list[i].moneyReward * bp.owned[i]) * bp.profitMultiplier[i];
+};
+h.bp.getMps = function(i) {
+	return (h.bp.getMoneyReward(i) / h.bp.getTime(i));
+};
+h.bp.getPrice = function(i) {
+	return (bp.list[i].price * Math.pow(bp.list[i].inflation, bp.owned[i]));
+};
+h.bp.getRessourceReward = function(i) {
+	return (bp.list[i].ressourceReward * bp.owned[i]) * bp.ressourceMultiplier[i];
+};
+h.bp.getTime = function(i) {
+	return (bp.list[i].time * bp.timeMultiplier[i]);
+};
+h.bp.displayPrice = function(a, z) {
+	var b = bp.list[z];
+	var amount = a;
+	var tp = 0;
+	var to = amount + bp.owned[z];
+	while (to > bp.owned[z]) {
+		amount--;
+		to = amount + bp.owned[z];
+		tp += (bp.list[z].price * Math.pow(bp.list[z].inflation, to));
 	};
 	return tp;
 };

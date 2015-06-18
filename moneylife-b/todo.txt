@@ -1,3 +1,2 @@
-- display ressources in upgrade menu
 - check if multiple buying (and cost display)
   is not bugged
