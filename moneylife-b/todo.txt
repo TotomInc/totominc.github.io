@@ -1,2 +1,0 @@
-- check if multiple buying (and cost display)
-  is not bugged
