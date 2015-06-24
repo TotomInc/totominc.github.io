@@ -15,7 +15,7 @@ c.init = false;
 c.version = 0.001;
 c.fps = 60;
 c.interval = (1000/c.fps);
-c.wait = 2500;
+c.wait = 0;
 
 core.init = function() {
 	// builds init

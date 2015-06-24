@@ -1,4 +1,4 @@
-<h1><a href="http://totominc.github.io/">totominc.github.io (home page)</a> - <a href="http://github.com/TotomInc/totominc.github.io/wiki">wiki is here</a></h1>
+<h1><a href="http://totominc.github.io/">totominc.github.io (home page)</a></h1>
 
 <h4><b>It's the official repo for all my web-projects, like incremental-games.</b></h4>
 
@@ -11,7 +11,7 @@ Idle-RPG is the web-version of the original game <a href="https://play.google.co
 <h3><a href="http://totominc.github.io/incremental-rpg">Incremental-RPG</a></h3>
 A simple incremental-game with a touch of RPG on it. It was just to help me learn more (again!), and it's now currently not updated anymore.
 
-<h3><a href="http://totominc.github.io/moneylife"><u>Money-Life</u></a></h3>
+<h3><a href="http://totominc.github.io/moneylife/old/"><u>Money-Life</u></a></h3>
 Money-Life is a simple <a href="http://www.kongregate.com/games/hyperhippogames/adventure-capitalist">Adventure Capitalist</a> clone, which was made to help me to learn Javascript. This game is pretty old and ugly.
 
 <h5>You want to contribute?</h5>
