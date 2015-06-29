@@ -12,31 +12,24 @@ c.buy = 1;
 c.before = new Date().getTime();
 c.now = new Date().getTime();
 c.init = false;
-c.version = 0.001;
+c.version = 0.002;
 c.fps = 60;
 c.interval = (1000/c.fps);
-c.wait = 0;
 
 core.init = function() {
-	// builds init
 	bb.init();
 	bp.init();
-	// achievements init
+
 	u.bb.init();
 	a.bb.init();
-	// display builds
+
 	bb.update();
 	bp.update();
-	// loading save
+
 	save.loadData();
-	// misc
+
 	$("#nav-version").html("Money-Life <small>(v" + c.version + ")</small>");
-	// interval with loading screen
-	window.setInterval(function() {
-		c.init = true;
-		$(".loading-container").css('display', 'none');
-		$(".game-container").css('display', 'block');
-	}, c.wait);
+	c.init = true;
 };
 core.display = function() {
 	$("#nav-money").html("$" + fix(c.money, 2));
