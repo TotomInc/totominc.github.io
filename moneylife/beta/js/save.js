@@ -6,7 +6,9 @@ save.saveData = function() {
 	localStorage.setItem('MoneyLife', JSON.stringify(save.tosave));
 };
 save.removeData = function() {
+	c.saveLoop = undefined;
 	localStorage.removeItem('MoneyLife');
+	location.reload();
 };
 save.loadData = function() {
 	if (localStorage.getItem('MoneyLife') === null)

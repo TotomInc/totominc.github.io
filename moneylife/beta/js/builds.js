@@ -71,7 +71,6 @@ bb.update = function() {
 	for (var i = 0; i < bb.list.length; i++) {
 		var a = bb.list[i];
 		var b = h.bb.displayPrice(c.buy, i);
-		$("#bb-time-" + (i+1)).html(a.time + " seconds");
 		$("#bb-infos-" + (i+1)).html("Owned : " + bb.owned[i] + "<br>+" + fix(h.bb.getMoneyReward(i), 2) + "$<br>+" + fix(h.bb.getMps(i), 2) + "$/s<br>Cost " + fix(b, 2) + "$");
 	};
 };
@@ -79,7 +78,6 @@ bp.update = function() {
 	for (var i = 0; i < bp.list.length; i++) {
 		var a = bp.list[i];
 		var b = h.bp.displayPrice(c.buy, i);
-		$("#bp-time-" + (i+1)).html(a.time + " seconds");
 		$("#bp-infos-" + (i+1)).html("Owned : " + bp.owned[i] + "<br>+" + fix(h.bp.getMoneyReward(i), 2) + "$<br>+" + fix(h.bp.getMps(i), 2) + "$/s<br>+" + fix(h.bp.getRessourceReward(i), 2) + " " + a.ressource + "<br>Cost " + fix(b, 2) + "$");
 	};
 };

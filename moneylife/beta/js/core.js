@@ -68,4 +68,4 @@ c.displayLoop = window.setInterval(function() {
 }, c.interval);
 c.saveLoop = window.setInterval(function() {
 	save.saveData();
-}, 10000);
+}, 100);
