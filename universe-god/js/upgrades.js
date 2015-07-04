@@ -15,11 +15,8 @@ game.upgrades.buy = function(i) {
 	var index = g.ressources.list.indexOf(g.u.list[i].priceName);
 	if (a >= g.u.list[i].price) {
 		var preStr = g.u.list[i].changeName.substring(0, g.u.list[i].changeName.indexOf('['));
-		console.log(preStr);
 		var strIndex = g.u.list[i].changeName.substring(g.u.list[i].changeName.indexOf('[')+1, g.u.list[i].changeName.length-1);
-		console.log(strIndex);
 		var fullStr = "g.ressources." + preStr + '[' + strIndex + ']';
-		console.log(fullStr);
 		window["g"]["ressources"][preStr][strIndex] = eval(fullStr + g.u.list[i].changeValue);
 		g.ressources.owned[index] -= g.u.list[i].price;
 		g.u.owned[i] = true;

@@ -19,7 +19,7 @@
 
 <body>
 <!-- game header (navbar) -->
-	<header>
+	<header class="no-select">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6"><h4 class="header">Universe-God <small class="header-small"></small></h4></div>
@@ -31,16 +31,16 @@
 	<div class="container no-select">
 		<div class="row">
 			<div class="col-md-3">
-				<p id="row-btn-1" >
+				<p>
 					<a id="btn-1-1" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('hydrogen')" style="display: none;">Create hydrogen (+1)</a>
 					<a id="btn-1-2" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('oxygen')" style="display: none;">Create oxygen (+1)</a>
 					<a id="btn-1-3" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('helium')" style="display: none;">Create helium (+1)</a>
 				</p>
-				<p id="row-btn-2">
+				<p>
 					<a id="btn-2-1" type="button" class="btn btn-info btn-block" onclick="game.earn('water')" data-toggle="tooltip" data-placement="top" title="Cost 20 hydrogen, 10 oxygen" style="display: none;">Generate water (+1 mL)</a>
 				</p>
-				<p id="row-btn-3">
-					<a id="btn-3-1" type="button" class="btn btn-success btn-block" onclick="" style="display: none;">Generate cell (+1)</a>
+				<p>
+					<a id="btn-3-1" type="button" class="btn btn-success btn-block" onclick="game.earn('cell')" data-toggle="tooltip" data-placement="top" title="Cost 5 helium" style="display: none;">Generate cell (+1)</a>
 					<a id="btn-3-2" type="button" class="btn btn-success btn-block" onclick="game.earn('sun')" data-toggle="tooltip" data-placement="top" title="Cost 75 hydrogen, 10 oxygen, 15 helium" style="display: none;">Create Sun</a>
 					<a id="btn-3-3" type="button" class="btn btn-success btn-block" onclick="game.earn('atmo-gen')" data-toggle="tooltip" data-placement="top" title="Cost 150 hydrogen, 100 oxygen, 50 helium" style="display: none;">Build an 'Atmosphere Generator'</a>
 				</p>
@@ -57,7 +57,9 @@
 			    	<div class="row"><div class="col-md-6 col-md-offset-3"><div class="checkbox"><p class="text-center"><label><input id="upgrades-checkbox" type="checkbox" onclick="g.u.hide()"> Show upgrades bought</label></p></div></div></div>
 						<div class="panel panel-default"><div id="upgrades-panelbody" class="panel-body"></div></div>
 			    </div></div>
-			    <div id="builds" class="tab-pane fade"><div class="well"></div></div>
+			    <div id="builds" class="tab-pane fade"><div class="well">
+			    	<div class="panel panel-default"><div id="builds-panelbody" class="panel-body"></div></div>
+			    </div></div>
 			  </div>
 			</div>
 			<div class="col-md-3"><div id="ressources-well" class="well" style="display: none;">
