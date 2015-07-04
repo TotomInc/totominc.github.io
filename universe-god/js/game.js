@@ -38,7 +38,7 @@ game.buttons = function() {
 	$("#btn-1-1").html("Create hydrogen (+" + fix(g.ressources.perClick[0], 0) + ")");
 	$("#btn-1-2").html("Create oxygen (+" + fix(g.ressources.perClick[1], 0) + ")");
 	$("#btn-1-3").html("Create helium (+" + fix(g.ressources.perClick[2], 0) + ")");
-	$("#btn-2-1").html("Generate water (+" + fix(g.ressources.perClick[3], 0) + ")");
+	$("#btn-2-1").html("Generate water (+" + fix(g.ressources.perClick[3], 0) + " mL)");
 	$("#btn-3-1").html("Generate cell (+" + fix(g.ressources.perClick[4], 0) + ")");
 };
 game.loop = function() {

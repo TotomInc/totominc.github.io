@@ -46,16 +46,18 @@
 				</p>
 			</div>
 			<div class="col-md-6">
-			  <ul class="nav nav-tabs" role="tablist">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
 			    <li id="log-nav" role="presentation" class="active"><a href="#log" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Log</a></li>
 			    <li id="upgrades-nav" role="presentation" style="display: none;"><a href="#upgrades" data-toggle="tab"><i class="fa fa-level-up"></i> Upgrades</a></li>
+			    <li id="builds-nav" role="presentation" style="display: none;"><a href="#builds" data-toggle="tab"><i class="fa fa-building"></i> Builds</a></li>
 			  </ul>
 			  <div class="tab-content">
 			    <div id="log" class="tab-pane fade in active"><div id="log-well" class="well"></div></div>
 			    <div id="upgrades" class="tab-pane fade"><div class="well">
-			    	<div class="row"><div class="col-md-6 col-md-offset-3"><div class="checkbox"><p class="text-center"><label><input type="checkbox"> Show upgrades bought</label></p></div></div></div>
+			    	<div class="row"><div class="col-md-6 col-md-offset-3"><div class="checkbox"><p class="text-center"><label><input id="upgrades-checkbox" type="checkbox" onclick="g.u.hide()"> Show upgrades bought</label></p></div></div></div>
 						<div class="panel panel-default"><div id="upgrades-panelbody" class="panel-body"></div></div>
 			    </div></div>
+			    <div id="builds" class="tab-pane fade"><div class="well"></div></div>
 			  </div>
 			</div>
 			<div class="col-md-3"><div id="ressources-well" class="well" style="display: none;">
@@ -68,7 +70,17 @@
 	<script src="js/game.js"></script>
 	<script src="js/helpers.js"></script>
 	<script src="js/upgrades.js"></script>
+	<script src="js/builds.js"></script>
 	<script src="js/tutorial.js"></script>
 	<script src="js/resize.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-54540685-14', 'auto');
+	  ga('send', 'pageview');
+	</script>
 </body>
 </html>

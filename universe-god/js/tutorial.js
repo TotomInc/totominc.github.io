@@ -1,7 +1,7 @@
 g.tutorial = g.t = {};
 g.t.spacer = "<br>--------------<br>";
 g.t.fast = {
-	check: false,
+	check: true,
 	string: 'dev mode enabled' + g.t.spacer
 };
 g.t.intro1 = {
@@ -46,11 +46,8 @@ g.t.intro5 = {
 
 game.tutorial.intro = function() {
 	if (g.t.fast.check == true) {
-		g.t.intro1.string = "intro 1";
-		g.t.intro2.string = "intro 2";
-		g.t.intro3.string = "intro 3";
-		g.t.intro4.string = "intro 4";
-		g.t.intro5.string = "intro 5 - end";
+		g.t.intro1.string = "dev mode.";
+		$("#btn-1-1, #btn-1-2, #ressources-well, #btn-2-1, #upgrades-nav, #btn-1-3, #btn-3-1, #btn-3-2, #btn-3-3, #builds-nav").fadeIn('slow');
 	};
 	if (g.t.intro1.check == false) {
 		$("#log-well").append('<p class="no-margin"><span id="intro-text-1"></span></p>');
@@ -98,6 +95,7 @@ game.tutorial.intro = function() {
 		$("#intro-text-5").typed({
 			strings: [g.t.intro5.string],
 			callback: function() {
+				$("#btn-3-1").fadeIn('slow');
 				h.removeCursor();
 			}
 		});	
