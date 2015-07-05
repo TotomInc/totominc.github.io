@@ -29,12 +29,16 @@ game.init = function() {
 
 	g.u.init();
 	g.b.init();
+
 	save.loadData();
-	g.tutorial.intro();
+
+	g.tutorial.saveCheck();
 	g.u.check();
 	g.u.hide();
 	g.b.update();
 	g.buttons();
+	if (g.t.intro5.check !== true)
+		g.tutorial.intro();
 
 	$('[data-toggle="tooltip"]').tooltip();
 	$('.header-small').html(g.options.version);

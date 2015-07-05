@@ -122,3 +122,16 @@ game.tutorial.check = function() {
 		g.t.intro();
 	};
 };
+game.tutorial.saveCheck = function() {
+	$("#btn-1-1, #btn-1-2, #ressources-well").fadeIn('slow');
+	if (g.t.intro1.check == true && g.t.intro2.check == false)
+		$("#btn-2-1, #upgrades-nav").fadeIn('slow');
+	if (g.t.intro2.check == true && g.t.intro3.check == false)
+		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav").fadeIn('slow');
+	if (g.t.intro3.check == true && g.t.intro4.check == false)
+		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-3").fadeIn('slow');
+	if (g.t.intro4.check == true && g.t.intro5.check == false)
+		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-1, #builds-nav").fadeIn('slow');
+	if (g.t.intro5.check == true)
+		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-1, #builds-nav").fadeIn('slow');
+};

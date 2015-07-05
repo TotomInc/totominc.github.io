@@ -29,5 +29,10 @@ save.loadData = function() {
 		g.cellCost = sg.cellCost;
 		g.b.owned = sg.builds.owned;
 		g.u.owned = sg.upgrades.owned;
+		g.t.intro1.check = sg.t.intro1.check;
+		g.t.intro2.check = sg.t.intro2.check;
+		g.t.intro3.check = sg.t.intro3.check;
+		g.t.intro4.check = sg.t.intro2.check;
+		g.t.intro5.check = sg.t.intro5.check;
 	};
 };

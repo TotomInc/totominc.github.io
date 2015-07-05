@@ -1,7 +1,7 @@
 g.upgrades = g.u = {};
 g.u.owned = [];
 
-game.upgrades.create = function(name, desc, price, priceName, reqName, changeName, changeValue) {
+game.upgrades.create = function(name, desc, price, priceName, reqName, changeName, changeValue, type) {
 	this.name = name;
 	this.desc = desc;
 	this.price = price;
@@ -9,6 +9,7 @@ game.upgrades.create = function(name, desc, price, priceName, reqName, changeNam
 	this.reqName = reqName;
 	this.changeName = changeName;
 	this.changeValue = changeValue;
+	this.type = type;
 };
 game.upgrades.buy = function(i) {
 	var a = eval("g.ressources." + g.u.list[i].reqName);
