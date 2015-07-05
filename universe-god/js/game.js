@@ -52,6 +52,11 @@ game.buttons = function() {
 	$("#btn-1-3").html("Create helium (+" + fix(g.ressources.perClick[2], 0) + ")");
 	$("#btn-2-1").html("Generate water (+" + fix(g.ressources.perClick[3], 0) + " mL)");
 	$("#btn-3-1").html("Generate cell (+" + fix(g.ressources.perClick[4], 0) + ")");
+
+	if (g.ressources.owned[6] == 1)
+		$("#btn-3-2").css('display', 'none');
+	if (g.ressources.owned[7] == 1)
+		$("#btn-3-3").css('display', 'none');
 };
 game.loop = function() {
 	if (g.options.init == true) {

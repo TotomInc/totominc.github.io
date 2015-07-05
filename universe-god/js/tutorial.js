@@ -1,7 +1,7 @@
 g.tutorial = g.t = {};
 g.t.spacer = "<br>--------------<br>";
 g.t.fast = {
-	check: true,
+	check: false,
 	string: 'dev mode enabled' + g.t.spacer
 };
 g.t.intro1 = {
