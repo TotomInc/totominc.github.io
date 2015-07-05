@@ -18,3 +18,5 @@ First :
     - 10 cells/mL of water
     - 1 cell generate 0.1 meat
   - builds to create hydrogen/oxygen/helium per sec
+
+Second :

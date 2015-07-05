@@ -2,11 +2,12 @@ var game = g = {};
 
 g.options = {};
 g.options.fps = 60;
+g.options.saveIntervalTime = 10000;
 g.options.interval = (1000/g.options.fps);
 g.options.init = false;
 g.options.before = new Date().getTime();
 g.options.now = new Date().getTime();
-g.options.version = 'super-mega-early-prototype';
+g.options.version = 0.001;
 
 g.ressources = {};
 g.ressources.list = ["Hydrogen", "Oxygen", "Helium", "Water", "Cells", "Meat", "Sun", "Atmosphere Generator"];
@@ -33,6 +34,7 @@ game.init = function() {
 	g.tutorial.intro();
 	g.u.hide();
 	g.b.update();
+	save.loadData();
 
 	g.options.init = true;
 };
@@ -115,3 +117,6 @@ window.onload = function() {
 g.coreLoop = window.setInterval(function() {
 	g.loop();
 }, g.options.interval);
+g.saveInterval = window.setInterval(function() {
+	save.saveData();
+}, g.options.saveIntervalTime)
