@@ -29,12 +29,15 @@ game.init = function() {
 
 	g.u.init();
 	g.b.init();
-	$('[data-toggle="tooltip"]').tooltip();
-	$('.header-small').html(g.options.version);
+	save.loadData();
 	g.tutorial.intro();
+	g.u.check();
 	g.u.hide();
 	g.b.update();
-	save.loadData();
+	g.buttons();
+
+	$('[data-toggle="tooltip"]').tooltip();
+	$('.header-small').html(g.options.version);
 
 	g.options.init = true;
 };

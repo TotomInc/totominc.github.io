@@ -13,7 +13,7 @@ game.upgrades.create = function(name, desc, price, priceName, reqName, changeNam
 game.upgrades.buy = function(i) {
 	var a = eval("g.ressources." + g.u.list[i].reqName);
 	var index = g.ressources.list.indexOf(g.u.list[i].priceName);
-	if (a >= g.u.list[i].price) {
+	if (a >= g.u.list[i].price && g.u.owned[i] == false) {
 		var preStr = g.u.list[i].changeName.substring(0, g.u.list[i].changeName.indexOf('['));
 		var strIndex = g.u.list[i].changeName.substring(g.u.list[i].changeName.indexOf('[')+1, g.u.list[i].changeName.length-1);
 		var fullStr = "g.ressources." + preStr + '[' + strIndex + ']';
@@ -48,6 +48,16 @@ game.upgrades.hide = function() { // todo
 		for (var i = 0; i < g.u.list.length; i++) {
 			if (g.u.owned[i] == true)
 				$("#upgrades-row-" + i).css("display", 'none');
+		};
+	};
+};
+game.upgrades.check = function() {
+	for (var i = 0; i < g.u.list.length; i++) {
+		if (g.u.owned[i] == true) {
+			$("#upgrades-btn-" + i).attr('onclick', '');
+			$("#upgrades-btn-" + i).removeClass('btn-primary');
+			$("#upgrades-btn-" + i).addClass('btn-success');
+			$("#upgrades-btn-" + i).html('Owned');
 		};
 	};
 };
