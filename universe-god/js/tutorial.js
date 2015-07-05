@@ -120,6 +120,7 @@ game.tutorial.check = function() {
 	if (g.t.intro4.check == false && g.ressources.owned[7] == 1) {
 		g.t.intro4.check = true;
 		g.t.intro();
+		g.t.intro5.check = true;
 	};
 };
 game.tutorial.saveCheck = function() {
