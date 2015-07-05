@@ -50,6 +50,14 @@
 			    <li id="log-nav" role="presentation" class="active"><a href="#log" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Log</a></li>
 			    <li id="upgrades-nav" role="presentation" style="display: none;"><a href="#upgrades" data-toggle="tab"><i class="fa fa-level-up"></i> Upgrades</a></li>
 			    <li id="builds-nav" role="presentation" style="display: none;"><a href="#builds" data-toggle="tab"><i class="fa fa-building"></i> Builds</a></li>
+				  <li id="dropdown-nav" role="presentation" class="dropdown" style="display: none;">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+				    <ul class="dropdown-menu">
+				    	<li><a href="#achievements" data-toggle="tab" class="tabs-selectors"><i class="fa fa-trophy"></i> Achievements</a></li>
+				    	<li role="separator" class="divider"></li>
+				    	<li><a href="#options" data-toggle="tab" class="tabs-selectors"><i class="fa fa-cog"></i> Options</a></li>
+				    </ul>
+				  </li>
 			  </ul>
 			  <div class="tab-content">
 			    <div id="log" class="tab-pane fade in active"><div id="log-well" class="well"></div></div>
@@ -58,7 +66,21 @@
 						<div class="panel panel-default"><div id="upgrades-panelbody" class="panel-body"></div></div>
 			    </div></div>
 			    <div id="builds" class="tab-pane fade"><div class="well">
-			    	<div class="panel panel-default"><div id="builds-panelbody" class="panel-body"></div></div>
+			    	<div class="panel panel-default">
+			    		<div id="builds-panelbody" class="panel-body"></div>
+			    	</div>
+			    </div></div>
+			    <div id="options" class="tab-pane fade"><div class="well">
+			    	<div class="container-fluid">
+			    		<div class="row">
+			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.saveData();">Save data</a></div>
+			    			<div class="col-md-4"><a type="button" class="btn btn-warning btn-block" onclick="save.removeData();">Remove data</a></div>
+			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.loadData();">Load data</a></div>
+			    		</div>
+			    	</div>
+			    </div></div>
+			    <div id="achievements" class="tab-pane fade"><div class="well">
+			    	<h4 class="text-center no-margin">Available soon!<br>Stay tuned!</h4>
 			    </div></div>
 			  </div>
 			</div>

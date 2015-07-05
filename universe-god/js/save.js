@@ -3,7 +3,7 @@ save.key = "UniverseGod_Save";
 save.tosave = { game: game, builds: builds, upgrades: upgrades };
 
 save.saveData = function() {
-	console.info("Game auto-saved. (Every " + (g.options.saveIntervalTime / 1000) + " seconds)");
+	console.info("Game saved. (Auto-save every " + (g.options.saveIntervalTime / 1000) + " seconds)");
 	localStorage.setItem(save.key, JSON.stringify(save.tosave));
 };
 save.removeData = function() {
