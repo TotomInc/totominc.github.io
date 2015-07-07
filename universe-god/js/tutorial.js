@@ -1,12 +1,12 @@
 g.tutorial = g.t = {};
 g.t.spacer = "<br>--------------<br>";
+g.t.allElements = "#btn-1-1, #btn-1-2, #btn-1-3, #btn-2-1, #btn-3-1, #btn-buy-multiplier, #ressources-well, #upgrades-nav, #builds-nav, #dropdown-nav";
 g.t.fast = {
-	check: true,
-	string: 'dev mode enabled' + g.t.spacer
+	check: false,
 };
 g.t.back = {
 	check: false,
-	string: 'Welcome back!'
+	string: 'Welcome back to <b>Universe-God</b>!'
 };
 g.t.intro1 = {
 	check: false,
@@ -48,8 +48,8 @@ g.t.intro5 = {
 
 game.tutorial.intro = function() {
 	if (g.t.fast.check == true) {
-		g.t.intro1.string = "dev mode.";
-		$("#btn-1-1, #btn-1-2, #ressources-well, #btn-2-1, #upgrades-nav, #btn-1-3, #btn-3-1, #builds-nav, #dropdown-nav").fadeIn('slow');
+		g.t.intro1.string = 'Dev mode enabled.';
+		$(g.t.allElements).fadeIn('slow');
 	};
 	if (g.t.intro1.check == false) {
 		$("#log-well").append('<p class="no-margin"><span id="intro-text-1"></span></p>');
@@ -102,7 +102,7 @@ game.tutorial.intro = function() {
 			strings: [g.t.intro5.string],
 			typeSpeed: 1,
 			callback: function() {
-				$("#btn-3-1, #builds-nav, #dropdown-nav").fadeIn('slow');
+				$("#btn-3-1, #btn-buy-multiplier, #builds-nav, #dropdown-nav").fadeIn('slow');
 				h.removeCursor();
 			}
 		});	
@@ -136,7 +136,7 @@ game.tutorial.saveCheck = function() {
 	if (g.t.intro3.check == true && g.t.intro4.check == false)
 		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-3").fadeIn('slow');
 	if ((g.t.intro4.check == true && g.t.intro5.check == false) || g.t.intro5.check == true) {
-		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-1, #builds-nav, #dropdown-nav").fadeIn('slow');
+		$("#btn-1-3, #btn-3-2, #btn-2-1, #upgrades-nav, #btn-3-1, #btn-buy-multiplier, #builds-nav, #dropdown-nav").fadeIn('slow');
 		$("#btn-3-2").css('display', 'none');
 		$("#log-well").append('<p class="no-margin"><span id="log-back"></span></p>');
 		$("#log-back").typed({

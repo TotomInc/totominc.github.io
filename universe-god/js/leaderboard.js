@@ -1,13 +1,14 @@
 g.leaderboard = {};
 var firebase = new Firebase("https://universe-god.firebaseio.com/");
 var ref = new Firebase("https://universe-god.firebaseio.com/scorelist/");
-var LEADERBOARD_SIZE = 10;
 var htmlForPath = {};
+var usernameExists;
 var score;
 
 game.leaderboard.setUsername = function() {
 	var a = $("#leaderboard-input").val();
-	if (g.username == undefined && a.length >= 3) {
+	game.leaderboard.checkIfUserExists(a);
+	if (usernameExists == false && g.username == undefined && a.length >= 3 && a.indexOf('<') == -1 && a.indexOf("'") == -1 && a.indexOf('"') == -1) {
 		$("#leaderboard-input").attr('disabled', '');
 		$("#leaderboard-input").attr('placeholder', '');
 		g.username = $("#leaderboard-input").val();
@@ -39,7 +40,7 @@ game.leaderboard.submitScore = function() {
 };
 game.leaderboard.initScore = function() {
 	ref.on("value", function(snapshot) {
-		console.info("Loading scorelist...")
+		console.info("Loading leaderboard...");
 		var list = snapshot.val();
 		var scoreboard = $.map(list, function(value, index) {
 		    return [value];
@@ -60,6 +61,22 @@ game.leaderboard.handleScoreAdded = function(scoreSnapshot, prevScoreName) {
       	var lowerScoreRow = htmlForPath[prevScoreName];
       	lowerScoreRow.before(newScoreRow);
     };
+};
+game.leaderboard.checkIfUserExists = function(userId) {
+	var usersRef = new Firebase("https://universe-god.firebaseio.com/scorelist/");
+	usersRef.child(userId).once('value', function(snapshot) {
+		var exists = (snapshot.val() !== null);
+		game.leaderboard.userExistsCallback(exists);
+	});
+};
+game.leaderboard.userExistsCallback = function(exists) {
+	if (exists == true) {
+		$("#leaderboard-error").html("Username already taken, please choose another one!");
+		usernameExists = true;
+	} else {
+		$("#leaderboard-error").html("");
+		usernameExists = false;
+	};
 };
 ref.on('child_added', function(newScoreSnapshot, prevScoreName) {
     game.leaderboard.handleScoreAdded(newScoreSnapshot, prevScoreName);

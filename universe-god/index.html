@@ -44,6 +44,9 @@
 					<a id="btn-3-2" type="button" class="btn btn-success btn-block" onclick="game.earn('sun')" data-toggle="tooltip" data-placement="top" title="Cost 75 hydrogen, 10 oxygen, 15 helium" style="display: none;">Create Sun</a>
 					<a id="btn-3-3" type="button" class="btn btn-success btn-block" onclick="game.earn('atmo-gen')" data-toggle="tooltip" data-placement="top" title="Cost 150 hydrogen, 100 oxygen, 50 helium" style="display: none;">Build an 'Atmosphere Generator'</a>
 				</p>
+				<p>
+					<a id="btn-buy-multiplier" type="button" class="btn btn-info btn-block" onclick="game.changeBuy()" style="display: none;">Buy x1</a>
+				</p>
 			</div>
 			<div class="col-md-6">
 			  <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -78,6 +81,7 @@
 			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.saveData();">Save data</a></div>
 			    			<div class="col-md-4"><a type="button" class="btn btn-warning btn-block" onclick="save.removeData();">Remove data</a></div>
 			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.loadData();">Load data</a></div>
+			    			<div class="col-md-12"><h4 class="text-center"><b>The game autosave every 10 seconds.</b></h4></div>
 			    		</div>
 			    	</div>
 			    </div></div>
@@ -88,7 +92,10 @@
 			    	<div class="row">
 			    		<div class="col-md-4"><a type="button" class="btn btn-success btn-block" onclick="g.leaderboard.setUsername()">Submit score</a></div>
 			    		<div class="col-md-8"><input type="text" id="leaderboard-input" class="form-control" placeholder="Username (longer than 2 characters)"></div>
+			    		<div class="col-md-12"><p id="leaderboard-error" class="text-center text-danger"></p></div>
 			    	</div><br>
+			    	<p class="text-center">Leaderboard can be buggy, report bugs at the <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">latest thread on /r/incremental_games</a><br>
+			    	<b>Trollers or 'hackers' will be removed from the leaderboard!</b></p>
 						<table class="table table-condensed">
 						  <thead><tr><th>Name</th><th>Meat</th><th>Cells</th></tr></thead>
 						  <tbody id="leaderboard-body"></tbody>
@@ -100,9 +107,13 @@
 							<div id="notes-prototype" class="panel-collapse collapse">
 								<div class="panel-body">
 									<h5>v0.002 <small>(2015/07/07)</small></h5>
-									<ul><li>Fixed a lot of bugs.</li></ul>
-									<ul><li>Added a leaderboard. <b>Cheaters on the leaderboard will be removed!</b></li></ul>
+									<ul><li>Fixed a lot of bugs.</li>
+									<ul><li>Especially bugs related to the savegame and the tutorial.</li></ul></ul>
+									<ul><li>Added a leaderboard.</li>
+									<ul><li>New players can't take another player username. For example, if a new player want to take the name <b>TotomInc</b>, he can't because this username is already taken.</li></ul>
+									<ul><li><b>Cheaters on the leaderboard will be removed WITHOUT warning!</b></li></ul></ul>
 									<ul><li>Added patch-notes, everything new will be added here.</li></ul>
+									<ul><li>Added an option to multiple-buy (x1, x10, x100, x1000)</li></ul>
 									<h5>v0.001 <small>(2015/07/05)</small></h5>
 									<ul><li>Prototype version released on reddit (/r/incremental_games) : <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">link to the thread</a></li></ul>
 									<ul><li>During the prototype stage, progress can be reset (intentionally) for testing purposes.</li></ul>

@@ -1,6 +1,7 @@
 var game = g = {};
 
 g.options = {};
+g.options.devMode = true;
 g.options.fps = 60;
 g.options.saveIntervalTime = 10000;
 g.options.interval = (1000/g.options.fps);
@@ -19,22 +20,26 @@ g.cellsPerWater = 10;
 g.cellMeat = 0.1;
 g.cellCost = 5;
 
+g.buyMultiplier = 1;
+
 g.username = undefined;
 
 // CORE FUNCTIONS
 game.init = function() {
 	g.ressources.init();
-	g.u.init();
-	g.b.init();
+	g.upgrades.init();
+	g.builds.init();
 
 	save.loadData();
 
+	g.devMode();
 	g.tutorial.saveCheck();
-	g.u.check();
-	g.u.hide();
-	g.b.update();
+	g.upgrades.check();
+	g.upgrades.hide();
+	g.builds.update();
 	g.buttons();
 	g.leaderboard.check();
+	g.leaderboard.initScore();
 
 	if (g.t.intro5.check !== true)
 		g.tutorial.intro();
@@ -53,8 +58,10 @@ game.buttons = function() {
 	$("#btn-1-1").html("Create hydrogen (+" + fix(g.ressources.perClick[0], 0) + ")");
 	$("#btn-1-2").html("Create oxygen (+" + fix(g.ressources.perClick[1], 0) + ")");
 	$("#btn-1-3").html("Create helium (+" + fix(g.ressources.perClick[2], 0) + ")");
-	$("#btn-2-1").html("Generate water (+" + fix(g.ressources.perClick[3], 0) + " mL)");
-	$("#btn-3-1").html("Generate cell (+" + fix(g.ressources.perClick[4], 0) + ")");
+	$("#btn-2-1").html("Generate water (+" + fix(g.ressources.perClick[3] * g.buyMultiplier, 0) + " mL)");
+	$("#btn-2-1").attr('data-original-title', 'Cost ' + fix((20 * g.buyMultiplier), 0) + ' hydrogen, ' + fix((10 * g.buyMultiplier), 0) + ' oxygen');
+	$("#btn-3-1").html("Generate cell (+" + fix(g.ressources.perClick[4] * g.buyMultiplier, 0) + ")");
+	$("#btn-3-1").attr('data-original-title', 'Cost ' + fix((g.cellCost * g.buyMultiplier), 0) + ' helium')
 
 	if (g.ressources.owned[6] == 1)
 		$("#btn-3-2").css('display', 'none');
@@ -92,10 +99,20 @@ game.earn = function(type) {
 		var index = g.ressources.list.indexOf(str);
 		h.earnRessources(type, g.ressources.perClick[index]);
 	};
-	if (type == "water" && a[0] >= 20 && a[1] >= 10) {
-		a[0] -= 20;
-		a[1] -= 10;
-		a[3]++;
+	if (type == "water" && a[0] >= 20 * g.buyMultiplier && a[1] >= 10 * g.buyMultiplier) {
+		if (g.buyMultiplier > 1) {
+			for (var i = 0; i < g.buyMultiplier; i++) {
+				if (a[0] >= 20 && a[1] >= 10) {
+					a[3]++;
+					a[0] -= 20;
+					a[1] -= 10;
+				};
+			};
+		} else {
+			a[0] -= 20;
+			a[1] -= 10;
+			a[3]++;
+		};
 	};
 	if (type == "sun" && a[0] >= 75 && a[2] >= 15 && a[1] >= 10 && a[6] == 0) {
 		a[6] = 1;
@@ -115,17 +132,48 @@ game.earn = function(type) {
 			$("#btn-3-3, .tooltip").remove();
 		});
 	};
-	if (type == 'cell' && g.ressources.owned[4] < h.maxCells() && g.ressources.owned[2] >= g.cellCost) {
-		g.ressources.owned[4]++;
-		g.ressources.owned[2] -= g.cellCost;
+	if (type == 'cell' && a[4] < h.maxCells() * g.buyMultiplier && a[2] >= g.cellCost * g.buyMultiplier) {
+		if (g.buyMultiplier > 1) {
+			for (var i = 0; i < g.buyMultiplier; i++) {
+				if (a[2] >= g.cellCost) {
+					a[4]++;
+					a[2] -= g.cellCost;
+				};
+			};
+		} else {
+			a[4]++;
+			a[2] -= g.cellCost;
+		};
 	};
-	if (g.t.fast.check == true)
+	if (g.t.fast.check == true) {
 		return;
-	else
+	} else {
 		g.t.check();
+	};
 };
 game.cellsEarn = function(times) {
 	g.ressources.owned[5] += (h.cellsMeat() * times) / g.options.fps;
+};
+game.changeBuy = function() {
+	if (g.buyMultiplier == 1)
+		g.buyMultiplier = 10;
+	else
+		if (g.buyMultiplier == 10)
+			g.buyMultiplier = 100;
+		else
+			if (g.buyMultiplier == 100)
+				g.buyMultiplier = 1000;
+			else
+				if (g.buyMultiplier == 1000)
+					g.buyMultiplier = 1;
+	$("#btn-buy-multiplier").html("Buy x" + fix(g.buyMultiplier, 0));
+	game.buttons();
+};
+game.devMode = function() {
+	if (g.options.devMode == true) {
+		console.warn("Dev mode enabled!");
+		g.t.fast.check = true;
+	};
 };
 
 // INTERVALS + ONLOAD
@@ -137,4 +185,4 @@ g.coreLoop = window.setInterval(function() {
 }, g.options.interval);
 g.saveInterval = window.setInterval(function() {
 	save.saveData();
-}, g.options.saveIntervalTime)
+}, g.options.saveIntervalTime);
