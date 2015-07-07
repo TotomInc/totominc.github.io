@@ -62,16 +62,23 @@ game.upgrades.check = function() {
 		};
 	};
 };
+game.upgrades.checkSave = function() {
+	if (g.u.owned.length !== g.u.list.length) {
+		var a = (g.u.list.length - g.u.owned.length);
+		for (var i = 0; i < a.length; i++)
+			g.u.owned.push(0);
+	};
+};
 
 g.u.owned = [];
 g.u.list = [
 	new g.u.create("Hydrogen I",	"Hydrogen/click x2",	10,		'Hydrogen',		'owned[0]',		'perClick[0]',		'*2'),
 	new g.u.create("Hydrogen II",	"Hydrogen/click x2",	75,		'Hydrogen',		'owned[0]',		'perClick[0]',		'*2'),
-	new g.u.create("Hydrogen III",	"Hydrogen/click x2",	1000,	'Hydrogen',		'owned[0]',		'perClick[0]',		'*2'),
+	new g.u.create("Hydrogen III",	"Hydrogen/click x1.5",	1000,	'Hydrogen',		'owned[0]',		'perClick[0]',		'*1.5'),
 	new g.u.create("Oxygen I",		"Oxygen/click x2",		10,		'Oxygen',		'owned[1]',		'perClick[1]',		'*2'),
 	new g.u.create("Oxygen II",		"Oxygen/click x2",		75,		'Oxygen',		'owned[1]',		'perClick[1]',		'*2'),
-	new g.u.create("Oxygen III",	"Oxygen/click x2",		1000,	'Oxygen',		'owned[1]',		'perClick[1]',		'*2'),
+	new g.u.create("Oxygen III",	"Oxygen/click x1.5",	1000,	'Oxygen',		'owned[1]',		'perClick[1]',		'*1.5'),
 	new g.u.create("Helium I",		"Helium/click x2",		10,		'Helium',		'owned[2]',		'perClick[2]',		'*2'),
 	new g.u.create("Helium II",		"Helium/click x2",		75,		'Helium',		'owned[2]',		'perClick[2]',		'*2'),
-	new g.u.create("Helium III",	"Helium/click x2",		1000,	'Helium',		'owned[2]',		'perClick[2]',		'*2'),
+	new g.u.create("Helium III",	"Helium/click x1.5",	1000,	'Helium',		'owned[1.5]',	'perClick[2]',		'*2')
 ];

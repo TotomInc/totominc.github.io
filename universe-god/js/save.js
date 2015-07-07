@@ -29,6 +29,7 @@ save.loadData = function() {
 		g.cellMeat = sg.cellMeat;
 		g.cellCost = sg.cellCost;
 		g.b.owned = sg.builds.owned;
+		g.b.multiplier = sg.builds.multiplier;
 		g.u.owned = sg.upgrades.owned;
 		g.t.intro1.check = sg.t.intro1.check;
 		g.t.intro2.check = sg.t.intro2.check;
@@ -36,5 +37,13 @@ save.loadData = function() {
 		g.t.intro4.check = sg.t.intro2.check;
 		g.t.intro5.check = sg.t.intro5.check;
 		g.username = sg.username;
+	};
+};
+save.checkSave = function() {
+	if (typeof g.b.multiplier !== "object") {
+		g.b.multiplier = [];
+		for (var i = 0; i < g.b.list.length; i++) {
+			g.b.multiplier.push(1);
+		};
 	};
 };

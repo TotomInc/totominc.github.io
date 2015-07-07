@@ -20,6 +20,7 @@ game.leaderboard.setUsername = function() {
 };
 game.leaderboard.check = function() {
 	if (g.username !== undefined) {
+		$("#leaderboard-btn").attr('onclick', 'game.leaderboard.submitScore()');
 		$("#leaderboard-input").attr('disabled', '');
 		$("#leaderboard-input").attr('placeholder', '');
 		$("#leaderboard-input").val(g.username);
