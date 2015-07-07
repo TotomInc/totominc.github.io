@@ -7,7 +7,7 @@ g.options.interval = (1000/g.options.fps);
 g.options.init = false;
 g.options.before = new Date().getTime();
 g.options.now = new Date().getTime();
-g.options.version = 0.001;
+g.options.version = 0.002;
 
 g.ressources = {};
 g.ressources.list = ["Hydrogen", "Oxygen", "Helium", "Water", "Cells", "Meat", "Sun", "Atmosphere Generator"];
@@ -19,14 +19,11 @@ g.cellsPerWater = 10;
 g.cellMeat = 0.1;
 g.cellCost = 5;
 
+g.username = undefined;
+
 // CORE FUNCTIONS
 game.init = function() {
-	for (var i = 0; i < g.ressources.list.length; i++) {
-		g.ressources.owned.push(0);
-		g.ressources.total.push(0);
-		g.ressources.perClick.push(1);
-	};
-
+	g.ressources.init();
 	g.u.init();
 	g.b.init();
 
@@ -37,6 +34,8 @@ game.init = function() {
 	g.u.hide();
 	g.b.update();
 	g.buttons();
+	g.leaderboard.check();
+
 	if (g.t.intro5.check !== true)
 		g.tutorial.intro();
 
@@ -75,6 +74,13 @@ game.loop = function() {
 		};
 		g.options.before = new Date().getTime();
 		g.display();
+	};
+};
+game.ressources.init = function() {
+	for (var i = 0; i < g.ressources.list.length; i++) {
+		g.ressources.owned.push(0);
+		g.ressources.total.push(0);
+		g.ressources.perClick.push(1);
 	};
 };
 

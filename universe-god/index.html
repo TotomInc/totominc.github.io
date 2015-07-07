@@ -7,12 +7,12 @@
 
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 	<script src="src/typed.js"></script>
 	<script src="js/beautify.js"></script>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/typed.css">
 	<link rel="stylesheet" href="css/interface.css">
 </head>
@@ -54,8 +54,10 @@
 				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 				    <ul class="dropdown-menu">
 				    	<li><a href="#achievements" data-toggle="tab" class="tabs-selectors"><i class="fa fa-trophy"></i> Achievements</a></li>
+				    	<li><a href="#leaderboard" data-toggle="tab" class="tabs-selectors"><i class="fa fa-bar-chart"></i> Leaderboard</a></li>
 				    	<li role="separator" class="divider"></li>
 				    	<li><a href="#options" data-toggle="tab" class="tabs-selectors"><i class="fa fa-cog"></i> Options</a></li>
+				    	<li><a href="#patch-notes" data-toggle="tab" class="tabs-selectors"><i class="fa fa-pencil"></i> Patch-notes</a></li>
 				    </ul>
 				  </li>
 			  </ul>
@@ -82,6 +84,32 @@
 			    <div id="achievements" class="tab-pane fade"><div class="well">
 			    	<h4 class="text-center no-margin">Available soon!<br>Stay tuned!</h4>
 			    </div></div>
+			    <div id="leaderboard" class="tab-pane fade"><div class="well">
+			    	<div class="row">
+			    		<div class="col-md-4"><a type="button" class="btn btn-success btn-block" onclick="g.leaderboard.setUsername()">Submit score</a></div>
+			    		<div class="col-md-8"><input type="text" id="leaderboard-input" class="form-control" placeholder="Username (longer than 2 characters)"></div>
+			    	</div><br>
+						<table class="table table-condensed">
+						  <thead><tr><th>Name</th><th>Meat</th><th>Cells</th></tr></thead>
+						  <tbody id="leaderboard-body"></tbody>
+						</table>
+			    </div></div>
+			    <div id="patch-notes" class="tab-pane fade"><div class="well">
+						<div id="accordion" class="panel-group">
+							<div class="panel-heading"><h4 class="panel-heading text-center"><a data-toggle="collapse" data-parent="#accordion" data-target="#notes-prototype" href="javascript:" class="collapsed">Prototype version <i class="fa fa-caret-down"></i></a></h4></div>
+							<div id="notes-prototype" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h5>v0.002 <small>(2015/07/07)</small></h5>
+									<ul><li>Fixed a lot of bugs.</li></ul>
+									<ul><li>Added a leaderboard. <b>Cheaters on the leaderboard will be removed!</b></li></ul>
+									<ul><li>Added patch-notes, everything new will be added here.</li></ul>
+									<h5>v0.001 <small>(2015/07/05)</small></h5>
+									<ul><li>Prototype version released on reddit (/r/incremental_games) : <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">link to the thread</a></li></ul>
+									<ul><li>During the prototype stage, progress can be reset (intentionally) for testing purposes.</li></ul>
+								</div>
+							</div>
+						</div>
+			    </div></div>
 			  </div>
 			</div>
 			<div class="col-md-3"><div id="ressources-well" class="well" style="display: none;">
@@ -98,6 +126,7 @@
 	<script src="js/tutorial.js"></script>
 	<script src="js/resize.js"></script>
 	<script src="js/save.js"></script>
+	<script src="js/leaderboard.js"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

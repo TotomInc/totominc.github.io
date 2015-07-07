@@ -7,6 +7,7 @@ save.saveData = function() {
 	localStorage.setItem(save.key, JSON.stringify(save.tosave));
 };
 save.removeData = function() {
+	g.saveInterval = undefined;
 	localStorage.removeItem(save.key);
 	location.reload();
 };
@@ -34,5 +35,6 @@ save.loadData = function() {
 		g.t.intro3.check = sg.t.intro3.check;
 		g.t.intro4.check = sg.t.intro2.check;
 		g.t.intro5.check = sg.t.intro5.check;
+		g.username = sg.username;
 	};
 };
