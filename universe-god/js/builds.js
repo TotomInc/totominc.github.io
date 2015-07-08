@@ -41,7 +41,6 @@ game.builds.earn = function(times) { // todo
 			};
 		};
 	};
-	// g.ressources.owned[0] += (1 * times) / g.options.fps;
 };
 game.builds.checkSave = function() {
 	if (g.b.owned.length !== g.b.list.length) {
@@ -52,7 +51,7 @@ game.builds.checkSave = function() {
 };
 game.builds.update = function() {
 	for (var i = 0; i < g.b.list.length; i++) {
-		$("#builds-infos-" + i).html(g.b.list[i].name + " : " + fix(g.b.list[i].reward, 2) + " " + g.b.list[i].rewardName.toLowerCase() + "/sec<br>" + fix(g.b.owned[i], 0) + " owned : " + fix(h.buildReward(i), 0) + " " + g.b.list[i].rewardName.toLowerCase() + "/sec" + "<br>Cost " + fix(h.buildPrice(i), 0) + " " + g.b.list[i].priceName.toLowerCase())
+		$("#builds-infos-" + i).html(g.b.list[i].name + " : " + fix(g.b.list[i].reward, 2) + " " + g.b.list[i].rewardName.toLowerCase() + "/sec<br>" + fix(g.b.owned[i], 0) + " owned : " + fix(h.buildReward(i), 2) + " " + g.b.list[i].rewardName.toLowerCase() + "/sec" + "<br>Cost " + fix(h.buildPrice(i), 0) + " " + g.b.list[i].priceName.toLowerCase())
 	};
 };
 

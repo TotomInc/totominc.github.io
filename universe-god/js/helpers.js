@@ -19,8 +19,8 @@ helpers.cellsMeat = function() {
 	return g.ressources.owned[4] * g.cellMeat;
 };
 helpers.buildPrice = function(i) {
-	return Math.floor(g.b.list[i].price * Math.pow(g.b.list[i].inflation, g.b.owned[i]));
+	return (g.b.list[i].price * Math.pow(g.b.list[i].inflation, g.b.owned[i]));
 };
 helpers.buildReward = function(i) {
-	return Math.floor(g.b.list[i].reward * g.b.owned[i]) * g.b.multiplier[i];
+	return (g.b.list[i].reward * g.b.owned[i]) * g.b.multiplier[i];
 };

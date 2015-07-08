@@ -80,5 +80,5 @@ g.u.list = [
 	new g.u.create("Oxygen III",	"Oxygen/click x1.5",	1000,	'Oxygen',		'owned[1]',		'perClick[1]',		'*1.5'),
 	new g.u.create("Helium I",		"Helium/click x2",		10,		'Helium',		'owned[2]',		'perClick[2]',		'*2'),
 	new g.u.create("Helium II",		"Helium/click x2",		75,		'Helium',		'owned[2]',		'perClick[2]',		'*2'),
-	new g.u.create("Helium III",	"Helium/click x1.5",	1000,	'Helium',		'owned[1.5]',	'perClick[2]',		'*2')
+	new g.u.create("Helium III",	"Helium/click x1.5",	1000,	'Helium',		'owned[2]',		'perClick[2]',		'*1.5')
 ];
