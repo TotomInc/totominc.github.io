@@ -8,7 +8,7 @@ g.options.interval = (1000/g.options.fps);
 g.options.init = false;
 g.options.before = new Date().getTime();
 g.options.now = new Date().getTime();
-g.options.version = 0.002;
+g.options.version = 0.003;
 
 g.ressources = {};
 g.ressources.list = ["Hydrogen", "Oxygen", "Helium", "Water", "Cells", "Meat", "Sun", "Atmosphere Generator", ""];

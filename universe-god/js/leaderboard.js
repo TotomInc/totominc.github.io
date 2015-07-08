@@ -51,7 +51,10 @@ game.leaderboard.initScore = function() {
 };
 game.leaderboard.handleScoreAdded = function(scoreSnapshot, prevScoreName) {
     var newScoreRow = $("<tr/>");
-    newScoreRow.append($("<td/>").append($("<span/>").text(scoreSnapshot.val().name)));
+	if (scoreSnapshot.val().name == "TotomInc")
+		newScoreRow.append($("<td/>").append($("<span style='color: red; font-weight: bold;'/>").text(scoreSnapshot.val().name)));
+	else
+		newScoreRow.append($("<td/>").append($("<span/>").text(scoreSnapshot.val().name)));
     newScoreRow.append($("<td/>").text(fix(scoreSnapshot.val().meat, 0)));
     newScoreRow.append($("<td/>").text(fix(scoreSnapshot.val().cell, 0)));
     htmlForPath[scoreSnapshot.key()] = newScoreRow;

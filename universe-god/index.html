@@ -31,6 +31,11 @@
 	<div class="container no-select">
 		<div class="row">
 			<div class="col-md-3">
+				<div id="ressources-well" class="well" style="display: none;">
+					<p><u>Resources :</u></p>
+					<p id="ressources-display" class="no-margin"></p>
+				</div>
+				<div class="spacer"></div>
 				<p>
 					<a id="btn-1-1" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('hydrogen')" style="display: none;">Create hydrogen (+1)</a>
 					<a id="btn-1-2" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('oxygen')" style="display: none;">Create oxygen (+1)</a>
@@ -40,15 +45,15 @@
 					<a id="btn-2-1" type="button" class="btn btn-info btn-block" onclick="game.earn('water')" data-toggle="tooltip" data-placement="top" title="Cost 20 hydrogen, 10 oxygen" style="display: none;">Generate water (+1 mL)</a>
 				</p>
 				<p>
-					<a id="btn-3-1" type="button" class="btn btn-success btn-block" onclick="game.earn('cell')" data-toggle="tooltip" data-placement="top" title="Cost 5 helium" style="display: none;">Generate cell (+1)</a>
+					<a id="btn-3-1" type="button" class="btn btn-info btn-block" onclick="game.earn('cell')" data-toggle="tooltip" data-placement="top" title="Cost 5 helium" style="display: none;">Generate cell (+1)</a>
 					<a id="btn-3-2" type="button" class="btn btn-success btn-block" onclick="game.earn('sun')" data-toggle="tooltip" data-placement="top" title="Cost 75 hydrogen, 10 oxygen, 15 helium" style="display: none;">Create Sun</a>
 					<a id="btn-3-3" type="button" class="btn btn-success btn-block" onclick="game.earn('atmo-gen')" data-toggle="tooltip" data-placement="top" title="Cost 150 hydrogen, 100 oxygen, 50 helium" style="display: none;">Build an 'Atmosphere Generator'</a>
 				</p>
 				<p>
-					<a id="btn-buy-multiplier" type="button" class="btn btn-info btn-block" onclick="game.changeBuy()" style="display: none;">Buy x1</a>
+					<a id="btn-buy-multiplier" type="button" class="btn btn-success btn-block" onclick="game.changeBuy()" style="display: none;">Buy x1</a>
 				</p>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-9">
 			  <ul class="nav nav-tabs nav-justified" role="tablist">
 			    <li id="log-nav" role="presentation" class="active"><a href="#log" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Log</a></li>
 			    <li id="upgrades-nav" role="presentation" style="display: none;"><a href="#upgrades" data-toggle="tab"><i class="fa fa-level-up"></i> Upgrades</a></li>
@@ -107,6 +112,13 @@
 							<div class="panel-heading"><h4 class="panel-heading text-center"><a data-toggle="collapse" data-parent="#accordion" data-target="#notes-prototype" href="javascript:" class="collapsed">Prototype version <i class="fa fa-caret-down"></i></a></h4></div>
 							<div id="notes-prototype" class="panel-collapse collapse">
 								<div class="panel-body">
+									<h5>v0.003 <small>(2015/07/08)</small></h5>
+									<ul><li>Fixed some bugs.</li>
+									<ul><li>Fixed a bug with <b>Oxygen III</b> upgrade.</li></ul>
+									<ul><li>Fixed some bugs with the leaderboard.</li></ul></ul>
+									<ul><li>Better UI.</li>
+									<ul><li>Tabs are now larger.</li></ul>
+									<ul><li>Moved resources panel.</li></ul></ul>
 									<h5>v0.002 <small>(2015/07/07)</small></h5>
 									<ul><li>Fixed a lot of bugs.</li>
 									<ul><li>Especially bugs related to the savegame and the tutorial. But also related to leaderboard.</li></ul></ul>
@@ -117,7 +129,7 @@
 									<ul><li>Added an option to multiple-buy (x1, x10, x100, x1000).</li></ul>
 									<ul><li>Added a new build : water generator.</li></ul>
 									<h5>v0.001 <small>(2015/07/05)</small></h5>
-									<ul><li>Prototype version released on reddit (/r/incremental_games) : <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">link to the thread</a></li></ul>
+									<ul><li>Prototype version released on reddit (/r/incremental_games) : <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">link to the thread</a>.</li></ul>
 									<ul><li>During the prototype stage, progress can be reset (intentionally) for testing purposes.</li></ul>
 								</div>
 							</div>
@@ -135,10 +147,6 @@
 			    </div></div>
 			  </div>
 			</div>
-			<div class="col-md-3"><div id="ressources-well" class="well" style="display: none;">
-				<p><u>Resources :</u></p>
-				<p id="ressources-display" class="no-margin"></p>
-			</div></div>
 		</div>
 	</div>
 <!-- scripts -->
