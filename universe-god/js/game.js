@@ -135,7 +135,7 @@ game.earn = function(type) {
 			$("#btn-3-3, .tooltip").remove();
 		});
 	};
-	if (type == 'cell' && a[4] < h.maxCells() * g.buyMultiplier && a[2] >= g.cellCost * g.buyMultiplier) {
+	if (type == 'cell' && a[4] + g.buyMultiplier <= h.maxCells() && a[2] >= g.cellCost * g.buyMultiplier) {
 		if (g.buyMultiplier > 1) {
 			for (var i = 0; i < g.buyMultiplier; i++) {
 				if (a[2] >= g.cellCost) {

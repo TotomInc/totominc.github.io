@@ -46,4 +46,8 @@ save.checkSave = function() {
 			g.b.multiplier.push(1);
 		};
 	};
+	if (g.ressources.owned[4] > h.maxCells()) {
+		g.ressources.owned[4] = h.maxCells();
+		alert('Bug exploit used, number of cells reduced.');
+	};
 };
