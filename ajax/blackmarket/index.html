@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <title>Blackmarket - Incremental-game</title>
+
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="src/paper.bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/interface.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="src/beautify.js"></script>
+</head>
+
+<body>
+<!-- navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand"><span id="navbar-money"></span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a><span id="navbar-weed"></span></a></li>
+          <li class="active"><a><span id="navbar-meth"></span></a></li>
+          <li class="active"><a><span id="navbar-cocaine"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!-- game area -->
+  <div class="container-fluid">
+    <div class="row">
+    <!-- player stats + actions -->
+      <div id="panels-col" class="col-md-5 light">
+        <!-- actions panel -->
+          <div class="panel panel-primary light">
+            <div class="panel-heading"><h3 class="panel-title center">Actions</h3></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <p class="center"><span id="action-shoot"></span></p>
+                  <div class="progress"><div id="shoot-actions" class="progress-bar progress-bar-success shoot-color"></div></div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                  <p class="center"><span id="action-reload"></span></p>
+                  <div class="progress"><div id="reload-actions" class="progress-bar progress-bar-danger reload-color"></div></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-xs-6"><a onclick="Action.shoot();" id="a-1" class="btn btn-success center-btn">Shoot</a></div>
+                <div class="col-md-6 col-xs-6"><a onclick="Action.reload();" id="a-2" class="btn btn-success center-btn">Reload</a></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <div id="actions-auto-shoot" class="checkbox tiny-font center"><label><input type="checkbox" id="enableAutoShoot" onclick="shootClick = true; Automation.autoShoot();"> Auto-shooting</label></div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                  <div id="actions-auto-reload" class="checkbox tiny-font center"><label><input type="checkbox" id="enableAutoReload" onclick="reloadClick = true; Automation.autoReload();"> Auto-reloading</label></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- stats panel -->
+          <div class="panel panel-primary light">
+            <div class="panel-heading"><h3 class="panel-title center">Stats</h3></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <p><span id="stats-money"></span></p>
+                  <p><span id="stats-ammo"></span></p>
+                  <p><span id="stats-experience"></span></p>
+                  <p><span id="stats-prestige"></span></p>
+                </div>
+                <div class="col-md-6 col-xs-6 left-separator">
+                  <p><span id="stats-weed"></span></p>
+                  <p><span id="stats-meth"></span></p>
+                  <p><span id="stats-cocaine"></span></p>
+                  <p><span id="stats-weedcash"></span><span id="stats-methcash"></span><span id="stats-cocainecash"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    <!-- tabs -->
+      <div id="nav-tab-content" class="col-md-7 light">
+      <!-- nav pills -->
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+          <li><a href="#tab-builds" data-toggle="tab" class="tabs-selectors"><i class="fa fa-users"></i> Drugs/Dealers</a></li>
+          <li class="active"><a href="#tab-up" data-toggle="tab" class="tabs-selectors"><i class="fa fa-arrow-circle-up"></i> Upgrades</a></li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">More <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#tab-prestige" data-toggle="tab" class="tabs-selectors"><i class="fa fa-star"></i> Prestige</a></li>
+              <li><a href="#tab-prod" data-toggle="tab" class="tabs-selectors"><i class="fa fa-wrench"></i> Factory</a></li>
+              <li><a href="#tab-gun" data-toggle="tab" class="tabs-selectors"><i class="fa fa-usd"></i> Gun-Market</a></li>
+              <li><a href="#tab-ach" data-toggle="tab" class="tabs-selectors"><i class="fa fa-trophy"></i> Success</a></li>
+              <li class="divider"></li>
+              <li><a href="#tab-options" data-toggle="tab" class="tabs-selectors"><i class="fa fa-cog"></i> Options</a></li>
+              <li><a href="#tab-help" data-toggle="tab" class="tabs-selectors"><i class="fa fa-question-circle"></i> Help</a></li>
+              <li><a href="#tab-ranks" data-toggle="tab" class="tabs-selectors"><i class="fa fa-table"></i> Ranks</a></li>
+              <li><a href="#tab-patch" data-toggle="tab" class="tabs-selectors"><i class="fa fa-pencil-square-o"></i> Patch</a></li>
+            </ul>
+          </li>
+        </ul>
+      <!-- tabs-content -->
+        <div id="tab-content" class="tab-content">
+          <div class="tab-pane fade active in" id="tab-up">
+            <div class="well"><div class="checkbox tiny-font center"><label><input type="checkbox" id="showUpgradesOwned" onclick="Upgrade.hide();"> Show upgrades owned</label></div></div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shootreward-panel" href="javascript:" class="collapsed">Shoot reward upgrades <span id="up-shootreward-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shootreward-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-shoot-reward" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shoottime-panel" href="javascript:" class="collapsed">Shoot time upgrades <span id="up-shoottime-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shoottime-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-shoot-time" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-shootammo-panel" href="javascript:" class="collapsed">Ammo upgrades <span id="up-ammo-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-shootammo-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-ammo-stock" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-reloadtime-panel" href="javascript:" class="collapsed">Reload time upgrades <span id="up-reloadtime-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-reloadtime-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-reload-time" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-weedprice-panel" href="javascript:" class="collapsed">Weed price upgrades <span id="up-weedprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-weedprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-weed-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-methprice-panel" href="javascript:" class="collapsed">Meth price upgrades <span id="up-methprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-methprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-meth-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#up-cocaineprice-panel" href="javascript:" class="collapsed">Cocaine price upgrades <span id="up-cocaineprice-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="up-cocaineprice-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="up-cocaine-price" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-builds">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-weed-panel" href="javascript:" class="collapsed">Weed Builds <span id="builds-weedstats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="builds-weed-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="builds-weed" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-weed-panel" href="javascript:" class="collapsed">Weed Dealers <span id="dealers-weedstats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="dealers-weed-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="dealers-weed" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-meth-panel" href="javascript:" class="collapsed">Meth Builds <span id="builds-methstats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="builds-meth-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="builds-meth" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-meth-panel" href="javascript:" class="collapsed">Meth Dealers <span id="dealers-methstats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="dealers-meth-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="dealers-meth" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#builds-cocaine-panel" href="javascript:" class="collapsed">Cocaine Builds <span id="builds-cocainestats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="builds-cocaine-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="builds-cocaine" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#dealers-cocaine-panel" href="javascript:" class="collapsed">Cocaine Dealers <span id="dealers-cocainestats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="dealers-cocaine-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="dealers-cocaine" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-prod">
+            <div class="well">
+              <div id="factory-locked" class="tiny-font center">
+                <p id="factory-start">Factory (or called also gun-production) WILL BE available only for players with more than 1.000 million of experience!<br>
+                We are actually working on the factory, keep playing, it will be live soon!</p>
+              </div>
+              <div id="factory-unlocked" style="display: none;">
+                <div class="row">
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="partAutocraft" onclick="Part.autocraft();"> Enable auto-craft parts</label></div></div>
+                	<div class="col-md-6"><div class="checkbox tiny-font center"><label><input type="checkbox" id="gunAutocraft" onclick="Gun.autocraft();"> Enable auto-craft guns</label></div></div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="text-center"><u>Craft some guns parts :</u></h6>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
+                      <tbody id="factory-parts-table"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="text-center"><u>Craft guns :</u></h6>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Time</th><th>Owned</th><th>Craft</th></tr></thead>
+                      <tbody id="factory-guns-table"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-12">
+                    <h6 class="text-center">Warning : offline parts/gun production doesn't work ATM, we are working on it!</h6>
+                    <p class="text-center"><b>Welcome to the factory, here you can produces parts of guns to craft guns.<br>
+                    Each gun require at least one of all parts.<br>
+                    After crafting your guns, you can sell them on the 'gun-market'.<br>
+                    Note about autocraft : it will try to craft all parts when it's possible.<br>
+                    Autocraft for the guns will craft the first gun of the list of there is not enough parts.</b></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-gun">
+            <div class="well">
+              <div id="market-locked" class="tiny-font center">
+                <p id="market-start">Gun-market WILL BE available only for player with more than 1.000 experience!<br>
+                Ii will be unlocked for players that have unlocked the factory feature.<br>
+                Note that we are working on the factory and gun-market!<br>
+                Keep playing, available soon, I promise! ;)</p>
+              </div>
+              <div id="market-unlocked" class="tiny-font" style="display: none;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="text-center"><u>Sell guns here :</u></h6>
+                    <table class="table table-striped table-hover">
+                      <thead><tr><th>Name</th><th>Reward</th><th>Owned</th><th>Sell</th></tr></thead>
+                      <tbody id="market-guns-table"></tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-12">
+                    <p class="text-center"><b>Welcome to the gun-market!<br>
+                    Here you will be able to sell your hardly crafted guns.</b></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-prestige">
+            <div class="well">
+              <p class="tiny-font center">Be careful when buying prestige-upgrades!<br>
+              Note : you keep prestige-upgrades when you soft-reset.</p>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-drugs-panel" href="javascript:" class="collapsed">Prestige drugs prices upgrades <span id="pup-drugs-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="prestige-drugs-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="prestige-upgrades" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-shoot-panel" href="javascript:" class="collapsed">Prestige shoot reward upgrades <span id="pup-shootreward-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="prestige-shoot-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="prestige-shoot" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#prestige-auto-panel" href="javascript:" class="collapsed">Auto-shoot/Reload upgrades <li class="fa fa-caret-down"></li></a></h4>
+                <div id="prestige-auto-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="prestige-shooting" class="list-group"></ul>
+                    <ul id="prestige-reloading" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-ach">
+            <div class="well"><div class="checkbox tiny-font center"><label><input type="checkbox" id="showAchOwned" onclick="Achievement.hide()"> Show achievements owned</label></div></div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-totalmoney-panel" href="javascript:" class="collapsed">Total-money achievements <span id="ach-totalmoney-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-totalmoney-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-totalmoney" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-experience-panel" href="javascript:" class="collapsed">Experience achievements <span id="ach-experience-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-experience-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-experience" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-shoot-panel" href="javascript:" class="collapsed">Shoot achievements <span id="ach-shoot-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-shoot-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-shoot" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title light center"><a data-toggle="collapse" data-parent="#accordion" data-target="#ach-reload-panel" href="javascript:" class="collapsed">Reload achievements <span id="ach-reload-stats"></span><li class="fa fa-caret-down"></li></a></h4>
+                <div id="ach-reload-panel" class="panel-collapse collapse" style="height: 0px;">
+                  <div class="panel-body">
+                    <ul id="ach-reload" class="list-group"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-options">
+            <div class="well">
+              <div class="row">
+                <div class="col-md-4 col-xs-4"><a onclick="saveData();" class="btn btn-success btn-sm center-btn">Save</a></div>
+                <div class="col-md-4 col-xs-4"><a onclick="hardReset();" class="btn btn-danger btn-sm center-btn">Hard-reset</a></div>
+                <div class="col-md-4 col-xs-4"><a onclick="softReset();" class="btn btn-warning btn-sm center-btn">Soft-reset</a></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6 col-xs-6"><a onclick="exportSave();" class="btn btn-success btn-sm center-btn">Export-save</a></div>
+                <div class="col-md-6 col-xs-6"><a onclick="importSave();" class="btn btn-success btn-sm center-btn">Import-save</a></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" id="exportSaveField" type="text" value='Exported-save will be here'>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" id="importSaveField" type="text" value='Paste your save here'>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-12"><p class="justify tiny-font light">Game is currently running at : <span id="options-currentFps"></span>You may have to reduce fps if the game is slowing down your computer.<br>
+                <b>Warning : this doesn't affect the general gameplay, you will not produce more or less drugs, etc.</b></p></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12"><input id="update-fps" type="range" min="1" max="60" step="1"></input></div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-help">
+            <div class="well">
+              <p class="lead underline text-center">How to play?</p>
+              <p class="tiny-font justify"><b>Welcome to Blackmarket!</b><br>
+              Blackmarket is an incremental game where you <b>manage a Drug Empire</b>! In the beginning, you're a poor Street Rat with a gun you stole from Uncle Ronny. To earn your first few <b>$$$ bills</b>, you have to shoot! You can buy <b>upgrades</b> to improve your operations and boost your cash flow.<br>
+              Once you have some cash to spend, you can invest in some <b>"buildings"</b> that will produce "candy" (We mean drugs, LOTS of drugs!). Buildings produce a specific amount of drugs which you can then sell for sweet $Cash Money$! .<br>
+              Blackmarket has three primary drugs (<b>weed, meth and cocaine</b>). Each drug has its own line of buildings and dealers. Once you have a few buildings, you can hire <b>dealers</b>. Dealers sell an amount of <b>their respective drug every second</b>!<br>
+              It's as simple as that, the business of drugs!<br>
+              <b>Note that Blackmarket never sleeps! Even if you close Blackmarket your business will continue producing and selling drugs!</b></p>
+              <p class="lead underline text-center">What is prestige?</p>
+              <p class="tiny-font justify"><b>Prestige</b> is earned as you play and gain more money. <b>Once you're ready you can soft-reset and begin again with a multiplier.</b> When you reach a certain point during game play, you may choose to prestige as <b>it's the best way to get further in the game</b>. This is done by going to the <b>options-menu</b> and choosing <b>"soft-reset"</b>. <b>depending on your progress</b> - you will be given a certain amount of <b>"experience"</b>.<br>
+              In Blackmarket, the prestige currency is "experience", and the amount of experience will determine your <b>prestige rank</b>, which will give a <b>prestige multiplier</b>. Take a look in the "table" panel which shows all the prestige ranks, experience needed for them and prestige multiplier these ranks give.<br>
+              The prestige multiplier affect both the shoot reward and drug prices.</p>
+              <p class="lead underline text-center">How is experience determined?</p>
+              <p class="tiny-font justify">Your amount of experience is determined by your total money. The current formula is :<br>
+              <span class="code">Math.floor(35 * Math.sqrt(totalMoney/1e7))</span></p>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-ranks">
+            <div class="well">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="light underline">Rank</th>
+                    <th class="light underline">Exp. needed</th>
+                    <th class="light underline">Prestige multiplier</th>
+                  </tr>
+                </thead>
+                <tbody id="prestige-table"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-patch">
+            <div class="well">
+              <p class="lead center underline">v1.20 : factory/gun-production</p>
+              <p class="justify tiny-font">
+                - New features have been added : the factory (also called gun-production) and the gun-market!<br>
+                - Added new upgrades, new prestige upgrades, new prestige-ranks.<br>
+                - Some small balancing.</p>
+              <p class="center tiny-font"><b>
+                I think it will be the end of Blackmarket, I don't plan to add anymore new content/features.<br>
+                It was a pleasure to develop this game, I enjoyed to make it.<br>
+                I hope you enjoyed Blackmarket as much as we enjoy making it!<br>
+                Thanks for playing Blackmarket!</b>
+              </p>
+
+              <p class="lead center underline">v1.10 (05/20/2015) : Back to Development!</p>
+              <p class="justify tiny-font">
+                - Blackmarket now has two Developers! : Welcome Latteralus!<br>
+                - Reworked the UI.<br>
+				        - Drugs/Builds/Upgrades Balancing
+                - Changed names of builds, dealers, upgrades and ranks! (More to come soon!)<br>
+                - Some small bug fixes (especially about saving)!<br>
+                - Some back end invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.07 (04/30/2015) : small fixes.</p>
+              <p class="justify tiny-font">
+                - Slightly changed prestige panel.<br>
+                - Worked about the experience spent and prestige-ranks bug (It should be fixed now).<br>
+                - Some back end improvement.
+              </p>
+
+              <p class="lead center underline">v1.06 (04/24/2015) : achievements and game balancing.</p>
+              <p class="justify tiny-font">
+                - Added achievements! Actually, you don't gain any bonuses from them, but it's planned, to gain a certain % from these achievements!<br>
+                - Meth and cocaine buildings/dealers have been boosted, they produces/sell more.<br>
+                - Weed price is nerfed, meth and cocaine is a bit boosted.<br>
+                - Some bugs fixed.<br>
+                - Some back end improvement.
+              </p>
+
+              <p class="lead center underline">v1.05 (04/23/2015) : prestige-upgrades changed!</p>
+              <p class="justify tiny-font">
+                - Changed prestige-upgrades, now you keep prestige-upgrades when going to soft-reset!<br>
+                - Fixed some bugs with prestige-upgrades.<br>
+                - Numbers can go up to 10e153 (quinquagintillion).
+              </p>
+
+              <p class="lead center underline">v1.04 (04/22/2015) : small changes</p>
+              <p class="justify tiny-font">
+                - Changed experience required for ranks! It should be easier now.<br>
+                - Added an option to hide/show upgrades owned!<br>
+                - Added auto-shooting/reloading. If you want to disable them, you must reload the page, sorry!<br>
+                - Changed builds/dealers prices.<br>
+                - Builds/dealers produces/sells a bit more.<br>
+                - Changed upgrades layout.<br>
+                - Fixed a bug with prestige-upgrades.<br>
+                - Experience formula have been a bit nerfed, it's now :<br>
+                <span class="code">Math.floor(30 * Math.sqrt(totalMoney/1e7))</span>.<br>
+              </p>
+
+              <p class="lead center underline">v1.03 (04/21/2015) : new upgrades</p>
+              <p class="justify tiny-font">
+                - Added new upgrades, changed prices of some of them.<br>
+                - Added new prestige-upgrades and changed their layout. New prestige upgrades make the shooting reward earn x % of your current $/sec.<br>
+                - Fixed a bug with the shooting reward.<br>
+                - Removed the g/sec in the navbar of each drug to make the game more user friendly interface on Kongregate.<br>
+                - Fixed a bug with import/export and upgrades.<br>
+                - Added an alert when using Internet Explorer (Blackmarket doesn't work correctly with ANY versions of IE).<br>
+                - Some backends invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.02 (04/20/2015) : dealers selling bug (really fixed?)</p>
+              <p class="justify tiny-font">
+                - New drugs prices : weed is boosted at 100$/g, meth is nerfed at 350 $/g, cocaine is nerfed at 1500$/g.<br>
+                - Bugs with drugs prices when you got all upgrades and prestige upgrades is fixed! Have to soft-reset to see it.<br>
+                - Some backend invisible changes.<br>
+                - Dealers selling bug should be fixed! Please, I need feedback about it! I want to give a huge thank to <a target="_blank" href="http://www.reddit.com/user/grammarxcore">/u/grammarxcore</a> for totally helping me to kill this nasty bug!<br>
+                - Added an option to export and import your progress! Very useful if you want to keep the same game and have to switch between multiples computers/smartphones/tablets! <b>(Warning: export/import is in beta-testing!)</b><br>
+                - Added an option to change the frames per second of the game, it will change the refresh rate of every stats you can see on the game!<br>
+                <b>Please note : this option doesn't affect gameplay! You will not gain more or less drug for example!</b><br>
+                - Numbers are easier to read.<br>
+                - Some backend invisible changes.
+              </p>
+
+              <p class="lead center underline">v1.01 (04/19/2015) : bugs fixes</p>
+              <p class="justify tiny-font">
+                - <s>Fixed a bug with dealers drug selling.</s><br>
+                - New layout for upgrades/builds/dealers.<br>
+                - Balanced (again) prestige-ranks and added some.<br>
+                - Balanced some upgrades (weed/meth/cocaine price upgrades).<br>
+                - Some backup invisibles changes.
+              </p>
+
+              <p class="lead center underline">v1.00 (04/18/2015) : official release!</p>
+              <p class="justify tiny-font">
+                After months of prototype/alpha and beta, the game has now entered on his official release stage!<br>
+                <b>What's new in this version?</b><br>
+                - Material design UI!<br>
+                - Code totally rewritten, it let me add more content and fix bugs easily!<br>
+                - More upgrades, more prestige ranks (but not enough prestige upgrades)!<br>
+                - Game rebalanced.<br>
+                Thanks you for playing Blackmarket, which is my first biggest project. From the beginning, it reached a total of 50k unique players!<br>
+                Keep an eye on Blackmarket, more features are planned!<br>
+              </p>
+              <p class="center tiny-font"><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me a message on my reddit account</a><br>
+              <a target="_blank" href="http://github.com/TotomInc/totominc.github.io">GitHub repo : if you want to contribute or take a look</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- scripts -->
+  <script src="js/resize.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/upgrades.js"></script>
+  <script src="js/builds.js"></script>
+  <script src="js/dealers.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/actions.js"></script>
+  <script src="js/factory.js"></script>
+  <script src="js/prestige.js"></script>
+  <script src="js/automation.js"></script>
+  <script src="js/core.js"></script>
+  <script src="src/browser.js"></script>
+  <script src="src/analytics.js"></script>
+</body>
+</html>

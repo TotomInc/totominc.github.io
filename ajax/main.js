@@ -1,7 +1,8 @@
-var websites = ["html/home.html", "html/home2.html", "html/home3.html"];
+var websites = ["http://totominc.github.io/ajax/blackmarket/"];
 
 var ajax = {};
 
 ajax.loadPage = function(index) {
+	$(".result").empty();
 	$(".result").load(websites[index]);
 };
