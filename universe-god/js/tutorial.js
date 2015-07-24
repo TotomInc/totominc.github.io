@@ -18,7 +18,7 @@ g.t.intro1 = {
 g.t.intro2 = {
 	check: false,
 	string: 'Good job! You can now generate some <b>water</b>.<br> ' +
-			"Water cost 20 hydrogen and 10 oxygen : his cost doesn't increase!<br> " +
+			"Water cost 20 hydrogen and 10 oxygen : this cost doesn't increase!<br> " +
 			"You can also buy some <b>upgrades</b> to help you earn more <b>ressources/click</b>.<br> " +
 			"Reach <b>3 mL</b> of water. " + g.t.spacer
 };
