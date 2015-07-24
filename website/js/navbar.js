@@ -13,6 +13,7 @@ navbar.scroll = function() {
 		});
 		$(".header-brand, .header-links").css('line-height', '50px');
 		$(".header-bar").css('background', '#333');
+		$(".header-logo").attr('src', 'img/Logo_N.png');
 	} else {
 		if (a < 35) {
 			$("#navbar").css({
@@ -22,6 +23,7 @@ navbar.scroll = function() {
 			});
 			$(".header-brand, .header-links").css('line-height', '70px');
 			$(".header-bar").css('background', '#fff');
+			$(".header-logo").attr('src', 'img/Logo_B.png');
 		};
 	};
 };
