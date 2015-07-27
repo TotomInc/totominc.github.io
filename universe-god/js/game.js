@@ -1,7 +1,7 @@
 var game = g = {};
 
 g.options = {};
-g.options.devMode = true;
+g.options.devMode = false;
 g.options.fps = 60;
 g.options.saveIntervalTime = 10000;
 g.options.interval = (1000/g.options.fps);
