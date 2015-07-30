@@ -1,0 +1,24 @@
+@font-face {
+	font-family: 'Ubuntu-R';
+	src: url(../fonts/Ubuntu-Regular.ttf);
+}
+@font-face {
+	font-family: 'Ubuntu-L';
+	src: url(../fonts/Ubuntu-Light.ttf);
+}
+@font-face {
+	font-family: 'Cagliostro';
+	src: url(../fonts/Cagliostro.ttf);
+}
+@font-face {
+	font-family: 'KottaOne';
+	src: url(../fonts/KottaOne.ttf);
+}
+@font-face {
+	font-family: 'Paprika';
+	src: url(../fonts/Paprika.ttf);
+}
+@font-face {
+	font-family: 'BubblerOne';
+	src: url(../fonts/BubblerOne.ttf);
+}
