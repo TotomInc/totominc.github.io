@@ -1,0 +1,45 @@
+{
+	"name": "bring-me-colors-bower",
+	"version": "1.0.0",
+	"dependencies": {
+		"jquery": "http://github.com/components/jquery.git",
+		"bootstrap": "http://github.com/components/bootstrap.git",
+		"fontawesome": "http://github.com/components/font-awesome.git",
+		"ionicons": "latest",
+		"requirejs": "latest"
+	},
+	"install": {
+		"base": "libs",
+		"path": {
+            "js": "{name}/js",
+            "css": "{name}/css",
+            "eot": "{name}/fonts",
+            "svg": "{name}/fonts",
+            "ttf": "{name}/fonts",
+            "woff": "{name}/fonts",
+            "woff2": "{name}/fonts",
+            "otf": "{name}/fonts"
+		},
+		"sources": {
+			"jquery": "bower_components/jquery/dist/jquery.min.js",
+			"bootstrap": [
+				"bower_components/bootstrap/css/bootstrap.min.css",
+				"bower_components/bootstrap/css/bootstrap.css",
+				"bower_components/bootstrap/js/bootstrap.min.js",
+				"bower_components/bootstrap/js/bootstrap.js",
+				"bower_components/bootstrap/fonts/*.*"
+			],
+			"fontawesome": [
+				"bower_components/fontawesome/css/font-awesome.min.css",
+				"bower_components/fontawesome/css/font-awesome.css",
+				"bower_components/fontawesome/fonts/*.*"
+			],
+			"ionicons": [
+				"bower_components/ionicons/css/ionicons.min.css",
+				"bower_components/ionicons/css/ionicons.css",
+				"bower_components/ionicons/fonts/*.*"
+			],
+			"requirejs": "bower_components/requirejs/require.js"
+		}
+	}
+}
