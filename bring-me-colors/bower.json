@@ -5,6 +5,7 @@
 		"jquery": "http://github.com/components/jquery.git",
 		"bootstrap": "http://github.com/components/bootstrap.git",
 		"fontawesome": "http://github.com/components/font-awesome.git",
+		"requirecss": "https://github.com/TotomInc/requirecss.git",
 		"ionicons": "latest",
 		"requirejs": "latest"
 	},
@@ -21,7 +22,7 @@
             "otf": "{name}/fonts"
 		},
 		"sources": {
-			"jquery": "bower_components/jquery/dist/jquery.min.js",
+			"jquery": "bower_components/jquery/jquery.min.js",
 			"bootstrap": [
 				"bower_components/bootstrap/css/bootstrap.min.css",
 				"bower_components/bootstrap/css/bootstrap.css",
@@ -38,6 +39,10 @@
 				"bower_components/ionicons/css/ionicons.min.css",
 				"bower_components/ionicons/css/ionicons.css",
 				"bower_components/ionicons/fonts/*.*"
+			],
+			"requirecss": [
+				"bower_components/requirecss/requirecss.js",
+				"bower_components/requirecss/requirecss.min.js"
 			],
 			"requirejs": "bower_components/requirejs/require.js"
 		}
