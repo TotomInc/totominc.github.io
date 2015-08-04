@@ -1,15 +1,15 @@
 {
-	"name": "universe-god",
+	"name": "universe-god-bower",
 	"version": "1.0.0",
 	"dependencies": {
-		"jquery": "http://github.com/components/jquery.git",
+		"jquery": "latest",
+		"jqueryui": "https://github.com/components/jqueryui.git",
 		"bootstrap": "http://github.com/components/bootstrap.git",
 		"fontawesome": "http://github.com/components/font-awesome.git",
+		"requirecss": "http://github.com/TotomInc/requirecss.git",
 		"ionicons": "latest",
 		"requirejs": "latest",
-		"normalize.css": "https://github.com/necolas/normalize.css.git",
-		"typed.js": "latest",
-		"moment": "latest"
+		"typed.js": "latest"
 	},
 	"install": {
 		"base": "libs",
@@ -25,6 +25,7 @@
         },
 		"sources": {
 			"jquery": "bower_components/jquery/dist/jquery.min.js",
+			"jqueryui": "bower_components/jqueryui/jquery-ui.min.js",
 			"bootstrap": [
 				"bower_components/bootstrap/css/bootstrap.min.css",
 				"bower_components/bootstrap/css/bootstrap.css",
@@ -43,9 +44,8 @@
 				"bower_components/ionicons/fonts/*.*"
 			],
 			"requirejs": "bower_components/requirejs/require.js",
-			"normalize.css": "bower_components/normalize.css/normalize.css",
-			"typed.js": "bower_components/typed.js/js/typed.js",
-			"moment": "bower_components/moment/min/moment.min.js"
+			"requirecss": "bower_components/requirecss/requirecss.min.js",
+			"typed.js": "bower_components/typed.js/js/typed.js"
 		}
 	}
 }
