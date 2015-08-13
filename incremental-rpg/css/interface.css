@@ -22,3 +22,5 @@ td { font-weight: 300; }
 .navbar-nav>.active>a { background: #fff !important; text-decoration: underline; }
 .modal-dialog { width: 800px; }
 .progress { margin-bottom: 0; }
+
+.modal-backdrop.in { z-index: 0; }
