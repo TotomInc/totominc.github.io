@@ -1,124 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="index/favicon.ico" />
 	<title>TotomInc - Home</title>
 
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="index/js/jquery.nicescroll.min.js"></script>
+	<script src="index/lib/jquery/js/jquery.min.js"></script>
+	<script src="index/lib/components-bootstrap/js/bootstrap.min.js"></script>
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="index/css/interface.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="index/lib/components-bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="index/lib/components-font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="index/lib/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="index/src/css/style.css">
 </head>
 
-<body class="noselect">
-	<header>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapser" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	    	<a class="navbar-brand">TotomInc</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="navbar-collapser">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a target="_blank" href="http://github.com/TotomInc/"><i class="ion-social-octocat"></i> GitHub</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a target="_blank" href="http://totominc.github.io/blackmarket/">Blackmarket</a></li>
+	            <li><a target="_blank" href="http://totominc.github.io/archives/universe-god/">Universe-God</a></li>
+	            <li><a target="_blank" href="http://totominc.github.io/archives/idle-quester/">Idle-Quester</a></li>
+	            <li><a target="_blank" href="http://totominc.github.io/bring-me-colors/">Bring-me-colors</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="hero">
 		<div class="container">
-			<div class="row">
-				<div class="mainnav">
-					<ul>
-						<li><a target="_blank" href="http://totominc.github.io/blackmarket">Blackmarket</a></li>
-						<li><a target="_blank" href="http://totominc.github.io/idle-quester">Idle-Quester</a></li>
-						<li><a target="_blank" href="http://totominc.github.io/incremental-rpg">Incremental-RPG</a></li>
-					</ul>
+			<h1 class="text-center hero-bigtext">Web-developer :<br>
+			Back-end / front-end.</h1>
+			<h2 class="text-center hero-smalltext">HTML5/CSS/JS<br>
+			jQuery, npm, bower</h2>
+			<div class="video-wrapper">
+				<div class="video-dots">
+					<span class="video-dot dot-red"></span>
+					<span class="video-dot dot-orange"></span>
+					<span class="video-dot dot-green"></span>
 				</div>
-			</div>
-		</div>
-	</header>
-
-	<div class="area">
-		<div class="banner1">
-			<div class="wallpaper"></div>
-			<div class="content">
-				<div class="text-wrapper">
-					<h1 class="text-center">Web-developper</h1>
-					<p class="text-center">Knowledge : HTML5/CSS/JS (pure JS/jQuery)<br>
-					Fan of incremental-games (<a href="http://www.reddit.com/r/incremental_games/">/r/incremental_games</a>)</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="spacer"></div>
-		<div class="separator"></div>
-		<div class="spacer"></div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="http://totominc.github.io/idle-quester/"><p><img src="index/css/idle-quester.png" class="img-responsive"></p></a>
-						<div class="caption">
-							<h3 class="text-center">Idle-Quester</h3>
-							<p class="text-center">Idle-Quester is the web-version of the original app "Idle-Quest".</p>
-							<a class="btn btn-default center-block" target="_blank" href="http://totominc.github.io/idle-quester/" role="button"><i class="fa fa-play-circle"></i> Check-it now!</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="http://totominc.github.io/blackmarket/"><p><img src="index/css/blackmarket.png" class="img-responsive"></p></a>
-						<div class="caption">
-							<h3 class="text-center">Blackmarket</h3>
-							<p class="text-center">Blackmarket is another incremental-game about a drug empire.</p>
-							<a class="btn btn-default center-block" target="_blank" href="http://totominc.github.io/blackmarket/" role="button"><i class="fa fa-play-circle"></i> Check-it now!</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="http://totominc.github.io/idle-quester/"><p><img src="index/css/incremental-rpg.png" class="img-responsive"></p></a>
-						<div class="caption">
-							<h3 class="text-center">Incremental-RPG</h3>
-							<p class="text-center">Incremental-RPG was one of my first game to help me learn more about Javascript.</p>
-							<a class="btn btn-default center-block" target="_blank" href="http://totominc.github.io/incremental-rpg/" role="button"><i class="fa fa-play-circle"></i> Check-it now!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="http://totominc.github.io/moneylife/beta/"><p><img src="index/css/moneylife.png" class="img-responsive"></p></a>
-						<div class="caption">
-							<h3 class="text-center">Money-Life</h3>
-							<p class="text-center">A remake of Adventure Capitalist, in beta.</p>
-							<a class="btn btn-default center-block" target="_blank" href="http://totominc.github.io/moneylife/beta/" role="button"><i class="fa fa-play-circle"></i> Check-it now!</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="http://totominc.github.io/universe-god/"><p><img src="index/css/universegod.png" class="img-responsive"></p></a>
-						<div class="caption">
-							<h3 class="text-center">Universe-God</h3>
-							<p class="text-center">A new prototype (actually) where you have to rebuild the entire universe. It's another incremental-game.</p>
-							<a class="btn btn-default center-block" target="_blank" href="http://totominc.github.io/universe-god/" role="button"><i class="fa fa-play-circle"></i> Check-it now!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="separator"></div>
-		<div class="spacer"></div>
-
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h5 class="text-center">You want to support me?</h5>
-						<p id="footer" class="text-center">You can always follow me on GitHub or even star my repo!</p>
-						<div class="row"><div class="col-md-4 col-md-offset-4"><a class="btn btn-warning center-block" target="_blank" href="http://github.com/TotomInc/" role="button"><i class="fa fa-github-square"></i> GitHub account</a></div></div>
-					</div>
+				<div class="video-carousel">
+					<img id="hero-img-1" src="index/src/img/hero-img-1.png">
+					<img id="hero-img-2" src="index/src/img/hero-img-2.png" style="display: none;">
+					<img id="hero-img-3" src="index/src/img/hero-img-3.png" style="display: none;">
+					<img id="hero-img-4" src="index/src/img/hero-img-4.png" style="display: none;">
+					<img id="hero-img-5" src="index/src/img/hero-img-5.png" style="display: none;">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="index/js/main.js"></script>
+	<script>
+		var height = $(document).height();
+		$(".hero").css('height', (height-50) + 'px');
+
+		var hero = {
+			current : "hero-img-1",
+			time : 3500,
+			animate: function() {
+				if (hero.current == "hero-img-1") {
+					$("#hero-img-1").fadeOut('slow', function() {
+						$("#hero-img-2").fadeIn('slow', function() {
+							hero.current = "hero-img-2";
+						});
+					});
+				};
+				if (hero.current == "hero-img-2") {
+					$("#hero-img-2").fadeOut('slow', function() {
+						$("#hero-img-3").fadeIn('slow', function() {
+							hero.current = "hero-img-3";
+						});
+					});
+				};
+				if (hero.current == "hero-img-3") {
+					$("#hero-img-3").fadeOut('slow', function() {
+						$("#hero-img-4").fadeIn('slow', function() {
+							hero.current = "hero-img-4";
+						});
+					});
+				};
+				if (hero.current == "hero-img-4") {
+					$("#hero-img-4").fadeOut('slow', function() {
+						$("#hero-img-5").fadeIn('slow', function() {
+							hero.current = "hero-img-5";
+						});
+					});
+				};
+				if (hero.current == "hero-img-5") {
+					$("#hero-img-5").fadeOut('slow', function() {
+						$("#hero-img-1").fadeIn('slow', function() {
+							hero.current = "hero-img-1";
+						});
+					});
+				};
+			}
+		};
+
+		window.setInterval(function() {
+			hero.animate();
+		}, hero.time);
+	</script>
 </body>
 </html>

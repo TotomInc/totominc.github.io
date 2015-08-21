@@ -1,0 +1,27 @@
+html { -webkit-font-smoothing: antialiased; text-shadow: none; text-rendering: optimizeLegibility; }
+body { margin: 0; padding: 50px 0 0 0; cursor: default; font-family: 'Lato', sans-serif; font-weight: 400; background-color: #eee; }
+
+.navbar { margin-bottom: 0; border: none; border-radius: 0; }
+.navbar-default { background-color: #3e3d48; }
+.navbar-default .navbar-brand { font-size: 20px; }
+.navbar-default .navbar-nav > li > a { font-size: 16px; }
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .nvabar-default .navbar-brand:active, .navbar-default .navbar-nav > li > a { transition: color .1s; color: #ABA8C5; }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus { transition: color .1s; color: #ddd; }
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .dropdown-menu { color: #ABA8C5; background-color: #32313A; }
+.navbar-default .navbar-collapse, .navbar-default .navbar-form { border: none; }
+
+.dropdown-menu > li > a { transition: all .1s; background-color: inherit; color: #ABA8C5; }
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:active { transition: all .1s; background-color: inherit; color: #ddd; }
+
+.hero { background-color: #3e3d48; width: 100%; height: 100%; }
+.hero-bigtext { margin: 0 0 15px 0; font-weight: 300; font-size: 30px; color: #ABA8C5; }
+.hero-smalltext { margin: 0 0 35px 0; font-weight: 300; font-size: 18px; color: #ABA8C5; }
+
+.video-wrapper { width: 85%; margin: 0 auto 0 auto; padding: 15px 0 0 0; border: 3px solid #31313A; border-radius: 4px; background-color: #31313A; }
+.video-dots { margin-top: -15px; left: 6px; }
+.video-dot { display: block; float: right; margin: 3px 3px; width: 8px; height: 8px; border-radius: 50%; }
+.video-carousel { position: relative; margin: 15px 0 0 0; width: 100%; background-color: #4D4D5D; }
+.video-carousel>img { max-width: 100%; }
+.dot-red { background-color: #e52d27; }
+.dot-orange { background-color: #FF5722; }
+.dot-green { background-color: #8BC34A; }
