@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <title>Incremental-RPG</title>
+
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="src/paper.min.css">
+  <link rel="stylesheet" href="src/progress.min.css">
+  <link rel="stylesheet" href="css/helpers.css">
+  <link rel="stylesheet" href="css/interface.css">
+  <script src="src/beautify.min.js"></script>
+</head>
+
+<body>
+<!-- navbar  -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand light cur-d"><span><img src="img/W_Sword017.png"> Incremental-RPG</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right light">
+        <li class="active li-btn" data-toggle="modal" data-target="#shop-modal"><a href="#">Shop</a></li>
+        <li class="active" data-toggle="modal" data-target="#enchantment-modal"><a href="#">Enchantments</a></li>
+        <li class="active" data-toggle="modal" data-target="#crafting-modal"><a href="#">Crafting</a></li>
+        <li class="active" data-toggle="modal" data-target="#inventory-modal"><a href="#">Inventory</a></li>
+        <li class="active" data-toggle="modal" data-target="#options-modal"><a href="#">Options</a></li>
+        <!--
+        <li><a><span id="nav-hp" class="bottom-red cur-d"></span> <img class="icon" src="img/P_Red01.png"></a></li>
+        <li><a><span id="nav-xp" class="bottom-yellowxp cur-d"></span> <img class="icon" src="img/P_Yellow01.png"></a></li>
+        <li><a><span id="nav-gold" class="bottom-yellowcoin cur-d"></span> <img class="icon" src="img/I_GoldCoin.png"></a></li>
+        <li><a><span id="nav-diamond" class="bottom-blue cur-d"></span> <img class="icon" src="img/I_Diamond.png"></a></li>
+        -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="hpbar">
+    <div id="ps-hpbar" class="hpbar-filler"></div>
+    </div>
+  </nav>
+
+<!-- game container -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7">
+        <!-- actions -->
+        <div class="panel panel-primary light">
+          <div class="panel-heading"><p class="panel-title center">Monsters Area</p></div>
+          <div id="monsters-panel" class="panel-body">
+            <div id="monsters-well" class="well well-sm">
+              <span id="monsters-msg" class="monsters-nomonsters justify">There is no monsters, no adventure selected. You should start an adventure, but be carefull, when you start an adventure, you can't stop it! You must finish your current adventure to start another.</span>
+            </div>
+          </div>
+        </div>
+        <!-- adventure log -->
+        <div class="panel panel-primary light">
+          <div class="panel-heading"><p class="panel-title center">Adventure Log</p></div>
+          <div id="adventures-panel" class="panel-body">
+          <div id="adventures-well" class="well well-sm">
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n1"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m1"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(0);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n2"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m2"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(1);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n3"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m3"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(2);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n4"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m4"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(3);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n5"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m5"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(4);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n6"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m6"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(5);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n7"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m7"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(6);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n8"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m8"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(7);">Start</a></div>
+            </div>
+            <br>
+            <div id="adventures-row" class="row">
+              <div id="adventures-row" class="col-md-6"><span id="a-n9"></span></div>
+              <div id="adventures-medrow" class="col-md-4"><span id="a-m9"></span></div>
+              <div id="adventures-smrow" class="col-md-2"><a class="btn btn-primary btn-sm" onclick="Adventure.start(8);">Start</a></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <!-- player stats -->
+        <div class="panel panel-success light">
+          <div class="panel-heading"><p class="panel-title center">Player stats</p></div>
+          <div class="panel-body">
+          <div class="row">
+            <div id="ps-col1" class="col-md-6">
+              <p><img class="stats" src="img/P_Red01.png"> <span id="s-hp"></span><br>
+              <img class="stats" src="img/P_Yellow01.png"> <span id="s-xp"></span><br>
+              <img class="stats" src="img/I_GoldCoin.png"> <span id="s-gold"></span><br>
+              <img class="stats" src="img/I_Diamond.png"> <span id="s-diamond"></span><br>
+              <img class="stats" src="img/Ac_Medal01.png"> <span id="s-level"></span><br>
+              <img class="stats" src="img/Ac_Medal04.png"> <span id="s-medals"></span></p>
+              <p><img class="stats" src="img/I_Coal.png"> <span id="s-coal"></span><br>
+              <img class="stats" src="img/I_Crystal01.png"> <span id="s-crystal"></span><br>
+              <img class="stats" src="img/I_Jade.png"> <span id="s-jade"></span><br>
+              <img class="stats" src="img/I_Rubi.png"> <span id="s-ruby"></span><br>
+              <img class="stats" src="img/I_Saphire.png"> <span id="s-saphire"></span></p>
+            </div>
+            <div id="ps-col2" class="col-md-6 left-separator">
+              <p><span id="s-helmet"></span><br>
+              <span id="s-armour"></span><br>
+              <span id="s-gloves"></span><br>
+              <span id="s-boots"></span><br>
+              <span id="s-amulet"></span><br>
+              <span id="s-sword"></span></p>
+              <p><span id="s-totalarmor"></span></p>
+            </div>
+          </div>
+          </div>
+        </div>
+        <!-- alerts -->
+        <div id="alerts"></div>
+      </div>
+    </div>
+  </div>
+
+<!-- modals -->
+  <div class="modal fade" id="shop-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><p class="modal-title small-font underline">Shop :</p></div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+        <!-- mining -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Building</th>
+                <th>Price</th>
+                <th>Owned</th>
+                <th>Level needed</th>
+                <th>Button</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active">
+                <td><img class="stats" src="img/I_Coal.png"> <span id="m-n1"></span></td>
+                <td><span id="m-p1"></span></td>
+                <td><span id="m-o1"></span></td>
+                <td><span id="m-l1"></span></td>
+                <td><a id="m-b1" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+              </tr>
+              <tr class="active">
+                <td><img class="stats" src="img/I_Crystal01.png"> <span id="m-n2"></span></td>
+                <td><span id="m-p2"></span></td>
+                <td><span id="m-o2"></span></td>
+                <td><span id="m-l2"></span></td>
+                <td><a id="m-b2" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+              </tr>
+              <tr class="active">
+                <td><img class="stats" src="img/I_Jade.png"> <span id="m-n3"></span></td>
+                <td><span id="m-p3"></span></td>
+                <td><span id="m-o3"></span></td>
+                <td><span id="m-l3"></span></td>
+                <td><a id="m-b3" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+              </tr>
+              <tr class="active">
+                <td><img class="stats" src="img/I_Rubi.png"> <span id="m-n4"></span></td>
+                <td><span id="m-p4"></span></td>
+                <td><span id="m-o4"></span></td>
+                <td><span id="m-l4"></span></td>
+                <td><a id="m-b4" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+              </tr>
+              <tr class="active">
+                <td><img class="stats" src="img/I_Saphire.png"> <span id="m-n5"></span></td>
+                <td><span id="m-p5"></span></td>
+                <td><span id="m-o5"></span></td>
+                <td><span id="m-l5"></span></td>
+                <td><a id="m-b5" class="btn btn-primary btn-sm center-btn">Buy</a></td>
+              </tr>
+            </tbody>
+          </table>
+        <!-- shop -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Stats</th>
+                <th>Level needed</th>
+                <th>Button</th>
+              </tr>
+            </thead>
+            <tbody>
+            <!--
+              <tr class="active">
+                <td><span id="s-helmet-n1"></span></td>
+                <td><span id="s-helmet-p1"></span></td>
+                <td><span id="s-helmet-s1"></span></td>
+                <td><span id="s-helmet-l1"></span></td>
+                <td><span id="s-helmet-btn1"></span></td>
+              </tr>
+            -->
+              <tr class="active">
+                <td><span id="s-helmet-n2"></span></td>
+                <td><span id="s-helmet-p2"></span></td>
+                <td><span id="s-helmet-s2"></span></td>
+                <td><span id="s-helmet-l2"></span></td>
+                <td><span id="s-helmet-btn2"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-helmet-n3"></span></td>
+                <td><span id="s-helmet-p3"></span></td>
+                <td><span id="s-helmet-s3"></span></td>
+                <td><span id="s-helmet-l3"></span></td>
+                <td><span id="s-helmet-btn3"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-helmet-n4"></span></td>
+                <td><span id="s-helmet-p4"></span></td>
+                <td><span id="s-helmet-s4"></span></td>
+                <td><span id="s-helmet-l4"></span></td>
+                <td><span id="s-helmet-btn4"></span></td>
+              </tr>
+              <!--
+              <tr class="active">
+                <td><span id="s-armour-n1"></span></td>
+                <td><span id="s-armour-p1"></span></td>
+                <td><span id="s-armour-s1"></span></td>
+                <td><span id="s-armour-l1"></span></td>
+                <td><span id="s-armour-btn1"></span></td>
+              </tr>
+              -->
+              <tr class="active">
+                <td><span id="s-armour-n2"></span></td>
+                <td><span id="s-armour-p2"></span></td>
+                <td><span id="s-armour-s2"></span></td>
+                <td><span id="s-armour-l2"></span></td>
+                <td><span id="s-armour-btn2"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-armour-n3"></span></td>
+                <td><span id="s-armour-p3"></span></td>
+                <td><span id="s-armour-s3"></span></td>
+                <td><span id="s-armour-l3"></span></td>
+                <td><span id="s-armour-btn3"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-armour-n4"></span></td>
+                <td><span id="s-armour-p4"></span></td>
+                <td><span id="s-armour-s4"></span></td>
+                <td><span id="s-armour-l4"></span></td>
+                <td><span id="s-armour-btn4"></span></td>
+              </tr>
+              <!--
+              <tr class="active">
+                <td><span id="s-gloves-n1"></span></td>
+                <td><span id="s-gloves-p1"></span></td>
+                <td><span id="s-gloves-s1"></span></td>
+                <td><span id="s-gloves-l1"></span></td>
+                <td><span id="s-gloves-btn1"></span></td>
+              </tr>
+              -->
+              <tr class="active">
+                <td><span id="s-gloves-n2"></span></td>
+                <td><span id="s-gloves-p2"></span></td>
+                <td><span id="s-gloves-s2"></span></td>
+                <td><span id="s-gloves-l2"></span></td>
+                <td><span id="s-gloves-btn2"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-gloves-n3"></span></td>
+                <td><span id="s-gloves-p3"></span></td>
+                <td><span id="s-gloves-s3"></span></td>
+                <td><span id="s-gloves-l3"></span></td>
+                <td><span id="s-gloves-btn3"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-gloves-n4"></span></td>
+                <td><span id="s-gloves-p4"></span></td>
+                <td><span id="s-gloves-s4"></span></td>
+                <td><span id="s-gloves-l4"></span></td>
+                <td><span id="s-gloves-btn4"></span></td>
+              </tr>
+              <!--
+              <tr class="active">
+                <td><span id="s-boots-n1"></span></td>
+                <td><span id="s-boots-p1"></span></td>
+                <td><span id="s-boots-s1"></span></td>
+                <td><span id="s-boots-l1"></span></td>
+                <td><span id="s-boots-btn1"></span></td>
+              </tr>
+              -->
+              <tr class="active">
+                <td><span id="s-boots-n2"></span></td>
+                <td><span id="s-boots-p2"></span></td>
+                <td><span id="s-boots-s2"></span></td>
+                <td><span id="s-boots-l2"></span></td>
+                <td><span id="s-boots-btn2"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-boots-n3"></span></td>
+                <td><span id="s-boots-p3"></span></td>
+                <td><span id="s-boots-s3"></span></td>
+                <td><span id="s-boots-l3"></span></td>
+                <td><span id="s-boots-btn3"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-boots-n4"></span></td>
+                <td><span id="s-boots-p4"></span></td>
+                <td><span id="s-boots-s4"></span></td>
+                <td><span id="s-boots-l4"></span></td>
+                <td><span id="s-boots-btn4"></span></td>
+              </tr>
+              <!--
+              <tr class="active">
+                <td><span id="s-sword-n1"></span></td>
+                <td><span id="s-sword-p1"></span></td>
+                <td><span id="s-sword-s1"></span></td>
+                <td><span id="s-sword-l1"></span></td>
+                <td><span id="s-sword-btn1"></span></td>
+              </tr>
+              -->
+              <tr class="active">
+                <td><span id="s-sword-n2"></span></td>
+                <td><span id="s-sword-p2"></span></td>
+                <td><span id="s-sword-s2"></span></td>
+                <td><span id="s-sword-l2"></span></td>
+                <td><span id="s-sword-btn2"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-sword-n3"></span></td>
+                <td><span id="s-sword-p3"></span></td>
+                <td><span id="s-sword-s3"></span></td>
+                <td><span id="s-sword-l3"></span></td>
+                <td><span id="s-sword-btn3"></span></td>
+              </tr>
+              <tr class="active">
+                <td><span id="s-sword-n4"></span></td>
+                <td><span id="s-sword-p4"></span></td>
+                <td><span id="s-sword-s4"></span></td>
+                <td><span id="s-sword-l4"></span></td>
+                <td><span id="s-sword-btn4"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close</button></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="enchantment-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><p class="modal-title small-font underline">Enchantments :</p></div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Level needed</th>
+                <th>Items needed</th>
+                <th>Effect</th>
+                <th>Button</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active">
+                <td><span id="e-n1"></span></td>
+                <td><span id="e-desc1"></span></td>
+                <td><span id="e-lvl1"></span></td>
+                <td><span id="e-items1"></span></td>
+                <td><span id="e-effect1"></span></td>
+                <td><span id="e-btn1"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close</button></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="crafting-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><p class="modal-title small-font underline">Crafting :</p>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Material</th>
+                    <th>Owned</th>
+                    <th>Needed</th>
+                    <th>Button</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="active">
+                    <td><img class="stats" src="img/I_Coal.png"> Coal</td>
+                    <td><span id="modal-coal"></span></td>
+                    <td>#NA#</td>
+                    <td>#NA#</td>
+                  </tr>
+                  <tr class="active">
+                    <td><img class="stats" src="img/I_Crystal01.png"> Crystal</td>
+                    <td><span id="modal-crystal"></span></td>
+                    <td>10 coal/crystal</td>
+                    <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('crystal')">Craft</a></td>
+                  </tr>
+                  <tr class="active">
+                    <td><img class="stats" src="img/I_Jade.png"> Jade</td>
+                    <td><span id="modal-jade"></span></td>
+                    <td>10 crystal/jade</td>
+                    <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('jade')">Craft</a></td>
+                  </tr>
+                  <tr class="active">
+                    <td><img class="stats" src="img/I_Rubi.png"> Ruby</td>
+                    <td><span id="modal-ruby"></span></td>
+                    <td>10 jade/ruby</td>
+                    <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('ruby')">Craft</a></td>
+                  </tr>
+                  <tr class="active">
+                    <td><img class="stats" src="img/I_Saphire.png"> Saphire</td>
+                    <td><span id="modal-saphire"></span></td>
+                    <td>10 ruby/saphire</td>
+                    <td><a class="btn btn-primary btn-sm center-btn" onclick="Mining.craft('saphire')">Craft</a></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Close</button></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="inventory-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><p class="modal-title small-font underline" id="myModalLabel">Inventory :</p></div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well well-lg">
+              <p class="light small-font"><img id="inv-helmet-img"> Helmet :<select id="inv-helmet" class="form-control"></select></p>
+              <p class="light small-font"><img id="inv-armour-img"> Armour :<select id="inv-armour" class="form-control"></select></p>
+              <p class="light small-font"><img id="inv-gloves-img"> Gloves :<select id="inv-gloves" class="form-control"></select></p>
+              <p class="light small-font"><img id="inv-boots-img"> Boots :<select id="inv-boots" class="form-control"></select></p>
+              <p class="light small-font"><img id="inv-amulet-img"> Amulet :<select id="inv-amulet" class="form-control"></select></p>
+              <p class="light small-font"><img id="inv-sword-img"> Sword :<select id="inv-sword" class="form-control"></select></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal" onclick="Inventory.check();">Close & save changes</button></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="options-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><p class="modal-title small-font underline">Options :</p>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4"><a href="#" onclick="manualSave();" class="btn btn-success btn-sm center-btn">Export-code/bugged</a></div>
+            <div class="col-md-4"><a href="#" onclick="manualLoad();" class="btn btn-success btn-sm center-btn">Import-code/bugged</a></div>
+            <div class="col-md-4"><a href="#" onclick="resetData()" class="btn btn-danger btn-sm center-btn">Hard-reset</a></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4"><a href="#" onclick="saveData();" class="btn btn-info btn-sm center-btn">Force save</a></div>
+            <div class="col-md-4"><a href="#" onclick="loadData()" class="btn btn-info btn-sm center-btn">Force load</a></div>
+            <div class="col-md-4"><p class="light center small-font">Autosave : 10s</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="modal-footer"><p class="light tiny-font"><span id="s-version"></span><br><a target="_blank" href="http://www.reddit.com/user/TotomInc/">Game made by TotomInc</a><br><a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">Send me feedback on reddit</a><br><a target="_blank" href="https://github.com/TotomInc/totominc.github.io">GitHub repo, if you want to contribute</a></p></div>
+    </div>
+    </div>
+  </div>
+
+<!-- game scripts -->
+  <script src="js/resize.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/mining.js"></script>
+  <script src="js/monsters.js"></script>
+  <script src="js/adventures.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/enchantments.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/save.js"></script>
+</body>
+</html>

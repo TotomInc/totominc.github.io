@@ -1,0 +1,29 @@
+body { margin: 0; font-family: 'Consolas', sans-serif; }
+h1 { margin: 0 0 5px 0; text-align: center; font-size: 28px; }
+h2 { margin: 0 0 10px 0; text-decoration: underline; font-size: 22px; }
+h3 { margin: 0 0 10px 0; font-size: 18px; }
+p { margin: 5px 0 5px 0; font-size: 16px; }
+
+p.b-stats { text-align: center; }
+p.b-stats>span.b-name { text-decoration: underline; }
+p.b-stats>span.b-reward { font-weight: bold; }
+
+p.b-buy { text-align: center; font-size: 12px; }
+p.b-buy>span { cursor: pointer; }
+
+p.s-upgrades { text-align: center; cursor: pointer; font-size: 14px; }
+p.s-upgrades>span.u-name { text-decoration: underline; }
+p.s-upgrades>span.u-cost { font-weight: bold; }
+
+p.s-managers { text-align: center; cursor: pointer; font-size: 14px; }
+p.s-managers>span.m-name { text-decoration: underline; }
+p.s-managers>span.m-cost { font-weight: bold; }
+
+p.s-achievements { text-align: center; cursor: crosshair; font-size: 13px; text-decoration: underline; }
+
+p.s-stats { text-align: center;	font-family: 14px; font-weight: bold; text-decoration: underline; }
+p.s-saves { font-size: 12px; cursor: pointer; }
+p.s-saves>span { text-decoration: underline; }
+
+.b-button { margin-right: auto; margin-left: auto; width: 90%; height: 30px; border: 1px solid black; border-radius: 4px; cursor: pointer; }
+.b-filler { width: 0%; height: 100%; border-radius: 2px; background: #34495e; }p

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Idle-Quester</title>
+
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="src/paper.min.css">
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:300,400'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/interface.css">
+</head>
+
+<body class="noselect">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+	      <a id="nav-title" class="navbar-brand"></a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a id="nav-gold"></a></li>
+	      	<li><a id="nav-gems"></a></li>
+	      	<li><a id="nav-level"></a></li>
+	      </ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="begin" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header"><h4 class="modal-title">Welcome to Idle-Quester!</h4></div>
+	      <div class="modal-body">
+	      	<p class="text-center">Before to start questing, we need to know your player name!<br>
+	      	<span class="text-danger">Warning, you can't change your player name after!</span>
+	      		<div class="row">
+	      			<div class="col-md-6 col-md-offset-3">
+								<div id="begin-input" class="form-group"><input class="form-control" id="begin-playername" placeholder="Enter your player name..."></div>
+	      			</div>
+	      		</div>
+	      		<span id="begin-alert" class="text-danger text-center" style="display: none"><u>Please, choose a player name before closing this modal!</u></span>
+	      	</p>
+	      	<p class="text-justify">The game is not easy to understand at the beginning, we highly recommend to you to read how to play the game on the 'options' panel then click on the 'help' button. We explain everything what you need!</p>
+	      	<p class="text-center text-primary">Good luck and have fun!</p>
+	      </div>
+	      <div class="modal-footer"><a class="btn btn-success" role="button" onclick="pf.setPlayerName();">Done!</a></div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="help" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	        <h4 class="modal-title">Help, I don't understand the game!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p class="text-center"><u>Welcome to Idle-Quester!</u><br>
+	        This game is a remake of <a target="_blank" href="https://play.google.com/store/apps/details?id=com.topcog.idlequest.android">the original Android game : Idle-Quest</a>.</p>
+	        <p class="text-justify">As your player gain experience (XP), your player will level-up. It's the base mechanic of the game. Your player level determine the difficulty of the quests.<br>
+	        Your player got a sword and boots. Each piece can be upgraded in the 'craft' menu. You can craft better pieces by using a certain % of your gold and spending some levels (by using their proper sliders in the craft menu).</p>
+	        <p class="text-justify">Attack (sword damage also called 'dmg') impacts how quickly you will complete 'attack quests'.<br>
+	        Speed (boots speed also called 'spd') impacts how quickly you will complete 'speed quests'.</p>
+	        <p class="text-justify">The game runs also when it's closed. So, you dont have to worry about this.</p>
+	        <p class="text-justify">Gems are randomly gained when finishing a quest. Theses gems can be used to purchase specials items. You can drop a gem/run.<br>
+	        I call a run the time between 2 crafts. For example, the run is the time between when you upgrade your sword and the next time when you upgrade your boots.</p>
+	        <p class="text-justify">About the prestige system : it will consume all your levels and gold, and reset all your equipment. It's recommended to prestige as soon as possible! Multiplier will double after each prestige.</p>
+	        <p class="text-justify"><u>About the short scale of numbers :</u><br>
+	        	<div class="row">
+	        		<div class="col-md-4">m : million<br>b : billion<br>t : trillion<br>q : quadrillion<br>Q : quintillion<br>s : sextillion<br>S : septillion<br>o : octillion<br>n : nonillion<br>D : decillion</div>
+	        		<div class="col-md-4">UD : undecillion<br>DD : duodecillion<br>TD : tredecillion<br>qD : quattuordecillion<br>QD : quindecillion<br>sD : sexdecillion<br>SD : septdecillion<br>OD : octodecillion<br>ND : novemdecillion<br>V : vigintillion</div>
+	        		<div class="col-md-4">UV : unvigintillion<br>DV : duovigintillion<br>TV : trevigintillion<br>qV : quattuorvigintillion<br>QV : quinvigintillion<br>sV : sexvigintillion<br>SV : septenvigintillion<br>OV : octovigintillion<br>NV : novemvigintillion<br>T : trigintillion</div>
+	        	</div>
+					</p>
+					<p class="text-justify">And so on, and so forth... If you need informations about big numbers, <a target="_blank" href="http://bmanolov.free.fr/numbers_names.php">take a look here</a>.</p>
+					<p class="text-center">Hope you will like this game, have fun!</p>
+	      </div>
+	      <div class="modal-footer"><button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button></div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="game-area" class="container" style="display: none;">
+		<div class="row">
+			<div id="stats-col" class="col-md-6"><div class="well">
+				<div class="row">
+					<!-- progress-bars -->
+					<div class="row">
+						<div class="col-md-6"><div class="progress"><div id="quest-progress" class="progress-bar progress-bar-success"></div></div></div>
+						<div class="col-md-6"><div class="progress"><div id="player-progress" class="progress-bar"></div></div></div>
+					</div>
+					<!-- quest/player info -->
+					<div class="row">
+						<div class="col-md-6"><p id="quest-stats" class="text-center"></p></div>
+						<div class="col-md-6"><p id="player-stats" class="text-center"></p></div>
+					</div>
+					<!-- stuff info -->
+					<div class="row">
+						<div class="col-md-6"><p id="player-sword" class="text-center"></p></div>
+						<div class="col-md-6"><p id="player-boots" class="text-center"></p></div>
+					</div>
+					<!-- quest button -->
+					<div class="row">
+						<div class="col-md-4 col-md-offset-1"><a onclick="pf.click();" class="btn btn-success center-block">Quest!</a></div>
+						<div class="col-md-6 col-md-offset-1"><div class="checkbox text-center"><label><input id="autoidle-input" type="checkbox" value="" checked="" onclick="of.autoidle();">Trigger auto-idle (pause)</label></div></div>
+					</div>
+				</div>
+			</div></div>
+			<div id="panels-col" class="col-md-6">
+				<ul class="nav nav-tabs nav-justified">
+					<li class="active"><a href="#craft" aria-controls="craft" data-toggle="tab"><i class="fa fa-wrench"></i> Craft</a></li>
+					<li><a href="#skills" aria-controls="skills" data-toggle="tab"><i class="fa fa-level-up"></i> Skills</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">More <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#prestige" data-toggle="tab"><i class="fa fa-star"></i> Prestige</a></li>
+							<li><a href="#success" data-toggle="tab"><i class="fa fa-trophy"></i> Success</a></li>
+							<li class="divider"></li>
+							<li><a href="#stats" data-toggle="tab"><i class="fa fa-bar-chart"></i> Stats</a></li>
+							<li><a href="#leaderboard" data-toggle="tab"><i class="fa fa-table"></i> Leaderboard</a></li>
+							<li><a href="#options" data-toggle="tab"><i class="fa fa-cog"></i> Options</a></li>
+							<li><a href="#infos" data-toggle="tab"><i class="fa fa-question-circle"></i> Infos</a></li>
+							<li><a href="#notes" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Notes</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="craft"><div class="well">
+						<div class="row">
+							<div class="col-md-8"><input id="gold-slider" class="gold-slider" type="range" value="100" min="1" max="100" step="1"></div>
+							<div class="col-md-4"><p id="craft-gold" class="text-center"></p></div>
+							<div class="col-md-8"><input id="level-slider" class="level-slider" type="range" min="1" max="1"></div>
+							<div class="col-md-4"><p id="craft-level" class="text-center"></p></div>
+							<div class="col-md-12"><p id="craft-effect" class="text-center"></p></div>
+							<div class="col-md-5 col-md-offset-1"><a href="#" onclick="pf.craft('sword');" class="btn btn-success center-block">Craft sword</a></div>
+							<div class="col-md-5"><a href="#" onclick="pf.craft('boots');" class="btn btn-success center-block">Craft boots</a></div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="skills"><div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div id="skills-div-1" class="skills-div center-block"></div>
+								<p id="skills-p-1" class="text-center"></p>
+							</div>
+							<div class="col-md-6">
+								<div id="skills-div-2" class="skills-div center-block"></div>
+								<p id="skills-p-2" class="text-center"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><p class="text-center big-arrows"><i class="fa fa-long-arrow-down"></i></p></div>
+							<div class="col-md-6"><p class="text-center big-arrows"><i class="fa fa-long-arrow-down"></i></p></div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div id="skills-div-3" class="skills-div center-block"></div>
+								<p id="skills-p-3" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-4" class="skills-div center-block"></div>
+								<p id="skills-p-4" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-5" class="skills-div center-block"></div>
+								<p id="skills-p-5" class="text-center"></p>
+							</div>
+							<div class="col-md-3">
+								<div id="skills-div-6" class="skills-div center-block"></div>
+								<p id="skills-p-6" class="text-center"></p>
+							</div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="prestige"><div class="well">
+						<div class="row">
+							<div class="col-md-6"><p id="prestige-info" class="text-center"></p></div>
+							<div class="col-md-4 col-md-offset-1"><a onclick="pf.prestige();" class="btn btn-success center-block">Prestige!</a></div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="success"><div class="well">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="checkbox text-center"><label><input id="success-show-gold" onclick="scf.hide();" type="checkbox" checked> Show gold success</label></div>
+							</div>
+							<div class="col-md-4">
+								<div class="checkbox text-center"><label><input id="success-show-level" onclick="scf.hide();" type="checkbox" checked> Show level success</label></div>
+							</div>
+							<div class="col-md-4">
+								<div class="checkbox text-center"><label><input id="success-show-prestige" onclick="scf.hide();" type="checkbox" checked> Show prestige success</label></div>
+							</div>
+						</div>
+
+						<div id="success-gold"></div>
+						<div id="success-level"></div>
+						<div id="success-prestige"></div>
+					</div></div>
+					<div class="tab-pane fade" id="stats"><div class="well">
+					</div></div>
+					<div class="tab-pane fade" id="leaderboard"><div class="well">
+						<div class="row">
+							<div class="col-md-4"><p id="leaderboard-info" class="text-center"></p></div>
+							<div class="col-md-4 col-md-offset-4"><a href="#" onclick="submitScore();" class="btn btn-success">Submit stats</a></div>
+						</div>
+						
+						<table class="table table-condensed">
+						  <thead>
+						    <tr>
+						      <th>Name</th>
+						      <th>Gold</th>
+						      <th>Level</th>
+						    </tr>
+						  </thead>
+						  <tbody id="leaderboard-body"></tbody>
+						</table>
+					</div></div>
+					<div class="tab-pane fade" id="options"><div class="well">
+						<div class="row">
+							<div class="col-md-4"><a onclick="saveData();" class="btn btn-success center-block">Save</a></div>
+							<div class="col-md-4"><a onclick="loadData();" class="btn btn-success center-block">Load</a></div>
+							<div class="col-md-4"><a onclick="removeData();" class="btn btn-danger center-block">Reset</a></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-6"><a onclick="exportData();" class="btn btn-warning center-block">Export save</a></div>
+							<div class="col-md-6"><a onclick="importData();" class="btn btn-warning center-block">Import save</a></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-6"><input id="options-export" type="text" class="form-control" placeholder="Save will be here."></div>
+							<div class="col-md-6"><input id="options-import" type="text" class="form-control" placeholder="Paste here then import-save."></div>
+						</div><br>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4"><a class="btn btn-success center-block" role="button" data-toggle="modal" data-target="#help">Help</a></div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="infos"><div class="well">
+						<div class="row">
+							<div class="col-md-12">
+								<p class="text-justify">Built in HTML/CSS/JS : jQuery (2.1.4), designed with Bootstrap and 'paper' theme from Bootswatch.</p>
+								<p class="text-justify">GitHub repo is available <a target="_blank" href="http://github.com/TotomInc/totominc.github.io/">here!</a> Feel free to fork, create issues, star the repo or even make some pull-requests!</p>
+								<p class="text-center">Contact me on email or donate to : totom7700@gmail.com</p>
+								<p class="text-center">Or PM me on reddit : <a target="_blank" href="http://www.reddit.com/message/compose/?to=TotomInc">TotomInc</a></p>
+								<p class="pull-right">Code with <i class="fa fa-heart"></i> by TotomInc.</p>
+							</div>
+						</div>
+					</div></div>
+					<div class="tab-pane fade" id="notes"><div class="well">
+						<div id="accordion" class="panel-group">
+							<div class="panel-heading"><h4 class="panel-heading text-center"><a data-toggle="collapse" data-parent="#accordion" data-target="#notes-alpha" href="javascript:" class="collapsed">Alpha v0.00x <i class="fa fa-caret-down"></i></a></h4></div>
+
+							<div id="notes-alpha" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h5>Alpha 0.002 <small>(2015/06/10)</small></h5>
+									<ul><li>Added skills : they will made the game easier.</li></ul>
+									<h5>Alpha 0.001 <small>(2015/06/08)</small></h5>
+									<ul><li>Initial alpha release of the game, may be pretty buggy.</li></ul>
+									<ul><li>During the alpha stage, progress can be reset (intentionally) for testing purposes.</li></ul>
+								</div>
+							</div>
+						</div>
+					</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="loading-area" class="container" style="display: block;"><div class="well">
+		<h2 class="text-center"><i class="fa fa-refresh fa-spin"></i></h2>
+		<h5 class="text-center">Please wait while the game loads...<br>If the game is still not loading, there may be an error.<br>I recommend to you to remove your save, it can be the source of the bug.<br>Sorry about the inconvenience, it's still in alpha! ;)</h5>
+		<h5 class="text-center"><a class="btn btn-success" role="button" onclick="removeData;">Remove your save and play</a></h5>
+	</div><div>
+
+	<script src="js/resize.min.js"></script>
+	<script src="js/beautify.min.js"></script>
+	<script src="js/loading.min.js"></script>
+	<script src="js/names.min.js"></script>
+	<script src="js/success.js"></script>
+	<script src="js/player.js"></script>
+	<script src="js/skills.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/options.js"></script>
+	<script src="js/save.js"></script>
+	<script src="js/scoreboard.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-54540685-13', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</body>
+</html>

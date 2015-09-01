@@ -1,0 +1,26 @@
+body { margin: 0; padding-top: 80px; font-family: 'Lato', sans-serif; font-weight: 400; cursor: default; background: #eee; }
+input.gold-slider { -webkit-appearance: none; display: block; margin: auto; margin-bottom: 10px; outline: none; height: 10px; margin: 5px 10px; border-radius: 6px; background: #BFDFFF; }
+input.gold-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 10px; background: #3F9EFF; position: relative; z-index: 3; }
+input.level-slider { -webkit-appearance: none; display: block; margin: auto; margin-bottom: 10px; outline: none; height: 10px; margin: 5px 10px; border-radius: 6px; background: #F3D2B4; }
+input.level-slider::-webkit-slider-thumb { cursor: pointer; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 10px; background: #F38522; position: relative; z-index: 3; }
+p { margin: 0 0 0.5em; }
+th { font-weight: 400; }
+
+.navbar.navbar-default { background-color: #fff; }
+.navbar-brand { color: #333 !important; }
+.navbar-nav>li>a { color: #333 !important; }
+
+.progress { height: 23px; border-radius: 4px; }
+.progress, .progress-bar { transition: none; -o-transition: none; -webkit-transition: none; }
+#player-progress { transition: all 0.2s; -o-transition: all 0.2s; -webkit-transition: all 0.2s; }
+
+.skills-div { margin-bottom: 5px; margin-bottom: 5px; width: 36px; height: 36px; border: 1px solid black; border-radius: 4px; cursor: pointer; background-color: #eee; }
+
+/* fix for quest name taking 2 lines and move the quest button */
+#player-stats { height: 80px; }
+
+.panel-heading { padding: 0; }
+
+.big-arrows { font-size: 30px; margin: 0; }
+.img-stats { height: 22px; width: 22px; }
+.noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }

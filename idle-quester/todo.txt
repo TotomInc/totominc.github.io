@@ -1,0 +1,2 @@
+- add adsense
+- work on the mobile-version
