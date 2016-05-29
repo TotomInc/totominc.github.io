@@ -9,7 +9,7 @@
 	<script src="index/lib/jquery/js/jquery.min.js"></script>
 	<script src="index/lib/components-bootstrap/js/bootstrap.min.js"></script>
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="index/lib/components-bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="index/lib/components-font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="index/lib/Ionicons/css/ionicons.min.css">
@@ -34,13 +34,15 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-				  <li><a target="_blank" href="http://totominc.github.io/blackmarket-reloaded/">Blackmarket-Reloaded</a></li>
-	            <li><a target="_blank" href="http://totominc.github.io/blackmarket/">Blackmarket</a></li>
-				<li><a target="_blank" href="http://totominc.github.io/idle-quester/">Idle-Quester</a></li>
+	          	<li><a target="_blank" href="http://totominc.github.io/skid-inc/">Skid-Inc (hot beta!)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/blackmarket/">Blackmarket (release)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/moneylife/old/">Money-Life v1.0 (release)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/blackmarket-reloaded/">Blackmarket-Reloaded (beta)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/moneylife/beta/">Money-Life v2.0 (beta)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/universe-god/">Universe-God (prototype)</a></li>
+				<li><a target="_blank" href="http://totominc.github.io/idle-quester/">Idle-Quester (prototype)</a></li>
+				<li class="divider"></li>
 				<li><a target="_blank" href="http://totominc.github.io/bring-me-colors/">Bring-me-colors</a></li>
-	            <li><a target="_blank" href="http://totominc.github.io/universe-god/">Universe-God (alpha not finished)</a></li>
-				<li><a target="_blank" href="http://totominc.github.io/moneylife/old/">Money-Life (old)</a></li>
-				<li><a target="_blank" href="http://totominc.github.io/moneylife/beta/">Money-Life (beta not finished)</a></li>
 				<li><a target="_blank" href="http://totominc.github.io/inc-games-rreader/">/r/incremental_games RReader</a></li>
 	          </ul>
 	        </li>
@@ -67,6 +69,7 @@
 					<img id="hero-img-3" src="index/src/img/hero-img-3.png" style="display: none;">
 					<img id="hero-img-4" src="index/src/img/hero-img-4.png" style="display: none;">
 					<img id="hero-img-5" src="index/src/img/hero-img-5.png" style="display: none;">
+					<img id="hero-img-6" src="index/src/img/hero-img-6.png" style="display: none;">
 				</div>
 			</div>
 		</div>
@@ -110,6 +113,13 @@
 				};
 				if (hero.current == "hero-img-5") {
 					$("#hero-img-5").fadeOut('slow', function() {
+						$("#hero-img-6").fadeIn('slow', function() {
+							hero.current = "hero-img-6";
+						});
+					});
+				};
+				if (hero.current == "hero-img-6") {
+					$("#hero-img-6").fadeOut('slow', function() {
 						$("#hero-img-1").fadeIn('slow', function() {
 							hero.current = "hero-img-1";
 						});
