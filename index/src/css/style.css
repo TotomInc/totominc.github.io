@@ -25,3 +25,5 @@ body { margin: 0; padding: 50px 0 0 0; cursor: default; font-family: 'Lato', san
 .dot-red { background-color: #e52d27; }
 .dot-orange { background-color: #FF5722; }
 .dot-green { background-color: #8BC34A; }
+
+.divider { background-color: #1E1E23 !important; }
