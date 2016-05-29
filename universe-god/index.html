@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Universe-God</title>
+
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+	<script src="src/typed.js"></script>
+	<script src="js/beautify.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/typed.css">
+	<link rel="stylesheet" href="css/interface.css">
+</head>
+
+<body>
+<!-- game header (navbar) -->
+	<header class="no-select">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6"><h4 class="header">Universe-God <small class="header-small"></small></h4></div>
+				<div class="col-md-6"></div>
+			</div>
+		</div>
+	</header>
+<!-- game container -->
+	<div class="container no-select">
+		<div class="row">
+			<div class="col-md-3">
+				<div id="ressources-well" class="well" style="display: none;">
+					<p><u>Resources :</u></p>
+					<p id="ressources-display" class="no-margin"></p>
+				</div>
+				<div class="spacer"></div>
+				<p>
+					<a id="btn-1-1" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('hydrogen')" style="display: none;">Create hydrogen (+1)</a>
+					<a id="btn-1-2" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('oxygen')" style="display: none;">Create oxygen (+1)</a>
+					<a id="btn-1-3" type="button" class="btn btn-primary btn-sm btn-block" onclick="game.earn('helium')" style="display: none;">Create helium (+1)</a>
+				</p>
+				<p>
+					<a id="btn-2-1" type="button" class="btn btn-info btn-block" onclick="game.earn('water')" data-toggle="tooltip" data-placement="top" title="Cost 20 hydrogen, 10 oxygen" style="display: none;">Generate water (+1 mL)</a>
+				</p>
+				<p>
+					<a id="btn-3-1" type="button" class="btn btn-info btn-block" onclick="game.earn('cell')" data-toggle="tooltip" data-placement="top" title="Cost 5 helium" style="display: none;">Generate cell (+1)</a>
+					<a id="btn-3-2" type="button" class="btn btn-success btn-block" onclick="game.earn('sun')" data-toggle="tooltip" data-placement="top" title="Cost 75 hydrogen, 10 oxygen, 15 helium" style="display: none;">Create Sun</a>
+					<a id="btn-3-3" type="button" class="btn btn-success btn-block" onclick="game.earn('atmo-gen')" data-toggle="tooltip" data-placement="top" title="Cost 150 hydrogen, 100 oxygen, 50 helium" style="display: none;">Build an 'Atmosphere Generator'</a>
+				</p>
+				<p>
+					<a id="btn-buy-multiplier" type="button" class="btn btn-success btn-block" onclick="game.changeBuy()" style="display: none;">Buy x1</a>
+				</p>
+			</div>
+			<div class="col-md-9">
+			  <ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li id="log-nav" role="presentation" class="active"><a href="#log" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> Log</a></li>
+			    <li id="upgrades-nav" role="presentation" style="display: none;"><a href="#upgrades" data-toggle="tab"><i class="fa fa-level-up"></i> Upgrades</a></li>
+			    <li id="builds-nav" role="presentation" style="display: none;"><a href="#builds" data-toggle="tab"><i class="fa fa-building"></i> Builds</a></li>
+				  <li id="dropdown-nav" role="presentation" class="dropdown" style="display: none;">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+				    <ul class="dropdown-menu">
+				    	<li><a href="#achievements" data-toggle="tab" class="tabs-selectors"><i class="fa fa-trophy"></i> Achievements</a></li>
+				    	<li><a href="#leaderboard" data-toggle="tab" class="tabs-selectors"><i class="fa fa-bar-chart"></i> Leaderboard</a></li>
+				    	<li role="separator" class="divider"></li>
+				    	<li><a href="#options" data-toggle="tab" class="tabs-selectors"><i class="fa fa-cog"></i> Options</a></li>
+				    	<li><a href="#patch-notes" data-toggle="tab" class="tabs-selectors"><i class="fa fa-pencil"></i> Patch-notes</a></li>
+				    	<li><a href="#contact" data-toggle="tab" class="tabs-selectors"><i class="fa fa-user"></i> Contact</a></li>
+				    </ul>
+				  </li>
+			  </ul>
+			  <div class="tab-content">
+			    <div id="log" class="tab-pane fade in active"><div id="log-well" class="well"></div></div>
+			    <div id="upgrades" class="tab-pane fade"><div class="well">
+			    	<div class="row"><div class="col-md-6 col-md-offset-3"><div class="checkbox"><p class="text-center"><label><input id="upgrades-checkbox" type="checkbox" onclick="g.u.hide()"> Show upgrades bought</label></p></div></div></div>
+						<div class="panel panel-default"><div id="upgrades-panelbody" class="panel-body"></div></div>
+			    </div></div>
+			    <div id="builds" class="tab-pane fade"><div class="well">
+			    	<div class="panel panel-default">
+			    		<div id="builds-panelbody" class="panel-body"></div>
+			    	</div>
+			    </div></div>
+			    <div id="options" class="tab-pane fade"><div class="well">
+			    	<div class="container-fluid">
+			    		<div class="row">
+			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.saveData();">Save data</a></div>
+			    			<div class="col-md-4"><a type="button" class="btn btn-warning btn-block" onclick="save.removeData();">Remove data</a></div>
+			    			<div class="col-md-4"><a type="button" class="btn btn-info btn-block" onclick="save.loadData();">Load data</a></div>
+			    			<div class="col-md-12"><h4 class="text-center"><b>The game autosave every 10 seconds.</b></h4></div>
+			    		</div>
+			    	</div>
+			    </div></div>
+			    <div id="achievements" class="tab-pane fade"><div class="well">
+			    	<h4 class="text-center no-margin">Available soon!<br>Stay tuned!</h4>
+			    </div></div>
+			    <div id="leaderboard" class="tab-pane fade"><div class="well">
+			    	<div class="row">
+			    		<div class="col-md-4"><a type="button" id="leaderboard-btn" class="btn btn-success btn-block" onclick="g.leaderboard.setUsername()">Submit score</a></div>
+			    		<div class="col-md-8"><input type="text" id="leaderboard-input" class="form-control" placeholder="Username (longer than 2 characters)"></div>
+			    		<div class="col-md-12"><p id="leaderboard-error" class="text-center text-danger"></p></div>
+			    	</div><br>
+			    	<p class="text-center">Leaderboard can be buggy, report bugs at the <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">latest thread on /r/incremental_games</a><br>
+			    	<b>Trollers or 'hackers' will be removed from the leaderboard!</b></p>
+						<table class="table table-condensed">
+						  <thead><tr><th>Name</th><th>Meat</th><th>Cells</th></tr></thead>
+						  <tbody id="leaderboard-body"></tbody>
+						</table>
+			    </div></div>
+			    <div id="patch-notes" class="tab-pane fade"><div class="well">
+						<div id="accordion" class="panel-group">
+							<div class="panel-heading"><h4 class="panel-heading text-center"><a data-toggle="collapse" data-parent="#accordion" data-target="#notes-prototype" href="javascript:" class="collapsed">Prototype version <i class="fa fa-caret-down"></i></a></h4></div>
+							<div id="notes-prototype" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h5>v0.003 <small>(2015/07/08)</small></h5>
+									<ul><li>Fixed some bugs.</li>
+									<ul><li>Fixed a bug with <b>Oxygen III</b> upgrade.</li></ul>
+									<ul><li>Fixed some bugs with the leaderboard.</li></ul>
+									<ul><li>Fixed a bug with multiplier buy buttons and cell generation button.</li></ul></ul>
+									<ul><li>Better UI.</li>
+									<ul><li>Tabs are now larger.</li></ul>
+									<ul><li>Moved resources panel.</li></ul></ul>
+									<h5>v0.002 <small>(2015/07/07)</small></h5>
+									<ul><li>Fixed a lot of bugs.</li>
+									<ul><li>Especially bugs related to the savegame and the tutorial. But also related to leaderboard.</li></ul></ul>
+									<ul><li>Added a leaderboard.</li>
+									<ul><li>New players can't take another player username. For example, if a new player want to take the name <b>TotomInc</b>, he can't because this username is already taken.</li></ul>
+									<ul><li><b>Cheaters on the leaderboard will be removed WITHOUT warning!</b></li></ul></ul>
+									<ul><li>Added patch-notes, everything new will be added here.</li></ul>
+									<ul><li>Added an option to multiple-buy (x1, x10, x100, x1000).</li></ul>
+									<ul><li>Added a new build : water generator.</li></ul>
+									<h5>v0.001 <small>(2015/07/05)</small></h5>
+									<ul><li>Prototype version released on reddit (/r/incremental_games) : <a href="https://www.reddit.com/r/incremental_games/comments/3c41z5/universegod_new_prototype/" target="_blank">link to the thread</a>.</li></ul>
+									<ul><li>During the prototype stage, progress can be reset (intentionally) for testing purposes.</li></ul>
+								</div>
+							</div>
+						</div>
+			    </div></div>
+			    <div id="contact" class="tab-pane fade"><div class="well">
+			    	<p class="text-center no-margin"><b>Did you found a bug?</b></p>
+			    	<p class="text-center no-margin"><b>Did you want to request a new feature to the game?</b></p>
+			    	<p class="text-center"><b>Do you want to contribute?</b></p>
+
+			    	<p class="text-justify">Well, you can always contact me personally using this email : <a href="#">totom7700@gmail.com</a><br>
+			    	You can also use the GitHub repo of Universe-God <a href="http://github.com/TotomInc/totominc.github.io" target="_blank">here</a> and create issues.<br>
+			    	If you want to contribute and you are not familiar with <b>GitHub</b>, just create an account on GitHub, download their Windows software then click on the <b>"Clone in desktop"</b> button (on the right).<br>
+			    	Any coding help is welcome! :)</p>
+			    </div></div>
+			  </div>
+			</div>
+		</div>
+	</div>
+<!-- scripts -->
+	<script src="js/game.js"></script>
+	<script src="js/helpers.js"></script>
+	<script src="js/upgrades.js"></script>
+	<script src="js/builds.js"></script>
+	<script src="js/tutorial.js"></script>
+	<script src="js/resize.js"></script>
+	<script src="js/save.js"></script>
+	<script src="js/leaderboard.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-54540685-14', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</body>
+</html>

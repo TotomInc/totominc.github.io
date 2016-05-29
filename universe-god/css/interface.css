@@ -1,0 +1,16 @@
+body { margin: 0; cursor: default; font-family: Consolas, monospace, serif; background: #DDDDDD; }
+header { margin-bottom: 20px; height: 50px; width: 100%; background: #424242; box-shadow: 0px 3px 10px #777; color: #eee; }
+
+.header { margin: 0; line-height: 50px; }
+.header-small { color: #999; }
+
+.bottom-spacer { margin-bottom: 5px; }
+.bottom-spacer:last-child { margin-bottom: 0px; }
+
+.panel, .well { margin-bottom: 0; }
+.panel-heading { padding: 0; }
+.well { padding: 15px; }
+
+.spacer { width: 100%; height: 1px; background-color: grey; margin: 10px 0 10px 0; }
+.no-select { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.no-margin { margin: 0; }

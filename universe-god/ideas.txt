@@ -1,0 +1,22 @@
+create an habitable earth with molecules : water, hydrogen, oxygen
+
+spark bacterial life onto plants
+
+bacterial mutagen to animals with intelligence
+
+balancing the ecosystem
+
+First :
+  - create chemicals elements : oxygen and hydrogen
+  - create water : 20 hydrogen + 10 oxygen/mL
+  - create temperature (water is frozen) : make a sun
+    - hydrogen : 75, helium : 15, oxygen : 10
+    - sun have a power : it can generate ressources/sec
+    - it can be upgradable, but can't have more than 1
+  - generate an atmosphere : build an atmosphere generator
+  - amount of cells is limited by the number of water :
+    - 10 cells/mL of water
+    - 1 cell generate 0.1 meat
+  - builds to create hydrogen/oxygen/helium per sec
+
+Second :
