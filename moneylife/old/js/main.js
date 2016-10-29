@@ -12,7 +12,7 @@ var t1 = [
     new Building("Lemonade Stand",      4,              1,              1.07, 1.5,  false),
     new Building("Newspaper Stand",     70,             60,             1.15, 3,    false),
     new Building("Car-Wash",            720,            540,            1.14, 6,    false),
-    new Building("Pizza Delivery",      640,            4320,           1.13, 12,   false),
+    new Building("Pizza Delivery",      6400,            4320,           1.13, 12,   false),
     new Building("Donut Shop",          103680,         51840,          1.12, 24,   false),
     new Building("Shrimp Boat",         1244160,        622080,         1.11, 96,   false),
     new Building("Hockey Team",         14929920,       7464961,        1.10, 384,  false),
