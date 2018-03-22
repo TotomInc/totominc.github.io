@@ -1,0 +1,191 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+body {
+    background: #111;
+    font-family: 'Share Tech Mono';
+}
+h1 {
+    margin: 15px 0;
+    color: #18FF62;
+    text-shadow: 0px 0px 2px rgba(10, 255, 10, .8);
+}
+.text-center {
+    text-align: center;
+}
+.led {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    bottom: 12px;
+    left: 60px;
+    border: 1px solid rgba(0, 100, 0, .5);
+    border-radius: 5px;
+    background: #00ff00;
+    box-shadow: 0px 0px 2px 2px #00ff00;
+
+    animation: LEDpulse 3.5s linear infinite;
+}
+.ledText {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+}
+.ledText h1 {
+    margin: 0;
+    font-size: 14px;
+}
+.terminal {
+    position: absolute;
+    width: 1000px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -500px;
+    border-radius: 20px;
+    border: 10px solid #000;
+    background: #1D1D1D;
+}
+.terminal:before {
+    z-index: 2;
+    position: absolute;
+    content: '';
+    width: 1020px;
+    height: 620px;
+    top: 50%;
+    left: 50%;
+    margin-top: -310px;
+    margin-left: -510px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(149,149,149,0.5) 0%,rgba(13,13,13,0.55) 19%,rgba(1,1,1,0.64) 50%,rgba(10,10,10,0.69) 69%,rgba(51,51,51,0.73) 84%,rgba(22,22,22,0.76) 93%,rgba(27,27,27,0.78) 100%);
+    opacity: 0.5;
+}
+.terminal:after {
+    z-index: 1;
+    position: absolute;
+    content: '';
+    width: 1020px;
+    height: 620px;
+    top: 50%;
+    left: 50%;
+    margin-top: -310px;
+    margin-left: -510px;
+    border-radius: 20px;
+    background-color: #ddd;
+    opacity: 0.1;
+}
+.screen {
+    z-index: 3;
+    position: absolute;
+    overflow: hidden;
+    width: 950px;
+    height: 550px;
+    top: 50%;
+    left: 50%;
+    margin-top: -280px;
+    margin-left: -475px;
+    border-radius: 20px;
+    background: #000;
+    box-shadow: 0px 0px 1px 3px rgba(10, 10, 10, .7);
+}
+.screen:before {
+    z-index: 10;
+    position: absolute;
+    content: '';
+    width: 950px;
+    height: 550px;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background: linear-gradient(#fff 50%, #000 50%);
+    background-size: 100% 4px;
+    background-repeat: repeat-y;
+    opacity: 0.15;
+
+    animation: pulse 5s linear infinite;
+}
+.screen:after {
+    z-index: 11;
+    position: absolute;
+    content: '';
+    width: 970px;
+    height: 570px;
+    top: -10px;
+    left: -10px;
+    border-radius: 20px;
+    background-color: #00ff77;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%,rgba(0,0,0,0.62) 45%,rgba(0,9,4,0.6) 47%,rgba(0,255,119,1) 100%);
+    box-shadow: inset 0px 0px 40px 40px rgba(100, 100, 100, .5);
+    opacity: 0.1;
+}
+.layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    padding: 40px;
+    top: 0;
+    left: 0;
+    bottom: -10px;
+    right: -10px;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at center, rgba(0,255,119,0.45) 0%,rgba(255,255,255,0) 100%);
+    box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, .1);
+    transform-origin: 50% 50%;
+    opacity: 0.9;
+}
+.layer:after {
+    position: absolute;
+    content: '';
+    width: 950px;
+    height: 550px;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%,rgba(255,255,255,0) 100%);
+    opacity: 0.1;
+}
+.overlay {
+    z-index: 100;
+    position: absolute;
+    width: 950px;
+    height: 550px;
+    top: 50%;
+    left: 50%;
+    margin-top: -275px;
+    margin-left: -475px;
+    border-radius: 20px;
+}
+.overlay:before {
+    position: absolute;
+    content: '';
+    top: -50px;
+    left: 0;
+    width: 950px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255,0,0,0) 0%,rgba(255,250,250,1) 50%,rgba(255,255,255,0.98) 51%,rgba(255,0,0,0) 100%);
+    opacity: 0.05;
+
+    animation: barline 2.5s linear infinite;
+}
+.output {
+    display: block !important;
+    overflow: hidden;
+    white-space: pre;
+    resize: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: none;
+    box-sizing: border-box;
+    border: 0 none;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    line-height: 22px;
+    color: #18FF62;
+    text-shadow: 0px 0px 2px rgba(10, 255, 10, .8);
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 100%);
+    opacity: 0.99;
+
+    animation: shift 3.5s linear infinite;
+}

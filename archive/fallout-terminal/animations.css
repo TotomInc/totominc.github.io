@@ -1,0 +1,62 @@
+@-webkit-keyframes barline {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: 100%;
+    }
+}
+@-webkit-keyframes pulse {
+    0% {
+        opacity: 0.21;
+    }
+    8% {
+        opacity: 0.14;
+    }
+    15% {
+        opacity: 0.10;
+    }
+    30% {
+        opacity: 0.13;
+    }
+    100% {
+        opacity: 0.21;
+    }
+}
+@-webkit-keyframes shift {
+    0% {
+        -webkit-transform: perspective(200px) skewX(.5deg);
+        text-shadow: 0px 0px 2px rgba(10, 255, 10, .8);
+    }
+    8% {
+        -webkit-transform: perspective(400px) skewX(1.0deg) scale(1.0001);
+    }
+    15% {
+        -webkit-transform: perspective(200px) skewX(.6deg) skewY(-.05deg);
+        text-shadow: 0px 0px 2px rgba(100, 0, 100, .5);
+    }
+    30% {
+        -webkit-transform: perspective(200px) skewX(.6deg);
+    }
+    100% {
+        -webkit-transform: perspective(200px) skewX(.1deg);
+        text-shadow: 1px 0px 2px rgba(100, 255, 100, 1);
+    }
+}
+@-webkit-keyframes LEDpulse {
+    0% {
+        opacity: 1;
+    }
+    8% {
+        opacity: 0.75;
+    }
+    15% {
+        opacity: 0.50;
+    }
+    30% {
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
